@@ -2,8 +2,6 @@ import os
 import re
 import utils
 from dotenv import load_dotenv
-from pathlib import Path
-from os import listdir
 
 
 def initialize():
@@ -62,9 +60,9 @@ def process_examples():
 
                     # Entries for manifest block
                     shex_name = matching_name.strip()
-                    schema_url = os.path.join(shex_schemas_relative_path, shex_name + '.shex')
+                    schema_url = os.path.join(shex_schemas_url_prefix, shex_name + '.shex')
                     data_label = rdf_file.split(".")[0]
-                    data_url = os.path.join(rdf_examples_relative_path, rdf_file)
+                    data_url = os.path.join(data_url_prefix, rdf_file)
 
                     # Append this example into appropriate manifest file
                     manifest_file_name = shex_name + '.yaml'
@@ -77,7 +75,7 @@ def process_examples():
                             f"{spacing}dataLabel: {data_label}"
                             f"{spacing}dataURL: {data_url}"
                             f"{spacing}queryMap: \"{{FOCUS a fhir:{shex_name}}}@<{shex_name}>\""
-                            f"{spacing}status: conformant{spacing}");
+                            f"{spacing}status: conformant{spacing}")
 
                     # Create Entry in the dictionary of manifests
                     yaml_file_name = os.path.join(manifests_relative_path, manifest_file_name)
@@ -93,15 +91,17 @@ def process_examples():
 if __name__ == '__main__':
     project_base_path = os.path.dirname(os.path.realpath(__file__))
     load_dotenv()
-    project_path= utils.get_project_root()
+    project_path = utils.get_project_root()
 
-    # ShEx Schemas
-    shex_schemas_relative_path=utils.get_env_val('SHEX_SCHEMAS_DIR')
-    shex_schemas_absolute_path=utils.get_env_path('SHEX_SCHEMAS_DIR')
+    # ShEx Schemas - schemaURL
+    shex_schemas_url_prefix = utils.get_env_val('SCHEMAS_URL_PREFIX')
+
+    # RDF Examples - dataURL
+    data_url_prefix = utils.get_env_val('DATA_URL_PREFIX')
 
     # Turtle Examples
-    rdf_examples_relative_path=utils.get_env_val('RDF_EXAMPLES_DIR')
-    rdf_examples_absolute_path=utils.get_env_path('RDF_EXAMPLES_DIR')
+    rdf_examples_relative_path = utils.get_env_val('RDF_EXAMPLES_DIR')
+    rdf_examples_absolute_path = utils.get_env_path('RDF_EXAMPLES_DIR')
 
     # Manifest Files
     manifests_relative_path = utils.get_env_val('MANIFEST_FILES_DIR')
@@ -133,4 +133,3 @@ if __name__ == '__main__':
     print(f"* Fail: {failed}")
     print(f"* Skipped: {skipped}")
     print(f"* Total: {whole}")
-
