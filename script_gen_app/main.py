@@ -68,7 +68,7 @@ def process_examples():
 
                     # Append this example into appropriate manifest file
                     manifest_file_name = shex_name + '.yaml'
-                    spacing = "\n    "
+                    spacing = "\n  "
                     yaml_file_to_write = os.path.join(manifests_absolute_path, manifest_file_name)
                     with open(yaml_file_to_write, 'a+') as yf:
                         yf.write(
