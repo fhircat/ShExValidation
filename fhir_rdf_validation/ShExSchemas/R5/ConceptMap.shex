@@ -1,0 +1,185 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <id.shex>
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <string.shex>
+IMPORT <Coding.shex>
+IMPORT <boolean.shex>
+IMPORT <integer.shex>
+IMPORT <decimal.shex>
+IMPORT <dateTime.shex>
+IMPORT <markdown.shex>
+IMPORT <ValueSet.shex>
+IMPORT <canonical.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <MetadataResource.shex>
+
+
+start=@<ConceptMap> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A map from one set of concepts to one or more other concepts
+<ConceptMap> EXTENDS @<MetadataResource> CLOSED {   
+
+    a [fhir:ConceptMap];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:url @<uri>?;                       # Canonical identifier for this 
+                                            # concept map, represented as a URI 
+                                            # (globally unique) 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
+                                            # concept map 
+    fhir:version @<string>?;                # Business version of the concept map
+    fhir:name @<string>?;                   # Name for this concept map 
+                                            # (computer friendly) 
+    fhir:title @<string>?;                  # Name for this concept map (human 
+                                            # friendly) 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:date @<dateTime>?;                 # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the concept map 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for concept 
+                                            # map (if applicable) 
+    fhir:purpose @<markdown>?;              # Why this concept map is defined
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:sourceScope (@<uri>  OR 
+    			(@<canonical>  AND {fhir:link @<ValueSet> }) )  AND { rdf:type IRI } ?;  # The source value set that contains 
+                                            # the concepts that are being mapped 
+    fhir:targetScope (@<uri>  OR 
+    			(@<canonical>  AND {fhir:link @<ValueSet> }) )  AND { rdf:type IRI } ?;  # The target value set which 
+                                            # provides context for the mappings 
+    fhir:group @<OneOrMore_BackboneElement>?;  # Same source and target systems
+}  
+
+# What to do when there is no mapping target for the source concept
+<ConceptMap.group.unmapped> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:mode @<code> AND
+    	{fhir:v @fhirvs:conceptmap-unmapped-mode};  # use-source-code | fixed | other-map
+    fhir:code @<code>?;                     # Fixed code when mode = fixed
+    fhir:display @<string>?;                # Display for the code
+    fhir:valueSet @<canonical>?;            # Fixed code set when mode = fixed
+    fhir:relationship @<code> AND
+    	{fhir:v @fhirvs:concept-map-relationship}?;  # related-to | equivalent | 
+                                            # source-is-narrower-than-target | 
+                                            # source-is-broader-than-target | 
+                                            # not-related-to 
+    fhir:otherMap @<canonical>?;            # canonical reference to an 
+                                            # additional ConceptMap to use for 
+                                            # mapping if the source concept is 
+                                            # unmapped 
+}  
+
+# Mappings for a concept from the source set
+<ConceptMap.group.element> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code>?;                     # Identifies element being mapped
+    fhir:display @<string>?;                # Display for the code
+    fhir:valueSet @<canonical>?;            # Identifies elements being mapped
+    fhir:noMap @<boolean>?;                 # No mapping to a target concept for 
+                                            # this source concept 
+    fhir:target @<OneOrMore_BackboneElement>?;  # Concept in target system for 
+                                            # element 
+}  
+
+# Other elements required for this mapping (from context)
+<ConceptMap.group.element.target.dependsOn> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:property @<uri>;                   # A reference to a property that may 
+                                            # be required to refine the mapping 
+    fhir:v (@<code>  OR 
+    			@<Coding>  OR 
+    			@<string>  OR 
+    			@<integer>  OR 
+    			@<boolean>  OR 
+    			@<dateTime>  OR 
+    			@<decimal>  OR 
+    			@<uri>  OR 
+    			@<id> )  AND { rdf:type IRI } ?;  # Value of the referenced property
+    fhir:valueSet @<canonical>?;            # The mapping depends on a property 
+                                            # with a value from this value set 
+}  
+
+# Concept in target system for element
+<ConceptMap.group.element.target> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code>?;                     # Code that identifies the target 
+                                            # element 
+    fhir:display @<string>?;                # Display for the code
+    fhir:valueSet @<canonical>?;            # Identifies the set of target 
+                                            # elements 
+    fhir:relationship @<code> AND
+    	{fhir:v @fhirvs:concept-map-relationship};  # related-to | equivalent | 
+                                            # source-is-narrower-than-target | 
+                                            # source-is-broader-than-target | 
+                                            # not-related-to 
+    fhir:comment @<string>?;                # Description of status/issues in 
+                                            # mapping 
+    fhir:dependsOn @<OneOrMore_BackboneElement>?;  # Other elements required for this 
+                                            # mapping (from context) 
+    fhir:product @<OneOrMore_ConceptMap.group.element.target.dependsOn>?;  # Other concepts that this mapping 
+                                            # also produces 
+}  
+
+# Same source and target systems
+<ConceptMap.group> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:source @<canonical>?;              # Source system where concepts to be 
+                                            # mapped are defined 
+    fhir:target @<canonical>?;              # Target system that the concepts 
+                                            # are to be mapped to 
+    fhir:element @<OneOrMore_BackboneElement>;  # Mappings for a concept from the 
+                                            # source set 
+    fhir:unmapped @<BackboneElement>?;      # What to do when there is no 
+                                            # mapping target for the source 
+                                            # concept 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_ContactDetail> CLOSED {
+    rdf:first @<ContactDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactDetail> 
+}
+
+<OneOrMore_UsageContext> CLOSED {
+    rdf:first @<UsageContext>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_UsageContext> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_ConceptMap.group.element.target.dependsOn> CLOSED {
+    rdf:first @<ConceptMap.group.element.target.dependsOn>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ConceptMap.group.element.target.dependsOn> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+
+# Defines which action to take if there is no match in the group.
+fhirvs:conceptmap-unmapped-mode ["use-source-code" "fixed" "other-map"]
+
+# The relationship between concepts.
+fhirvs:concept-map-relationship ["related-to" "equivalent" "source-is-narrower-than-target" "source-is-broader-than-target" "not-related-to"]
+

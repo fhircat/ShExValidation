@@ -1,0 +1,101 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <string.shex>
+IMPORT <Period.shex>
+IMPORT <boolean.shex>
+IMPORT <dateTime.shex>
+IMPORT <markdown.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <MetadataResource.shex>
+
+
+start=@<NamingSystem> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# System of unique identification
+<NamingSystem> EXTENDS @<MetadataResource> CLOSED {   
+
+    a [fhir:NamingSystem];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:url @<uri>?;                       # Canonical identifier for this 
+                                            # naming system, represented as a 
+                                            # URI (globally unique) 
+    fhir:version @<string>?;                # Business version of the naming 
+                                            # system 
+    fhir:name @<string>;                    # Name for this naming system 
+                                            # (computer friendly) 
+    fhir:title @<string>?;                  # Title for this naming system 
+                                            # (human friendly) 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:kind @<code> AND
+    	{fhir:v @fhirvs:namingsystem-type};  # codesystem | identifier | root
+    fhir:date @<dateTime>;                  # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:responsible @<string>?;            # Who maintains system namespace?
+    fhir:type @<CodeableConcept>?;          # e.g. driver,  provider,  patient, 
+                                            # bank etc. 
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the naming system 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for naming 
+                                            # system (if applicable) 
+    fhir:usage @<string>?;                  # How/where is it used
+    fhir:uniqueId @<OneOrMore_BackboneElement>;  # Unique identifiers used for system
+}  
+
+# Unique identifiers used for system
+<NamingSystem.uniqueId> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:namingsystem-identifier-type};  # oid | uuid | uri | v2csmnemonic | 
+                                            # other 
+    fhir:v @<string>;                   # The unique identifier
+    fhir:preferred @<boolean>?;             # Is this the id that should be used 
+                                            # for this type 
+    fhir:comment @<string>?;                # Notes about identifier usage
+    fhir:period @<Period>?;                 # When is identifier valid?
+    fhir:authoritative @<boolean>?;         # Whether the identifier is 
+                                            # authoritative 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_ContactDetail> CLOSED {
+    rdf:first @<ContactDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactDetail> 
+}
+
+<OneOrMore_UsageContext> CLOSED {
+    rdf:first @<UsageContext>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_UsageContext> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Identifies the style of unique identifier used to identify a namespace.
+fhirvs:namingsystem-identifier-type ["oid" "uuid" "uri" "v2csmnemonic" "other"]
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+
+# Identifies the purpose of the naming system.
+fhirvs:namingsystem-type ["codesystem" "identifier" "root"]
+

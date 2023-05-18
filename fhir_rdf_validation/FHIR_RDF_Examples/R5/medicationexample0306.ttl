@@ -1,0 +1,45 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Medication ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "med0306"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Medication</b><a name=\"med0306\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Medication &quot;med0306&quot; </p></div><p><b>code</b>: Adcetris <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ndc.html\">National drug codes</a>#51144-050-01)</span></p><p><b>marketingAuthorizationHolder</b>: <a name=\"mmanu\"> </a></p><blockquote><p/><p><a name=\"mmanu\"> </a></p><p><b>name</b>: Medication Manufacturer</p></blockquote><p><b>doseForm</b>: Lyophilized powder for injectable solution (qualifier value)  <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#421637006)</span></p><h3>Batches</h3><table class=\"grid\"><tr><td>-</td><td><b>LotNumber</b></td><td><b>ExpirationDate</b></td></tr><tr><td>*</td><td>12345</td><td>2019-10-31</td></tr></table></div>"
+  ] ; # 
+  fhir:contained ( [
+     a fhir:Organization ;
+     fhir:id [ fhir:v "mmanu" ] ;
+     fhir:name [ fhir:v "Medication Manufacturer" ]
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/sid/ndc"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "51144-050-01" ] ;
+       fhir:display [ fhir:v "Adcetris" ]
+     ] )
+  ] ; # 
+  fhir:marketingAuthorizationHolder [
+     fhir:reference [ fhir:v "#mmanu" ]
+  ] ; # 
+  fhir:doseForm [
+     fhir:coding ( [
+       a sct:421637006 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "421637006" ] ;
+       fhir:display [ fhir:v "Lyophilized powder for injectable solution (qualifier value) " ]
+     ] )
+  ] ; # 
+  fhir:batch [
+     fhir:lotNumber [ fhir:v "12345" ] ;
+     fhir:expirationDate [ fhir:v "2019-10-31"^^xsd:date ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

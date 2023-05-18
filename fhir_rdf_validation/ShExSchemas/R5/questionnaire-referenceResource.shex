@@ -1,0 +1,27 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <Extension.shex>
+
+# Allowed resource for reference
+<questionnaire-referenceResource> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:questionnaire-referenceResource];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/questionnaire-referenceResource"]}; 
+    fhir:v (@<code> AND
+    	{fhir:v @fhirvs:resource-types} )  AND { rdf:type IRI } ; 
+    ^fhir:extension { ^fhir:item {a [fhir:Questionnaire]}
+        }
+}  
+
+#---------------------- Value Sets ------------------------
+
+# One of the resource types defined as part of this version of FHIR.
+fhirvs:resource-types ["Resource" "Binary" "Bundle" "DomainResource" "Account" "AdministrableProductDefinition" "AdverseEvent" "AllergyIntolerance" "Appointment" "AppointmentResponse" "ArtifactAssessment" "AuditEvent" "Basic" "BiologicallyDerivedProduct" "BodyStructure" "CanonicalResource" "CapabilityStatement" "CapabilityStatement2" "CodeSystem" "CompartmentDefinition" "ExampleScenario" "GraphDefinition" "ImplementationGuide" "MessageDefinition" "MetadataResource" "ActivityDefinition" "ChargeItemDefinition" "Citation" "ConceptMap" "ConditionDefinition" "EventDefinition" "Evidence" "EvidenceReport" "EvidenceVariable" "Library" "Measure" "NamingSystem" "PlanDefinition" "Questionnaire" "OperationDefinition" "SearchParameter" "StructureDefinition" "StructureMap" "SubscriptionTopic" "TerminologyCapabilities" "TestScript" "ValueSet" "CarePlan" "CareTeam" "ChargeItem" "Claim" "ClaimResponse" "ClinicalImpression" "ClinicalUseDefinition" "Communication" "CommunicationRequest" "Composition" "Condition" "Consent" "Contract" "Coverage" "CoverageEligibilityRequest" "CoverageEligibilityResponse" "DetectedIssue" "Device" "DeviceDefinition" "DeviceDispense" "DeviceMetric" "DeviceRequest" "DeviceUsage" "DiagnosticReport" "DocumentManifest" "DocumentReference" "Encounter" "Endpoint" "EnrollmentRequest" "EnrollmentResponse" "EpisodeOfCare" "ExplanationOfBenefit" "FamilyMemberHistory" "Flag" "FormularyItem" "Goal" "Group" "GuidanceResponse" "HealthcareService" "ImagingSelection" "ImagingStudy" "Immunization" "ImmunizationEvaluation" "ImmunizationRecommendation" "Ingredient" "InsurancePlan" "InventoryReport" "Invoice" "Linkage" "List" "Location" "ManufacturedItemDefinition" "MeasureReport" "Medication" "MedicationAdministration" "MedicationDispense" "MedicationKnowledge" "MedicationRequest" "MedicationUsage" "MedicinalProductDefinition" "MessageHeader" "MolecularSequence" "NutritionIntake" "NutritionOrder" "NutritionProduct" "Observation" "ObservationDefinition" "OperationOutcome" "Organization" "OrganizationAffiliation" "PackagedProductDefinition" "Patient" "PaymentNotice" "PaymentReconciliation" "Permission" "Person" "Practitioner" "PractitionerRole" "Procedure" "Provenance" "QuestionnaireResponse" "RegulatedAuthorization" "RelatedPerson" "RequestGroup" "ResearchStudy" "ResearchSubject" "RiskAssessment" "Schedule" "ServiceRequest" "Slot" "Specimen" "SpecimenDefinition" "Subscription" "SubscriptionStatus" "Substance" "SubstanceDefinition" "SubstanceNucleicAcid" "SubstancePolymer" "SubstanceProtein" "SubstanceReferenceInformation" "SubstanceSourceMaterial" "SupplyDelivery" "SupplyRequest" "Task" "TestReport" "Transport" "VerificationResult" "VisionPrescription" "Parameters"]
+

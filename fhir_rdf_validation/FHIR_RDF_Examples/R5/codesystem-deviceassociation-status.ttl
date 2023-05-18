@@ -1,0 +1,66 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "deviceassociation-status"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "oo" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/deviceassociation-status"], [ fhir:v "http://hl7.org/fhir/deviceassociation-status"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "DeviceAssociation"], [ fhir:v "DeviceAssociation"] ;
+  fhir:title [ fhir:v "DeviceAssociation Status Codes"], [ fhir:v "DeviceAssociation Status Codes"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:publisher [ fhir:v "HL7 International"], [ fhir:v "HL7 International"] ;
+  fhir:description [ fhir:v "DeviceAssociation Status Codes"], [ fhir:v "DeviceAssociation Status Codes"] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/deviceassociation-status"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "implanted" ] ;
+     fhir:display [ fhir:v "Implanted" ] ;
+     fhir:definition [ fhir:v "The device is implanted in the patient." ]
+  ] [
+     fhir:code [ fhir:v "explanted" ] ;
+     fhir:display [ fhir:v "Explanted" ] ;
+     fhir:definition [ fhir:v "The device is no longer implanted in the patient. Note that this is not the value to be used for devices that have never been implanted. In those cases, no value or a specific value can be used." ]
+  ] [
+     fhir:code [ fhir:v "entered-in-error" ] ;
+     fhir:display [ fhir:v "Entered in Error" ] ;
+     fhir:definition [ fhir:v "The association was entered in error and therefore nullified." ]
+  ] [
+     fhir:code [ fhir:v "attached" ] ;
+     fhir:display [ fhir:v "Attached" ] ;
+     fhir:definition [ fhir:v "The device is attached to the patient but not implanted in the patient." ]
+  ] [
+     fhir:code [ fhir:v "unknown" ] ;
+     fhir:display [ fhir:v "Unknown" ] ;
+     fhir:definition [ fhir:v "The association status of the device has not been determined." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,115 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Condition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "f201"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Condition</b><a name=\"f201\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Condition &quot;f201&quot; </p></div><p><b>identifier</b>: id: 12345</p><p><b>clinicalStatus</b>: Resolved <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-condition-clinical.html\">Condition Clinical Status Codes</a>#resolved)</span></p><p><b>verificationStatus</b>: Confirmed <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-condition-ver-status.html\">ConditionVerificationStatus</a>#confirmed)</span></p><p><b>category</b>: Problem <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#55607006; <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-condition-category.html\">Condition Category Codes</a>#problem-list-item)</span></p><p><b>severity</b>: Mild <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#255604002)</span></p><p><b>code</b>: Fever <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#386661006)</span></p><p><b>bodySite</b>: Entire body as a whole <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#38266002)</span></p><p><b>subject</b>: <a href=\"patient-example-f201-roel.html\">Patient/f201: Roel</a> &quot;Roel&quot;</p><p><b>encounter</b>: <a href=\"encounter-example-f201-20130404.html\">Encounter/f201</a></p><p><b>onset</b>: 2013-04-02</p><p><b>abatement</b>: around April 9, 2013</p><p><b>recordedDate</b>: 2013-04-04</p><blockquote><p><b>participant</b></p><p><b>function</b>: Enterer <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-provenance-participant-type.html\">Provenance participant type</a>#enterer)</span></p><p><b>actor</b>: <a href=\"practitioner-example-f201-ab.html\">Practitioner/f201</a> &quot;Dokter Bronsig&quot;</p></blockquote><blockquote><p><b>participant</b></p><p><b>function</b>: Verifier <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-provenance-participant-type.html\">Provenance participant type</a>#verifier)</span></p><p><b>actor</b>: <a href=\"practitioner-example-f201-ab.html\">Practitioner/f201</a> &quot;Dokter Bronsig&quot;</p></blockquote><h3>Evidences</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td><td><b>Reference</b></td></tr><tr><td>*</td><td><span title=\" Problem is confirmed by 39 degrees Celsius \">degrees C <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#258710007)</span></span></td><td><a href=\"observation-example-f202-temperature.html\">Observation/f202: Temperature</a></td></tr></table></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:value [ fhir:v "12345" ]
+  ] ) ; # 
+  fhir:clinicalStatus [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/condition-clinical"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "resolved" ]
+     ] )
+  ] ; # 
+  fhir:verificationStatus [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/condition-ver-status"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "confirmed" ]
+     ] )
+  ] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       a sct:55607006 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "55607006" ] ;
+       fhir:display [ fhir:v "Problem" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/condition-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "problem-list-item" ]
+     ] ) #   The fever is a mild problem  
+  ] ) ; # 
+  fhir:severity [
+     fhir:coding ( [
+       a sct:255604002 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "255604002" ] ;
+       fhir:display [ fhir:v "Mild" ]
+     ] ) #   The fever is mild   
+  ] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a sct:386661006 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "386661006" ] ;
+       fhir:display [ fhir:v "Fever" ]
+     ] ) #   The problem is a fever  
+  ] ; # 
+  fhir:bodySite ( [
+     fhir:coding ( [
+       a sct:38266002 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "38266002" ] ;
+       fhir:display [ fhir:v "Entire body as a whole" ]
+     ] ) #   Fever applies to whole body  
+  ] ) ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/f201" ] ; #   It entails Roel's problem  
+     fhir:display [ fhir:v "Roel" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/f201" ]
+  ] ; # 
+  fhir:onset [ fhir:v "2013-04-02"^^xsd:date] ; # 
+  fhir:abatement [ fhir:v "around April 9, 2013"] ; # 
+  fhir:recordedDate [ fhir:v "2013-04-04"^^xsd:date] ; # 
+  fhir:participant ( [
+     fhir:function [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/provenance-participant-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "enterer" ] ;
+         fhir:display [ fhir:v "Enterer" ]
+       ] )
+     ] ;
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/f201" ]
+     ]
+  ] [
+     fhir:function [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/provenance-participant-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "verifier" ] ;
+         fhir:display [ fhir:v "Verifier" ]
+       ] )
+     ] ;
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/f201" ]
+     ]
+  ] ) ; # 
+  fhir:evidence ( [
+     fhir:concept [
+       fhir:coding ( [
+         a sct:258710007 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "258710007" ] ;
+         fhir:display [ fhir:v "degrees C" ]
+       ] )
+     ] ; #   Problem is confirmed by 39 degrees Celsius  
+     fhir:reference [
+       fhir:reference [ fhir:v "Observation/f202" ] ;
+       fhir:display [ fhir:v "Temperature" ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

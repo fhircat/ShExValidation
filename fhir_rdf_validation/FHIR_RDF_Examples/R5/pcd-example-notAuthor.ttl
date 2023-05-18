@@ -1,0 +1,73 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Contract ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "pcd-example-notAuthor"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">The following scenario is based on existing\n      jurisdictional policy and are realized in existing systems in Canada. The default policy is\n      one of implied consent for the provision of care, so these scenarios all deal with withdrawal\n      or withholding consent for that purpose. In other jurisdictions, where an express consent\n      model is used (Opt-In), these would examples would contain the phrase &quot;consent to&quot; rather than\n      &quot;withhold&quot; or &quot;withdraw&quot; consent for. <p> specific to use-case 5) Withhold or withdraw consent\n        for disclosure of records that were authored by a specific organization (or service delivery\n        location). </p><p> Patient &quot;P. van de Heuvel&quot; wishes to have all of the PHI collected at the\n        Good Health Psychiatric Hospital restricted from disclosure to every provider. </p>\n    </div>"
+  ] ; # 
+  fhir:issued [ fhir:v "2015-11-18"^^xsd:date] ; # 
+  fhir:subject ( [
+     fhir:reference [ fhir:v "Patient/f001" ] ;
+     fhir:display [ fhir:v "P. van de Heuvel" ]
+  ] ) ; #   not bound by a timeframe - Contract.applies  
+  fhir:authority ( [
+     fhir:reference [ fhir:v "Organization/3" ] ;
+     fhir:display [ fhir:v "Michigan Health" ]
+  ] ) ; # 
+  fhir:domain ( [
+     fhir:reference [ fhir:v "Location/ukp" ] ;
+     fhir:display [ fhir:v "UK Pharmacies" ]
+  ] ) ; #   and/or would this [also] go into Contract.domain as a Jurisdiction?? (see the example on UK Pharamacy Juristiction)  
+  fhir:type [
+     fhir:coding ( [
+       a loinc:57016-8 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "57016-8" ]
+     ] )
+  ] ; # 
+  fhir:subType ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://www.infoway-inforoute.ca.org/Consent-subtype-codes"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "Opt-In" ] ;
+       fhir:display [ fhir:v "Default Authorization with exceptions." ]
+     ] )
+  ] ) ; #   made up code-system to represent the set of privacy consent sub-types known and published by Canada Infoway  
+  fhir:term ( [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://example.org/fhir/consent-term-type-codes"^^xsd:anyURI ] ; #   made up code system  
+         fhir:code [ fhir:v "withhold-authored-by" ] ;
+         fhir:display [ fhir:v "Withhold all data authored by specified actor entity." ]
+       ] )
+     ] ;
+     fhir:offer [
+       fhir:topic [
+         fhir:reference [ fhir:v "Organization/2.16.840.1.113883.19.5" ] ;
+         fhir:display [ fhir:v "Good Health Clinic" ]
+       ] ;
+       fhir:text [ fhir:v "Withhold all data authored by Good Health provider." ]
+     ]
+  ] ) ; # 
+  fhir:friendly ( [
+     fhir:content [
+       a fhir:Attachment ;
+       fhir:title [ fhir:v "The terms of the consent in friendly consumer speak." ]
+     ] #   likely use url pointer to common text  
+  ] ) ; #   the terms of the consent in friendly consumer speak  
+  fhir:legal ( [
+     fhir:content [
+       a fhir:Attachment ;
+       fhir:title [ fhir:v "The terms of the consent in lawyer speak." ]
+     ] #   likely use url pointer to common text  ,   I think some think that this should be the pointer to the law by which this consent is derived under. Such as http:\/\/lois-laws.justice.gc.ca\/eng\/acts\/P-21\/index.html  
+  ] )] . #   the legal terms of the consent in lawyer speak  
+
+# -------------------------------------------------------------------------------------
+

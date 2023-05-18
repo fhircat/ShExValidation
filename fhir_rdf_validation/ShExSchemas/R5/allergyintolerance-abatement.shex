@@ -1,0 +1,29 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Age.shex>
+IMPORT <Range.shex>
+IMPORT <Period.shex>
+IMPORT <string.shex>
+IMPORT <dateTime.shex>
+IMPORT <Extension.shex>
+
+# When the allergy or intolerance resolved
+<allergyintolerance-abatement> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:allergyintolerance-abatement];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/allergyintolerance-abatement"]}; 
+    fhir:v (@<dateTime>  OR 
+    			@<Age>  OR 
+    			@<Period>  OR 
+    			@<Range>  OR 
+    			@<string> )  AND { rdf:type IRI } ; 
+    ^fhir:extension { a [fhir:AllergyIntolerance]
+        }
+}  
+

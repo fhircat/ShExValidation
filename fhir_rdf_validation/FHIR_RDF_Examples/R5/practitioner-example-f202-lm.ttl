@@ -1,0 +1,59 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+#       <photo>    
+#        <reference value="Media/LM-203.bmp"/>
+#        <display value="Picture_Luigi_Maas"/>
+#    </photo>  
+
+[a fhir:Practitioner ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "f202"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Practitioner</b><a name=\"f202\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Practitioner &quot;f202&quot; </p></div><p><b>identifier</b>: UZI-nummer: 12345678902 (use: OFFICIAL), BIG-nummer: 12345678902 (use: OFFICIAL)</p><p><b>active</b>: true</p><p><b>name</b>: Luigi Maas(OFFICIAL)</p><p><b>telecom</b>: <a href=\"tel:+31715269111\">+31715269111</a></p><p><b>gender</b>: male</p><p><b>birthDate</b>: <span title=\" The practitioner's administrative gender \">1960-06-12</span></p><p><b>address</b>: Walvisbaai 3 C4 - Automatisering Den helder 2333ZA NLD (WORK)</p></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "official" ] ; #   The identifier for the person as this practitioner (fictive)  
+     fhir:type [
+       fhir:text [ fhir:v "UZI-nummer" ]
+     ] ;
+     fhir:system [ fhir:v "urn:oid:2.16.528.1.1007.3.1"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "12345678902" ]
+  ] [
+     fhir:use [ fhir:v "official" ] ; #   The identifier for this individual  
+     fhir:type [
+       fhir:text [ fhir:v "BIG-nummer" ]
+     ] ;
+     fhir:system [ fhir:v "https://www.bigregister.nl/"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "12345678902" ]
+  ] ) ; # 
+  fhir:active [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:name ( [
+     fhir:use [ fhir:v "official" ] ; #   The name of the practitioner  
+     fhir:text [ fhir:v "Luigi Maas" ] ;
+     fhir:family [ fhir:v "Maas" ] ;
+     fhir:given ( [ fhir:v "Luigi" ] ) ;
+     fhir:prefix ( [ fhir:v "Dr." ] )
+  ] ) ; # 
+  fhir:telecom ( [
+     fhir:system [ fhir:v "phone" ] ; #   A contact detail for the individual  
+     fhir:value [ fhir:v "+31715269111" ] ;
+     fhir:use [ fhir:v "work" ]
+  ] ) ; # 
+  fhir:gender [ fhir:v "male"] ; # 
+  fhir:birthDate [ fhir:v "1960-06-12"^^xsd:date] ; #   The practitioner's administrative gender  
+  fhir:address ( [
+     fhir:use [ fhir:v "work" ] ; #   Work address for the individual  
+     fhir:line ( [ fhir:v "Walvisbaai 3" ] [ fhir:v "C4 - Automatisering" ] ) ;
+     fhir:city [ fhir:v "Den helder" ] ;
+     fhir:postalCode [ fhir:v "2333ZA" ] ;
+     fhir:country [ fhir:v "NLD" ]
+  ] )] . #   ISO 3166 3 letter code  
+
+# -------------------------------------------------------------------------------------
+

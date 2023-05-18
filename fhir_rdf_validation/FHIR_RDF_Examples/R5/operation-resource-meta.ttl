@@ -1,0 +1,75 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:OperationDefinition ;
+  fhir:id [ fhir:v "Resource-meta"] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "3" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/OperationDefinition/Resource-meta"], [ fhir:v "http://hl7.org/fhir/OperationDefinition/Resource-meta"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "Meta"], [ fhir:v "Meta"] ;
+  fhir:title [ fhir:v "Access a list of profiles, tags, and security labels"], [ fhir:v "Access a list of profiles, tags, and security labels"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "This operation retrieves a summary of the profiles, tags, and security labels for the given scope; e.g. for each scope:  \n\n* system-wide: a list of all profiles, tags and security labels in use by the system \n* resource-type level: A list of all profiles, tags, and security labels for the resource type \n* individual resource level: A list of all profiles, tags, and security labels for the current version of the resource.  Also, as a special case, this operation (and other meta operations) can be performed on a historical version of a resource)"], [ fhir:v "This operation retrieves a summary of the profiles, tags, and security labels for the given scope; e.g. for each scope:  \n\n* system-wide: a list of all profiles, tags and security labels in use by the system \n* resource-type level: A list of all profiles, tags, and security labels for the resource type \n* individual resource level: A list of all profiles, tags, and security labels for the current version of the resource.  Also, as a special case, this operation (and other meta operations) can be performed on a historical version of a resource)"] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:kind [ fhir:v "operation"] ;
+  fhir:affectsState [ fhir:v "false"] ;
+  fhir:code [ fhir:v "meta"] ;
+  fhir:comment [ fhir:v "At the system and type levels, the $meta operation is used to get a summary of all the labels that are in use across the system. The principal use for this operation is to support search e.g. what tags can be searched for. At these levels, the meta will not contain versionId, lastUpdated etc. Systems are not obligated to implement the operation at this level (and should return a 4xx error if they don't). At the resource and historical entry level, the $meta operation returns the same meta as would be returned by accessing the resource directly. This can be used to allow a system to get access to the meta-information for the resource without accessing the resource itself, e.g. for security reasons"] ;
+  fhir:resource ( [ fhir:v "Resource"] ) ;
+  fhir:system [ fhir:v "true"] ;
+  fhir:type [ fhir:v "true"] ;
+  fhir:instance [ fhir:v "true"] ;
+  fhir:parameter ( [
+     fhir:name [ fhir:v "return" ] ;
+     fhir:use [ fhir:v "out" ] ;
+     fhir:min [ fhir:v "1" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The meta returned by the operation" ] ;
+     fhir:type [ fhir:v "Meta" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

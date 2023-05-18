@@ -1,0 +1,248 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <Range.shex>
+IMPORT <Count.shex>
+IMPORT <string.shex>
+IMPORT <Coding.shex>
+IMPORT <Patient.shex>
+IMPORT <boolean.shex>
+IMPORT <integer.shex>
+IMPORT <dateTime.shex>
+IMPORT <Location.shex>
+IMPORT <Quantity.shex>
+IMPORT <Endpoint.shex>
+IMPORT <Reference.shex>
+IMPORT <Identifier.shex>
+IMPORT <Attachment.shex>
+IMPORT <Practitioner.shex>
+IMPORT <Organization.shex>
+IMPORT <base64Binary.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <CodeableReference.shex>
+
+
+start=@<Device> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Item used in healthcare
+<Device> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Device];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Instance identifier
+    fhir:displayName @<string>?;            # The name used to display by 
+                                            # default when the device is 
+                                            # referenced 
+    fhir:definition @<CodeableReference>?;  # The reference to the definition 
+                                            # for the device 
+    fhir:udiCarrier @<OneOrMore_BackboneElement>?;  # Unique Device Identifier (UDI) 
+                                            # Barcode string 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:device-status}?;  # active | inactive | 
+                                            # entered-in-error | unknown 
+    fhir:statusReason @<OneOrMore_CodeableConcept>?;  # discarded | obsolete | removed
+    fhir:biologicalSourceEvent @<Identifier>?;  # An identifier that supports 
+                                            # traceability to the event during 
+                                            # which material in this product 
+                                            # from one or more biological 
+                                            # entities was obtained or pooled 
+    fhir:manufacturer @<string>?;           # Name of device manufacturer
+    fhir:manufactureDate @<dateTime>?;      # Date when the device was made
+    fhir:expirationDate @<dateTime>?;       # Date and time of expiry of this 
+                                            # device (if applicable) 
+    fhir:lotNumber @<string>?;              # Lot number of manufacture
+    fhir:serialNumber @<string>?;           # Serial number assigned by the 
+                                            # manufacturer 
+    fhir:deviceName @<OneOrMore_BackboneElement>?;  # The name or names of the device as 
+                                            # known to the manufacturer and/or 
+                                            # patient 
+    fhir:modelNumber @<string>?;            # The manufacturer's model number 
+                                            # for the device 
+    fhir:partNumber @<string>?;             # The part number or catalog number 
+                                            # of the device 
+    fhir:type @<OneOrMore_CodeableConcept>?;  # The kind or type of device
+    fhir:version @<OneOrMore_BackboneElement>?;  # The actual design of the device or 
+                                            # software version running on the 
+                                            # device 
+    fhir:specialization @<OneOrMore_BackboneElement>?;  # The standard(s) the device supports
+    fhir:property @<OneOrMore_BackboneElement>?;  # The actual configuration settings 
+                                            # of a device as it actually 
+                                            # operates, e.g., regulation status, 
+                                            # time properties 
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Patient> OR 
+    			@<Practitioner> }?;  # Patient to whom Device is affixed
+    fhir:operationalState @<OneOrMore_BackboneElement>?;  # The status of the device itself - 
+                                            # whether it is switched on, or 
+                                            # activated, etc 
+    fhir:association @<OneOrMore_BackboneElement>?;  # Current association of the device
+    fhir:owner @<Reference> AND {fhir:link 
+    			@<Organization> }?;  # Organization responsible for device
+    fhir:contact @<OneOrMore_ContactPoint>?;  # Details for human/organization for 
+                                            # support 
+    fhir:location @<Reference> AND {fhir:link 
+    			@<Location> }?;  # Where the device is found
+    fhir:url @<uri>?;                       # Network address to contact device
+    fhir:endpoint @<OneOrMore_Reference_Endpoint>?;  # Technical endpoints providing 
+                                            # access to electronic services 
+                                            # provided by the device 
+    fhir:link @<OneOrMore_BackboneElement>?;  # An associated device, attached to, 
+                                            # used with, communicating with or 
+                                            # linking a previous or new device 
+                                            # model to the focal device 
+    fhir:note @<OneOrMore_Annotation>?;     # Device notes and comments
+    fhir:safety @<OneOrMore_CodeableConcept>?;  # Safety Characteristics of Device
+    fhir:parent @<Reference> AND {fhir:link 
+    			@<Device> }?;  # The device that this device is 
+                                            # attached to or is part of 
+}  
+
+# An associated device, attached to, used with, communicating with or linking a previous or new device model to the focal device
+<Device.link> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:relation @<Coding>;                # The type indicates the 
+                                            # relationship of the related device 
+                                            # to the device instance 
+    fhir:relatedDevice @<CodeableReference>;  # A reference to the linked device
+}  
+
+# The actual configuration settings of a device as it actually operates, e.g., regulation status, time properties
+<Device.property> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # Code that specifies the property 
+                                            # being represented 
+    fhir:v (@<Quantity>  OR 
+    			@<CodeableConcept>  OR 
+    			@<string>  OR 
+    			@<boolean>  OR 
+    			@<integer>  OR 
+    			@<Range>  OR 
+    			@<Attachment> )  AND { rdf:type IRI } ;  # Property value - as a code, 
+                                            # quantity, boolean, string or 
+                                            # attachmment 
+}  
+
+# Unique Device Identifier (UDI) Barcode string
+<Device.udiCarrier> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:deviceIdentifier @<string>;        # Mandatory fixed portion of UDI
+    fhir:issuer @<uri>;                     # UDI Issuing Organization
+    fhir:jurisdiction @<uri>?;              # Regional UDI authority
+    fhir:carrierAIDC @<base64Binary>?;      # UDI Machine Readable Barcode String
+    fhir:carrierHRF @<string>?;             # UDI Human Readable Barcode String
+    fhir:entryType @<code> AND
+    	{fhir:v @fhirvs:udi-entry-type}?;  # barcode | rfid | manual | card | 
+                                            # self-reported | 
+                                            # electronic-transmission | unknown 
+}  
+
+# The name or names of the device as known to the manufacturer and/or patient
+<Device.deviceName> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>;                    # The name that identifies the device
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:device-nametype};  # registered-name | 
+                                            # user-friendly-name | 
+                                            # patient-reported-name 
+}  
+
+# The standard(s) the device supports
+<Device.specialization> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:systemType @<CodeableConcept>;     # Code that specifies the property 
+                                            # being represented 
+    fhir:version @<string>?;                # Standard version used
+    fhir:category @<Coding>?;               # communication | performance | 
+                                            # measurement 
+}  
+
+# The actual design of the device or software version running on the device
+<Device.version> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>?;          # The type of the device version, 
+                                            # e.g. manufacturer, approved, 
+                                            # internal 
+    fhir:component @<Identifier>?;          # The hardware or software module of 
+                                            # the device to which the version 
+                                            # applies 
+    fhir:installDate @<dateTime>?;          # The date the version was installed 
+                                            # on the device 
+    fhir:v @<string>;                   # The version text
+}  
+
+# Current association of the device
+<Device.association> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:status @<CodeableConcept>;         # Device useage state
+    fhir:statusReason @<OneOrMore_CodeableConcept>?;  # The reasons given for the current 
+                                            # association status 
+    fhir:humanSubject @<Reference> AND {fhir:link 
+    			@<Patient> }?;  # The individual associated with the 
+                                            # device 
+    fhir:bodyStructure @<CodeableReference>?;  # Current anatomical location of 
+                                            # device in/on humanSubject 
+}  
+
+# The status of the device itself - whether it is switched on, or activated, etc
+<Device.operationalState> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:status @<CodeableConcept>;         # Device operational condition
+    fhir:statusReason @<OneOrMore_CodeableConcept>?;  # The reasons given for the current 
+                                            # operational status 
+    fhir:operator @<OneOrMore_Reference_Patient_OR_Practitioner_OR_RelatedPerson>?;  # The current device operator
+    fhir:mode @<CodeableConcept>?;          # Designated condition for task
+    fhir:cycle @<Count>?;                   # Number of operationcycles
+    fhir:duration @<CodeableConcept>?;      # Operation time measurement
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_ContactPoint> CLOSED {
+    rdf:first @<ContactPoint>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactPoint> 
+}
+
+<OneOrMore_Reference_Endpoint> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Endpoint> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Endpoint> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_Reference_Patient_OR_Practitioner_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Patient_OR_Practitioner_OR_RelatedPerson> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Codes to identify how UDI data was entered.
+fhirvs:udi-entry-type ["barcode" "rfid" "manual" "card" "self-reported" "electronic-transmission" "unknown"]
+
+# The availability status of the device.
+fhirvs:device-status ["active" "inactive" "entered-in-error"]
+
+# The type of name the device is referred by.
+fhirvs:device-nametype ["registered-name" "user-friendly-name" "patient-reported-name"]
+

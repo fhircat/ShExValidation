@@ -1,0 +1,104 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "imagingselection-3dgraphictype"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "ii" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "3" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "ii" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/imagingselection-3dgraphictype"], [ fhir:v "http://hl7.org/fhir/imagingselection-3dgraphictype"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1983" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1983" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "ImagingSelection3DGraphicType"], [ fhir:v "ImagingSelection3DGraphicType"] ;
+  fhir:title [ fhir:v "Imaging Selection3 D Graphic Type"], [ fhir:v "Imaging Selection3 D Graphic Type"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2021-01-05T10:01:24+11:00"], [ fhir:v "2021-01-05T10:01:24+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The type of coordinates describing an image region."], [ fhir:v "The type of coordinates describing an image region."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/imagingselection-3dgraphictype"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "point" ] ;
+     fhir:display [ fhir:v "POINT" ] ;
+     fhir:definition [ fhir:v "A single location denoted by a single (x,y,z) triplet." ]
+  ] [
+     fhir:code [ fhir:v "multipoint" ] ;
+     fhir:display [ fhir:v "MULTIPOINT" ] ;
+     fhir:definition [ fhir:v "multiple locations each denoted by an (x,y,z) triplet; the points need not be coplanar." ]
+  ] [
+     fhir:code [ fhir:v "polyline" ] ;
+     fhir:display [ fhir:v "POLYLINE" ] ;
+     fhir:definition [ fhir:v "a series of connected line segments with ordered vertices denoted by (x,y,z) triplets; the points need not be coplanar." ]
+  ] [
+     fhir:code [ fhir:v "polygon" ] ;
+     fhir:display [ fhir:v "POLYGON" ] ;
+     fhir:definition [ fhir:v "a series of connected line segments with ordered vertices denoted by (x,y,z) triplets, where the first and last vertices shall be the same forming a polygon; the points shall be coplanar." ]
+  ] [
+     fhir:code [ fhir:v "ellipse" ] ;
+     fhir:display [ fhir:v "ELLIPSE" ] ;
+     fhir:definition [ fhir:v "an ellipse defined by four (x,y,z) triplets, the first two triplets specifying the endpoints of the major axis and the second two triplets specifying the endpoints of the minor axis." ]
+  ] [
+     fhir:code [ fhir:v "ellipsoid" ] ;
+     fhir:display [ fhir:v "ELLIPSOID" ] ;
+     fhir:definition [ fhir:v "a three-dimensional geometric surface whose plane sections are either ellipses or circles and contains three intersecting orthogonal axes, \"a\", \"b\", and \"c\"; the ellipsoid is defined by six (x,y,z) triplets, the first and second triplets specifying the endpoints of axis \"a\", the third and fourth triplets specifying the endpoints of axis \"b\", and the fifth and sixth triplets specifying the endpoints of axis \"c\"." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

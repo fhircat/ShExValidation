@@ -1,0 +1,225 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ValueSet ;
+  fhir:id [ fhir:v "supplement-type"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablevalueset" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "oo" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "draft" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/supplement-type"], [ fhir:v "http://hl7.org/fhir/ValueSet/supplement-type"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.390" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.377" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.2.211" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.390" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.377" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.2.211" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "SupplementTypeCodes"], [ fhir:v "SupplementTypeCodes"] ;
+  fhir:title [ fhir:v "Supplement Type Codes"], [ fhir:v "Supplement Type Codes"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "true"], [ fhir:v "true"] ;
+  fhir:publisher [ fhir:v "FHIR NutritionOrder team"], [ fhir:v "FHIR NutritionOrder team"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "SupplementType :  Codes for nutritional supplements to be provided to the patient. This value set is composed of SNOMED CT (US Extension) Concepts from SCTID 470581016 (Enteral+supplement feeds hierarchy (product)) and is provided as a suggestive example."], [ fhir:v "SupplementType :  Codes for nutritional supplements to be provided to the patient. This value set is composed of SNOMED CT (US Extension) Concepts from SCTID 470581016 (Enteral+supplement feeds hierarchy (product)) and is provided as a suggestive example."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:copyright [ fhir:v "This resource includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these specifications must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/get-snomed-ct or info@snomed.org"], [ fhir:v "This resource includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these specifications must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/get-snomed-ct or info@snomed.org"] ;
+  fhir:compose [
+     fhir:include ( [
+       fhir:system [ fhir:v "http://snomed.info/sct" ] ;
+       fhir:version [ fhir:v "http://snomed.info/sct/731000124108" ] ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "442901000124106" ] ;
+         fhir:display [ fhir:v "Adult clear liquid supplement" ]
+       ] [
+         fhir:code [ fhir:v "443031000124106" ] ;
+         fhir:display [ fhir:v "Adult critical care formula" ]
+       ] [
+         fhir:code [ fhir:v "443051000124104" ] ;
+         fhir:display [ fhir:v "Adult diabetes specialty formula" ]
+       ] [
+         fhir:code [ fhir:v "442911000124109" ] ;
+         fhir:display [ fhir:v "Adult elemental formula" ]
+       ] [
+         fhir:code [ fhir:v "443021000124108" ] ;
+         fhir:display [ fhir:v "Adult hepatic specialty formula" ]
+       ] [
+         fhir:code [ fhir:v "442971000124100" ] ;
+         fhir:display [ fhir:v "Adult high energy formula" ]
+       ] [
+         fhir:code [ fhir:v "442981000124102" ] ;
+         fhir:display [ fhir:v "Adult hydrolyzed protein formula" ]
+       ] [
+         fhir:code [ fhir:v "442991000124104" ] ;
+         fhir:display [ fhir:v "Adult high protein formula" ]
+       ] [
+         fhir:code [ fhir:v "443011000124100" ] ;
+         fhir:display [ fhir:v "Adult high protein high fiber formula" ]
+       ] [
+         fhir:code [ fhir:v "442961000124107" ] ;
+         fhir:display [ fhir:v "Adult low carbohydrate formula" ]
+       ] [
+         fhir:code [ fhir:v "442951000124105" ] ;
+         fhir:display [ fhir:v "Adult pulmonary specialty formula" ]
+       ] [
+         fhir:code [ fhir:v "442941000124108" ] ;
+         fhir:display [ fhir:v "Adult renal specialty formula" ]
+       ] [
+         fhir:code [ fhir:v "442921000124101" ] ;
+         fhir:display [ fhir:v "Adult standard formula" ]
+       ] [
+         fhir:code [ fhir:v "442931000124103" ] ;
+         fhir:display [ fhir:v "Adult soy protein isolate formula" ]
+       ] [
+         fhir:code [ fhir:v "444331000124106" ] ;
+         fhir:display [ fhir:v "Diabetic meal replacement bar" ]
+       ] [
+         fhir:code [ fhir:v "443361000124100" ] ;
+         fhir:display [ fhir:v "Pediatric Formula" ]
+       ] [
+         fhir:code [ fhir:v "443391000124108" ] ;
+         fhir:display [ fhir:v "Pediatric clear liquid supplement" ]
+       ] [
+         fhir:code [ fhir:v "443401000124105" ] ;
+         fhir:display [ fhir:v "Pediatric elemental formula" ]
+       ] [
+         fhir:code [ fhir:v "443491000124103" ] ;
+         fhir:display [ fhir:v "Pediatric high energy formula" ]
+       ] [
+         fhir:code [ fhir:v "443501000124106" ] ;
+         fhir:display [ fhir:v "Pediatric high energy formula with increased fiber" ]
+       ] [
+         fhir:code [ fhir:v "443421000124100" ] ;
+         fhir:display [ fhir:v "Pediatric hydrolyzed protein formula" ]
+       ] [
+         fhir:code [ fhir:v "443471000124104" ] ;
+         fhir:display [ fhir:v "Pediatric increased fiber formula" ]
+       ] [
+         fhir:code [ fhir:v "444431000124104" ] ;
+         fhir:display [ fhir:v "Pediatric reduced energy formula" ]
+       ] [
+         fhir:code [ fhir:v "443451000124109" ] ;
+         fhir:display [ fhir:v "Pediatric standard formula" ]
+       ] [
+         fhir:code [ fhir:v "444321000124108" ] ;
+         fhir:display [ fhir:v "Standard pudding oral supplement" ]
+       ] [
+         fhir:code [ fhir:v "441561000124106" ] ;
+         fhir:display [ fhir:v "Standard enteral formula with fiber" ]
+       ] [
+         fhir:code [ fhir:v "443461000124106" ] ;
+         fhir:display [ fhir:v "Standard Formula" ]
+       ] [
+         fhir:code [ fhir:v "441531000124102" ] ;
+         fhir:display [ fhir:v "Standard Enteral Formula" ]
+       ] [
+         fhir:code [ fhir:v "443561000124107" ] ;
+         fhir:display [ fhir:v "Soy based formula" ]
+       ] [
+         fhir:code [ fhir:v "443481000124101" ] ;
+         fhir:display [ fhir:v "Renal Formula" ]
+       ] [
+         fhir:code [ fhir:v "441571000124104" ] ;
+         fhir:display [ fhir:v "High energy enteral formula with fiber" ]
+       ] [
+         fhir:code [ fhir:v "441591000124103" ] ;
+         fhir:display [ fhir:v "Diabetic enteral formula with fiber" ]
+       ] [
+         fhir:code [ fhir:v "441601000124106" ] ;
+         fhir:display [ fhir:v "Diabetic high calorie high protein enteral formula with fiber" ]
+       ] [
+         fhir:code [ fhir:v "443351000124102" ] ;
+         fhir:display [ fhir:v "Increased fiber formula" ]
+       ] [
+         fhir:code [ fhir:v "443771000124106" ] ;
+         fhir:display [ fhir:v "Hydrolyzed protein formula" ]
+       ] [
+         fhir:code [ fhir:v "441671000124100" ] ;
+         fhir:display [ fhir:v "Hydrolyzed peptide-based high protein enteral formula" ]
+       ] [
+         fhir:code [ fhir:v "443111000124101" ] ;
+         fhir:display [ fhir:v "High protein formula" ]
+       ] [
+         fhir:code [ fhir:v "443431000124102" ] ;
+         fhir:display [ fhir:v "High Energy Formula" ]
+       ] [
+         fhir:code [ fhir:v "443411000124108" ] ;
+         fhir:display [ fhir:v "Elemental Formula" ]
+       ] [
+         fhir:code [ fhir:v "444361000124102" ] ;
+         fhir:display [ fhir:v "Electrolyte replacement supplement" ]
+       ] [
+         fhir:code [ fhir:v "444401000124107" ] ;
+         fhir:display [ fhir:v "Frozen electrolyte replacement supplement" ]
+       ] [
+         fhir:code [ fhir:v "444381000124107" ] ;
+         fhir:display [ fhir:v "Liquid electrolyte replacement supplement" ]
+       ] [
+         fhir:code [ fhir:v "444371000124109" ] ;
+         fhir:display [ fhir:v "Powdered electrolyte replacement supplement" ]
+       ] [
+         fhir:code [ fhir:v "443441000124107" ] ;
+         fhir:display [ fhir:v "Clear liquid supplement" ]
+       ] [
+         fhir:code [ fhir:v "442651000124102" ] ;
+         fhir:display [ fhir:v "Adult formula" ]
+       ] )
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

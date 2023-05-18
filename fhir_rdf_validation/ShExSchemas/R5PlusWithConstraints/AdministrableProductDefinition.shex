@@ -1,0 +1,196 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <date.shex>
+#imported_end
+#imported_begin 
+IMPORT <Ratio.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <Duration.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Attachment.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <DeviceDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <MedicinalProductDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <ManufacturedItemDefinition.shex>
+#imported_end
+
+start=@<AdministrableProductDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A medicinal product in the final form, suitable for administration - after any mixing of multiple components
+<AdministrableProductDefinition> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:AdministrableProductDefinition]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # An identifier for the 
+                                            # administrable product 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:formOf @<OneOrMore_Reference_MedicinalProductDefinition>?;  # References a product from which 
+                                            # one or more of the constituent 
+                                            # parts of that product can be 
+                                            # prepared and used as described by 
+                                            # this administrable product 
+    fhir:administrableDoseForm @<CodeableConcept>?;  # The dose form of the final product 
+                                            # after necessary reconstitution or 
+                                            # processing 
+    fhir:unitOfPresentation @<CodeableConcept>?;  # The presentation type in which 
+                                            # this item is given to a patient. 
+                                            # e.g. for a spray - 'puff' 
+    fhir:producedFrom @<OneOrMore_Reference_ManufacturedItemDefinition>?;  # Indicates the specific 
+                                            # manufactured items that are part 
+                                            # of the 'formOf' product that are 
+                                            # used in the preparation of this 
+                                            # specific administrable form 
+    fhir:ingredient @<OneOrMore_CodeableConcept>?;  # The ingredients of this 
+                                            # administrable medicinal product. 
+                                            # This is only needed if the 
+                                            # ingredients are not specified 
+                                            # either using 
+                                            # ManufacturedItemDefiniton, or 
+                                            # using by incoming references from 
+                                            # the Ingredient resource 
+    fhir:device @<Reference> AND {fhir:link 
+    			@<DeviceDefinition> ? }?;  # A device that is integral to the 
+                                            # medicinal product, in effect being 
+                                            # considered as an "ingredient" of 
+                                            # the medicinal product 
+    fhir:property @<OneOrMore_AdministrableProductDefinition.property>?;  # Characteristics e.g. a product's 
+                                            # onset of action 
+    fhir:routeOfAdministration @<OneOrMore_AdministrableProductDefinition.routeOfAdministration>;  # The path by which the product is 
+                                            # taken into or makes contact with 
+                                            # the body 
+}  
+
+# A species for which this route applies
+<AdministrableProductDefinition.routeOfAdministration.targetSpecies> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>;           # Coded expression for the species
+    fhir:withdrawalPeriod @<OneOrMore_AdministrableProductDefinition.routeOfAdministration.targetSpecies.withdrawalPeriod>?;  # A species specific time during 
+                                            # which consumption of animal 
+                                            # product is not appropriate 
+}  
+
+# A species specific time during which consumption of animal product is not appropriate
+<AdministrableProductDefinition.routeOfAdministration.targetSpecies.withdrawalPeriod> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:tissue @<CodeableConcept>;         # The type of tissue for which the 
+                                            # withdrawal period applies, e.g. 
+                                            # meat, milk 
+    fhir:value @<Quantity>;                 # A value for the time
+    fhir:supportingInformation @<string>?;  # Extra information about the 
+                                            # withdrawal period 
+}  
+
+# Characteristics e.g. a product's onset of action
+<AdministrableProductDefinition.property> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # A code expressing the type of 
+                                            # characteristic 
+    fhir:value @<CodeableConcept>  OR 
+    			@<Quantity>  OR 
+    			@<date>  OR 
+    			@<boolean>  OR 
+    			@<Attachment>  ?;  # A value for the characteristic
+    fhir:status @<CodeableConcept>?;        # The status of characteristic e.g. 
+                                            # assigned or pending 
+}  
+
+# The path by which the product is taken into or makes contact with the body
+<AdministrableProductDefinition.routeOfAdministration> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>;           # Coded expression for the route
+    fhir:firstDose @<Quantity>?;            # The first dose (dose quantity) 
+                                            # administered can be specified for 
+                                            # the product 
+    fhir:maxSingleDose @<Quantity>?;        # The maximum single dose that can 
+                                            # be administered 
+    fhir:maxDosePerDay @<Quantity>?;        # The maximum dose quantity to be 
+                                            # administered in any one 24-h 
+                                            # period 
+    fhir:maxDosePerTreatmentPeriod @<Ratio>?;  # The maximum dose per treatment 
+                                            # period that can be administered 
+    fhir:maxTreatmentPeriod @<Duration>?;   # The maximum treatment period 
+                                            # during which the product can be 
+                                            # administered 
+    fhir:targetSpecies @<OneOrMore_AdministrableProductDefinition.routeOfAdministration.targetSpecies>?;  # A species for which this route 
+                                            # applies 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_AdministrableProductDefinition.property> CLOSED {
+    rdf:first @<AdministrableProductDefinition.property>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_AdministrableProductDefinition.property> 
+}
+
+<OneOrMore_AdministrableProductDefinition.routeOfAdministration> CLOSED {
+    rdf:first @<AdministrableProductDefinition.routeOfAdministration>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_AdministrableProductDefinition.routeOfAdministration> 
+}
+
+<OneOrMore_AdministrableProductDefinition.routeOfAdministration.targetSpecies.withdrawalPeriod> CLOSED {
+    rdf:first @<AdministrableProductDefinition.routeOfAdministration.targetSpecies.withdrawalPeriod>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_AdministrableProductDefinition.routeOfAdministration.targetSpecies.withdrawalPeriod> 
+}
+
+<OneOrMore_AdministrableProductDefinition.routeOfAdministration.targetSpecies> CLOSED {
+    rdf:first @<AdministrableProductDefinition.routeOfAdministration.targetSpecies>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_AdministrableProductDefinition.routeOfAdministration.targetSpecies> 
+}
+
+#---------------------- Value Sets ------------------------
+
+

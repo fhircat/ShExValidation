@@ -1,0 +1,38 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:DocumentReference ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "WES-FullSequencedRegion-GRCh38"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource &quot;WES_FullSequencedRegion_GRCh38&quot; </p></div><p><b>identifier</b>: id: 11117</p><p><b>status</b>: current</p><p><b>docStatus</b>: preliminary</p><p><b>description</b>: A sample Document Reference instance representing a BED file that may be used as input or output of a genomic analysis pipeline.</p><p><b>securityLabel</b>: Restricted <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/3.1.0/CodeSystem-v3-Confidentiality.html\">Confidentiality</a>#R)</span></p><blockquote><p><b>content</b></p></blockquote></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://www.somesystemabc.net/identifiers/files"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "11117" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "current"] ; # 
+  fhir:docStatus [ fhir:v "preliminary"] ; # 
+  fhir:description [ fhir:v "WES_FullSequencedRegion_GRCh38: A sample Document Reference instance representing a BED file that may be used as input or output of a genomic analysis pipeline."] ; # 
+  fhir:securityLabel ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-Confidentiality"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "R" ] ;
+       fhir:display [ fhir:v "Restricted" ]
+     ] )
+  ] ) ; # 
+  fhir:content ( [
+     fhir:attachment [
+       fhir:url [ fhir:v "https://chat.fhir.org/user_uploads/10155/BILYJerATC59WlG15J316BEf/WES_FullSequencedRegion_GRCh38.bed"^^xsd:anyURI ] ;
+       fhir:title [ fhir:v "WES_FullSequencedRegion_GRCh38" ] ; #   This line may need to be changed later  
+       fhir:creation [ fhir:v "2019-03-01T01:02:01+01:00"^^xsd:dateTime ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

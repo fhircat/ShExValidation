@@ -1,0 +1,160 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Encounter ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "f203"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Encounter</b><a name=\"f203\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Encounter &quot;f203&quot; </p></div><p><b>identifier</b>: id: Encounter_Roel_20130311 (use: TEMP)</p><p><b>status</b>: completed</p><p><b>class</b>: <span title=\" Encounter has been completed \">inpatient encounter <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ActCode.html\">ActCode</a>#IMP)</span></span></p><p><b>priority</b>: High priority <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#394849002)</span></p><p><b>type</b>: Inpatient stay for nine days <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#183807002)</span></p><p><b>subject</b>: <a href=\"patient-example-f201-roel.html\">Patient/f201: Roel</a> &quot;Roel&quot;</p><p><b>episodeOfCare</b>: <a href=\"episodeofcare-example.html\">EpisodeOfCare/example</a></p><p><b>basedOn</b>: <a href=\"servicerequest-example-myringotomy.html\">ServiceRequest/myringotomy</a></p><p><b>partOf</b>: <a href=\"encounter-example-f203-20130311.html\">Encounter/f203</a></p><p><b>serviceProvider</b>: <a href=\"organization-example-insurer.html\">Organization/2</a> &quot;XYZ Insurance&quot;</p><h3>Participants</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Actor</b></td></tr><tr><td>*</td><td>Participation <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ParticipationType.html\">ParticipationType</a>#PART)</span></td><td><a href=\"practitioner-example-f201-ab.html\">Practitioner/f201</a> &quot;Dokter Bronsig&quot;</td></tr></table><p><b>appointment</b>: <a href=\"appointment-example.html\">Appointment/example</a></p><p><b>actualPeriod</b>: 2013-03-11 --&gt; 2013-03-20</p><blockquote><p><b>reason</b></p><h3>Values</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>The patient seems to suffer from bilateral pneumonia and renal insufficiency, most likely due to chemotherapy. <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table></blockquote><blockquote><p><b>diagnosis</b></p><h3>Conditions</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a href=\"condition-example-stroke.html\">Condition/stroke</a></td></tr></table><p><b>use</b>: Admission diagnosis <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-diagnosis-role.html\">Diagnosis Role</a>#AD)</span></p></blockquote><blockquote><p><b>diagnosis</b></p><h3>Conditions</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a href=\"condition-example-f201-fever.html\">Condition/f201</a></td></tr></table><p><b>use</b>: Discharge diagnosis <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-diagnosis-role.html\">Diagnosis Role</a>#DD)</span></p></blockquote><p><b>account</b>: <a href=\"account-example.html\">Account/example</a> &quot;HACC Funded Billing for Peter James Chalmers&quot;</p><p><b>dietPreference</b>: <span title=\" No indication, because no referral took place \">Fluid balance regulation <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#276026009)</span></span></p><p><b>specialArrangement</b>: Wheelchair <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-encounter-special-arrangements.html\">Special arrangements</a>#wheel)</span></p><p><b>specialCourtesy</b>: normal courtesy <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-EncounterSpecialCourtesy.html\">EncounterSpecialCourtesy</a>#NRM)</span></p><h3>Admissions</h3><table class=\"grid\"><tr><td>-</td><td><b>Origin</b></td><td><b>AdmitSource</b></td><td><b>ReAdmission</b></td><td><b>Destination</b></td></tr><tr><td>*</td><td><a href=\"location-example-room.html\">Location/2</a> &quot;South Wing Neuro OR 1&quot;</td><td>Clinical Oncology Department <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#309902002)</span></td><td>readmitted <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated])</span></td><td><span title=\" accomodation details are not available \"><a href=\"location-example-room.html\">Location/2</a> &quot;South Wing Neuro OR 1&quot;</span></td></tr></table></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "temp" ] ;
+     fhir:value [ fhir:v "Encounter_Roel_20130311" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:class ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActCode"^^xsd:anyURI ] ; #   Inpatient encounter for straphylococcus infection  
+       fhir:code [ fhir:v "IMP" ] ;
+       fhir:display [ fhir:v "inpatient encounter" ]
+     ] )
+  ] ) ; #   Encounter has been completed  
+  fhir:priority [
+     fhir:coding ( [
+       a sct:394849002 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "394849002" ] ;
+       fhir:display [ fhir:v "High priority" ]
+     ] ) #   High priority  
+  ] ; # 
+  fhir:type ( [
+     fhir:coding ( [
+       a sct:183807002 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "183807002" ] ;
+       fhir:display [ fhir:v "Inpatient stay for nine days" ]
+     ] )
+  ] ) ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/f201" ] ;
+     fhir:display [ fhir:v "Roel" ]
+  ] ; # 
+  fhir:episodeOfCare ( [
+     fhir:reference [ fhir:v "EpisodeOfCare/example" ]
+  ] ) ; # 
+  fhir:basedOn ( [
+     fhir:reference [ fhir:v "ServiceRequest/myringotomy" ]
+  ] ) ; # 
+  fhir:partOf [
+     fhir:reference [ fhir:v "Encounter/f203" ]
+  ] ; # 
+  fhir:serviceProvider [
+     fhir:reference [ fhir:v "Organization/2" ]
+  ] ; # 
+  fhir:participant ( [
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ParticipationType"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "PART" ]
+       ] )
+     ] ) ;
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/f201" ]
+     ]
+  ] ) ; # 
+  fhir:appointment ( [
+     fhir:reference [ fhir:v "Appointment/example" ]
+  ] ) ; # 
+  fhir:actualPeriod [
+     fhir:start [ fhir:v "2013-03-11"^^xsd:date ] ;
+     fhir:end [ fhir:v "2013-03-20"^^xsd:date ]
+  ] ; # 
+  fhir:reason ( [
+     fhir:value ( [
+       fhir:concept [
+         fhir:text [ fhir:v "The patient seems to suffer from bilateral pneumonia and renal insufficiency, most likely due to chemotherapy." ]
+       ]
+     ] )
+  ] ) ; # 
+  fhir:diagnosis ( [
+     fhir:condition ( [
+       fhir:reference [
+         fhir:reference [ fhir:v "Condition/stroke" ]
+       ]
+     ] ) ;
+     fhir:use ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/diagnosis-role"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "AD" ] ;
+         fhir:display [ fhir:v "Admission diagnosis" ]
+       ] )
+     ] )
+  ] [
+     fhir:condition ( [
+       fhir:reference [
+         fhir:reference [ fhir:v "Condition/f201" ]
+       ]
+     ] ) ;
+     fhir:use ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/diagnosis-role"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "DD" ] ;
+         fhir:display [ fhir:v "Discharge diagnosis" ]
+       ] )
+     ] )
+  ] ) ; # 
+  fhir:account ( [
+     fhir:reference [ fhir:v "Account/example" ]
+  ] ) ; # 
+  fhir:dietPreference ( [
+     fhir:coding ( [
+       a sct:276026009 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "276026009" ] ;
+       fhir:display [ fhir:v "Fluid balance regulation" ]
+     ] )
+  ] ) ; #   No indication, because no referral took place  
+  fhir:specialArrangement ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/encounter-special-arrangements"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "wheel" ] ;
+       fhir:display [ fhir:v "Wheelchair" ]
+     ] )
+  ] ) ; # 
+  fhir:specialCourtesy ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-EncounterSpecialCourtesy"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "NRM" ] ;
+       fhir:display [ fhir:v "normal courtesy" ]
+     ] )
+  ] ) ; # 
+  fhir:admission [
+     fhir:origin [
+       fhir:reference [ fhir:v "Location/2" ]
+     ] ;
+     fhir:admitSource [
+       fhir:coding ( [
+         a sct:309902002 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "309902002" ] ;
+         fhir:display [ fhir:v "Clinical Oncology Department" ]
+       ] )
+     ] ;
+     fhir:reAdmission [
+       fhir:coding ( [
+         fhir:display [ fhir:v "readmitted" ]
+       ] )
+     ] ;
+     fhir:destination [
+       fhir:reference [ fhir:v "Location/2" ] #   Fictive  
+     ] #   accomodation details are not available  
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

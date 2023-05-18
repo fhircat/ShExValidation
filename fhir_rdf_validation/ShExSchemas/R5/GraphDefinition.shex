@@ -1,0 +1,138 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <string.shex>
+IMPORT <boolean.shex>
+IMPORT <integer.shex>
+IMPORT <dateTime.shex>
+IMPORT <markdown.shex>
+IMPORT <canonical.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CanonicalResource.shex>
+
+
+start=@<GraphDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Definition of a graph of resources
+<GraphDefinition> EXTENDS @<CanonicalResource> CLOSED {   
+
+    a [fhir:GraphDefinition];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:url @<uri>?;                       # Canonical identifier for this 
+                                            # graph definition, represented as a 
+                                            # URI (globally unique) 
+    fhir:version @<string>?;                # Business version of the graph 
+                                            # definition 
+    fhir:name @<string>;                    # Name for this graph definition 
+                                            # (computer friendly) 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:date @<dateTime>?;                 # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the graph definition 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for graph 
+                                            # definition (if applicable) 
+    fhir:purpose @<markdown>?;              # Why this graph definition is 
+                                            # defined 
+    fhir:start @<code> AND
+    	{fhir:v @fhirvs:resource-types};  # Type of resource at which the 
+                                            # graph starts 
+    fhir:profile @<canonical>?;             # Profile on base resource
+    fhir:link @<OneOrMore_BackboneElement>?;  # Links this graph makes rules about
+}  
+
+# Links this graph makes rules about
+<GraphDefinition.link> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:path @<string>?;                   # Path in the resource that contains 
+                                            # the link 
+    fhir:sliceName @<string>?;              # Which slice (if profiled)
+    fhir:min @<integer>?;                   # Minimum occurrences for this link
+    fhir:max @<string>?;                    # Maximum occurrences for this link
+    fhir:description @<string>?;            # Why this link is specified
+    fhir:target @<OneOrMore_BackboneElement>?;  # Potential target for the link
+}  
+
+# Potential target for the link
+<GraphDefinition.link.target> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:resource-types};  # Type of resource this link refers 
+                                            # to 
+    fhir:params @<string>?;                 # Criteria for reverse lookup
+    fhir:profile @<canonical>?;             # Profile for the target resource
+    fhir:compartment @<OneOrMore_BackboneElement>?;  # Compartment Consistency Rules
+    fhir:link @<OneOrMore_GraphDefinition.link>?;  # Additional links from target 
+                                            # resource 
+}  
+
+# Compartment Consistency Rules
+<GraphDefinition.link.target.compartment> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:use @<code> AND
+    	{fhir:v @fhirvs:graph-compartment-use};  # condition | requirement
+    fhir:code @<code> AND
+    	{fhir:v @fhirvs:compartment-type};  # Patient | Encounter | 
+                                            # RelatedPerson | Practitioner | 
+                                            # Device 
+    fhir:rule @<code> AND
+    	{fhir:v @fhirvs:graph-compartment-rule};  # identical | matching | different | 
+                                            # custom 
+    fhir:expression @<string>?;             # Custom rule, as a FHIRPath 
+                                            # expression 
+    fhir:description @<string>?;            # Documentation for FHIRPath 
+                                            # expression 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_ContactDetail> CLOSED {
+    rdf:first @<ContactDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactDetail> 
+}
+
+<OneOrMore_UsageContext> CLOSED {
+    rdf:first @<UsageContext>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_UsageContext> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_GraphDefinition.link> CLOSED {
+    rdf:first @<GraphDefinition.link>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_GraphDefinition.link> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+
+# Defines how a compartment rule is used.
+fhirvs:graph-compartment-use ["condition" "requirement"]
+
+# One of the resource types defined as part of this version of FHIR.
+fhirvs:resource-types ["Resource" "Binary" "Bundle" "DomainResource" "Account" "AdministrableProductDefinition" "AdverseEvent" "AllergyIntolerance" "Appointment" "AppointmentResponse" "ArtifactAssessment" "AuditEvent" "Basic" "BiologicallyDerivedProduct" "BodyStructure" "CanonicalResource" "CapabilityStatement" "CapabilityStatement2" "CodeSystem" "CompartmentDefinition" "ExampleScenario" "GraphDefinition" "ImplementationGuide" "MessageDefinition" "MetadataResource" "ActivityDefinition" "ChargeItemDefinition" "Citation" "ConceptMap" "ConditionDefinition" "EventDefinition" "Evidence" "EvidenceReport" "EvidenceVariable" "Library" "Measure" "NamingSystem" "PlanDefinition" "Questionnaire" "OperationDefinition" "SearchParameter" "StructureDefinition" "StructureMap" "SubscriptionTopic" "TerminologyCapabilities" "TestScript" "ValueSet" "CarePlan" "CareTeam" "ChargeItem" "Claim" "ClaimResponse" "ClinicalImpression" "ClinicalUseDefinition" "Communication" "CommunicationRequest" "Composition" "Condition" "Consent" "Contract" "Coverage" "CoverageEligibilityRequest" "CoverageEligibilityResponse" "DetectedIssue" "Device" "DeviceDefinition" "DeviceDispense" "DeviceMetric" "DeviceRequest" "DeviceUsage" "DiagnosticReport" "DocumentManifest" "DocumentReference" "Encounter" "Endpoint" "EnrollmentRequest" "EnrollmentResponse" "EpisodeOfCare" "ExplanationOfBenefit" "FamilyMemberHistory" "Flag" "FormularyItem" "Goal" "Group" "GuidanceResponse" "HealthcareService" "ImagingSelection" "ImagingStudy" "Immunization" "ImmunizationEvaluation" "ImmunizationRecommendation" "Ingredient" "InsurancePlan" "InventoryReport" "Invoice" "Linkage" "List" "Location" "ManufacturedItemDefinition" "MeasureReport" "Medication" "MedicationAdministration" "MedicationDispense" "MedicationKnowledge" "MedicationRequest" "MedicationUsage" "MedicinalProductDefinition" "MessageHeader" "MolecularSequence" "NutritionIntake" "NutritionOrder" "NutritionProduct" "Observation" "ObservationDefinition" "OperationOutcome" "Organization" "OrganizationAffiliation" "PackagedProductDefinition" "Patient" "PaymentNotice" "PaymentReconciliation" "Permission" "Person" "Practitioner" "PractitionerRole" "Procedure" "Provenance" "QuestionnaireResponse" "RegulatedAuthorization" "RelatedPerson" "RequestGroup" "ResearchStudy" "ResearchSubject" "RiskAssessment" "Schedule" "ServiceRequest" "Slot" "Specimen" "SpecimenDefinition" "Subscription" "SubscriptionStatus" "Substance" "SubstanceDefinition" "SubstanceNucleicAcid" "SubstancePolymer" "SubstanceProtein" "SubstanceReferenceInformation" "SubstanceSourceMaterial" "SupplyDelivery" "SupplyRequest" "Task" "TestReport" "Transport" "VerificationResult" "VisionPrescription" "Parameters"]
+
+# Which type a compartment definition describes.
+fhirvs:compartment-type ["Patient" "Encounter" "RelatedPerson" "Practitioner" "Device"]
+
+# How a compartment must be linked.
+fhirvs:graph-compartment-rule ["identical" "matching" "different" "custom"]
+

@@ -1,0 +1,61 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:VisionPrescription ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "33123"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n			<p>OD -2.00 SPH         +2.00 add    0.5 p.d. BD</p>\n			<p>OS -1.00 -0.50 x 180 +2.00 add    0.5 p.d. BU</p>\n		</div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://www.happysight.com/prescription"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "15013" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:created [ fhir:v "2014-06-15"^^xsd:date] ; # 
+  fhir:patient [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:dateWritten [ fhir:v "2014-06-15"^^xsd:date] ; # 
+  fhir:prescriber [
+     fhir:reference [ fhir:v "Practitioner/example" ]
+  ] ; # 
+  fhir:lensSpecification ( [
+     fhir:product [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/ex-visionprescriptionproduct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "lens" ]
+       ] )
+     ] ;
+     fhir:eye [ fhir:v "right" ] ;
+     fhir:sphere [ fhir:v "-2.00"^^xsd:decimal ] ;
+     fhir:prism ( [
+       fhir:amount [ fhir:v "0.5"^^xsd:decimal ] ;
+       fhir:base [ fhir:v "down" ]
+     ] ) ;
+     fhir:add [ fhir:v "2.00"^^xsd:decimal ]
+  ] [
+     fhir:product [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/ex-visionprescriptionproduct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "lens" ]
+       ] )
+     ] ;
+     fhir:eye [ fhir:v "left" ] ;
+     fhir:sphere [ fhir:v "-1.00"^^xsd:decimal ] ;
+     fhir:cylinder [ fhir:v "-0.50"^^xsd:decimal ] ;
+     fhir:axis [ fhir:v "180"^^xsd:integer ] ;
+     fhir:prism ( [
+       fhir:amount [ fhir:v "0.5"^^xsd:decimal ] ;
+       fhir:base [ fhir:v "up" ]
+     ] ) ;
+     fhir:add [ fhir:v "2.00"^^xsd:decimal ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

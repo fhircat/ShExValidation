@@ -1,0 +1,141 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "certainty-rating"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "cds" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/certainty-rating"], [ fhir:v "http://hl7.org/fhir/certainty-rating"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1941" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1941" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "EvidenceCertaintyRating"], [ fhir:v "EvidenceCertaintyRating"] ;
+  fhir:title [ fhir:v "Evidence Certainty Rating"], [ fhir:v "Evidence Certainty Rating"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2020-12-28T16:55:11+11:00"], [ fhir:v "2020-12-28T16:55:11+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The assessment of quality, confidence, or certainty."], [ fhir:v "The assessment of quality, confidence, or certainty."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/certainty-rating"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "high" ] ;
+     fhir:display [ fhir:v "High quality" ] ;
+     fhir:definition [ fhir:v "High quality evidence." ]
+  ] [
+     fhir:code [ fhir:v "moderate" ] ;
+     fhir:display [ fhir:v "Moderate quality" ] ;
+     fhir:definition [ fhir:v "Moderate quality evidence." ]
+  ] [
+     fhir:code [ fhir:v "low" ] ;
+     fhir:display [ fhir:v "Low quality" ] ;
+     fhir:definition [ fhir:v "Low quality evidence." ]
+  ] [
+     fhir:code [ fhir:v "very-low" ] ;
+     fhir:display [ fhir:v "Very low quality" ] ;
+     fhir:definition [ fhir:v "Very low quality evidence." ]
+  ] [
+     fhir:code [ fhir:v "no-concern" ] ;
+     fhir:display [ fhir:v "no serious concern" ] ;
+     fhir:definition [ fhir:v "no serious concern." ]
+  ] [
+     fhir:code [ fhir:v "serious-concern" ] ;
+     fhir:display [ fhir:v "serious concern" ] ;
+     fhir:definition [ fhir:v "serious concern." ]
+  ] [
+     fhir:code [ fhir:v "very-serious-concern" ] ;
+     fhir:display [ fhir:v "very serious concern" ] ;
+     fhir:definition [ fhir:v "very serious concern." ]
+  ] [
+     fhir:code [ fhir:v "extremely-serious-concern" ] ;
+     fhir:display [ fhir:v "extremely serious concern" ] ;
+     fhir:definition [ fhir:v "extremely serious concern." ]
+  ] [
+     fhir:code [ fhir:v "present" ] ;
+     fhir:display [ fhir:v "present" ] ;
+     fhir:definition [ fhir:v "possible reason for increasing quality rating was checked and found to be present." ]
+  ] [
+     fhir:code [ fhir:v "absent" ] ;
+     fhir:display [ fhir:v "absent" ] ;
+     fhir:definition [ fhir:v "possible reason for increasing quality rating was checked and found to be absent." ]
+  ] [
+     fhir:code [ fhir:v "no-change" ] ;
+     fhir:display [ fhir:v "no change to rating" ] ;
+     fhir:definition [ fhir:v "no change to quality rating." ]
+  ] [
+     fhir:code [ fhir:v "downcode1" ] ;
+     fhir:display [ fhir:v "reduce rating: -1" ] ;
+     fhir:definition [ fhir:v "reduce quality rating by 1." ]
+  ] [
+     fhir:code [ fhir:v "downcode2" ] ;
+     fhir:display [ fhir:v "reduce rating: -2" ] ;
+     fhir:definition [ fhir:v "reduce quality rating by 2." ]
+  ] [
+     fhir:code [ fhir:v "downcode3" ] ;
+     fhir:display [ fhir:v "reduce rating: -3" ] ;
+     fhir:definition [ fhir:v "reduce quality rating by 3." ]
+  ] [
+     fhir:code [ fhir:v "upcode1" ] ;
+     fhir:display [ fhir:v "increase rating: +1" ] ;
+     fhir:definition [ fhir:v "increase quality rating by 1." ]
+  ] [
+     fhir:code [ fhir:v "upcode2" ] ;
+     fhir:display [ fhir:v "increase rating: +2" ] ;
+     fhir:definition [ fhir:v "increase quality rating by 2." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,32 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+# A measured or measurable amount
+<Count> EXTENDS @<Quantity> CLOSED {   
+
+    a [fhir:Count]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+} AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: toString
+# # Constraint UniqueKey:cnt-3
+# Human readable:There SHALL be a code with a value of "1" if there is a value. If system is present, it SHALL be UCUM.  If present, the value SHALL be a whole number.
+#
+# Constraint: (code.exists() or value.empty()) and (system.empty() or system = %ucum) and (code.empty() or code = '1') and (value.empty() or value.hasValue().not() or value.toString().contains('.').not())
+# ShEx:
+#
+#({fhir:code . OR  NOT { fhir:value {fhir:v .} } }) AND ( NOT { fhir:system {fhir:v .} }  OR ({ fhir:system { fhir:v ['http://unitsofmeasure.org'] }  })) AND ( NOT { fhir:code {fhir:v .} }  OR ({ fhir:code { fhir:v ['1'] }  })) AND ( NOT { fhir:value {fhir:v .} }  OR  NOT { fhir:value. } OR  NOT { fhir:value. toString  (  ){ fhir:v ['.'] } })
+{}
+
+)
+ 
+

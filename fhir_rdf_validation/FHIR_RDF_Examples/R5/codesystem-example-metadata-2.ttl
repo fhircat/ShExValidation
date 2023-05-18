@@ -1,0 +1,116 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:CodeSystem ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-metadata-2"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/shareablecodesystem>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <p>This code system \n        <code>http://hl7.org/fhir/CodeSystem/example-metadata-2</code> defines the following codes:\n      </p>\n      <table class=\"codes\">\n        <tr>\n          <td style=\"white-space:nowrap\">\n            <b>Code</b>\n          </td>\n          <td>\n            <b>Definition</b>\n          </td>\n        </tr>\n        <tr>\n          <td style=\"white-space:nowrap\">A\n            <a name=\"example-metadata-2-A\"> </a>\n          </td>\n          <td>A</td>\n        </tr>\n        <tr>\n          <td style=\"white-space:nowrap\">B\n            <a name=\"example-metadata-2-B\"> </a>\n          </td>\n          <td>B</td>\n        </tr>\n        <tr>\n          <td style=\"white-space:nowrap\">C\n            <a name=\"example-metadata-2-C\"> </a>\n          </td>\n          <td>C</td>\n        </tr>\n        <tr>\n          <td style=\"white-space:nowrap\">D\n            <a name=\"example-metadata-2-D\"> </a>\n          </td>\n          <td>D</td>\n        </tr>\n      </table>\n    </div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/CodeSystem/example-metadata-2"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1829" ]
+  ] ) ; # 
+  fhir:version [ fhir:v "5.0.0"] ; # 
+  fhir:name [ fhir:v "ExampleMetadata"] ; # 
+  fhir:title [ fhir:v "Metadata Example"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:experimental [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:date [ fhir:v "2022-07-21"^^xsd:date] ; # 
+  fhir:publisher [ fhir:v "FHIR (Example)"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "FHIR project team" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "This is an example code system that illustrates usage of the metadata resource elements introduced in R5"] ; # 
+  fhir:approvalDate [ fhir:v "2021-07-21"^^xsd:date] ; # 
+  fhir:lastReviewDate [ fhir:v "2022-07-21"^^xsd:date] ; # 
+  fhir:effectivePeriod [
+     fhir:start [ fhir:v "2022-08-01"^^xsd:date ] ;
+     fhir:end [ fhir:v "2023-07-31"^^xsd:date ]
+  ] ; # 
+  fhir:topic ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/definition-topic"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "treatment" ] ;
+       fhir:display [ fhir:v "Treatment" ]
+     ] )
+  ] ) ; # 
+  fhir:author ( [
+     fhir:name [ fhir:v "ACME CodeSystem Development" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://acme.org/development" ]
+     ] )
+  ] ) ; # 
+  fhir:editor ( [
+     fhir:name [ fhir:v "ACME CodeSystem Management" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://acme.org/management" ]
+     ] )
+  ] ) ; # 
+  fhir:reviewer ( [
+     fhir:name [ fhir:v "Society for Creative CodeSystem Review" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://example.org/sccr" ]
+     ] )
+  ] ) ; # 
+  fhir:endorser ( [
+     fhir:name [ fhir:v "National Foundation for CodeSystem Quality" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://example.org/nfcq" ]
+     ] )
+  ] ) ; # 
+  fhir:relatedArtifact ( [
+     fhir:type [ fhir:v "derived-from" ] ;
+     fhir:resource [
+       fhir:v "http://hl7.org/fhir/CodeSystem/example"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/CodeSystem/example>
+     ]
+  ] [
+     fhir:type [ fhir:v "predecessor" ] ;
+     fhir:resource [
+       fhir:v "http://hl7.org/fhir/CodeSystem/example-metadata|20210701"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/CodeSystem/example-metadata|20210701>
+     ]
+  ] ) ; # 
+  fhir:caseSensitive [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:content [ fhir:v "complete"] ; # 
+  fhir:concept ( [
+     fhir:code [ fhir:v "A" ] ;
+     fhir:display [ fhir:v "A" ] ;
+     fhir:definition [ fhir:v "A" ]
+  ] [
+     fhir:code [ fhir:v "B" ] ;
+     fhir:display [ fhir:v "B" ] ;
+     fhir:definition [ fhir:v "B" ]
+  ] [
+     fhir:code [ fhir:v "C" ] ;
+     fhir:display [ fhir:v "C" ] ;
+     fhir:definition [ fhir:v "C" ]
+  ] [
+     fhir:code [ fhir:v "D" ] ;
+     fhir:display [ fhir:v "D" ] ;
+     fhir:definition [ fhir:v "D" ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

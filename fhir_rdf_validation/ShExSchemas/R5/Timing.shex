@@ -1,0 +1,91 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Range.shex>
+IMPORT <Period.shex>
+IMPORT <Element.shex>
+IMPORT <decimal.shex>
+IMPORT <Duration.shex>
+IMPORT <positiveInt.shex>
+IMPORT <unsignedInt.shex>
+IMPORT <BackboneType.shex>
+IMPORT <CodeableConcept.shex>
+
+# A timing schedule that specifies an event that may occur multiple times
+<Timing> EXTENDS @<BackboneType> CLOSED {   
+
+    a [fhir:Timing];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:event @<OneOrMore_dateTime>?;      # When the event occurs
+    fhir:repeat @<Element>?;                # When the event is to occur
+    fhir:code @<CodeableConcept>?;          # C | BID | TID | QID | AM | PM | QD 
+                                            # | QOD | + 
+}  
+
+# When the event is to occur
+<Timing.repeat> EXTENDS @<Element> CLOSED {   
+    fhir:bounds (@<Duration>  OR 
+    			@<Range>  OR 
+    			@<Period> )  AND { rdf:type IRI } ?;  # Length/Range of lengths, or (Start 
+                                            # and/or end) limits 
+    fhir:count @<positiveInt>?;             # Number of times to repeat
+    fhir:countMax @<positiveInt>?;          # Maximum number of times to repeat
+    fhir:duration @<decimal>?;              # How long when it happens
+    fhir:durationMax @<decimal>?;           # How long when it happens (Max)
+    fhir:durationUnit @<code> AND
+    	{fhir:v @fhirvs:units-of-time}?;  # s | min | h | d | wk | mo | a - 
+                                            # unit of time (UCUM) 
+    fhir:frequency @<positiveInt>?;         # Indicates the number of 
+                                            # repetitions that should occur 
+                                            # within a period. I.e. Event occurs 
+                                            # frequency times per period 
+    fhir:frequencyMax @<positiveInt>?;      # Event occurs up to frequencyMax 
+                                            # times per period 
+    fhir:period @<decimal>?;                # The duration to which the 
+                                            # frequency applies. I.e. Event 
+                                            # occurs frequency times per period 
+    fhir:periodMax @<decimal>?;             # Upper limit of period (3-4 hours)
+    fhir:periodUnit @<code> AND
+    	{fhir:v @fhirvs:units-of-time}?;  # s | min | h | d | wk | mo | a - 
+                                            # unit of time (UCUM) 
+    fhir:dayOfWeek @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:days-of-week}?;  # mon | tue | wed | thu | fri | sat 
+                                            # | sun 
+    fhir:timeOfDay @<OneOrMore_time>?;      # Time of day for action
+    fhir:when @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:event-timing}?;  # Code for time period of occurrence
+    fhir:offset @<unsignedInt>?;            # Minutes from event (before or 
+                                            # after) 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_dateTime> CLOSED {
+    rdf:first @<dateTime>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_dateTime> 
+}
+
+<OneOrMore_code> CLOSED {
+    rdf:first @<code>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_code> 
+}
+
+<OneOrMore_time> CLOSED {
+    rdf:first @<time>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_time> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Real world event relating to the schedule.
+fhirvs:event-timing ["MORN" "MORN.early" "MORN.late" "NOON" "AFT" "AFT.early" "AFT.late" "EVE" "EVE.early" "EVE.late" "NIGHT" "PHS" "IMD" "HS" "WAKE" "C" "CM" "CD" "CV" "AC" "ACM" "ACD" "ACV" "PC" "PCM" "PCD" "PCV"]
+
+# A unit of time (units from UCUM).
+fhirvs:units-of-time xsd:string # EXTERNAL
+
+# The days of the week.
+fhirvs:days-of-week ["mon" "tue" "wed" "thu" "fri" "sat" "sun"]
+

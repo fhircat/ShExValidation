@@ -1,0 +1,241 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:SpecimenDefinition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "2364"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: SpecimenDefinition</b><a name=\"2364\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource SpecimenDefinition &quot;2364&quot; </p></div><p><b>url</b>: <code>http://example.com/specdef/v1/12345</code></p><p><b>identifier</b>: id: 12345</p><p><b>title</b>: Example Specimen Definition for Testing</p><p><b>status</b>: active</p><p><b>experimental</b>: false</p><p><b>typeCollected</b>: Venous blood specimen <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#122555007)</span></p><p><b>patientPreparation</b>: 12 hour fasting <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span>, At rest <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#263678003)</span></p><p><b>timeAspect</b>: preferrably morning time</p><blockquote><p><b>typeTested</b></p><p><b>isDerived</b>: false</p><p><b>type</b>: Serum specimen <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#119364003)</span></p><p><b>preference</b>: preferred</p><h3>Containers</h3><table class=\"grid\"><tr><td>-</td><td><b>Material</b></td><td><b>Type</b></td><td><b>Cap</b></td><td><b>MinimumVolume[x]</b></td></tr><tr><td>*</td><td>plastic <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#61088005)</span></td><td>Evacuated blood collection tube, thrombin/clot activator/gel separator <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#702281005)</span></td><td>yellow cap <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#yellow)</span></td><td>2 ml<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mL = 'mL')</span></td></tr></table><blockquote><p><b>handling</b></p><p><b>temperatureQualifier</b>: Ambient temperature <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>temperatureRange</b>: 15-25 °C</p><h3>MaxDurations</h3><table class=\"grid\"><tr><td>-</td><td><b>Value</b></td><td><b>Unit</b></td><td><b>System</b></td><td><b>Code</b></td></tr><tr><td>*</td><td>60</td><td>minute</td><td><a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ucum.html\">Unified Code for Units of Measure (UCUM)</a></td><td>min</td></tr></table></blockquote><blockquote><p><b>handling</b></p><p><b>temperatureQualifier</b>: Refrigerated temperature <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>temperatureRange</b>: 2-8 °C</p><h3>MaxDurations</h3><table class=\"grid\"><tr><td>-</td><td><b>Value</b></td><td><b>Unit</b></td><td><b>System</b></td><td><b>Code</b></td></tr><tr><td>*</td><td>8</td><td>hour</td><td><a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ucum.html\">Unified Code for Units of Measure (UCUM)</a></td><td>h</td></tr></table></blockquote></blockquote><blockquote><p><b>typeTested</b></p><p><b>type</b>: Plasma specimen <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#119361006)</span></p><p><b>preference</b>: alternate</p><h3>Containers</h3><table class=\"grid\"><tr><td>-</td><td><b>Material</b></td><td><b>Type</b></td><td><b>Cap</b></td><td><b>MinimumVolume[x]</b></td></tr><tr><td>*</td><td>glass <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#32039001)</span></td><td>Evacuated blood collection tube, thrombin/clot activator/gel separator <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#702281005)</span></td><td>green cap <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#green)</span></td><td>2 ml<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mL = 'mL')</span></td></tr></table><p><b>rejectionCriterion</b>: insufficient specimen volume <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-rejection-criteria.html\">RejectionCriterion</a>#insufficient)</span>, hemolized specimen <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-rejection-criteria.html\">RejectionCriterion</a>#hemolized)</span></p><blockquote><p><b>handling</b></p><p><b>temperatureQualifier</b>: Ambient temperature <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>temperatureRange</b>: 15-25 °C</p><h3>MaxDurations</h3><table class=\"grid\"><tr><td>-</td><td><b>Value</b></td><td><b>Unit</b></td><td><b>System</b></td><td><b>Code</b></td></tr><tr><td>*</td><td>60</td><td>minute</td><td><a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ucum.html\">Unified Code for Units of Measure (UCUM)</a></td><td>min</td></tr></table></blockquote><blockquote><p><b>handling</b></p><p><b>temperatureQualifier</b>: Refrigerated temperature <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>temperatureRange</b>: 2-8 °C</p><h3>MaxDurations</h3><table class=\"grid\"><tr><td>-</td><td><b>Value</b></td><td><b>Unit</b></td><td><b>System</b></td><td><b>Code</b></td></tr><tr><td>*</td><td>8</td><td>hour</td><td><a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ucum.html\">Unified Code for Units of Measure (UCUM)</a></td><td>h</td></tr></table></blockquote></blockquote></div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://example.com/specdef/v1/12345"^^xsd:anyURI] ; # 
+  fhir:identifier [
+     fhir:value [ fhir:v "12345" ]
+  ] ; # 
+  fhir:title [ fhir:v "Example Specimen Definition for Testing"] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:experimental [ fhir:v "false"^^xsd:boolean] ; # 
+  fhir:typeCollected [
+     fhir:coding ( [
+       a sct:122555007 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "122555007" ] ;
+       fhir:display [ fhir:v "Venous blood specimen" ]
+     ] )
+  ] ; # 
+  fhir:patientPreparation ( [
+     fhir:text [ fhir:v "12 hour fasting" ]
+  ] [
+     fhir:coding ( [
+       a sct:263678003 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "263678003" ] ;
+       fhir:display [ fhir:v "At rest" ]
+     ] )
+  ] ) ; # 
+  fhir:timeAspect [ fhir:v "preferrably morning time"] ; # 
+  fhir:typeTested ( [
+     fhir:isDerived [ fhir:v "false"^^xsd:boolean ] ;
+     fhir:type [
+       fhir:coding ( [
+         a sct:119364003 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "119364003" ] ;
+         fhir:display [ fhir:v "Serum specimen" ]
+       ] )
+     ] ;
+     fhir:preference [ fhir:v "preferred" ] ;
+     fhir:container [
+       fhir:material [
+         fhir:coding ( [
+           a sct:61088005 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "61088005" ] ;
+           fhir:display [ fhir:v "plastic" ]
+         ] )
+       ] ;
+       fhir:type [
+         fhir:coding ( [
+           a sct:702281005 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "702281005" ] ;
+           fhir:display [ fhir:v "Evacuated blood collection tube, thrombin/clot activator/gel separator" ]
+         ] )
+       ] ;
+       fhir:cap [
+         fhir:coding ( [
+           fhir:system [ fhir:v "urn:iso:std:iso:6710:2017"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "yellow" ] ;
+           fhir:display [ fhir:v "yellow cap" ]
+         ] )
+       ] ;
+       fhir:minimumVolume [
+         a fhir:Quantity ;
+         fhir:value [ fhir:v "2"^^xsd:decimal ] ;
+         fhir:unit [ fhir:v "ml" ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "mL" ]
+       ]
+     ] ;
+     fhir:handling ( [
+       fhir:temperatureQualifier [
+         fhir:text [ fhir:v "Ambient temperature" ]
+       ] ;
+       fhir:temperatureRange [
+         fhir:low [
+           fhir:value [ fhir:v "15"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "°C" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Cel" ]
+         ] ;
+         fhir:high [
+           fhir:value [ fhir:v "25"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "°C" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Cel" ]
+         ]
+       ] ;
+       fhir:maxDuration [
+         fhir:value [ fhir:v "60"^^xsd:decimal ] ;
+         fhir:unit [ fhir:v "minute" ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "min" ]
+       ]
+     ] [
+       fhir:temperatureQualifier [
+         fhir:text [ fhir:v "Refrigerated temperature" ]
+       ] ;
+       fhir:temperatureRange [
+         fhir:low [
+           fhir:value [ fhir:v "2"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "°C" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Cel" ]
+         ] ;
+         fhir:high [
+           fhir:value [ fhir:v "8"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "°C" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Cel" ]
+         ]
+       ] ;
+       fhir:maxDuration [
+         fhir:value [ fhir:v "8"^^xsd:decimal ] ;
+         fhir:unit [ fhir:v "hour" ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "h" ]
+       ]
+     ] )
+  ] [
+     fhir:type [
+       fhir:coding ( [
+         a sct:119361006 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "119361006" ] ;
+         fhir:display [ fhir:v "Plasma specimen" ]
+       ] )
+     ] ;
+     fhir:preference [ fhir:v "alternate" ] ;
+     fhir:container [
+       fhir:material [
+         fhir:coding ( [
+           a sct:32039001 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "32039001" ] ;
+           fhir:display [ fhir:v "glass" ]
+         ] )
+       ] ;
+       fhir:type [
+         fhir:coding ( [
+           a sct:702281005 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "702281005" ] ;
+           fhir:display [ fhir:v "Evacuated blood collection tube, thrombin/clot activator/gel separator" ]
+         ] )
+       ] ;
+       fhir:cap [
+         fhir:coding ( [
+           fhir:system [ fhir:v "urn:iso:std:iso:6710:2017"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "green" ] ;
+           fhir:display [ fhir:v "green cap" ]
+         ] )
+       ] ;
+       fhir:minimumVolume [
+         a fhir:Quantity ;
+         fhir:value [ fhir:v "2"^^xsd:decimal ] ;
+         fhir:unit [ fhir:v "ml" ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "mL" ]
+       ]
+     ] ;
+     fhir:rejectionCriterion ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/rejection-criteria"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "insufficient" ] ;
+         fhir:display [ fhir:v "insufficient specimen volume" ]
+       ] )
+     ] [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/rejection-criteria"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "hemolized" ] ;
+         fhir:display [ fhir:v "hemolized specimen" ]
+       ] )
+     ] ) ;
+     fhir:handling ( [
+       fhir:temperatureQualifier [
+         fhir:text [ fhir:v "Ambient temperature" ]
+       ] ;
+       fhir:temperatureRange [
+         fhir:low [
+           fhir:value [ fhir:v "15"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "°C" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Cel" ]
+         ] ;
+         fhir:high [
+           fhir:value [ fhir:v "25"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "°C" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Cel" ]
+         ]
+       ] ;
+       fhir:maxDuration [
+         fhir:value [ fhir:v "60"^^xsd:decimal ] ;
+         fhir:unit [ fhir:v "minute" ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "min" ]
+       ]
+     ] [
+       fhir:temperatureQualifier [
+         fhir:text [ fhir:v "Refrigerated temperature" ]
+       ] ;
+       fhir:temperatureRange [
+         fhir:low [
+           fhir:value [ fhir:v "2"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "°C" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Cel" ]
+         ] ;
+         fhir:high [
+           fhir:value [ fhir:v "8"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "°C" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Cel" ]
+         ]
+       ] ;
+       fhir:maxDuration [
+         fhir:value [ fhir:v "8"^^xsd:decimal ] ;
+         fhir:unit [ fhir:v "hour" ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "h" ]
+       ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

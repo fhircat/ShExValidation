@@ -1,0 +1,30 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Extension.shex>
+
+# Proficiency level of the communication
+<patient-proficiency> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:patient-proficiency];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:level @<Extension>?; 
+    fhir:type @<OneOrMore_Extension>?; 
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/patient-proficiency"]}; 
+    ^fhir:extension { ^fhir:communication {a [fhir:Patient]} OR 
+          ^fhir:communication {a [fhir:RelatedPerson]} OR 
+          ^fhir:communication {a [fhir:Person]}
+        }
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Extension> CLOSED {
+    rdf:first @<Extension>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Extension> 
+}
+

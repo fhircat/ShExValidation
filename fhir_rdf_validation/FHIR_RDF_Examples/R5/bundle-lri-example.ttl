@@ -1,0 +1,1309 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Bundle ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "lri-example"] ; # 
+  fhir:meta [
+     fhir:versionId [ fhir:v "1" ] ;
+     fhir:lastUpdated [ fhir:v "2017-06-27T00:52:51Z"^^xsd:dateTime ]
+  ] ; # 
+  fhir:type [ fhir:v "collection"] ; # 
+  fhir:entry ( [
+     fhir:fullUrl [ fhir:v "http://test.fhir.org/r5/DiagnosticReport/lri-example"^^xsd:anyURI ] ;
+     fhir:resource ( <http://test.fhir.org/r5/DiagnosticReport/lri-example> )
+  ] [
+     fhir:fullUrl [ fhir:v "http://test.fhir.org/r5/Observation/lri-gramstain1"^^xsd:anyURI ] ;
+     fhir:resource ( <http://test.fhir.org/r5/Observation/lri-gramstain1> )
+  ] [
+     fhir:fullUrl [ fhir:v "http://test.fhir.org/r5/Observation/lri-gramstain2"^^xsd:anyURI ] ;
+     fhir:resource ( <http://test.fhir.org/r5/Observation/lri-gramstain2> )
+  ] [
+     fhir:fullUrl [ fhir:v "http://test.fhir.org/r5/Observation/lri-gramstain3"^^xsd:anyURI ] ;
+     fhir:resource ( <http://test.fhir.org/r5/Observation/lri-gramstain3> )
+  ] [
+     fhir:fullUrl [ fhir:v "http://test.fhir.org/r5/Observation/lri-gramstain4"^^xsd:anyURI ] ;
+     fhir:resource ( <http://test.fhir.org/r5/Observation/lri-gramstain4> )
+  ] [
+     fhir:fullUrl [ fhir:v "http://test.fhir.org/r5/Observation/lri-growth1"^^xsd:anyURI ] ;
+     fhir:resource ( <http://test.fhir.org/r5/Observation/lri-growth1> )
+  ] [
+     fhir:fullUrl [ fhir:v "http://test.fhir.org/r5/Observation/lri-growth2"^^xsd:anyURI ] ;
+     fhir:resource ( <http://test.fhir.org/r5/Observation/lri-growth2> )
+  ] [
+     fhir:fullUrl [ fhir:v "http://test.fhir.org/r5/Observation/lri-growth3"^^xsd:anyURI ] ;
+     fhir:resource ( <http://test.fhir.org/r5/Observation/lri-growth3> )
+  ] [
+     fhir:fullUrl [ fhir:v "http://test.fhir.org/r5/Observation/lri-org2-amp"^^xsd:anyURI ] ;
+     fhir:resource ( <http://test.fhir.org/r5/Observation/lri-org2-amp> )
+  ] [
+     fhir:fullUrl [ fhir:v "http://test.fhir.org/r5/Observation/lri-org2-cip"^^xsd:anyURI ] ;
+     fhir:resource ( <http://test.fhir.org/r5/Observation/lri-org2-cip> )
+  ] [
+     fhir:fullUrl [ fhir:v "http://test.fhir.org/r5/Observation/lri-org2-gent"^^xsd:anyURI ] ;
+     fhir:resource ( <http://test.fhir.org/r5/Observation/lri-org2-gent> )
+  ] [
+     fhir:fullUrl [ fhir:v "http://test.fhir.org/r5/Observation/lri-org3-amp"^^xsd:anyURI ] ;
+     fhir:resource ( <http://test.fhir.org/r5/Observation/lri-org3-amp> )
+  ] [
+     fhir:fullUrl [ fhir:v "http://test.fhir.org/r5/Observation/lri-org3-cip"^^xsd:anyURI ] ;
+     fhir:resource ( <http://test.fhir.org/r5/Observation/lri-org3-cip> )
+  ] [
+     fhir:fullUrl [ fhir:v "http://test.fhir.org/r5/Observation/lri-org3-gent"^^xsd:anyURI ] ;
+     fhir:resource ( <http://test.fhir.org/r5/Observation/lri-org3-gent> )
+  ] [
+     fhir:fullUrl [ fhir:v "http://test.fhir.org/r5/Observation/lri-organism1"^^xsd:anyURI ] ;
+     fhir:resource ( <http://test.fhir.org/r5/Observation/lri-organism1> )
+  ] [
+     fhir:fullUrl [ fhir:v "http://test.fhir.org/r5/Observation/lri-organism2"^^xsd:anyURI ] ;
+     fhir:resource ( <http://test.fhir.org/r5/Observation/lri-organism2> )
+  ] [
+     fhir:fullUrl [ fhir:v "http://test.fhir.org/r5/Observation/lri-organism3"^^xsd:anyURI ] ;
+     fhir:resource ( <http://test.fhir.org/r5/Observation/lri-organism3> )
+  ] )] . # 
+
+<http://test.fhir.org/r5/DiagnosticReport/lri-example> a fhir:DiagnosticReport ;
+  fhir:id [ fhir:v "lri-example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2><span title=\"Codes: {http://loinc.org 624-7}\">Aerobic Respiratory Culture, Sputum</span> (<span title=\"Codes: {http://terminology.hl7.org/CodeSystem/v2-0074 LAB}, {http://terminology.hl7.org/CodeSystem/v2-0074 MB}\">Laboratory</span>) </h2><table class=\"grid\"><tr><td>Subject</td><td><b>Jim </b> male, DoB: 1974-12-25 ( Medical record number: 12345 (use: USUAL, period: 2001-05-06 --&gt; (ongoing)))</td></tr><tr><td>When For</td><td>2016-08-15</td></tr><tr><td>Reported</td><td>2016-08-18T18:14:35Z</td></tr><tr><td>Identifiers:</td><td> Placer Identifier: RP723234 Filler Identifier: 250401 Group: RFP 123456</td></tr></table><p><b>Report Details</b></p><table class=\"grid\"><tr><td><b>Code</b></td><td><b>Value</b></td></tr><tr><td colspan=\"2\"><i>Observation</i></td></tr><tr><td colspan=\"2\"><i>Observation</i></td></tr><tr><td colspan=\"2\"><i>Observation</i></td></tr><tr><td colspan=\"2\"><i>Observation</i></td></tr><tr><td colspan=\"2\"><i>Observation</i></td></tr><tr><td colspan=\"2\"><i>Observation</i></td></tr><tr><td colspan=\"2\"><i>Observation</i></td></tr></table></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0203"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "PLAC" ] ;
+         fhir:display [ fhir:v "Placer Identifier" ]
+       ] )
+     ] ;
+     fhir:system [ fhir:v "https://acme.org/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "RP723234" ]
+  ] [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0203"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "FILL" ] ;
+         fhir:display [ fhir:v "Filler Identifier" ]
+       ] )
+     ] ;
+     fhir:system [ fhir:v "https://acme.org/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "250401" ]
+  ] [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "https://acme.org/identifiers"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "GRP" ] ;
+         fhir:display [ fhir:v "Group" ]
+       ] )
+     ] ;
+     fhir:system [ fhir:v "https://acme.org/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "RFP 123456" ]
+  ] ) ; # 
+  fhir:basedOn ( [
+     fhir:reference [ fhir:v "ServiceRequest/example" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0074"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "LAB" ] ;
+       fhir:display [ fhir:v "Laboratory" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0074"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "MB" ] ;
+       fhir:display [ fhir:v "microbiology" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:624-7 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "624-7" ] ;
+       fhir:display [ fhir:v "Bacteria Spt Resp Cul" ]
+     ] ) ;
+     fhir:text [ fhir:v "Aerobic Respiratory Culture, Sputum" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2016-08-15"^^xsd:date] ; # 
+  fhir:issued [ fhir:v "2016-08-18T18:14:35Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/example" ]
+  ] ) ; # 
+  fhir:specimen ( [
+     fhir:reference [ fhir:v "Specimen/example" ]
+  ] ) ; # 
+  fhir:result ( [
+     fhir:reference [ fhir:v "Observation/organism1" ] ;
+     fhir:display [ fhir:v "Normal Flora" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/organism2" ] ;
+     fhir:display [ fhir:v "Klebsiella pneumoniae" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/organism3" ] ;
+     fhir:display [ fhir:v "Staphlyococcuc aureus" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/gramstain1" ] ;
+     fhir:display [ fhir:v "Many WBCs" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/gramstain2" ] ;
+     fhir:display [ fhir:v "Moderate Gram Positive Rods" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/gramstain3" ] ;
+     fhir:display [ fhir:v "Moderate Gram Positive Cocci in Chains" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/gramstain4" ] ;
+     fhir:display [ fhir:v "Many Gram Negative Rods" ]
+  ] ) . # 
+
+<http://test.fhir.org/r5/Observation/lri-gramstain1> a fhir:Observation ;
+  fhir:id [ fhir:v "gramstain1"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"gramstain1\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;gramstain1&quot; </p></div><p><b>identifier</b>: id: gramstain1</p><p><b>status</b>: final</p><p><b>category</b>: Micro <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-observation-category.html\">Observation Category Codes</a>#laboratory &quot;Laboratory&quot;; <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v2-0074.html\">diagnosticServiceSectionId</a>#MB &quot;microbiology&quot;)</span>, Result <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#RSLT)</span></p><p><b>code</b>: Gram Stain <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#664-3 &quot;Gram Stn XXX&quot;; codes#GMST)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>effective</b>: 2016-08-18</p><p><b>issued</b>: 19 Aug 2016, 9:06:32 am</p><p><b>performer</b>: <a href=\"broken-link.html\">Organization/example</a></p><blockquote><p><b>component</b></p><p><b>code</b>: Gram Stain <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#664-3 &quot;Gram Stn XXX&quot;)</span></p><p><b>value</b>: Many <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (codes#MNY)</span></p></blockquote><blockquote><p><b>component</b></p><p><b>code</b>: Gram Stain <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#664-3 &quot;Gram Stn XXX&quot;)</span></p><p><b>value</b>: WBCS <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (codes#WBCS)</span></p></blockquote></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "https://acme.org/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "gramstain1" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "laboratory" ] ;
+       fhir:display [ fhir:v "Laboratory" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0074"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "MB" ] ;
+       fhir:display [ fhir:v "microbiology" ]
+     ] ) ;
+     fhir:text [ fhir:v "Micro" ]
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.9.195.4.61"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "RSLT" ] ;
+       fhir:display [ fhir:v "Result" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:664-3 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "664-3" ] ;
+       fhir:display [ fhir:v "Gram Stn XXX" ]
+     ] [
+       fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "GMST" ] ;
+       fhir:display [ fhir:v "Gram Stain" ]
+     ] ) ;
+     fhir:text [ fhir:v "Gram Stain" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2016-08-18"^^xsd:date] ; # 
+  fhir:issued [ fhir:v "2016-08-18T23:06:32Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/example" ]
+  ] ) ; # 
+  fhir:component ( [
+     fhir:code [
+       fhir:coding ( [
+         a loinc:664-3 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "664-3" ] ;
+         fhir:display [ fhir:v "Gram Stn XXX" ]
+       ] ) ;
+       fhir:text [ fhir:v "Gram Stain" ]
+     ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "MNY" ] ;
+         fhir:display [ fhir:v "Many" ]
+       ] ) ;
+       fhir:text [ fhir:v "Many" ]
+     ]
+  ] [
+     fhir:code [
+       fhir:coding ( [
+         a loinc:664-3 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "664-3" ] ;
+         fhir:display [ fhir:v "Gram Stn XXX" ]
+       ] ) ;
+       fhir:text [ fhir:v "Gram Stain" ]
+     ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "WBCS" ] ;
+         fhir:display [ fhir:v "WBCS" ]
+       ] ) ;
+       fhir:text [ fhir:v "WBCS" ]
+     ]
+  ] ) . # 
+
+<http://test.fhir.org/r5/Observation/lri-gramstain2> a fhir:Observation ;
+  fhir:id [ fhir:v "gramstain2"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"gramstain2\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;gramstain2&quot; </p></div><p><b>identifier</b>: id: gramstain2</p><p><b>status</b>: final</p><p><b>category</b>: Micro <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-observation-category.html\">Observation Category Codes</a>#laboratory &quot;Laboratory&quot;; <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v2-0074.html\">diagnosticServiceSectionId</a>#MB &quot;microbiology&quot;)</span>, Result <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#RSLT)</span></p><p><b>code</b>: Gram Stain <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#664-3 &quot;Gram Stn XXX&quot;; codes#GMST)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>effective</b>: 2016-08-18</p><p><b>issued</b>: 19 Aug 2016, 9:06:32 am</p><p><b>performer</b>: <a href=\"broken-link.html\">Organization/example</a></p><blockquote><p><b>component</b></p><p><b>code</b>: Gram Stain <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#664-3 &quot;Gram Stn XXX&quot;)</span></p><p><b>value</b>: Moderate <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (codes#MOD)</span></p></blockquote><blockquote><p><b>component</b></p><p><b>code</b>: Gram Stain <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#664-3 &quot;Gram Stn XXX&quot;)</span></p><p><b>value</b>: Gram Positive Rods <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (codes#GPR &quot;Moderate&quot;)</span></p></blockquote></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "https://acme.org/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "gramstain2" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "laboratory" ] ;
+       fhir:display [ fhir:v "Laboratory" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0074"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "MB" ] ;
+       fhir:display [ fhir:v "microbiology" ]
+     ] ) ;
+     fhir:text [ fhir:v "Micro" ]
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.9.195.4.61"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "RSLT" ] ;
+       fhir:display [ fhir:v "Result" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:664-3 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "664-3" ] ;
+       fhir:display [ fhir:v "Gram Stn XXX" ]
+     ] [
+       fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "GMST" ] ;
+       fhir:display [ fhir:v "Gram Stain" ]
+     ] ) ;
+     fhir:text [ fhir:v "Gram Stain" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2016-08-18"^^xsd:date] ; # 
+  fhir:issued [ fhir:v "2016-08-18T23:06:32Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/example" ]
+  ] ) ; # 
+  fhir:component ( [
+     fhir:code [
+       fhir:coding ( [
+         a loinc:664-3 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "664-3" ] ;
+         fhir:display [ fhir:v "Gram Stn XXX" ]
+       ] ) ;
+       fhir:text [ fhir:v "Gram Stain" ]
+     ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "MOD" ] ;
+         fhir:display [ fhir:v "Moderate" ]
+       ] ) ;
+       fhir:text [ fhir:v "Moderate" ]
+     ]
+  ] [
+     fhir:code [
+       fhir:coding ( [
+         a loinc:664-3 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "664-3" ] ;
+         fhir:display [ fhir:v "Gram Stn XXX" ]
+       ] ) ;
+       fhir:text [ fhir:v "Gram Stain" ]
+     ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "GPR" ] ;
+         fhir:display [ fhir:v "Moderate" ]
+       ] ) ;
+       fhir:text [ fhir:v "Gram Positive Rods" ]
+     ]
+  ] ) . # 
+
+<http://test.fhir.org/r5/Observation/lri-gramstain3> a fhir:Observation ;
+  fhir:id [ fhir:v "gramstain3"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"gramstain3\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;gramstain3&quot; </p></div><p><b>identifier</b>: id: gramstain3</p><p><b>status</b>: final</p><p><b>category</b>: Micro <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-observation-category.html\">Observation Category Codes</a>#laboratory &quot;Laboratory&quot;; <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v2-0074.html\">diagnosticServiceSectionId</a>#MB &quot;microbiology&quot;)</span>, Result <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#RSLT)</span></p><p><b>code</b>: Gram Stain <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#664-3 &quot;Gram Stn XXX&quot;; codes#GMST)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>effective</b>: 2016-08-18</p><p><b>issued</b>: 19 Aug 2016, 9:06:32 am</p><p><b>performer</b>: <a href=\"broken-link.html\">Organization/example</a></p><blockquote><p><b>component</b></p><p><b>code</b>: Gram Stain <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#664-3 &quot;Gram Stn XXX&quot;)</span></p><p><b>value</b>: Moderate <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (codes#MOD)</span></p></blockquote><blockquote><p><b>component</b></p><p><b>code</b>: Gram Stain <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#664-3 &quot;Gram Stn XXX&quot;)</span></p><p><b>value</b>: Gram Positive Cocci in Chains <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (codes#GPCCH)</span></p></blockquote></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "https://acme.org/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "gramstain3" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "laboratory" ] ;
+       fhir:display [ fhir:v "Laboratory" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0074"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "MB" ] ;
+       fhir:display [ fhir:v "microbiology" ]
+     ] ) ;
+     fhir:text [ fhir:v "Micro" ]
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.9.195.4.61"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "RSLT" ] ;
+       fhir:display [ fhir:v "Result" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:664-3 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "664-3" ] ;
+       fhir:display [ fhir:v "Gram Stn XXX" ]
+     ] [
+       fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "GMST" ] ;
+       fhir:display [ fhir:v "Gram Stain" ]
+     ] ) ;
+     fhir:text [ fhir:v "Gram Stain" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2016-08-18"^^xsd:date] ; # 
+  fhir:issued [ fhir:v "2016-08-18T23:06:32Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/example" ]
+  ] ) ; # 
+  fhir:component ( [
+     fhir:code [
+       fhir:coding ( [
+         a loinc:664-3 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "664-3" ] ;
+         fhir:display [ fhir:v "Gram Stn XXX" ]
+       ] ) ;
+       fhir:text [ fhir:v "Gram Stain" ]
+     ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "MOD" ] ;
+         fhir:display [ fhir:v "Moderate" ]
+       ] ) ;
+       fhir:text [ fhir:v "Moderate" ]
+     ]
+  ] [
+     fhir:code [
+       fhir:coding ( [
+         a loinc:664-3 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "664-3" ] ;
+         fhir:display [ fhir:v "Gram Stn XXX" ]
+       ] ) ;
+       fhir:text [ fhir:v "Gram Stain" ]
+     ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "GPCCH" ] ;
+         fhir:display [ fhir:v "Gram Positive Cocci in Chains" ]
+       ] ) ;
+       fhir:text [ fhir:v "Gram Positive Cocci in Chains" ]
+     ]
+  ] ) . # 
+
+<http://test.fhir.org/r5/Observation/lri-gramstain4> a fhir:Observation ;
+  fhir:id [ fhir:v "gramstain4"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"gramstain4\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;gramstain4&quot; </p></div><p><b>identifier</b>: id: gramstain4</p><p><b>status</b>: final</p><p><b>category</b>: Micro <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-observation-category.html\">Observation Category Codes</a>#laboratory &quot;Laboratory&quot;; <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v2-0074.html\">diagnosticServiceSectionId</a>#MB &quot;microbiology&quot;)</span>, Result <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#RSLT)</span></p><p><b>code</b>: Gram Stain <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#664-3 &quot;Gram Stn XXX&quot;; codes#GMST)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>effective</b>: 2016-08-18</p><p><b>issued</b>: 19 Aug 2016, 9:06:32 am</p><p><b>performer</b>: <a href=\"broken-link.html\">Organization/example</a></p><blockquote><p><b>component</b></p><p><b>code</b>: Gram Stain <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#664-3 &quot;Gram Stn XXX&quot;)</span></p><p><b>value</b>: Many <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (codes#MNY)</span></p></blockquote><blockquote><p><b>component</b></p><p><b>code</b>: Gram Stain <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#664-3 &quot;Gram Stn XXX&quot;)</span></p><p><b>value</b>: Gram Negative Rods <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (codes#GNR)</span></p></blockquote></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "https://acme.org/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "gramstain4" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "laboratory" ] ;
+       fhir:display [ fhir:v "Laboratory" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0074"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "MB" ] ;
+       fhir:display [ fhir:v "microbiology" ]
+     ] ) ;
+     fhir:text [ fhir:v "Micro" ]
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.9.195.4.61"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "RSLT" ] ;
+       fhir:display [ fhir:v "Result" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:664-3 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "664-3" ] ;
+       fhir:display [ fhir:v "Gram Stn XXX" ]
+     ] [
+       fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "GMST" ] ;
+       fhir:display [ fhir:v "Gram Stain" ]
+     ] ) ;
+     fhir:text [ fhir:v "Gram Stain" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2016-08-18"^^xsd:date] ; # 
+  fhir:issued [ fhir:v "2016-08-18T23:06:32Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/example" ]
+  ] ) ; # 
+  fhir:component ( [
+     fhir:code [
+       fhir:coding ( [
+         a loinc:664-3 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "664-3" ] ;
+         fhir:display [ fhir:v "Gram Stn XXX" ]
+       ] ) ;
+       fhir:text [ fhir:v "Gram Stain" ]
+     ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "MNY" ] ;
+         fhir:display [ fhir:v "Many" ]
+       ] ) ;
+       fhir:text [ fhir:v "Many" ]
+     ]
+  ] [
+     fhir:code [
+       fhir:coding ( [
+         a loinc:664-3 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "664-3" ] ;
+         fhir:display [ fhir:v "Gram Stn XXX" ]
+       ] ) ;
+       fhir:text [ fhir:v "Gram Stain" ]
+     ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "GNR" ] ;
+         fhir:display [ fhir:v "Gram Negative Rods" ]
+       ] ) ;
+       fhir:text [ fhir:v "Gram Negative Rods" ]
+     ]
+  ] ) . # 
+
+<http://test.fhir.org/r5/Observation/lri-growth1> a fhir:Observation ;
+  fhir:id [ fhir:v "growth1"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"growth1\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;growth1&quot; </p></div><p><b>identifier</b>: id: growth1</p><p><b>status</b>: final</p><p><b>category</b>: Micro <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-observation-category.html\">Observation Category Codes</a>#laboratory &quot;Laboratory&quot;; <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v2-0074.html\">diagnosticServiceSectionId</a>#MB &quot;microbiology&quot;)</span>, Result <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#RSLT)</span></p><p><b>code</b>: Aerobic Respiratory Culture, Sputum <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#624-7 &quot;Bacteria Spt Resp Cul&quot;; codes#GROWTH &quot;Growth&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>effective</b>: 2016-08-18</p><p><b>issued</b>: 19 Aug 2016, 9:06:32 am</p><p><b>performer</b>: <a href=\"broken-link.html\">Organization/example</a></p><p><b>value</b>: Moderate Growth <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#263812008)</span></p></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "https://acme.org/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "growth1" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "laboratory" ] ;
+       fhir:display [ fhir:v "Laboratory" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0074"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "MB" ] ;
+       fhir:display [ fhir:v "microbiology" ]
+     ] ) ;
+     fhir:text [ fhir:v "Micro" ]
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.9.195.4.61"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "RSLT" ] ;
+       fhir:display [ fhir:v "Result" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:624-7 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "624-7" ] ;
+       fhir:display [ fhir:v "Bacteria Spt Resp Cul" ]
+     ] [
+       fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "GROWTH" ] ;
+       fhir:display [ fhir:v "Growth" ]
+     ] ) ;
+     fhir:text [ fhir:v "Aerobic Respiratory Culture, Sputum" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2016-08-18"^^xsd:date] ; # 
+  fhir:issued [ fhir:v "2016-08-18T23:06:32Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/example" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:CodeableConcept ;
+     fhir:coding ( [
+       a sct:263812008 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "263812008" ] ;
+       fhir:display [ fhir:v "Moderate Growth" ]
+     ] ) ;
+     fhir:text [ fhir:v "Moderate Growth" ]
+  ] . # 
+
+<http://test.fhir.org/r5/Observation/lri-growth2> a fhir:Observation ;
+  fhir:id [ fhir:v "growth2"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"growth2\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;growth2&quot; </p></div><p><b>identifier</b>: id: growth2</p><p><b>status</b>: final</p><p><b>category</b>: Micro <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-observation-category.html\">Observation Category Codes</a>#laboratory &quot;Laboratory&quot;; <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v2-0074.html\">diagnosticServiceSectionId</a>#MB &quot;microbiology&quot;)</span>, Result <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#RSLT)</span></p><p><b>code</b>: Aerobic Respiratory Culture, Sputum <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#624-7 &quot;Bacteria Spt Resp Cul&quot;; codes#GROWTH &quot;Growth&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>effective</b>: 2016-08-18</p><p><b>issued</b>: 19 Aug 2016, 9:06:32 am</p><p><b>performer</b>: <a href=\"broken-link.html\">Organization/example</a></p><p><b>value</b>: Heavy growth <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#263776006)</span></p></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "https://acme.org/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "growth2" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "laboratory" ] ;
+       fhir:display [ fhir:v "Laboratory" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0074"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "MB" ] ;
+       fhir:display [ fhir:v "microbiology" ]
+     ] ) ;
+     fhir:text [ fhir:v "Micro" ]
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.9.195.4.61"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "RSLT" ] ;
+       fhir:display [ fhir:v "Result" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:624-7 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "624-7" ] ;
+       fhir:display [ fhir:v "Bacteria Spt Resp Cul" ]
+     ] [
+       fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "GROWTH" ] ;
+       fhir:display [ fhir:v "Growth" ]
+     ] ) ;
+     fhir:text [ fhir:v "Aerobic Respiratory Culture, Sputum" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2016-08-18"^^xsd:date] ; # 
+  fhir:issued [ fhir:v "2016-08-18T23:06:32Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/example" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:CodeableConcept ;
+     fhir:coding ( [
+       a sct:263776006 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "263776006" ] ;
+       fhir:display [ fhir:v "Heavy growth" ]
+     ] ) ;
+     fhir:text [ fhir:v "Heavy growth" ]
+  ] . # 
+
+<http://test.fhir.org/r5/Observation/lri-growth3> a fhir:Observation ;
+  fhir:id [ fhir:v "growth3"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"growth3\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;growth3&quot; </p></div><p><b>identifier</b>: id: growth3</p><p><b>status</b>: final</p><p><b>category</b>: Micro <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-observation-category.html\">Observation Category Codes</a>#laboratory &quot;Laboratory&quot;; <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v2-0074.html\">diagnosticServiceSectionId</a>#MB &quot;microbiology&quot;)</span>, Result <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#RSLT)</span></p><p><b>code</b>: Aerobic Respiratory Culture, Sputum <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#624-7 &quot;Bacteria Spt Resp Cul&quot;; codes#GROWTH &quot;Growth&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>effective</b>: 2016-08-18</p><p><b>issued</b>: 19 Aug 2016, 9:06:32 am</p><p><b>performer</b>: <a href=\"broken-link.html\">Organization/example</a></p><p><b>value</b>: Heavy growth <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#263776006)</span></p></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "https://acme.org/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "growth3" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "laboratory" ] ;
+       fhir:display [ fhir:v "Laboratory" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0074"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "MB" ] ;
+       fhir:display [ fhir:v "microbiology" ]
+     ] ) ;
+     fhir:text [ fhir:v "Micro" ]
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.9.195.4.61"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "RSLT" ] ;
+       fhir:display [ fhir:v "Result" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:624-7 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "624-7" ] ;
+       fhir:display [ fhir:v "Bacteria Spt Resp Cul" ]
+     ] [
+       fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "GROWTH" ] ;
+       fhir:display [ fhir:v "Growth" ]
+     ] ) ;
+     fhir:text [ fhir:v "Aerobic Respiratory Culture, Sputum" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2016-08-18"^^xsd:date] ; # 
+  fhir:issued [ fhir:v "2016-08-18T23:06:32Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/example" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:CodeableConcept ;
+     fhir:coding ( [
+       a sct:263776006 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "263776006" ] ;
+       fhir:display [ fhir:v "Heavy growth" ]
+     ] ) ;
+     fhir:text [ fhir:v "Heavy growth" ]
+  ] . # 
+
+<http://test.fhir.org/r5/Observation/lri-org2-amp> a fhir:Observation ;
+  fhir:id [ fhir:v "org2-amp"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"org2-amp\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;org2-amp&quot; </p></div><p><b>identifier</b>: id: org2-amp</p><p><b>status</b>: final</p><p><b>category</b>: Micro <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-observation-category.html\">Observation Category Codes</a>#laboratory &quot;Laboratory&quot;; <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v2-0074.html\">diagnosticServiceSectionId</a>#MB &quot;microbiology&quot;)</span>, Result <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#RSLT)</span></p><p><b>code</b>: Ampicilin MIC <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#28-1 &quot;Ampicilin Islt MIC&quot;; codes#AMPMIC)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>effective</b>: 2016-08-18</p><p><b>issued</b>: 19 Aug 2016, 9:06:32 am</p><p><b>performer</b>: <a href=\"broken-link.html\">Organization/example</a></p><p><b>value</b>: &lt;0.06 ug/ml<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code ug/mL = 'ug/mL')</span></p><p><b>interpretation</b>: Susceptible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#S)</span></p></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "https://acme.org/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "org2-amp" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "laboratory" ] ;
+       fhir:display [ fhir:v "Laboratory" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0074"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "MB" ] ;
+       fhir:display [ fhir:v "microbiology" ]
+     ] ) ;
+     fhir:text [ fhir:v "Micro" ]
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.9.195.4.61"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "RSLT" ] ;
+       fhir:display [ fhir:v "Result" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:28-1 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "28-1" ] ;
+       fhir:display [ fhir:v "Ampicilin Islt MIC" ]
+     ] [
+       fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "AMPMIC" ] ;
+       fhir:display [ fhir:v "Ampicilin MIC" ]
+     ] ) ;
+     fhir:text [ fhir:v "Ampicilin MIC" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2016-08-18"^^xsd:date] ; # 
+  fhir:issued [ fhir:v "2016-08-18T23:06:32Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/example" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.06"^^xsd:decimal ] ;
+     fhir:comparator [ fhir:v "<" ] ;
+     fhir:unit [ fhir:v "ug/ml" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "ug/mL" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "S" ] ;
+       fhir:display [ fhir:v "Susceptible" ]
+     ] )
+  ] ) . # 
+
+<http://test.fhir.org/r5/Observation/lri-org2-cip> a fhir:Observation ;
+  fhir:id [ fhir:v "org2-cip"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"org2-cip\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;org2-cip&quot; </p></div><p><b>identifier</b>: id: org2-cip</p><p><b>status</b>: final</p><p><b>category</b>: Micro <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-observation-category.html\">Observation Category Codes</a>#laboratory &quot;Laboratory&quot;; <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v2-0074.html\">diagnosticServiceSectionId</a>#MB &quot;microbiology&quot;)</span>, Result <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#RSLT)</span></p><p><b>code</b>: Ciprofloxacin MIC <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#185-9 &quot;Ciprofloxacin Islt MIC&quot;; codes#CIPMIC)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>effective</b>: 2016-08-18</p><p><b>issued</b>: 19 Aug 2016, 9:06:32 am</p><p><b>performer</b>: <a href=\"broken-link.html\">Organization/example</a></p><p><b>value</b>: &lt;0.05 ug/ml<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code ug/mL = 'ug/mL')</span></p><p><b>interpretation</b>: Susceptible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#S)</span></p></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "https://acme.org/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "org2-cip" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "laboratory" ] ;
+       fhir:display [ fhir:v "Laboratory" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0074"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "MB" ] ;
+       fhir:display [ fhir:v "microbiology" ]
+     ] ) ;
+     fhir:text [ fhir:v "Micro" ]
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.9.195.4.61"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "RSLT" ] ;
+       fhir:display [ fhir:v "Result" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:185-9 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "185-9" ] ;
+       fhir:display [ fhir:v "Ciprofloxacin Islt MIC" ]
+     ] [
+       fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "CIPMIC" ] ;
+       fhir:display [ fhir:v "Ciprofloxacin MIC" ]
+     ] ) ;
+     fhir:text [ fhir:v "Ciprofloxacin MIC" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2016-08-18"^^xsd:date] ; # 
+  fhir:issued [ fhir:v "2016-08-18T23:06:32Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/example" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.05"^^xsd:decimal ] ;
+     fhir:comparator [ fhir:v "<" ] ;
+     fhir:unit [ fhir:v "ug/ml" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "ug/mL" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "S" ] ;
+       fhir:display [ fhir:v "Susceptible" ]
+     ] )
+  ] ) . # 
+
+<http://test.fhir.org/r5/Observation/lri-org2-gent> a fhir:Observation ;
+  fhir:id [ fhir:v "org2-gent"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"org2-gent\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;org2-gent&quot; </p></div><p><b>identifier</b>: id: org2-gent</p><p><b>status</b>: final</p><p><b>category</b>: Micro <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-observation-category.html\">Observation Category Codes</a>#laboratory &quot;Laboratory&quot;; <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v2-0074.html\">diagnosticServiceSectionId</a>#MB &quot;microbiology&quot;)</span>, Result <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#RSLT)</span></p><p><b>code</b>: Gentamicin MIC <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#267-5 &quot;Gentamicin Islt MIC&quot;; codes#CIPMIC)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>effective</b>: 2016-08-18</p><p><b>issued</b>: 19 Aug 2016, 9:06:32 am</p><p><b>performer</b>: <a href=\"broken-link.html\">Organization/example</a></p><p><b>value</b>: &lt;0.05 ug/ml<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code ug/mL = 'ug/mL')</span></p><p><b>interpretation</b>: Susceptible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#S)</span></p></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "https://acme.org/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "org2-gent" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "laboratory" ] ;
+       fhir:display [ fhir:v "Laboratory" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0074"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "MB" ] ;
+       fhir:display [ fhir:v "microbiology" ]
+     ] ) ;
+     fhir:text [ fhir:v "Micro" ]
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.9.195.4.61"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "RSLT" ] ;
+       fhir:display [ fhir:v "Result" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:267-5 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "267-5" ] ;
+       fhir:display [ fhir:v "Gentamicin Islt MIC" ]
+     ] [
+       fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "CIPMIC" ] ;
+       fhir:display [ fhir:v "Gentamicin MIC" ]
+     ] ) ;
+     fhir:text [ fhir:v "Gentamicin MIC" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2016-08-18"^^xsd:date] ; # 
+  fhir:issued [ fhir:v "2016-08-18T23:06:32Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/example" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.05"^^xsd:decimal ] ;
+     fhir:comparator [ fhir:v "<" ] ;
+     fhir:unit [ fhir:v "ug/ml" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "ug/mL" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "S" ] ;
+       fhir:display [ fhir:v "Susceptible" ]
+     ] )
+  ] ) . # 
+
+<http://test.fhir.org/r5/Observation/lri-org3-amp> a fhir:Observation ;
+  fhir:id [ fhir:v "org3-amp"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"org3-amp\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;org3-amp&quot; </p></div><p><b>identifier</b>: id: org3-amp</p><p><b>status</b>: final</p><p><b>category</b>: Micro <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-observation-category.html\">Observation Category Codes</a>#laboratory &quot;Laboratory&quot;; <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v2-0074.html\">diagnosticServiceSectionId</a>#MB &quot;microbiology&quot;)</span>, Result <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#RSLT)</span></p><p><b>code</b>: Ampicilin MIC <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#28-1 &quot;Ampicilin Islt MIC&quot;; codes#AMPMIC)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>effective</b>: 2016-08-18</p><p><b>issued</b>: 19 Aug 2016, 9:06:32 am</p><p><b>performer</b>: <a href=\"broken-link.html\">Organization/example</a></p><p><b>value</b>: &lt;0.06 ug/ml<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code ug/mL = 'ug/mL')</span></p><p><b>interpretation</b>: Susceptible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#S)</span></p></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "https://acme.org/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "org3-amp" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "laboratory" ] ;
+       fhir:display [ fhir:v "Laboratory" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0074"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "MB" ] ;
+       fhir:display [ fhir:v "microbiology" ]
+     ] ) ;
+     fhir:text [ fhir:v "Micro" ]
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.9.195.4.61"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "RSLT" ] ;
+       fhir:display [ fhir:v "Result" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:28-1 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "28-1" ] ;
+       fhir:display [ fhir:v "Ampicilin Islt MIC" ]
+     ] [
+       fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "AMPMIC" ] ;
+       fhir:display [ fhir:v "Ampicilin MIC" ]
+     ] ) ;
+     fhir:text [ fhir:v "Ampicilin MIC" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2016-08-18"^^xsd:date] ; # 
+  fhir:issued [ fhir:v "2016-08-18T23:06:32Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/example" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.06"^^xsd:decimal ] ;
+     fhir:comparator [ fhir:v "<" ] ;
+     fhir:unit [ fhir:v "ug/ml" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "ug/mL" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "S" ] ;
+       fhir:display [ fhir:v "Susceptible" ]
+     ] )
+  ] ) . # 
+
+<http://test.fhir.org/r5/Observation/lri-org3-cip> a fhir:Observation ;
+  fhir:id [ fhir:v "org3-cip"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"org3-cip\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;org3-cip&quot; </p></div><p><b>identifier</b>: id: org3-cip</p><p><b>status</b>: final</p><p><b>category</b>: Micro <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-observation-category.html\">Observation Category Codes</a>#laboratory &quot;Laboratory&quot;; <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v2-0074.html\">diagnosticServiceSectionId</a>#MB &quot;microbiology&quot;)</span>, Result <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#RSLT)</span></p><p><b>code</b>: Ciprofloxacin MIC <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#185-9 &quot;Ciprofloxacin Islt MIC&quot;; codes#CIPMIC)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>effective</b>: 2016-08-18</p><p><b>issued</b>: 19 Aug 2016, 9:06:32 am</p><p><b>performer</b>: <a href=\"broken-link.html\">Organization/example</a></p><p><b>value</b>: &lt;0.05 ug/ml<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code ug/mL = 'ug/mL')</span></p><p><b>interpretation</b>: Susceptible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#S)</span></p></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "https://acme.org/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "org3-cip" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "laboratory" ] ;
+       fhir:display [ fhir:v "Laboratory" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0074"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "MB" ] ;
+       fhir:display [ fhir:v "microbiology" ]
+     ] ) ;
+     fhir:text [ fhir:v "Micro" ]
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.9.195.4.61"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "RSLT" ] ;
+       fhir:display [ fhir:v "Result" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:185-9 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "185-9" ] ;
+       fhir:display [ fhir:v "Ciprofloxacin Islt MIC" ]
+     ] [
+       fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "CIPMIC" ] ;
+       fhir:display [ fhir:v "Ciprofloxacin MIC" ]
+     ] ) ;
+     fhir:text [ fhir:v "Ciprofloxacin MIC" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2016-08-18"^^xsd:date] ; # 
+  fhir:issued [ fhir:v "2016-08-18T23:06:32Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/example" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.05"^^xsd:decimal ] ;
+     fhir:comparator [ fhir:v "<" ] ;
+     fhir:unit [ fhir:v "ug/ml" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "ug/mL" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "S" ] ;
+       fhir:display [ fhir:v "Susceptible" ]
+     ] )
+  ] ) . # 
+
+<http://test.fhir.org/r5/Observation/lri-org3-gent> a fhir:Observation ;
+  fhir:id [ fhir:v "org3-gent"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"org3-gent\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;org3-gent&quot; </p></div><p><b>identifier</b>: id: org3-gent</p><p><b>status</b>: final</p><p><b>category</b>: Micro <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-observation-category.html\">Observation Category Codes</a>#laboratory &quot;Laboratory&quot;; <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v2-0074.html\">diagnosticServiceSectionId</a>#MB &quot;microbiology&quot;)</span></p><p><b>code</b>: Gentamicin MIC <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#267-5 &quot;Gentamicin Islt MIC&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>effective</b>: 2016-08-18</p><p><b>issued</b>: 19 Aug 2016, 9:06:32 am</p><p><b>performer</b>: <a href=\"broken-link.html\">Organization/example</a></p><p><b>value</b>: &lt;0.05 ug/ml<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code ug/mL = 'ug/mL')</span></p><p><b>interpretation</b>: Susceptible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#S)</span></p></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "https://acme.org/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "org3-gent" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "laboratory" ] ;
+       fhir:display [ fhir:v "Laboratory" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0074"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "MB" ] ;
+       fhir:display [ fhir:v "microbiology" ]
+     ] ) ;
+     fhir:text [ fhir:v "Micro" ]
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:267-5 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "267-5" ] ;
+       fhir:display [ fhir:v "Gentamicin Islt MIC" ]
+     ] ) ;
+     fhir:text [ fhir:v "Gentamicin MIC" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2016-08-18"^^xsd:date] ; # 
+  fhir:issued [ fhir:v "2016-08-18T23:06:32Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/example" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.05"^^xsd:decimal ] ;
+     fhir:comparator [ fhir:v "<" ] ;
+     fhir:unit [ fhir:v "ug/ml" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "ug/mL" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "S" ] ;
+       fhir:display [ fhir:v "Susceptible" ]
+     ] )
+  ] ) . # 
+
+<http://test.fhir.org/r5/Observation/lri-organism1> a fhir:Observation ;
+  fhir:id [ fhir:v "organism1"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"organism1\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;organism1&quot; </p></div><p><b>identifier</b>: id: organism1</p><p><b>status</b>: final</p><p><b>category</b>: Micro <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-observation-category.html\">Observation Category Codes</a>#laboratory &quot;Laboratory&quot;; <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v2-0074.html\">diagnosticServiceSectionId</a>#MB &quot;microbiology&quot;)</span>, Result <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#RSLT)</span></p><p><b>code</b>: Aerobic Respiratory Culture, Sputum <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#624-7 &quot;Bacteria Spt Resp Cul&quot;; codes#CULTID &quot;Culture ID&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>effective</b>: 2016-08-18</p><p><b>issued</b>: 19 Aug 2016, 9:06:32 am</p><p><b>performer</b>: <a href=\"broken-link.html\">Organization/example</a></p><p><b>value</b>: Normal flora <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#23506009)</span></p><p><b>hasMember</b>: <a href=\"broken-link.html\">Observation/growth1: Moderate growth</a></p></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "https://acme.org/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "organism1" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "laboratory" ] ;
+       fhir:display [ fhir:v "Laboratory" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0074"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "MB" ] ;
+       fhir:display [ fhir:v "microbiology" ]
+     ] ) ;
+     fhir:text [ fhir:v "Micro" ]
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.9.195.4.61"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "RSLT" ] ;
+       fhir:display [ fhir:v "Result" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:624-7 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "624-7" ] ;
+       fhir:display [ fhir:v "Bacteria Spt Resp Cul" ]
+     ] [
+       fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "CULTID" ] ;
+       fhir:display [ fhir:v "Culture ID" ]
+     ] ) ;
+     fhir:text [ fhir:v "Aerobic Respiratory Culture, Sputum" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2016-08-18"^^xsd:date] ; # 
+  fhir:issued [ fhir:v "2016-08-18T23:06:32Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/example" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:CodeableConcept ;
+     fhir:coding ( [
+       a sct:23506009 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "23506009" ] ;
+       fhir:display [ fhir:v "Normal flora" ]
+     ] ) ;
+     fhir:text [ fhir:v "Normal flora" ]
+  ] ; # 
+  fhir:hasMember ( [
+     fhir:reference [ fhir:v "Observation/growth1" ] ;
+     fhir:display [ fhir:v "Moderate growth" ]
+  ] ) . # 
+
+<http://test.fhir.org/r5/Observation/lri-organism2> a fhir:Observation ;
+  fhir:id [ fhir:v "organism2"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"organism2\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;organism2&quot; </p></div><p><b>identifier</b>: id: organism2</p><p><b>status</b>: final</p><p><b>category</b>: Micro <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-observation-category.html\">Observation Category Codes</a>#laboratory &quot;Laboratory&quot;; <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v2-0074.html\">diagnosticServiceSectionId</a>#MB &quot;microbiology&quot;)</span>, Result <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#RSLT)</span></p><p><b>code</b>: Aerobic Respiratory Culture, Sputum <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#624-7 &quot;Bacteria Spt Resp Cul&quot;; codes#CULTID &quot;Culture ID&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>effective</b>: 2016-08-18</p><p><b>issued</b>: 19 Aug 2016, 9:06:32 am</p><p><b>performer</b>: <a href=\"broken-link.html\">Organization/example</a></p><p><b>value</b>: Klebsiella pneumonia <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#56415008)</span></p><p><b>hasMember</b>: </p><ul><li><a href=\"broken-link.html\">Observation/growth2: Heavy growth</a></li><li><a href=\"broken-link.html\">Observation/org2-amp: Ampicillin MIC - Susceptible</a></li><li><a href=\"broken-link.html\">Observation/org2-cip: Ciprofloxacin MIC - Susceptible</a></li><li><a href=\"broken-link.html\">Observation/org2-gent: Gentamicin MIC  - Susceptible</a></li></ul></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "https://acme.org/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "organism2" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "laboratory" ] ;
+       fhir:display [ fhir:v "Laboratory" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0074"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "MB" ] ;
+       fhir:display [ fhir:v "microbiology" ]
+     ] ) ;
+     fhir:text [ fhir:v "Micro" ]
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.9.195.4.61"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "RSLT" ] ;
+       fhir:display [ fhir:v "Result" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:624-7 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "624-7" ] ;
+       fhir:display [ fhir:v "Bacteria Spt Resp Cul" ]
+     ] [
+       fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "CULTID" ] ;
+       fhir:display [ fhir:v "Culture ID" ]
+     ] ) ;
+     fhir:text [ fhir:v "Aerobic Respiratory Culture, Sputum" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2016-08-18"^^xsd:date] ; # 
+  fhir:issued [ fhir:v "2016-08-18T23:06:32Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/example" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:CodeableConcept ;
+     fhir:coding ( [
+       a sct:56415008 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "56415008" ] ;
+       fhir:display [ fhir:v "Klebsiella pneumonia" ]
+     ] ) ;
+     fhir:text [ fhir:v "Klebsiella pneumonia" ]
+  ] ; # 
+  fhir:hasMember ( [
+     fhir:reference [ fhir:v "Observation/growth2" ] ;
+     fhir:display [ fhir:v "Heavy growth" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/org2-amp" ] ;
+     fhir:display [ fhir:v "Ampicillin MIC - Susceptible" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/org2-cip" ] ;
+     fhir:display [ fhir:v "Ciprofloxacin MIC - Susceptible" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/org2-gent" ] ;
+     fhir:display [ fhir:v "Gentamicin MIC  - Susceptible" ]
+  ] ) . # 
+
+<http://test.fhir.org/r5/Observation/lri-organism3> a fhir:Observation ;
+  fhir:id [ fhir:v "organism3"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"organism3\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;organism3&quot; </p></div><p><b>identifier</b>: id: organism3</p><p><b>status</b>: final</p><p><b>category</b>: Micro <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-observation-category.html\">Observation Category Codes</a>#laboratory &quot;Laboratory&quot;; <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v2-0074.html\">diagnosticServiceSectionId</a>#MB &quot;microbiology&quot;)</span>, Result <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#RSLT)</span></p><p><b>code</b>: Aerobic Respiratory Culture, Sputum <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#624-7 &quot;Bacteria Spt Resp Cul&quot;; codes#CULTID &quot;Culture ID&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>effective</b>: 2016-08-18</p><p><b>issued</b>: 19 Aug 2016, 9:06:32 am</p><p><b>performer</b>: <a href=\"broken-link.html\">Organization/example</a></p><p><b>value</b>: Staphlyococcuc aureus <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#3092008)</span></p><p><b>hasMember</b>: </p><ul><li><a href=\"broken-link.html\">Observation/growth3: Heavy growth</a></li><li><a href=\"broken-link.html\">Observation/org3-amp: Ampicillin MIC - Susceptible</a></li><li><a href=\"broken-link.html\">Observation/org3-cip: Ciprofloxacin MIC - Susceptible</a></li><li><a href=\"broken-link.html\">Observation/org3-gent: Gentamicin MIC  - Susceptible</a></li></ul></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "https://acme.org/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "organism3" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "laboratory" ] ;
+       fhir:display [ fhir:v "Laboratory" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0074"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "MB" ] ;
+       fhir:display [ fhir:v "microbiology" ]
+     ] ) ;
+     fhir:text [ fhir:v "Micro" ]
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.9.195.4.61"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "RSLT" ] ;
+       fhir:display [ fhir:v "Result" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:624-7 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "624-7" ] ;
+       fhir:display [ fhir:v "Bacteria Spt Resp Cul" ]
+     ] [
+       fhir:system [ fhir:v "https://acme.org/codes"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "CULTID" ] ;
+       fhir:display [ fhir:v "Culture ID" ]
+     ] ) ;
+     fhir:text [ fhir:v "Aerobic Respiratory Culture, Sputum" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2016-08-18"^^xsd:date] ; # 
+  fhir:issued [ fhir:v "2016-08-18T23:06:32Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/example" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:CodeableConcept ;
+     fhir:coding ( [
+       a sct:3092008 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "3092008" ] ;
+       fhir:display [ fhir:v "Staphlyococcuc aureus" ]
+     ] ) ;
+     fhir:text [ fhir:v "Staphlyococcuc aureus" ]
+  ] ; # 
+  fhir:hasMember ( [
+     fhir:reference [ fhir:v "Observation/growth3" ] ;
+     fhir:display [ fhir:v "Heavy growth" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/org3-amp" ] ;
+     fhir:display [ fhir:v "Ampicillin MIC - Susceptible" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/org3-cip" ] ;
+     fhir:display [ fhir:v "Ciprofloxacin MIC - Susceptible" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/org3-gent" ] ;
+     fhir:display [ fhir:v "Gentamicin MIC  - Susceptible" ]
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,29 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <Extension.shex>
+
+# IANA Timezone Code per BCP 175
+<timezone> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:timezone];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/timezone"]}; 
+    fhir:v (@<code> AND
+    	{fhir:v @fhirvs:timezones} )  AND { rdf:type IRI } ; 
+    ^fhir:extension { a [fhir:date] OR 
+          a [fhir:dateTime] OR 
+          a [fhir:instant]
+        }
+}  
+
+#---------------------- Value Sets ------------------------
+
+# IANA Timezone Codes
+fhirvs:timezones xsd:string # EXTERNAL
+

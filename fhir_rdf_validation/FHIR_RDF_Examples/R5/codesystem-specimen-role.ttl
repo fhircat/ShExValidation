@@ -1,0 +1,113 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "specimen-role"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "oo" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "2" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/specimen-role"], [ fhir:v "http://hl7.org/fhir/specimen-role"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.2060" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.2060" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "SpecimenRole"], [ fhir:v "SpecimenRole"] ;
+  fhir:title [ fhir:v "Specimen Role"], [ fhir:v "Specimen Role"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2021-01-05T10:01:24+11:00"], [ fhir:v "2021-01-05T10:01:24+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Codes providing the combined status of the specimen."], [ fhir:v "Codes providing the combined status of the specimen."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/specimen-role"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "b" ] ;
+     fhir:display [ fhir:v "Blind Sample" ] ;
+     fhir:definition [ fhir:v "Used to test the validity of the measurement process, where the composition of the sample is unknown except to the person submitting it." ]
+  ] [
+     fhir:code [ fhir:v "c" ] ;
+     fhir:display [ fhir:v "Calibrator" ] ;
+     fhir:definition [ fhir:v "Used for initial setting of calibration of the instrument." ]
+  ] [
+     fhir:code [ fhir:v "e" ] ;
+     fhir:display [ fhir:v "Electronic QC" ] ;
+     fhir:definition [ fhir:v "Used with manufactured reference providing signals that simulate QC results." ]
+  ] [
+     fhir:code [ fhir:v "f" ] ;
+     fhir:display [ fhir:v "Filler Organization Proficiency" ] ;
+     fhir:definition [ fhir:v "Specimen used for testing proficiency of the organization performing the testing (Filler)." ]
+  ] [
+     fhir:code [ fhir:v "o" ] ;
+     fhir:display [ fhir:v "Operator Proficiency" ] ;
+     fhir:definition [ fhir:v "Specimen used for testing Operator Proficiency." ]
+  ] [
+     fhir:code [ fhir:v "p" ] ;
+     fhir:display [ fhir:v "Patient" ] ;
+     fhir:definition [ fhir:v "Used for any patient sample." ]
+  ] [
+     fhir:code [ fhir:v "q" ] ;
+     fhir:display [ fhir:v "Control specimen" ] ;
+     fhir:definition [ fhir:v "Used when specimen is the control specimen (either positive or negative)." ]
+  ] [
+     fhir:code [ fhir:v "r" ] ;
+     fhir:display [ fhir:v "Replicate (of patient sample as a control)" ] ;
+     fhir:definition [ fhir:v "Used when a patient sample is re-run as a control for a repeat test." ]
+  ] [
+     fhir:code [ fhir:v "v" ] ;
+     fhir:display [ fhir:v "Verifying Calibrator" ] ;
+     fhir:definition [ fhir:v "Used for periodic calibration checks." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

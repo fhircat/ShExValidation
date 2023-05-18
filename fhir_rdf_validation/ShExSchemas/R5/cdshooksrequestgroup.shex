@@ -1,0 +1,34 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <RequestGroup.shex>
+IMPORT <BackboneElement.shex>
+
+
+start=@<cdshooksrequestgroup> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A group of related requests
+<cdshooksrequestgroup> EXTENDS @<RequestGroup> CLOSED {   
+
+    a [fhir:cdshooksrequestgroup];
+    fhir:nodeRole [fhir:treeRoot]?;
+}  
+
+# Relationship to another action
+<RequestGroup.action.relatedAction> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Proposed actions, if any
+<RequestGroup.action> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Whether or not the action is applicable
+<RequestGroup.action.condition> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Who should perform the action
+<RequestGroup.action.participant> EXTENDS @<BackboneElement> CLOSED {   
+}  
+

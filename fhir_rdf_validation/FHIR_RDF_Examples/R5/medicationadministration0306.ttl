@@ -1,0 +1,92 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:MedicationAdministration ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "medadmin0306"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicationAdministration</b><a name=\"medadmin0306\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicationAdministration &quot;medadmin0306&quot; </p></div><p><b>status</b>: completed</p><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a name=\"med0306\"> </a><blockquote><p/><p><a name=\"med0306\"> </a></p><p><b>code</b>: Azithromycin 250mg capsule (product) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#324252006)</span></p></blockquote></td></tr></table><p><b>subject</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><p><b>encounter</b>: <a href=\"encounter-example-f001-heart.html\">Encounter/f001: encounter who leads to this prescription</a></p><p><b>occurence</b>: 2015-01-15T04:30:00+01:00 --&gt; 2015-01-15T14:30:00+01:00</p><blockquote><p><b>performer</b></p><p><b>function</b>: Performer <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-med-admin-perform-function.html\">MedicationAdministration Performer Function Codes</a>#performer)</span></p><h3>Actors</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a href=\"practitioner-example-f007-sh.html\">Practitioner/f007: Patrick Pump</a> &quot;Simone HEPS&quot;</td></tr></table></blockquote><p><b>request</b>: <a href=\"medicationrequest0302.html\">MedicationRequest/medrx0302</a></p><h3>Dosages</h3><table class=\"grid\"><tr><td>-</td><td><b>Text</b></td><td><b>Route</b></td><td><b>Method</b></td><td><b>Dose</b></td></tr><tr><td>*</td><td>Two tablets at once</td><td>Oral Route <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#26643006)</span></td><td>Swallow - dosing instruction imperative (qualifier value) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#421521009)</span></td><td>2 TAB<span style=\"background: LightGoldenRodYellow\"> (Details: http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm code TAB = 'Tablet')</span></td></tr></table></div>"
+  ] ; # 
+  fhir:contained ( [
+     a fhir:Medication ;
+     fhir:id [ fhir:v "med0306" ] ;
+     fhir:code [
+       fhir:coding ( [
+         a sct:324252006 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "324252006" ] ;
+         fhir:display [ fhir:v "Azithromycin 250mg capsule (product)" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:medication [
+     fhir:reference [
+       fhir:reference [ fhir:v "#med0306" ]
+     ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat1" ] ;
+     fhir:display [ fhir:v "Donald Duck" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/f001" ] ;
+     fhir:display [ fhir:v "encounter who leads to this prescription" ]
+  ] ; # 
+  fhir:occurence [
+     a fhir:Period ;
+     fhir:start [ fhir:v "2015-01-15T04:30:00+01:00"^^xsd:dateTime ] ;
+     fhir:end [ fhir:v "2015-01-15T14:30:00+01:00"^^xsd:dateTime ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:function [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/med-admin-perform-function"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "performer" ] ;
+         fhir:display [ fhir:v "Performer" ]
+       ] )
+     ] ;
+     fhir:actor [
+       fhir:reference [
+         fhir:reference [ fhir:v "Practitioner/f007" ] ;
+         fhir:display [ fhir:v "Patrick Pump" ]
+       ]
+     ]
+  ] ) ; # 
+  fhir:request [
+     fhir:reference [ fhir:v "MedicationRequest/medrx0302" ]
+  ] ; # 
+  fhir:dosage [
+     fhir:text [ fhir:v "Two tablets at once" ] ;
+     fhir:route [
+       fhir:coding ( [
+         a sct:26643006 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "26643006" ] ;
+         fhir:display [ fhir:v "Oral Route" ]
+       ] )
+     ] ;
+     fhir:method [
+       fhir:coding ( [
+         a sct:421521009 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "421521009" ] ;
+         fhir:display [ fhir:v "Swallow - dosing instruction imperative (qualifier value)" ]
+       ] )
+     ] ;
+     fhir:dose [
+       fhir:value [ fhir:v "2"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "TAB" ] ;
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "TAB" ]
+     ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

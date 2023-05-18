@@ -1,0 +1,59 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:SubscriptionTopic ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "admission"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: SubscriptionTopic</b><a name=\"admission\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource SubscriptionTopic &quot;admission&quot; </p></div><p><b>url</b>: <code>http://example.org/FHIR/R5/SubscriptionTopic/admission</code></p><p><b>identifier</b>: id: urn:uuid:915c2040-b0a8-4935-adf8-94d6e1a74052</p><p><b>title</b>: admission</p><p><b>status</b>: active</p><p><b>description</b>: Example admission topic</p><blockquote><p><b>resourceTrigger</b></p><p><b>description</b>: Encounter resource moving to state 'in-progress'</p><p><b>resource</b>: <a href=\"encounter.html\">Encounter</a></p><p><b>supportedInteraction</b>: create, update</p><h3>QueryCriteria</h3><table class=\"grid\"><tr><td>-</td><td><b>Previous</b></td><td><b>ResultForCreate</b></td><td><b>Current</b></td><td><b>ResultForDelete</b></td><td><b>RequireBoth</b></td></tr><tr><td>*</td><td>status:not=in-progress</td><td>test-passes</td><td>status=in-progress</td><td>test-fails</td><td>true</td></tr></table><p><b>fhirPathCriteria</b>: %previous.status!='in-progress' and %current.status='in-progress'</p></blockquote><h3>EventTriggers</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Event</b></td><td><b>Resource</b></td></tr><tr><td>*</td><td>Patient admission is covered by HL7v2 ADT^A01</td><td>ADT/ACK - Admit/visit notification <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v2-0003.html\">eventType</a>#A01)</span></td><td><a href=\"encounter.html\">Encounter</a></td></tr></table><h3>CanFilterBies</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Resource</b></td><td><b>FilterParameter</b></td><td><b>Modifier</b></td></tr><tr><td>*</td><td>Matching based on the Patient (subject) of an Encounter or based on the Patient's group membership (in/not-in).</td><td><a href=\"encounter.html\">Encounter</a></td><td>patient</td><td>in, not-in</td></tr></table><h3>NotificationShapes</h3><table class=\"grid\"><tr><td>-</td><td><b>Resource</b></td><td><b>Include</b></td></tr><tr><td>*</td><td><a href=\"encounter.html\">Encounter</a></td><td>Encounter:patient, Encounter:practitioner, Encounter:service-provider, Encounter:account, Encounter:diagnosis, Encounter:observation, Encounter:location</td></tr></table></div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://example.org/FHIR/R5/SubscriptionTopic/admission"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:uuid:915c2040-b0a8-4935-adf8-94d6e1a74052" ]
+  ] ) ; # 
+  fhir:title [ fhir:v "admission"] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:description [ fhir:v "Example admission topic"] ; # 
+  fhir:resourceTrigger ( [
+     fhir:description [ fhir:v "Encounter resource moving to state 'in-progress'" ] ;
+     fhir:resource [ fhir:v "http://hl7.org/fhir/StructureDefinition/Encounter"^^xsd:anyURI ] ;
+     fhir:supportedInteraction ( [ fhir:v "create" ] [ fhir:v "update" ] ) ;
+     fhir:queryCriteria [
+       fhir:previous [ fhir:v "status:not=in-progress" ] ;
+       fhir:resultForCreate [ fhir:v "test-passes" ] ;
+       fhir:current [ fhir:v "status=in-progress" ] ;
+       fhir:resultForDelete [ fhir:v "test-fails" ] ;
+       fhir:requireBoth [ fhir:v "true"^^xsd:boolean ]
+     ] ;
+     fhir:fhirPathCriteria [ fhir:v "%previous.status!='in-progress' and %current.status='in-progress'" ]
+  ] ) ; # 
+  fhir:eventTrigger ( [
+     fhir:description [ fhir:v "Patient admission is covered by HL7v2 ADT^A01" ] ;
+     fhir:event [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0003"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "A01" ] ;
+         fhir:display [ fhir:v "ADT/ACK - Admit/visit notification" ]
+       ] )
+     ] ;
+     fhir:resource [ fhir:v "http://hl7.org/fhir/StructureDefinition/Encounter"^^xsd:anyURI ]
+  ] ) ; # 
+  fhir:canFilterBy ( [
+     fhir:description [ fhir:v "Matching based on the Patient (subject) of an Encounter or based on the Patient's group membership (in/not-in)." ] ;
+     fhir:resource [ fhir:v "Encounter"^^xsd:anyURI ] ;
+     fhir:filterParameter [ fhir:v "patient" ] ;
+     fhir:modifier ( [ fhir:v "in" ] [ fhir:v "not-in" ] )
+  ] ) ; # 
+  fhir:notificationShape ( [
+     fhir:resource [ fhir:v "Encounter"^^xsd:anyURI ] ;
+     fhir:include ( [ fhir:v "Encounter:patient" ] [ fhir:v "Encounter:practitioner" ] [ fhir:v "Encounter:service-provider" ] [ fhir:v "Encounter:account" ] [ fhir:v "Encounter:diagnosis" ] [ fhir:v "Encounter:observation" ] [ fhir:v "Encounter:location" ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

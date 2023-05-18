@@ -1,0 +1,104 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "capability-statement-kind"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "fhir" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "normative" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version" ] ;
+     fhir:value [ fhir:v "4.0.0" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "5" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/capability-statement-kind"], [ fhir:v "http://hl7.org/fhir/capability-statement-kind"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.199" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.1.189" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.199" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.1.189" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "CapabilityStatementKind"], [ fhir:v "CapabilityStatementKind"] ;
+  fhir:title [ fhir:v "Capability Statement Kind"], [ fhir:v "Capability Statement Kind"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2021-01-05T10:01:24+11:00"], [ fhir:v "2021-01-05T10:01:24+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "How a capability statement is intended to be used."], [ fhir:v "How a capability statement is intended to be used."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/capability-statement-kind"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "instance" ] ;
+     fhir:display [ fhir:v "Instance" ] ;
+     fhir:definition [ fhir:v "The CapabilityStatement instance represents the present capabilities of a specific system instance.  This is the kind returned by /metadata for a FHIR server end-point." ]
+  ] [
+     fhir:extension ( [
+       fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/codesystem-concept-comments" ] ;
+       fhir:value [ fhir:v "Elements marked as 'optional' represent configurable capabilities" ]
+     ] ) ;
+     fhir:code [ fhir:v "capability" ] ;
+     fhir:display [ fhir:v "Capability" ] ;
+     fhir:definition [ fhir:v "The CapabilityStatement instance represents the capabilities of a system or piece of software, independent of a particular installation." ]
+  ] [
+     fhir:code [ fhir:v "requirements" ] ;
+     fhir:display [ fhir:v "Requirements" ] ;
+     fhir:definition [ fhir:v "The CapabilityStatement instance represents a set of requirements for other systems to meet; e.g. as part of an implementation guide or 'request for proposal'." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

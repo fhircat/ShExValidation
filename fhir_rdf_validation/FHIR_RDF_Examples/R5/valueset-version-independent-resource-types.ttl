@@ -1,0 +1,50 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ValueSet ;
+  fhir:id [ fhir:v "version-independent-resource-types"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablevalueset" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "fhir" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "normative" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "5" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/version-independent-resource-types"], [ fhir:v "http://hl7.org/fhir/ValueSet/version-independent-resource-types"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.3318" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.3318" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "VersionIndependentResourceTypes"], [ fhir:v "VersionIndependentResourceTypes"] ;
+  fhir:title [ fhir:v "Version Independent Resource Types"], [ fhir:v "Version Independent Resource Types"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:publisher [ fhir:v "HL7, International"], [ fhir:v "HL7, International"] ;
+  fhir:description [ fhir:v "Current and past FHIR resource types (deleted or renamed)"], [ fhir:v "Current and past FHIR resource types (deleted or renamed)"] ;
+  fhir:immutable [ fhir:v "true"] ;
+  fhir:compose [
+     fhir:include ( [
+       fhir:valueSet ( [ fhir:v "http://hl7.org/fhir/ValueSet/resource-types" ] )
+     ] [
+       fhir:system [ fhir:v "http://hl7.org/fhir/fhir-old-types" ]
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,54 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+#    <association>
+#	  <status> 
+#	     <coding>
+#		   <system value="http://terminology.hl7.org/CodeSystem/device-association-status" />
+#           <code value="attached"/>
+#		 </coding>
+#	  </status>
+#      <humanSubject>
+#		<reference value="Patient/example"/>
+#	  </humanSubject>
+#	</association>   
+
+[a fhir:Device ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-udi3"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Device</b><a name=\"example-udi3\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Device &quot;example-udi3&quot; </p></div><p><b>identifier</b>: Serial Number: XYZ456789012345678</p><h3>UdiCarriers</h3><table class=\"grid\"><tr><td>-</td><td><b>DeviceIdentifier</b></td><td><b>Issuer</b></td><td><b>Jurisdiction</b></td><td><b>CarrierHRF</b></td><td><b>EntryType</b></td></tr><tr><td>*</td><td>007444534255003288</td><td><a href=\"http://hl7.org/fhir/NamingSystem/hibcc\">http://hl7.org/fhir/NamingSystem/hibcc</a></td><td><a href=\"http://hl7.org/fhir/NamingSystem/fda-udi\">http://hl7.org/fhir/NamingSystem/fda-udi</a></td><td>+H123PARTNO1234567890120/$$420020216LOT123456789012345/SXYZ456789012345678/16D20130202C</td><td>manual</td></tr></table><p><b>status</b>: inactive</p><p><b>manufacturer</b>: GlobalMed, Inc</p><p><b>manufactureDate</b>: 2013-02-02</p><p><b>expirationDate</b>: 2020-02-02</p><p><b>lotNumber</b>: LOT123456789012345</p><h3>Names</h3><table class=\"grid\"><tr><td>-</td><td><b>Value</b></td><td><b>Type</b></td></tr><tr><td>*</td><td>Ultra Implantable</td><td>user-friendly-name</td></tr></table></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0203"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "SNO" ]
+       ] )
+     ] ; #   The serial number which is a component of the production identifier (PI), a conditional, variable portion of a UDI. The identifier.type code should be set to “SNO”(Serial Number) and the system left empty.   
+     fhir:value [ fhir:v "XYZ456789012345678" ]
+  ] ) ; #     this is the serial number   
+  fhir:udiCarrier ( [
+     fhir:deviceIdentifier [ fhir:v "007444534255003288" ] ;
+     fhir:issuer [ fhir:v "http://hl7.org/fhir/NamingSystem/hibcc"^^xsd:anyURI ] ;
+     fhir:jurisdiction [ fhir:v "http://hl7.org/fhir/NamingSystem/fda-udi"^^xsd:anyURI ] ;
+     fhir:carrierHRF [ fhir:v "+H123PARTNO1234567890120/$$420020216LOT123456789012345/SXYZ456789012345678/16D20130202C" ] ;
+     fhir:entryType [ fhir:v "manual" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "inactive"] ; # 
+  fhir:manufacturer [ fhir:v "GlobalMed, Inc"] ; # 
+  fhir:manufactureDate [ fhir:v "2013-02-02"^^xsd:date] ; # 
+  fhir:expirationDate [ fhir:v "2020-02-02"^^xsd:date] ; # 
+  fhir:lotNumber [ fhir:v "LOT123456789012345"] ; # 
+  fhir:name ( [
+     fhir:value [ fhir:v "Ultra Implantable" ] ;
+     fhir:type [ fhir:v "user-friendly-name" ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

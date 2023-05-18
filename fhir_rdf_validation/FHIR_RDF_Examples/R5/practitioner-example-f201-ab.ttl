@@ -1,0 +1,62 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Practitioner ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "f201"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Practitioner</b><a name=\"f201\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Practitioner &quot;f201&quot; </p></div><p><b>identifier</b>: UZI-nummer: 12345678901 (use: OFFICIAL)</p><p><b>active</b>: true</p><p><b>name</b>: <span title=\" Practitioner's personal demographics \">Dokter Bronsig(OFFICIAL)</span></p><p><b>telecom</b>: <a href=\"tel:+31715269111\">+31715269111</a></p><p><b>gender</b>: male</p><p><b>birthDate</b>: 1956-12-24</p><p><b>address</b>: Walvisbaai 3 C4 - Automatisering Den helder 2333ZA NLD (WORK)</p><h3>Qualifications</h3><table class=\"grid\"><tr><td>-</td><td><b>Code</b></td></tr><tr><td>*</td><td>Pulmonologist <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#41672002)</span></td></tr></table></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "official" ] ; #   The identifier for the person as this practitioner (fictive)  
+     fhir:type [
+       fhir:text [ fhir:v "UZI-nummer" ]
+     ] ;
+     fhir:system [ fhir:v "urn:oid:2.16.528.1.1007.3.1"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "12345678901" ]
+  ] ) ; # 
+  fhir:active [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:name ( [
+     fhir:use [ fhir:v "official" ] ; #   The name of the practitioner  
+     fhir:text [ fhir:v "Dokter Bronsig" ] ;
+     fhir:family [ fhir:v "Bronsig" ] ;
+     fhir:given ( [ fhir:v "Arend" ] ) ;
+     fhir:prefix ( [ fhir:v "Dr." ] )
+  ] ) ; #   Practitioner's personal demographics  
+  fhir:telecom ( [
+     fhir:system [ fhir:v "phone" ] ; #   A contact detail for the individual  
+     fhir:value [ fhir:v "+31715269111" ] ;
+     fhir:use [ fhir:v "work" ]
+  ] ) ; # 
+  fhir:gender [ fhir:v "male"] ; # 
+  fhir:birthDate [ fhir:v "1956-12-24"^^xsd:date] ; # 
+  fhir:address ( [
+     fhir:use [ fhir:v "work" ] ; #   Work address for the individual  
+     fhir:line ( [ fhir:v "Walvisbaai 3" ] [ fhir:v "C4 - Automatisering" ] ) ;
+     fhir:city [ fhir:v "Den helder" ] ;
+     fhir:postalCode [ fhir:v "2333ZA" ] ;
+     fhir:country [ fhir:v "NLD" ]
+  ] ) ; #   ISO 3166 3 letter code  
+  fhir:qualification ( [
+     fhir:code [
+       fhir:coding ( [
+         a sct:41672002 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "41672002" ] ;
+         fhir:display [ fhir:v "Pulmonologist" ]
+       ] ) #   Dr. Bronsig is not only a medical oncologist, but also a pulmonologist  
+     ]
+  ] )] . #   Fortunately, the doctor is still alive!  ,   
+#    <photo>
+#        <reference value="Media/AB-201.bmp"/>
+#        <display value="Picture_Dokter_Bronsig"/>
+#    </photo>   
+
+# -------------------------------------------------------------------------------------
+

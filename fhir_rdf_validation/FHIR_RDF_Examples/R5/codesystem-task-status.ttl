@@ -1,0 +1,133 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "task-status"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "oo" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "2" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/task-status"], [ fhir:v "http://hl7.org/fhir/task-status"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.791" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.1.774" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.791" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.1.774" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "TaskStatus"], [ fhir:v "TaskStatus"] ;
+  fhir:title [ fhir:v "Task Status"], [ fhir:v "Task Status"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2021-01-05T10:01:24+11:00"], [ fhir:v "2021-01-05T10:01:24+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The current status of the task."], [ fhir:v "The current status of the task."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/task-status"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "draft" ] ;
+     fhir:display [ fhir:v "Draft" ] ;
+     fhir:definition [ fhir:v "The task is not yet ready to be acted upon." ]
+  ] [
+     fhir:code [ fhir:v "requested" ] ;
+     fhir:display [ fhir:v "Requested" ] ;
+     fhir:definition [ fhir:v "The task is ready to be acted upon and action is sought." ]
+  ] [
+     fhir:code [ fhir:v "received" ] ;
+     fhir:display [ fhir:v "Received" ] ;
+     fhir:definition [ fhir:v "A potential performer has claimed ownership of the task and is evaluating whether to perform it." ]
+  ] [
+     fhir:code [ fhir:v "accepted" ] ;
+     fhir:display [ fhir:v "Accepted" ] ;
+     fhir:definition [ fhir:v "The potential performer has agreed to execute the task but has not yet started work." ]
+  ] [
+     fhir:code [ fhir:v "rejected" ] ;
+     fhir:display [ fhir:v "Rejected" ] ;
+     fhir:definition [ fhir:v "The potential performer who claimed ownership of the task has decided not to execute it prior to performing any action." ]
+  ] [
+     fhir:code [ fhir:v "ready" ] ;
+     fhir:display [ fhir:v "Ready" ] ;
+     fhir:definition [ fhir:v "The task is ready to be performed, but no action has yet been taken.  Used in place of requested/received/accepted/rejected when request assignment and acceptance is a given." ]
+  ] [
+     fhir:code [ fhir:v "cancelled" ] ;
+     fhir:display [ fhir:v "Cancelled" ] ;
+     fhir:definition [ fhir:v "The task was not completed." ]
+  ] [
+     fhir:code [ fhir:v "in-progress" ] ;
+     fhir:display [ fhir:v "In Progress" ] ;
+     fhir:definition [ fhir:v "The task has been started but is not yet complete." ]
+  ] [
+     fhir:code [ fhir:v "on-hold" ] ;
+     fhir:display [ fhir:v "On Hold" ] ;
+     fhir:definition [ fhir:v "The task has been started but work has been paused." ]
+  ] [
+     fhir:code [ fhir:v "failed" ] ;
+     fhir:display [ fhir:v "Failed" ] ;
+     fhir:definition [ fhir:v "The task was attempted but could not be completed due to some error." ]
+  ] [
+     fhir:code [ fhir:v "completed" ] ;
+     fhir:display [ fhir:v "Completed" ] ;
+     fhir:definition [ fhir:v "The task has been completed." ]
+  ] [
+     fhir:code [ fhir:v "entered-in-error" ] ;
+     fhir:display [ fhir:v "Entered in Error" ] ;
+     fhir:definition [ fhir:v "The task should never have existed and is retained only because of the possibility it may have used." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

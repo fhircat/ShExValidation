@@ -1,0 +1,128 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Immunization ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "protocol"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Immunization</b><a name=\"protocol\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Immunization &quot;protocol&quot; </p></div><p><b>identifier</b>: id: urn:oid:1.3.6.1.4.1.21367.2005.3.7.1234</p><p><b>status</b>: completed</p><p><b>vaccineCode</b>: Twinrix (HepA/HepB) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-CVX.html\">Vaccine Administered Code Set (CVX)</a>#104)</span></p><h3>Manufacturers</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a href=\"organization-example.html\">Organization/hl7</a> &quot;Health Level Seven International&quot;</td></tr></table><p><b>lotNumber</b>: PT123F</p><p><b>expirationDate</b>: 2018-12-15</p><p><b>patient</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>encounter</b>: <a href=\"encounter-example.html\">Encounter/example</a></p><p><b>occurrence</b>: 2018-06-18</p><p><b>primarySource</b>: true</p><p><b>location</b>: <a href=\"location-example.html\">Location/1</a> &quot;South Wing, second floor&quot;</p><p><b>site</b>: left arm <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ActSite.html\">ActSite</a>#LA)</span></p><p><b>route</b>: Injection, intramuscular <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-RouteOfAdministration.html\">RouteOfAdministration</a>#IM)</span></p><p><b>doseQuantity</b>: 5 mg<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mg = 'mg')</span></p><blockquote><p><b>performer</b></p><p><b>function</b>: Ordering Provider <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v2-0443.html\">providerRole</a>#OP)</span></p><p><b>actor</b>: <a href=\"practitioner-example.html\">Practitioner/example</a> &quot;Adam CAREFUL&quot;</p></blockquote><blockquote><p><b>performer</b></p><p><b>function</b>: Administering Provider <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v2-0443.html\">providerRole</a>#AP)</span></p><p><b>actor</b>: <a href=\"practitioner-example.html\">Practitioner/example</a> &quot;Adam CAREFUL&quot;</p></blockquote><p><b>isSubpotent</b>: false</p><h3>ProgramEligibilities</h3><table class=\"grid\"><tr><td>-</td><td><b>Program</b></td><td><b>ProgramStatus</b></td></tr><tr><td>*</td><td>VFC <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td><td>Not Eligible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-immunization-program-eligibility.html\">Immunization Program Eligibility</a>#ineligible)</span></td></tr></table><p><b>fundingSource</b>: Private <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-immunization-funding-source.html\">Immunization Funding Source</a>#private)</span></p><blockquote><p><b>protocolApplied</b></p><p><b>series</b>: 2-dose</p><p><b>targetDisease</b>: Viral hepatitis, type A <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#40468003)</span></p><p><b>doseNumber</b>: 1</p></blockquote><blockquote><p><b>protocolApplied</b></p><p><b>series</b>: 3-dose</p><p><b>targetDisease</b>: Type B viral hepatitis <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#66071002)</span></p><p><b>doseNumber</b>: 2</p><p><b>seriesDoses</b>: 3</p></blockquote></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:1.3.6.1.4.1.21367.2005.3.7.1234" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:vaccineCode [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/sid/cvx"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "104" ]
+     ] ) ;
+     fhir:text [ fhir:v "Twinrix (HepA/HepB)" ]
+  ] ; # 
+  fhir:manufacturer [
+     fhir:reference [
+       fhir:reference [ fhir:v "Organization/hl7" ]
+     ]
+  ] ; # 
+  fhir:lotNumber [ fhir:v "PT123F"] ; # 
+  fhir:expirationDate [ fhir:v "2018-12-15"^^xsd:date] ; # 
+  fhir:patient [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/example" ]
+  ] ; # 
+  fhir:occurrence [ fhir:v "2018-06-18"^^xsd:date] ; # 
+  fhir:primarySource [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:location [
+     fhir:reference [ fhir:v "Location/1" ]
+  ] ; # 
+  fhir:site [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActSite"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "LA" ] ;
+       fhir:display [ fhir:v "left arm" ]
+     ] )
+  ] ; # 
+  fhir:route [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-RouteOfAdministration"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "IM" ] ;
+       fhir:display [ fhir:v "Injection, intramuscular" ]
+     ] )
+  ] ; # 
+  fhir:doseQuantity [
+     fhir:value [ fhir:v "5"^^xsd:decimal ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "mg" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:function [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0443"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "OP" ]
+       ] )
+     ] ;
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/example" ]
+     ]
+  ] [
+     fhir:function [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0443"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "AP" ]
+       ] )
+     ] ;
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/example" ]
+     ]
+  ] ) ; # 
+  fhir:isSubpotent [ fhir:v "false"^^xsd:boolean] ; # 
+  fhir:programEligibility ( [
+     fhir:program [
+       fhir:text [ fhir:v "VFC" ]
+     ] ;
+     fhir:programStatus [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/immunization-program-eligibility"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "ineligible" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:fundingSource [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/immunization-funding-source"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "private" ]
+     ] )
+  ] ; # 
+  fhir:protocolApplied ( [
+     fhir:series [ fhir:v "2-dose" ] ;
+     fhir:targetDisease ( [
+       fhir:coding ( [
+         a sct:40468003 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "40468003" ]
+       ] )
+     ] ) ;
+     fhir:doseNumber [ fhir:v "1" ]
+  ] [
+     fhir:series [ fhir:v "3-dose" ] ;
+     fhir:targetDisease ( [
+       fhir:coding ( [
+         a sct:66071002 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "66071002" ]
+       ] )
+     ] ) ;
+     fhir:doseNumber [ fhir:v "2" ] ;
+     fhir:seriesDoses [ fhir:v "3" ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

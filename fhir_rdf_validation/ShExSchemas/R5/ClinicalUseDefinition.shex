@@ -1,0 +1,213 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Range.shex>
+IMPORT <Group.shex>
+IMPORT <string.shex>
+IMPORT <Device.shex>
+IMPORT <markdown.shex>
+IMPORT <Reference.shex>
+IMPORT <Substance.shex>
+IMPORT <Medication.shex>
+IMPORT <DomainResource.shex>
+IMPORT <PlanDefinition.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <DeviceDefinition.shex>
+IMPORT <CodeableReference.shex>
+IMPORT <ActivityDefinition.shex>
+IMPORT <ObservationDefinition.shex>
+IMPORT <ClinicalUseDefinition.shex>
+IMPORT <MedicinalProductDefinition.shex>
+
+
+start=@<ClinicalUseDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A single issue - either an indication, contraindication, interaction or an undesirable effect for a medicinal product, medication, device or procedure
+<ClinicalUseDefinition> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:ClinicalUseDefinition];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business identifier for this issue
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:clinical-use-definition-type};  # indication | contraindication | 
+                                            # interaction | undesirable-effect | 
+                                            # warning 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # A categorisation of the issue, 
+                                            # primarily for dividing warnings 
+                                            # into subject heading areas such as 
+                                            # "Pregnancy", "Overdose" 
+    fhir:subject @<OneOrMore_Reference_ActivityDefinition_OR_Device_OR_DeviceDefinition_OR_Medication_OR_MedicinalProductDefinition_OR_PlanDefinition_OR_Substance>?;  # The medication or procedure for 
+                                            # which this is an indication 
+    fhir:status @<CodeableConcept>?;        # Whether this is a current issue or 
+                                            # one that has been retired etc 
+    fhir:contraindication @<BackboneElement>?;  # Specifics for when this is a 
+                                            # contraindication 
+    fhir:indication @<BackboneElement>?;    # Specifics for when this is an 
+                                            # indication 
+    fhir:interaction @<BackboneElement>?;   # Specifics for when this is an 
+                                            # interaction 
+    fhir:population @<OneOrMore_Reference_Group>?;  # The population group to which this 
+                                            # applies 
+    fhir:undesirableEffect @<BackboneElement>?;  # A possible negative outcome from 
+                                            # the use of this treatment 
+    fhir:warning @<BackboneElement>?;       # Critical environmental, health or 
+                                            # physical risks or hazards. For 
+                                            # example 'Do not operate heavy 
+                                            # machinery', 'May cause drowsiness' 
+}  
+
+# The specific medication, food, substance or laboratory test that interacts
+<ClinicalUseDefinition.interaction.interactant> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:item ((@<Reference>  AND {fhir:link @<MedicinalProductDefinition> OR 
+    			 @<Medication> OR 
+    			 @<Substance> OR 
+    			 @<ObservationDefinition> })  OR 
+    			@<CodeableConcept> )  AND { rdf:type IRI } ;  # The specific medication, food or 
+                                            # laboratory test that interacts 
+}  
+
+# Information about use of the product in relation to other therapies described as part of the contraindication
+<ClinicalUseDefinition.contraindication.otherTherapy> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:relationshipType @<CodeableConcept>;  # The type of relationship between 
+                                            # the product 
+                                            # indication/contraindication and 
+                                            # another therapy 
+    fhir:therapy @<CodeableReference>;      # Reference to a specific medication 
+                                            # as part of an indication or 
+                                            # contraindication 
+}  
+
+# Specifics for when this is an indication
+<ClinicalUseDefinition.indication> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:diseaseSymptomProcedure @<CodeableReference>?;  # The situation that is being 
+                                            # documented as an indicaton for 
+                                            # this item 
+    fhir:diseaseStatus @<CodeableReference>?;  # The status of the disease or 
+                                            # symptom for the indication 
+    fhir:comorbidity @<OneOrMore_CodeableReference>?;  # A comorbidity or coinfection as 
+                                            # part of the indication 
+    fhir:intendedEffect @<CodeableReference>?;  # The intended effect, aim or 
+                                            # strategy to be achieved 
+    fhir:duration (@<Range>  OR 
+    			@<string> )  AND { rdf:type IRI } ?;  # Timing or duration information
+    fhir:undesirableEffect @<OneOrMore_Reference_ClinicalUseDefinition>?;  # An unwanted side effect or 
+                                            # negative outcome of the subject of 
+                                            # this resource when being used for 
+                                            # this indication 
+    fhir:otherTherapy @<OneOrMore_ClinicalUseDefinition.contraindication.otherTherapy>?;  # The use of the medicinal product 
+                                            # in relation to other therapies 
+                                            # described as part of the 
+                                            # indication 
+}  
+
+# A possible negative outcome from the use of this treatment
+<ClinicalUseDefinition.undesirableEffect> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:symptomConditionEffect @<CodeableReference>?;  # The situation in which the 
+                                            # undesirable effect may manifest 
+    fhir:classification @<CodeableConcept>?;  # High level classification of the 
+                                            # effect 
+    fhir:frequencyOfOccurrence @<CodeableConcept>?;  # How often the effect is seen
+}  
+
+# Critical environmental, health or physical risks or hazards. For example 'Do not operate heavy machinery', 'May cause drowsiness'
+<ClinicalUseDefinition.warning> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:description @<markdown>?;          # A textual definition of this 
+                                            # warning, with formatting 
+    fhir:code @<CodeableConcept>?;          # A coded or unformatted textual 
+                                            # definition of this warning 
+}  
+
+# Specifics for when this is a contraindication
+<ClinicalUseDefinition.contraindication> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:diseaseSymptomProcedure @<CodeableReference>?;  # The situation that is being 
+                                            # documented as contraindicating 
+                                            # against this item 
+    fhir:diseaseStatus @<CodeableReference>?;  # The status of the disease or 
+                                            # symptom for the contraindication 
+    fhir:comorbidity @<OneOrMore_CodeableReference>?;  # A comorbidity (concurrent 
+                                            # condition) or coinfection 
+    fhir:indication @<OneOrMore_Reference_ClinicalUseDefinition>?;  # The indication which this is a 
+                                            # contraidication for 
+    fhir:otherTherapy @<OneOrMore_BackboneElement>?;  # Information about use of the 
+                                            # product in relation to other 
+                                            # therapies described as part of the 
+                                            # contraindication 
+}  
+
+# Specifics for when this is an interaction
+<ClinicalUseDefinition.interaction> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:interactant @<OneOrMore_BackboneElement>?;  # The specific medication, food, 
+                                            # substance or laboratory test that 
+                                            # interacts 
+    fhir:type @<CodeableConcept>?;          # The type of the interaction e.g. 
+                                            # drug-drug interaction, drug-lab 
+                                            # test interaction 
+    fhir:effect @<CodeableReference>?;      # The effect of the interaction, for 
+                                            # example "reduced gastric 
+                                            # absorption of primary medication" 
+    fhir:incidence @<CodeableConcept>?;     # The incidence of the interaction, 
+                                            # e.g. theoretical, observed 
+    fhir:management @<OneOrMore_CodeableConcept>?;  # Actions for managing the 
+                                            # interaction 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_ActivityDefinition_OR_Device_OR_DeviceDefinition_OR_Medication_OR_MedicinalProductDefinition_OR_PlanDefinition_OR_Substance> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ActivityDefinition> OR 
+			@<Device> OR 
+			@<DeviceDefinition> OR 
+			@<Medication> OR 
+			@<MedicinalProductDefinition> OR 
+			@<PlanDefinition> OR 
+			@<Substance> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ActivityDefinition_OR_Device_OR_DeviceDefinition_OR_Medication_OR_MedicinalProductDefinition_OR_PlanDefinition_OR_Substance> 
+}
+
+<OneOrMore_Reference_Group> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Group> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Group> 
+}
+
+<OneOrMore_CodeableReference> CLOSED {
+    rdf:first @<CodeableReference>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableReference> 
+}
+
+<OneOrMore_Reference_ClinicalUseDefinition> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ClinicalUseDefinition> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ClinicalUseDefinition> 
+}
+
+<OneOrMore_ClinicalUseDefinition.contraindication.otherTherapy> CLOSED {
+    rdf:first @<ClinicalUseDefinition.contraindication.otherTherapy>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ClinicalUseDefinition.contraindication.otherTherapy> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Overall defining type of this clinical use definition.
+fhirvs:clinical-use-definition-type ["indication" "contraindication" "interaction" "undesirable-effect" "warning"]
+

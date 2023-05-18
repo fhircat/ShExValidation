@@ -1,0 +1,25 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <decimal.shex>
+IMPORT <DataType.shex>
+
+# An amount of economic utility in some recognized currency
+<Money> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:Money];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<decimal>?;                 # Numerical value (with implicit 
+                                            # precision) 
+    fhir:currency @<code> AND
+    	{fhir:v @fhirvs:currencies}?;  # ISO 4217 Currency Code
+}  
+
+#---------------------- Value Sets ------------------------
+
+# Currency codes from ISO 4217 (see https://www.iso.org/iso-4217-currency-codes.html)
+fhirvs:currencies xsd:string # EXTERNAL
+

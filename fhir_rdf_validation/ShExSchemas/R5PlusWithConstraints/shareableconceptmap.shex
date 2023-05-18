@@ -1,0 +1,20 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <ConceptMap.shex>
+#imported_end
+
+start=@<shareableconceptmap> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A map from one set of concepts to one or more other concepts
+<shareableconceptmap> EXTENDS @<ConceptMap> CLOSED {   
+
+    a [fhir:shareableconceptmap]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+}  
+

@@ -1,0 +1,163 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "observation-statistics"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "oo" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/observation-statistics"], [ fhir:v "http://hl7.org/fhir/observation-statistics"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.1.1126" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.1.395" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.1.1126" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.1.395" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "StatisticsCode"], [ fhir:v "StatisticsCode"] ;
+  fhir:title [ fhir:v "Statistics Code"], [ fhir:v "Statistics Code"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2022-12-01T09:29:23+11:00"], [ fhir:v "2022-12-01T09:29:23+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The statistical operation parameter -\"statistic\" codes."], [ fhir:v "The statistical operation parameter -\"statistic\" codes."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/observation-statistics"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "average" ] ;
+     fhir:display [ fhir:v "Average" ] ;
+     fhir:definition [ fhir:v "The [mean](https://en.wikipedia.org/wiki/Arithmetic_mean) of N measurements over the stated period." ]
+  ] [
+     fhir:code [ fhir:v "maximum" ] ;
+     fhir:display [ fhir:v "Maximum" ] ;
+     fhir:definition [ fhir:v "The [maximum](https://en.wikipedia.org/wiki/Maximal_element) value of N measurements over the stated period." ]
+  ] [
+     fhir:code [ fhir:v "minimum" ] ;
+     fhir:display [ fhir:v "Minimum" ] ;
+     fhir:definition [ fhir:v "The [minimum](https://en.wikipedia.org/wiki/Minimal_element) value of N measurements over the stated period." ]
+  ] [
+     fhir:code [ fhir:v "count" ] ;
+     fhir:display [ fhir:v "Count" ] ;
+     fhir:definition [ fhir:v "The [number] of valid measurements over the stated period that contributed to the other statistical outputs." ]
+  ] [
+     fhir:code [ fhir:v "total-count" ] ;
+     fhir:display [ fhir:v "Total Count" ] ;
+     fhir:definition [ fhir:v "The total [number] of valid measurements over the stated period, including observations that were ignored because they did not contain valid result values." ]
+  ] [
+     fhir:code [ fhir:v "median" ] ;
+     fhir:display [ fhir:v "Median" ] ;
+     fhir:definition [ fhir:v "The [median](https://en.wikipedia.org/wiki/Median) of N measurements over the stated period." ]
+  ] [
+     fhir:code [ fhir:v "std-dev" ] ;
+     fhir:display [ fhir:v "Standard Deviation" ] ;
+     fhir:definition [ fhir:v "The [standard deviation](https://en.wikipedia.org/wiki/Standard_deviation) of N measurements over the stated period." ]
+  ] [
+     fhir:code [ fhir:v "sum" ] ;
+     fhir:display [ fhir:v "Sum" ] ;
+     fhir:definition [ fhir:v "The [sum](https://en.wikipedia.org/wiki/Summation) of N measurements over the stated period." ]
+  ] [
+     fhir:code [ fhir:v "variance" ] ;
+     fhir:display [ fhir:v "Variance" ] ;
+     fhir:definition [ fhir:v "The [variance](https://en.wikipedia.org/wiki/Variance) of N measurements over the stated period." ]
+  ] [
+     fhir:code [ fhir:v "20-percent" ] ;
+     fhir:display [ fhir:v "20th Percentile" ] ;
+     fhir:definition [ fhir:v "The 20th [Percentile](https://en.wikipedia.org/wiki/Percentile) of N measurements over the stated period." ]
+  ] [
+     fhir:code [ fhir:v "80-percent" ] ;
+     fhir:display [ fhir:v "80th Percentile" ] ;
+     fhir:definition [ fhir:v "The 80th [Percentile](https://en.wikipedia.org/wiki/Percentile) of N measurements over the stated period." ]
+  ] [
+     fhir:code [ fhir:v "4-lower" ] ;
+     fhir:display [ fhir:v "Lower Quartile" ] ;
+     fhir:definition [ fhir:v "The lower [Quartile](https://en.wikipedia.org/wiki/Quartile) Boundary of N measurements over the stated period." ]
+  ] [
+     fhir:code [ fhir:v "4-upper" ] ;
+     fhir:display [ fhir:v "Upper Quartile" ] ;
+     fhir:definition [ fhir:v "The upper [Quartile](https://en.wikipedia.org/wiki/Quartile) Boundary of N measurements over the stated period." ]
+  ] [
+     fhir:code [ fhir:v "4-dev" ] ;
+     fhir:display [ fhir:v "Quartile Deviation" ] ;
+     fhir:definition [ fhir:v "The difference between the upper and lower [Quartiles](https://en.wikipedia.org/wiki/Quartile) is called the Interquartile range. (IQR = Q3-Q1) Quartile deviation or Semi-interquartile range is one-half the difference between the first and the third quartiles." ]
+  ] [
+     fhir:code [ fhir:v "5-1" ] ;
+     fhir:display [ fhir:v "1st Quintile" ] ;
+     fhir:definition [ fhir:v "The lowest of four values that divide the N measurements into a frequency distribution of five classes with each containing one fifth of the total population." ]
+  ] [
+     fhir:code [ fhir:v "5-2" ] ;
+     fhir:display [ fhir:v "2nd Quintile" ] ;
+     fhir:definition [ fhir:v "The second of four values that divide the N measurements into a frequency distribution of five classes with each containing one fifth of the total population." ]
+  ] [
+     fhir:code [ fhir:v "5-3" ] ;
+     fhir:display [ fhir:v "3rd Quintile" ] ;
+     fhir:definition [ fhir:v "The third of four values that divide the N measurements into a frequency distribution of five classes with each containing one fifth of the total population." ]
+  ] [
+     fhir:code [ fhir:v "5-4" ] ;
+     fhir:display [ fhir:v "4th Quintile" ] ;
+     fhir:definition [ fhir:v "The fourth of four values that divide the N measurements into a frequency distribution of five classes with each containing one fifth of the total population." ]
+  ] [
+     fhir:code [ fhir:v "skew" ] ;
+     fhir:display [ fhir:v "Skew" ] ;
+     fhir:definition [ fhir:v "Skewness is a measure of the asymmetry of the probability distribution of a real-valued random variable about its mean. The skewness value can be positive or negative, or even undefined.  Source: [Wikipedia](https://en.wikipedia.org/wiki/Skewness)." ]
+  ] [
+     fhir:code [ fhir:v "kurtosis" ] ;
+     fhir:display [ fhir:v "Kurtosis" ] ;
+     fhir:definition [ fhir:v "Kurtosis  is a measure of the \"tailedness\" of the probability distribution of a real-valued random variable.   Source: [Wikipedia](https://en.wikipedia.org/wiki/Kurtosis)." ]
+  ] [
+     fhir:code [ fhir:v "regression" ] ;
+     fhir:display [ fhir:v "Regression" ] ;
+     fhir:definition [ fhir:v "Linear regression is an approach for modeling two-dimensional sample points with one independent variable and one dependent variable (conventionally, the x and y coordinates in a Cartesian coordinate system) and finds a linear function (a non-vertical straight line) that, as accurately as possible, predicts the dependent variable values as a function of the independent variables. Source: [Wikipedia](https://en.wikipedia.org/wiki/Simple_linear_regression)  This Statistic code will return both a gradient and an intercept value." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

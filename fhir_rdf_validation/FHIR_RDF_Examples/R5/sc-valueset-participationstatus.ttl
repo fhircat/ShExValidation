@@ -1,0 +1,83 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ConceptMap ;
+  fhir:id [ fhir:v "sc-participationstatus"] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ConceptMap/sc-participationstatus"], [ fhir:v "http://hl7.org/fhir/ConceptMap/sc-participationstatus"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "ParticipationStatusCanonicalMap"], [ fhir:v "ParticipationStatusCanonicalMap"] ;
+  fhir:title [ fhir:v "Canonical Mapping for \"Participation Status\""], [ fhir:v "Canonical Mapping for \"Participation Status\""] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2020-12-28T16:55:11+11:00"], [ fhir:v "2020-12-28T16:55:11+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Canonical Mapping for \"The Participation status of an appointment.\""], [ fhir:v "Canonical Mapping for \"The Participation status of an appointment.\""] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:sourceScope [ fhir:v "http://hl7.org/fhir/ValueSet/participationstatus"] ;
+  fhir:targetScope [ fhir:v "http://hl7.org/fhir/ValueSet/resource-status"] ;
+  fhir:group ( [
+     fhir:source [ fhir:v "http://hl7.org/fhir/participationstatus" ] ;
+     fhir:target [ fhir:v "http://hl7.org/fhir/resource-status" ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "tentative" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "draft" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "declined" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "declined" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "accepted" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "accepted" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "needs-action" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "failed" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] )
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

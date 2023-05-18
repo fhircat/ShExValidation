@@ -1,0 +1,163 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Group.shex>
+IMPORT <Device.shex>
+IMPORT <Patient.shex>
+IMPORT <dateTime.shex>
+IMPORT <CareTeam.shex>
+IMPORT <Endpoint.shex>
+IMPORT <Resource.shex>
+IMPORT <Location.shex>
+IMPORT <Reference.shex>
+IMPORT <Encounter.shex>
+IMPORT <Attachment.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <Communication.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <HealthcareService.shex>
+
+
+start=@<Communication> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A clinical or business level record of information being transmitted or shared
+<Communication> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Communication];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Unique identifier
+    fhir:instantiatesCanonical @<OneOrMore_canonical>?;  # Instantiates FHIR protocol or 
+                                            # definition 
+    fhir:instantiatesUri @<OneOrMore_uri>?;  # Instantiates external protocol or 
+                                            # definition 
+    fhir:basedOn @<OneOrMore_Reference_Resource>?;  # Request fulfilled by this 
+                                            # communication 
+    fhir:partOf @<OneOrMore_Reference_Resource>?;  # Part of referenced event (e.g. 
+                                            # Communication, Procedure) 
+    fhir:inResponseTo @<OneOrMore_Reference_Communication>?;  # Reply to
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:event-status};  # preparation | in-progress | 
+                                            # not-done | on-hold | stopped | 
+                                            # completed | entered-in-error | 
+                                            # unknown 
+    fhir:statusReason @<CodeableConcept>?;  # Reason for current status
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Message category
+    fhir:priority @<code> AND
+    	{fhir:v @fhirvs:request-priority}?;  # routine | urgent | asap | stat
+    fhir:medium @<OneOrMore_CodeableConcept>?;  # A channel of communication
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Patient> }?;  # Focus of message
+    fhir:topic @<CodeableConcept>?;         # Description of the purpose/content
+    fhir:about @<OneOrMore_Reference_Resource>?;  # Resources that pertain to this 
+                                            # communication 
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # The Encounter during which this 
+                                            # Communication was created 
+    fhir:sent @<dateTime>?;                 # When sent
+    fhir:received @<dateTime>?;             # When received
+    fhir:recipient @<OneOrMore_Reference_CareTeam_OR_Device_OR_Endpoint_OR_Group_OR_HealthcareService_OR_Location_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Who the information is shared with
+    fhir:sender @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Endpoint> OR 
+    			@<HealthcareService> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Who shares the information
+    fhir:reason @<OneOrMore_CodeableReference>?;  # Indication for message
+    fhir:payload @<OneOrMore_BackboneElement>?;  # Message payload
+    fhir:note @<OneOrMore_Annotation>?;     # Comments made about the 
+                                            # communication 
+}  
+
+# Message payload
+<Communication.payload> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:content (@<Attachment>  OR 
+    			(@<Reference>  AND {fhir:link @<Resource> })  OR 
+    			@<CodeableConcept> )  AND { rdf:type IRI } ;  # Message part content
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_canonical> CLOSED {
+    rdf:first @<canonical>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_canonical> 
+}
+
+<OneOrMore_uri> CLOSED {
+    rdf:first @<uri>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_uri> 
+}
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+
+<OneOrMore_Reference_Communication> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Communication> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Communication> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_CareTeam_OR_Device_OR_Endpoint_OR_Group_OR_HealthcareService_OR_Location_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> OR 
+			@<Device> OR 
+			@<Endpoint> OR 
+			@<Group> OR 
+			@<HealthcareService> OR 
+			@<Location> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam_OR_Device_OR_Endpoint_OR_Group_OR_HealthcareService_OR_Location_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+<OneOrMore_CodeableReference> CLOSED {
+    rdf:first @<CodeableReference>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableReference> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Codes identifying the lifecycle stage of an event.
+fhirvs:event-status ["preparation" "in-progress" "not-done" "on-hold" "stopped" "completed" "entered-in-error" "unknown"]
+
+# Identifies the level of importance to be assigned to actioning the request.
+fhirvs:request-priority ["routine" "urgent" "asap" "stat"]
+

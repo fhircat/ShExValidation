@@ -1,0 +1,46 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ServiceRequest ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "benchpress"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: ServiceRequest</b><a name=\"benchpress\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource ServiceRequest &quot;benchpress&quot; </p></div><p><b>status</b>: <span title=\"  Showing part of an excercise plan  \">active</span></p><p><b>intent</b>: plan</p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Bench Press (regime/therapy) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#229115003)</span></td></tr></table><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>occurrence</b>: Count 20 times, 3 per 1 weeks</p><h3>PatientInstructions</h3><table class=\"grid\"><tr><td>-</td><td><b>Instruction[x]</b></td></tr><tr><td>*</td><td>Start with 30kg 10-15 repetitions for three sets and increase in increments of 5kg when you feel ready</td></tr></table></div>"
+  ] ; #    Showing part of an excercise plan   
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:intent [ fhir:v "plan"] ; # 
+  fhir:code [
+     fhir:concept [
+       fhir:coding ( [
+         a sct:229115003 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "229115003" ] ;
+         fhir:display [ fhir:v "Bench Press (regime/therapy)" ]
+       ] )
+     ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:occurrence [
+     a fhir:Timing ;
+     fhir:repeat [
+       fhir:count [ fhir:v "20"^^xsd:positiveInteger ] ;
+       fhir:countMax [ fhir:v "30"^^xsd:positiveInteger ] ;
+       fhir:frequency [ fhir:v "3"^^xsd:positiveInteger ] ;
+       fhir:period [ fhir:v "1"^^xsd:decimal ] ;
+       fhir:periodUnit [ fhir:v "wk" ]
+     ]
+  ] ; # 
+  fhir:patientInstruction ( [
+     fhir:instruction [ fhir:v "Start with 30kg 10-15 repetitions for three sets and increase in increments of 5kg when you feel ready" ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

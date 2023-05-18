@@ -1,0 +1,33 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Device ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-software"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Device</b><a name=\"example-software\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Device &quot;example-software&quot; </p></div><p><b>identifier</b>: id: goodhealth</p><p><b>manufacturer</b>: Acme Devices, Inc</p><p><b>type</b>: EHR <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><h3>Versions</h3><table class=\"grid\"><tr><td>-</td><td><b>Value</b></td></tr><tr><td>*</td><td>10.23-23423</td></tr></table><p><b>contact</b>: <a href=\"http://acme.com\">http://acme.com</a></p><p><b>url</b>: <a href=\"http://acme.com/goodhealth/ehr/\">http://acme.com/goodhealth/ehr/</a></p></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://acme.com/ehr/client-ids"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "goodhealth" ]
+  ] ) ; # 
+  fhir:manufacturer [ fhir:v "Acme Devices, Inc"] ; # 
+  fhir:type ( [
+     fhir:text [ fhir:v "EHR" ]
+  ] ) ; # 
+  fhir:version ( [
+     fhir:value [ fhir:v "10.23-23423" ]
+  ] ) ; # 
+  fhir:contact ( [
+     fhir:system [ fhir:v "url" ] ;
+     fhir:value [ fhir:v "http://acme.com" ]
+  ] ) ; # 
+  fhir:url [ fhir:v "http://acme.com/goodhealth/ehr/"^^xsd:anyURI]] . # 
+
+# -------------------------------------------------------------------------------------
+

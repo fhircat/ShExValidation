@@ -1,0 +1,109 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "definition-method"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "cds" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "draft" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/definition-method"], [ fhir:v "http://hl7.org/fhir/definition-method"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1953" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1953" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "DefinitionMethod"], [ fhir:v "DefinitionMethod"] ;
+  fhir:title [ fhir:v "Definition Method"], [ fhir:v "Definition Method"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2020-12-28T16:55:11+11:00"], [ fhir:v "2020-12-28T16:55:11+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The method used to define, describe, or determine a characteristic value."], [ fhir:v "The method used to define, describe, or determine a characteristic value."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/definition-method"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "systematic-assessment" ] ;
+     fhir:display [ fhir:v "Systematic Assessment" ] ;
+     fhir:definition [ fhir:v "Any method of routinely determining whether or not specific outcomes (e.g. adverse events) have occurred, for example through a standard questionnaire, regular investigator assessment, regular laboratory testing, or other method" ]
+  ] [
+     fhir:code [ fhir:v "non-systematic-assessment" ] ;
+     fhir:display [ fhir:v "Non-Systematic Assessment" ] ;
+     fhir:definition [ fhir:v "Any non-systematic method for determining whether or not adverse events have occurred, such as self-reporting by participants or occasional assessment/testing" ]
+  ] [
+     fhir:code [ fhir:v "mean" ] ;
+     fhir:display [ fhir:v "Mean" ] ;
+     fhir:definition [ fhir:v "Aggregated using mean of observed values." ]
+  ] [
+     fhir:code [ fhir:v "median" ] ;
+     fhir:display [ fhir:v "Median" ] ;
+     fhir:definition [ fhir:v "Aggregated using median of observed values." ]
+  ] [
+     fhir:code [ fhir:v "mean-of-mean" ] ;
+     fhir:display [ fhir:v "Mean of Means" ] ;
+     fhir:definition [ fhir:v "Aggregated using mean of means (e.g. study mean values)." ]
+  ] [
+     fhir:code [ fhir:v "mean-of-median" ] ;
+     fhir:display [ fhir:v "Mean of Medians" ] ;
+     fhir:definition [ fhir:v "Aggregated using mean of medians (e.g. study median values)." ]
+  ] [
+     fhir:code [ fhir:v "median-of-mean" ] ;
+     fhir:display [ fhir:v "Median of Means" ] ;
+     fhir:definition [ fhir:v "Aggregated using median of means (e.g. study mean values)." ]
+  ] [
+     fhir:code [ fhir:v "median-of-median" ] ;
+     fhir:display [ fhir:v "Median of Medians" ] ;
+     fhir:definition [ fhir:v "Aggregated using median of medians (e.g. study median values)." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

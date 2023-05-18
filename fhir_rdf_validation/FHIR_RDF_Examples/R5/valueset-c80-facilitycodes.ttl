@@ -1,0 +1,307 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ValueSet ;
+  fhir:id [ fhir:v "c80-facilitycodes"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablevalueset" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "oo" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "draft" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/c80-facilitycodes"], [ fhir:v "http://hl7.org/fhir/ValueSet/c80-facilitycodes"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.3.88.12.80.67" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.2.131" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.3.88.12.80.67" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.2.131" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "FacilityTypeCodeValueSet"], [ fhir:v "FacilityTypeCodeValueSet"] ;
+  fhir:title [ fhir:v "Facility Type Code Value Set"], [ fhir:v "Facility Type Code Value Set"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "true"], [ fhir:v "true"] ;
+  fhir:publisher [ fhir:v "HITSP"], [ fhir:v "HITSP"] ;
+  fhir:description [ fhir:v "This is the code representing the type of organizational setting where the clinical encounter,    service, interaction, or treatment occurred. The value set used for Healthcare Facility    Type has been defined by HITSP to be the value set reproduced from HITSP C80 Table 2-147."], [ fhir:v "This is the code representing the type of organizational setting where the clinical encounter,    service, interaction, or treatment occurred. The value set used for Healthcare Facility    Type has been defined by HITSP to be the value set reproduced from HITSP C80 Table 2-147."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:copyright [ fhir:v "This resource includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright    of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers    of these specifications must have the appropriate SNOMED CT Affiliate license - for more    information contact http://www.snomed.org/snomed-ct/get-snomed-ct or info@snomed.org"], [ fhir:v "This resource includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright    of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers    of these specifications must have the appropriate SNOMED CT Affiliate license - for more    information contact http://www.snomed.org/snomed-ct/get-snomed-ct or info@snomed.org"] ;
+  fhir:compose [
+     fhir:include ( [
+       fhir:system [ fhir:v "http://snomed.info/sct" ] ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "82242000" ] ;
+         fhir:display [ fhir:v "Hospital-children's" ]
+       ] [
+         fhir:code [ fhir:v "225732001" ] ;
+         fhir:display [ fhir:v "Hospital-community" ]
+       ] [
+         fhir:code [ fhir:v "79993009" ] ;
+         fhir:display [ fhir:v "Hospital-government" ]
+       ] [
+         fhir:code [ fhir:v "32074000" ] ;
+         fhir:display [ fhir:v "Hospital-long term care" ]
+       ] [
+         fhir:code [ fhir:v "4322002" ] ;
+         fhir:display [ fhir:v "Hospital-military field" ]
+       ] [
+         fhir:code [ fhir:v "224687002" ] ;
+         fhir:display [ fhir:v "Hospital-prison" ]
+       ] [
+         fhir:code [ fhir:v "62480006" ] ;
+         fhir:display [ fhir:v "Hospital-psychiatric" ]
+       ] [
+         fhir:code [ fhir:v "80522000" ] ;
+         fhir:display [ fhir:v "Hospital-rehabilitation" ]
+       ] [
+         fhir:code [ fhir:v "36125001" ] ;
+         fhir:display [ fhir:v "Hospital-trauma center" ]
+       ] [
+         fhir:code [ fhir:v "48311003" ] ;
+         fhir:display [ fhir:v "Hospital-Veterans' Administration" ]
+       ] [
+         fhir:code [ fhir:v "284546000" ] ;
+         fhir:display [ fhir:v "Hospice facility" ]
+       ] [
+         fhir:code [ fhir:v "42665001" ] ;
+         fhir:display [ fhir:v "Nursing home" ]
+       ] [
+         fhir:code [ fhir:v "45618002" ] ;
+         fhir:display [ fhir:v "Skilled nursing facility" ]
+       ] [
+         fhir:code [ fhir:v "418518002" ] ;
+         fhir:display [ fhir:v "Dialysis unit--hospital" ]
+       ] [
+         fhir:code [ fhir:v "73770003" ] ;
+         fhir:display [ fhir:v "Emergency department--hospital" ]
+       ] [
+         fhir:code [ fhir:v "69362002" ] ;
+         fhir:display [ fhir:v "Hospital ambulatory surgery facility" ]
+       ] [
+         fhir:code [ fhir:v "52668009" ] ;
+         fhir:display [ fhir:v "Hospital birthing center" ]
+       ] [
+         fhir:code [ fhir:v "360957003" ] ;
+         fhir:display [ fhir:v "Hospital outpatient allergy clinic" ]
+       ] [
+         fhir:code [ fhir:v "10206005" ] ;
+         fhir:display [ fhir:v "Hospital outpatient dental clinic" ]
+       ] [
+         fhir:code [ fhir:v "37550003" ] ;
+         fhir:display [ fhir:v "Hospital outpatient dermatology clinic" ]
+       ] [
+         fhir:code [ fhir:v "73644007" ] ;
+         fhir:display [ fhir:v "Hospital outpatient endocrinology clinic" ]
+       ] [
+         fhir:code [ fhir:v "31628002" ] ;
+         fhir:display [ fhir:v "Hospital outpatient family medicine clinic" ]
+       ] [
+         fhir:code [ fhir:v "58482006" ] ;
+         fhir:display [ fhir:v "Hospital outpatient gastroenterology clinic" ]
+       ] [
+         fhir:code [ fhir:v "90484001" ] ;
+         fhir:display [ fhir:v "Hospital outpatient general surgery clinic" ]
+       ] [
+         fhir:code [ fhir:v "1814000" ] ;
+         fhir:display [ fhir:v "Hospital outpatient geriatric health center" ]
+       ] [
+         fhir:code [ fhir:v "22549003" ] ;
+         fhir:display [ fhir:v "Hospital outpatient gynecology clinic" ]
+       ] [
+         fhir:code [ fhir:v "56293002" ] ;
+         fhir:display [ fhir:v "Hospital outpatient hematology clinic" ]
+       ] [
+         fhir:code [ fhir:v "360966004" ] ;
+         fhir:display [ fhir:v "Hospital outpatient immunology clinic" ]
+       ] [
+         fhir:code [ fhir:v "2849009" ] ;
+         fhir:display [ fhir:v "Hospital outpatient infectious disease clinic" ]
+       ] [
+         fhir:code [ fhir:v "14866005" ] ;
+         fhir:display [ fhir:v "Hospital outpatient mental health center" ]
+       ] [
+         fhir:code [ fhir:v "38238005" ] ;
+         fhir:display [ fhir:v "Hospital outpatient neurology clinic" ]
+       ] [
+         fhir:code [ fhir:v "56189001" ] ;
+         fhir:display [ fhir:v "Hospital outpatient obstetrical clinic" ]
+       ] [
+         fhir:code [ fhir:v "89972002" ] ;
+         fhir:display [ fhir:v "Hospital outpatient oncology clinic" ]
+       ] [
+         fhir:code [ fhir:v "78088001" ] ;
+         fhir:display [ fhir:v "Hospital outpatient ophthalmology clinic" ]
+       ] [
+         fhir:code [ fhir:v "78001009" ] ;
+         fhir:display [ fhir:v "Hospital outpatient orthopedics clinic" ]
+       ] [
+         fhir:code [ fhir:v "23392004" ] ;
+         fhir:display [ fhir:v "Hospital outpatient otorhinolaryngology clinic" ]
+       ] [
+         fhir:code [ fhir:v "36293008" ] ;
+         fhir:display [ fhir:v "Hospital outpatient pain clinic" ]
+       ] [
+         fhir:code [ fhir:v "3729002" ] ;
+         fhir:display [ fhir:v "Hospital outpatient pediatric clinic" ]
+       ] [
+         fhir:code [ fhir:v "5584006" ] ;
+         fhir:display [ fhir:v "Hospital outpatient peripheral vascular clinic" ]
+       ] [
+         fhir:code [ fhir:v "37546005" ] ;
+         fhir:display [ fhir:v "Hospital outpatient rehabilitation clinic" ]
+       ] [
+         fhir:code [ fhir:v "57159002" ] ;
+         fhir:display [ fhir:v "Hospital outpatient respiratory disease clinic" ]
+       ] [
+         fhir:code [ fhir:v "331006" ] ;
+         fhir:display [ fhir:v "Hospital outpatient rheumatology clinic" ]
+       ] [
+         fhir:code [ fhir:v "50569004" ] ;
+         fhir:display [ fhir:v "Hospital outpatient urology clinic" ]
+       ] [
+         fhir:code [ fhir:v "79491001" ] ;
+         fhir:display [ fhir:v "Hospital radiology facility" ]
+       ] [
+         fhir:code [ fhir:v "33022008" ] ;
+         fhir:display [ fhir:v "Hospital-based outpatient clinic or department--OTHER-NOT LISTED" ]
+       ] [
+         fhir:code [ fhir:v "19602009" ] ;
+         fhir:display [ fhir:v "Fee-for-service private physicians' group office" ]
+       ] [
+         fhir:code [ fhir:v "39350007" ] ;
+         fhir:display [ fhir:v "Private physicians' group office" ]
+       ] [
+         fhir:code [ fhir:v "83891005" ] ;
+         fhir:display [ fhir:v "Solo practice private office" ]
+       ] [
+         fhir:code [ fhir:v "394759007" ] ;
+         fhir:display [ fhir:v "Independent ambulatory care provider site--OTHER--NOT LISTED" ]
+       ] [
+         fhir:code [ fhir:v "405607001" ] ;
+         fhir:display [ fhir:v "Ambulatory surgery center" ]
+       ] [
+         fhir:code [ fhir:v "309900005" ] ;
+         fhir:display [ fhir:v "Care of the elderly day hospital" ]
+       ] [
+         fhir:code [ fhir:v "275576008" ] ;
+         fhir:display [ fhir:v "Elderly assessment clinic" ]
+       ] [
+         fhir:code [ fhir:v "10531005" ] ;
+         fhir:display [ fhir:v "Free-standing ambulatory surgery facility" ]
+       ] [
+         fhir:code [ fhir:v "91154008" ] ;
+         fhir:display [ fhir:v "Free-standing birthing center" ]
+       ] [
+         fhir:code [ fhir:v "41844007" ] ;
+         fhir:display [ fhir:v "Free-standing geriatric health center" ]
+       ] [
+         fhir:code [ fhir:v "45899008" ] ;
+         fhir:display [ fhir:v "Free-standing laboratory facility" ]
+       ] [
+         fhir:code [ fhir:v "51563005" ] ;
+         fhir:display [ fhir:v "Free-standing mental health center" ]
+       ] [
+         fhir:code [ fhir:v "1773006" ] ;
+         fhir:display [ fhir:v "Free-standing radiology facility" ]
+       ] [
+         fhir:code [ fhir:v "72311000" ] ;
+         fhir:display [ fhir:v "Health maintenance organization" ]
+       ] [
+         fhir:code [ fhir:v "6827000" ] ;
+         fhir:display [ fhir:v "Local community health center" ]
+       ] [
+         fhir:code [ fhir:v "309898008" ] ;
+         fhir:display [ fhir:v "Psychogeriatric day hospital" ]
+       ] [
+         fhir:code [ fhir:v "39913001" ] ;
+         fhir:display [ fhir:v "Residential school infirmary" ]
+       ] [
+         fhir:code [ fhir:v "77931003" ] ;
+         fhir:display [ fhir:v "Rural health center" ]
+       ] [
+         fhir:code [ fhir:v "25681007" ] ;
+         fhir:display [ fhir:v "Sexually transmitted disease health center" ]
+       ] [
+         fhir:code [ fhir:v "20078004" ] ;
+         fhir:display [ fhir:v "Substance abuse treatment center" ]
+       ] [
+         fhir:code [ fhir:v "46224007" ] ;
+         fhir:display [ fhir:v "Vaccination clinic" ]
+       ] [
+         fhir:code [ fhir:v "81234003" ] ;
+         fhir:display [ fhir:v "Walk-in clinic" ]
+       ] [
+         fhir:code [ fhir:v "35971002" ] ;
+         fhir:display [ fhir:v "Ambulatory care site--OTHER--NOT LISTED" ]
+       ] [
+         fhir:code [ fhir:v "11424001" ] ;
+         fhir:display [ fhir:v "Ambulance-based care" ]
+       ] [
+         fhir:code [ fhir:v "409519008" ] ;
+         fhir:display [ fhir:v "Contained casualty setting" ]
+       ] [
+         fhir:code [ fhir:v "901005" ] ;
+         fhir:display [ fhir:v "Helicopter-based care" ]
+       ] [
+         fhir:code [ fhir:v "2081004" ] ;
+         fhir:display [ fhir:v "Hospital ship" ]
+       ] [
+         fhir:code [ fhir:v "59374000" ] ;
+         fhir:display [ fhir:v "Traveler's aid clinic" ]
+       ] [
+         fhir:code [ fhir:v "413456002" ] ;
+         fhir:display [ fhir:v "Adult day care center" ]
+       ] [
+         fhir:code [ fhir:v "413817003" ] ;
+         fhir:display [ fhir:v "Child day care center" ]
+       ] [
+         fhir:code [ fhir:v "310205006" ] ;
+         fhir:display [ fhir:v "Private residential home" ]
+       ] [
+         fhir:code [ fhir:v "419955002" ] ;
+         fhir:display [ fhir:v "Residential institution" ]
+       ] [
+         fhir:code [ fhir:v "272501009" ] ;
+         fhir:display [ fhir:v "Sports facility" ]
+       ] [
+         fhir:code [ fhir:v "394777002" ] ;
+         fhir:display [ fhir:v "Health encounter site--NOT LISTED" ]
+       ] )
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

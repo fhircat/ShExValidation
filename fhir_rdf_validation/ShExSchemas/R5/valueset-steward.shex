@@ -1,0 +1,21 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Extension.shex>
+IMPORT <ContactDetail.shex>
+
+# Entity responsible for Value Set
+<valueset-steward> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:valueset-steward];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/valueset-steward"]}; 
+    fhir:v (@<ContactDetail> )  AND { rdf:type IRI } ; 
+    ^fhir:extension { a [fhir:ValueSet]
+        }
+}  
+

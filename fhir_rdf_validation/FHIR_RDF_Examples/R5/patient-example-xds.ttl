@@ -1,0 +1,45 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Patient ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "xds"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p style=\"border: 1px #661aff solid; background-color: #e6e6ff; padding: 10px;\"><b>John Doe </b> male, DoB: 1956-05-27 ( Medical record number: 89765a87b (use: USUAL))</p><hr/><table class=\"grid\"><tr><td style=\"background-color: #f3f5da\" title=\"Record is active\">Active:</td><td colspan=\"3\">true</td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Ways to contact the Patient\">Contact Detail:</td><td colspan=\"3\">100 Main St Metropolis Il 44130 USA </td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Patient Links\">Links:</td><td colspan=\"3\"><ul><li>Managing Organization: <a href=\"organization-example-insurer.html\">Organization/2</a> &quot;XYZ Insurance&quot;</li></ul></td></tr></table></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "usual" ] ;
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0203"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "MR" ]
+       ] )
+     ] ;
+     fhir:system [ fhir:v "urn:oid:1.2.3.4.5"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "89765a87b" ]
+  ] ) ; # 
+  fhir:active [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:name ( [
+     fhir:family [ fhir:v "Doe" ] ;
+     fhir:given ( [ fhir:v "John" ] )
+  ] ) ; # 
+  fhir:gender [ fhir:v "male"] ; # 
+  fhir:birthDate [ fhir:v "1956-05-27"^^xsd:date] ; # 
+  fhir:address ( [
+     fhir:line ( [ fhir:v "100 Main St" ] ) ;
+     fhir:city [ fhir:v "Metropolis" ] ;
+     fhir:state [ fhir:v "Il" ] ;
+     fhir:postalCode [ fhir:v "44130" ] ;
+     fhir:country [ fhir:v "USA" ]
+  ] ) ; # 
+  fhir:managingOrganization [
+     fhir:reference [ fhir:v "Organization/2" ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

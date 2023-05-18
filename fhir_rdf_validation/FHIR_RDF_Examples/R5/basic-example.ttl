@@ -1,0 +1,75 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:_Basic ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "referral"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <p><b>Patient:</b>Roel</p>\n      <p><b>Requestor:</b>Dokter Bronsig</p>\n      <p><b>Type:</b>Consultation</p>\n      <p><b>Target Date:</b>April 1 - April 31</p>\n      <p>COMPLETED</p>\n      <b>The patient had fever peaks over the last couple of days. He is worried about these peaks.</b>\n    </div>"
+  ] ; # 
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://example.org/do-not-use/fhir-extensions/referral#requestingPractitioner"^^xsd:anyURI ] ;
+     fhir:value [
+       a fhir:Reference ;
+       fhir:reference [ fhir:v "Practitioner/f201" ] ;
+       fhir:display [ fhir:v "Dokter Bronsig" ]
+     ]
+  ] [
+     fhir:url [ fhir:v "http://example.org/do-not-use/fhir-extensions/referral#notes"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "The patient had fever peaks over the last couple of days. He is worried about these peaks." ]
+  ] [
+     fhir:url [ fhir:v "http://example.org/do-not-use/fhir-extensions/referral#fulfillingEncounter"^^xsd:anyURI ] ;
+     fhir:value [
+       a fhir:Reference ;
+       fhir:reference [ fhir:v "Encounter/f201" ]
+     ]
+  ] ) ; # 
+  fhir:modifierExtension ( [
+     fhir:url [ fhir:v "http://example.org/do-not-use/fhir-extensions/referral#referredForService"^^xsd:anyURI ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         a sct:11429006 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "11429006" ] ;
+         fhir:display [ fhir:v "Consultation" ]
+       ] )
+     ]
+  ] [
+     fhir:url [ fhir:v "http://example.org/do-not-use/fhir-extensions/referral#targetDate"^^xsd:anyURI ] ;
+     fhir:value [
+       a fhir:Period ;
+       fhir:start [ fhir:v "2013-04-01"^^xsd:date ] ;
+       fhir:end [ fhir:v "2013-04-15"^^xsd:date ]
+     ]
+  ] [
+     fhir:url [ fhir:v "http://example.org/do-not-use/fhir-extensions/referral#status"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "complete" ]
+  ] ) ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://goodhealth.org/basic/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "19283746" ]
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/basic-resource-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "referral" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/f201" ] ;
+     fhir:display [ fhir:v "Roel" ]
+  ] ; # 
+  fhir:created [ fhir:v "2013-05-14"^^xsd:date] ; # 
+  fhir:author [
+     fhir:reference [ fhir:v "Practitioner/example" ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

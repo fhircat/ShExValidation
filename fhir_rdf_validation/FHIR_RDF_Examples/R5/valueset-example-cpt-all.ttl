@@ -1,0 +1,58 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ValueSet ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-cpt-all"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <ul>\n        <li>Include all codes defined in \n          <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-CPT.html\">\n            <code>http://www.ama-assn.org/go/cpt</code>\n          </a>\n        </li>\n      </ul>\n    </div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/example-cpt-all"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.3138" ]
+  ] ) ; # 
+  fhir:version [ fhir:v "5.0.0"] ; # 
+  fhir:name [ fhir:v "AllCPTCodes"] ; # 
+  fhir:title [ fhir:v "All CPT codes"] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:experimental [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:date [ fhir:v "2015-03-12"^^xsd:date] ; # 
+  fhir:publisher [ fhir:v "Health Level Seven International (Vocabulary)"] ; # 
+  fhir:description [ fhir:v "A value set that includes all CPT codes"] ; # 
+  fhir:useContext ( [
+     fhir:code [
+       fhir:system [ fhir:v "http://example.org/fhir/CodeSystem/use-contexts"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "species" ]
+     ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         a sct:337915000 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "337915000" ] ;
+         fhir:display [ fhir:v "Homo sapiens (organism)" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:iso:std:iso:3166"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "US" ]
+     ] )
+  ] ) ; # 
+  fhir:copyright [ fhir:v "CPT Copyright © 2014 American Medical Association. All rights reserved."] ; # 
+  fhir:compose [
+     fhir:include ( [
+       fhir:system [ fhir:v "http://www.ama-assn.org/go/cpt"^^xsd:anyURI ]
+     ] )
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

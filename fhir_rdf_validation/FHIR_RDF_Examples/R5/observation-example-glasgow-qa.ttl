@@ -1,0 +1,85 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Observation ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "gcs-qa"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"gcs-qa\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;gcs-qa&quot; </p></div><p><b>status</b>: <span title=\"   the mandatory quality flags:   \">final</span></p><p><b>code</b>: <span title=\"  \n    Observations are often coded in multiple code systems.\n      - LOINC\n		- or SNOMED\n      -and/or the source system may provides its own &quot;local&quot; code, which may be less or more granular than LOINC.\n	In this example there is only LOINC\n    \">Glasgow Coma Scale , (GCS) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#9269-2 &quot;Glasgow coma score total&quot;)</span></span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example: Peter James Chalmers</a> &quot;Peter CHALMERS&quot;</p><p><b>effective</b>: 2014-12-11T04:44:16Z</p><p><b>value</b>: <span title=\"   In FHIR, units may be represented twice. Once in the\n    agreed human representation, and once in a coded form.\n    In this example the UCUM unit is provided but no human representation since this is often not displayed\n     \">13 {score}<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code {score} = '{score}')</span></span></p><blockquote><p><b>referenceRange</b></p><p><b>high</b>: 8 {score}<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code {score} = '{score}')</span></p><p><b>type</b>: <span title=\"   meaning as text   \">Severe TBI <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></span></p></blockquote><blockquote><p><b>referenceRange</b></p><p><b>low</b>: 9 {score}<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code {score} = '{score}')</span></p><p><b>high</b>: 12 {score}<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code {score} = '{score}')</span></p><p><b>type</b>: <span title=\"   meaning as text   \">Moderate TBI <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></span></p></blockquote><blockquote><p><b>referenceRange</b></p><p><b>low</b>: 13 {score}<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code {score} = '{score}')</span></p><p><b>type</b>: <span title=\"   meaning as text   \">Mild TBI <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></span></p></blockquote><p><b>derivedFrom</b>: <span title=\"   put the references to the QuestionnairAnswer example here using the derived-From type    \"><a href=\"questionnaireresponse-example-gcs.html\">QuestionnaireResponse/gcs: GCS form results</a></span></p></div>"
+  ] ; #     the mandatory quality flags:    
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:9269-2 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "9269-2" ] ;
+       fhir:display [ fhir:v "Glasgow coma score total" ]
+     ] ) ; #     LOINC - always recommended to have a LOINC code    
+     fhir:text [ fhir:v "Glasgow Coma Scale , (GCS)" ]
+  ] ; #    
+#    Observations are often coded in multiple code systems.
+#      - LOINC
+#		- or SNOMED
+#      -and/or the source system may provides its own "local" code, which may be less or more granular than LOINC.
+#	In this example there is only LOINC
+#     
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "Peter James Chalmers" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2014-12-11T04:44:16Z"^^xsd:dateTime] ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "13"^^xsd:decimal ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "{score}" ]
+  ] ; #     In FHIR, units may be represented twice. Once in the
+#    agreed human representation, and once in a coded form.
+#    In this example the UCUM unit is provided but no human representation since this is often not displayed
+#      
+  fhir:referenceRange ( [
+     fhir:high [
+       fhir:value [ fhir:v "8"^^xsd:decimal ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "{score}" ]
+     ] ;
+     fhir:type [
+       fhir:text [ fhir:v "Severe TBI" ]
+     ] #     meaning as text    
+  ] [
+     fhir:low [
+       fhir:value [ fhir:v "9"^^xsd:decimal ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "{score}" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "12"^^xsd:decimal ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "{score}" ]
+     ] ;
+     fhir:type [
+       fhir:text [ fhir:v "Moderate TBI" ]
+     ] #     meaning as text    
+  ] [
+     fhir:low [
+       fhir:value [ fhir:v "13"^^xsd:decimal ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "{score}" ]
+     ] ;
+     fhir:type [
+       fhir:text [ fhir:v "Mild TBI" ]
+     ] #     meaning as text    
+  ] ) ; # 
+  fhir:derivedFrom ( [
+     fhir:reference [ fhir:v "QuestionnaireResponse/gcs" ] ;
+     fhir:display [ fhir:v "GCS form results" ]
+  ] )] . #     put the references to the QuestionnairAnswer example here using the derived-From type     
+
+# -------------------------------------------------------------------------------------
+

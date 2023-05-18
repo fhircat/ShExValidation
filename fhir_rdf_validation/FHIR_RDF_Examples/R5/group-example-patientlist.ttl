@@ -1,0 +1,33 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Group ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-patientlist"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "additional" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <p>All patients primarily attributed to Practitioner 123</p>\n    </div>"
+  ] ; # 
+  fhir:type [ fhir:v "person"] ; # 
+  fhir:membership [ fhir:v "enumerated"] ; # 
+  fhir:characteristic ( [
+     fhir:code [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://example.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "attributed-to" ]
+       ] ) ;
+       fhir:text [ fhir:v "Patients primarily attributed to" ]
+     ] ;
+     fhir:value [
+       a fhir:Reference ;
+       fhir:reference [ fhir:v "Practitioner/123" ]
+     ] ;
+     fhir:exclude [ fhir:v "false"^^xsd:boolean ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

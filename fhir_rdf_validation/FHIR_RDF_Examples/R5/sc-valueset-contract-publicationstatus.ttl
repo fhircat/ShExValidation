@@ -1,0 +1,142 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ConceptMap ;
+  fhir:id [ fhir:v "sc-contract-publicationstatus"] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ConceptMap/sc-contract-publicationstatus"], [ fhir:v "http://hl7.org/fhir/ConceptMap/sc-contract-publicationstatus"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "ContractResourcePublicationStatusCodesCanonicalMap"], [ fhir:v "ContractResourcePublicationStatusCodesCanonicalMap"] ;
+  fhir:title [ fhir:v "Canonical Mapping for \"Contract Resource Publication Status codes\""], [ fhir:v "Canonical Mapping for \"Contract Resource Publication Status codes\""] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:publisher [ fhir:v "Financial Management"], [ fhir:v "Financial Management"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Canonical Mapping for \"This value set contract specific codes for status.\""], [ fhir:v "Canonical Mapping for \"This value set contract specific codes for status.\""] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:sourceScope [ fhir:v "http://hl7.org/fhir/ValueSet/contract-publicationstatus"] ;
+  fhir:targetScope [ fhir:v "http://hl7.org/fhir/ValueSet/resource-status"] ;
+  fhir:group ( [
+     fhir:source [ fhir:v "http://hl7.org/fhir/contract-publicationstatus" ] ;
+     fhir:target [ fhir:v "http://hl7.org/fhir/resource-status" ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "entered-in-error" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "error" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "offered" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "proposed" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "negotiable" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "draft" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "policy" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "draft" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "executable" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "active" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "resolved" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "active" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "disputed" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "suspended" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "revoked" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "failed" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "amended" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "replaced" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "appended" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "replaced" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "renewed" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "replaced" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "executed" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "complete" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "cancelled" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "abandoned" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "rejected" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "abandoned" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "terminated" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "abandoned" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] )
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

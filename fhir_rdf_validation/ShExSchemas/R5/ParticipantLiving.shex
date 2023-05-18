@@ -1,0 +1,39 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <date.shex>
+IMPORT <code.shex>
+
+# Participant Pattern
+<ParticipantLiving> CLOSED {   
+
+    a [fhir:ParticipantLiving];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:birthDate @<date>?;                # The date of birth for the 
+                                            # individual 
+    fhir:gender @<code> AND
+    	{fhir:v @fhirvs:administrative-gender}?;  # male | female | other | unknown
+    fhir:photo @<OneOrMore_Attachment>?;    # Image of the participant
+    fhir:communication @<OneOrMore_CodeableConcept>?;  # The language which can be used to 
+                                            # communicate with the participant 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Attachment> CLOSED {
+    rdf:first @<Attachment>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Attachment> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The gender of a person used for administrative purposes.
+fhirvs:administrative-gender ["male" "female" "other" "unknown"]
+

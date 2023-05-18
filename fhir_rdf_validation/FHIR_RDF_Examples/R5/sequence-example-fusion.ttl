@@ -1,0 +1,78 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:MolecularSequence ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "sequence-example-fusion"] ; #    BCR-ABL1 fusion (COSMIC https://cancer.sanger.ac.uk/cosmic/fusion/summary?id=1755). 5-prime end comprised of BCR exons 1-14. 3-prime end comprised of ABL1 exons 2-11.   
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MolecularSequence</b><a name=\"sequence-example-fusion\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MolecularSequence &quot;sequence-example-fusion&quot; </p></div><p><b>type</b>: rna</p><blockquote><p><b>relative</b></p><p><b>coordinateSystem</b>: 1-based character counting <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#LA30102-0)</span></p><p><b>ordinalPosition</b>: 1</p><p><b>sequenceRange</b>: 1-3234</p><h3>StartingSequences</h3><table class=\"grid\"><tr><td>-</td><td><b>Sequence[x]</b></td><td><b>WindowStart</b></td><td><b>WindowEnd</b></td></tr><tr><td>*</td><td>NM_004327.4 <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (nuccore#NM_004327.4)</span></td><td>1</td><td>3234</td></tr></table></blockquote><blockquote><p><b>relative</b></p><p><b>coordinateSystem</b>: 1-based character counting <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#LA30102-0)</span></p><p><b>ordinalPosition</b>: 2</p><p><b>sequenceRange</b>: 3235-8367</p><h3>StartingSequences</h3><table class=\"grid\"><tr><td>-</td><td><b>Sequence[x]</b></td><td><b>WindowStart</b></td><td><b>WindowEnd</b></td></tr><tr><td>*</td><td>NM_005157.6 <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (nuccore#NM_005157.6)</span></td><td>174</td><td>5306</td></tr></table></blockquote></div>"
+  ] ; # 
+  fhir:type [ fhir:v "rna"] ; # 
+  fhir:relative ( [
+     fhir:coordinateSystem [
+       fhir:coding ( [
+         a loinc:LA30102-0 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "LA30102-0" ] ;
+         fhir:display [ fhir:v "1-based character counting" ]
+       ] )
+     ] ;
+     fhir:ordinalPosition [ fhir:v "1"^^xsd:integer ] ;
+     fhir:sequenceRange [
+       fhir:low [
+         fhir:value [ fhir:v "1"^^xsd:decimal ]
+       ] ;
+       fhir:high [
+         fhir:value [ fhir:v "3234"^^xsd:decimal ]
+       ]
+     ] ;
+     fhir:startingSequence [
+       fhir:sequence [
+         a fhir:CodeableConcept ;
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://www.ncbi.nlm.nih.gov/nuccore"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "NM_004327.4" ]
+         ] )
+       ] ;
+       fhir:windowStart [ fhir:v "1"^^xsd:integer ] ;
+       fhir:windowEnd [ fhir:v "3234"^^xsd:integer ]
+     ]
+  ] [
+     fhir:coordinateSystem [
+       fhir:coding ( [
+         a loinc:LA30102-0 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "LA30102-0" ] ;
+         fhir:display [ fhir:v "1-based character counting" ]
+       ] )
+     ] ;
+     fhir:ordinalPosition [ fhir:v "2"^^xsd:integer ] ;
+     fhir:sequenceRange [
+       fhir:low [
+         fhir:value [ fhir:v "3235"^^xsd:decimal ]
+       ] ;
+       fhir:high [
+         fhir:value [ fhir:v "8367"^^xsd:decimal ]
+       ]
+     ] ;
+     fhir:startingSequence [
+       fhir:sequence [
+         a fhir:CodeableConcept ;
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://www.ncbi.nlm.nih.gov/nuccore"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "NM_005157.6" ]
+         ] )
+       ] ;
+       fhir:windowStart [ fhir:v "174"^^xsd:integer ] ;
+       fhir:windowEnd [ fhir:v "5306"^^xsd:integer ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

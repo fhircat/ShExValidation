@@ -1,0 +1,173 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Group.shex>
+IMPORT <Device.shex>
+IMPORT <Period.shex>
+IMPORT <string.shex>
+IMPORT <Patient.shex>
+IMPORT <instant.shex>
+IMPORT <Location.shex>
+IMPORT <dateTime.shex>
+IMPORT <CarePlan.shex>
+IMPORT <CareTeam.shex>
+IMPORT <Specimen.shex>
+IMPORT <Reference.shex>
+IMPORT <Procedure.shex>
+IMPORT <Substance.shex>
+IMPORT <Encounter.shex>
+IMPORT <Medication.shex>
+IMPORT <Composition.shex>
+IMPORT <Observation.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <ImagingStudy.shex>
+IMPORT <DomainResource.shex>
+IMPORT <NutritionOrder.shex>
+IMPORT <ServiceRequest.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <DocumentReference.shex>
+IMPORT <MedicationRequest.shex>
+IMPORT <BiologicallyDerivedProduct.shex>
+IMPORT <ImmunizationRecommendation.shex>
+
+
+start=@<DiagnosticReport> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A Diagnostic report - a combination of request information, atomic results, images, interpretation, as well as formatted reports
+<DiagnosticReport> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:DiagnosticReport];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business identifier for report
+    fhir:basedOn @<OneOrMore_Reference_CarePlan_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest>?;  # What was requested
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:diagnostic-report-status};  # registered | partial | preliminary 
+                                            # | final + 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Service category
+    fhir:code @<CodeableConcept>;           # Name/Code for this diagnostic 
+                                            # report 
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<BiologicallyDerivedProduct> OR 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<Location> OR 
+    			@<Medication> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<Procedure> OR 
+    			@<Substance> }?;  # The subject of the report - 
+                                            # usually, but not always, the 
+                                            # patient 
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # Health care event when test ordered
+    fhir:effective (@<dateTime>  OR 
+    			@<Period> )  AND { rdf:type IRI } ?;  # Clinically relevant 
+                                            # time/time-period for report 
+    fhir:issued @<instant>?;                # DateTime this version was made
+    fhir:performer @<OneOrMore_Reference_CareTeam_OR_Organization_OR_Practitioner_OR_PractitionerRole>?;  # Responsible Diagnostic Service
+    fhir:resultsInterpreter @<OneOrMore_Reference_CareTeam_OR_Organization_OR_Practitioner_OR_PractitionerRole>?;  # Primary result interpreter
+    fhir:specimen @<OneOrMore_Reference_Specimen>?;  # Specimens this report is based on
+    fhir:result @<OneOrMore_Reference_Observation>?;  # Observations
+    fhir:note @<OneOrMore_Annotation>?;     # Comments about the diagnostic 
+                                            # report 
+    fhir:imagingStudy @<OneOrMore_Reference_ImagingStudy>?;  # Reference to full details of 
+                                            # imaging associated with the 
+                                            # diagnostic report 
+    fhir:media @<OneOrMore_BackboneElement>?;  # Key images or data associated with 
+                                            # this report 
+    fhir:composition @<Reference> AND {fhir:link 
+    			@<Composition> }?;  # Reference to a Composition 
+                                            # resource for the DiagnosticReport 
+                                            # structure 
+    fhir:conclusion @<string>?;             # Clinical conclusion 
+                                            # (interpretation) of test results 
+    fhir:conclusionCode @<OneOrMore_CodeableConcept>?;  # Codes for the clinical conclusion 
+                                            # of test results 
+    fhir:presentedForm @<OneOrMore_Attachment>?;  # Entire report as issued
+}  
+
+# Key images or data associated with this report
+<DiagnosticReport.media> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:comment @<string>?;                # Comment about the image or data 
+                                            # (e.g. explanation) 
+    fhir:link @<Reference> AND {fhir:link 
+    			@<DocumentReference> };  # Reference to the image or data 
+                                            # source 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_Reference_CarePlan_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CarePlan> OR 
+			@<ImmunizationRecommendation> OR 
+			@<MedicationRequest> OR 
+			@<NutritionOrder> OR 
+			@<ServiceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CarePlan_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_CareTeam_OR_Organization_OR_Practitioner_OR_PractitionerRole> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> OR 
+			@<Organization> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam_OR_Organization_OR_Practitioner_OR_PractitionerRole> 
+}
+
+<OneOrMore_Reference_Specimen> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Specimen> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Specimen> 
+}
+
+<OneOrMore_Reference_Observation> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Observation> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Observation> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_Reference_ImagingStudy> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ImagingStudy> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ImagingStudy> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Attachment> CLOSED {
+    rdf:first @<Attachment>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Attachment> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The status of the diagnostic report.
+fhirvs:diagnostic-report-status ["registered" "partial" "preliminary" "final" "amended" "corrected" "appended" "cancelled" "entered-in-error" "unknown"]
+

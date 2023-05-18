@@ -1,0 +1,22 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <DataType.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+# Range of ratio values
+<RatioRange> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:RatioRange]?;
+
+    fhir:lowNumerator @<Quantity>?;         # Low Numerator limit
+    fhir:highNumerator @<Quantity>?;        # High Numerator limit
+    fhir:denominator @<Quantity>?;          # Denominator value
+}  
+

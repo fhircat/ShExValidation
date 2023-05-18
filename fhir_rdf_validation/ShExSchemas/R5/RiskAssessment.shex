@@ -1,0 +1,113 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Group.shex>
+IMPORT <Range.shex>
+IMPORT <Period.shex>
+IMPORT <Device.shex>
+IMPORT <string.shex>
+IMPORT <Patient.shex>
+IMPORT <decimal.shex>
+IMPORT <Resource.shex>
+IMPORT <dateTime.shex>
+IMPORT <Reference.shex>
+IMPORT <Encounter.shex>
+IMPORT <Condition.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+
+
+start=@<RiskAssessment> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Potential outcomes for a subject with likelihood
+<RiskAssessment> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:RiskAssessment];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Unique identifier for the 
+                                            # assessment 
+    fhir:basedOn @<Reference> AND {fhir:link 
+    			@<Resource> }?;  # Request fulfilled by this 
+                                            # assessment 
+    fhir:parent @<Reference> AND {fhir:link 
+    			@<Resource> }?;  # Part of this occurrence
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:observation-status};  # registered | preliminary | final | 
+                                            # amended + 
+    fhir:method @<CodeableConcept>?;        # Evaluation mechanism
+    fhir:code @<CodeableConcept>?;          # Type of assessment
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Patient> };  # Who/what does assessment apply to?
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # Where was assessment performed?
+    fhir:occurrence (@<dateTime>  OR 
+    			@<Period> )  AND { rdf:type IRI } ?;  # When was assessment made?
+    fhir:condition @<Reference> AND {fhir:link 
+    			@<Condition> }?;  # Condition assessed
+    fhir:performer @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Who did assessment?
+    fhir:reason @<OneOrMore_CodeableReference>?;  # Why the assessment was necessary?
+    fhir:basis @<OneOrMore_Reference_Resource>?;  # Information used in assessment
+    fhir:prediction @<OneOrMore_BackboneElement>?;  # Outcome predicted
+    fhir:mitigation @<string>?;             # How to reduce risk
+    fhir:note @<OneOrMore_Annotation>?;     # Comments on the risk assessment
+}  
+
+# Outcome predicted
+<RiskAssessment.prediction> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:outcome @<CodeableConcept>?;       # Possible outcome for the subject
+    fhir:probability (@<decimal>  OR 
+    			@<Range> )  AND { rdf:type IRI } ?;  # Likelihood of specified outcome
+    fhir:qualitativeRisk @<CodeableConcept>?;  # Likelihood of specified outcome as 
+                                            # a qualitative value 
+    fhir:relativeRisk @<decimal>?;          # Relative likelihood
+    fhir:when (@<Period>  OR 
+    			@<Range> )  AND { rdf:type IRI } ?;  # Timeframe or age range
+    fhir:rationale @<string>?;              # Explanation of prediction
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_CodeableReference> CLOSED {
+    rdf:first @<CodeableReference>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableReference> 
+}
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Codes providing the status of an observation.
+fhirvs:observation-status ["registered" "preliminary" "final" "amended" "corrected" "cancelled" "entered-in-error" "unknown"]
+

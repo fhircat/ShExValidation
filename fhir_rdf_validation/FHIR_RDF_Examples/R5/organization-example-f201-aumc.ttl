@@ -1,0 +1,74 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Organization ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "f201"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Organization</b><a name=\"f201\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Organization &quot;f201&quot; </p></div><p><b>identifier</b>: id: Artis University Medical Center (use: OFFICIAL)</p><p><b>active</b>: true</p><p><b>type</b>: Academic Medical Center <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#405608006; unknown#V6 &quot;University Medical Hospital&quot;; <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-organization-type.html\">Organization type</a>#prov &quot;Healthcare Provider&quot;)</span></p><p><b>name</b>: Artis University Medical Center (AUMC)</p><h3>Contacts</h3><table class=\"grid\"><tr><td>-</td><td><b>Name</b></td><td><b>Telecom</b></td><td><b>Address</b></td></tr><tr><td>*</td><td> </td><td><a href=\"tel:+31715269111\">+31715269111</a></td><td>Walvisbaai 3 Den Helder 2333ZA NLD (WORK)</td></tr><tr><td>*</td><td><span title=\"  Contact for the AUMC  \">Professor Brand(OFFICIAL)</span></td><td><a href=\"tel:+31715269702\">+31715269702</a></td><td>Walvisbaai 3 Gebouw 2 Den helder 2333ZA NLD </td></tr></table></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "official" ] ; #    Identifier for the AUMC   
+     fhir:system [ fhir:v "http://www.zorgkaartnederland.nl/"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "Artis University Medical Center" ]
+  ] ) ; # 
+  fhir:active [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:type ( [
+     fhir:coding ( [
+       a sct:405608006 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "405608006" ] ;
+       fhir:display [ fhir:v "Academic Medical Center" ]
+     ] [
+       fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.2.4.15.1060"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "V6" ] ; #     RoleCodeNLUZIRoleCodeOrganisaties    
+       fhir:display [ fhir:v "University Medical Hospital" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/organization-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "prov" ] ;
+       fhir:display [ fhir:v "Healthcare Provider" ]
+     ] ) #    AUMC is an Academic Medical Center   
+  ] ) ; # 
+  fhir:name [ fhir:v "Artis University Medical Center (AUMC)"] ; # 
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "phone" ] ; #    AUMC's contact detail   
+       fhir:value [ fhir:v "+31715269111" ] ;
+       fhir:use [ fhir:v "work" ]
+     ] ) ;
+     fhir:address [
+       fhir:use [ fhir:v "work" ] ; #    AUMC's address   
+       fhir:line ( [ fhir:v "Walvisbaai 3" ] ) ;
+       fhir:city [ fhir:v "Den Helder" ] ;
+       fhir:postalCode [ fhir:v "2333ZA" ] ;
+       fhir:country [ fhir:v "NLD" ]
+     ] #    ISO 3166 3 letter code   
+  ] [
+     fhir:name ( [
+       fhir:use [ fhir:v "official" ] ;
+       fhir:text [ fhir:v "Professor Brand" ] ;
+       fhir:family [ fhir:v "Brand" ] ;
+       fhir:given ( [ fhir:v "Ronald" ] ) ;
+       fhir:prefix ( [ fhir:v "Prof.Dr." ] )
+     ] ) ; #    Contact for the AUMC   
+     fhir:telecom ( [
+       fhir:system [ fhir:v "phone" ] ;
+       fhir:value [ fhir:v "+31715269702" ] ;
+       fhir:use [ fhir:v "work" ]
+     ] ) ;
+     fhir:address [
+       fhir:line ( [ fhir:v "Walvisbaai 3" ] [ fhir:v "Gebouw 2" ] ) ;
+       fhir:city [ fhir:v "Den helder" ] ;
+       fhir:postalCode [ fhir:v "2333ZA" ] ;
+       fhir:country [ fhir:v "NLD" ]
+     ] #    ISO 3166 3 letter code   
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

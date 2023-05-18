@@ -1,0 +1,179 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <Age.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Range.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <CareTeam.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Encounter.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Annotation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableReference.shex>
+#imported_end
+
+start=@<AllergyIntolerance> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Allergy or Intolerance (generally: Risk of adverse reaction to a substance)
+<AllergyIntolerance> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:AllergyIntolerance]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # External ids for this item
+    fhir:clinicalStatus @<CodeableConcept>?;  # active | inactive | resolved
+    fhir:verificationStatus @<CodeableConcept>?;  # unconfirmed | presumed | confirmed 
+                                            # | refuted | entered-in-error 
+    fhir:type @<CodeableConcept>?;          # allergy | intolerance - Underlying 
+                                            # mechanism (if known) 
+    fhir:category @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:allergy-intolerance-category}?;  # food | medication | environment | 
+                                            # biologic 
+    fhir:criticality @<code> AND
+    	{fhir:v @fhirvs:allergy-intolerance-criticality}?;  # low | high | unable-to-assess
+    fhir:code @<CodeableConcept>?;          # Code that identifies the allergy 
+                                            # or intolerance 
+    fhir:patient @<Reference> AND {fhir:link 
+    			@<Patient> ? };  # Who the allergy or intolerance is 
+                                            # for 
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> ? }?;  # Encounter when the allergy or 
+                                            # intolerance was asserted 
+    fhir:onset @<dateTime>  OR 
+    			@<Age>  OR 
+    			@<Period>  OR 
+    			@<Range>  OR 
+    			@<string>  ?;  # When allergy or intolerance was 
+                                            # identified 
+    fhir:recordedDate @<dateTime>?;         # Date allergy or intolerance was 
+                                            # first recorded 
+    fhir:participant @<OneOrMore_AllergyIntolerance.participant>?;  # Who or what participated in the 
+                                            # activities related to the allergy 
+                                            # or intolerance and how they were 
+                                            # involved 
+    fhir:lastOccurrence @<dateTime>?;       # Date(/time) of last known 
+                                            # occurrence of a reaction 
+    fhir:note @<OneOrMore_Annotation>?;     # Additional text not captured in 
+                                            # other fields 
+    fhir:reaction @<OneOrMore_AllergyIntolerance.reaction>?;  # Adverse Reaction Events linked to 
+                                            # exposure to substance 
+}  
+
+# Who or what participated in the activities related to the allergy or intolerance and how they were involved
+<AllergyIntolerance.participant> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:function @<CodeableConcept>?;      # Type of involvement
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ? };  # Who or what participated in the 
+                                            # activities related to the allergy 
+                                            # or intolerance 
+}  
+
+# Adverse Reaction Events linked to exposure to substance
+<AllergyIntolerance.reaction> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:substance @<CodeableConcept>?;     # Specific substance or 
+                                            # pharmaceutical product considered 
+                                            # to be responsible for event 
+    fhir:manifestation @<OneOrMore_CodeableReference>;  # Clinical symptoms/signs associated 
+                                            # with the Event 
+    fhir:description @<string>?;            # Description of the event as a whole
+    fhir:onset @<dateTime>?;                # Date(/time) when manifestations 
+                                            # showed 
+    fhir:severity @<code> AND
+    	{fhir:v @fhirvs:reaction-event-severity}?;  # mild | moderate | severe (of event 
+                                            # as a whole) 
+    fhir:exposureRoute @<CodeableConcept>?;  # How the subject was exposed to the 
+                                            # substance 
+    fhir:note @<OneOrMore_Annotation>?;     # Text about event not captured in 
+                                            # other fields 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+<OneOrMore_AllergyIntolerance.participant> CLOSED {
+    rdf:first @<AllergyIntolerance.participant>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_AllergyIntolerance.participant> 
+}
+
+
+
+<OneOrMore_AllergyIntolerance.reaction> CLOSED {
+    rdf:first @<AllergyIntolerance.reaction>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_AllergyIntolerance.reaction> 
+}
+
+
+
+#---------------------- Value Sets ------------------------
+
+
+
+

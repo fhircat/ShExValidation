@@ -1,0 +1,72 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:EvidenceVariable ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-Wardlaw2014Analysis1.16.3EvidenceSet"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n		  \n      <p>\n			&quot;Wardlaw 2014 Analysis 1.16.3 Evidence set&quot; is a grouping of six Evidence results used in a meta-analysis.\n		  </p>\n		\n    </div>"
+  ] ; # 
+  fhir:name [ fhir:v "Wardlaw2014Analysis1163EvidenceSet"] ; # 
+  fhir:title [ fhir:v "Wardlaw 2014  Analysis 1.16.3  Evidence set"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:description [ fhir:v "Wardlaw 2014  Analysis 1.16.3  Evidence set"] ; # 
+  fhir:note ( [
+     fhir:text [ fhir:v "Short names for Evidence sources are detailed in 'References to studies included in this review'" ]
+  ] ) ; # 
+  fhir:relatedArtifact ( [
+     fhir:type [ fhir:v "citation" ] ;
+     fhir:label [ fhir:v "Wardlaw 2014" ] ;
+     fhir:display [ fhir:v "Analysis 1.16.3 from Wardlaw 2014" ] ;
+     fhir:citation [ fhir:v "Wardlaw JM, Murray V, Berge E, del Zoppo GJ. Thrombolysis for acute ischaemic stroke. Cochrane Database Syst Rev. 2014 Jul 29(7):CD000213. PMID 25072528" ] ;
+     fhir:document [
+       fhir:url [ fhir:v "https://doi.org/10.1002/14651858.CD000213.pub3"^^xsd:anyURI ]
+     ]
+  ] ) ; # 
+  fhir:actual [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:characteristic ( [
+     fhir:description [ fhir:v "'Wardlaw 2014 Analysis 1.16.3 Evidence set' is a grouping of six Evidence results used in a meta-analysis." ] ;
+     fhir:definitionByCombination [
+       fhir:code [ fhir:v "any-of" ] ;
+       fhir:characteristic ( [
+         fhir:definitionReference [
+           fhir:type [ fhir:v "Evidence"^^xsd:anyURI ] ;
+           fhir:display [ fhir:v "NINDS 1995" ]
+         ]
+       ] [
+         fhir:definitionReference [
+           fhir:type [ fhir:v "Evidence"^^xsd:anyURI ] ;
+           fhir:display [ fhir:v "ECASS 1995" ]
+         ]
+       ] [
+         fhir:definitionReference [
+           fhir:type [ fhir:v "Evidence"^^xsd:anyURI ] ;
+           fhir:display [ fhir:v "ECASS II 1998" ]
+         ]
+       ] [
+         fhir:definitionReference [
+           fhir:type [ fhir:v "Evidence"^^xsd:anyURI ] ;
+           fhir:display [ fhir:v "ATLANTIS B 1999" ]
+         ]
+       ] [
+         fhir:definitionReference [
+           fhir:type [ fhir:v "Evidence"^^xsd:anyURI ] ;
+           fhir:display [ fhir:v "ATLANTIS A 2000" ]
+         ]
+       ] [
+         fhir:definitionReference [
+           fhir:type [ fhir:v "Evidence"^^xsd:anyURI ] ;
+           fhir:display [ fhir:v "IST3 2012" ]
+         ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:handling [ fhir:v "dichotomous"]] . # 
+
+# -------------------------------------------------------------------------------------
+

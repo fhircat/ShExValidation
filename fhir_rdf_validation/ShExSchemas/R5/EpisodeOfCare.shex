@@ -1,0 +1,124 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Period.shex>
+IMPORT <Patient.shex>
+IMPORT <Account.shex>
+IMPORT <CareTeam.shex>
+IMPORT <Reference.shex>
+IMPORT <Condition.shex>
+IMPORT <positiveInt.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <DomainResource.shex>
+IMPORT <ServiceRequest.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <PractitionerRole.shex>
+
+
+start=@<EpisodeOfCare> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# An association of a Patient with an Organization and  Healthcare Provider(s) for a period of time that the Organization assumes some level of responsibility
+<EpisodeOfCare> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:EpisodeOfCare];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business Identifier(s) relevant 
+                                            # for this EpisodeOfCare 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:episode-of-care-status};  # planned | waitlist | active | 
+                                            # onhold | finished | cancelled | 
+                                            # entered-in-error 
+    fhir:statusHistory @<OneOrMore_BackboneElement>?;  # Past list of status codes (the 
+                                            # current status may be included to 
+                                            # cover the start date of the 
+                                            # status) 
+    fhir:type @<OneOrMore_CodeableConcept>?;  # Type/class  - e.g. specialist 
+                                            # referral, disease management 
+    fhir:diagnosis @<OneOrMore_BackboneElement>?;  # The list of diagnosis relevant to 
+                                            # this episode of care 
+    fhir:patient @<Reference> AND {fhir:link 
+    			@<Patient> };  # The patient who is the focus of 
+                                            # this episode of care 
+    fhir:managingOrganization @<Reference> AND {fhir:link 
+    			@<Organization> }?;  # Organization that assumes care
+    fhir:period @<Period>?;                 # Interval during responsibility is 
+                                            # assumed 
+    fhir:referralRequest @<OneOrMore_Reference_ServiceRequest>?;  # Originating Referral Request(s)
+    fhir:careManager @<Reference> AND {fhir:link 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> }?;  # Care manager/care coordinator for 
+                                            # the patient 
+    fhir:team @<OneOrMore_Reference_CareTeam>?;  # Other practitioners facilitating 
+                                            # this episode of care 
+    fhir:account @<OneOrMore_Reference_Account>?;  # The set of accounts that may be 
+                                            # used for billing for this 
+                                            # EpisodeOfCare 
+}  
+
+# Past list of status codes (the current status may be included to cover the start date of the status)
+<EpisodeOfCare.statusHistory> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:episode-of-care-status};  # planned | waitlist | active | 
+                                            # onhold | finished | cancelled | 
+                                            # entered-in-error 
+    fhir:period @<Period>;                  # Duration the EpisodeOfCare was in 
+                                            # the specified status 
+}  
+
+# The list of diagnosis relevant to this episode of care
+<EpisodeOfCare.diagnosis> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:condition @<Reference> AND {fhir:link 
+    			@<Condition> };  # Conditions/problems/diagnoses this 
+                                            # episode of care is for 
+    fhir:role @<CodeableConcept>?;          # Role that this diagnosis has 
+                                            # within the episode of care (e.g. 
+                                            # admission, billing, discharge …) 
+    fhir:rank @<positiveInt>?;              # Ranking of the diagnosis (for each 
+                                            # role type) 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_ServiceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ServiceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ServiceRequest> 
+}
+
+<OneOrMore_Reference_CareTeam> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam> 
+}
+
+<OneOrMore_Reference_Account> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Account> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Account> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The status of the episode of care.
+fhirvs:episode-of-care-status ["planned" "waitlist" "active" "onhold" "finished" "cancelled" "entered-in-error"]
+

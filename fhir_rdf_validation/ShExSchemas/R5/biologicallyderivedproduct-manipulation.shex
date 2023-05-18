@@ -1,0 +1,133 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <id.shex>
+IMPORT <uri.shex>
+IMPORT <oid.shex>
+IMPORT <url.shex>
+IMPORT <Age.shex>
+IMPORT <code.shex>
+IMPORT <date.shex>
+IMPORT <time.shex>
+IMPORT <uuid.shex>
+IMPORT <Meta.shex>
+IMPORT <Count.shex>
+IMPORT <Money.shex>
+IMPORT <Range.shex>
+IMPORT <Ratio.shex>
+IMPORT <string.shex>
+IMPORT <Coding.shex>
+IMPORT <Period.shex>
+IMPORT <Timing.shex>
+IMPORT <Dosage.shex>
+IMPORT <boolean.shex>
+IMPORT <decimal.shex>
+IMPORT <instant.shex>
+IMPORT <integer.shex>
+IMPORT <Address.shex>
+IMPORT <dateTime.shex>
+IMPORT <markdown.shex>
+IMPORT <Distance.shex>
+IMPORT <Duration.shex>
+IMPORT <Quantity.shex>
+IMPORT <Extension.shex>
+IMPORT <canonical.shex>
+IMPORT <integer64.shex>
+IMPORT <HumanName.shex>
+IMPORT <Reference.shex>
+IMPORT <Signature.shex>
+IMPORT <Annotation.shex>
+IMPORT <Attachment.shex>
+IMPORT <Identifier.shex>
+IMPORT <RatioRange.shex>
+IMPORT <Expression.shex>
+IMPORT <positiveInt.shex>
+IMPORT <unsignedInt.shex>
+IMPORT <SampledData.shex>
+IMPORT <Contributor.shex>
+IMPORT <base64Binary.shex>
+IMPORT <ContactPoint.shex>
+IMPORT <UsageContext.shex>
+IMPORT <ContactDetail.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <DataRequirement.shex>
+IMPORT <RelatedArtifact.shex>
+IMPORT <CodeableReference.shex>
+IMPORT <TriggerDefinition.shex>
+IMPORT <ParameterDefinition.shex>
+
+# Any manipulation of the product post-collection
+<biologicallyderivedproduct-manipulation> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:biologicallyderivedproduct-manipulation];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:description @<Extension>?; 
+    fhir:procedure @<OneOrMore_Extension>?; 
+    fhir:time[x] @<Extension>?; 
+    fhir:v @<uri>; 
+    fhir:v (@<base64Binary>  OR 
+    			@<boolean>  OR 
+    			@<canonical>  OR 
+    			@<code>  OR 
+    			@<date>  OR 
+    			@<dateTime>  OR 
+    			@<decimal>  OR 
+    			@<id>  OR 
+    			@<instant>  OR 
+    			@<integer>  OR 
+    			@<integer64>  OR 
+    			@<markdown>  OR 
+    			@<oid>  OR 
+    			@<positiveInt>  OR 
+    			@<string>  OR 
+    			@<time>  OR 
+    			@<unsignedInt>  OR 
+    			@<uri>  OR 
+    			@<url>  OR 
+    			@<uuid>  OR 
+    			@<Address>  OR 
+    			@<Age>  OR 
+    			@<Annotation>  OR 
+    			@<Attachment>  OR 
+    			@<CodeableConcept>  OR 
+    			@<CodeableReference>  OR 
+    			@<Coding>  OR 
+    			@<ContactPoint>  OR 
+    			@<Count>  OR 
+    			@<Distance>  OR 
+    			@<Duration>  OR 
+    			@<HumanName>  OR 
+    			@<Identifier>  OR 
+    			@<Money>  OR 
+    			@<Period>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<Ratio>  OR 
+    			@<RatioRange>  OR 
+    			@<Reference>  OR 
+    			@<SampledData>  OR 
+    			@<Signature>  OR 
+    			@<Timing>  OR 
+    			@<ContactDetail>  OR 
+    			@<Contributor>  OR 
+    			@<DataRequirement>  OR 
+    			@<Expression>  OR 
+    			@<ParameterDefinition>  OR 
+    			@<RelatedArtifact>  OR 
+    			@<TriggerDefinition>  OR 
+    			@<UsageContext>  OR 
+    			@<Dosage>  OR 
+    			@<Meta> )  AND { rdf:type IRI } ?; 
+    ^fhir:extension { a [fhir:BiologicallyDerivedProduct]
+        }
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Extension> CLOSED {
+    rdf:first @<Extension>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Extension> 
+}
+

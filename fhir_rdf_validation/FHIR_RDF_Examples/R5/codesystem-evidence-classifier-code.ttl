@@ -1,0 +1,200 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "evidence-classifier-code"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "cds" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "0" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/evidence-classifier-code"], [ fhir:v "http://hl7.org/fhir/evidence-classifier-code"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1959" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1959" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "EvidenceClassifier"], [ fhir:v "EvidenceClassifier"] ;
+  fhir:title [ fhir:v "Evidence Classifier"], [ fhir:v "Evidence Classifier"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2020-12-28T16:55:11+11:00"], [ fhir:v "2020-12-28T16:55:11+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Commonly used classifiers for evidence sets."], [ fhir:v "Commonly used classifiers for evidence sets."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/evidence-classifier-code"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "COVID19Specific" ] ;
+     fhir:display [ fhir:v "COVID-19 specific article" ] ;
+     fhir:definition [ fhir:v "About COVID-19." ]
+  ] [
+     fhir:code [ fhir:v "COVID19Relevant" ] ;
+     fhir:display [ fhir:v "COVID-19 relevant (but not specific) article" ] ;
+     fhir:definition [ fhir:v "Not about COVID-19 but relevant to COVID-19 management or understanding." ]
+  ] [
+     fhir:code [ fhir:v "COVID19HumanResearch" ] ;
+     fhir:display [ fhir:v "COVID-19 human data in population, exposure, or outcome" ] ;
+     fhir:definition [ fhir:v "contains human COVID-19 disease in the research data as any variable (population, exposure or outcome)." ]
+  ] [
+     fhir:code [ fhir:v "OriginalResearch" ] ;
+     fhir:display [ fhir:v "Article includes original research" ] ;
+     fhir:definition [ fhir:v "such as randomized trial, observational study." ]
+  ] [
+     fhir:code [ fhir:v "ResearchSynthesis" ] ;
+     fhir:display [ fhir:v "Article includes synthesis of research" ] ;
+     fhir:definition [ fhir:v "such as systematic review, meta-analysis, rapid review." ]
+  ] [
+     fhir:code [ fhir:v "Guideline" ] ;
+     fhir:display [ fhir:v "Article includes guideline" ] ;
+     fhir:definition [ fhir:v "for clinical practice guidelines." ]
+  ] [
+     fhir:code [ fhir:v "ResearchProtocol" ] ;
+     fhir:display [ fhir:v "Article provides protocol without results" ] ;
+     fhir:definition [ fhir:v "for research protocols." ]
+  ] [
+     fhir:code [ fhir:v "NotResearchNotGuideline" ] ;
+     fhir:display [ fhir:v "Article is neither research nor guideline" ] ;
+     fhir:definition [ fhir:v "for things that are not research reports, research protocols or guidelines." ]
+  ] [
+     fhir:code [ fhir:v "Treatment" ] ;
+     fhir:display [ fhir:v "Article about treatment" ] ;
+     fhir:definition [ fhir:v "about therapeutic interventions." ]
+  ] [
+     fhir:code [ fhir:v "PreventionAndControl" ] ;
+     fhir:display [ fhir:v "Article about prevention and control" ] ;
+     fhir:definition [ fhir:v "about preventive care and interventions." ]
+  ] [
+     fhir:code [ fhir:v "Diagnosis" ] ;
+     fhir:display [ fhir:v "Article about diagnosis" ] ;
+     fhir:definition [ fhir:v "about methods to distinguish having or not having a condition." ]
+  ] [
+     fhir:code [ fhir:v "PrognosisPrediction" ] ;
+     fhir:display [ fhir:v "Article about prognosis or prediction" ] ;
+     fhir:definition [ fhir:v "about predicting risk for something or risk factors for it." ]
+  ] [
+     fhir:code [ fhir:v "RatedAsYes" ] ;
+     fhir:display [ fhir:v "Rated as yes, affirmative, positive, present, or include" ]
+  ] [
+     fhir:code [ fhir:v "RatedAsNo" ] ;
+     fhir:display [ fhir:v "Rated as no, negative, absent, or exclude" ] ;
+     fhir:definition [ fhir:v "Rated as no, negative, absent, or exclude." ]
+  ] [
+     fhir:code [ fhir:v "NotAssessed" ] ;
+     fhir:display [ fhir:v "Not rated, not assessed" ] ;
+     fhir:definition [ fhir:v "Neither rated as yes nor rated as no." ]
+  ] [
+     fhir:code [ fhir:v "RatedAsRCT" ] ;
+     fhir:display [ fhir:v "classified as randomized controlled trial" ] ;
+     fhir:definition [ fhir:v "classified as randomized controlled trial." ]
+  ] [
+     fhir:code [ fhir:v "RatedAsControlledTrial" ] ;
+     fhir:display [ fhir:v "classified as nonrandomized controlled trial (experimental)" ] ;
+     fhir:definition [ fhir:v "classified as nonrandomized controlled trial (experimental)." ]
+  ] [
+     fhir:code [ fhir:v "RatedAsComparativeCohort" ] ;
+     fhir:display [ fhir:v "classified as comparative cohort study (observational)" ] ;
+     fhir:definition [ fhir:v "classified as comparative cohort study (observational)." ]
+  ] [
+     fhir:code [ fhir:v "RatedAsCaseControl" ] ;
+     fhir:display [ fhir:v "classified as case-control study" ] ;
+     fhir:definition [ fhir:v "classified as case-control study." ]
+  ] [
+     fhir:code [ fhir:v "RatedAsUncontrolledSeries" ] ;
+     fhir:display [ fhir:v "classified as uncontrolled cohort (case series)" ] ;
+     fhir:definition [ fhir:v "classified as uncontrolled cohort (case series)." ]
+  ] [
+     fhir:code [ fhir:v "RatedAsMixedMethods" ] ;
+     fhir:display [ fhir:v "classified as mixed-methods study" ] ;
+     fhir:definition [ fhir:v "classified as mixed-methods study." ]
+  ] [
+     fhir:code [ fhir:v "RatedAsOther" ] ;
+     fhir:display [ fhir:v "classified as other concept (not elsewhere classified)" ] ;
+     fhir:definition [ fhir:v "classified as other concept (not elsewhere classified)." ]
+  ] [
+     fhir:code [ fhir:v "RiskOfBias" ] ;
+     fhir:display [ fhir:v "Risk of bias assessment" ] ;
+     fhir:definition [ fhir:v "Risk of bias assessment." ]
+  ] [
+     fhir:code [ fhir:v "NoBlinding" ] ;
+     fhir:display [ fhir:v "No blinding" ] ;
+     fhir:definition [ fhir:v "No blinding." ]
+  ] [
+     fhir:code [ fhir:v "AllocConcealNotStated" ] ;
+     fhir:display [ fhir:v "Allocation concealment not stated" ] ;
+     fhir:definition [ fhir:v "Allocation concealment not stated." ]
+  ] [
+     fhir:code [ fhir:v "EarlyTrialTermination" ] ;
+     fhir:display [ fhir:v "Early trial termination" ] ;
+     fhir:definition [ fhir:v "Early trial termination." ]
+  ] [
+     fhir:code [ fhir:v "NoITT" ] ;
+     fhir:display [ fhir:v "No intention-to-treat analysis" ] ;
+     fhir:definition [ fhir:v "No intention-to-treat analysis." ]
+  ] [
+     fhir:code [ fhir:v "Preprint" ] ;
+     fhir:display [ fhir:v "Preprint (not final publication)" ] ;
+     fhir:definition [ fhir:v "Results presented in preprint (pre-final publication) form." ]
+  ] [
+     fhir:code [ fhir:v "PreliminaryAnalysis" ] ;
+     fhir:display [ fhir:v "Preliminary analysis" ] ;
+     fhir:definition [ fhir:v "Preliminary analysis." ]
+  ] [
+     fhir:code [ fhir:v "BaselineImbalance" ] ;
+     fhir:display [ fhir:v "Baseline imbalances" ] ;
+     fhir:definition [ fhir:v "Differences between groups at start of trial may confound or bias the findings." ]
+  ] [
+     fhir:code [ fhir:v "SubgroupAnalysis" ] ;
+     fhir:display [ fhir:v "Subgroup analysis" ] ;
+     fhir:definition [ fhir:v "Subgroup analysis." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

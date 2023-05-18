@@ -1,0 +1,37 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Device ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "ihe-pcd"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Device</b><a name=\"ihe-pcd\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Device &quot;ihe-pcd&quot; </p></div><p><b>identifier</b>: Serial Number: AMID-123-456</p><p><b>manufacturer</b>: Acme Devices, Inc</p><p><b>lotNumber</b>: 12345</p><h3>Names</h3><table class=\"grid\"><tr><td>-</td><td><b>Value</b></td><td><b>Type</b></td></tr><tr><td>*</td><td>Acme Patient Monitor</td><td>user-friendly-name</td></tr></table><p><b>modelNumber</b>: A.1.1</p><p><b>type</b>: Vital Signs Monitor <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0203"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "SNO" ]
+       ] ) ;
+       fhir:text [ fhir:v "Serial Number" ]
+     ] ;
+     fhir:value [ fhir:v "AMID-123-456" ]
+  ] ) ; # 
+  fhir:manufacturer [ fhir:v "Acme Devices, Inc"] ; # 
+  fhir:lotNumber [ fhir:v "12345"] ; # 
+  fhir:name ( [
+     fhir:value [ fhir:v "Acme Patient Monitor" ] ;
+     fhir:type [ fhir:v "user-friendly-name" ]
+  ] ) ; # 
+  fhir:modelNumber [ fhir:v "A.1.1"] ; # 
+  fhir:type ( [
+     fhir:text [ fhir:v "Vital Signs Monitor" ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,30 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Extension.shex>
+
+# A context-specific sex for clinical use
+<patient-sexForClinicalUse> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:patient-sexForClinicalUse];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<Extension>; 
+    fhir:period @<Extension>?; 
+    fhir:comment @<Extension>?; 
+    fhir:supportingInfo @<OneOrMore_Extension>?; 
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/patient-sexForClinicalUse"]}; 
+    ^fhir:extension { a [fhir:Resource]
+        }
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Extension> CLOSED {
+    rdf:first @<Extension>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Extension> 
+}
+

@@ -1,0 +1,156 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ArtifactAssessment ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-certainty-rating"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: ArtifactAssessment</b><a name=\"example-certainty-rating\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource ArtifactAssessment &quot;example-certainty-rating&quot; </p></div><p><b>identifier</b>: FEvIR Object Identifier: 27756</p><p><b>date</b>: 2021-11-02T14:48:59.89Z</p><p><b>copyright</b>: https://creativecommons.org/licenses/by-nc-sa/4.0/</p><p><b>artifact</b>: <a href=\"broken-link.html\">Evidence/18812: Critically appraised summary of all-cause mortality in meta-analysis of RCTs of heparin for moderately ill patients with COVID-19</a></p><blockquote><p><b>content</b></p><p><b>informationType</b>: rating</p><p><b>summary</b>: serious concerns with risk of bias, inconsistency, and imprecision</p><p><b>type</b>: Overall certainty <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-certainty-type.html\">Evidence Certainty Type</a>#Overall)</span></p><p><b>classifier</b>: Very low quality <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-certainty-rating.html\">Evidence Certainty Rating</a>#very-low)</span></p><p><b>author</b>: <span>: Brian S. Alper</span></p><p><b>freeToShare</b>: true</p><h3>Components</h3><table class=\"grid\"><tr><td>-</td><td><b>InformationType</b></td><td><b>Summary</b></td><td><b>Type</b></td><td><b>Classifier</b></td><td><b>Author</b></td></tr><tr><td>*</td><td>rating</td><td>risk of bias in both included trials</td><td>Risk of bias <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-certainty-type.html\">Evidence Certainty Type</a>#RiskOfBias)</span></td><td>serious concern <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-certainty-rating.html\">Evidence Certainty Rating</a>#serious-concern)</span></td><td><span>: Brian S. Alper</span></td></tr><tr><td>*</td><td>rating</td><td>high degree of heterogeneity (I-squared 80.7%) with confidence intervals of 2 trial effect estimates barely overlapping</td><td>Inconsistency <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-certainty-type.html\">Evidence Certainty Type</a>#Inconsistency)</span></td><td>serious concern <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-certainty-rating.html\">Evidence Certainty Rating</a>#serious-concern)</span></td><td><span>: Brian S. Alper</span></td></tr><tr><td>*</td><td>rating</td><td> </td><td>Indirectness <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-certainty-type.html\">Evidence Certainty Type</a>#Indirectness)</span></td><td>no serious concern <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-certainty-rating.html\">Evidence Certainty Rating</a>#no-concern)</span></td><td><span>: Brian S. Alper</span></td></tr><tr><td>*</td><td>rating</td><td>95% confidence interval includes both large effects and no effects</td><td>Imprecision <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-certainty-type.html\">Evidence Certainty Type</a>#Imprecision)</span></td><td>serious concern <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-certainty-rating.html\">Evidence Certainty Rating</a>#serious-concern)</span></td><td><span>: Brian S. Alper</span></td></tr><tr><td>*</td><td>rating</td><td> </td><td>Publication bias <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-certainty-type.html\">Evidence Certainty Type</a>#PublicationBias)</span></td><td>no serious concern <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-certainty-rating.html\">Evidence Certainty Rating</a>#no-concern)</span></td><td><span>: Brian S. Alper</span></td></tr></table></blockquote></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:type [
+       fhir:text [ fhir:v "FEvIR Object Identifier" ]
+     ] ;
+     fhir:system [ fhir:v "https://fevir.net"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "27756" ] ;
+     fhir:assigner [
+       fhir:display [ fhir:v "Computable Publishing LLC" ]
+     ]
+  ] ) ; # 
+  fhir:date [ fhir:v "2021-11-02T14:48:59.890Z"^^xsd:dateTime] ; # 
+  fhir:copyright [ fhir:v "https://creativecommons.org/licenses/by-nc-sa/4.0/"] ; # 
+  fhir:artifact [
+     a fhir:Reference ;
+     fhir:reference [ fhir:v "Evidence/18812" ] ;
+     fhir:type [ fhir:v "Evidence"^^xsd:anyURI ] ;
+     fhir:display [ fhir:v "Critically appraised summary of all-cause mortality in meta-analysis of RCTs of heparin for moderately ill patients with COVID-19" ]
+  ] ; # 
+  fhir:content ( [
+     fhir:informationType [ fhir:v "rating" ] ;
+     fhir:summary [ fhir:v "serious concerns with risk of bias, inconsistency, and imprecision" ] ;
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/certainty-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "Overall" ] ;
+         fhir:display [ fhir:v "Overall certainty" ]
+       ] )
+     ] ;
+     fhir:classifier ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/certainty-rating"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "very-low" ] ;
+         fhir:display [ fhir:v "Very low quality" ]
+       ] )
+     ] ) ;
+     fhir:author [
+       fhir:display [ fhir:v "Brian S. Alper" ]
+     ] ;
+     fhir:freeToShare [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:component ( [
+       fhir:informationType [ fhir:v "rating" ] ;
+       fhir:summary [ fhir:v "risk of bias in both included trials" ] ;
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "RiskOfBias" ] ;
+           fhir:display [ fhir:v "Risk of bias" ]
+         ] )
+       ] ;
+       fhir:classifier ( [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-rating"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "serious-concern" ] ;
+           fhir:display [ fhir:v "serious concern" ]
+         ] )
+       ] ) ;
+       fhir:author [
+         fhir:display [ fhir:v "Brian S. Alper" ]
+       ]
+     ] [
+       fhir:informationType [ fhir:v "rating" ] ;
+       fhir:summary [ fhir:v "high degree of heterogeneity (I-squared 80.7%) with confidence intervals of 2 trial effect estimates barely overlapping" ] ;
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Inconsistency" ] ;
+           fhir:display [ fhir:v "Inconsistency" ]
+         ] )
+       ] ;
+       fhir:classifier ( [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-rating"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "serious-concern" ] ;
+           fhir:display [ fhir:v "serious concern" ]
+         ] )
+       ] ) ;
+       fhir:author [
+         fhir:display [ fhir:v "Brian S. Alper" ]
+       ]
+     ] [
+       fhir:informationType [ fhir:v "rating" ] ;
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Indirectness" ] ;
+           fhir:display [ fhir:v "Indirectness" ]
+         ] )
+       ] ;
+       fhir:classifier ( [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-rating"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "no-concern" ] ;
+           fhir:display [ fhir:v "no serious concern" ]
+         ] )
+       ] ) ;
+       fhir:author [
+         fhir:display [ fhir:v "Brian S. Alper" ]
+       ]
+     ] [
+       fhir:informationType [ fhir:v "rating" ] ;
+       fhir:summary [ fhir:v "95% confidence interval includes both large effects and no effects" ] ;
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Imprecision" ] ;
+           fhir:display [ fhir:v "Imprecision" ]
+         ] )
+       ] ;
+       fhir:classifier ( [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-rating"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "serious-concern" ] ;
+           fhir:display [ fhir:v "serious concern" ]
+         ] )
+       ] ) ;
+       fhir:author [
+         fhir:display [ fhir:v "Brian S. Alper" ]
+       ]
+     ] [
+       fhir:informationType [ fhir:v "rating" ] ;
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "PublicationBias" ] ;
+           fhir:display [ fhir:v "Publication bias" ]
+         ] )
+       ] ;
+       fhir:classifier ( [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-rating"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "no-concern" ] ;
+           fhir:display [ fhir:v "no serious concern" ]
+         ] )
+       ] ) ;
+       fhir:author [
+         fhir:display [ fhir:v "Brian S. Alper" ]
+       ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

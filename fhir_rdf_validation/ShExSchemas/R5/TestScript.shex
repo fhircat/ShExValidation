@@ -1,0 +1,359 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <id.shex>
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <string.shex>
+IMPORT <Coding.shex>
+IMPORT <boolean.shex>
+IMPORT <integer.shex>
+IMPORT <dateTime.shex>
+IMPORT <markdown.shex>
+IMPORT <Resource.shex>
+IMPORT <canonical.shex>
+IMPORT <Reference.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <CanonicalResource.shex>
+IMPORT <TestScript.setup.action.assert.shex>
+IMPORT <TestScript.setup.action.operation.shex>
+
+
+start=@<TestScript> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Describes a set of tests
+<TestScript> EXTENDS @<CanonicalResource> CLOSED {   
+
+    a [fhir:TestScript];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:url @<uri>?;                       # Canonical identifier for this test 
+                                            # script, represented as a URI 
+                                            # (globally unique) 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the test 
+                                            # script 
+    fhir:version @<string>?;                # Business version of the test script
+    fhir:name @<string>;                    # Name for this test script 
+                                            # (computer friendly) 
+    fhir:title @<string>?;                  # Name for this test script (human 
+                                            # friendly) 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:date @<dateTime>?;                 # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the test script 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for test 
+                                            # script (if applicable) 
+    fhir:purpose @<markdown>?;              # Why this test script is defined
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:origin @<OneOrMore_BackboneElement>?;  # An abstract server representing a 
+                                            # client or sender in a message 
+                                            # exchange 
+    fhir:destination @<OneOrMore_BackboneElement>?;  # An abstract server representing a 
+                                            # destination or receiver in a 
+                                            # message exchange 
+    fhir:metadata @<BackboneElement>?;      # Required capability that is 
+                                            # assumed to function correctly on 
+                                            # the FHIR server being tested 
+    fhir:scope @<OneOrMore_BackboneElement>?;  # Indication of the artifact(s) that 
+                                            # are tested by this test case 
+    fhir:fixture @<OneOrMore_BackboneElement>?;  # Fixture in the test script - by 
+                                            # reference (uri) 
+    fhir:profile @<OneOrMore_Reference_Resource>?;  # Reference of the validation profile
+    fhir:variable @<OneOrMore_BackboneElement>?;  # Placeholder for evaluated elements
+    fhir:setup @<BackboneElement>?;         # A series of required setup 
+                                            # operations before tests are 
+                                            # executed 
+    fhir:test @<OneOrMore_BackboneElement>?;  # A test in this script
+    fhir:teardown @<BackboneElement>?;      # A series of required clean up steps
+}  
+
+# A test in this script
+<TestScript.test> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>?;                   # Tracking/logging name of this test
+    fhir:description @<string>?;            # Tracking/reporting short 
+                                            # description of the test 
+    fhir:action @<OneOrMore_BackboneElement>;  # A test operation or assert to 
+                                            # perform 
+}  
+
+# Capabilities  that are assumed to function correctly on the FHIR server being tested
+<TestScript.metadata.capability> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:required @<boolean>;               # Are the capabilities required?
+    fhir:validated @<boolean>;              # Are the capabilities validated?
+    fhir:description @<string>?;            # The expected capabilities of the 
+                                            # server 
+    fhir:origin @<OneOrMore_integer>?;      # Which origin server these 
+                                            # requirements apply to 
+    fhir:destination @<integer>?;           # Which server these requirements 
+                                            # apply to 
+    fhir:link @<OneOrMore_uri>?;            # Links to the FHIR specification
+    fhir:capabilities @<canonical>;         # Required Capability Statement
+}  
+
+# Placeholder for evaluated elements
+<TestScript.variable> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>;                    # Descriptive name for this variable
+    fhir:defaultValue @<string>?;           # Default, hard-coded, or 
+                                            # user-defined value for this 
+                                            # variable 
+    fhir:description @<string>?;            # Natural language description of 
+                                            # the variable 
+    fhir:expression @<string>?;             # The FHIRPath expression against 
+                                            # the fixture body 
+    fhir:headerField @<string>?;            # HTTP header field name for source
+    fhir:hint @<string>?;                   # Hint help text for default value 
+                                            # to enter 
+    fhir:path @<string>?;                   # XPath or JSONPath against the 
+                                            # fixture body 
+    fhir:sourceId @<id>?;                   # Fixture Id of source expression or 
+                                            # headerField within this variable 
+}  
+
+# An abstract server representing a destination or receiver in a message exchange
+<TestScript.destination> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:index @<integer>;                  # The index of the abstract 
+                                            # destination server starting at 1 
+    fhir:profile @<Coding>;                 # FHIR-Server | FHIR-SDC-FormManager 
+                                            # | FHIR-SDC-FormReceiver | 
+                                            # FHIR-SDC-FormProcessor 
+}  
+
+# Required capability that is assumed to function correctly on the FHIR server being tested
+<TestScript.metadata> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:link @<OneOrMore_BackboneElement>?;  # Links to the FHIR specification
+    fhir:capability @<OneOrMore_BackboneElement>;  # Capabilities  that are assumed to 
+                                            # function correctly on the FHIR 
+                                            # server being tested 
+}  
+
+# A test operation or assert to perform
+<TestScript.test.action> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:operation @<TestScript.setup.action.operation>?;  # The setup operation to perform
+    fhir:assert @<TestScript.setup.action.assert>?;  # The setup assertion to perform
+}  
+
+# Indication of the artifact(s) that are tested by this test case
+<TestScript.scope> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:artifact @<canonical>;             # The specific conformance artifact 
+                                            # being tested 
+    fhir:conformance @<CodeableConcept>?;   # required | optional | strict
+    fhir:phase @<CodeableConcept>?;         # unit | integration | production
+}  
+
+# Links to the FHIR specification
+<TestScript.metadata.link> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:url @<uri>;                        # URL to the specification
+    fhir:description @<string>?;            # Short description
+}  
+
+# Each operation can have one or more header elements
+<TestScript.setup.action.operation.requestHeader> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:field @<string>;                   # HTTP header field name
+    fhir:v @<string>;                   # HTTP headerfield value
+}  
+
+# A setup operation or assert to perform
+<TestScript.setup.action> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:operation @<BackboneElement>?;     # The setup operation to perform
+    fhir:assert @<BackboneElement>?;        # The assertion to perform
+}  
+
+# The assertion to perform
+<TestScript.setup.action.assert> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:label @<string>?;                  # Tracking/logging assertion label
+    fhir:description @<string>?;            # Tracking/reporting assertion 
+                                            # description 
+    fhir:direction @<code> AND
+    	{fhir:v @fhirvs:assert-direction-codes}?;  # response | request
+    fhir:compareToSourceId @<string>?;      # Id of the source fixture to be 
+                                            # evaluated 
+    fhir:compareToSourceExpression @<string>?;  # The FHIRPath expression to 
+                                            # evaluate against the source 
+                                            # fixture 
+    fhir:compareToSourcePath @<string>?;    # XPath or JSONPath expression to 
+                                            # evaluate against the source 
+                                            # fixture 
+    fhir:contentType @<code> AND
+    	{fhir:v @fhirvs:mimetypes}?;  # Mime type to compare against the 
+                                            # 'Content-Type' header 
+    fhir:expression @<string>?;             # The FHIRPath expression to be 
+                                            # evaluated 
+    fhir:headerField @<string>?;            # HTTP header field name
+    fhir:minimumId @<string>?;              # Fixture Id of minimum content 
+                                            # resource 
+    fhir:navigationLinks @<boolean>?;       # Perform validation on navigation 
+                                            # links? 
+    fhir:operator @<code> AND
+    	{fhir:v @fhirvs:assert-operator-codes}?;  # equals | notEquals | in | notIn | 
+                                            # greaterThan | lessThan | empty | 
+                                            # notEmpty | contains | notContains 
+                                            # | eval 
+    fhir:path @<string>?;                   # XPath or JSONPath expression
+    fhir:requestMethod @<code> AND
+    	{fhir:v @fhirvs:http-operations}?;  # delete | get | options | patch | 
+                                            # post | put | head 
+    fhir:requestURL @<string>?;             # Request URL comparison value
+    fhir:resource @<code> AND
+    	{fhir:v @fhirvs:defined-types}?;  # Resource type
+    fhir:response @<code> AND
+    	{fhir:v @fhirvs:assert-response-code-types}?;  # okay | created | noContent | 
+                                            # notModified | bad | forbidden | 
+                                            # notFound | methodNotAllowed | 
+                                            # conflict | gone | 
+                                            # preconditionFailed | unprocessable 
+    fhir:responseCode @<string>?;           # HTTP response code to test
+    fhir:sourceId @<id>?;                   # Fixture Id of source expression or 
+                                            # headerField 
+    fhir:stopTestOnFail @<boolean>;         # If this assert fails, will the 
+                                            # current test execution stop? 
+    fhir:validateProfileId @<id>?;          # Profile Id of validation profile 
+                                            # reference 
+    fhir:v @<string>?;                  # The value to compare to
+    fhir:warningOnly @<boolean>;            # Will this assert produce a warning 
+                                            # only on error? 
+}  
+
+# A series of required setup operations before tests are executed
+<TestScript.setup> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:action @<OneOrMore_BackboneElement>;  # A setup operation or assert to 
+                                            # perform 
+}  
+
+# The setup operation to perform
+<TestScript.setup.action.operation> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<Coding>?;                   # The operation code type that will 
+                                            # be executed 
+    fhir:resource @<uri>?;                  # Resource type
+    fhir:label @<string>?;                  # Tracking/logging operation label
+    fhir:description @<string>?;            # Tracking/reporting operation 
+                                            # description 
+    fhir:accept @<code> AND
+    	{fhir:v @fhirvs:mimetypes}?;  # Mime type to accept in the payload 
+                                            # of the response, with charset etc. 
+    fhir:contentType @<code> AND
+    	{fhir:v @fhirvs:mimetypes}?;  # Mime type of the request payload 
+                                            # contents, with charset etc. 
+    fhir:destination @<integer>?;           # Server responding to the request
+    fhir:encodeRequestUrl @<boolean>;       # Whether or not to send the request 
+                                            # url in encoded format 
+    fhir:method @<code> AND
+    	{fhir:v @fhirvs:http-operations}?;  # delete | get | options | patch | 
+                                            # post | put | head 
+    fhir:origin @<integer>?;                # Server initiating the request
+    fhir:params @<string>?;                 # Explicitly defined path parameters
+    fhir:requestHeader @<OneOrMore_BackboneElement>?;  # Each operation can have one or 
+                                            # more header elements 
+    fhir:requestId @<id>?;                  # Fixture Id of mapped request
+    fhir:responseId @<id>?;                 # Fixture Id of mapped response
+    fhir:sourceId @<id>?;                   # Fixture Id of body for PUT and 
+                                            # POST requests 
+    fhir:targetId @<id>?;                   # Id of fixture used for extracting 
+                                            # the [id],  [type], and [vid] for 
+                                            # GET requests 
+    fhir:url @<string>?;                    # Request URL
+}  
+
+# An abstract server representing a client or sender in a message exchange
+<TestScript.origin> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:index @<integer>;                  # The index of the abstract origin 
+                                            # server starting at 1 
+    fhir:profile @<Coding>;                 # FHIR-Client | FHIR-SDC-FormFiller
+}  
+
+# A series of required clean up steps
+<TestScript.teardown> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:action @<OneOrMore_BackboneElement>;  # One or more teardown operations to 
+                                            # perform 
+}  
+
+# One or more teardown operations to perform
+<TestScript.teardown.action> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:operation @<TestScript.setup.action.operation>;  # The teardown operation to perform
+}  
+
+# Fixture in the test script - by reference (uri)
+<TestScript.fixture> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:autocreate @<boolean>;             # Whether or not to implicitly 
+                                            # create the fixture during setup 
+    fhir:autodelete @<boolean>;             # Whether or not to implicitly 
+                                            # delete the fixture during teardown 
+    fhir:resource @<Reference> AND {fhir:link 
+    			@<Resource> }?;  # Reference of the resource
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_ContactDetail> CLOSED {
+    rdf:first @<ContactDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactDetail> 
+}
+
+<OneOrMore_UsageContext> CLOSED {
+    rdf:first @<UsageContext>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_UsageContext> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+
+<OneOrMore_integer> CLOSED {
+    rdf:first @<integer>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_integer> 
+}
+
+<OneOrMore_uri> CLOSED {
+    rdf:first @<uri>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_uri> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+
+# The type of response code to use for assertion.
+fhirvs:assert-response-code-types ["okay" "created" "noContent" "notModified" "bad" "forbidden" "notFound" "methodNotAllowed" "conflict" "gone" "preconditionFailed" "unprocessable"]
+
+# The type of operator to use for assertion.
+fhirvs:assert-operator-codes ["equals" "notEquals" "in" "notIn" "greaterThan" "lessThan" "empty" "notEmpty" "contains" "notContains" "eval"]
+
+# The allowable request method or HTTP operation codes.
+fhirvs:http-operations ["delete" "get" "options" "patch" "post" "put" "head"]
+
+# The type of direction to use for assertion.
+fhirvs:assert-direction-codes ["response" "request"]
+
+# This value set includes all possible codes from BCP-13 (http://tools.ietf.org/html/bcp13)
+fhirvs:mimetypes xsd:string # EXTERNAL
+
+# A list of all the concrete types defined in this version of the FHIR specification - Data Types and Resource Types.
+fhirvs:defined-types ["Address" "Age" "Annotation" "Attachment" "BackboneElement" "BackboneType" "Base" "CodeableConcept" "CodeableReference" "Coding" "ContactDetail" "ContactPoint" "Contributor" "Count" "DataRequirement" "DataType" "Distance" "Dosage" "Duration" "Element" "ElementDefinition" "Expression" "ExtendedContactDetail" "Extension" "HumanName" "Identifier" "MarketingStatus" "Meta" "Money" "MoneyQuantity" "Narrative" "ParameterDefinition" "Period" "Population" "PrimitiveType" "ProductShelfLife" "Quantity" "Range" "Ratio" "RatioRange" "Reference" "RelatedArtifact" "SampledData" "Signature" "SimpleQuantity" "Timing" "TriggerDefinition" "UsageContext" "base64Binary" "boolean" "canonical" "code" "date" "dateTime" "decimal" "id" "instant" "integer" "integer64" "markdown" "oid" "positiveInt" "string" "time" "unsignedInt" "uri" "url" "uuid" "xhtml" "Resource" "Binary" "Bundle" "DomainResource" "Account" "AdministrableProductDefinition" "AdverseEvent" "AllergyIntolerance" "Appointment" "AppointmentResponse" "ArtifactAssessment" "AuditEvent" "Basic" "BiologicallyDerivedProduct" "BodyStructure" "CanonicalResource" "CapabilityStatement" "CapabilityStatement2" "CodeSystem" "CompartmentDefinition" "ExampleScenario" "GraphDefinition" "ImplementationGuide" "MessageDefinition" "MetadataResource" "ActivityDefinition" "ChargeItemDefinition" "Citation" "ConceptMap" "ConditionDefinition" "EventDefinition" "Evidence" "EvidenceReport" "EvidenceVariable" "Library" "Measure" "NamingSystem" "PlanDefinition" "Questionnaire" "OperationDefinition" "SearchParameter" "StructureDefinition" "StructureMap" "SubscriptionTopic" "TerminologyCapabilities" "TestScript" "ValueSet" "CarePlan" "CareTeam" "ChargeItem" "Claim" "ClaimResponse" "ClinicalImpression" "ClinicalUseDefinition" "Communication" "CommunicationRequest" "Composition" "Condition" "Consent" "Contract" "Coverage" "CoverageEligibilityRequest" "CoverageEligibilityResponse" "DetectedIssue" "Device" "DeviceDefinition" "DeviceDispense" "DeviceMetric" "DeviceRequest" "DeviceUsage" "DiagnosticReport" "DocumentManifest" "DocumentReference" "Encounter" "Endpoint" "EnrollmentRequest" "EnrollmentResponse" "EpisodeOfCare" "ExplanationOfBenefit" "FamilyMemberHistory" "Flag" "FormularyItem" "Goal" "Group" "GuidanceResponse" "HealthcareService" "ImagingSelection" "ImagingStudy" "Immunization" "ImmunizationEvaluation" "ImmunizationRecommendation" "Ingredient" "InsurancePlan" "InventoryReport" "Invoice" "Linkage" "List" "Location" "ManufacturedItemDefinition" "MeasureReport" "Medication" "MedicationAdministration" "MedicationDispense" "MedicationKnowledge" "MedicationRequest" "MedicationUsage" "MedicinalProductDefinition" "MessageHeader" "MolecularSequence" "NutritionIntake" "NutritionOrder" "NutritionProduct" "Observation" "ObservationDefinition" "OperationOutcome" "Organization" "OrganizationAffiliation" "PackagedProductDefinition" "Patient" "PaymentNotice" "PaymentReconciliation" "Permission" "Person" "Practitioner" "PractitionerRole" "Procedure" "Provenance" "QuestionnaireResponse" "RegulatedAuthorization" "RelatedPerson" "RequestGroup" "ResearchStudy" "ResearchSubject" "RiskAssessment" "Schedule" "ServiceRequest" "Slot" "Specimen" "SpecimenDefinition" "Subscription" "SubscriptionStatus" "Substance" "SubstanceDefinition" "SubstanceNucleicAcid" "SubstancePolymer" "SubstanceProtein" "SubstanceReferenceInformation" "SubstanceSourceMaterial" "SupplyDelivery" "SupplyRequest" "Task" "TestReport" "Transport" "VerificationResult" "VisionPrescription" "Parameters"]
+

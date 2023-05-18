@@ -1,0 +1,50 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ImagingSelection ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-multiframe-image-selection"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: ImagingSelection</b><a name=\"example-multiframe-image-selection\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource ImagingSelection &quot;example-multiframe-image-selection&quot; </p></div><p><b>identifier</b>: id: urn:oid:1.2.840.113747.20080222.307765875869300980245024554221747.2.1</p><p><b>status</b>: available</p><p><b>subject</b>: <span/></p><p><b>code</b>: Key Frames <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>studyUid</b>: 1.2.840.113747.20080222.307765875869300489345024554221747</p><p><b>derivedFrom</b>: <span/></p><p><b>seriesUid</b>: 1.2.840.113747.20080222.307765875869300489245024554221747.1</p><p><b>frameOfReferenceUid</b>: 1.2.840.113747.20080222.307765875869350980245024554221747.0</p><h3>Instances</h3><table class=\"grid\"><tr><td>-</td><td><b>Uid</b></td><td><b>SopClass</b></td><td><b>Subset</b></td></tr><tr><td>*</td><td>1.2.840.113747.20080222.307765875869300489355024554221747.1.0</td><td>urn:oid:1.2.840.10008.5.1.4.1.1.2.1 (Details: urn:ietf:rfc:3986 code urn:oid:1.2.840.10008.5.1.4.1.1.2.1 = 'urn:oid:1.2.840.10008.5.1.4.1.1.2.1', stated as 'null')</td><td>1, 2, 3, 4</td></tr></table></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:dicom:uid"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:1.2.840.113747.20080222.307765875869300980245024554221747.2.1" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "available"] ; # 
+  fhir:subject [
+     fhir:type [ fhir:v "Patient"^^xsd:anyURI ] ;
+     fhir:identifier [
+       fhir:system [ fhir:v "https://fhirhospital.org"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "MNSOIISABIDCHRCY" ]
+     ]
+  ] ; # 
+  fhir:code [
+     fhir:text [ fhir:v "Key Frames" ]
+  ] ; # 
+  fhir:studyUid [ fhir:v "1.2.840.113747.20080222.307765875869300489345024554221747"] ; # 
+  fhir:derivedFrom ( [
+     fhir:type [ fhir:v "ImagingStudy"^^xsd:anyURI ] ;
+     fhir:identifier [
+       fhir:system [ fhir:v "urn:dicom:uid"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "urn:oid:1.2.840.113747.20080222.307765875889350980245024554221747" ]
+     ]
+  ] ) ; # 
+  fhir:seriesUid [ fhir:v "1.2.840.113747.20080222.307765875869300489245024554221747.1"] ; # 
+  fhir:frameOfReferenceUid [ fhir:v "1.2.840.113747.20080222.307765875869350980245024554221747.0"] ; # 
+  fhir:instance ( [
+     fhir:uid [ fhir:v "1.2.840.113747.20080222.307765875869300489355024554221747.1.0" ] ;
+     fhir:sopClass [
+       fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "urn:oid:1.2.840.10008.5.1.4.1.1.2.1" ]
+     ] ;
+     fhir:subset ( [ fhir:v "1" ] [ fhir:v "2" ] [ fhir:v "3" ] [ fhir:v "4" ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

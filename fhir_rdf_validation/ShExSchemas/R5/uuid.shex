@@ -1,0 +1,14 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+
+# Primitive Type uuid
+<uuid> EXTENDS @<uri> CLOSED {   
+
+    a [fhir:uuid];
+    fhir:nodeRole [fhir:treeRoot]?;
+}  
+

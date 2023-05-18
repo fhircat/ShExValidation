@@ -1,0 +1,1063 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ResearchStudy ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-ctgov-study-record"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: ResearchStudy</b><a name=\"example-ctgov-study-record\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource ResearchStudy &quot;example-ctgov-study-record&quot; </p></div><p><b>url</b>: <a href=\"https://fevir.net/resources/ResearchStudy/112103\">https://fevir.net/resources/ResearchStudy/112103</a></p><p><b>identifier</b>: FEvIR Object Identifier: 112103, id: NCT05503693 (use: OFFICIAL), id: AP303-PK-01</p><p><b>name</b>: NCT05503693_FHIR_Transform</p><p><b>title</b>: A Safety, Tolerability, and Pharmacokinetics Study of AP303 in Healthy Subjects</p><h3>Labels</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Value</b></td></tr><tr><td>*</td><td>Official Title <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td><td>A Single-center Randomized Double-blind Placebo-controlled Study to Investigate the Safety Tolerability and PK of SAD and MAD of AP303 Following Oral Administration and the Effect of Food on the PK of AP303 in Healthy Subjects</td></tr></table><blockquote><p><b>relatedArtifact</b></p><p><b>type</b>: transforms</p><blockquote><p><b>document</b></p></blockquote></blockquote><blockquote><p><b>relatedArtifact</b></p><p><b>type</b>: transformed-with</p><p><b>display</b>: Computable Publishing®: ClinicalTrials.gov-to-FEvIR Converter</p><blockquote><p><b>document</b></p></blockquote></blockquote><p><b>status</b>: active</p><p><b>primaryPurposeType</b>: Treatment <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-prim-purp-type.html\">ResearchStudyPrimaryPurposeType</a>#treatment)</span></p><p><b>phase</b>: Phase 1 <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-phase.html\">ResearchStudyPhase</a>#phase-1)</span></p><p><b>studyDesign</b>: Design Masking: Quadruple <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span>, Design Who Masked: Participant <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span>, Design Who Masked: Care Provider <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span>, Design Who Masked: Investigator <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span>, Design Who Masked: Outcomes Assessor <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span>, Design Allocation: Randomized <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span>, Design Intervention Model: Sequential Assignment <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span>, CT.gov StudyType: INTERVENTIONAL <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>condition</b>: Healthy Subjects <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>keyword</b>: Safety, Tolerability, Pharmacokinetics, AP303, Healthy Subjects <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>descriptionSummary</b>: This is a single-center, randomized, double-blind, placebo-controlled, first-in-human study in which the safety, tolerability, and pharmacokinetics of orally administered AP303 will be assessed in healthy adult subjects.</p><p><b>description</b>: The study will consist of 2 parts: Part A is a single ascending doses (SAD) phase enrolling a total of 4 cohorts of healthy subjects; Part B is a multiple ascending doses (MAD) phase enrolling 3 cohorts of healthy subjects. One cohort of Part A will receive AP303 under both fasted and fed conditions to investigate the effect of food.</p><p><b>site</b>: <a name=\"NCT05503693-Location-0-ResearchStudy\"> </a></p><blockquote><p/><p><a name=\"NCT05503693-Location-0-ResearchStudy\"> </a></p><p><b>partOf</b>: <a href=\"#\">#</a></p><p><b>status</b>: active</p><p><b>site</b>: <a href=\"#NCT05503693-Location-0\">#NCT05503693-Location-0</a></p><h3>ProgressStatuses</h3><table class=\"grid\"><tr><td>-</td><td><b>State</b></td></tr><tr><td>*</td><td>Recruiting <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-research-study-status.html\">Research Study Status</a>#recruiting)</span></td></tr></table></blockquote><p><b>classifier</b>: Has Results: False <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span>, Oversight Classifier: oversightHasDmc Yes <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span>, Oversight Classifier: isFdaRegulatedDrug No <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span>, Oversight Classifier: isFdaRegulatedDevice No <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><blockquote><p><b>associatedParty</b></p><p><b>name</b>: Alebund Pharmaceuticals</p><p><b>role</b>: Sponsor <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-research-study-party-role.html\">Research Study Party Role</a>#sponsor)</span></p><p><b>classifier</b>: INDUSTRY <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p></blockquote><blockquote><p><b>associatedParty</b></p><p><b>name</b>: Alebund Pty Ltd</p><p><b>role</b>: Lead Sponsor <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-research-study-party-role.html\">Research Study Party Role</a>#lead-sponsor)</span></p><p><b>classifier</b>: INDUSTRY <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p></blockquote><blockquote><p><b>associatedParty</b></p><p><b>name</b>: Zhen LIU</p><p><b>role</b>: Recruitment Contact <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-research-study-party-role.html\">Research Study Party Role</a>#recruitment-contact)</span></p><p><b>classifier</b>: Contact <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>party</b>: <a name=\"NCT05503693-CentralContact-0\"> </a></p><blockquote><p/><p><a name=\"NCT05503693-CentralContact-0\"> </a></p><p><b>name</b>: Zhen LIU</p><p><b>telecom</b>: ph: 86 021-60836212, <a href=\"mailto:clinicaloperation@alebund.com\">clinicaloperation@alebund.com</a></p></blockquote></blockquote><blockquote><p><b>associatedParty</b></p><p><b>name</b>: Sam Francis, Doctor</p><p><b>role</b>: Principal Investigator <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>party</b>: <span>: Nucleus Network</span></p></blockquote><blockquote><p><b>progressStatus</b></p><p><b>state</b>: Recruiting <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-research-study-status.html\">Research Study Status</a>#recruiting)</span></p></blockquote><blockquote><p><b>progressStatus</b></p><p><b>state</b>: Overall Study <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-research-study-status.html\">Research Study Status</a>#overall-study)</span></p><p><b>actual</b>: false</p><p><b>period</b>: 2022-12-06 --&gt; 2023-06</p></blockquote><h3>Recruitments</h3><table class=\"grid\"><tr><td>-</td><td><b>TargetNumber</b></td><td><b>Eligibility</b></td></tr><tr><td>*</td><td>62</td><td><a href=\"broken-link.html\">https://fevir.net/resources/EvidenceVariable/112075</a></td></tr></table><blockquote><p><b>comparisonGroup</b></p><p><b>linkId</b>: ap303</p><p><b>name</b>: AP303</p><p><b>type</b>: Experimental <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>description</b>: AP303</p><p><b>intendedExposure</b>: </p><ul><li><a name=\"NCT05503693-drug------ap303-50-g\"> </a></li><li><a name=\"NCT05503693-drug------ap303-150-g\"> </a></li><li><a name=\"NCT05503693-drug------ap303-300-g\"> </a></li><li><a name=\"NCT05503693-drug------ap303-600-g\"> </a></li></ul><blockquote><p/><p><a name=\"NCT05503693-drug------ap303-50-g\"> </a></p><p><b>name</b>: NCT05503693_drug______ap303_50_g</p><p><b>title</b>: AP303 50 μg</p><p><b>status</b>: active</p><p><b>description</b>: AP303 tablet</p><h3>UseContexts</h3><table class=\"grid\"><tr><td>-</td><td><b>Code</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Intervention Type for CT.gov (Details: https://clinicaltrials.gov code interventionType = 'interventionType', stated as 'Intervention Type for CT.gov')</td><td>DRUG <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table></blockquote><blockquote><p/><p><a name=\"NCT05503693-drug------ap303-150-g\"> </a></p><p><b>name</b>: NCT05503693_drug______ap303_150_g</p><p><b>title</b>: AP303 150 μg</p><p><b>status</b>: active</p><p><b>description</b>: AP303 tablet</p><h3>UseContexts</h3><table class=\"grid\"><tr><td>-</td><td><b>Code</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Intervention Type for CT.gov (Details: https://clinicaltrials.gov code interventionType = 'interventionType', stated as 'Intervention Type for CT.gov')</td><td>DRUG <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table></blockquote><blockquote><p/><p><a name=\"NCT05503693-drug------ap303-300-g\"> </a></p><p><b>name</b>: NCT05503693_drug______ap303_300_g</p><p><b>title</b>: AP303 300 μg</p><p><b>status</b>: active</p><p><b>description</b>: AP303 tablet</p><h3>UseContexts</h3><table class=\"grid\"><tr><td>-</td><td><b>Code</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Intervention Type for CT.gov (Details: https://clinicaltrials.gov code interventionType = 'interventionType', stated as 'Intervention Type for CT.gov')</td><td>DRUG <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table></blockquote><blockquote><p/><p><a name=\"NCT05503693-drug------ap303-600-g\"> </a></p><p><b>name</b>: NCT05503693_drug______ap303_600_g</p><p><b>title</b>: AP303 600 μg</p><p><b>status</b>: active</p><p><b>description</b>: AP303 tablet</p><h3>UseContexts</h3><table class=\"grid\"><tr><td>-</td><td><b>Code</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Intervention Type for CT.gov (Details: https://clinicaltrials.gov code interventionType = 'interventionType', stated as 'Intervention Type for CT.gov')</td><td>DRUG <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table></blockquote></blockquote><blockquote><p><b>comparisonGroup</b></p><p><b>linkId</b>: placebo</p><p><b>name</b>: Placebo</p><p><b>type</b>: Placebo Comparator <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>description</b>: Placebo</p><p><b>intendedExposure</b>: </p><ul><li><a name=\"NCT05503693-drug------placebo-50-g\"> </a></li><li><a name=\"NCT05503693-drug------placebo-150-g\"> </a></li><li><a name=\"NCT05503693-drug------placebo-300-g\"> </a></li><li><a name=\"NCT05503693-drug------placebo-600-g\"> </a></li></ul><blockquote><p/><p><a name=\"NCT05503693-drug------placebo-50-g\"> </a></p><p><b>name</b>: NCT05503693_drug______placebo_50_g</p><p><b>title</b>: Placebo 50 μg</p><p><b>status</b>: active</p><p><b>description</b>: Placebo tablet</p><h3>UseContexts</h3><table class=\"grid\"><tr><td>-</td><td><b>Code</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Intervention Type for CT.gov (Details: https://clinicaltrials.gov code interventionType = 'interventionType', stated as 'Intervention Type for CT.gov')</td><td>DRUG <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table></blockquote><blockquote><p/><p><a name=\"NCT05503693-drug------placebo-150-g\"> </a></p><p><b>name</b>: NCT05503693_drug______placebo_150_g</p><p><b>title</b>: Placebo 150 μg</p><p><b>status</b>: active</p><p><b>description</b>: Placebo tablet</p><h3>UseContexts</h3><table class=\"grid\"><tr><td>-</td><td><b>Code</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Intervention Type for CT.gov (Details: https://clinicaltrials.gov code interventionType = 'interventionType', stated as 'Intervention Type for CT.gov')</td><td>DRUG <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table></blockquote><blockquote><p/><p><a name=\"NCT05503693-drug------placebo-300-g\"> </a></p><p><b>name</b>: NCT05503693_drug______placebo_300_g</p><p><b>title</b>: Placebo 300 μg</p><p><b>status</b>: active</p><p><b>description</b>: Placebo tablet</p><h3>UseContexts</h3><table class=\"grid\"><tr><td>-</td><td><b>Code</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Intervention Type for CT.gov (Details: https://clinicaltrials.gov code interventionType = 'interventionType', stated as 'Intervention Type for CT.gov')</td><td>DRUG <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table></blockquote><blockquote><p/><p><a name=\"NCT05503693-drug------placebo-600-g\"> </a></p><p><b>name</b>: NCT05503693_drug______placebo_600_g</p><p><b>title</b>: Placebo 600 μg</p><p><b>status</b>: active</p><p><b>description</b>: Placebo tablet</p><h3>UseContexts</h3><table class=\"grid\"><tr><td>-</td><td><b>Code</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Intervention Type for CT.gov (Details: https://clinicaltrials.gov code interventionType = 'interventionType', stated as 'Intervention Type for CT.gov')</td><td>DRUG <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table></blockquote></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: Single Dose and Food Effect Safety Outcome Measures</p><p><b>type</b>: Primary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#primary)</span></p><p><b>description</b>: Incidence and severity of adverse events (AEs), laboratory, ECG, and vital sign changes</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: Multiple Dose Safety Outcome Measures</p><p><b>type</b>: Primary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#primary)</span></p><p><b>description</b>: Incidence and severity of AEs, laboratory, ECG, and vital sign changes.</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: Cmax after single dose</p><p><b>type</b>: Primary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#primary)</span></p><p><b>description</b>: PK characteristics after single dose</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: Tmax after single dose</p><p><b>type</b>: Primary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#primary)</span></p><p><b>description</b>: PK characteristics after single dose</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: AUC0-last after single dose</p><p><b>type</b>: Primary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#primary)</span></p><p><b>description</b>: PK characteristics after single dose</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: AUC0-inf after single dose</p><p><b>type</b>: Primary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#primary)</span></p><p><b>description</b>: PK characteristics after single dose</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: t1/2 after single dose</p><p><b>type</b>: Primary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#primary)</span></p><p><b>description</b>: PK characteristics after single dose</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: CL/F after single dose</p><p><b>type</b>: Primary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#primary)</span></p><p><b>description</b>: PK characteristics after single dose</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: Ae and CLR (if warranted) after single dose</p><p><b>type</b>: Primary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#primary)</span></p><p><b>description</b>: PK characteristics after single dose</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: V/F after single dose</p><p><b>type</b>: Primary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#primary)</span></p><p><b>description</b>: PK characteristics after single dose</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: Cmax after multiple dose</p><p><b>type</b>: Primary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#primary)</span></p><p><b>description</b>: PK characteristics after multiple dose</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: Tmax after multiple dose</p><p><b>type</b>: Primary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#primary)</span></p><p><b>description</b>: PK characteristics after multiple dose</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: AUC0-τ after multiple dose</p><p><b>type</b>: Primary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#primary)</span></p><p><b>description</b>: PK characteristics after multiple dose</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: Cav after multiple dose</p><p><b>type</b>: Primary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#primary)</span></p><p><b>description</b>: PK characteristics after multiple dose</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: t1/2 after multiple dose</p><p><b>type</b>: Primary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#primary)</span></p><p><b>description</b>: PK characteristics after multiple dose</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: Rac after multiple dose</p><p><b>type</b>: Primary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#primary)</span></p><p><b>description</b>: PK characteristics after multiple dose</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: Ae and CLR (if warranted) after multiple dose</p><p><b>type</b>: Primary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#primary)</span></p><p><b>description</b>: PK characteristics after multiple dose</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: V/F after multiple dose</p><p><b>type</b>: Primary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#primary)</span></p><p><b>description</b>: PK characteristics after multiple dose</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: Ctrough after multiple dose</p><p><b>type</b>: Primary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#primary)</span></p><p><b>description</b>: PK characteristics after multiple dose</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: Effect of Food on the single dose Cmax</p><p><b>type</b>: Secondary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#secondary)</span></p><p><b>description</b>: Effect of food on the single dose PK</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: Effect of Food on the single dose Tmax</p><p><b>type</b>: Secondary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#secondary)</span></p><p><b>description</b>: Effect of food on the single dose PK</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: Effect of Food on the single dose AUC0-last</p><p><b>type</b>: Secondary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#secondary)</span></p><p><b>description</b>: Effect of food on the single dose PK</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: Effect of Food on the single dose AUC0-inf</p><p><b>type</b>: Secondary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#secondary)</span></p><p><b>description</b>: Effect of food on the single dose PK</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: Effect of Food on the single dose t1/2</p><p><b>type</b>: Secondary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#secondary)</span></p><p><b>description</b>: Effect of food on the single dose PK</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: Effect of Food on the single dose CL/F</p><p><b>type</b>: Secondary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#secondary)</span></p><p><b>description</b>: Effect of food on the single dose PK</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: Effect of Food on the single dose Ae and CLR (if warranted)</p><p><b>type</b>: Secondary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#secondary)</span></p><p><b>description</b>: Effect of food on the single dose PK</p><p><b>reference</b>: <span/></p></blockquote><blockquote><p><b>outcomeMeasure</b></p><p><b>name</b>: Effect of Food on the single dose V/F</p><p><b>type</b>: Secondary <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-research-study-objective-type.html\">ResearchStudyObjectiveType</a>#secondary)</span></p><p><b>description</b>: Effect of food on the single dose PK</p><p><b>reference</b>: <span/></p></blockquote></div>"
+  ] ; # 
+  fhir:contained ( [
+     a fhir:EvidenceVariable ;
+     fhir:id [ fhir:v "NCT05503693-drug------ap303-50-g" ] ;
+     fhir:name [ fhir:v "NCT05503693_drug______ap303_50_g" ] ;
+     fhir:title [ fhir:v "AP303 50 μg" ] ;
+     fhir:status [ fhir:v "active" ] ;
+     fhir:description [ fhir:v "AP303 tablet" ] ;
+     fhir:useContext ( [
+       fhir:code [
+         fhir:system [ fhir:v "https://clinicaltrials.gov"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "interventionType" ] ;
+         fhir:display [ fhir:v "Intervention Type for CT.gov" ]
+       ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:text [ fhir:v "DRUG" ]
+       ]
+     ] )
+  ] [
+     a fhir:EvidenceVariable ;
+     fhir:id [ fhir:v "NCT05503693-drug------ap303-150-g" ] ;
+     fhir:name [ fhir:v "NCT05503693_drug______ap303_150_g" ] ;
+     fhir:title [ fhir:v "AP303 150 μg" ] ;
+     fhir:status [ fhir:v "active" ] ;
+     fhir:description [ fhir:v "AP303 tablet" ] ;
+     fhir:useContext ( [
+       fhir:code [
+         fhir:system [ fhir:v "https://clinicaltrials.gov"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "interventionType" ] ;
+         fhir:display [ fhir:v "Intervention Type for CT.gov" ]
+       ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:text [ fhir:v "DRUG" ]
+       ]
+     ] )
+  ] [
+     a fhir:EvidenceVariable ;
+     fhir:id [ fhir:v "NCT05503693-drug------ap303-300-g" ] ;
+     fhir:name [ fhir:v "NCT05503693_drug______ap303_300_g" ] ;
+     fhir:title [ fhir:v "AP303 300 μg" ] ;
+     fhir:status [ fhir:v "active" ] ;
+     fhir:description [ fhir:v "AP303 tablet" ] ;
+     fhir:useContext ( [
+       fhir:code [
+         fhir:system [ fhir:v "https://clinicaltrials.gov"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "interventionType" ] ;
+         fhir:display [ fhir:v "Intervention Type for CT.gov" ]
+       ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:text [ fhir:v "DRUG" ]
+       ]
+     ] )
+  ] [
+     a fhir:EvidenceVariable ;
+     fhir:id [ fhir:v "NCT05503693-drug------ap303-600-g" ] ;
+     fhir:name [ fhir:v "NCT05503693_drug______ap303_600_g" ] ;
+     fhir:title [ fhir:v "AP303 600 μg" ] ;
+     fhir:status [ fhir:v "active" ] ;
+     fhir:description [ fhir:v "AP303 tablet" ] ;
+     fhir:useContext ( [
+       fhir:code [
+         fhir:system [ fhir:v "https://clinicaltrials.gov"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "interventionType" ] ;
+         fhir:display [ fhir:v "Intervention Type for CT.gov" ]
+       ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:text [ fhir:v "DRUG" ]
+       ]
+     ] )
+  ] [
+     a fhir:EvidenceVariable ;
+     fhir:id [ fhir:v "NCT05503693-drug------placebo-50-g" ] ;
+     fhir:name [ fhir:v "NCT05503693_drug______placebo_50_g" ] ;
+     fhir:title [ fhir:v "Placebo 50 μg" ] ;
+     fhir:status [ fhir:v "active" ] ;
+     fhir:description [ fhir:v "Placebo tablet" ] ;
+     fhir:useContext ( [
+       fhir:code [
+         fhir:system [ fhir:v "https://clinicaltrials.gov"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "interventionType" ] ;
+         fhir:display [ fhir:v "Intervention Type for CT.gov" ]
+       ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:text [ fhir:v "DRUG" ]
+       ]
+     ] )
+  ] [
+     a fhir:EvidenceVariable ;
+     fhir:id [ fhir:v "NCT05503693-drug------placebo-150-g" ] ;
+     fhir:name [ fhir:v "NCT05503693_drug______placebo_150_g" ] ;
+     fhir:title [ fhir:v "Placebo 150 μg" ] ;
+     fhir:status [ fhir:v "active" ] ;
+     fhir:description [ fhir:v "Placebo tablet" ] ;
+     fhir:useContext ( [
+       fhir:code [
+         fhir:system [ fhir:v "https://clinicaltrials.gov"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "interventionType" ] ;
+         fhir:display [ fhir:v "Intervention Type for CT.gov" ]
+       ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:text [ fhir:v "DRUG" ]
+       ]
+     ] )
+  ] [
+     a fhir:EvidenceVariable ;
+     fhir:id [ fhir:v "NCT05503693-drug------placebo-300-g" ] ;
+     fhir:name [ fhir:v "NCT05503693_drug______placebo_300_g" ] ;
+     fhir:title [ fhir:v "Placebo 300 μg" ] ;
+     fhir:status [ fhir:v "active" ] ;
+     fhir:description [ fhir:v "Placebo tablet" ] ;
+     fhir:useContext ( [
+       fhir:code [
+         fhir:system [ fhir:v "https://clinicaltrials.gov"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "interventionType" ] ;
+         fhir:display [ fhir:v "Intervention Type for CT.gov" ]
+       ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:text [ fhir:v "DRUG" ]
+       ]
+     ] )
+  ] [
+     a fhir:EvidenceVariable ;
+     fhir:id [ fhir:v "NCT05503693-drug------placebo-600-g" ] ;
+     fhir:name [ fhir:v "NCT05503693_drug______placebo_600_g" ] ;
+     fhir:title [ fhir:v "Placebo 600 μg" ] ;
+     fhir:status [ fhir:v "active" ] ;
+     fhir:description [ fhir:v "Placebo tablet" ] ;
+     fhir:useContext ( [
+       fhir:code [
+         fhir:system [ fhir:v "https://clinicaltrials.gov"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "interventionType" ] ;
+         fhir:display [ fhir:v "Intervention Type for CT.gov" ]
+       ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:text [ fhir:v "DRUG" ]
+       ]
+     ] )
+  ] [
+     a fhir:Practitioner ;
+     fhir:id [ fhir:v "NCT05503693-CentralContact-0" ] ;
+     fhir:name ( [
+       fhir:text [ fhir:v "Zhen LIU" ]
+     ] ) ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "phone" ] ;
+       fhir:value [ fhir:v "86 021-60836212" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "clinicaloperation@alebund.com" ]
+     ] )
+  ] [
+     a fhir:ResearchStudy ;
+     fhir:id [ fhir:v "NCT05503693-Location-0-ResearchStudy" ] ;
+     fhir:partOf ( [
+       fhir:reference [ fhir:v "#" ] ;
+       fhir:type [ fhir:v "ResearchStudy"^^xsd:anyURI ]
+     ] ) ;
+     fhir:status [ fhir:v "active" ] ;
+     fhir:site ( [
+       fhir:reference [ fhir:v "#NCT05503693-Location-0" ] ;
+       fhir:type [ fhir:v "Location"^^xsd:anyURI ]
+     ] ) ;
+     fhir:progressStatus ( [
+       fhir:state [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/research-study-status"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "recruiting" ] ;
+           fhir:display [ fhir:v "Recruiting" ]
+         ] )
+       ]
+     ] )
+  ] [
+     a fhir:Location ;
+     fhir:id [ fhir:v "NCT05503693-Location-0" ] ;
+     fhir:name [ fhir:v "Nucleus Network Pty Ltd" ] ;
+     fhir:address [
+       fhir:city [ fhir:v "Melbourne" ] ;
+       fhir:state [ fhir:v "Victoria" ] ;
+       fhir:postalCode [ fhir:v "3004" ] ;
+       fhir:country [ fhir:v "Australia" ]
+     ] ;
+     fhir:position [
+       fhir:longitude [ fhir:v "144.96332"^^xsd:decimal ] ;
+       fhir:latitude [ fhir:v "-37.814"^^xsd:decimal ]
+     ]
+  ] ) ; # 
+  fhir:url [ fhir:v "https://fevir.net/resources/ResearchStudy/112103"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:type [
+       fhir:text [ fhir:v "FEvIR Object Identifier" ]
+     ] ;
+     fhir:system [ fhir:v "https://fevir.net"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "112103" ] ;
+     fhir:assigner [
+       fhir:display [ fhir:v "Computable Publishing LLC" ]
+     ]
+  ] [
+     fhir:use [ fhir:v "official" ] ;
+     fhir:system [ fhir:v "https://clinicaltrials.gov"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "NCT05503693" ]
+  ] [
+     fhir:value [ fhir:v "AP303-PK-01" ] ;
+     fhir:assigner [
+       fhir:display [ fhir:v "Alebund Pharmaceuticals" ]
+     ]
+  ] ) ; # 
+  fhir:name [ fhir:v "NCT05503693_FHIR_Transform"] ; # 
+  fhir:title [ fhir:v "A Safety, Tolerability, and Pharmacokinetics Study of AP303 in Healthy Subjects"] ; # 
+  fhir:label ( [
+     fhir:type [
+       fhir:text [ fhir:v "Official Title" ]
+     ] ;
+     fhir:value [ fhir:v "A Single-center Randomized Double-blind Placebo-controlled Study to Investigate the Safety Tolerability and PK of SAD and MAD of AP303 Following Oral Administration and the Effect of Food on the PK of AP303 in Healthy Subjects" ]
+  ] ) ; # 
+  fhir:relatedArtifact ( [
+     fhir:type [ fhir:v "transforms" ] ;
+     fhir:document [
+       fhir:url [ fhir:v "https://beta.clinicaltrials.gov/api/v2/studies/NCT05503693"^^xsd:anyURI ]
+     ]
+  ] [
+     fhir:type [ fhir:v "transformed-with" ] ;
+     fhir:display [ fhir:v "Computable Publishing®: ClinicalTrials.gov-to-FEvIR Converter" ] ;
+     fhir:document [
+       fhir:url [ fhir:v "https://fevir.net/resources/Project/29885"^^xsd:anyURI ]
+     ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:primaryPurposeType [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-prim-purp-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "treatment" ] ;
+       fhir:display [ fhir:v "Treatment" ]
+     ] )
+  ] ; # 
+  fhir:phase [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-phase"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "phase-1" ] ;
+       fhir:display [ fhir:v "Phase 1" ]
+     ] )
+  ] ; # 
+  fhir:studyDesign ( [
+     fhir:text [ fhir:v "Design Masking: Quadruple" ]
+  ] [
+     fhir:text [ fhir:v "Design Who Masked: Participant" ]
+  ] [
+     fhir:text [ fhir:v "Design Who Masked: Care Provider" ]
+  ] [
+     fhir:text [ fhir:v "Design Who Masked: Investigator" ]
+  ] [
+     fhir:text [ fhir:v "Design Who Masked: Outcomes Assessor" ]
+  ] [
+     fhir:text [ fhir:v "Design Allocation: Randomized" ]
+  ] [
+     fhir:text [ fhir:v "Design Intervention Model: Sequential Assignment" ]
+  ] [
+     fhir:text [ fhir:v "CT.gov StudyType: INTERVENTIONAL" ]
+  ] ) ; # 
+  fhir:condition ( [
+     fhir:text [ fhir:v "Healthy Subjects" ]
+  ] ) ; # 
+  fhir:keyword ( [
+     fhir:text [ fhir:v "Safety, Tolerability, Pharmacokinetics, AP303, Healthy Subjects" ]
+  ] ) ; # 
+  fhir:descriptionSummary [ fhir:v "This is a single-center, randomized, double-blind, placebo-controlled, first-in-human study in which the safety, tolerability, and pharmacokinetics of orally administered AP303 will be assessed in healthy adult subjects."] ; # 
+  fhir:description [ fhir:v "The study will consist of 2 parts: Part A is a single ascending doses (SAD) phase enrolling a total of 4 cohorts of healthy subjects; Part B is a multiple ascending doses (MAD) phase enrolling 3 cohorts of healthy subjects. One cohort of Part A will receive AP303 under both fasted and fed conditions to investigate the effect of food."] ; # 
+  fhir:site ( [
+     fhir:reference [ fhir:v "#NCT05503693-Location-0-ResearchStudy" ] ;
+     fhir:type [ fhir:v "ResearchStudy"^^xsd:anyURI ]
+  ] ) ; # 
+  fhir:classifier ( [
+     fhir:text [ fhir:v "Has Results: False" ]
+  ] [
+     fhir:text [ fhir:v "Oversight Classifier: oversightHasDmc Yes" ]
+  ] [
+     fhir:text [ fhir:v "Oversight Classifier: isFdaRegulatedDrug No" ]
+  ] [
+     fhir:text [ fhir:v "Oversight Classifier: isFdaRegulatedDevice No" ]
+  ] ) ; # 
+  fhir:associatedParty ( [
+     fhir:name [ fhir:v "Alebund Pharmaceuticals" ] ;
+     fhir:role [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/research-study-party-role"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "sponsor" ] ;
+         fhir:display [ fhir:v "Sponsor" ]
+       ] )
+     ] ;
+     fhir:classifier ( [
+       fhir:text [ fhir:v "INDUSTRY" ]
+     ] )
+  ] [
+     fhir:name [ fhir:v "Alebund Pty Ltd" ] ;
+     fhir:role [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/research-study-party-role"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "lead-sponsor" ] ;
+         fhir:display [ fhir:v "Lead Sponsor" ]
+       ] )
+     ] ;
+     fhir:classifier ( [
+       fhir:text [ fhir:v "INDUSTRY" ]
+     ] )
+  ] [
+     fhir:name [ fhir:v "Zhen LIU" ] ;
+     fhir:role [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/research-study-party-role"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "recruitment-contact" ] ;
+         fhir:display [ fhir:v "Recruitment Contact" ]
+       ] )
+     ] ;
+     fhir:classifier ( [
+       fhir:text [ fhir:v "Contact" ]
+     ] ) ;
+     fhir:party [
+       fhir:reference [ fhir:v "#NCT05503693-CentralContact-0" ] ;
+       fhir:type [ fhir:v "Practitioner"^^xsd:anyURI ]
+     ]
+  ] [
+     fhir:name [ fhir:v "Sam Francis, Doctor" ] ;
+     fhir:role [
+       fhir:text [ fhir:v "Principal Investigator" ]
+     ] ;
+     fhir:party [
+       fhir:display [ fhir:v "Nucleus Network" ]
+     ]
+  ] ) ; # 
+  fhir:progressStatus ( [
+     fhir:state [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/research-study-status"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "recruiting" ] ;
+         fhir:display [ fhir:v "Recruiting" ]
+       ] )
+     ]
+  ] [
+     fhir:state [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/research-study-status"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "overall-study" ] ;
+         fhir:display [ fhir:v "Overall Study" ]
+       ] )
+     ] ;
+     fhir:actual [ fhir:v "false"^^xsd:boolean ] ;
+     fhir:period [
+       fhir:start [ fhir:v "2022-12-06"^^xsd:date ] ;
+       fhir:end [ fhir:v "2023-06"^^xsd:gYearMonth ]
+     ]
+  ] ) ; # 
+  fhir:recruitment [
+     fhir:targetNumber [ fhir:v "62"^^xsd:nonNegativeInteger ] ;
+     fhir:eligibility [
+       fhir:link <https://fevir.net/resources/EvidenceVariable/112075> ;
+       fhir:reference [ fhir:v "https://fevir.net/resources/EvidenceVariable/112075" ] ;
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693 Eligibility Criteria" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] ; # 
+  fhir:comparisonGroup ( [
+     fhir:linkId [ fhir:v "ap303" ] ;
+     fhir:name [ fhir:v "AP303" ] ;
+     fhir:type [
+       fhir:text [ fhir:v "Experimental" ]
+     ] ;
+     fhir:description [ fhir:v "AP303" ] ;
+     fhir:intendedExposure ( [
+       fhir:reference [ fhir:v "#NCT05503693-drug------ap303-50-g" ] ;
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "Drug: AP303 50 μg" ]
+     ] [
+       fhir:reference [ fhir:v "#NCT05503693-drug------ap303-150-g" ] ;
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "Drug: AP303 150 μg" ]
+     ] [
+       fhir:reference [ fhir:v "#NCT05503693-drug------ap303-300-g" ] ;
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "Drug: AP303 300 μg" ]
+     ] [
+       fhir:reference [ fhir:v "#NCT05503693-drug------ap303-600-g" ] ;
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "Drug: AP303 600 μg" ]
+     ] )
+  ] [
+     fhir:linkId [ fhir:v "placebo" ] ;
+     fhir:name [ fhir:v "Placebo" ] ;
+     fhir:type [
+       fhir:text [ fhir:v "Placebo Comparator" ]
+     ] ;
+     fhir:description [ fhir:v "Placebo" ] ;
+     fhir:intendedExposure ( [
+       fhir:reference [ fhir:v "#NCT05503693-drug------placebo-50-g" ] ;
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "Drug: Placebo 50 μg" ]
+     ] [
+       fhir:reference [ fhir:v "#NCT05503693-drug------placebo-150-g" ] ;
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "Drug: Placebo 150 μg" ]
+     ] [
+       fhir:reference [ fhir:v "#NCT05503693-drug------placebo-300-g" ] ;
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "Drug: Placebo 300 μg" ]
+     ] [
+       fhir:reference [ fhir:v "#NCT05503693-drug------placebo-600-g" ] ;
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "Drug: Placebo 600 μg" ]
+     ] )
+  ] ) ; # 
+  fhir:outcomeMeasure ( [
+     fhir:name [ fhir:v "Single Dose and Food Effect Safety Outcome Measures" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "primary" ] ;
+         fhir:display [ fhir:v "Primary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "Incidence and severity of adverse events (AEs), laboratory, ECG, and vital sign changes" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-primaryOutcome-0" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "Multiple Dose Safety Outcome Measures" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "primary" ] ;
+         fhir:display [ fhir:v "Primary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "Incidence and severity of AEs, laboratory, ECG, and vital sign changes." ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-primaryOutcome-1" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "Cmax after single dose" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "primary" ] ;
+         fhir:display [ fhir:v "Primary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "PK characteristics after single dose" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-primaryOutcome-2" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "Tmax after single dose" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "primary" ] ;
+         fhir:display [ fhir:v "Primary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "PK characteristics after single dose" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-primaryOutcome-3" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "AUC0-last after single dose" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "primary" ] ;
+         fhir:display [ fhir:v "Primary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "PK characteristics after single dose" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-primaryOutcome-4" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "AUC0-inf after single dose" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "primary" ] ;
+         fhir:display [ fhir:v "Primary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "PK characteristics after single dose" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-primaryOutcome-5" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "t1/2 after single dose" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "primary" ] ;
+         fhir:display [ fhir:v "Primary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "PK characteristics after single dose" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-primaryOutcome-6" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "CL/F after single dose" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "primary" ] ;
+         fhir:display [ fhir:v "Primary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "PK characteristics after single dose" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-primaryOutcome-7" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "Ae and CLR (if warranted) after single dose" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "primary" ] ;
+         fhir:display [ fhir:v "Primary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "PK characteristics after single dose" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-primaryOutcome-8" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "V/F after single dose" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "primary" ] ;
+         fhir:display [ fhir:v "Primary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "PK characteristics after single dose" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-primaryOutcome-9" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "Cmax after multiple dose" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "primary" ] ;
+         fhir:display [ fhir:v "Primary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "PK characteristics after multiple dose" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-primaryOutcome-10" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "Tmax after multiple dose" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "primary" ] ;
+         fhir:display [ fhir:v "Primary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "PK characteristics after multiple dose" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-primaryOutcome-11" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "AUC0-τ after multiple dose" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "primary" ] ;
+         fhir:display [ fhir:v "Primary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "PK characteristics after multiple dose" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-primaryOutcome-12" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "Cav after multiple dose" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "primary" ] ;
+         fhir:display [ fhir:v "Primary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "PK characteristics after multiple dose" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-primaryOutcome-13" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "t1/2 after multiple dose" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "primary" ] ;
+         fhir:display [ fhir:v "Primary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "PK characteristics after multiple dose" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-primaryOutcome-14" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "Rac after multiple dose" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "primary" ] ;
+         fhir:display [ fhir:v "Primary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "PK characteristics after multiple dose" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-primaryOutcome-15" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "Ae and CLR (if warranted) after multiple dose" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "primary" ] ;
+         fhir:display [ fhir:v "Primary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "PK characteristics after multiple dose" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-primaryOutcome-16" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "V/F after multiple dose" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "primary" ] ;
+         fhir:display [ fhir:v "Primary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "PK characteristics after multiple dose" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-primaryOutcome-17" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "Ctrough after multiple dose" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "primary" ] ;
+         fhir:display [ fhir:v "Primary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "PK characteristics after multiple dose" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-primaryOutcome-18" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "Effect of Food on the single dose Cmax" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "secondary" ] ;
+         fhir:display [ fhir:v "Secondary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "Effect of food on the single dose PK" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-secondaryOutcome-0" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "Effect of Food on the single dose Tmax" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "secondary" ] ;
+         fhir:display [ fhir:v "Secondary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "Effect of food on the single dose PK" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-secondaryOutcome-1" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "Effect of Food on the single dose AUC0-last" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "secondary" ] ;
+         fhir:display [ fhir:v "Secondary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "Effect of food on the single dose PK" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-secondaryOutcome-2" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "Effect of Food on the single dose AUC0-inf" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "secondary" ] ;
+         fhir:display [ fhir:v "Secondary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "Effect of food on the single dose PK" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-secondaryOutcome-3" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "Effect of Food on the single dose t1/2" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "secondary" ] ;
+         fhir:display [ fhir:v "Secondary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "Effect of food on the single dose PK" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-secondaryOutcome-4" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "Effect of Food on the single dose CL/F" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "secondary" ] ;
+         fhir:display [ fhir:v "Secondary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "Effect of food on the single dose PK" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-secondaryOutcome-5" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "Effect of Food on the single dose Ae and CLR (if warranted)" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "secondary" ] ;
+         fhir:display [ fhir:v "Secondary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "Effect of food on the single dose PK" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-secondaryOutcome-6" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] [
+     fhir:name [ fhir:v "Effect of Food on the single dose V/F" ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/research-study-objective-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "secondary" ] ;
+         fhir:display [ fhir:v "Secondary" ]
+       ] )
+     ] ) ;
+     fhir:description [ fhir:v "Effect of food on the single dose PK" ] ;
+     fhir:reference [
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:identifier [
+         fhir:type [
+           fhir:text [ fhir:v "FEvIR Linking Identifier" ]
+         ] ;
+         fhir:system [ fhir:v "https://fevir.net/FLI"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "NCT05503693-secondaryOutcome-7" ] ;
+         fhir:assigner [
+           fhir:display [ fhir:v "Computable Publishing LLC" ]
+         ]
+       ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

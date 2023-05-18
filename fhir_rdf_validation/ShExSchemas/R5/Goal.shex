@@ -1,0 +1,140 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <date.shex>
+IMPORT <Group.shex>
+IMPORT <Range.shex>
+IMPORT <Ratio.shex>
+IMPORT <string.shex>
+IMPORT <boolean.shex>
+IMPORT <Patient.shex>
+IMPORT <integer.shex>
+IMPORT <CareTeam.shex>
+IMPORT <Quantity.shex>
+IMPORT <Duration.shex>
+IMPORT <Reference.shex>
+IMPORT <Condition.shex>
+IMPORT <Observation.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <NutritionOrder.shex>
+IMPORT <RiskAssessment.shex>
+IMPORT <ServiceRequest.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <MedicationUsage.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <MedicationRequest.shex>
+
+
+start=@<Goal> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Describes the intended objective(s) for a patient, group or organization
+<Goal> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Goal];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # External Ids for this goal
+    fhir:lifecycleStatus @<code> AND
+    	{fhir:v @fhirvs:goal-status};  # proposed | planned | accepted | 
+                                            # active | on-hold | completed | 
+                                            # cancelled | entered-in-error | 
+                                            # rejected 
+    fhir:achievementStatus @<CodeableConcept>?;  # in-progress | improving | 
+                                            # worsening | no-change | achieved | 
+                                            # sustaining | not-achieved | 
+                                            # no-progress | not-attainable 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # E.g. Treatment, dietary, 
+                                            # behavioral, etc. 
+    fhir:continuous @<boolean>?;            # After meeting the goal, ongoing 
+                                            # activity is needed to sustain the 
+                                            # goal objective 
+    fhir:priority @<CodeableConcept>?;      # high-priority | medium-priority | 
+                                            # low-priority 
+    fhir:description @<CodeableConcept>;    # Code or text describing goal
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Organization> OR 
+    			@<Patient> };  # Who this goal is intended for
+    fhir:start (@<date>  OR 
+    			@<CodeableConcept> )  AND { rdf:type IRI } ?;  # When goal pursuit begins
+    fhir:target @<OneOrMore_BackboneElement>?;  # Target outcome for the goal
+    fhir:statusDate @<date>?;               # When goal status took effect
+    fhir:statusReason @<string>?;           # Reason for current status
+    fhir:source @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Who's responsible for creating 
+                                            # Goal? 
+    fhir:addresses @<OneOrMore_Reference_Condition_OR_MedicationRequest_OR_MedicationUsage_OR_NutritionOrder_OR_Observation_OR_RiskAssessment_OR_ServiceRequest>?;  # Issues addressed by this goal
+    fhir:note @<OneOrMore_Annotation>?;     # Comments about the goal
+    fhir:outcome @<OneOrMore_CodeableReference>?;  # What result was achieved regarding 
+                                            # the goal? 
+}  
+
+# Target outcome for the goal
+<Goal.target> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:measure @<CodeableConcept>?;       # The parameter whose value is being 
+                                            # tracked 
+    fhir:detail (@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<CodeableConcept>  OR 
+    			@<string>  OR 
+    			@<boolean>  OR 
+    			@<integer>  OR 
+    			@<Ratio> )  AND { rdf:type IRI } ?;  # The target value to be achieved
+    fhir:due (@<date>  OR 
+    			@<Duration> )  AND { rdf:type IRI } ?;  # Reach goal on or before
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Reference_Condition_OR_MedicationRequest_OR_MedicationUsage_OR_NutritionOrder_OR_Observation_OR_RiskAssessment_OR_ServiceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Condition> OR 
+			@<MedicationRequest> OR 
+			@<MedicationUsage> OR 
+			@<NutritionOrder> OR 
+			@<Observation> OR 
+			@<RiskAssessment> OR 
+			@<ServiceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Condition_OR_MedicationRequest_OR_MedicationUsage_OR_NutritionOrder_OR_Observation_OR_RiskAssessment_OR_ServiceRequest> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_CodeableReference> CLOSED {
+    rdf:first @<CodeableReference>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableReference> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Codes that reflect the current state of a goal and whether the goal is still being targeted.
+fhirvs:goal-status ["proposed" "planned" "accepted" "active" "on-hold" "completed" "cancelled" "entered-in-error" "rejected"]
+

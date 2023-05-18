@@ -1,0 +1,35 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:EnrollmentRequest ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "22345"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the EnrollmentRequest.</div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://happyvalley.com/enrollmentrequest"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "EN22345" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:created [ fhir:v "2014-08-16"^^xsd:date] ; # 
+  fhir:insurer [
+     fhir:reference [ fhir:v "Organization/2" ]
+  ] ; # 
+  fhir:provider [
+     fhir:reference [ fhir:v "Organization/1" ]
+  ] ; # 
+  fhir:candidate [
+     fhir:reference [ fhir:v "Patient/1" ]
+  ] ; # 
+  fhir:coverage [
+     fhir:reference [ fhir:v "Coverage/9876B1" ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

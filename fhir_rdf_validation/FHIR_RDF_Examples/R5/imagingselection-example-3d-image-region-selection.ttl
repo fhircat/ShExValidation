@@ -1,0 +1,53 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ImagingSelection ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-3d-image-region-selection"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: ImagingSelection</b><a name=\"example-3d-image-region-selection\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource ImagingSelection &quot;example-3d-image-region-selection&quot; </p></div><p><b>identifier</b>: id: urn:oid:1.2.840.113747.20080222.189914271934823329266024988586343.2.1</p><p><b>status</b>: available</p><p><b>subject</b>: <span/></p><p><b>code</b>: Region selected from multiframe CT volume <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>studyUid</b>: 1.2.840.113747.20080222.189914271934870656966024988586343</p><p><b>derivedFrom</b>: <span/></p><p><b>seriesUid</b>: 1.2.840.113747.20080222.189914271934870659266024988586343.1</p><p><b>frameOfReferenceUid</b>: 1.2.840.113747.20080222.189914270656923329266024988586343.0</p><blockquote><p><b>instance</b></p><p><b>uid</b>: 1.2.840.113747.20080222.189914271934870656923024988586343.1.0</p><p><b>sopClass</b>: urn:oid:1.2.840.10008.5.1.4.1.1.2.1 (Details: urn:ietf:rfc:3986 code urn:oid:1.2.840.10008.5.1.4.1.1.2.1 = 'urn:oid:1.2.840.10008.5.1.4.1.1.2.1', stated as 'null')</p><h3>ImageRegion3Ds</h3><table class=\"grid\"><tr><td>-</td><td><b>RegionType</b></td><td><b>Coordinate</b></td></tr><tr><td>*</td><td>ellipse</td><td>-50.0, -50.0, -50.0, 50.0, 50.0, 50.0, 25.0, -25.0, 0.0, -25.0, 25.0, 0.0</td></tr></table></blockquote></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:dicom:uid"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:1.2.840.113747.20080222.189914271934823329266024988586343.2.1" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "available"] ; # 
+  fhir:subject [
+     fhir:type [ fhir:v "Patient"^^xsd:anyURI ] ;
+     fhir:identifier [
+       fhir:system [ fhir:v "https://fhirhospital.org"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "PNWYPXNBXMPGMTWX" ]
+     ]
+  ] ; # 
+  fhir:code [
+     fhir:text [ fhir:v "Region selected from multiframe CT volume" ]
+  ] ; # 
+  fhir:studyUid [ fhir:v "1.2.840.113747.20080222.189914271934870656966024988586343"] ; # 
+  fhir:derivedFrom ( [
+     fhir:type [ fhir:v "ImagingStudy"^^xsd:anyURI ] ;
+     fhir:identifier [
+       fhir:system [ fhir:v "urn:dicom:uid"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "urn:oid:1.2.840.113747.20080222.189914271956923329266024988586343" ]
+     ]
+  ] ) ; # 
+  fhir:seriesUid [ fhir:v "1.2.840.113747.20080222.189914271934870659266024988586343.1"] ; # 
+  fhir:frameOfReferenceUid [ fhir:v "1.2.840.113747.20080222.189914270656923329266024988586343.0"] ; # 
+  fhir:instance ( [
+     fhir:uid [ fhir:v "1.2.840.113747.20080222.189914271934870656923024988586343.1.0" ] ;
+     fhir:sopClass [
+       fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "urn:oid:1.2.840.10008.5.1.4.1.1.2.1" ]
+     ] ;
+     fhir:imageRegion3D ( [
+       fhir:regionType [ fhir:v "ellipse" ] ;
+       fhir:coordinate ( [ fhir:v "-50.0"^^xsd:decimal ] [ fhir:v "-50.0"^^xsd:decimal ] [ fhir:v "-50.0"^^xsd:decimal ] [ fhir:v "50.0"^^xsd:decimal ] [ fhir:v "50.0"^^xsd:decimal ] [ fhir:v "50.0"^^xsd:decimal ] [ fhir:v "25.0"^^xsd:decimal ] [ fhir:v "-25.0"^^xsd:decimal ] [ fhir:v "0.0"^^xsd:decimal ] [ fhir:v "-25.0"^^xsd:decimal ] [ fhir:v "25.0"^^xsd:decimal ] [ fhir:v "0.0"^^xsd:decimal ] )
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

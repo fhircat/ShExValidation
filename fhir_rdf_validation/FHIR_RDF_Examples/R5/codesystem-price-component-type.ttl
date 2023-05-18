@@ -1,0 +1,101 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "price-component-type"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "pa" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "5" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/price-component-type"], [ fhir:v "http://hl7.org/fhir/price-component-type"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1807" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1807" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "PriceComponentType"], [ fhir:v "PriceComponentType"] ;
+  fhir:title [ fhir:v "Price Component Type"], [ fhir:v "Price Component Type"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2021-01-05T10:01:24+11:00"], [ fhir:v "2021-01-05T10:01:24+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Codes indicating the kind of the price component."], [ fhir:v "Codes indicating the kind of the price component."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/price-component-type"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "base" ] ;
+     fhir:display [ fhir:v "base price" ] ;
+     fhir:definition [ fhir:v "the amount is the base price used for calculating the total price before applying surcharges, discount or taxes." ]
+  ] [
+     fhir:code [ fhir:v "surcharge" ] ;
+     fhir:display [ fhir:v "surcharge" ] ;
+     fhir:definition [ fhir:v "the amount is a surcharge applied on the base price." ]
+  ] [
+     fhir:code [ fhir:v "deduction" ] ;
+     fhir:display [ fhir:v "deduction" ] ;
+     fhir:definition [ fhir:v "the amount is a deduction applied on the base price." ]
+  ] [
+     fhir:code [ fhir:v "discount" ] ;
+     fhir:display [ fhir:v "discount" ] ;
+     fhir:definition [ fhir:v "the amount is a discount applied on the base price." ]
+  ] [
+     fhir:code [ fhir:v "tax" ] ;
+     fhir:display [ fhir:v "tax" ] ;
+     fhir:definition [ fhir:v "the amount is the tax component of the total price." ]
+  ] [
+     fhir:code [ fhir:v "informational" ] ;
+     fhir:display [ fhir:v "informational" ] ;
+     fhir:definition [ fhir:v "the amount is of informational character, it has not been applied in the calculation of the total price." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

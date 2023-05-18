@@ -1,0 +1,82 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:BiologicallyDerivedProduct ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: BiologicallyDerivedProduct</b><a name=\"example\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource BiologicallyDerivedProduct &quot;example&quot; </p></div><p><b>productCode</b>: <span title=\"  &lt;text&gt;\n    &lt;status value=&quot;generated&quot; /&gt;\n    &lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[Put rendering here]&lt;/div&gt;\n  &lt;/text&gt;  \">E0398 <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#E0398)</span></span></p><p><b>identifier</b>: id: A9999E0398A999921123456A00000</p><p><b>biologicalSourceEvent</b>: id: A999921123456</p><p><b>processingFacility</b>: <a href=\"broken-link.html\">Organization/A9999</a></p><p><b>division</b>: A00000</p><p><b>productStatus</b>: available (Details: [not stated] code available = 'available', stated as 'null')</p><p><b>expirationDate</b>: 2021-08-02T23:59:00-05:00</p><p><b>storageTempRequirements</b>: 1-6 degrees C</p><blockquote><p><b>property</b></p><p><b>type</b>: ABORhD <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#ABORhD)</span></p><p><b>value</b>: A RhD Positive <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (ABORhD#62)</span></p></blockquote><blockquote><p><b>property</b></p><p><b>type</b>: Donor <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#Donor)</span></p><p><b>value</b>: Volunteer <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (CollectionType#V)</span></p></blockquote></div>"
+  ] ; #    <text>
+#    <status value="generated" />
+#    <div xmlns="http://www.w3.org/1999/xhtml">[Put rendering here]</div>
+#  </text>   
+  fhir:productCode [
+     fhir:coding ( [
+       fhir:code [ fhir:v "E0398" ]
+     ] )
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "https://www.isbt128.org/uri/MPHOUniqueIdentifier"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "A9999E0398A999921123456A00000" ]
+  ] ) ; # 
+  fhir:biologicalSourceEvent [
+     fhir:system [ fhir:v "https://www.isbt128.org/uri/DonationIdentificationNumber"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "A999921123456" ]
+  ] ; # 
+  fhir:processingFacility ( [
+     fhir:reference [ fhir:v "Organization/A9999" ]
+  ] ) ; # 
+  fhir:division [ fhir:v "A00000"] ; # 
+  fhir:productStatus [
+     fhir:code [ fhir:v "available" ]
+  ] ; # 
+  fhir:expirationDate [ fhir:v "2021-08-02T23:59:00-05:00"^^xsd:dateTime] ; # 
+  fhir:storageTempRequirements [
+     fhir:low [
+       fhir:value [ fhir:v "1"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "degrees C" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "6"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "degrees C" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ]
+     ]
+  ] ; # 
+  fhir:property ( [
+     fhir:type [
+       fhir:coding ( [
+         fhir:code [ fhir:v "ABORhD" ]
+       ] )
+     ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         fhir:system [ fhir:v "https://www.isbt128.org/uri/ABORhD"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "62" ] ;
+         fhir:display [ fhir:v "A RhD Positive" ]
+       ] )
+     ]
+  ] [
+     fhir:type [
+       fhir:coding ( [
+         fhir:code [ fhir:v "Donor" ]
+       ] )
+     ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         fhir:system [ fhir:v "https://www.isbt128.org/uri/CollectionType"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "V" ] ;
+         fhir:display [ fhir:v "Volunteer" ]
+       ] )
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

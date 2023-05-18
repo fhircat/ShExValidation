@@ -1,0 +1,157 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <url.shex>
+#imported_end
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
+IMPORT <instant.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <CareTeam.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <unsignedInt.shex>
+#imported_end
+#imported_begin 
+IMPORT <positiveInt.shex>
+#imported_end
+#imported_begin 
+IMPORT <ContactPoint.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+#imported_begin 
+IMPORT <HealthcareService.shex>
+#imported_end
+
+start=@<Subscription> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Notification about a SubscriptionTopic
+<Subscription> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Subscription]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifiers (business 
+                                            # identifier) 
+    fhir:name @<string>?;                   # Human readable name for this 
+                                            # subscription 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:subscription-status};  # requested | active | error | off | 
+                                            # entered-in-error 
+    fhir:topic @<canonical>;                # Reference to the subscription 
+                                            # topic being subscribed to 
+    fhir:contact @<OneOrMore_ContactPoint>?;  # Contact details for source (e.g. 
+                                            # troubleshooting) 
+    fhir:end @<instant>?;                   # When to automatically delete the 
+                                            # subscription 
+    fhir:managingEntity @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<HealthcareService> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ? }?;  # Entity responsible for 
+                                            # Subscription changes 
+    fhir:reason @<string>?;                 # Description of why this 
+                                            # subscription was created 
+    fhir:filterBy @<OneOrMore_Subscription.filterBy>?;  # Criteria for narrowing the 
+                                            # subscription topic stream 
+    fhir:channelType @<Coding>;             # Channel type for notifications
+    fhir:endpoint @<url>?;                  # Where the channel points to
+    fhir:header @<OneOrMore_string>?;       # Usage depends on the channel type
+    fhir:heartbeatPeriod @<unsignedInt>?;   # Interval in seconds to send 
+                                            # 'heartbeat' notification 
+    fhir:timeout @<unsignedInt>?;           # Timeout in seconds to attempt 
+                                            # notification delivery 
+    fhir:contentType @<code> AND
+    	{fhir:v @fhirvs:mimetypes}?;  # MIME type to send, or omit for no 
+                                            # payload 
+    fhir:content @<code> AND
+    	{fhir:v @fhirvs:subscription-payload-content}?;  # empty | id-only | full-resource
+    fhir:maxCount @<positiveInt>?;          # Maximum number of triggering 
+                                            # resources included in notification 
+                                            # bundles 
+}  
+
+# Criteria for narrowing the subscription topic stream
+<Subscription.filterBy> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:resourceType @<uri>?;              # Allowed Data type or Resource 
+                                            # (reference to definition) for this 
+                                            # Subscription 
+    fhir:filterParameter @<string>;         # Filter label defined in 
+                                            # SubscriptionTopic 
+    fhir:modifier @<code> AND
+    	{fhir:v @fhirvs:subscription-search-modifier}?;  # = | eq | ne | gt | lt | ge | le | 
+                                            # sa | eb | ap | above | below | in 
+                                            # | not-in | of-type 
+    fhir:value @<string>;                   # Literal value or resource path
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+<OneOrMore_Subscription.filterBy> CLOSED {
+    rdf:first @<Subscription.filterBy>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Subscription.filterBy> 
+}
+
+
+
+#---------------------- Value Sets ------------------------
+
+
+
+
+

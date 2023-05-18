@@ -1,0 +1,92 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "guide-parameter-code"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "fhir" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/guide-parameter-code"], [ fhir:v "http://hl7.org/fhir/guide-parameter-code"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.997" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.997" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "GuideParameterCode"], [ fhir:v "GuideParameterCode"] ;
+  fhir:title [ fhir:v "Guide Parameter Code"], [ fhir:v "Guide Parameter Code"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "true"], [ fhir:v "true"] ;
+  fhir:publisher [ fhir:v "HL7 International"], [ fhir:v "HL7 International"] ;
+  fhir:description [ fhir:v "GuideParameterCode"], [ fhir:v "GuideParameterCode"] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "apply" ] ;
+     fhir:display [ fhir:v "Apply Metadata Value" ] ;
+     fhir:definition [ fhir:v "If the value of this string 0..* parameter is one of the metadata fields then all conformance resources will have any specified [Resource].[field] overwritten with the ImplementationGuide.[field], where field is one of: version, date, status, publisher, contact, copyright, experimental, jurisdiction, useContext." ]
+  ] [
+     fhir:code [ fhir:v "path-resource" ] ;
+     fhir:display [ fhir:v "Resource Path" ] ;
+     fhir:definition [ fhir:v "The value of this string 0..* parameter is a subfolder of the build context's location that is to be scanned to load resources. Scope is (if present) a particular resource type." ]
+  ] [
+     fhir:code [ fhir:v "path-pages" ] ;
+     fhir:display [ fhir:v "Pages Path" ] ;
+     fhir:definition [ fhir:v "The value of this string 0..1 parameter is a subfolder of the build context's location that contains files that are part of the html content processed by the builder." ]
+  ] [
+     fhir:code [ fhir:v "path-tx-cache" ] ;
+     fhir:display [ fhir:v "Terminology Cache Path" ] ;
+     fhir:definition [ fhir:v "The value of this string 0..1 parameter is a subfolder of the build context's location that is used as the terminology cache. If this is not present, the terminology cache is on the local system, not under version control." ]
+  ] [
+     fhir:code [ fhir:v "expansion-parameter" ] ;
+     fhir:display [ fhir:v "Expansion Profile" ] ;
+     fhir:definition [ fhir:v "The value of this string 0..* parameter is a parameter (name=value) when expanding value sets for this implementation guide. This is particularly used to specify the versions of published terminologies such as SNOMED CT." ]
+  ] [
+     fhir:code [ fhir:v "rule-broken-links" ] ;
+     fhir:display [ fhir:v "Broken Links Rule" ] ;
+     fhir:definition [ fhir:v "The value of this string 0..1 parameter is either \"warning\" or \"error\" (default = \"error\"). If the value is \"warning\" then IG build tools allow the IG to be considered successfully build even when there is no internal broken links." ]
+  ] [
+     fhir:code [ fhir:v "generate-xml" ] ;
+     fhir:display [ fhir:v "Generate XML" ] ;
+     fhir:definition [ fhir:v "The value of this boolean 0..1 parameter specifies whether the IG publisher creates examples in XML format. If not present, the Publication Tool decides whether to generate XML." ]
+  ] [
+     fhir:code [ fhir:v "generate-json" ] ;
+     fhir:display [ fhir:v "Generate JSON" ] ;
+     fhir:definition [ fhir:v "The value of this boolean 0..1 parameter specifies whether the IG publisher creates examples in JSON format. If not present, the Publication Tool decides whether to generate JSON." ]
+  ] [
+     fhir:code [ fhir:v "generate-turtle" ] ;
+     fhir:display [ fhir:v "Generate Turtle" ] ;
+     fhir:definition [ fhir:v "The value of this boolean 0..1 parameter specifies whether the IG publisher creates examples in Turtle format. If not present, the Publication Tool decides whether to generate Turtle." ]
+  ] [
+     fhir:code [ fhir:v "html-template" ] ;
+     fhir:display [ fhir:v "HTML Template" ] ;
+     fhir:definition [ fhir:v "The value of this string singleton parameter is the name of the file to use as the builder template for each generated page (see templating)." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

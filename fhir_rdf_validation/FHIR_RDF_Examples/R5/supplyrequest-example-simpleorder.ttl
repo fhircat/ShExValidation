@@ -1,0 +1,61 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:SupplyRequest ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "simpleorder"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: SupplyRequest</b><a name=\"simpleorder\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource SupplyRequest &quot;simpleorder&quot; </p></div><p><b>identifier</b>: id: Order10284</p><p><b>status</b>: active</p><p><b>category</b>: Central Stock Resupply <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#central)</span></p><p><b>priority</b>: asap</p><h3>Items</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Blood collect tubes blue cap <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#BlueTubes)</span></td></tr></table><p><b>quantity</b>: 10</p><p><b>occurrence</b>: 2016-12-31</p><p><b>authoredOn</b>: 2016-12-31</p><p><b>requester</b>: <span>: Henry Seven</span></p><p><b>supplier</b>: <span>: Vendor1</span></p><h3>Reasons</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Refill due to low stock <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#stock_low)</span></td></tr></table><p><b>deliverFrom</b>: <span>: Location 1</span></p><p><b>deliverTo</b>: <span>: GoodHealth Clinic Receiving</span></p></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:value [ fhir:v "Order10284" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:category [
+     fhir:coding ( [
+       fhir:code [ fhir:v "central" ] ;
+       fhir:display [ fhir:v "Central Stock Resupply" ]
+     ] )
+  ] ; # 
+  fhir:priority [ fhir:v "asap"] ; # 
+  fhir:item [
+     fhir:concept [
+       fhir:coding ( [
+         fhir:code [ fhir:v "BlueTubes" ] ;
+         fhir:display [ fhir:v "Blood collect tubes blue cap" ]
+       ] )
+     ]
+  ] ; # 
+  fhir:quantity [
+     fhir:value [ fhir:v "10"^^xsd:decimal ]
+  ] ; # 
+  fhir:occurrence [ fhir:v "2016-12-31"^^xsd:date] ; # 
+  fhir:authoredOn [ fhir:v "2016-12-31"^^xsd:date] ; # 
+  fhir:requester [
+     fhir:display [ fhir:v "Henry Seven" ]
+  ] ; # 
+  fhir:supplier ( [
+     fhir:display [ fhir:v "Vendor1" ]
+  ] ) ; # 
+  fhir:reason ( [
+     fhir:concept [
+       fhir:coding ( [
+         fhir:code [ fhir:v "stock_low" ] ;
+         fhir:display [ fhir:v "Refill due to low stock" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:deliverFrom [
+     fhir:display [ fhir:v "Location 1" ]
+  ] ; # 
+  fhir:deliverTo [
+     fhir:display [ fhir:v "GoodHealth Clinic Receiving" ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

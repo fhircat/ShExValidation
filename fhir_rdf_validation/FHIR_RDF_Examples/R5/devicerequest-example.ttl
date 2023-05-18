@@ -1,0 +1,27 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:DeviceRequest ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: DeviceRequest</b><a name=\"example\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource DeviceRequest &quot;example&quot; </p></div><p><b>status</b>: <span title=\"  insert contents here  \">completed</span></p><p><b>intent</b>: original-order</p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a href=\"device-example.html\">Device/example</a></td></tr></table><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p></div>"
+  ] ; #    insert contents here   
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:intent [ fhir:v "original-order"] ; # 
+  fhir:code [
+     fhir:reference [
+       fhir:reference [ fhir:v "Device/example" ]
+     ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

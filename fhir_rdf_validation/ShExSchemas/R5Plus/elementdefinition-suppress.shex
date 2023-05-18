@@ -1,0 +1,34 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+# Remove the element from the snapshot when generated
+<elementdefinition-suppress> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:elementdefinition-suppress]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri> AND
+    	{fhir:value ["http://hl7.org/fhir/StructureDefinition/elementdefinition-suppress"]}; 
+    fhir:value @<boolean>  ; 
+    ^fhir:extension { ^fhir:comment {a [fhir:ElementDefinition]}} OR 
+          {^fhir:requirements {a [fhir:ElementDefinition]}} OR 
+          {^fhir:alias {a [fhir:ElementDefinition]}} OR 
+          {^fhir:example {a [fhir:ElementDefinition]}} OR 
+          {^fhir:mapping {a [fhir:ElementDefinition]}} OR 
+          {^fhir:label {a [fhir:ElementDefinition]}} OR 
+          {^fhir:code {a [fhir:ElementDefinition]}}
+
+}  
+

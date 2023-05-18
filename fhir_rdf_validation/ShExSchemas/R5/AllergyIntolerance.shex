@@ -1,0 +1,146 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <Age.shex>
+IMPORT <code.shex>
+IMPORT <Range.shex>
+IMPORT <Period.shex>
+IMPORT <string.shex>
+IMPORT <Device.shex>
+IMPORT <Patient.shex>
+IMPORT <dateTime.shex>
+IMPORT <CareTeam.shex>
+IMPORT <Reference.shex>
+IMPORT <Encounter.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+
+
+start=@<AllergyIntolerance> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Allergy or Intolerance (generally: Risk of adverse reaction to a substance)
+<AllergyIntolerance> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:AllergyIntolerance];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # External ids for this item
+    fhir:clinicalStatus @<CodeableConcept>?;  # active | inactive | resolved
+    fhir:verificationStatus @<CodeableConcept>?;  # unconfirmed | presumed | confirmed 
+                                            # | refuted | entered-in-error 
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:allergy-intolerance-type}?;  # allergy | intolerance - Underlying 
+                                            # mechanism (if known) 
+    fhir:category @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:allergy-intolerance-category}?;  # food | medication | environment | 
+                                            # biologic 
+    fhir:criticality @<code> AND
+    	{fhir:v @fhirvs:allergy-intolerance-criticality}?;  # low | high | unable-to-assess
+    fhir:code @<CodeableConcept>?;          # Code that identifies the allergy 
+                                            # or intolerance 
+    fhir:patient @<Reference> AND {fhir:link 
+    			@<Patient> };  # Who the sensitivity is for
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # Encounter when the allergy or 
+                                            # intolerance was asserted 
+    fhir:onset (@<dateTime>  OR 
+    			@<Age>  OR 
+    			@<Period>  OR 
+    			@<Range>  OR 
+    			@<string> )  AND { rdf:type IRI } ?;  # When allergy or intolerance was 
+                                            # identified 
+    fhir:recordedDate @<dateTime>?;         # Date allergy or intolerance was 
+                                            # first recorded 
+    fhir:participant @<OneOrMore_BackboneElement>?;  # Who or what participated in the 
+                                            # activities related to the allergy 
+                                            # or intolerance and how they were 
+                                            # involved 
+    fhir:lastOccurrence @<dateTime>?;       # Date(/time) of last known 
+                                            # occurrence of a reaction 
+    fhir:note @<OneOrMore_Annotation>?;     # Additional text not captured in 
+                                            # other fields 
+    fhir:reaction @<OneOrMore_BackboneElement>?;  # Adverse Reaction Events linked to 
+                                            # exposure to substance 
+}  
+
+# Who or what participated in the activities related to the allergy or intolerance and how they were involved
+<AllergyIntolerance.participant> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:function @<CodeableConcept>?;      # Type of involvement
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> };  # Who or what participated in the 
+                                            # activities related to the allergy 
+                                            # or intolerance 
+}  
+
+# Adverse Reaction Events linked to exposure to substance
+<AllergyIntolerance.reaction> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:substance @<CodeableConcept>?;     # Specific substance or 
+                                            # pharmaceutical product considered 
+                                            # to be responsible for event 
+    fhir:manifestation @<OneOrMore_CodeableReference>;  # Clinical symptoms/signs associated 
+                                            # with the Event 
+    fhir:description @<string>?;            # Description of the event as a whole
+    fhir:onset @<dateTime>?;                # Date(/time) when manifestations 
+                                            # showed 
+    fhir:severity @<code> AND
+    	{fhir:v @fhirvs:reaction-event-severity}?;  # mild | moderate | severe (of event 
+                                            # as a whole) 
+    fhir:exposureRoute @<CodeableConcept>?;  # How the subject was exposed to the 
+                                            # substance 
+    fhir:note @<OneOrMore_Annotation>?;     # Text about event not captured in 
+                                            # other fields 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_code> CLOSED {
+    rdf:first @<code>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_code> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_CodeableReference> CLOSED {
+    rdf:first @<CodeableReference>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableReference> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Estimate of the potential clinical harm, or seriousness, of a reaction to an identified substance.
+fhirvs:allergy-intolerance-criticality ["low" "high" "unable-to-assess"]
+
+# Category of an identified substance associated with allergies or intolerances.
+fhirvs:allergy-intolerance-category ["food" "medication" "environment" "biologic"]
+
+# Identification of the underlying physiological mechanism for a Reaction Risk.
+fhirvs:allergy-intolerance-type ["allergy" "intolerance"]
+
+# Clinical assessment of the severity of a reaction event as a whole, potentially considering multiple different manifestations.
+fhirvs:reaction-event-severity ["mild" "moderate" "severe"]
+

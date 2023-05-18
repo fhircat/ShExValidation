@@ -1,0 +1,35 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <Period.shex>
+IMPORT <Address.shex>
+IMPORT <DataType.shex>
+IMPORT <HumanName.shex>
+IMPORT <Reference.shex>
+IMPORT <Organization.shex>
+IMPORT <CodeableConcept.shex>
+
+# Contact information
+<ExtendedContactDetail> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:ExtendedContactDetail];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:purpose @<CodeableConcept>?;       # The type of contact
+    fhir:name @<HumanName>?;                # Name of an individual to contact
+    fhir:telecom @<OneOrMore_ContactPoint>?;  # Contact details (e.g.phone/fax/url)
+    fhir:address @<Address>?;               # Address for the contact
+    fhir:organization @<Reference> AND {fhir:link 
+    			@<Organization> }?;  # Organization
+    fhir:period @<Period>?;                 # Period that this contact was valid 
+                                            # for usage 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_ContactPoint> CLOSED {
+    rdf:first @<ContactPoint>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactPoint> 
+}
+

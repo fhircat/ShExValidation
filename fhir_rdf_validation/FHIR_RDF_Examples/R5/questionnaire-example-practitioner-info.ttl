@@ -1,0 +1,82 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Questionnaire ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-practitioner-info"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Questionnaire</b><a name=\"example-practitioner-info\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Questionnaire &quot;example-practitioner-info&quot; </p></div><p><b>status</b>: draft</p><blockquote><p><b>item</b></p><p><b>linkId</b>: core-props</p><p><b>type</b>: group</p><p><b>repeats</b>: false</p><h3>Items</h3><table class=\"grid\"><tr><td>-</td><td><b>LinkId</b></td><td><b>Definition</b></td><td><b>Text</b></td><td><b>Type</b></td><td><b>Repeats</b></td></tr><tr><td>*</td><td>Practitioner.active</td><td><a href=\"practitioner.html\">Practitioner</a></td><td>Active</td><td>boolean</td><td> </td></tr><tr><td>*</td><td>Practitioner.gender</td><td><a href=\"practitioner.html\">Practitioner</a></td><td>Gender</td><td>coding</td><td> </td></tr><tr><td>*</td><td>Practitioner.birthDate</td><td><a href=\"practitioner.html\">Practitioner</a></td><td>Birth Date</td><td>date</td><td> </td></tr><tr><td>*</td><td>Practitioner.name.text</td><td><a href=\"practitioner.html\">Practitioner</a></td><td>Name</td><td>string</td><td> </td></tr><tr><td>*</td><td>Practitioner.address.line</td><td><a href=\"practitioner.html\">Practitioner</a></td><td>Address</td><td>string</td><td>true</td></tr><tr><td>*</td><td>Practitioner.address.postalCode</td><td><a href=\"practitioner.html\">Practitioner</a></td><td>Post Code</td><td>string</td><td> </td></tr></table></blockquote><blockquote><p><b>item</b></p><p><b>linkId</b>: Practitioner.qualification</p><p><b>definition</b>: <a href=\"practitioner.html\">Practitioner</a></p><p><b>text</b>: Qualifications</p><p><b>type</b>: group</p><p><b>repeats</b>: true</p><h3>Items</h3><table class=\"grid\"><tr><td>-</td><td><b>LinkId</b></td><td><b>Definition</b></td><td><b>Text</b></td><td><b>Type</b></td></tr><tr><td>*</td><td>Practitioner.qualification.code.coding.code</td><td><a href=\"practitioner.html\">Practitioner</a></td><td>Code</td><td>string</td></tr><tr><td>*</td><td>Practitioner.qualification.code.coding.display</td><td><a href=\"practitioner.html\">Practitioner</a></td><td>Display</td><td>string</td></tr><tr><td>*</td><td>Practitioner.qualification.period.end</td><td><a href=\"practitioner.html\">Practitioner</a></td><td>Completion Year</td><td>dateTime</td></tr><tr><td>*</td><td>Practitioner.qualification.issuer.display</td><td><a href=\"practitioner.html\">Practitioner</a></td><td>Issued by</td><td>string</td></tr></table></blockquote></div>"
+  ] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:item ( [
+     fhir:linkId [ fhir:v "core-props" ] ;
+     fhir:type [ fhir:v "group" ] ;
+     fhir:repeats [ fhir:v "false"^^xsd:boolean ] ;
+     fhir:item ( [
+       fhir:linkId [ fhir:v "Practitioner.active" ] ;
+       fhir:definition [ fhir:v "http://hl7.org/fhir/StructureDefinition/Practitioner#Practitioner.active"^^xsd:anyURI ] ;
+       fhir:text [ fhir:v "Active" ] ;
+       fhir:type [ fhir:v "boolean" ]
+     ] [
+       fhir:linkId [ fhir:v "Practitioner.gender" ] ;
+       fhir:definition [ fhir:v "http://hl7.org/fhir/StructureDefinition/Practitioner#Practitioner.gender"^^xsd:anyURI ] ;
+       fhir:text [ fhir:v "Gender" ] ;
+       fhir:type [ fhir:v "coding" ]
+     ] [
+       fhir:linkId [ fhir:v "Practitioner.birthDate" ] ;
+       fhir:definition [ fhir:v "http://hl7.org/fhir/StructureDefinition/Practitioner#Practitioner.birthDate"^^xsd:anyURI ] ;
+       fhir:text [ fhir:v "Birth Date" ] ;
+       fhir:type [ fhir:v "date" ]
+     ] [
+       fhir:linkId [ fhir:v "Practitioner.name.text" ] ;
+       fhir:definition [ fhir:v "http://hl7.org/fhir/StructureDefinition/Practitioner#Practitioner.name.text"^^xsd:anyURI ] ;
+       fhir:text [ fhir:v "Name" ] ;
+       fhir:type [ fhir:v "string" ]
+     ] [
+       fhir:linkId [ fhir:v "Practitioner.address.line" ] ;
+       fhir:definition [ fhir:v "http://hl7.org/fhir/StructureDefinition/Practitioner#Practitioner.address.line"^^xsd:anyURI ] ;
+       fhir:text [ fhir:v "Address" ] ;
+       fhir:type [ fhir:v "string" ] ;
+       fhir:repeats [ fhir:v "true"^^xsd:boolean ]
+     ] [
+       fhir:linkId [ fhir:v "Practitioner.address.postalCode" ] ;
+       fhir:definition [ fhir:v "http://hl7.org/fhir/StructureDefinition/Practitioner#Practitioner.address.postalCode"^^xsd:anyURI ] ;
+       fhir:text [ fhir:v "Post Code" ] ;
+       fhir:type [ fhir:v "string" ]
+     ] )
+  ] [
+     fhir:linkId [ fhir:v "Practitioner.qualification" ] ;
+     fhir:definition [ fhir:v "http://hl7.org/fhir/StructureDefinition/Practitioner#Practitioner.qualification"^^xsd:anyURI ] ;
+     fhir:text [ fhir:v "Qualifications" ] ;
+     fhir:type [ fhir:v "group" ] ;
+     fhir:repeats [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:item ( [
+       fhir:linkId [ fhir:v "Practitioner.qualification.code.coding.code" ] ;
+       fhir:definition [ fhir:v "http://hl7.org/fhir/StructureDefinition/Practitioner#Practitioner.qualification.code.coding.code"^^xsd:anyURI ] ;
+       fhir:text [ fhir:v "Code" ] ;
+       fhir:type [ fhir:v "string" ]
+     ] [
+       fhir:linkId [ fhir:v "Practitioner.qualification.code.coding.display" ] ;
+       fhir:definition [ fhir:v "http://hl7.org/fhir/StructureDefinition/Practitioner#Practitioner.qualification.code.coding.display"^^xsd:anyURI ] ;
+       fhir:text [ fhir:v "Display" ] ;
+       fhir:type [ fhir:v "string" ]
+     ] [
+       fhir:linkId [ fhir:v "Practitioner.qualification.period.end" ] ;
+       fhir:definition [ fhir:v "http://hl7.org/fhir/StructureDefinition/Practitioner#Practitioner.qualification.period.end"^^xsd:anyURI ] ;
+       fhir:text [ fhir:v "Completion Year" ] ;
+       fhir:type [ fhir:v "dateTime" ]
+     ] [
+       fhir:linkId [ fhir:v "Practitioner.qualification.issuer.display" ] ;
+       fhir:definition [ fhir:v "http://hl7.org/fhir/StructureDefinition/Practitioner#Practitioner.qualification.issuer.display"^^xsd:anyURI ] ;
+       fhir:text [ fhir:v "Issued by" ] ;
+       fhir:type [ fhir:v "string" ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

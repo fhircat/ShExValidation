@@ -1,0 +1,84 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <string.shex>
+IMPORT <boolean.shex>
+IMPORT <Endpoint.shex>
+IMPORT <Reference.shex>
+IMPORT <DomainResource.shex>
+IMPORT <ExtendedContactDetail.shex>
+
+
+start=@<Organization> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A grouping of people or organizations with a common purpose
+<Organization> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Organization]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Identifies this organization  
+                                            # across multiple systems 
+    fhir:active @<boolean>?;                # Whether the organization's record 
+                                            # is still in active use 
+    fhir:type @<OneOrMore_CodeableConcept>?;  # Kind of organization
+    fhir:name @<string>?;                   # Name used for the organization
+    fhir:alias @<OneOrMore_string>?;        # A list of alternate names that the 
+                                            # organization is known as, or was 
+                                            # known as in the past 
+    fhir:description @<string>?;            # Additional details about the 
+                                            # Organization that could be 
+                                            # displayed as further information 
+                                            # to identify the Organization 
+                                            # beyond its name 
+    fhir:contact @<OneOrMore_ExtendedContactDetail>?;  # Official contact details for the 
+                                            # Organization 
+    fhir:telecom @<OneOrMore_ContactPoint>?;  # Deprecated - use contact.telecom
+    fhir:address @<OneOrMore_Address>?;     # Deprecated - use contact.address
+    fhir:partOf @<Reference> AND {fhir:link 
+    			@<Organization>? }?;  # The organization of which this 
+                                            # organization forms a part 
+    fhir:endpoint @<OneOrMore_Reference_Endpoint>?;  # Technical endpoints providing 
+                                            # access to services operated for 
+                                            # the organization 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_string> CLOSED {
+    rdf:first @<string>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_string> 
+}
+
+<OneOrMore_ExtendedContactDetail> CLOSED {
+    rdf:first @<ExtendedContactDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ExtendedContactDetail> 
+}
+
+<OneOrMore_ContactPoint> CLOSED {
+    rdf:first @<ContactPoint>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactPoint> 
+}
+
+<OneOrMore_Address> CLOSED {
+    rdf:first @<Address>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Address> 
+}
+
+<OneOrMore_Reference_Endpoint> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Endpoint> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Endpoint> 
+}
+

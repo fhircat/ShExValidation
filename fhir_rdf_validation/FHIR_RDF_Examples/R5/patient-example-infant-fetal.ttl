@@ -1,0 +1,59 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Patient ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "infant-fetal"] ; #    example of a fetal (pre-birth) patient   
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p style=\"border: 1px #661aff solid; background-color: #e6e6ff; padding: 10px;\"><b>Anonymous Patient</b> male, DoB Unknown ( Medical record number: MRN657865757378)</p><hr/><table class=\"grid\"><tr><td style=\"background-color: #f3f5da\" title=\"Nominated Contact: Mother\">Mother:</td><td colspan=\"3\"><ul><li>Leia Organa (MAIDEN)</li><li><a href=\"tel:+31201234567\">+31201234567</a></li></ul></td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Mother's maiden (unmarried) name, commonly collected to help verify patient identity.\"><a href=\"http://hl7.org/fhir/extensions/StructureDefinition-patient-mothersMaidenName.html\">Patient Mother's Maiden Name:</a></td><td colspan=\"3\"><ul><li>Organa</li></ul></td></tr></table></div>"
+  ] ; #    The details of the child   
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/patient-mothersMaidenName"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "Organa" ]
+  ] ) ; # 
+  fhir:identifier ( [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0203"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "MR" ]
+       ] )
+     ] ;
+     fhir:system [ fhir:v "http://coruscanthealth.org/main-hospital/patient-identifier"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "MRN657865757378" ]
+  ] ) ; # 
+  fhir:gender [ fhir:v "male"] ; # 
+  fhir:contact ( [
+     fhir:relationship ( [
+       fhir:coding ( [
+         a sct:72705000 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "72705000" ] ;
+         fhir:display [ fhir:v "Mother" ]
+       ] [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0131"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "N" ]
+       ] [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-RoleCode"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "MTH" ]
+       ] ) #    Indicates that the contact is the patient's mother   
+     ] ) ; #    Contact of the patient   
+     fhir:name [
+       fhir:use [ fhir:v "maiden" ] ;
+       fhir:family [ fhir:v "Organa" ] ;
+       fhir:given ( [ fhir:v "Leia" ] )
+     ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "phone" ] ;
+       fhir:value [ fhir:v "+31201234567" ] ;
+       fhir:use [ fhir:v "mobile" ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

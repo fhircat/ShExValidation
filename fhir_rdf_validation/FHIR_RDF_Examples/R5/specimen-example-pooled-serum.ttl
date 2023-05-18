@@ -1,0 +1,47 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Specimen ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "pooled-serum"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Specimen</b><a name=\"pooled-serum\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Specimen &quot;pooled-serum&quot; </p></div><p><b>accessionIdentifier</b>: <span title=\"   the accessionId assigned by the lab \">id: 20171120-1234</span></p><p><b>type</b>: <span title=\"  Pooled serum sample from 30 individuals in the herd- no Snomed Code for this - used a made up local code \">Pooled serum sample <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (vdl#Serum sample, pooled &quot;Serum sample, pooled&quot;)</span></span></p><p><b>subject</b>: <span title=\"  subject is a herd of breeding sows  \"><a href=\"group-example-herd1.html\">Group/herd1</a> &quot;Breeding herd&quot;</span></p><p><b>combined</b>: pooled</p><h3>Collections</h3><table class=\"grid\"><tr><td>-</td><td><b>Collector</b></td><td><b>Collected[x]</b></td></tr><tr><td>*</td><td><span>: James Herriot, FRCVS</span></td><td>2017-11-14</td></tr></table><h3>Containers</h3><table class=\"grid\"><tr><td>-</td><td><b>Device</b></td></tr><tr><td>*</td><td><a href=\"device-example-specimen-container-red-top-vacutainer.html\">Device/device-example-specimen-container-red-top-vacutainer</a></td></tr></table><p><b>note</b>: Pooled serum sample from 30 individuals</p></div>"
+  ] ; #     the accessionId assigned by the lab  
+  fhir:accessionIdentifier [
+     fhir:system [ fhir:v "https://vetmed.iastate.edu/vdl"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "20171120-1234" ]
+  ] ; # 
+  fhir:type [
+     fhir:coding ( [
+       fhir:system [ fhir:v "https://vetmed.iastate.edu/vdl"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "Serum sample, pooled" ] ;
+       fhir:display [ fhir:v "Serum sample, pooled" ]
+     ] ) ;
+     fhir:text [ fhir:v "Pooled serum sample" ]
+  ] ; #    Pooled serum sample from 30 individuals in the herd- no Snomed Code for this - used a made up local code  
+  fhir:subject [
+     fhir:reference [ fhir:v "Group/herd1" ]
+  ] ; #    subject is a herd of breeding sows   
+  fhir:combined [ fhir:v "pooled"] ; # 
+  fhir:collection [
+     fhir:collector [
+       fhir:display [ fhir:v "James Herriot, FRCVS" ]
+     ] ;
+     fhir:collected [ fhir:v "2017-11-14"^^xsd:date ]
+  ] ; # 
+  fhir:container ( [
+     fhir:device [
+       fhir:reference [ fhir:v "Device/device-example-specimen-container-red-top-vacutainer" ]
+     ]
+  ] ) ; # 
+  fhir:note ( [
+     fhir:text [ fhir:v "Pooled serum sample from 30 individuals" ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

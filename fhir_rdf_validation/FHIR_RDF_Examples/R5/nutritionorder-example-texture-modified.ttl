@@ -1,0 +1,81 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:NutritionOrder ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "texturemodified"] ; #    EH: use oral Diet element   
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: NutritionOrder</b><a name=\"texturemodified\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource NutritionOrder &quot;texturemodified&quot; </p></div><p><b>identifier</b>: id: 123</p><p><b>status</b>: active</p><p><b>intent</b>: order</p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example: Peter Chalmers</a> &quot;Peter CHALMERS&quot;</p><p><b>dateTime</b>: 2014-09-17</p><p><b>orderer</b>: <a href=\"practitioner-example.html\">Practitioner/example: Dr Adam Careful</a> &quot;Adam CAREFUL&quot;</p><blockquote><p><b>oralDiet</b></p><p><b>type</b>: <span title=\"  EH:  list type of diet showing standard code and local codes  \">Texture modified diet <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#435801000124108; diet-type-codes#1010)</span></span></p><h3>Schedules</h3><table class=\"grid\"><tr><td>-</td><td><b>Timing</b></td></tr><tr><td>*</td><td>Starting 2015-02-10, 3 per 1 days</td></tr></table><h3>Textures</h3><table class=\"grid\"><tr><td>-</td><td><b>Modifier</b></td><td><b>FoodType</b></td></tr><tr><td>*</td><td>Regular, Chopped Meat <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#228049004 &quot;Chopped food&quot;)</span></td><td>Regular, Chopped Meat <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#28647000 &quot;Meat&quot;)</span></td></tr></table></blockquote></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://goodhealthhospital.org/nutrition-requests"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "123" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:intent [ fhir:v "order"] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "Peter Chalmers" ]
+  ] ; # 
+  fhir:dateTime [ fhir:v "2014-09-17"^^xsd:date] ; # 
+  fhir:orderer [
+     fhir:reference [ fhir:v "Practitioner/example" ] ;
+     fhir:display [ fhir:v "Dr Adam Careful" ]
+  ] ; # 
+  fhir:oralDiet [
+     fhir:type ( [
+       fhir:coding ( [
+         a sct:435801000124108 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "435801000124108" ] ;
+         fhir:display [ fhir:v "Texture modified diet" ]
+       ] [
+         fhir:system [ fhir:v "http://goodhealthhospital.org/diet-type-codes"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "1010" ] ;
+         fhir:display [ fhir:v "Texture modified diet" ]
+       ] ) ;
+       fhir:text [ fhir:v "Texture modified diet" ]
+     ] ) ; #    EH:  list type of diet showing standard code and local codes   
+     fhir:schedule [
+       fhir:timing ( [
+         fhir:repeat [
+           fhir:bounds [
+             a fhir:Period ;
+             fhir:start [ fhir:v "2015-02-10"^^xsd:date ]
+           ] ;
+           fhir:frequency [ fhir:v "3"^^xsd:positiveInteger ] ;
+           fhir:period [ fhir:v "1"^^xsd:decimal ] ;
+           fhir:periodUnit [ fhir:v "d" ]
+         ]
+       ] )
+     ] ; #    EH example of three times a day starting on 2\/10   
+     fhir:texture ( [
+       fhir:modifier [
+         fhir:coding ( [
+           a sct:228049004 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "228049004" ] ;
+           fhir:display [ fhir:v "Chopped food" ]
+         ] ) ;
+         fhir:text [ fhir:v "Regular, Chopped Meat" ]
+       ] ;
+       fhir:foodType [
+         fhir:coding ( [
+           a sct:28647000 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "28647000" ] ;
+           fhir:display [ fhir:v "Meat" ]
+         ] ) ;
+         fhir:text [ fhir:v "Regular, Chopped Meat" ]
+       ]
+     ] )
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

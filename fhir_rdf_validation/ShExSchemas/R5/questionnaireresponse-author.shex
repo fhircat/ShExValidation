@@ -1,0 +1,33 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Device.shex>
+IMPORT <Patient.shex>
+IMPORT <Extension.shex>
+IMPORT <Reference.shex>
+IMPORT <Practitioner.shex>
+IMPORT <Organization.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <PractitionerRole.shex>
+
+# Who answered question/group
+<questionnaireresponse-author> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:questionnaireresponse-author];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/questionnaireresponse-author"]}; 
+    fhir:v ((@<Reference>  AND {fhir:link @<Device> OR 
+    			 @<Practitioner> OR 
+    			 @<PractitionerRole> OR 
+    			 @<Patient> OR 
+    			 @<RelatedPerson> OR 
+    			 @<Organization> }) )  AND { rdf:type IRI } ; 
+    ^fhir:extension { ^fhir:item {a [fhir:QuestionnaireResponse]} OR 
+          ^fhir:item {^fhir:item {a [fhir:QuestionnaireResponse]}}
+        }
+}  
+

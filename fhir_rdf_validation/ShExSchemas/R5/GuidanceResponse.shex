@@ -1,0 +1,99 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <Group.shex>
+IMPORT <Device.shex>
+IMPORT <Patient.shex>
+IMPORT <dateTime.shex>
+IMPORT <CarePlan.shex>
+IMPORT <canonical.shex>
+IMPORT <Reference.shex>
+IMPORT <Encounter.shex>
+IMPORT <Identifier.shex>
+IMPORT <Parameters.shex>
+IMPORT <RequestGroup.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <OperationOutcome.shex>
+
+
+start=@<GuidanceResponse> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# The formal response to a guidance request
+<GuidanceResponse> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:GuidanceResponse];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:requestIdentifier @<Identifier>?;  # The identifier of the request 
+                                            # associated with this response, if 
+                                            # any 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business identifier
+    fhir:module (@<uri>  OR 
+    			@<canonical>  OR 
+    			@<CodeableConcept> )  AND { rdf:type IRI } ;  # What guidance was requested
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:guidance-response-status};  # success | data-requested | 
+                                            # data-required | in-progress | 
+                                            # failure | entered-in-error 
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Patient> }?;  # Patient the request was performed 
+                                            # for 
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # Encounter during which the 
+                                            # response was returned 
+    fhir:occurrenceDateTime @<dateTime>?;   # When the guidance response was 
+                                            # processed 
+    fhir:performer @<Reference> AND {fhir:link 
+    			@<Device> }?;  # Device returning the guidance
+    fhir:reason @<OneOrMore_CodeableReference>?;  # Why guidance is needed
+    fhir:note @<OneOrMore_Annotation>?;     # Additional notes about the response
+    fhir:evaluationMessage @<OneOrMore_Reference_OperationOutcome>?;  # Messages resulting from the 
+                                            # evaluation of the artifact or 
+                                            # artifacts 
+    fhir:outputParameters @<Reference> AND {fhir:link 
+    			@<Parameters> }?;  # The output parameters of the 
+                                            # evaluation, if any 
+    fhir:result @<Reference> AND {fhir:link 
+    			@<CarePlan> OR 
+    			@<RequestGroup> }?;  # Proposed actions, if any
+    fhir:dataRequirement @<OneOrMore_DataRequirement>?;  # Additional required data
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_CodeableReference> CLOSED {
+    rdf:first @<CodeableReference>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableReference> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_Reference_OperationOutcome> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<OperationOutcome> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_OperationOutcome> 
+}
+
+<OneOrMore_DataRequirement> CLOSED {
+    rdf:first @<DataRequirement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_DataRequirement> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The status of a guidance response.
+fhirvs:guidance-response-status ["success" "data-requested" "data-required" "in-progress" "failure" "entered-in-error"]
+

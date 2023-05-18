@@ -1,0 +1,395 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <time.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <Range.shex>
+#imported_end
+#imported_begin 
+IMPORT <Ratio.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Timing.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <instant.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <integer.shex>
+#imported_end
+#imported_begin 
+IMPORT <Location.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <Specimen.shex>
+#imported_end
+#imported_begin 
+IMPORT <CarePlan.shex>
+#imported_end
+#imported_begin 
+IMPORT <Resource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CareTeam.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Procedure.shex>
+#imported_end
+#imported_begin 
+IMPORT <Substance.shex>
+#imported_end
+#imported_begin 
+IMPORT <Encounter.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Medication.shex>
+#imported_end
+#imported_begin 
+IMPORT <Attachment.shex>
+#imported_end
+#imported_begin 
+IMPORT <Annotation.shex>
+#imported_end
+#imported_begin 
+IMPORT <SampledData.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <DeviceMetric.shex>
+#imported_end
+#imported_begin 
+IMPORT <GenomicStudy.shex>
+#imported_end
+#imported_begin 
+IMPORT <ImagingStudy.shex>
+#imported_end
+#imported_begin 
+IMPORT <Immunization.shex>
+#imported_end
+#imported_begin 
+IMPORT <BodyStructure.shex>
+#imported_end
+#imported_begin 
+IMPORT <DeviceRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <NutritionOrder.shex>
+#imported_end
+#imported_begin 
+IMPORT <ServiceRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <MedicationUsage.shex>
+#imported_end
+#imported_begin 
+IMPORT <NutritionProduct.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+#imported_begin 
+IMPORT <ImagingSelection.shex>
+#imported_end
+#imported_begin 
+IMPORT <MedicationRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <MolecularSequence.shex>
+#imported_end
+#imported_begin 
+IMPORT <DocumentReference.shex>
+#imported_end
+#imported_begin 
+IMPORT <MedicationDispense.shex>
+#imported_end
+#imported_begin 
+IMPORT <QuestionnaireResponse.shex>
+#imported_end
+#imported_begin 
+IMPORT <MedicationAdministration.shex>
+#imported_end
+#imported_begin 
+IMPORT <BiologicallyDerivedProduct.shex>
+#imported_end
+#imported_begin 
+IMPORT <ImmunizationRecommendation.shex>
+#imported_end
+
+start=@<Observation> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Measurements and simple assertions
+<Observation> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Observation]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business Identifier for observation
+    fhir:instantiates (@<canonical>  AND {fhir:link @<ObservationDefinition> })  OR 
+    			(@<Reference>  AND {fhir:link @<ObservationDefinition> })  ?;  # Instantiates FHIR 
+                                            # ObservationDefinition 
+    fhir:basedOn @<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest>?;  # Fulfills plan, proposal or order
+    fhir:triggeredBy @<OneOrMore_Observation.triggeredBy>?;  # Triggering observation(s)
+    fhir:partOf @<OneOrMore_Reference_GenomicStudy_OR_ImagingStudy_OR_Immunization_OR_MedicationAdministration_OR_MedicationDispense_OR_MedicationUsage_OR_Procedure>?;  # Part of referenced event
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:observation-status};  # registered | preliminary | final | 
+                                            # amended + 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Classification of  type of 
+                                            # observation 
+    fhir:code @<CodeableConcept>;           # Type of observation (code / type)
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<BiologicallyDerivedProduct> OR 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<Location> OR 
+    			@<Medication> OR 
+    			@<NutritionProduct> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<Procedure> OR 
+    			@<Substance> ? }?;  # Who and/or what the observation is 
+                                            # about 
+    fhir:focus @<OneOrMore_Reference_Resource>?;  # What the observation is about, 
+                                            # when it is not about the subject 
+                                            # of record 
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> ? }?;  # Healthcare event during which this 
+                                            # observation is made 
+    fhir:effective @<dateTime>  OR 
+    			@<Period>  OR 
+    			@<Timing>  OR 
+    			@<instant>  ?;  # Clinically relevant 
+                                            # time/time-period for observation 
+    fhir:issued @<instant>?;                # Date/Time this version was made 
+                                            # available 
+    fhir:performer @<OneOrMore_Reference_CareTeam_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Who is responsible for the 
+                                            # observation 
+    fhir:value @<Quantity>  OR 
+    			@<CodeableConcept>  OR 
+    			@<string>  OR 
+    			@<boolean>  OR 
+    			@<integer>  OR 
+    			@<Range>  OR 
+    			@<Ratio>  OR 
+    			@<SampledData>  OR 
+    			@<time>  OR 
+    			@<dateTime>  OR 
+    			@<Period>  OR 
+    			@<Attachment>  ?;  # Actual result
+    fhir:dataAbsentReason @<CodeableConcept>?;  # Why the result is missing
+    fhir:interpretation @<OneOrMore_CodeableConcept>?;  # High, low, normal, etc.
+    fhir:note @<OneOrMore_Annotation>?;     # Comments about the observation
+    fhir:bodySite @<CodeableConcept>?;      # Observed body part
+    fhir:bodyStructure @<Reference> AND {fhir:link 
+    			@<BodyStructure> ? }?;  # Observed body structure
+    fhir:method @<CodeableConcept>?;        # How it was done
+    fhir:specimen @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Specimen> ? }?;  # Specimen used for this observation
+    fhir:device @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<DeviceMetric> ? }?;  # (Measurement) Device
+    fhir:referenceRange @<OneOrMore_Observation.referenceRange>?;  # Provides guide for interpretation
+    fhir:hasMember @<OneOrMore_Reference_MolecularSequence_OR_Observation_OR_QuestionnaireResponse>?;  # Related resource that belongs to 
+                                            # the Observation group 
+    fhir:derivedFrom @<OneOrMore_Reference_DocumentReference_OR_GenomicStudy_OR_ImagingSelection_OR_ImagingStudy_OR_MolecularSequence_OR_Observation_OR_QuestionnaireResponse>?;  # Related resource from which the 
+                                            # observation is made 
+    fhir:component @<OneOrMore_Observation.component>?;  # Component results
+}  
+
+# Component results
+<Observation.component> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>;           # Type of component observation 
+                                            # (code / type) 
+    fhir:value @<Quantity>  OR 
+    			@<CodeableConcept>  OR 
+    			@<string>  OR 
+    			@<boolean>  OR 
+    			@<integer>  OR 
+    			@<Range>  OR 
+    			@<Ratio>  OR 
+    			@<SampledData>  OR 
+    			@<time>  OR 
+    			@<dateTime>  OR 
+    			@<Period>  OR 
+    			@<Attachment>  ?;  # Actual component result
+    fhir:dataAbsentReason @<CodeableConcept>?;  # Why the component result is missing
+    fhir:interpretation @<OneOrMore_CodeableConcept>?;  # High, low, normal, etc.
+    fhir:referenceRange @<OneOrMore_Observation.referenceRange>?;  # Provides guide for interpretation 
+                                            # of component result 
+}  
+
+# Provides guide for interpretation
+<Observation.referenceRange> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:low @<Quantity>?;                  # Low Range, if relevant
+    fhir:high @<Quantity>?;                 # High Range, if relevant
+    fhir:normalValue @<CodeableConcept>?;   # Normal value, if relevant
+    fhir:type @<CodeableConcept>?;          # Reference range qualifier
+    fhir:appliesTo @<OneOrMore_CodeableConcept>?;  # Reference range population
+    fhir:age @<Range>?;                     # Applicable age range, if relevant
+    fhir:text @<string>?;                   # Text based reference range in an 
+                                            # observation 
+}  
+
+# Triggering observation(s)
+<Observation.triggeredBy> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:observation @<Reference> AND {fhir:link 
+    			@<Observation> ? };  # Triggering observation
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:observation-triggeredbytype};  # reflex | repeat | re-run
+    fhir:reason @<string>?;                 # Reason that the observation was 
+                                            # triggered 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_Observation.triggeredBy> CLOSED {
+    rdf:first @<Observation.triggeredBy>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Observation.triggeredBy> 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_Observation.referenceRange> CLOSED {
+    rdf:first @<Observation.referenceRange>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Observation.referenceRange> 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_Observation.component> CLOSED {
+    rdf:first @<Observation.component>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Observation.component> 
+}
+
+#---------------------- Value Sets ------------------------
+
+
+

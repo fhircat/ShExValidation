@@ -1,0 +1,53 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+# When to come off hold
+<workflow-releaseDate> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:workflow-releaseDate]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri> AND
+    	{fhir:value ["http://hl7.org/fhir/StructureDefinition/workflow-releaseDate"]}; 
+    fhir:value @<dateTime>  ; 
+    ^fhir:extension { a [fhir:Account]} OR 
+          {a [fhir:Appointment]} OR 
+          {a [fhir:ArtifactAssessment]} OR 
+          {a [fhir:CarePlan]} OR 
+          {^fhir:activity {a [fhir:CarePlan]}} OR 
+          {a [fhir:ClinicalImpression]} OR 
+          {a [fhir:Communication]} OR 
+          {a [fhir:CommunicationRequest]} OR 
+          {a [fhir:Contract]} OR 
+          {a [fhir:DeviceDispense]} OR 
+          {a [fhir:DeviceRequest]} OR 
+          {a [fhir:DeviceUsage]} OR 
+          {a [fhir:Encounter]} OR 
+          {a [fhir:Endpoint]} OR 
+          {a [fhir:EpisodeOfCare]} OR 
+          {a [fhir:Goal]} OR 
+          {a [fhir:MedicationAdministration]} OR 
+          {a [fhir:MedicationDispense]} OR 
+          {a [fhir:MedicationRequest]} OR 
+          {a [fhir:NutritionIntake]} OR 
+          {a [fhir:NutritionOrder]} OR 
+          {a [fhir:Procedure]} OR 
+          {a [fhir:RequestOrchestration]} OR 
+          {a [fhir:ServiceRequest]} OR 
+          {a [fhir:SupplyRequest]} OR 
+          {a [fhir:Task]}
+
+}  
+

@@ -1,0 +1,101 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <url.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <ContactPoint.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+
+start=@<Endpoint> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# The technical details of an endpoint that can be used for electronic services
+<Endpoint> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Endpoint]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Identifies this endpoint across 
+                                            # multiple systems 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:endpoint-status};  # active | suspended | error | off | 
+                                            # entered-in-error | test 
+    fhir:connectionType @<OneOrMore_CodeableConcept>;  # Protocol/Profile/Standard to be 
+                                            # used with this endpoint connection 
+    fhir:name @<string>?;                   # A name that this endpoint can be 
+                                            # identified by 
+    fhir:description @<string>?;            # Additional details about the 
+                                            # endpoint that could be displayed 
+                                            # as further information to identify 
+                                            # the description beyond its name 
+    fhir:environmentType @<OneOrMore_CodeableConcept>?;  # The type of environment(s) exposed 
+                                            # at this endpoint 
+    fhir:managingOrganization @<Reference> AND {fhir:link 
+    			@<Organization> ? }?;  # Organization that manages this 
+                                            # endpoint (might not be the 
+                                            # organization that exposes the 
+                                            # endpoint) 
+    fhir:contact @<OneOrMore_ContactPoint>?;  # Contact details for source (e.g. 
+                                            # troubleshooting) 
+    fhir:period @<Period>?;                 # Interval the endpoint is expected 
+                                            # to be operational 
+    fhir:payloadType @<OneOrMore_CodeableConcept>?;  # The type of content that may be 
+                                            # used at this endpoint (e.g. XDS 
+                                            # Discharge summaries) 
+    fhir:payloadMimeType @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:mimetypes}?;  # Mimetype to send. If not 
+                                            # specified, the content could be 
+                                            # anything (including no payload, if 
+                                            # the connectionType defined this) 
+    fhir:address @<url>;                    # The technical base address for 
+                                            # connecting to this endpoint 
+    fhir:header @<OneOrMore_string>?;       # Usage depends on the channel type
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+#---------------------- Value Sets ------------------------
+
+
+

@@ -1,0 +1,104 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Ratio.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableReference.shex>
+#imported_end
+
+start=@<Medication> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Definition of a Medication
+<Medication> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Medication]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business identifier for this 
+                                            # medication 
+    fhir:code @<CodeableConcept>?;          # Codes that identify this medication
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:medication-status}?;  # active | inactive | 
+                                            # entered-in-error 
+    fhir:marketingAuthorizationHolder @<Reference> AND {fhir:link 
+    			@<Organization> ? }?;  # Organization that has 
+                                            # authorization to market medication 
+    fhir:doseForm @<CodeableConcept>?;      # powder | tablets | capsule +
+    fhir:totalVolume @<Ratio>?;             # When the specified product code 
+                                            # does not infer a package size, 
+                                            # this is the specific amount of 
+                                            # drug in the product 
+    fhir:ingredient @<OneOrMore_Medication.ingredient>?;  # Active or inactive ingredient
+    fhir:batch @<Medication.batch>?;        # Details about packaged medications
+}  
+
+# Details about packaged medications
+<Medication.batch> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:lotNumber @<string>?;              # Identifier assigned to batch
+    fhir:expirationDate @<dateTime>?;       # When batch will expire
+}  
+
+# Active or inactive ingredient
+<Medication.ingredient> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:item @<CodeableReference>;         # The ingredient (substance or 
+                                            # medication) that the 
+                                            # ingredient.strength relates to 
+    fhir:isActive @<boolean>?;              # Active ingredient indicator
+    fhir:strength @<Ratio>  OR 
+    			@<CodeableConcept>  OR 
+    			@<Quantity>  ?;  # Quantity of ingredient present
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+<OneOrMore_Medication.ingredient> CLOSED {
+    rdf:first @<Medication.ingredient>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Medication.ingredient> 
+}
+
+#---------------------- Value Sets ------------------------
+
+

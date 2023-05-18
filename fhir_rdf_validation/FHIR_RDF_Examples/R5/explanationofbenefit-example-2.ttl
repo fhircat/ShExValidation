@@ -1,0 +1,179 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ExplanationOfBenefit ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "EB3501"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the ExplanationOfBenefit for a claim that had errors, various other attributes (such as accident and hospitalization) are also completed.</div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://www.BenefitsInc.com/fhir/explanationofbenefit"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "error-1" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:type [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/claim-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "oral" ]
+     ] )
+  ] ; # 
+  fhir:subType [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/ex-claimsubtype"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "emergency" ]
+     ] )
+  ] ; # 
+  fhir:use [ fhir:v "claim"] ; # 
+  fhir:patient [
+     fhir:reference [ fhir:v "Patient/pat1" ]
+  ] ; # 
+  fhir:billablePeriod [
+     fhir:start [ fhir:v "2014-02-01"^^xsd:date ] ;
+     fhir:end [ fhir:v "2014-03-01"^^xsd:date ]
+  ] ; # 
+  fhir:created [ fhir:v "2014-08-16"^^xsd:date] ; # 
+  fhir:enterer [
+     fhir:reference [ fhir:v "Practitioner/1" ]
+  ] ; # 
+  fhir:insurer [
+     fhir:reference [ fhir:v "Organization/2" ]
+  ] ; # 
+  fhir:provider [
+     fhir:reference [ fhir:v "Organization/2" ]
+  ] ; # 
+  fhir:related ( [
+     fhir:reference [
+       fhir:system [ fhir:v "http://www.BenefitsInc.com/case-number"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "23-56Tu-XX-47-20150M14" ]
+     ]
+  ] ) ; # 
+  fhir:prescription [
+     fhir:reference [ fhir:v "MedicationRequest/medrx002" ]
+  ] ; # 
+  fhir:originalPrescription [
+     fhir:reference [ fhir:v "MedicationRequest/medrx0301" ]
+  ] ; # 
+  fhir:facility [
+     fhir:reference [ fhir:v "Location/1" ]
+  ] ; # 
+  fhir:claim [
+     fhir:reference [ fhir:v "Claim/100150" ]
+  ] ; # 
+  fhir:claimResponse [
+     fhir:reference [ fhir:v "ClaimResponse/R3500" ]
+  ] ; # 
+  fhir:outcome [ fhir:v "error"] ; # 
+  fhir:disposition [ fhir:v "Could not process."] ; # 
+  fhir:supportingInfo ( [
+     fhir:sequence [ fhir:v "1"^^xsd:positiveInteger ] ;
+     fhir:category [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/claiminformationcategory"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "employmentimpacted" ]
+       ] )
+     ] ;
+     fhir:timing [
+       a fhir:Period ;
+       fhir:start [ fhir:v "2014-02-14"^^xsd:date ] ;
+       fhir:end [ fhir:v "2014-02-28"^^xsd:date ]
+     ]
+  ] [
+     fhir:sequence [ fhir:v "2"^^xsd:positiveInteger ] ;
+     fhir:category [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/claiminformationcategory"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "hospitalized" ]
+       ] )
+     ] ;
+     fhir:timing [
+       a fhir:Period ;
+       fhir:start [ fhir:v "2014-02-14"^^xsd:date ] ;
+       fhir:end [ fhir:v "2014-02-16"^^xsd:date ]
+     ]
+  ] ) ; # 
+  fhir:procedure ( [
+     fhir:sequence [ fhir:v "1"^^xsd:positiveInteger ] ;
+     fhir:date [ fhir:v "2014-02-14"^^xsd:date ] ;
+     fhir:procedure [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/sid/ex-icd-10-procedures"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "123001" ]
+       ] )
+     ] ;
+     fhir:udi ( [
+       fhir:reference [ fhir:v "Device/example" ]
+     ] )
+  ] ) ; # 
+  fhir:precedence [ fhir:v "2"^^xsd:positiveInteger] ; # 
+  fhir:insurance ( [
+     fhir:focal [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:coverage [
+       fhir:reference [ fhir:v "Coverage/9876B1" ]
+     ]
+  ] ) ; # 
+  fhir:accident [
+     fhir:date [ fhir:v "2014-02-14"^^xsd:date ] ;
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActCode"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "SPT" ]
+       ] )
+     ] ;
+     fhir:location [
+       a fhir:Reference ;
+       fhir:reference [ fhir:v "Location/ph" ]
+     ]
+  ] ; # 
+  fhir:total ( [
+     fhir:category [
+       fhir:coding ( [
+         fhir:code [ fhir:v "submitted" ]
+       ] )
+     ] ;
+     fhir:amount [
+       fhir:value [ fhir:v "2478.57"^^xsd:decimal ] ;
+       fhir:currency [ fhir:v "USD" ]
+     ]
+  ] [
+     fhir:category [
+       fhir:coding ( [
+         fhir:code [ fhir:v "benefit" ]
+       ] )
+     ] ;
+     fhir:amount [
+       fhir:value [ fhir:v "0.00"^^xsd:decimal ] ;
+       fhir:currency [ fhir:v "USD" ]
+     ]
+  ] ) ; # 
+  fhir:formCode [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/forms-codes"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "2" ]
+     ] )
+  ] ; # 
+  fhir:processNote ( [
+     fhir:number [ fhir:v "1"^^xsd:positiveInteger ] ;
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/note-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "display" ]
+       ] )
+     ] ;
+     fhir:text [ fhir:v "Invalid claim" ] ;
+     fhir:language [
+       fhir:coding ( [
+         fhir:system [ fhir:v "urn:ietf:bcp:47"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "en-CA" ]
+       ] )
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

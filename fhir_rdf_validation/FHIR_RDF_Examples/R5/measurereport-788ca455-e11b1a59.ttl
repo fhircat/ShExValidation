@@ -1,0 +1,60 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:MeasureReport ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "788ca455-e11b1a59"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MeasureReport</b><a name=\"788ca455-e11b1a59\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MeasureReport &quot;788ca455-e11b1a59&quot; </p></div><p><b>status</b>: complete</p><p><b>type</b>: subject-list</p><p><b>measure</b>: <a href=\"http://lantanagroup.com/fhir/nhsn-measures/Measure/NHSNGlycemicControlHypoglycemicInitialPopulation\">http://lantanagroup.com/fhir/nhsn-measures/Measure/NHSNGlycemicControlHypoglycemicInitialPopulation</a></p><p><b>reporter</b>: <a href=\"broken-link.html\">Organization/aa389ad5-e6fe-4030-88ce-010ab96e4ac4</a></p><p><b>period</b>: 2022-08-01T00:00:00Z --&gt; 2022-08-31T23:59:59Z</p><blockquote><p><b>group</b></p><h3>Populations</h3><table class=\"grid\"><tr><td>-</td><td><b>Code</b></td><td><b>Count</b></td><td><b>SubjectResults</b></td></tr><tr><td>*</td><td>Initial Population <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-measure-population.html\">MeasurePopulationType</a>#initial-population)</span></td><td>2</td><td><a name=\"1\"> </a><blockquote><table class=\"clstu\"><tr><td>Mode: snapshotStatus: current</td></tr><tr><td/></tr></table><table class=\"grid\"><tr style=\"backgound-color: #eeeeee\"><td><b>Items</b></td></tr><tr><td><a href=\"broken-link.html\">MeasureReport/788ca455-e11b1a59-838c24b5</a></td></tr><tr><td><a href=\"broken-link.html\">MeasureReport/788ca455-e11b1a59-2ad816ff</a></td></tr></table></blockquote></td></tr></table></blockquote></div>"
+  ] ; # 
+  fhir:contained ( [
+     a fhir:List ;
+     fhir:id [ fhir:v "1" ] ;
+     fhir:status [ fhir:v "current" ] ;
+     fhir:mode [ fhir:v "snapshot" ] ;
+     fhir:entry ( [
+       fhir:item [
+         fhir:reference [ fhir:v "MeasureReport/788ca455-e11b1a59-838c24b5" ]
+       ]
+     ] [
+       fhir:item [
+         fhir:reference [ fhir:v "MeasureReport/788ca455-e11b1a59-2ad816ff" ]
+       ]
+     ] )
+  ] ) ; # 
+  fhir:status [ fhir:v "complete"] ; # 
+  fhir:type [ fhir:v "subject-list"] ; # 
+  fhir:measure [
+     fhir:v "http://lantanagroup.com/fhir/nhsn-measures/Measure/NHSNGlycemicControlHypoglycemicInitialPopulation"^^xsd:anyURI ;
+     fhir:link <http://lantanagroup.com/fhir/nhsn-measures/Measure/NHSNGlycemicControlHypoglycemicInitialPopulation>
+  ] ; # 
+  fhir:reporter [
+     fhir:reference [ fhir:v "Organization/aa389ad5-e6fe-4030-88ce-010ab96e4ac4" ]
+  ] ; # 
+  fhir:period [
+     fhir:start [ fhir:v "2022-08-01T00:00:00+00:00"^^xsd:dateTime ] ;
+     fhir:end [ fhir:v "2022-08-31T23:59:59+00:00"^^xsd:dateTime ]
+  ] ; # 
+  fhir:group ( [
+     fhir:population ( [
+       fhir:code [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/measure-population"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "initial-population" ] ;
+           fhir:display [ fhir:v "Initial Population" ]
+         ] )
+       ] ;
+       fhir:count [ fhir:v "2"^^xsd:integer ] ;
+       fhir:subjectResults [
+         fhir:reference [ fhir:v "#1" ]
+       ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

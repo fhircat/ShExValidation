@@ -1,0 +1,58 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <Element.shex>
+IMPORT <Extension.shex>
+IMPORT <ElementDefinition.shex>
+
+# Definition of an element in a resource or extension
+<elementdefinition-de> EXTENDS @<ElementDefinition> CLOSED {   
+
+    a [fhir:elementdefinition-de];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:Question @<OneOrMore_Extension>?;  # Prompt for element phrased as 
+                                            # question 
+    fhir:AllowedUnits @<Extension>?;        # Units to use for measured value
+}  
+
+# Element values that are used to distinguish the slices
+<ElementDefinition.slicing.discriminator> EXTENDS @<Element> CLOSED {   
+}  
+
+# Example value (as defined for type)
+<ElementDefinition.example> EXTENDS @<Element> CLOSED {   
+}  
+
+# Base definition information for tools
+<ElementDefinition.base> EXTENDS @<Element> CLOSED {   
+}  
+
+# ValueSet details if this is coded
+<ElementDefinition.binding> EXTENDS @<Element> CLOSED {   
+}  
+
+# Map element to another set of definitions
+<ElementDefinition.mapping> EXTENDS @<Element> CLOSED {   
+}  
+
+# This element is sliced - slices follow
+<ElementDefinition.slicing> EXTENDS @<Element> CLOSED {   
+}  
+
+# Data type and Profile for this element
+<ElementDefinition.type> EXTENDS @<Element> CLOSED {   
+}  
+
+# Condition that must evaluate to true
+<ElementDefinition.constraint> EXTENDS @<Element> CLOSED {   
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Extension> CLOSED {
+    rdf:first @<Extension>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Extension> 
+}
+

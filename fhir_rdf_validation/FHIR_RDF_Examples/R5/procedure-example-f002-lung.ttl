@@ -1,0 +1,80 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Procedure ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "f002"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Procedure</b><a name=\"f002\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Procedure &quot;f002&quot; </p></div><p><b>status</b>: completed</p><p><b>code</b>: Partial lobectomy of lung <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#359615001)</span></p><p><b>subject</b>: <a href=\"patient-example-f001-pieter.html\">Patient/f001: P. van de Heuvel</a> &quot;Pieter VAN DE HEUVEL&quot;</p><p><b>encounter</b>: <a href=\"encounter-example-f002-lung.html\">Encounter/f002</a></p><p><b>occurrence</b>: 2013-03-08T09:00:10+01:00 --&gt; 2013-03-08T09:30:10+01:00</p><h3>Performers</h3><table class=\"grid\"><tr><td>-</td><td><b>Function</b></td><td><b>Actor</b></td><td><b>Period</b></td></tr><tr><td>*</td><td>Care role <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#01.000 &quot;Arts&quot;)</span></td><td><a href=\"practitioner-example-f003-mv.html\">Practitioner/f003: M.I.M. Versteegh</a> &quot;Marc VERSTEEGH&quot;</td><td>2013-03-08T09:00:10+01:00 --&gt; 2013-03-08T09:30:10+01:00</td></tr></table><h3>Reasons</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Malignant tumor of lung <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table><p><b>bodySite</b>: Lung structure <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#39607008)</span></p><p><b>outcome</b>: improved blood circulation <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>report</b>: <a href=\"diagnosticreport-example-f001-bloodexam.html\">DiagnosticReport/f001: Lab results blood test</a></p><p><b>followUp</b>: described in care plan <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a sct:359615001 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "359615001" ] ;
+       fhir:display [ fhir:v "Partial lobectomy of lung" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/f001" ] ;
+     fhir:display [ fhir:v "P. van de Heuvel" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/f002" ]
+  ] ; # 
+  fhir:occurrence [
+     a fhir:Period ;
+     fhir:start [ fhir:v "2013-03-08T09:00:10+01:00"^^xsd:dateTime ] ;
+     fhir:end [ fhir:v "2013-03-08T09:30:10+01:00"^^xsd:dateTime ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:function [
+       fhir:coding ( [
+         fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.2.4.15.111"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "01.000" ] ; #    \"AssignedRoleType\" coding system   
+         fhir:display [ fhir:v "Arts" ]
+       ] ) ;
+       fhir:text [ fhir:v "Care role" ]
+     ] ;
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/f003" ] ;
+       fhir:display [ fhir:v "M.I.M. Versteegh" ]
+     ] ;
+     fhir:period [
+       fhir:start [ fhir:v "2013-03-08T09:00:10+01:00"^^xsd:dateTime ] ;
+       fhir:end [ fhir:v "2013-03-08T09:30:10+01:00"^^xsd:dateTime ]
+     ]
+  ] ) ; # 
+  fhir:reason ( [
+     fhir:concept [
+       fhir:text [ fhir:v "Malignant tumor of lung" ]
+     ]
+  ] ) ; # 
+  fhir:bodySite ( [
+     fhir:coding ( [
+       a sct:39607008 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "39607008" ] ;
+       fhir:display [ fhir:v "Lung structure" ]
+     ] )
+  ] ) ; # 
+  fhir:outcome [
+     fhir:text [ fhir:v "improved blood circulation" ]
+  ] ; # 
+  fhir:report ( [
+     fhir:reference [ fhir:v "DiagnosticReport/f001" ] ;
+     fhir:display [ fhir:v "Lab results blood test" ]
+  ] ) ; # 
+  fhir:followUp ( [
+     fhir:text [ fhir:v "described in care plan" ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

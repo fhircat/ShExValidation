@@ -1,0 +1,26 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <BackboneElement.shex>
+IMPORT <ActivityDefinition.shex>
+
+
+start=@<shareableactivitydefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# The definition of a specific activity to be taken, independent of any particular patient or context
+<shareableactivitydefinition> EXTENDS @<ActivityDefinition> CLOSED {   
+
+    a [fhir:shareableactivitydefinition];
+    fhir:nodeRole [fhir:treeRoot]?;
+}  
+
+# Dynamic aspects of the definition
+<ActivityDefinition.dynamicValue> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Who should participate in the action
+<ActivityDefinition.participant> EXTENDS @<BackboneElement> CLOSED {   
+}  
+

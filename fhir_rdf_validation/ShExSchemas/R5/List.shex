@@ -1,0 +1,101 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Group.shex>
+IMPORT <string.shex>
+IMPORT <Device.shex>
+IMPORT <Patient.shex>
+IMPORT <boolean.shex>
+IMPORT <Location.shex>
+IMPORT <dateTime.shex>
+IMPORT <CareTeam.shex>
+IMPORT <Resource.shex>
+IMPORT <Reference.shex>
+IMPORT <Encounter.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+
+
+start=@<List> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A list is a curated collection of resources
+<List> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:List];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business identifier
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:list-status};  # current | retired | 
+                                            # entered-in-error 
+    fhir:mode @<code> AND
+    	{fhir:v @fhirvs:list-mode};  # working | snapshot | changes
+    fhir:title @<string>?;                  # Descriptive name for the list
+    fhir:code @<CodeableConcept>?;          # What the purpose of this list is
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<Location> OR 
+    			@<Patient> }?;  # If all resources have the same 
+                                            # subject 
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # Context in which list created
+    fhir:date @<dateTime>?;                 # When the list was prepared
+    fhir:source @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Who and/or what defined the list 
+                                            # contents (aka Author) 
+    fhir:orderedBy @<CodeableConcept>?;     # What order the list has
+    fhir:note @<OneOrMore_Annotation>?;     # Comments about the list
+    fhir:entry @<OneOrMore_BackboneElement>?;  # Entries in the list
+    fhir:emptyReason @<CodeableConcept>?;   # Why list is empty
+}  
+
+# Entries in the list
+<List.entry> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:flag @<CodeableConcept>?;          # Status/Workflow information about 
+                                            # this item 
+    fhir:deleted @<boolean>?;               # If this item is actually marked as 
+                                            # deleted 
+    fhir:date @<dateTime>?;                 # When item added to list
+    fhir:item @<Reference> AND {fhir:link 
+    			@<Resource> };  # Actual entry
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The current state of the list.
+fhirvs:list-status ["current" "retired" "entered-in-error"]
+
+# The processing mode that applies to this list.
+fhirvs:list-mode ["working" "snapshot" "changes"]
+

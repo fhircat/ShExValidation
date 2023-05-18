@@ -1,0 +1,940 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Bundle ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "micro"] ; # 
+  fhir:type [ fhir:v "collection"] ; # 
+  fhir:entry ( [
+     fhir:fullUrl [ fhir:v "https://example.com/base/DiagnosticReport/micro"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/DiagnosticReport/micro> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obx1-4"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obx1-4> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obx1-5"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obx1-5> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obx2-1"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obx2-1> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obx2-2"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obx2-2> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obx2-4"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obx2-4> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obx2-6"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obx2-6> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obx2-8"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obx2-8> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obx2-10"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obx2-10> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obx2-12"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obx2-12> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obx2-14"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obx2-14> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obx2-16"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obx2-16> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obx2-18"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obx2-18> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obx2-20"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obx2-20> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obx2-22"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obx2-22> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obx2-24"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obx2-24> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obx2-26"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obx2-26> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obx2-28"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obx2-28> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obx2-30"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obx2-30> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obx2-32"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obx2-32> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obx2-34"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obx2-34> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/nte-1"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/nte-1> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obx3-1"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obx3-1> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obr-2"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obr-2> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/obr-3"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/obr-3> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/org1"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/org1> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/ServiceRequest/req"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/ServiceRequest/req> )
+  ] )] . # 
+
+<https://example.com/base/DiagnosticReport/micro> a fhir:DiagnosticReport ;
+  fhir:id [ fhir:v "micro"] ; #      start of the main resource     
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2><span title=\"Codes: {http://loinc.org 632-0}\">Bacteria identified in Wound by Aerobe culture</span> (<span title=\"Codes: {http://terminology.hl7.org/CodeSystem/v2-0074 MB}\">Microbiology</span>) </h2><table class=\"grid\"><tr><td>Subject</td><td><b>Jim </b> male, DoB: 1974-12-25 ( Medical record number: 12345 (use: USUAL, period: 2001-05-06 --&gt; (ongoing)))</td></tr><tr><td>Reported</td><td>2009-08-10T08:25:44+10:00</td></tr><tr><td>Identifier:</td><td> id: 290741144</td></tr></table><p><b>Report Details</b></p><table class=\"grid\"><tr><td><b>Code</b></td><td><b>Value</b></td></tr><tr><td colspan=\"2\"><i>Observation</i></td></tr></table></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://hnam.org/identifiers/orders"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "290741144" ] #      seems like a likely choice     
+  ] ) ; # 
+  fhir:basedOn ( [
+     fhir:reference [ fhir:v "ServiceRequest/req" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0074"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "MB" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:632-0 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "632-0" ] ;
+       fhir:display [ fhir:v "Bacteria identified in Wound by Aerobe culture" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:issued [ fhir:v "2009-08-10T08:25:44+10:00"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; # 
+  fhir:result ( [
+     fhir:reference [ fhir:v "Observation/org1" ]
+  ] ) . # 
+
+<https://example.com/base/Observation/obx1-4> a fhir:Observation ;
+  fhir:id [ fhir:v "obx1-4"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obx1-4\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obx1-4&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: ORGANISM <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (tests#ORGANISM)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>value</b>: Staphylococcus aureus <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (organisms#Staaur)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/tests"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "ORGANISM" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:value [
+     a fhir:CodeableConcept ;
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/organisms"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "Staaur" ]
+     ] ) ; #      CE     
+     fhir:text [ fhir:v "Staphylococcus aureus" ]
+  ] . # 
+
+<https://example.com/base/Observation/obx1-5> a fhir:Observation ;
+  fhir:id [ fhir:v "obx1-5"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obx1-5\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obx1-5&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: CULTPOSNEG <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (tests#CULTPOSNEG)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>value</b>: POS <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (flags#POS)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/tests"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "CULTPOSNEG" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:value [
+     a fhir:CodeableConcept ;
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/flags"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "POS" ]
+     ] )
+  ] . # 
+
+<https://example.com/base/Observation/obx2-1> a fhir:Observation ;
+  fhir:id [ fhir:v "obx2-1"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obx2-1\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obx2-1&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Ampicillin <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (tests#60504)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>interpretation</b>: Resistant <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#R)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/tests"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "60504" ] ;
+       fhir:display [ fhir:v "Ampicillin" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "R" ]
+     ] )
+  ] ) . # 
+
+<https://example.com/base/Observation/obx2-2> a fhir:Observation ;
+  fhir:id [ fhir:v "obx2-2"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obx2-2\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obx2-2&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Cefazolin <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (tests#60512)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>value</b>: &lt;=2</p><p><b>interpretation</b>: Susceptible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#S)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/tests"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "60512" ] ;
+       fhir:display [ fhir:v "Cefazolin" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "2"^^xsd:decimal ] ;
+     fhir:comparator [ fhir:v "<=" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "S" ]
+     ] )
+  ] ) . # 
+
+<https://example.com/base/Observation/obx2-4> a fhir:Observation ;
+  fhir:id [ fhir:v "obx2-4"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obx2-4\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obx2-4&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Cefoxitin <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (tests#60516)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>value</b>: &lt;=4</p><p><b>interpretation</b>: Susceptible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#S)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/tests"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "60516" ] ;
+       fhir:display [ fhir:v "Cefoxitin" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "4"^^xsd:decimal ] ;
+     fhir:comparator [ fhir:v "<=" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "S" ]
+     ] )
+  ] ) . # 
+
+<https://example.com/base/Observation/obx2-6> a fhir:Observation ;
+  fhir:id [ fhir:v "obx2-6"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obx2-6\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obx2-6&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Clindamycin <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (tests#60527)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>value</b>: &gt;=0.5</p><p><b>interpretation</b>: Susceptible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#S)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/tests"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "60527" ] ;
+       fhir:display [ fhir:v "Clindamycin" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.5"^^xsd:decimal ] ;
+     fhir:comparator [ fhir:v ">=" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "S" ]
+     ] )
+  ] ) . # 
+
+<https://example.com/base/Observation/obx2-8> a fhir:Observation ;
+  fhir:id [ fhir:v "obx2-8"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obx2-8\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obx2-8&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Daptomycin <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (tests#61203)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>value</b>: &gt;=1</p><p><b>interpretation</b>: Susceptible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#S)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/tests"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "61203" ] ;
+       fhir:display [ fhir:v "Daptomycin" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "1"^^xsd:decimal ] ;
+     fhir:comparator [ fhir:v ">=" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "S" ]
+     ] )
+  ] ) . # 
+
+<https://example.com/base/Observation/obx2-10> a fhir:Observation ;
+  fhir:id [ fhir:v "obx2-10"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obx2-10\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obx2-10&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Doxycycline <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (tests#60532)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>value</b>: &lt;=0.5</p><p><b>interpretation</b>: Susceptible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#S)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/tests"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "60532" ] ;
+       fhir:display [ fhir:v "Doxycycline" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.5"^^xsd:decimal ] ;
+     fhir:comparator [ fhir:v "<=" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "S" ]
+     ] )
+  ] ) . # 
+
+<https://example.com/base/Observation/obx2-12> a fhir:Observation ;
+  fhir:id [ fhir:v "obx2-12"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obx2-12\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obx2-12&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Erythromycin <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (tests#60533)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>value</b>: &gt;=8</p><p><b>interpretation</b>: Resistant <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#R)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/tests"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "60533" ] ;
+       fhir:display [ fhir:v "Erythromycin" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "8"^^xsd:decimal ] ;
+     fhir:comparator [ fhir:v ">=" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "R" ]
+     ] )
+  ] ) . # 
+
+<https://example.com/base/Observation/obx2-14> a fhir:Observation ;
+  fhir:id [ fhir:v "obx2-14"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obx2-14\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obx2-14&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Gentamicin <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (tests#60536)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>value</b>: &lt;=2</p><p><b>interpretation</b>: Susceptible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#S)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/tests"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "60536" ] ;
+       fhir:display [ fhir:v "Gentamicin" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "2"^^xsd:decimal ] ;
+     fhir:comparator [ fhir:v "<=" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "S" ]
+     ] )
+  ] ) . # 
+
+<https://example.com/base/Observation/obx2-16> a fhir:Observation ;
+  fhir:id [ fhir:v "obx2-16"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obx2-16\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obx2-16&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Levofloxacin <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (tests#61007)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>value</b>: &lt;=0.5</p><p><b>interpretation</b>: Susceptible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#S)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/tests"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "61007" ] ;
+       fhir:display [ fhir:v "Levofloxacin" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.5"^^xsd:decimal ] ;
+     fhir:comparator [ fhir:v "<=" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "S" ]
+     ] )
+  ] ) . # 
+
+<https://example.com/base/Observation/obx2-18> a fhir:Observation ;
+  fhir:id [ fhir:v "obx2-18"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obx2-18\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obx2-18&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Linezolid <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (tests#60699)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>value</b>: 4</p><p><b>interpretation</b>: Susceptible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#S)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/tests"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "60699" ] ;
+       fhir:display [ fhir:v "Linezolid" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "4"^^xsd:decimal ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "S" ]
+     ] )
+  ] ) . # 
+
+<https://example.com/base/Observation/obx2-20> a fhir:Observation ;
+  fhir:id [ fhir:v "obx2-20"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obx2-20\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obx2-20&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Moxifloxacin <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (tests#61204)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>value</b>: &lt;=0.5</p><p><b>interpretation</b>: Susceptible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#S)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/tests"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "61204" ] ;
+       fhir:display [ fhir:v "Moxifloxacin" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.5"^^xsd:decimal ] ;
+     fhir:comparator [ fhir:v "<=" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "S" ]
+     ] )
+  ] ) . # 
+
+<https://example.com/base/Observation/obx2-22> a fhir:Observation ;
+  fhir:id [ fhir:v "obx2-22"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obx2-22\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obx2-22&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Oxacillin <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (tests#60551)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>value</b>: 0.5</p><p><b>interpretation</b>: Susceptible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#S)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/tests"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "60551" ] ;
+       fhir:display [ fhir:v "Oxacillin" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.5"^^xsd:decimal ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "S" ]
+     ] )
+  ] ) . # 
+
+<https://example.com/base/Observation/obx2-24> a fhir:Observation ;
+  fhir:id [ fhir:v "obx2-24"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obx2-24\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obx2-24&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Penicillin <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (tests#60552)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>value</b>: &gt;=2</p><p><b>interpretation</b>: Resistant <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#R)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/tests"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "60552" ] ;
+       fhir:display [ fhir:v "Penicillin" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "2"^^xsd:decimal ] ;
+     fhir:comparator [ fhir:v ">=" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "R" ]
+     ] )
+  ] ) . # 
+
+<https://example.com/base/Observation/obx2-26> a fhir:Observation ;
+  fhir:id [ fhir:v "obx2-26"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obx2-26\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obx2-26&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Quinupristin/Dalfopristin <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (tests#60697)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>value</b>: 0.5</p><p><b>interpretation</b>: Susceptible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#S)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/tests"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "60697" ] ;
+       fhir:display [ fhir:v "Quinupristin/Dalfopristin" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.5"^^xsd:decimal ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "S" ]
+     ] )
+  ] ) . # 
+
+<https://example.com/base/Observation/obx2-28> a fhir:Observation ;
+  fhir:id [ fhir:v "obx2-28"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obx2-28\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obx2-28&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Rifampin <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (tests#60555)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>value</b>: &lt;=0.5</p><p><b>interpretation</b>: Susceptible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#S)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/tests"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "60555" ] ;
+       fhir:display [ fhir:v "Rifampin" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.5"^^xsd:decimal ] ;
+     fhir:comparator [ fhir:v "<=" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "S" ]
+     ] )
+  ] ) . # 
+
+<https://example.com/base/Observation/obx2-30> a fhir:Observation ;
+  fhir:id [ fhir:v "obx2-30"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obx2-30\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obx2-30&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Tetracycline <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (tests#60558)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>value</b>: &lt;=0.5</p><p><b>interpretation</b>: Susceptible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#S)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/tests"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "60558" ] ;
+       fhir:display [ fhir:v "Tetracycline" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.5"^^xsd:decimal ] ;
+     fhir:comparator [ fhir:v "<=" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "S" ]
+     ] )
+  ] ) . # 
+
+<https://example.com/base/Observation/obx2-32> a fhir:Observation ;
+  fhir:id [ fhir:v "obx2-32"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obx2-32\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obx2-32&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Trimethoprim/Sulfamethoxazole <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (tests#60561)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>value</b>: &lt;=0.0526</p><p><b>interpretation</b>: Susceptible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#S)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/tests"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "60561" ] ;
+       fhir:display [ fhir:v "Trimethoprim/Sulfamethoxazole" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.0526"^^xsd:decimal ] ;
+     fhir:comparator [ fhir:v "<=" ] #      not sure what to do with <=1\/19     
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "S" ]
+     ] )
+  ] ) . # 
+
+<https://example.com/base/Observation/obx2-34> a fhir:Observation ;
+  fhir:id [ fhir:v "obx2-34"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obx2-34\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obx2-34&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Vancomycin <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (tests#60563)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>value</b>: 1</p><p><b>interpretation</b>: Susceptible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#S)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/tests"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "60563" ] ;
+       fhir:display [ fhir:v "Vancomycin" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "1"^^xsd:decimal ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "S" ]
+     ] )
+  ] ) . # 
+
+<https://example.com/base/Observation/nte-1> a fhir:Observation ;
+  fhir:id [ fhir:v "nte-1"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"nte-1\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;nte-1&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: D-Test <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (tests#2099930)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>value</b>: D-Test:  Negative - This isolate does not demonstrate inducible clindamycin resistance in vitro.</p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/tests"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "2099930" ] ;
+       fhir:display [ fhir:v "D-Test" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:value [ fhir:v "D-Test:  Negative - This isolate does not demonstrate inducible clindamycin resistance in vitro."] . # 
+
+<https://example.com/base/Observation/obx3-1> a fhir:Observation ;
+  fhir:id [ fhir:v "obx3-1"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obx3-1\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obx3-1&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Oxacillin <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (tests#60036)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>interpretation</b>: Susceptible <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#S)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/tests"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "60036" ] ;
+       fhir:display [ fhir:v "Oxacillin" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "S" ]
+     ] )
+  ] ) . # 
+
+<https://example.com/base/Observation/obr-2> a fhir:Observation ;
+  fhir:id [ fhir:v "obr-2"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obr-2\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obr-2&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: <span title=\"    OBR 2    \">Susceptibility - Automated broth dilution (Billed) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (panels#60790)</span></span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>performer</b>: <span>: Todd Ashby</span></p><p><b>hasMember</b>: </p><ul><li><span title=\"    now, references to the OBXs. for reader convenience, we take keep the OBX identification, though this is not required in practice. Note that many of the oBX segments are pairs that get collapsed    \"><a href=\"broken-link.html\">Observation/obx2-1</a></span></li><li><a href=\"broken-link.html\">Observation/obx2-2</a></li><li><a href=\"broken-link.html\">Observation/obx2-4</a></li><li><a href=\"broken-link.html\">Observation/obx2-6</a></li><li><a href=\"broken-link.html\">Observation/obx2-8</a></li><li><a href=\"broken-link.html\">Observation/obx2-10</a></li><li><a href=\"broken-link.html\">Observation/obx2-12</a></li><li><a href=\"broken-link.html\">Observation/obx2-14</a></li><li><a href=\"broken-link.html\">Observation/obx2-16</a></li><li><a href=\"broken-link.html\">Observation/obx2-18</a></li><li><a href=\"broken-link.html\">Observation/obx2-20</a></li><li><a href=\"broken-link.html\">Observation/obx2-22</a></li><li><a href=\"broken-link.html\">Observation/obx2-24</a></li><li><a href=\"broken-link.html\">Observation/obx2-26</a></li><li><a href=\"broken-link.html\">Observation/obx2-28</a></li><li><a href=\"broken-link.html\">Observation/obx2-30</a></li><li><a href=\"broken-link.html\">Observation/obx2-32</a></li><li><a href=\"broken-link.html\">Observation/obx2-34</a></li><li><a href=\"broken-link.html\">Observation/nte-1</a></li></ul></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/panels"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "60790" ] ;
+       fhir:display [ fhir:v "Susceptibility - Automated broth dilution (Billed)" ]
+     ] )
+  ] ; #      OBR 2     
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:performer ( [
+     fhir:display [ fhir:v "Todd Ashby" ]
+  ] ) ; #      of course, in practive, this would be a real reference     
+  fhir:hasMember ( [
+     fhir:reference [ fhir:v "Observation/obx2-1" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/obx2-2" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/obx2-4" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/obx2-6" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/obx2-8" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/obx2-10" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/obx2-12" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/obx2-14" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/obx2-16" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/obx2-18" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/obx2-20" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/obx2-22" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/obx2-24" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/obx2-26" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/obx2-28" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/obx2-30" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/obx2-32" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/obx2-34" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/nte-1" ]
+  ] ) . #      now, references to the OBXs. for reader convenience, we take keep the OBX identification, though this is not required in practice. Note that many of the oBX segments are pairs that get collapsed     
+
+<https://example.com/base/Observation/obr-3> a fhir:Observation ;
+  fhir:id [ fhir:v "obr-3"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"obr-3\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;obr-3&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: <span title=\"    OBR 3    \">Susceptibility - Disk diffusion (Billed) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (panels#60418)</span></span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>hasMember</b>: <a href=\"broken-link.html\">Observation/obx3-1</a></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/panels"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "60418" ] ;
+       fhir:display [ fhir:v "Susceptibility - Disk diffusion (Billed)" ]
+     ] )
+  ] ; #      OBR 3     
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:hasMember ( [
+     fhir:reference [ fhir:v "Observation/obx3-1" ]
+  ] ) . # 
+
+<https://example.com/base/Observation/org1> a fhir:Observation ;
+  fhir:id [ fhir:v "org1"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"org1\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;org1&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: <span title=\"    OBR 1    \">Staphylococcus aureus Panel <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (organisms#Staaur)</span></span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>hasMember</b>: </p><ul><li><a href=\"broken-link.html\">Observation/obx1-4</a></li><li><a href=\"broken-link.html\">Observation/obx1-5</a></li><li><span title=\"    group - automated broth dilution. This is unusual - usually, there's just one level of group, and this group would be skipped    \"><a href=\"broken-link.html\">Observation/obr-2</a></span></li><li><span title=\"    group - Disk diffusion    \"><a href=\"broken-link.html\">Observation/obr-3</a></span></li></ul></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.org/lab/codes/organisms"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "Staaur" ]
+     ] ) ;
+     fhir:text [ fhir:v "Staphylococcus aureus Panel" ]
+  ] ; #      OBR 1     
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #      patient chosen at random     
+  fhir:hasMember ( [
+     fhir:reference [ fhir:v "Observation/obx1-4" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/obx1-5" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/obr-2" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/obr-3" ]
+  ] ) . # 
+
+<https://example.com/base/ServiceRequest/req> a fhir:ServiceRequest ;
+  fhir:id [ fhir:v "req"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: ServiceRequest</b><a name=\"req\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource ServiceRequest &quot;req&quot; </p></div><p><b>identifier</b>: id: 255337816</p><p><b>status</b>: active</p><p><b>intent</b>: original-order</p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Culture, MRSA <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#632-0)</span></td></tr></table><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:value [ fhir:v "255337816" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:intent [ fhir:v "original-order"] ; # 
+  fhir:code [
+     fhir:concept [
+       fhir:coding ( [
+         a loinc:632-0 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "632-0" ]
+       ] ) ;
+       fhir:text [ fhir:v "Culture, MRSA" ]
+     ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] . # 
+
+# -------------------------------------------------------------------------------------
+

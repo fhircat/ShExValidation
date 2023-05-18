@@ -1,0 +1,286 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <Age.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <Range.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Timing.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <Location.shex>
+#imported_end
+#imported_begin 
+IMPORT <CareTeam.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <CarePlan.shex>
+#imported_end
+#imported_begin 
+IMPORT <Resource.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Encounter.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Annotation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Observation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Composition.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <ServiceRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+#imported_begin 
+IMPORT <DiagnosticReport.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableReference.shex>
+#imported_end
+#imported_begin 
+IMPORT <HealthcareService.shex>
+#imported_end
+#imported_begin 
+IMPORT <DocumentReference.shex>
+#imported_end
+#imported_begin 
+IMPORT <MedicationAdministration.shex>
+#imported_end
+
+start=@<Procedure> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# An action that is being or was performed on an individual or entity
+<Procedure> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Procedure]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # External Identifiers for this 
+                                            # procedure 
+    fhir:instantiatesCanonical @<OneOrMore_canonical>?;  # Instantiates FHIR protocol or 
+                                            # definition 
+    fhir:instantiatesUri @<OneOrMore_uri>?;  # Instantiates external protocol or 
+                                            # definition 
+    fhir:basedOn @<OneOrMore_Reference_CarePlan_OR_ServiceRequest>?;  # A request for this procedure
+    fhir:partOf @<OneOrMore_Reference_MedicationAdministration_OR_Observation_OR_Procedure>?;  # Part of referenced event
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:event-status};  # preparation | in-progress | 
+                                            # not-done | on-hold | stopped | 
+                                            # completed | entered-in-error | 
+                                            # unknown 
+    fhir:statusReason @<CodeableConcept>?;  # Reason for current status
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Classification of the procedure
+    fhir:code @<CodeableConcept>?;          # Identification of the procedure
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<Location> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> ? };  # Individual or entity the procedure 
+                                            # was performed on 
+    fhir:focus @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Group> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ? }?;  # Who is the target of the procedure 
+                                            # when it is not the subject of 
+                                            # record only 
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> ? }?;  # The Encounter during which this 
+                                            # Procedure was created 
+    fhir:occurrence @<dateTime>  OR 
+    			@<Period>  OR 
+    			@<string>  OR 
+    			@<Age>  OR 
+    			@<Range>  OR 
+    			@<Timing>  ?;  # When the procedure occurred or is 
+                                            # occurring 
+    fhir:recorded @<dateTime>?;             # When the procedure was first 
+                                            # captured in the subject's record 
+    fhir:recorder @<Reference> AND {fhir:link 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ? }?;  # Who recorded the procedure
+    fhir:reported @<boolean>  OR 
+    			(@<Reference>  AND {fhir:link @<Patient> OR 
+    			 @<RelatedPerson> OR 
+    			 @<Practitioner> OR 
+    			 @<PractitionerRole> OR 
+    			 @<Organization> })  ?;  # Reported rather than primary record
+    fhir:performer @<OneOrMore_Procedure.performer>?;  # The people who performed the 
+                                            # procedure 
+    fhir:location @<Reference> AND {fhir:link 
+    			@<Location> ? }?;  # Where the procedure happened
+    fhir:reason @<OneOrMore_CodeableReference>?;  # The justification that the 
+                                            # procedure was performed 
+    fhir:bodySite @<OneOrMore_CodeableConcept>?;  # Target body sites
+    fhir:outcome @<CodeableConcept>?;       # The result of procedure
+    fhir:report @<OneOrMore_Reference_Composition_OR_DiagnosticReport_OR_DocumentReference>?;  # Any report resulting from the 
+                                            # procedure 
+    fhir:complication @<OneOrMore_CodeableReference>?;  # Complication following the 
+                                            # procedure 
+    fhir:followUp @<OneOrMore_CodeableConcept>?;  # Instructions for follow up
+    fhir:note @<OneOrMore_Annotation>?;     # Additional information about the 
+                                            # procedure 
+    fhir:focalDevice @<OneOrMore_Procedure.focalDevice>?;  # Manipulated, implanted, or removed 
+                                            # device 
+    fhir:used @<OneOrMore_CodeableReference>?;  # Items used during procedure
+    fhir:supportingInfo @<OneOrMore_Reference_Resource>?;  # Extra information relevant to the 
+                                            # procedure 
+}  
+
+# The people who performed the procedure
+<Procedure.performer> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:function @<CodeableConcept>?;      # Type of performance
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<HealthcareService> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ? };  # Who performed the procedure
+    fhir:onBehalfOf @<Reference> AND {fhir:link 
+    			@<Organization> ? }?;  # Organization the device or 
+                                            # practitioner was acting for 
+    fhir:period @<Period>?;                 # When the performer performed the 
+                                            # procedure 
+}  
+
+# Manipulated, implanted, or removed device
+<Procedure.focalDevice> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:action @<CodeableConcept>?;        # Kind of change to device
+    fhir:manipulated @<Reference> AND {fhir:link 
+    			@<Device> ? };  # Device that was changed
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_Procedure.performer> CLOSED {
+    rdf:first @<Procedure.performer>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Procedure.performer> 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_Procedure.focalDevice> CLOSED {
+    rdf:first @<Procedure.focalDevice>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Procedure.focalDevice> 
+}
+
+
+
+
+
+#---------------------- Value Sets ------------------------
+
+

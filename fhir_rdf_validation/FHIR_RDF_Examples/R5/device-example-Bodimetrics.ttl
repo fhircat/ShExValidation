@@ -1,0 +1,142 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Device ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "Bodimetrics"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Device</b><a name=\"Bodimetrics\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Device &quot;Bodimetrics&quot; </p></div><p><b>identifier</b>: System Identifier: 00-00-00-00-00-00-00-00, Bluetooth Address: 00-17-E9-54-C8-52</p><h3>UdiCarriers</h3><table class=\"grid\"><tr><td>-</td><td><b>DeviceIdentifier</b></td><td><b>Issuer</b></td><td><b>Jurisdiction</b></td><td><b>CarrierHRF</b></td><td><b>EntryType</b></td></tr><tr><td>*</td><td>102698895442</td><td><a href=\"http://hl7.org/fhir/NamingSystem/gs1-di\">http://hl7.org/fhir/NamingSystem/gs1-di</a></td><td><a href=\"http://hl7.org/fhir/NamingSystem/fda-udi\">http://hl7.org/fhir/NamingSystem/fda-udi</a></td><td>(01)102698895442(21)1607124656</td><td>unknown</td></tr></table><p><b>manufacturer</b>: BodiMetrics</p><p><b>serialNumber</b>: 1607124656</p><h3>Names</h3><table class=\"grid\"><tr><td>-</td><td><b>Value</b></td><td><b>Type</b></td></tr><tr><td>*</td><td>BM-88   4656</td><td>user-friendly-name</td></tr></table><p><b>modelNumber</b>: 6611</p><p><b>type</b>: MDC_MOC_VMS_MDS_SIMP: Personal Health Device <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-mdc.html\">ISO 11073-10101 Health informatics - Point-of-care</a>#65573 &quot;MDC_MOC_VMS_MDS_SIMP&quot;)</span></p><blockquote><p><b>version</b></p><p><b>type</b>: MDC_ID_PROD_SPEC_SW: Software revision <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-mdc.html\">ISO 11073-10101 Health informatics - Point-of-care</a>#531975)</span></p><p><b>value</b>: 020008</p></blockquote><blockquote><p><b>version</b></p><p><b>type</b>: MDC_ID_PROD_SPEC_HW: Hardware revision <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-mdc.html\">ISO 11073-10101 Health informatics - Point-of-care</a>#531974)</span></p><p><b>value</b>: CC</p></blockquote><blockquote><p><b>conformsTo</b></p><p><b>specification</b>: MDC_DEV_SPEC_PROFILE_BP: Blood Pressure meter <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-mdc.html\">ISO 11073-10101 Health informatics - Point-of-care</a>#528391)</span></p><p><b>version</b>: 1</p></blockquote><blockquote><p><b>conformsTo</b></p><p><b>specification</b>: MDC_DEV_SPEC_PROFILE_GENERIC: Generic 20601 device <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-mdc.html\">ISO 11073-10101 Health informatics - Point-of-care</a>#528457)</span></p><p><b>version</b>: 1</p></blockquote><blockquote><p><b>conformsTo</b></p><p><b>specification</b>: MDC_DEV_SPEC_PROFILE_MIN_ECG: Electro cardiogram <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-mdc.html\">ISO 11073-10101 Health informatics - Point-of-care</a>#528390)</span></p><p><b>version</b>: 1</p></blockquote><blockquote><p><b>conformsTo</b></p><p><b>specification</b>: MDC_DEV_SPEC_PROFILE_PULS_OXIM: Pulse Oximeter <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-mdc.html\">ISO 11073-10101 Health informatics - Point-of-care</a>#528388)</span></p><p><b>version</b>: 1</p></blockquote><blockquote><p><b>conformsTo</b></p><p><b>specification</b>: MDC_DEV_SPEC_PROFILE_TEMP: Thermometer <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-mdc.html\">ISO 11073-10101 Health informatics - Point-of-care</a>#528392)</span></p><p><b>version</b>: 1</p></blockquote><h3>Properties</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>MDC_TIME_SYNC_PROTOCOL: Time synchronization protocol <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-mdc.html\">ISO 11073-10101 Health informatics - Point-of-care</a>#68220)</span></td><td>MDC_TIME_SYNC_NONE: No time synchronization <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-mdc.html\">ISO 11073-10101 Health informatics - Point-of-care</a>#532224)</span></td></tr></table></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/ContinuaDeviceIdentifiers"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "SYSID" ] ;
+         fhir:display [ fhir:v "System Identifier" ]
+       ] )
+     ] ;
+     fhir:system [ fhir:v "urn:oid:1.2.840.10004.1.1.1.0.0.1.0.0.1.2680"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "00-00-00-00-00-00-00-00" ]
+  ] [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/ContinuaDeviceIdentifiers"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "BTMAC" ] ;
+         fhir:display [ fhir:v "Bluetooth Address" ]
+       ] )
+     ] ;
+     fhir:system [ fhir:v "http://hl7.org/fhir/sid/eui-48"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "00-17-E9-54-C8-52" ]
+  ] ) ; # 
+  fhir:udiCarrier ( [
+     fhir:deviceIdentifier [ fhir:v "102698895442" ] ;
+     fhir:issuer [ fhir:v "http://hl7.org/fhir/NamingSystem/gs1-di"^^xsd:anyURI ] ;
+     fhir:jurisdiction [ fhir:v "http://hl7.org/fhir/NamingSystem/fda-udi"^^xsd:anyURI ] ;
+     fhir:carrierHRF [ fhir:v "(01)102698895442(21)1607124656" ] ;
+     fhir:entryType [ fhir:v "unknown" ]
+  ] ) ; # 
+  fhir:manufacturer [ fhir:v "BodiMetrics"] ; # 
+  fhir:serialNumber [ fhir:v "1607124656"] ; # 
+  fhir:name ( [
+     fhir:value [ fhir:v "BM-88   4656" ] ;
+     fhir:type [ fhir:v "user-friendly-name" ]
+  ] ) ; # 
+  fhir:modelNumber [ fhir:v "6611"] ; # 
+  fhir:type ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:iso:std:iso:11073:10101"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "65573" ] ;
+       fhir:display [ fhir:v "MDC_MOC_VMS_MDS_SIMP" ]
+     ] ) ;
+     fhir:text [ fhir:v "MDC_MOC_VMS_MDS_SIMP: Personal Health Device" ]
+  ] ) ; # 
+  fhir:version ( [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "urn:iso:std:iso:11073:10101"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "531975" ]
+       ] ) ;
+       fhir:text [ fhir:v "MDC_ID_PROD_SPEC_SW: Software revision" ]
+     ] ;
+     fhir:value [ fhir:v "020008" ]
+  ] [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "urn:iso:std:iso:11073:10101"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "531974" ]
+       ] ) ;
+       fhir:text [ fhir:v "MDC_ID_PROD_SPEC_HW: Hardware revision" ]
+     ] ;
+     fhir:value [ fhir:v "CC" ]
+  ] ) ; # 
+  fhir:conformsTo ( [
+     fhir:specification [
+       fhir:coding ( [
+         fhir:system [ fhir:v "urn:iso:std:iso:11073:10101"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "528391" ]
+       ] ) ;
+       fhir:text [ fhir:v "MDC_DEV_SPEC_PROFILE_BP: Blood Pressure meter" ]
+     ] ;
+     fhir:version [ fhir:v "1" ]
+  ] [
+     fhir:specification [
+       fhir:coding ( [
+         fhir:system [ fhir:v "urn:iso:std:iso:11073:10101"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "528457" ]
+       ] ) ;
+       fhir:text [ fhir:v "MDC_DEV_SPEC_PROFILE_GENERIC: Generic 20601 device" ]
+     ] ;
+     fhir:version [ fhir:v "1" ]
+  ] [
+     fhir:specification [
+       fhir:coding ( [
+         fhir:system [ fhir:v "urn:iso:std:iso:11073:10101"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "528390" ]
+       ] ) ;
+       fhir:text [ fhir:v "MDC_DEV_SPEC_PROFILE_MIN_ECG: Electro cardiogram" ]
+     ] ;
+     fhir:version [ fhir:v "1" ]
+  ] [
+     fhir:specification [
+       fhir:coding ( [
+         fhir:system [ fhir:v "urn:iso:std:iso:11073:10101"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "528388" ]
+       ] ) ;
+       fhir:text [ fhir:v "MDC_DEV_SPEC_PROFILE_PULS_OXIM: Pulse Oximeter" ]
+     ] ;
+     fhir:version [ fhir:v "1" ]
+  ] [
+     fhir:specification [
+       fhir:coding ( [
+         fhir:system [ fhir:v "urn:iso:std:iso:11073:10101"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "528392" ]
+       ] ) ;
+       fhir:text [ fhir:v "MDC_DEV_SPEC_PROFILE_TEMP: Thermometer" ]
+     ] ;
+     fhir:version [ fhir:v "1" ]
+  ] ) ; # 
+  fhir:property ( [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "urn:iso:std:iso:11073:10101"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "68220" ]
+       ] ) ;
+       fhir:text [ fhir:v "MDC_TIME_SYNC_PROTOCOL: Time synchronization protocol" ]
+     ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         fhir:system [ fhir:v "urn:iso:std:iso:11073:10101"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "532224" ]
+       ] ) ;
+       fhir:text [ fhir:v "MDC_TIME_SYNC_NONE: No time synchronization" ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

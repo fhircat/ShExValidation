@@ -1,0 +1,48 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <decimal.shex>
+#imported_end
+#imported_begin 
+IMPORT <DataType.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <positiveInt.shex>
+#imported_end
+# A series of measurements taken by a device
+<SampledData> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:SampledData]?;
+
+    fhir:origin @<Quantity>;                # Zero value and units
+    fhir:interval @<decimal>;               # Number of intervalUnits between 
+                                            # samples 
+    fhir:intervalUnit @<code> AND
+    	{fhir:v @fhirvs:ucum-units};  # The measurement unit of the 
+                                            # interval between samples 
+    fhir:factor @<decimal>?;                # Multiply data by this before 
+                                            # adding to origin 
+    fhir:lowerLimit @<decimal>?;            # Lower limit of detection
+    fhir:upperLimit @<decimal>?;            # Upper limit of detection
+    fhir:dimensions @<positiveInt>;         # Number of sample points at each 
+                                            # time point 
+    fhir:data @<string>?;                   # Decimal values with spaces, or "E" 
+                                            # | "U" | "L" 
+}  
+
+#---------------------- Value Sets ------------------------
+
+

@@ -1,0 +1,159 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:OperationDefinition ;
+  fhir:id [ fhir:v "Measure-evaluate-measure"] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "3" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/OperationDefinition/Measure-evaluate-measure"], [ fhir:v "http://hl7.org/fhir/OperationDefinition/Measure-evaluate-measure"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "EvaluateMeasure"], [ fhir:v "EvaluateMeasure"] ;
+  fhir:title [ fhir:v "Evaluate Measure"], [ fhir:v "Evaluate Measure"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The evaluate-measure operation is used to calculate an eMeasure and obtain the results"], [ fhir:v "The evaluate-measure operation is used to calculate an eMeasure and obtain the results"] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:kind [ fhir:v "operation"] ;
+  fhir:affectsState [ fhir:v "false"] ;
+  fhir:code [ fhir:v "evaluate-measure"] ;
+  fhir:comment [ fhir:v "The effect of invoking this operation is to calculate the measure for the given subject(s), or all subjects if no subject is supplied. For individual and subject-list reports, the result is a set of Bundles, one for each evaluated subject, where the first entry in each bundle is a MeasureReport resource, and subsequent entries in the Bundle are resources evaluated or created as part of the measure evaluation. For the summary report, the result of this operation is a single bundle with a single MeasureReport of type summary. Note that whether or not this operation affects the state of the server depends on whether the server persists the generated MeasureReport. If the MeasureReport is not persisted, this operation can be invoked with GET"] ;
+  fhir:resource ( [ fhir:v "Measure"] ) ;
+  fhir:system [ fhir:v "false"] ;
+  fhir:type [ fhir:v "true"] ;
+  fhir:instance [ fhir:v "true"] ;
+  fhir:parameter ( [
+     fhir:name [ fhir:v "measure" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:scope ( [ fhir:v "type" ] ) ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The measure to evaluate. If the operation is invoked at the instance level, this parameter is not allowed; if the operation is invoked at the type level, this parameter is required, or a url (and optionally version) must be supplied." ] ;
+     fhir:type [ fhir:v "Measure" ]
+  ] [
+     fhir:name [ fhir:v "url" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:scope ( [ fhir:v "type" ] ) ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The url of the plan measure to be applied. If the operation is invoked at the instance level, this parameter is not allowed; if the operation is invoked at the type level, this parameter (and optionally the version), or the measure parameter must be supplied" ] ;
+     fhir:type [ fhir:v "canonical" ] ;
+     fhir:targetProfile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/PlanDefinition" ] )
+  ] [
+     fhir:name [ fhir:v "version" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:scope ( [ fhir:v "type" ] ) ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The version of the measure to be applied. If the operation is invoked at the instance level, this parameter is not allowed; if the operation is invoked at the type level, this parameter may only be used if the url parameter is supplied." ] ;
+     fhir:type [ fhir:v "string" ]
+  ] [
+     fhir:name [ fhir:v "subject" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "Subject for which the measure will be calculated. The subject may be a Patient, Practitioner, PractitionerRole, Organization, Location, Device, or Group. Subjects provided in this parameter will be resolved as the subject of the measure based on the type of the subject. If multiple subjects of the same type are provided, the behavior is implementation-defined" ] ;
+     fhir:type [ fhir:v "string" ] ;
+     fhir:searchType [ fhir:v "reference" ]
+  ] [
+     fhir:name [ fhir:v "periodStart" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "1" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The start of the measurement period. In keeping with the semantics of the date parameter used in the FHIR search operation, the period will start at the beginning of the period implied by the supplied timestamp. E.g. a value of 2014 would set the period start to be 2014-01-01T00:00:00 inclusive" ] ;
+     fhir:type [ fhir:v "date" ]
+  ] [
+     fhir:name [ fhir:v "periodEnd" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "1" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The end of the measurement period. The period will end at the end of the period implied by the supplied timestamp. E.g. a value of 2014 would set the period end to be 2014-12-31T23:59:59 inclusive" ] ;
+     fhir:type [ fhir:v "date" ]
+  ] [
+     fhir:name [ fhir:v "reportType" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The type of measure report: individual, subject-list, or summary. If not specified, a default value of individual will be used if the subject parameter is supplied, otherwise, summary will be used. NOTE: Implementations should support the use of `subject` for individual and `population` for summary for backwards compatibility with existing implementations." ] ;
+     fhir:type [ fhir:v "code" ]
+  ] [
+     fhir:name [ fhir:v "provider" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The provider for which the report will be run. This may be a reference to a Practitioner, PractitionerRole, or Organization. If specified, the measure will be calculated for subjects that have a primary relationship to the identified provider. How this relationship is determined is implementation-specific." ] ;
+     fhir:type [ fhir:v "string" ] ;
+     fhir:searchType [ fhir:v "reference" ]
+  ] [
+     fhir:name [ fhir:v "location" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The location for which the report will be run." ] ;
+     fhir:type [ fhir:v "string" ] ;
+     fhir:searchType [ fhir:v "reference" ]
+  ] [
+     fhir:name [ fhir:v "lastReceivedOn" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The date the results of this measure were last received. This parameter is only valid for patient-level reports and is used to indicate when the last time a result for this patient was received. This information can be used to limit the set of resources returned for a patient-level report" ] ;
+     fhir:type [ fhir:v "dateTime" ]
+  ] [
+     fhir:name [ fhir:v "parameters" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "Any input parameters for the evaluation. Parameters defined in this input will be made available by name to the CQL expression. Parameter types are mapped to CQL as specified in the Using CQL topic of the Clinical Reasoning Module. If a parameter appears more than once in the input Parameters resource, it is represented with a List in the input CQL. If a parameter has parts, it is represented as a Tuple in the input CQL." ] ;
+     fhir:type [ fhir:v "Parameters" ]
+  ] [
+     fhir:name [ fhir:v "return" ] ;
+     fhir:use [ fhir:v "out" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "*" ] ;
+     fhir:documentation [ fhir:v "The results of the measure calculation. The result of this operation will be a Bundle for each input subject, where the first entry of the Bundle is a MeasureReport representing the results of the calculation, and subsequent entries in the Bundle are resources created and/or evaluated as part of the calculation. See the MeasureReport resource for a complete description of the output of this operation. Note that implementations may choose to return a MeasureReport with a status of pending to indicate that the report is still being generated. In this case, the client can use a polling method to continually request the MeasureReport until the status is updated to complete" ] ;
+     fhir:type [ fhir:v "Bundle" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

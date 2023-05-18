@@ -1,0 +1,69 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "claim-decision"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "fm" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/claim-decision"], [ fhir:v "http://hl7.org/fhir/claim-decision"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1896" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1896" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "ClaimAdjudicationDecisionCodes"], [ fhir:v "ClaimAdjudicationDecisionCodes"] ;
+  fhir:title [ fhir:v "Claim Adjudication Decision Codes"], [ fhir:v "Claim Adjudication Decision Codes"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:publisher [ fhir:v "HL7 International"], [ fhir:v "HL7 International"] ;
+  fhir:description [ fhir:v "This value set provides Claim Adjudication Decision codes."], [ fhir:v "This value set provides Claim Adjudication Decision codes."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:copyright [ fhir:v "HL7 Inc."], [ fhir:v "HL7 Inc."] ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "denied" ] ;
+     fhir:display [ fhir:v "Denied" ] ;
+     fhir:definition [ fhir:v "The claim, or individual services, are not approved for any payment. This may also be known as 'rejected'." ]
+  ] [
+     fhir:code [ fhir:v "approved" ] ;
+     fhir:display [ fhir:v "Approved" ] ;
+     fhir:definition [ fhir:v "The claim, or individual services, are approved as submitted." ]
+  ] [
+     fhir:code [ fhir:v "partial" ] ;
+     fhir:display [ fhir:v "Partial" ] ;
+     fhir:definition [ fhir:v "The claim, or individual services, are approved at an amount less than as submitted." ]
+  ] [
+     fhir:code [ fhir:v "pending" ] ;
+     fhir:display [ fhir:v "Pending" ] ;
+     fhir:definition [ fhir:v "The adjudication processing is not complete. This may be due to requiring manual review or receipt of additional information." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

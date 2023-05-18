@@ -1,0 +1,69 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Encounter ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "home"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">Encounter with patient @example who is at home</div>"
+  ] ; # 
+  fhir:contained ( [
+     a fhir:Location ;
+     fhir:id [ fhir:v "home" ] ;
+     fhir:description [ fhir:v "Client's home" ] ;
+     fhir:mode [ fhir:v "kind" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:class ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActCode"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "HH" ] ; #   Note that this value implies that the practitioner was at the patients home, \n			if it was a tele-service, then the virtual code should be used.  
+       fhir:display [ fhir:v "home health" ]
+     ] )
+  ] ) ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:participant ( [
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ParticipationType"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "PPRF" ]
+       ] )
+     ] ) ;
+     fhir:period [
+       fhir:start [ fhir:v "2015-01-17T16:00:00+10:00"^^xsd:dateTime ] ;
+       fhir:end [ fhir:v "2015-01-17T16:30:00+10:00"^^xsd:dateTime ]
+     ] ;
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/example" ] ;
+       fhir:display [ fhir:v "Dr Adam Careful" ]
+     ]
+  ] [
+     fhir:actor [
+       fhir:reference [ fhir:v "Patient/example" ]
+     ]
+  ] ) ; # 
+  fhir:actualPeriod [
+     fhir:start [ fhir:v "2015-01-17T16:00:00+10:00"^^xsd:dateTime ] ;
+     fhir:end [ fhir:v "2015-01-17T16:30:00+10:00"^^xsd:dateTime ]
+  ] ; # 
+  fhir:location ( [
+     fhir:location [
+       fhir:reference [ fhir:v "#home" ] ;
+       fhir:display [ fhir:v "Client's home" ]
+     ] ;
+     fhir:status [ fhir:v "completed" ] ;
+     fhir:period [
+       fhir:start [ fhir:v "2015-01-17T16:00:00+10:00"^^xsd:dateTime ] ;
+       fhir:end [ fhir:v "2015-01-17T16:30:00+10:00"^^xsd:dateTime ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

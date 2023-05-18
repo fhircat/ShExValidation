@@ -1,0 +1,196 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:OperationDefinition ;
+  fhir:id [ fhir:v "CodeSystem-validate-code"] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "5" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "normative" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/OperationDefinition/CodeSystem-validate-code"], [ fhir:v "http://hl7.org/fhir/OperationDefinition/CodeSystem-validate-code"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "ValidateCode"], [ fhir:v "ValidateCode"] ;
+  fhir:title [ fhir:v "Code System based Validation"], [ fhir:v "Code System based Validation"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Validate that a coded value is in the code system. If the operation is not called at the instance level, one of the parameters \"url\" or \"codeSystem\" must be provided. The operation returns a result (true / false), an error message, and the recommended display for the code.\n\nWhen invoking this operation, a client **SHALL** provide one (and only one) of the parameters (code+system, coding, or codeableConcept). Other parameters (including version and display) are optional. When validating a code or a coding, then the code, system and version output parameters **SHOULD** be populated when possible. When a validating a CodeableConcept, then the codeableConcept output parameter **SHOULD** be populated when possible."], [ fhir:v "Validate that a coded value is in the code system. If the operation is not called at the instance level, one of the parameters \"url\" or \"codeSystem\" must be provided. The operation returns a result (true / false), an error message, and the recommended display for the code.\n\nWhen invoking this operation, a client **SHALL** provide one (and only one) of the parameters (code+system, coding, or codeableConcept). Other parameters (including version and display) are optional. When validating a code or a coding, then the code, system and version output parameters **SHOULD** be populated when possible. When a validating a CodeableConcept, then the codeableConcept output parameter **SHOULD** be populated when possible."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:kind [ fhir:v "operation"] ;
+  fhir:affectsState [ fhir:v "false"] ;
+  fhir:code [ fhir:v "validate-code"] ;
+  fhir:resource ( [ fhir:v "CodeSystem"] ) ;
+  fhir:system [ fhir:v "false"] ;
+  fhir:type [ fhir:v "true"] ;
+  fhir:instance [ fhir:v "true"] ;
+  fhir:parameter ( [
+     fhir:name [ fhir:v "url" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:scope ( [ fhir:v "type" ] ) ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "CodeSystem URL. The server must know the code system (e.g. it is defined explicitly in the server'scode systems, or it is known implicitly by the server" ] ;
+     fhir:type [ fhir:v "uri" ]
+  ] [
+     fhir:name [ fhir:v "codeSystem" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:scope ( [ fhir:v "type" ] ) ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The codeSystem is provided directly as part of the request. Servers may choose not to accept code systems in this fashion. This parameter is used when the client wants the server to check against a code system that is not stored on the server" ] ;
+     fhir:type [ fhir:v "CodeSystem" ]
+  ] [
+     fhir:name [ fhir:v "code" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The code that is to be validated" ] ;
+     fhir:type [ fhir:v "code" ]
+  ] [
+     fhir:name [ fhir:v "version" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:scope ( [ fhir:v "type" ] ) ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The version of the code system, if one was provided in the source data" ] ;
+     fhir:type [ fhir:v "string" ]
+  ] [
+     fhir:name [ fhir:v "display" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The display associated with the code, if provided. If a display is provided a code must be provided. If no display is provided, the server cannot validate the display value, but may choose to return a recommended display name in an extension in the outcome. Whether displays are case sensitive is code system dependent" ] ;
+     fhir:type [ fhir:v "string" ]
+  ] [
+     fhir:name [ fhir:v "coding" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "A coding to validate. The system must match the specified code system" ] ;
+     fhir:type [ fhir:v "Coding" ]
+  ] [
+     fhir:name [ fhir:v "codeableConcept" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "A full codeableConcept to validate. The server returns true if one of the coding values is in the code system, and may also validate that the codings are not in conflict with each other if more than one is present" ] ;
+     fhir:type [ fhir:v "CodeableConcept" ]
+  ] [
+     fhir:name [ fhir:v "date" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The date for which the validation should be checked. Normally, this is the current conditions (which is the default values) but under some circumstances, systems need to validate that a correct code was used at some point in the past. A typical example of this would be where code selection is constrained to the set of codes that were available when the patient was treated, not when the record is being edited. Note that which date is appropriate is a matter for implementation policy." ] ;
+     fhir:type [ fhir:v "dateTime" ]
+  ] [
+     fhir:name [ fhir:v "abstract" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "If this parameter has a value of true, the client is stating that the validation is being performed in a context where a concept designated as 'abstract' is appropriate/allowed to be used, and the server should regard abstract codes as valid. If this parameter is false, abstract codes are not considered to be valid.\n\nNote that. 'abstract' is a property defined by many HL7 code systems that indicates that the concept is a logical grouping concept that is not intended to be used asa 'concrete' concept to in an actual patient/care/process record. This language is borrowed from Object Orienated theory where 'asbtract' objects are never instantiated. However in the general record and terminology eco-system, there are many contexts where it is appropraite to use these codes e.g. as decision making criterion, or when editing value sets themselves. This parameter allows a client to indicate to the server that it is working in such a context." ] ;
+     fhir:type [ fhir:v "boolean" ]
+  ] [
+     fhir:name [ fhir:v "displayLanguage" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "Specifies the language to be used for description when validating the display property" ] ;
+     fhir:type [ fhir:v "code" ]
+  ] [
+     fhir:name [ fhir:v "result" ] ;
+     fhir:use [ fhir:v "out" ] ;
+     fhir:min [ fhir:v "1" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "True if the concept details supplied are valid" ] ;
+     fhir:type [ fhir:v "boolean" ]
+  ] [
+     fhir:name [ fhir:v "message" ] ;
+     fhir:use [ fhir:v "out" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "Error details, if result = false. If this is provided when result = true, the message carries hints and warnings" ] ;
+     fhir:type [ fhir:v "string" ]
+  ] [
+     fhir:name [ fhir:v "display" ] ;
+     fhir:use [ fhir:v "out" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "A valid display for the concept if the system wishes to display this to a user" ] ;
+     fhir:type [ fhir:v "string" ]
+  ] [
+     fhir:name [ fhir:v "code" ] ;
+     fhir:use [ fhir:v "out" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The code that was validated" ] ;
+     fhir:type [ fhir:v "code" ]
+  ] [
+     fhir:name [ fhir:v "system" ] ;
+     fhir:use [ fhir:v "out" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The system for the code that was validated" ] ;
+     fhir:type [ fhir:v "uri" ]
+  ] [
+     fhir:name [ fhir:v "version" ] ;
+     fhir:use [ fhir:v "out" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The version of the system of the code that was validated" ] ;
+     fhir:type [ fhir:v "string" ]
+  ] [
+     fhir:name [ fhir:v "codeableConcept" ] ;
+     fhir:use [ fhir:v "out" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "A codeableConcept containing codings for all the validated codes" ] ;
+     fhir:type [ fhir:v "CodeableConcept" ]
+  ] [
+     fhir:name [ fhir:v "issues" ] ;
+     fhir:use [ fhir:v "out" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "List of itemised issues with paths constrained to simple FHIRPath. Examples are CodeableConcept, CodeableConcept.coding[0], CodeableConcept.coding[1].display, or Coding.display" ] ;
+     fhir:type [ fhir:v "OperationOutcome" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,54 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <DataType.shex>
+#imported_end
+#imported_begin 
+IMPORT <positiveInt.shex>
+#imported_end
+# Details of a Technology mediated contact point (phone, fax, email, etc.)
+<ContactPoint> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:ContactPoint]?;
+
+    fhir:system @<code> AND
+    	{fhir:v @fhirvs:contact-point-system}?;  # phone | fax | email | pager | url 
+                                            # | sms | other 
+    fhir:value @<string>?;                  # The actual contact point details
+    fhir:use @<code> AND
+    	{fhir:v @fhirvs:contact-point-use}?;  # home | work | temp | old | mobile 
+                                            # - purpose of this contact point 
+    fhir:rank @<positiveInt>?;              # Specify preferred order of use (1 
+                                            # = highest) 
+    fhir:period @<Period>?;                 # Time period when the contact point 
+                                            # was/is in use 
+} AND (
+
+# Constraint UniqueKey:cpt-2
+# Human readable:A system is required if a value is provided.
+
+# Constraint: value.empty() or system.exists()
+# ShEx:
+
+ NOT { fhir:value {fhir:v .} }  OR {fhir:system .}
+
+)
+ 
+
+#---------------------- Value Sets ------------------------
+
+
+

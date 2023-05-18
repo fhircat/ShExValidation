@@ -1,0 +1,50 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:TerminologyCapabilities ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-terminology-server"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: TerminologyCapabilities</b><a name=\"example-terminology-server\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource TerminologyCapabilities &quot;example-terminology-server&quot; </p></div><p><b>url</b>: <code>http://hl7.org/fhir/TerminologyCapabilities/terminology-server</code></p><p><b>identifier</b>: id: urn:oid:2.16.840.1.113883.4.642.6.1</p><p><b>name</b>: ACMETerminologyServiceTerminologyCapabilities</p><p><b>title</b>: ACME Terminology Service — Terminology Capabilities</p><p><b>status</b>: draft</p><p><b>date</b>: 2022-09-01</p><p><b>description</b>: ACME Terminology Service — Terminology Capabilities</p><p><b>kind</b>: instance</p><h3>Implementations</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td></tr><tr><td>*</td><td>The ACME FHIR Terminology Server</td></tr></table><blockquote><p><b>codeSystem</b></p><p><b>uri</b>: <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-snomed-CT.html\">SNOMED CT International Edition</a></p><h3>Versions</h3><table class=\"grid\"><tr><td>-</td><td><b>Code</b></td></tr><tr><td>*</td><td>http://snomed.info/sct/32506021000036107/version/20220831</td></tr></table><p><b>content</b>: complete</p></blockquote><blockquote><p><b>codeSystem</b></p><p><b>uri</b>: <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-loinc.html\">Logical Observation Identifiers, Names and Codes (LOINC)</a></p><h3>Versions</h3><table class=\"grid\"><tr><td>-</td><td><b>Code</b></td></tr><tr><td>*</td><td>2.73</td></tr></table><p><b>content</b>: complete</p></blockquote></div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/TerminologyCapabilities/terminology-server"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.6.1" ]
+  ] ) ; # 
+  fhir:name [ fhir:v "ACMETerminologyServiceTerminologyCapabilities"] ; # 
+  fhir:title [ fhir:v "ACME Terminology Service — Terminology Capabilities"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:date [ fhir:v "2022-09-01"^^xsd:date] ; # 
+  fhir:description [ fhir:v "ACME Terminology Service — Terminology Capabilities"] ; # 
+  fhir:kind [ fhir:v "instance"] ; # 
+  fhir:implementation [
+     fhir:description [ fhir:v "The ACME FHIR Terminology Server" ]
+  ] ; # 
+  fhir:codeSystem ( [
+     fhir:uri [
+       fhir:v "http://snomed.info/sct"^^xsd:anyURI ;
+       fhir:link <http://snomed.info/sct>
+     ] ;
+     fhir:version ( [
+       fhir:code [ fhir:v "http://snomed.info/sct/32506021000036107/version/20220831" ]
+     ] ) ;
+     fhir:content [ fhir:v "complete" ]
+  ] [
+     fhir:uri [
+       fhir:v "http://loinc.org"^^xsd:anyURI ;
+       fhir:link <http://loinc.org>
+     ] ;
+     fhir:version ( [
+       fhir:code [ fhir:v "2.73" ]
+     ] ) ;
+     fhir:content [ fhir:v "complete" ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,137 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "medicationdispense-status-reason"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "phx" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/CodeSystem/medicationdispense-status-reason"], [ fhir:v "http://hl7.org/fhir/CodeSystem/medicationdispense-status-reason"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1973" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1973" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "MedicationDispenseStatusReasonCodes"], [ fhir:v "MedicationDispenseStatusReasonCodes"] ;
+  fhir:title [ fhir:v "Medication Dispense Status Reason Codes"], [ fhir:v "Medication Dispense Status Reason Codes"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:publisher [ fhir:v "HL7 International"], [ fhir:v "HL7 International"] ;
+  fhir:description [ fhir:v "Medication Dispense Status Reason Codes"], [ fhir:v "Medication Dispense Status Reason Codes"] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/medicationdispense-status-reason"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "frr01" ] ;
+     fhir:display [ fhir:v "Order Stopped" ] ;
+     fhir:definition [ fhir:v "The order has been stopped by the prescriber but this fact has not necessarily captured electronically. Example: A verbal stop, a fax, etc." ]
+  ] [
+     fhir:code [ fhir:v "frr02" ] ;
+     fhir:display [ fhir:v "Stale-dated Order" ] ;
+     fhir:definition [ fhir:v "Order has not been fulfilled within a reasonable amount of time, and might not be current." ]
+  ] [
+     fhir:code [ fhir:v "frr03" ] ;
+     fhir:display [ fhir:v "Incomplete data" ] ;
+     fhir:definition [ fhir:v "Data needed to safely act on the order which was expected to become available independent of the order is not yet available. Example: Lab results, diagnostic imaging, etc." ]
+  ] [
+     fhir:code [ fhir:v "frr04" ] ;
+     fhir:display [ fhir:v "Product unavailable" ] ;
+     fhir:definition [ fhir:v "Product not available or manufactured. Cannot supply." ]
+  ] [
+     fhir:code [ fhir:v "frr05" ] ;
+     fhir:display [ fhir:v "Ethical/religious" ] ;
+     fhir:definition [ fhir:v "The dispenser has ethical, religious or moral objections to fulfilling the order/dispensing the product." ]
+  ] [
+     fhir:code [ fhir:v "frr06" ] ;
+     fhir:display [ fhir:v "Unable to provide care" ] ;
+     fhir:definition [ fhir:v "Fulfiller not able to provide appropriate care associated with fulfilling the order. Example: Therapy requires ongoing monitoring by fulfiller and fulfiller will be ending practice, leaving town, unable to schedule necessary time, etc." ]
+  ] [
+     fhir:code [ fhir:v "altchoice" ] ;
+     fhir:display [ fhir:v "Try another treatment first" ] ;
+     fhir:definition [ fhir:v "This therapy has been ordered as a backup to a preferred therapy. This order will be released when and if the preferred therapy is unsuccessful." ]
+  ] [
+     fhir:code [ fhir:v "clarif" ] ;
+     fhir:display [ fhir:v "Prescription/Request requires clarification" ] ;
+     fhir:definition [ fhir:v "Clarification is required before the order can be acted upon." ]
+  ] [
+     fhir:code [ fhir:v "drughigh" ] ;
+     fhir:display [ fhir:v "Drug level too high" ] ;
+     fhir:definition [ fhir:v "The current level of the medication in the patient's system is too high. The medication is suspended to allow the level to subside to a safer level." ]
+  ] [
+     fhir:code [ fhir:v "hospadm" ] ;
+     fhir:display [ fhir:v "Admission to hospital" ] ;
+     fhir:definition [ fhir:v "The patient has been admitted to a care facility and their community medications are suspended until hospital discharge." ]
+  ] [
+     fhir:code [ fhir:v "labint" ] ;
+     fhir:display [ fhir:v "Lab interference issues" ] ;
+     fhir:definition [ fhir:v "The therapy would interfere with a planned lab test and the therapy is being withdrawn until the test is completed." ]
+  ] [
+     fhir:code [ fhir:v "non-avail" ] ;
+     fhir:display [ fhir:v "Patient not available" ] ;
+     fhir:definition [ fhir:v "Patient not available for a period of time due to a scheduled therapy, leave of absence or other reason." ]
+  ] [
+     fhir:code [ fhir:v "preg" ] ;
+     fhir:display [ fhir:v "Patient is pregnant or breastfeeding" ] ;
+     fhir:definition [ fhir:v "The patient is pregnant or breast feeding. The therapy will be resumed when the pregnancy is complete and the patient is no longer breastfeeding." ]
+  ] [
+     fhir:code [ fhir:v "saig" ] ;
+     fhir:display [ fhir:v "Allergy" ] ;
+     fhir:definition [ fhir:v "The patient is believed to be allergic to a substance that is part of the therapy and the therapy is being temporarily withdrawn to confirm." ]
+  ] [
+     fhir:code [ fhir:v "sddi" ] ;
+     fhir:display [ fhir:v "Drug interacts with another drug" ] ;
+     fhir:definition [ fhir:v "The drug interacts with a short-term treatment that is more urgently required. This order will be resumed when the short-term treatment is complete." ]
+  ] [
+     fhir:code [ fhir:v "sdupther" ] ;
+     fhir:display [ fhir:v "Duplicate therapy" ] ;
+     fhir:definition [ fhir:v "Another short-term co-occurring therapy fulfills the same purpose as this therapy. This therapy will be resumed when the co-occuring therapy is complete." ]
+  ] [
+     fhir:code [ fhir:v "sintol" ] ;
+     fhir:display [ fhir:v "Suspected intolerance" ] ;
+     fhir:definition [ fhir:v "The patient is believed to have an intolerance to a substance that is part of the therapy and the therapy is being temporarily withdrawn to confirm." ]
+  ] [
+     fhir:code [ fhir:v "surg" ] ;
+     fhir:display [ fhir:v "Patient scheduled for surgery" ] ;
+     fhir:definition [ fhir:v "The drug is contraindicated for patients receiving surgery and the patient is scheduled to be admitted for surgery in the near future. The drug will be resumed when the patient has sufficiently recovered from the surgery." ]
+  ] [
+     fhir:code [ fhir:v "washout" ] ;
+     fhir:display [ fhir:v "Washout" ] ;
+     fhir:definition [ fhir:v "The patient was previously receiving a medication contraindicated with the current medication. The current medication will remain on hold until the prior medication has been cleansed from their system." ]
+  ] [
+     fhir:code [ fhir:v "outofstock" ] ;
+     fhir:display [ fhir:v "Drug not available - out of stock" ] ;
+     fhir:definition [ fhir:v "Drug out of stock. Cannot supply." ]
+  ] [
+     fhir:code [ fhir:v "offmarket" ] ;
+     fhir:display [ fhir:v "Drug not available - off market" ] ;
+     fhir:definition [ fhir:v "Drug no longer marketed Cannot supply." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

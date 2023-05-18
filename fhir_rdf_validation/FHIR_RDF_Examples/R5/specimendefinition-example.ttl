@@ -1,0 +1,102 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:SpecimenDefinition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "7"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: SpecimenDefinition</b><a name=\"7\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource SpecimenDefinition &quot;7&quot; </p></div><p><b>url</b>: <code>http://example-lab.com/specdef/123455</code></p><p><b>identifier</b>: id: 123455</p><p><b>title</b>: Venous blood specimen</p><p><b>status</b>: active</p><p><b>experimental</b>: true</p><p><b>typeCollected</b>: Venous blood specimen (specimen) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#122555007)</span></p><p><b>patientPreparation</b>: no strict fasting <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><blockquote><p><b>typeTested</b></p><p><b>isDerived</b>: true</p><p><b>type</b>: Serum specimen (specimen) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#119364003)</span></p><p><b>preference</b>: preferred</p><h3>Containers</h3><table class=\"grid\"><tr><td>-</td><td><b>Material</b></td><td><b>Type</b></td><td><b>Cap</b></td><td><b>MinimumVolume[x]</b></td></tr><tr><td>*</td><td>glass <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td><td>Evacuated blood collection tube with thrombin and clot activator and gel separator <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#702281005)</span></td><td>yellow cap <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (CodeSystem-container-cap.html#yellow)</span></td><td>2 ml<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mL = 'mL')</span></td></tr></table><blockquote><p><b>handling</b></p><p><b>temperatureQualifier</b>: room temperature <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#room)</span></p><p><b>temperatureRange</b>: 15-25 °C</p><h3>MaxDurations</h3><table class=\"grid\"><tr><td>-</td><td><b>Value</b></td><td><b>System</b></td><td><b>Code</b></td></tr><tr><td>*</td><td>12</td><td><a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ucum.html\">Unified Code for Units of Measure (UCUM)</a></td><td>h</td></tr></table></blockquote></blockquote></div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://example-lab.com/specdef/123455"^^xsd:anyURI] ; # 
+  fhir:identifier [
+     fhir:value [ fhir:v "123455" ]
+  ] ; # 
+  fhir:title [ fhir:v "Venous blood specimen"] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:experimental [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:typeCollected [
+     fhir:coding ( [
+       a sct:122555007 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "122555007" ]
+     ] ) ;
+     fhir:text [ fhir:v "Venous blood specimen (specimen)" ]
+  ] ; # 
+  fhir:patientPreparation ( [
+     fhir:text [ fhir:v "no strict fasting" ]
+  ] ) ; # 
+  fhir:typeTested ( [
+     fhir:isDerived [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:type [
+       fhir:coding ( [
+         a sct:119364003 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "119364003" ]
+       ] ) ;
+       fhir:text [ fhir:v "Serum specimen (specimen)" ]
+     ] ;
+     fhir:preference [ fhir:v "preferred" ] ;
+     fhir:container [
+       fhir:material [
+         fhir:text [ fhir:v "glass" ]
+       ] ;
+       fhir:type [
+         fhir:coding ( [
+           a sct:702281005 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "702281005" ] ;
+           fhir:display [ fhir:v "Evacuated blood collection tube with thrombin and clot activator and gel separator" ]
+         ] )
+       ] ;
+       fhir:cap [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/5.1.0/CodeSystem-container-cap.html"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "yellow" ] ;
+           fhir:display [ fhir:v "yellow cap" ]
+         ] )
+       ] ;
+       fhir:minimumVolume [
+         a fhir:Quantity ;
+         fhir:value [ fhir:v "2"^^xsd:decimal ] ;
+         fhir:unit [ fhir:v "ml" ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "mL" ]
+       ]
+     ] ;
+     fhir:handling ( [
+       fhir:temperatureQualifier [
+         fhir:coding ( [
+           fhir:code [ fhir:v "room" ] ;
+           fhir:display [ fhir:v "room temperature" ]
+         ] )
+       ] ;
+       fhir:temperatureRange [
+         fhir:low [
+           fhir:value [ fhir:v "15"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "°C" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Cel" ]
+         ] ;
+         fhir:high [
+           fhir:value [ fhir:v "25"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "°C" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Cel" ]
+         ]
+       ] ;
+       fhir:maxDuration [
+         fhir:value [ fhir:v "12"^^xsd:decimal ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "h" ]
+       ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

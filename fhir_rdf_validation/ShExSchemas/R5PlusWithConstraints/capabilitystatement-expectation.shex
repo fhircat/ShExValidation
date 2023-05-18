@@ -1,0 +1,63 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+# SHALL | SHOULD | MAY |SHOULD-NOT
+<capabilitystatement-expectation> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:capabilitystatement-expectation]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri> AND
+    	{fhir:value ["http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"]}; 
+    fhir:value @<code> AND
+    	{fhir:v @fhirvs:conformance-expectation}  ; 
+    ^fhir:extension { ^fhir:document {a [fhir:CapabilityStatement]}} OR 
+          {^fhir:format {a [fhir:CapabilityStatement]}} OR 
+          {^fhir:implementationGuide {a [fhir:CapabilityStatement]}} OR 
+          {^fhir:imports {a [fhir:CapabilityStatement]}} OR 
+          {^fhir:instantiates {a [fhir:CapabilityStatement]}} OR 
+          {^fhir:patchFormat {a [fhir:CapabilityStatement]}} OR 
+          {^fhir:interaction {^fhir:rest {a [fhir:CapabilityStatement]}}} OR 
+          {^fhir:code {^fhir:interaction {^fhir:rest {a [fhir:CapabilityStatement]}}}} OR 
+          {^fhir:documentation {^fhir:interaction {^fhir:rest {a [fhir:CapabilityStatement]}}}} OR 
+          {^fhir:operation {^fhir:rest {a [fhir:CapabilityStatement]}}} OR 
+          {^fhir:resource {^fhir:rest {a [fhir:CapabilityStatement]}}} OR 
+          {^fhir:extension {^fhir:resource {^fhir:rest {a [fhir:CapabilityStatement]}}}} OR 
+          {^fhir:conditionalCreate {^fhir:resource {^fhir:rest {a [fhir:CapabilityStatement]}}}} OR 
+          {^fhir:conditionalDelete {^fhir:resource {^fhir:rest {a [fhir:CapabilityStatement]}}}} OR 
+          {^fhir:conditionalRead {^fhir:resource {^fhir:rest {a [fhir:CapabilityStatement]}}}} OR 
+          {^fhir:conditionalUpdate {^fhir:resource {^fhir:rest {a [fhir:CapabilityStatement]}}}} OR 
+          {^fhir:conditionalPatch {^fhir:resource {^fhir:rest {a [fhir:CapabilityStatement]}}}} OR 
+          {^fhir:interaction {^fhir:resource {^fhir:rest {a [fhir:CapabilityStatement]}}}} OR 
+          {^fhir:operation {^fhir:resource {^fhir:rest {a [fhir:CapabilityStatement]}}}} OR 
+          {^fhir:profile {^fhir:resource {^fhir:rest {a [fhir:CapabilityStatement]}}}} OR 
+          {^fhir:readHistory {^fhir:resource {^fhir:rest {a [fhir:CapabilityStatement]}}}} OR 
+          {^fhir:referencePolicy {^fhir:resource {^fhir:rest {a [fhir:CapabilityStatement]}}}} OR 
+          {^fhir:searchInclude {^fhir:resource {^fhir:rest {a [fhir:CapabilityStatement]}}}} OR 
+          {^fhir:searchParam {^fhir:resource {^fhir:rest {a [fhir:CapabilityStatement]}}}} OR 
+          {^fhir:searchRevInclude {^fhir:resource {^fhir:rest {a [fhir:CapabilityStatement]}}}} OR 
+          {^fhir:supportedProfile {^fhir:resource {^fhir:rest {a [fhir:CapabilityStatement]}}}} OR 
+          {^fhir:updateCreate {^fhir:resource {^fhir:rest {a [fhir:CapabilityStatement]}}}} OR 
+          {^fhir:versioning {^fhir:resource {^fhir:rest {a [fhir:CapabilityStatement]}}}} OR 
+          {^fhir:searchParam {^fhir:rest {a [fhir:CapabilityStatement]}}} OR 
+          {^fhir:security {^fhir:rest {a [fhir:CapabilityStatement]}}} OR 
+          {^fhir:cors {^fhir:security {^fhir:rest {a [fhir:CapabilityStatement]}}}} OR 
+          {^fhir:service {^fhir:security {^fhir:rest {a [fhir:CapabilityStatement]}}}}
+
+}  
+
+#---------------------- Value Sets ------------------------
+
+

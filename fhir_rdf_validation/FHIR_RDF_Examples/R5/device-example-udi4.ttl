@@ -1,0 +1,38 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+#    <association>
+#	  <status> 
+#	     <coding>
+#		   <system value="http://terminology.hl7.org/CodeSystem/device-association-status" />
+#           <code value="attached"/>
+#		 </coding>
+#	  </status>
+#      <humanSubject>
+#		<reference value="Patient/example"/>
+#	  </humanSubject>
+#	</association>   
+
+[a fhir:Device ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-udi4"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Device</b><a name=\"example-udi4\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Device &quot;example-udi4&quot; </p></div><h3>UdiCarriers</h3><table class=\"grid\"><tr><td>-</td><td><b>DeviceIdentifier</b></td><td><b>Issuer</b></td><td><b>Jurisdiction</b></td><td><b>CarrierHRF</b></td></tr><tr><td>*</td><td>A4599XQZ990T0474</td><td><a href=\"http://hl7.org/fhir/NamingSystem/iccbba-blood\">http://hl7.org/fhir/NamingSystem/iccbba-blood</a></td><td><a href=\"http://hl7.org/fhir/NamingSystem/fda-udi\">http://hl7.org/fhir/NamingSystem/fda-udi</a></td><td>=)1TE123456A&amp;)RZ12345678</td></tr></table><p><b>status</b>: inactive</p><p><b>manufacturer</b>: GlobalMed, Inc</p><p><b>lotNumber</b>: RZ12345678</p></div>"
+  ] ; # 
+  fhir:udiCarrier ( [
+     fhir:deviceIdentifier [ fhir:v "A4599XQZ990T0474" ] ;
+     fhir:issuer [ fhir:v "http://hl7.org/fhir/NamingSystem/iccbba-blood"^^xsd:anyURI ] ;
+     fhir:jurisdiction [ fhir:v "http://hl7.org/fhir/NamingSystem/fda-udi"^^xsd:anyURI ] ;
+     fhir:carrierHRF [ fhir:v "=)1TE123456A&)RZ12345678" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "inactive"] ; # 
+  fhir:manufacturer [ fhir:v "GlobalMed, Inc"] ; # 
+  fhir:lotNumber [ fhir:v "RZ12345678"]] . # 
+
+# -------------------------------------------------------------------------------------
+

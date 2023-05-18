@@ -1,0 +1,92 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Consent ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "consent-example-smartonfhir"] ; #   
+#  This example provides a basic template for recording
+#  the consent associated with a SMART on FHIR OAuth dance.
+#
+#  In SMART on FHIR, the user grants (consents) to a set
+#  of actions that the server can take when with regard to
+#  release of information from their own record to the application
+#
+#  This is not the main intended use of the Consent resource,
+#  and there's no need for the consent resource as part of
+#  the SMART on FHIR Authorization process, or when using
+#  Heart UMA. Using a Consent resource to record and exchange
+#  the users consent may be useful for recording and storing
+#  the consent and making it available to the user later,
+#  or for exchanging the patient's consent between AS and RS,
+#  or between systems in a multi-system virtual RS a very
+#  common scenario)
+#
+#  Note that whichever system builds this Content resource,
+#  it needs access to information from both the AS and the
+#  RS.
+#
+#  Note also, that a situation where a practitioner type user
+#  authorises the application to access information on a general
+#  set of patients does not count as 'consent'.
+#  
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Consent</b><a name=\"consent-example-smartonfhir\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Consent &quot;consent-example-smartonfhir&quot; </p></div><p><b>status</b>: active</p><p><b>category</b>: Patient Consent <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#59284-0)</span></p><p><b>subject</b>: <span title=\"  In this SMART on FHIR login, the user consents for data sharing for their elderly parent's record  \"><a href=\"patient-example-xcda.html\">Patient/xcda</a> &quot;Henry LEVIN&quot;</span></p><p><b>date</b>: 2016-06-23</p><p><b>grantor</b>: <a href=\"relatedperson-example-peter.html\">RelatedPerson/peter</a> &quot;Peter CHALMERS&quot;</p><p><b>controller</b>: <a href=\"organization-example-f001-burgers.html\">Organization/f001</a> &quot;Burgers University Medical Center&quot;</p><p><b>regulatoryBasis</b>: <span title=\"  there's no source record for a Smart on FHIR consent\n    smart on fhir requires a base opt-in policy  \">information access <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ActCode.html\">ActCode</a>#INFA)</span></span></p><p><b>decision</b>: <span title=\"  each scope that relates to FHIR resource access is represented as an exception  \">permit</span></p><blockquote><p><b>provision</b></p><p><b>period</b>: 2016-06-23T17:02:33+10:00 --&gt; 2016-06-23T17:32:33+10:00</p><h3>Provisions</h3><table class=\"grid\"><tr><td>-</td><td><b>Action</b></td><td><b>ResourceType</b></td></tr><tr><td>*</td><td><span title=\"  this rule corresponds to MedicationRequest/read  &amp;#10;  no actors here, or anything, just read/write and the resource type  \">Access <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-consentaction.html\">Consent Action Codes</a>#access)</span></span>, Access and Correct <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-consentaction.html\">Consent Action Codes</a>#correct)</span></td><td>MedicationRequest (Details: http://hl7.org/fhir/resource-types code MedicationRequest = 'MedicationRequest', stated as 'null')</td></tr></table></blockquote></div>"
+  ] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       a loinc:59284-0 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "59284-0" ]
+     ] )
+  ] ) ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/xcda" ]
+  ] ; #    In this SMART on FHIR login, the user consents for data sharing for their elderly parent's record   
+  fhir:date [ fhir:v "2016-06-23"^^xsd:date] ; # 
+  fhir:grantor ( [
+     fhir:reference [ fhir:v "RelatedPerson/peter" ] #    this is the patient record that matches the person\n      making the decision. note: it's not always a related person   
+  ] ) ; # 
+  fhir:controller ( [
+     fhir:reference [ fhir:v "Organization/f001" ] #    The organization running the Authentication server   
+  ] ) ; # 
+  fhir:regulatoryBasis ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActCode"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "INFA" ]
+     ] )
+  ] ) ; #    there's no source record for a Smart on FHIR consent
+#    smart on fhir requires a base opt-in policy   
+  fhir:decision [ fhir:v "permit"] ; #    each scope that relates to FHIR resource access is represented as an exception   
+  fhir:provision ( [
+     fhir:period [
+       fhir:start [ fhir:v "2016-06-23T17:02:33+10:00"^^xsd:dateTime ] ;
+       fhir:end [ fhir:v "2016-06-23T17:32:33+10:00"^^xsd:dateTime ]
+     ] ;
+     fhir:provision ( [
+       fhir:action ( [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/consentaction"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "access" ]
+         ] )
+       ] [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/consentaction"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "correct" ]
+         ] )
+       ] ) ; #    this rule corresponds to MedicationRequest\/read   ,    no actors here, or anything, just read\/write and the resource type   
+       fhir:resourceType ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/resource-types"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "MedicationRequest" ]
+       ] )
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

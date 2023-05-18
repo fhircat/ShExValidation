@@ -1,0 +1,91 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "medicationrequest-status"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "phx" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/CodeSystem/medicationrequest-status"], [ fhir:v "http://hl7.org/fhir/CodeSystem/medicationrequest-status"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1377" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1377" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "MedicationRequestStatusCodes"], [ fhir:v "MedicationRequestStatusCodes"] ;
+  fhir:title [ fhir:v "MedicationRequest Status Codes"], [ fhir:v "MedicationRequest Status Codes"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:publisher [ fhir:v "HL7 International"], [ fhir:v "HL7 International"] ;
+  fhir:description [ fhir:v "MedicationRequest Status Codes"], [ fhir:v "MedicationRequest Status Codes"] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/medicationrequest-status"] ;
+  fhir:hierarchyMeaning [ fhir:v "is-a"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "active" ] ;
+     fhir:display [ fhir:v "Active" ] ;
+     fhir:definition [ fhir:v "The request is 'actionable', but not all actions that are implied by it have occurred yet." ]
+  ] [
+     fhir:code [ fhir:v "on-hold" ] ;
+     fhir:display [ fhir:v "On Hold" ] ;
+     fhir:definition [ fhir:v "Actions implied by the request are to be temporarily halted. The request might or might not be resumed. May also be called 'suspended'." ]
+  ] [
+     fhir:code [ fhir:v "ended" ] ;
+     fhir:display [ fhir:v "Ended" ] ;
+     fhir:definition [ fhir:v "The request is no longer active and the subject should no longer be taking the medication." ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "stopped" ] ;
+       fhir:display [ fhir:v "Stopped" ] ;
+       fhir:definition [ fhir:v "Actions implied by the request are to be permanently halted, before all of the administrations occurred. This should not be used if the original order was entered in error" ]
+     ] [
+       fhir:code [ fhir:v "completed" ] ;
+       fhir:display [ fhir:v "Completed" ] ;
+       fhir:definition [ fhir:v "All actions that are implied by the request have occurred." ]
+     ] [
+       fhir:code [ fhir:v "cancelled" ] ;
+       fhir:display [ fhir:v "Cancelled" ] ;
+       fhir:definition [ fhir:v "The request has been withdrawn before any administrations have occurred" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "entered-in-error" ] ;
+     fhir:display [ fhir:v "Entered in Error" ] ;
+     fhir:definition [ fhir:v "The request was recorded against the wrong patient or for some reason should not have been recorded (e.g. wrong medication, wrong dose, etc.). Some of the actions that are implied by the medication request may have occurred. For example, the medication may have been dispensed and the patient may have taken some of the medication." ]
+  ] [
+     fhir:code [ fhir:v "draft" ] ;
+     fhir:display [ fhir:v "Draft" ] ;
+     fhir:definition [ fhir:v "The request is not yet 'actionable', e.g. it is a work in progress, requires sign-off, verification or needs to be run through decision support process." ]
+  ] [
+     fhir:code [ fhir:v "unknown" ] ;
+     fhir:display [ fhir:v "Unknown" ] ;
+     fhir:definition [ fhir:v "The authoring/source system does not know which of the status values currently applies for this request. Note: This concept is not to be used for 'other' - one of the listed statuses is presumed to apply, but the authoring/source system does not know which." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

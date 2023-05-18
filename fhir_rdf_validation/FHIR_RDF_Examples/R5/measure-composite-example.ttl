@@ -1,0 +1,44 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Measure ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "composite-example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">Behavioral Assessment Composite Measure\n    \n      <p>This measure example is used to illustrate how a composite measure can be constructured. This measure is a composite measure of the Screening for Alcohol Misuse and Screening for Depression measures.</p>\n    </div>"
+  ] ; # 
+  fhir:name [ fhir:v "BehavioralAssessmentCompositeMeasure"] ; # 
+  fhir:title [ fhir:v "Behavioral Assessment Composite Measure"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:description [ fhir:v "Behavioral Assessment Composite Measure"] ; # 
+  fhir:relatedArtifact ( [
+     fhir:type [ fhir:v "composed-of" ] ;
+     fhir:resource [
+       fhir:v "http://example.org/fhir/Measure/component-a-example"^^xsd:anyURI ;
+       fhir:link <http://example.org/fhir/Measure/component-a-example>
+     ]
+  ] [
+     fhir:type [ fhir:v "composed-of" ] ;
+     fhir:resource [
+       fhir:v "http://example.org/fhir/Measure/component-b-example"^^xsd:anyURI ;
+       fhir:link <http://example.org/fhir/Measure/component-b-example>
+     ]
+  ] ) ; # 
+  fhir:scoring [
+     fhir:coding ( [
+       fhir:code [ fhir:v "proportion" ]
+     ] )
+  ] ; # 
+  fhir:compositeScoring [
+     fhir:coding ( [
+       fhir:code [ fhir:v "opportunity" ]
+     ] )
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

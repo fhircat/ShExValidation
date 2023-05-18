@@ -1,0 +1,85 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "transport-code"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "oo" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/CodeSystem/transport-code"], [ fhir:v "http://hl7.org/fhir/CodeSystem/transport-code"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1931" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1931" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "TransportCode"], [ fhir:v "TransportCode"] ;
+  fhir:title [ fhir:v "Transport Codes"], [ fhir:v "Transport Codes"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:publisher [ fhir:v "HL7 International"], [ fhir:v "HL7 International"] ;
+  fhir:description [ fhir:v "Codes indicating the type of action that is expected to be performed"], [ fhir:v "Codes indicating the type of action that is expected to be performed"] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/transport-code.html"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "approve" ] ;
+     fhir:display [ fhir:v "Activate/approve the focal resource" ] ;
+     fhir:definition [ fhir:v "Take what actions are needed to transition the focus resource from 'draft' to 'active' or 'in-progress', as appropriate for the resource type.  This may involve additing additional content, approval, validation, etc." ]
+  ] [
+     fhir:code [ fhir:v "fulfill" ] ;
+     fhir:display [ fhir:v "Fulfill the focal request" ] ;
+     fhir:definition [ fhir:v "Act to perform the actions described in the focus request.  This might result in a 'more assertive' request (order for a plan or proposal, filler order for a placer order), but is intend to eventually result in events.  The degree of fulfillment requested might be limited by Task.restriction." ]
+  ] [
+     fhir:code [ fhir:v "instantiate" ] ;
+     fhir:display [ fhir:v "Instantiate the focal definition" ] ;
+     fhir:definition [ fhir:v "Act to perform the actions defined in the focus definition resource (ActivityDefinition, PlanDefinition, Questionnaire, etc.)  For PlanDefinition or ActivityDefinition, this might result in a 'more assertive' request (order for a plan or proposal, filler order for a placer order), but is intend to eventually result in events.  For Questionnaire, this would result in a QuestionnaireResponse - and possibly resources constructed using data extracted from the response.  The degree of fulfillment requested might be limited by Task.restriction." ]
+  ] [
+     fhir:code [ fhir:v "abort" ] ;
+     fhir:display [ fhir:v "Mark the focal resource as no longer active" ] ;
+     fhir:definition [ fhir:v "Abort, cancel or withdraw the focal resource, as appropriate for the type of resource." ]
+  ] [
+     fhir:code [ fhir:v "replace" ] ;
+     fhir:display [ fhir:v "Replace the focal resource with the input resource" ] ;
+     fhir:definition [ fhir:v "Replace the focal resource with the specified input resource" ]
+  ] [
+     fhir:code [ fhir:v "change" ] ;
+     fhir:display [ fhir:v "Change the focal resource" ] ;
+     fhir:definition [ fhir:v "Update the focal resource of the owning system to reflect the content specified as the Task.focus" ]
+  ] [
+     fhir:code [ fhir:v "suspend" ] ;
+     fhir:display [ fhir:v "Suspend the focal resource" ] ;
+     fhir:definition [ fhir:v "Transition the focal resource from 'active' or 'in-progress' to 'suspended'" ]
+  ] [
+     fhir:code [ fhir:v "resume" ] ;
+     fhir:display [ fhir:v "Re-activate the focal resource" ] ;
+     fhir:definition [ fhir:v "Transition the focal resource from 'suspended' to 'active' or 'in-progress' as appropriate for the resource type." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

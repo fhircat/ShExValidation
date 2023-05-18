@@ -1,0 +1,97 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <string.shex>
+IMPORT <boolean.shex>
+IMPORT <dateTime.shex>
+IMPORT <markdown.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CanonicalResource.shex>
+
+
+start=@<CompartmentDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Compartment Definition for a resource
+<CompartmentDefinition> EXTENDS @<CanonicalResource> CLOSED {   
+
+    a [fhir:CompartmentDefinition];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:url @<uri>;                        # Canonical identifier for this 
+                                            # compartment definition, 
+                                            # represented as a URI (globally 
+                                            # unique) 
+    fhir:version @<string>?;                # Business version of the 
+                                            # compartment definition 
+    fhir:name @<string>;                    # Name for this compartment 
+                                            # definition (computer friendly) 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:date @<dateTime>?;                 # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the compartment definition 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:purpose @<markdown>?;              # Why this compartment definition is 
+                                            # defined 
+    fhir:code @<code> AND
+    	{fhir:v @fhirvs:compartment-type};  # Patient | Encounter | 
+                                            # RelatedPerson | Practitioner | 
+                                            # Device 
+    fhir:search @<boolean>;                 # Whether the search syntax is 
+                                            # supported 
+    fhir:resource @<OneOrMore_BackboneElement>?;  # How a resource is related to the 
+                                            # compartment 
+}  
+
+# How a resource is related to the compartment
+<CompartmentDefinition.resource> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code> AND
+    	{fhir:v @fhirvs:resource-types};  # Name of resource type
+    fhir:param @<OneOrMore_string>?;        # Search Parameter Name, or chained 
+                                            # parameters 
+    fhir:documentation @<string>?;          # Additional documentation about the 
+                                            # resource and compartment 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_ContactDetail> CLOSED {
+    rdf:first @<ContactDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactDetail> 
+}
+
+<OneOrMore_UsageContext> CLOSED {
+    rdf:first @<UsageContext>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_UsageContext> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_string> CLOSED {
+    rdf:first @<string>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_string> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+
+# Which type a compartment definition describes.
+fhirvs:compartment-type ["Patient" "Encounter" "RelatedPerson" "Practitioner" "Device"]
+
+# One of the resource types defined as part of this version of FHIR.
+fhirvs:resource-types ["Resource" "Binary" "Bundle" "DomainResource" "Account" "AdministrableProductDefinition" "AdverseEvent" "AllergyIntolerance" "Appointment" "AppointmentResponse" "ArtifactAssessment" "AuditEvent" "Basic" "BiologicallyDerivedProduct" "BodyStructure" "CanonicalResource" "CapabilityStatement" "CapabilityStatement2" "CodeSystem" "CompartmentDefinition" "ExampleScenario" "GraphDefinition" "ImplementationGuide" "MessageDefinition" "MetadataResource" "ActivityDefinition" "ChargeItemDefinition" "Citation" "ConceptMap" "ConditionDefinition" "EventDefinition" "Evidence" "EvidenceReport" "EvidenceVariable" "Library" "Measure" "NamingSystem" "PlanDefinition" "Questionnaire" "OperationDefinition" "SearchParameter" "StructureDefinition" "StructureMap" "SubscriptionTopic" "TerminologyCapabilities" "TestScript" "ValueSet" "CarePlan" "CareTeam" "ChargeItem" "Claim" "ClaimResponse" "ClinicalImpression" "ClinicalUseDefinition" "Communication" "CommunicationRequest" "Composition" "Condition" "Consent" "Contract" "Coverage" "CoverageEligibilityRequest" "CoverageEligibilityResponse" "DetectedIssue" "Device" "DeviceDefinition" "DeviceDispense" "DeviceMetric" "DeviceRequest" "DeviceUsage" "DiagnosticReport" "DocumentManifest" "DocumentReference" "Encounter" "Endpoint" "EnrollmentRequest" "EnrollmentResponse" "EpisodeOfCare" "ExplanationOfBenefit" "FamilyMemberHistory" "Flag" "FormularyItem" "Goal" "Group" "GuidanceResponse" "HealthcareService" "ImagingSelection" "ImagingStudy" "Immunization" "ImmunizationEvaluation" "ImmunizationRecommendation" "Ingredient" "InsurancePlan" "InventoryReport" "Invoice" "Linkage" "List" "Location" "ManufacturedItemDefinition" "MeasureReport" "Medication" "MedicationAdministration" "MedicationDispense" "MedicationKnowledge" "MedicationRequest" "MedicationUsage" "MedicinalProductDefinition" "MessageHeader" "MolecularSequence" "NutritionIntake" "NutritionOrder" "NutritionProduct" "Observation" "ObservationDefinition" "OperationOutcome" "Organization" "OrganizationAffiliation" "PackagedProductDefinition" "Patient" "PaymentNotice" "PaymentReconciliation" "Permission" "Person" "Practitioner" "PractitionerRole" "Procedure" "Provenance" "QuestionnaireResponse" "RegulatedAuthorization" "RelatedPerson" "RequestGroup" "ResearchStudy" "ResearchSubject" "RiskAssessment" "Schedule" "ServiceRequest" "Slot" "Specimen" "SpecimenDefinition" "Subscription" "SubscriptionStatus" "Substance" "SubstanceDefinition" "SubstanceNucleicAcid" "SubstancePolymer" "SubstanceProtein" "SubstanceReferenceInformation" "SubstanceSourceMaterial" "SupplyDelivery" "SupplyRequest" "Task" "TestReport" "Transport" "VerificationResult" "VisionPrescription" "Parameters"]
+

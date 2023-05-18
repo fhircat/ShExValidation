@@ -1,0 +1,118 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ValueSet ;
+  fhir:id [ fhir:v "bodystructure-relative-location"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablevalueset" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "oo" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "draft" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/bodystructure-relative-location"], [ fhir:v "http://hl7.org/fhir/ValueSet/bodystructure-relative-location"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.140" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.140" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "BodystructureLocationQualifier"], [ fhir:v "BodystructureLocationQualifier"] ;
+  fhir:title [ fhir:v "Bodystructure Location Qualifier"], [ fhir:v "Bodystructure Location Qualifier"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "true"], [ fhir:v "true"] ;
+  fhir:publisher [ fhir:v "Order and Observation Workgroup"], [ fhir:v "Order and Observation Workgroup"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "SNOMED-CT concepts modifying the anatomic location"], [ fhir:v "SNOMED-CT concepts modifying the anatomic location"] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:copyright [ fhir:v "This value set includes content from SNOMED CT, which is copyright © 2002+ International Health Terminology Standards Development Organisation (IHTSDO), and distributed by agreement between IHTSDO and HL7. Implementer use of SNOMED CT is not covered by this agreement"], [ fhir:v "This value set includes content from SNOMED CT, which is copyright © 2002+ International Health Terminology Standards Development Organisation (IHTSDO), and distributed by agreement between IHTSDO and HL7. Implementer use of SNOMED CT is not covered by this agreement"] ;
+  fhir:compose [
+     fhir:include ( [
+       fhir:system [ fhir:v "http://snomed.info/sct" ] ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "7771000" ] ;
+         fhir:display [ fhir:v "Left (qualifier value)" ]
+       ] [
+         fhir:code [ fhir:v "24028007" ] ;
+         fhir:display [ fhir:v "Right (qualifier value)" ]
+       ] [
+         fhir:code [ fhir:v "51440002" ] ;
+         fhir:display [ fhir:v "Bilateral" ]
+       ] [
+         fhir:code [ fhir:v "46053002" ] ;
+         fhir:display [ fhir:v "Distal" ]
+       ] [
+         fhir:code [ fhir:v "255554000" ] ;
+         fhir:display [ fhir:v "Dorsal" ]
+       ] [
+         fhir:code [ fhir:v "264147007" ] ;
+         fhir:display [ fhir:v "Plantar" ]
+       ] [
+         fhir:code [ fhir:v "261183002" ] ;
+         fhir:display [ fhir:v "Upper" ]
+       ] [
+         fhir:code [ fhir:v "261122009" ] ;
+         fhir:display [ fhir:v "Lower" ]
+       ] [
+         fhir:code [ fhir:v "255561001" ] ;
+         fhir:display [ fhir:v "Medial" ]
+       ] [
+         fhir:code [ fhir:v "49370004" ] ;
+         fhir:display [ fhir:v "Lateral" ]
+       ] [
+         fhir:code [ fhir:v "264217000" ] ;
+         fhir:display [ fhir:v "Superior" ]
+       ] [
+         fhir:code [ fhir:v "261089000" ] ;
+         fhir:display [ fhir:v "Inferior" ]
+       ] [
+         fhir:code [ fhir:v "255551008" ] ;
+         fhir:display [ fhir:v "Posterior" ]
+       ] [
+         fhir:code [ fhir:v "351726001" ] ;
+         fhir:display [ fhir:v "Below" ]
+       ] [
+         fhir:code [ fhir:v "352730000" ] ;
+         fhir:display [ fhir:v "Above" ]
+       ] )
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

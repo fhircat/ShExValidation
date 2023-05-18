@@ -1,0 +1,79 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Consent ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "consent-example-grantor"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <p>Consent given to authorized representative</p>\n      <p>This is a case where a Patient is giving a limited (read-only) access to an individual.</p>\n      <p>Patient &quot;Roel&quot; wishes to provide Dr. Simone Heps with read-only access to the data at Blijdorp Medisch Centrum available for patient requested access use.</p>\n    </div>"
+  ] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActCode"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "INFAO" ]
+     ] )
+  ] ) ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/f201" ] ;
+     fhir:display [ fhir:v "Roel" ]
+  ] ; # 
+  fhir:date [ fhir:v "2018-12-24"^^xsd:date] ; # 
+  fhir:grantor ( [
+     fhir:reference [ fhir:v "Patient/pat1" ]
+  ] ) ; # 
+  fhir:grantee ( [
+     fhir:reference [ fhir:v "Practitioner/f007" ] ;
+     fhir:display [ fhir:v "Simone Heps" ]
+  ] ) ; # 
+  fhir:controller ( [
+     fhir:reference [ fhir:v "Organization/f203" ]
+  ] ) ; # 
+  fhir:sourceAttachment ( [
+     fhir:title [ fhir:v "The terms of the consent in lawyer speak." ]
+  ] ) ; #   the text terms of the consent in lawyer speak  ,   likely use url pointer to common text  
+  fhir:regulatoryBasis ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActCode"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "INFAO" ]
+     ] )
+  ] ) ; #   this is opt-out - e.g. nothing approved unless otherwise stated  
+  fhir:decision [ fhir:v "deny"] ; # 
+  fhir:provision ( [
+     fhir:actor ( [
+       fhir:role [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ParticipationType"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "CST" ]
+         ] )
+       ] ;
+       fhir:reference [
+         fhir:reference [ fhir:v "Organization/f203" ]
+       ]
+     ] [
+       fhir:role [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ParticipationType"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "PRCP" ]
+         ] )
+       ] ;
+       fhir:reference [
+         fhir:reference [ fhir:v "Practitioner/f007" ] ;
+         fhir:display [ fhir:v "Simone Heps" ]
+       ]
+     ] ) ;
+     fhir:action ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/consentaction"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "access" ]
+       ] )
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

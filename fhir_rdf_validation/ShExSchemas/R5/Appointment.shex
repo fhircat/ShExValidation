@@ -1,0 +1,196 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Slot.shex>
+IMPORT <Group.shex>
+IMPORT <string.shex>
+IMPORT <Period.shex>
+IMPORT <Device.shex>
+IMPORT <instant.shex>
+IMPORT <Patient.shex>
+IMPORT <boolean.shex>
+IMPORT <Account.shex>
+IMPORT <dateTime.shex>
+IMPORT <CareTeam.shex>
+IMPORT <Location.shex>
+IMPORT <Resource.shex>
+IMPORT <CarePlan.shex>
+IMPORT <Reference.shex>
+IMPORT <positiveInt.shex>
+IMPORT <Appointment.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DeviceRequest.shex>
+IMPORT <DomainResource.shex>
+IMPORT <ServiceRequest.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <HealthcareService.shex>
+IMPORT <MedicationRequest.shex>
+
+
+start=@<Appointment> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific date/time. This may result in one or more Encounter(s)
+<Appointment> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Appointment];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # External Ids for this item
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:appointmentstatus};  # proposed | pending | booked | 
+                                            # arrived | fulfilled | cancelled | 
+                                            # noshow | entered-in-error | 
+                                            # checked-in | waitlist 
+    fhir:cancellationReason @<CodeableConcept>?;  # The coded reason for the 
+                                            # appointment being cancelled 
+    fhir:serviceCategory @<OneOrMore_CodeableConcept>?;  # A broad categorization of the 
+                                            # service that is to be performed 
+                                            # during this appointment 
+    fhir:serviceType @<OneOrMore_CodeableReference>?;  # The specific service that is to be 
+                                            # performed during this appointment 
+    fhir:specialty @<OneOrMore_CodeableConcept>?;  # The specialty of a practitioner 
+                                            # that would be required to perform 
+                                            # the service requested in this 
+                                            # appointment 
+    fhir:appointmentType @<CodeableConcept>?;  # The style of appointment or 
+                                            # patient that has been booked in 
+                                            # the slot (not service type) 
+    fhir:reason @<OneOrMore_CodeableReference>?;  # Reason this appointment is 
+                                            # scheduled 
+    fhir:priority @<CodeableConcept>?;      # Used to make informed decisions if 
+                                            # needing to re-prioritize 
+    fhir:description @<string>?;            # Shown on a subject line in a 
+                                            # meeting request, or appointment 
+                                            # list 
+    fhir:replaces @<OneOrMore_Reference_Appointment>?;  # Appointment replaced by this 
+                                            # Appointment 
+    fhir:supportingInformation @<OneOrMore_Reference_Resource>?;  # Additional information to support 
+                                            # the appointment 
+    fhir:start @<instant>?;                 # When appointment is to take place
+    fhir:end @<instant>?;                   # When appointment is to conclude
+    fhir:minutesDuration @<positiveInt>?;   # Can be less than start/end (e.g. 
+                                            # estimate) 
+    fhir:slot @<OneOrMore_Reference_Slot>?;  # The slots that this appointment is 
+                                            # filling 
+    fhir:account @<OneOrMore_Reference_Account>?;  # The set of accounts that may be 
+                                            # used for billing for this 
+                                            # Appointment 
+    fhir:created @<dateTime>?;              # The date that this appointment was 
+                                            # initially created 
+    fhir:note @<OneOrMore_Annotation>?;     # Additional comments
+    fhir:patientInstruction @<OneOrMore_CodeableReference>?;  # Detailed information and 
+                                            # instructions for the patient 
+    fhir:basedOn @<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_MedicationRequest_OR_ServiceRequest>?;  # The request this appointment is 
+                                            # allocated to assess 
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Patient> }?;  # The patient or group associated 
+                                            # with the appointment 
+    fhir:participant @<OneOrMore_BackboneElement>;  # Participants involved in 
+                                            # appointment 
+    fhir:requestedPeriod @<OneOrMore_Period>?;  # Potential date/time interval(s) 
+                                            # requested to allocate the 
+                                            # appointment within 
+}  
+
+# Participants involved in appointment
+<Appointment.participant> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<OneOrMore_CodeableConcept>?;  # Role of participant in the 
+                                            # appointment 
+    fhir:period @<Period>?;                 # Participation period of the actor
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<HealthcareService> OR 
+    			@<Location> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Person, Location/HealthcareService 
+                                            # or Device 
+    fhir:required @<boolean>?;              # The participant is required to 
+                                            # attend (optional when false) 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:participationstatus};  # accepted | declined | tentative | 
+                                            # needs-action 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_CodeableReference> CLOSED {
+    rdf:first @<CodeableReference>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableReference> 
+}
+
+<OneOrMore_Reference_Appointment> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Appointment> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Appointment> 
+}
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+
+<OneOrMore_Reference_Slot> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Slot> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Slot> 
+}
+
+<OneOrMore_Reference_Account> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Account> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Account> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_MedicationRequest_OR_ServiceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CarePlan> OR 
+			@<DeviceRequest> OR 
+			@<MedicationRequest> OR 
+			@<ServiceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_MedicationRequest_OR_ServiceRequest> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Period> CLOSED {
+    rdf:first @<Period>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Period> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The free/busy status of an appointment.
+fhirvs:appointmentstatus ["proposed" "pending" "booked" "arrived" "fulfilled" "cancelled" "noshow" "entered-in-error" "checked-in" "waitlist"]
+
+# The Participation status of an appointment.
+fhirvs:participationstatus ["accepted" "declined" "tentative" "needs-action"]
+

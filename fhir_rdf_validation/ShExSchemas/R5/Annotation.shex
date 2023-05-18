@@ -1,0 +1,33 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <string.shex>
+IMPORT <Patient.shex>
+IMPORT <DataType.shex>
+IMPORT <dateTime.shex>
+IMPORT <markdown.shex>
+IMPORT <Reference.shex>
+IMPORT <Practitioner.shex>
+IMPORT <Organization.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <PractitionerRole.shex>
+
+# Text node with attribution
+<Annotation> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:Annotation];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:author ((@<Reference>  AND {fhir:link @<Practitioner> OR 
+    			 @<PractitionerRole> OR 
+    			 @<Patient> OR 
+    			 @<RelatedPerson> OR 
+    			 @<Organization> })  OR 
+    			@<string> )  AND { rdf:type IRI } ?;  # Individual responsible for the 
+                                            # annotation 
+    fhir:time @<dateTime>?;                 # When the annotation was made
+    fhir:text @<markdown>;                  # The annotation  - text content (as 
+                                            # markdown) 
+}  
+

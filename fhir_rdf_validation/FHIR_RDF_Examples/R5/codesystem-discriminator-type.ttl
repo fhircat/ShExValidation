@@ -1,0 +1,131 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "discriminator-type"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ]
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "fhir" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "normative" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version" ] ;
+     fhir:value [ fhir:v "4.0.0" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "5" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/discriminator-type"], [ fhir:v "http://hl7.org/fhir/discriminator-type"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.1.92" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.1.92" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "DiscriminatorType"], [ fhir:v "DiscriminatorType"] ;
+  fhir:title [ fhir:v "DiscriminatorType"], [ fhir:v "DiscriminatorType"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "How an element value is interpreted when discrimination is evaluated."], [ fhir:v "How an element value is interpreted when discrimination is evaluated."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/discriminator-type"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:property ( [
+     fhir:code [ fhir:v "status" ] ;
+     fhir:uri [ fhir:v "http://hl7.org/fhir/concept-properties#status" ] ;
+     fhir:description [ fhir:v "A property that indicates the status of the concept. One of active, experimental, deprecated, retired" ] ;
+     fhir:type [ fhir:v "code" ]
+  ] [
+     fhir:code [ fhir:v "deprecationDate" ] ;
+     fhir:uri [ fhir:v "http://hl7.org/fhir/concept-properties#deprecationDate" ] ;
+     fhir:description [ fhir:v "The date at which a concept was deprecated. Concepts that are deprecated but not inactive can still be used, but their use is discouraged" ] ;
+     fhir:type [ fhir:v "dateTime" ]
+  ] ) ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "value" ] ;
+     fhir:display [ fhir:v "Value" ] ;
+     fhir:definition [ fhir:v "The slices have different values in the nominated element, as determined by the applicable fixed value, pattern, or required ValueSet binding." ]
+  ] [
+     fhir:code [ fhir:v "exists" ] ;
+     fhir:display [ fhir:v "Exists" ] ;
+     fhir:definition [ fhir:v "The slices are differentiated by the presence or absence of the nominated element. There SHALL be no more than two slices. The slices are differentiated by the fact that one must have a max of 0 and the other must have a min of 1 (or more).  The order in which the slices are declared doesn't matter." ]
+  ] [
+     fhir:extension ( [
+       fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+       fhir:value [
+         fhir:v "deprecated" ;
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status-reason" ] ;
+           fhir:value [ fhir:v "Pattern' is deprecated - it works exactly the same as 'value'" ]
+         ] )
+       ]
+     ] ) ;
+     fhir:code [ fhir:v "pattern" ] ;
+     fhir:display [ fhir:v "Pattern" ] ;
+     fhir:definition [ fhir:v "The slices have different values in the nominated element, as determined by the applicable fixed value, pattern, or required ValueSet binding. This has the same meaning as 'value' and is deprecated." ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "status" ] ;
+       fhir:value [ fhir:v "deprecated" ]
+     ] [
+       fhir:code [ fhir:v "deprecationDate" ] ;
+       fhir:value [ fhir:v "2022-08-19" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "type" ] ;
+     fhir:display [ fhir:v "Type" ] ;
+     fhir:definition [ fhir:v "The slices are differentiated by type of the nominated element." ]
+  ] [
+     fhir:code [ fhir:v "profile" ] ;
+     fhir:display [ fhir:v "Profile" ] ;
+     fhir:definition [ fhir:v "The slices are differentiated by conformance of the nominated element to a specified profile. Note that if the path specifies .resolve() then the profile is the target profile on the reference. In this case, validation by the possible profiles is required to differentiate the slices." ]
+  ] [
+     fhir:code [ fhir:v "position" ] ;
+     fhir:display [ fhir:v "Position" ] ;
+     fhir:definition [ fhir:v "The slices are differentiated by their index. This is only possible if all but the last slice have min=max cardinality, and the (optional) last slice contains other undifferentiated elements." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

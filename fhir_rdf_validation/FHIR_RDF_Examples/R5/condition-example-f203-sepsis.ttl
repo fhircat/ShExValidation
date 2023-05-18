@@ -1,0 +1,93 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Condition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "f203"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Condition</b><a name=\"f203\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Condition &quot;f203&quot; </p></div><p><b>clinicalStatus</b>: Active <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-condition-clinical.html\">Condition Clinical Status Codes</a>#active)</span></p><p><b>verificationStatus</b>: Confirmed <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-condition-ver-status.html\">ConditionVerificationStatus</a>#confirmed)</span></p><p><b>category</b>: Problem <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#55607006; <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-condition-category.html\">Condition Category Codes</a>#problem-list-item)</span></p><p><b>severity</b>: Moderate to severe <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#371924009)</span></p><p><b>code</b>: Bacterial sepsis <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#10001005)</span></p><p><b>bodySite</b>: Pulmonary vascular structure <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#281158006)</span></p><p><b>subject</b>: <a href=\"patient-example-f201-roel.html\">Patient/f201: Roel</a> &quot;Roel&quot;</p><p><b>encounter</b>: <a href=\"encounter-example-f203-20130311.html\">Encounter/f203: Roel's encounter on March elevanth</a></p><p><b>onset</b>: 2013-03-08</p><p><b>recordedDate</b>: 2013-03-11</p><h3>Participants</h3><table class=\"grid\"><tr><td>-</td><td><b>Function</b></td><td><b>Actor</b></td></tr><tr><td>*</td><td>Author <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-provenance-participant-type.html\">Provenance participant type</a>#author)</span></td><td><a href=\"practitioner-example-f201-ab.html\">Practitioner/f201</a> &quot;Dokter Bronsig&quot;</td></tr></table><h3>Evidences</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a href=\"diagnosticreport-example-f202-bloodculture.html\">DiagnosticReport/f202: Diagnostic report for Roel's sepsis</a></td></tr></table></div>"
+  ] ; # 
+  fhir:clinicalStatus [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/condition-clinical"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "active" ]
+     ] )
+  ] ; # 
+  fhir:verificationStatus [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/condition-ver-status"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "confirmed" ]
+     ] )
+  ] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       a sct:55607006 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "55607006" ] ;
+       fhir:display [ fhir:v "Problem" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/condition-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "problem-list-item" ]
+     ] ) #   Bacterial sepsis is certainly a moderate to severe problem  
+  ] ) ; # 
+  fhir:severity [
+     fhir:coding ( [
+       a sct:371924009 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "371924009" ] ;
+       fhir:display [ fhir:v "Moderate to severe" ]
+     ] )
+  ] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a sct:10001005 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "10001005" ] ;
+       fhir:display [ fhir:v "Bacterial sepsis" ]
+     ] ) #   The problem is bacterial sepsis  
+  ] ; # 
+  fhir:bodySite ( [
+     fhir:coding ( [
+       a sct:281158006 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "281158006" ] ;
+       fhir:display [ fhir:v "Pulmonary vascular structure" ]
+     ] ) #   Location is intravascular pulmonary  
+  ] ) ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/f201" ] ; #   It entails Roel's problem  
+     fhir:display [ fhir:v "Roel" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/f203" ] ;
+     fhir:display [ fhir:v "Roel's encounter on March elevanth" ]
+  ] ; # 
+  fhir:onset [ fhir:v "2013-03-08"^^xsd:date] ; # 
+  fhir:recordedDate [ fhir:v "2013-03-11"^^xsd:date] ; # 
+  fhir:participant ( [
+     fhir:function [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/provenance-participant-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "author" ] ;
+         fhir:display [ fhir:v "Author" ]
+       ] )
+     ] ;
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/f201" ]
+     ]
+  ] ) ; # 
+  fhir:evidence ( [
+     fhir:reference [
+       fhir:reference [ fhir:v "DiagnosticReport/f202" ] ;
+       fhir:display [ fhir:v "Diagnostic report for Roel's sepsis" ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

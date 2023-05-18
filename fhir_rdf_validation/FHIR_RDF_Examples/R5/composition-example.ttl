@@ -1,0 +1,152 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Composition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n			<p>Consultation note for Henry Levin the 7th</p>\n			<p>Managed by Good Health Clinic</p>\n		</div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://healthintersections.com.au/test"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:type [
+     fhir:coding ( [
+       a loinc:11488-4 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "11488-4" ] ;
+       fhir:display [ fhir:v "Consult note" ]
+     ] )
+  ] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       a loinc:LP173421-1 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "LP173421-1" ] ;
+       fhir:display [ fhir:v "Report" ]
+     ] )
+  ] ) ; # 
+  fhir:subject ( [
+     fhir:reference [ fhir:v "Patient/xcda" ] ;
+     fhir:display [ fhir:v "Henry Levin the 7th" ]
+  ] ) ; # 
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/xcda" ]
+  ] ; # 
+  fhir:date [ fhir:v "2012-01-04T09:10:14Z"^^xsd:dateTime] ; # 
+  fhir:author ( [
+     fhir:reference [ fhir:v "Practitioner/xcda-author" ] ;
+     fhir:display [ fhir:v "Harold Hippocrates, MD" ]
+  ] ) ; # 
+  fhir:title [ fhir:v "Consultation Note"] ; # 
+  fhir:attester ( [
+     fhir:mode [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/composition-attestation-mode"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "legal" ] ;
+         fhir:display [ fhir:v "Legal" ]
+       ] )
+     ] ;
+     fhir:time [ fhir:v "2012-01-04T09:10:14Z"^^xsd:dateTime ] ;
+     fhir:party [
+       fhir:reference [ fhir:v "Practitioner/xcda-author" ] ;
+       fhir:display [ fhir:v "Harold Hippocrates, MD" ]
+     ]
+  ] ) ; # 
+  fhir:custodian [
+     fhir:reference [ fhir:v "Organization/2.16.840.1.113883.19.5" ] ;
+     fhir:display [ fhir:v "Good Health Clinic" ]
+  ] ; # 
+  fhir:relatesTo ( [
+     fhir:type [ fhir:v "replaces" ] ;
+     fhir:resourceReference [
+       fhir:reference [ fhir:v "Composition/old-example" ]
+     ]
+  ] [
+     fhir:type [ fhir:v "appends" ] ;
+     fhir:resourceReference [
+       fhir:identifier [
+         fhir:system [ fhir:v "http://example.org/fhir/NamingSystem/document-ids"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "ABC123" ]
+       ]
+     ]
+  ] ) ; # 
+  fhir:event ( [
+     fhir:period [
+       fhir:start [ fhir:v "2010-07-18"^^xsd:date ] ;
+       fhir:end [ fhir:v "2012-11-12"^^xsd:date ]
+     ] ;
+     fhir:detail ( [
+       fhir:concept [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActCode"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "HEALTHREC" ] ;
+           fhir:display [ fhir:v "health record" ]
+         ] )
+       ] ;
+       fhir:reference [
+         fhir:reference [ fhir:v "Observation/example" ]
+       ]
+     ] )
+  ] ) ; # 
+  fhir:section ( [
+     fhir:title [ fhir:v "History of present illness" ] ;
+     fhir:code [
+       fhir:coding ( [
+         a loinc:11348-0 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "11348-0" ] ;
+         fhir:display [ fhir:v "History of past illness Narrative" ]
+       ] )
+     ] ;
+     fhir:text [
+       fhir:status [ fhir:v "generated" ] ;
+       fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n				<table>\n					<tr>\n						<td>\n							<b>Code</b>\n						</td>\n						<td>\n							<b>Date</b>\n						</td>\n						<td>\n							<b>Type</b>\n						</td>\n						<td>\n							<b>BodySite</b>\n						</td>\n						<td>\n							<b>Severity</b>\n						</td>\n					</tr>\n					<tr>\n						<td>Stroke</td>\n						<td>2010-07-18</td>\n						<td>Diagnosis</td>\n						<td/>\n						<td/>\n					</tr>\n					<tr>\n						<td>Burnt Ear</td>\n						<td>2012-05-24</td>\n						<td>Diagnosis</td>\n						<td>Left Ear</td>\n						<td/>\n					</tr>\n					<tr>\n						<td>Asthma</td>\n						<td>2012-11-12</td>\n						<td>Finding</td>\n						<td/>\n						<td>Mild</td>\n					</tr>\n				</table>\n			</div>"
+     ] ;
+     fhir:orderedBy [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/list-order"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "event-date" ] ;
+         fhir:display [ fhir:v "Sorted by Event Date" ]
+       ] )
+     ] ;
+     fhir:entry ( [
+       fhir:reference [ fhir:v "Condition/stroke" ]
+     ] [
+       fhir:reference [ fhir:v "Condition/example" ]
+     ] [
+       fhir:reference [ fhir:v "Condition/example2" ]
+     ] )
+  ] [
+     fhir:title [ fhir:v "History of family member diseases" ] ;
+     fhir:code [
+       fhir:coding ( [
+         a loinc:10157-6 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "10157-6" ] ;
+         fhir:display [ fhir:v "History of family member diseases Narrative" ]
+       ] )
+     ] ;
+     fhir:text [
+       fhir:status [ fhir:v "generated" ] ;
+       fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n				<p>History of family member diseases - not available</p>\n			</div>"
+     ] ;
+     fhir:emptyReason [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/list-empty-reason"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "withheld" ] ;
+         fhir:display [ fhir:v "Information Withheld" ]
+       ] )
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

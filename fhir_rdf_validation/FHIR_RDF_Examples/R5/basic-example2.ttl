@@ -1,0 +1,54 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Basic ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "classModel"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <p><b>Class1</b></p>\n      <ul>\n        <li>Attribute1: 1..*</li>\n        <li>Attribute2: 0..1</li>\n      </ul>\n    </div>"
+  ] ; # 
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://example.org/do-not-use/fhir-extensions/UMLclass"^^xsd:anyURI ] ;
+     fhir:extension ( [
+       fhir:url [ fhir:v "name"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "Class1" ]
+     ] [
+       fhir:url [ fhir:v "attribute"^^xsd:anyURI ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "name"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "attribute1" ]
+       ] [
+         fhir:url [ fhir:v "minOccurs"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "1"^^xsd:integer ]
+       ] [
+         fhir:url [ fhir:v "maxOccurs"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "*" ]
+       ] )
+     ] [
+       fhir:url [ fhir:v "attribute"^^xsd:anyURI ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "name"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "attribute2" ]
+       ] [
+         fhir:url [ fhir:v "minOccurs"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "0"^^xsd:integer ]
+       ] [
+         fhir:url [ fhir:v "maxOccurs"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "1"^^xsd:integer ]
+       ] )
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://example.org/do-not-use/fhir-codes#resourceTypes"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "UMLCLASSMODEL" ]
+     ] )
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

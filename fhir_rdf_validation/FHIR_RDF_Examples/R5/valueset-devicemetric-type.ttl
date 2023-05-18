@@ -1,0 +1,80 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ValueSet ;
+  fhir:id [ fhir:v "devicemetric-type"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablevalueset" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "dev" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/devicemetric-type"], [ fhir:v "http://hl7.org/fhir/ValueSet/devicemetric-type"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.6.24" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.645" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.895" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.6.24" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.645" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.895" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "DeviceMetricAndComponentTypes"], [ fhir:v "DeviceMetricAndComponentTypes"] ;
+  fhir:title [ fhir:v "Device Metric and Component Types"], [ fhir:v "Device Metric and Component Types"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:publisher [ fhir:v "HL7 Health Care Devices Workgroup"], [ fhir:v "HL7 Health Care Devices Workgroup"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Codes used to identify health care device metric types and units and component types as part of the ISO/IEEE 11073-10101 Medical Device Communication Nomenclature."], [ fhir:v "Codes used to identify health care device metric types and units and component types as part of the ISO/IEEE 11073-10101 Medical Device Communication Nomenclature."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:copyright [ fhir:v "This value set is available IEEE (https://standards.ieee.org/findstds/standard/11073-10101a-2015.html) as well as at https://rtmms.nist.gov/rtmms/index.htm#!hrosetta through NIST's Rosetta Terminology Mapping Management System which has a Royalty Free Agreement with IEEE to make the terminology [specifically five attributes: Reference ID, Terminology Code, Description, Systematic Name, and Common Term] available for development of IEEE 11073 compliant products."], [ fhir:v "This value set is available IEEE (https://standards.ieee.org/findstds/standard/11073-10101a-2015.html) as well as at https://rtmms.nist.gov/rtmms/index.htm#!hrosetta through NIST's Rosetta Terminology Mapping Management System which has a Royalty Free Agreement with IEEE to make the terminology [specifically five attributes: Reference ID, Terminology Code, Description, Systematic Name, and Common Term] available for development of IEEE 11073 compliant products."] ;
+  fhir:compose [
+     fhir:include ( [
+       fhir:system [ fhir:v "urn:iso:std:iso:11073:10101" ]
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

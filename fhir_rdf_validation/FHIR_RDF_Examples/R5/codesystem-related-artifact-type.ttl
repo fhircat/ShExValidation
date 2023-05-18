@@ -1,0 +1,220 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "related-artifact-type"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ]
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "fhir" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "5" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/related-artifact-type"], [ fhir:v "http://hl7.org/fhir/related-artifact-type"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.100" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.100" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "RelatedArtifactType"], [ fhir:v "RelatedArtifactType"] ;
+  fhir:title [ fhir:v "RelatedArtifactType"], [ fhir:v "RelatedArtifactType"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The type of relationship to the related artifact."], [ fhir:v "The type of relationship to the related artifact."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/related-artifact-type"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "documentation" ] ;
+     fhir:display [ fhir:v "Documentation" ] ;
+     fhir:definition [ fhir:v "Additional documentation for the knowledge resource. This would include additional instructions on usage as well as additional information on clinical context or appropriateness." ]
+  ] [
+     fhir:code [ fhir:v "justification" ] ;
+     fhir:display [ fhir:v "Justification" ] ;
+     fhir:definition [ fhir:v "The target artifact is a summary of the justification for the knowledge resource including supporting evidence, relevant guidelines, or other clinically important information. This information is intended to provide a way to make the justification for the knowledge resource available to the consumer of interventions or results produced by the knowledge resource." ]
+  ] [
+     fhir:code [ fhir:v "citation" ] ;
+     fhir:display [ fhir:v "Citation" ] ;
+     fhir:definition [ fhir:v "Bibliographic citation for papers, references, or other relevant material for the knowledge resource. This is intended to allow for citation of related material, but that was not necessarily specifically prepared in connection with this knowledge resource." ]
+  ] [
+     fhir:code [ fhir:v "predecessor" ] ;
+     fhir:display [ fhir:v "Predecessor" ] ;
+     fhir:definition [ fhir:v "The previous version of the knowledge artifact, used to establish an ordering of versions of an artifact, independent of the status of each version." ]
+  ] [
+     fhir:code [ fhir:v "successor" ] ;
+     fhir:display [ fhir:v "Successor" ] ;
+     fhir:definition [ fhir:v "The subsequent version of the knowledge artfact, used to establish an ordering of versions of an artifact, independent of the status of each version." ]
+  ] [
+     fhir:code [ fhir:v "derived-from" ] ;
+     fhir:display [ fhir:v "Derived From" ] ;
+     fhir:definition [ fhir:v "This artifact is derived from the target artifact. This is intended to capture the relationship in which a particular knowledge resource is based on the content of another artifact, but is modified to capture either a different set of overall requirements, or a more specific set of requirements such as those involved in a particular institution or clinical setting. The artifact may be derived from one or more target artifacts." ]
+  ] [
+     fhir:code [ fhir:v "depends-on" ] ;
+     fhir:display [ fhir:v "Depends On" ] ;
+     fhir:definition [ fhir:v "This artifact depends on the target artifact. There is a requirement to use the target artifact in the creation or interpretation of this artifact." ]
+  ] [
+     fhir:code [ fhir:v "composed-of" ] ;
+     fhir:display [ fhir:v "Composed Of" ] ;
+     fhir:definition [ fhir:v "This artifact is composed of the target artifact. This artifact is constructed with the target artifact as a component. The target artifact is a part of this artifact. (A dataset is composed of data.)." ]
+  ] [
+     fhir:code [ fhir:v "part-of" ] ;
+     fhir:display [ fhir:v "Part Of" ] ;
+     fhir:definition [ fhir:v "This artifact is a part of the target artifact. The target artifact is composed of this artifact (and possibly other artifacts)." ]
+  ] [
+     fhir:code [ fhir:v "amends" ] ;
+     fhir:display [ fhir:v "Amends" ] ;
+     fhir:definition [ fhir:v "This artifact amends or changes the target artifact. This artifact adds additional information that is functionally expected to replace information in the target artifact. This artifact replaces a part but not all of the target artifact." ]
+  ] [
+     fhir:code [ fhir:v "amended-with" ] ;
+     fhir:display [ fhir:v "Amended With" ] ;
+     fhir:definition [ fhir:v "This artifact is amended with or changed by the target artifact. There is information in this artifact that should be functionally replaced with information in the target artifact." ]
+  ] [
+     fhir:code [ fhir:v "appends" ] ;
+     fhir:display [ fhir:v "Appends" ] ;
+     fhir:definition [ fhir:v "This artifact adds additional information to the target artifact. The additional information does not replace or change information in the target artifact." ]
+  ] [
+     fhir:code [ fhir:v "appended-with" ] ;
+     fhir:display [ fhir:v "Appended With" ] ;
+     fhir:definition [ fhir:v "This artifact has additional information in the target artifact." ]
+  ] [
+     fhir:code [ fhir:v "cites" ] ;
+     fhir:display [ fhir:v "Cites" ] ;
+     fhir:definition [ fhir:v "This artifact cites the target artifact. This may be a bibliographic citation for papers, references, or other relevant material for the knowledge resource. This is intended to allow for citation of related material, but that was not necessarily specifically prepared in connection with this knowledge resource." ]
+  ] [
+     fhir:code [ fhir:v "cited-by" ] ;
+     fhir:display [ fhir:v "Cited By" ] ;
+     fhir:definition [ fhir:v "This artifact is cited by the target artifact." ]
+  ] [
+     fhir:code [ fhir:v "comments-on" ] ;
+     fhir:display [ fhir:v "Is Comment On" ] ;
+     fhir:definition [ fhir:v "This artifact contains comments about the target artifact." ]
+  ] [
+     fhir:code [ fhir:v "comment-in" ] ;
+     fhir:display [ fhir:v "Has Comment In" ] ;
+     fhir:definition [ fhir:v "This artifact has comments about it in the target artifact.  The type of comments may be expressed in the targetClassifier element such as reply, review, editorial, feedback, solicited, unsolicited, structured, unstructured." ]
+  ] [
+     fhir:code [ fhir:v "contains" ] ;
+     fhir:display [ fhir:v "Contains" ] ;
+     fhir:definition [ fhir:v "This artifact is a container in which the target artifact is contained. A container is a data structure whose instances are collections of other objects. (A database contains the dataset.)." ]
+  ] [
+     fhir:code [ fhir:v "contained-in" ] ;
+     fhir:display [ fhir:v "Contained In" ] ;
+     fhir:definition [ fhir:v "This artifact is contained in the target artifact. The target artifact is a data structure whose instances are collections of other objects." ]
+  ] [
+     fhir:code [ fhir:v "corrects" ] ;
+     fhir:display [ fhir:v "Corrects" ] ;
+     fhir:definition [ fhir:v "This artifact identifies errors and replacement content for the target artifact." ]
+  ] [
+     fhir:code [ fhir:v "correction-in" ] ;
+     fhir:display [ fhir:v "Correction In" ] ;
+     fhir:definition [ fhir:v "This artifact has corrections to it in the target artifact. The target artifact identifies errors and replacement content for this artifact." ]
+  ] [
+     fhir:code [ fhir:v "replaces" ] ;
+     fhir:display [ fhir:v "Replaces" ] ;
+     fhir:definition [ fhir:v "This artifact replaces or supersedes the target artifact. The target artifact may be considered deprecated." ]
+  ] [
+     fhir:code [ fhir:v "replaced-with" ] ;
+     fhir:display [ fhir:v "Replaced With" ] ;
+     fhir:definition [ fhir:v "This artifact is replaced with or superseded by the target artifact. This artifact may be considered deprecated." ]
+  ] [
+     fhir:code [ fhir:v "retracts" ] ;
+     fhir:display [ fhir:v "Retracts" ] ;
+     fhir:definition [ fhir:v "This artifact retracts the target artifact. The content that was published in the target artifact should be considered removed from publication and should no longer be considered part of the public record." ]
+  ] [
+     fhir:code [ fhir:v "retracted-by" ] ;
+     fhir:display [ fhir:v "Retracted By" ] ;
+     fhir:definition [ fhir:v "This artifact is retracted by the target artifact. The content that was published in this artifact should be considered removed from publication and should no longer be considered part of the public record." ]
+  ] [
+     fhir:code [ fhir:v "signs" ] ;
+     fhir:display [ fhir:v "Signs" ] ;
+     fhir:definition [ fhir:v "This artifact is a signature of the target artifact." ]
+  ] [
+     fhir:code [ fhir:v "similar-to" ] ;
+     fhir:display [ fhir:v "Similar To" ] ;
+     fhir:definition [ fhir:v "This artifact has characteristics in common with the target artifact. This relationship may be used in systems to “deduplicate” knowledge artifacts from different sources, or in systems to show “similar items”." ]
+  ] [
+     fhir:code [ fhir:v "supports" ] ;
+     fhir:display [ fhir:v "Supports" ] ;
+     fhir:definition [ fhir:v "This artifact provides additional support for the target artifact. The type of support  is not documentation as it does not describe, explain, or instruct regarding the target artifact." ]
+  ] [
+     fhir:code [ fhir:v "supported-with" ] ;
+     fhir:display [ fhir:v "Supported With" ] ;
+     fhir:definition [ fhir:v "The target artifact contains additional information related to the knowledge artifact but is not documentation as the additional information does not describe, explain, or instruct regarding the knowledge artifact content or application. This could include an associated dataset." ]
+  ] [
+     fhir:code [ fhir:v "transforms" ] ;
+     fhir:display [ fhir:v "Transforms" ] ;
+     fhir:definition [ fhir:v "This artifact was generated by transforming the target artifact (e.g., format or language conversion). This is intended to capture the relationship in which a particular knowledge resource is based on the content of another artifact, but changes are only apparent in form and there is only one target artifact with the “transforms” relationship type." ]
+  ] [
+     fhir:code [ fhir:v "transformed-into" ] ;
+     fhir:display [ fhir:v "Transformed Into" ] ;
+     fhir:definition [ fhir:v "This artifact was transformed into the target artifact (e.g., by format or language conversion)." ]
+  ] [
+     fhir:code [ fhir:v "transformed-with" ] ;
+     fhir:display [ fhir:v "Transformed With" ] ;
+     fhir:definition [ fhir:v "This artifact was generated by transforming a related artifact (e.g., format or language conversion), noted separately with the “transforms” relationship type. This transformation used the target artifact to inform the transformation. The target artifact may be a conversion script or translation guide." ]
+  ] [
+     fhir:code [ fhir:v "documents" ] ;
+     fhir:display [ fhir:v "Documents" ] ;
+     fhir:definition [ fhir:v "This artifact provides additional documentation for the target artifact. This could include additional instructions on usage as well as additional information on clinical context or appropriateness." ]
+  ] [
+     fhir:code [ fhir:v "specification-of" ] ;
+     fhir:display [ fhir:v "Specification Of" ] ;
+     fhir:definition [ fhir:v "The target artifact is a precise description of a concept in this artifact. This may be used when the RelatedArtifact datatype is used in elements contained in this artifact." ]
+  ] [
+     fhir:code [ fhir:v "created-with" ] ;
+     fhir:display [ fhir:v "Created With" ] ;
+     fhir:definition [ fhir:v "This artifact was created with the target artifact. The target artifact is a tool or support material used in the creation of the artifact, and not content that the artifact was derived from." ]
+  ] [
+     fhir:code [ fhir:v "cite-as" ] ;
+     fhir:display [ fhir:v "Cite As" ] ;
+     fhir:definition [ fhir:v "The related artifact is the citation for this artifact." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

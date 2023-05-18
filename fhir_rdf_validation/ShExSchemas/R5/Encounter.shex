@@ -1,0 +1,247 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Group.shex>
+IMPORT <Period.shex>
+IMPORT <Device.shex>
+IMPORT <Coding.shex>
+IMPORT <Patient.shex>
+IMPORT <Account.shex>
+IMPORT <dateTime.shex>
+IMPORT <Duration.shex>
+IMPORT <Location.shex>
+IMPORT <CarePlan.shex>
+IMPORT <Reference.shex>
+IMPORT <Condition.shex>
+IMPORT <Procedure.shex>
+IMPORT <Identifier.shex>
+IMPORT <positiveInt.shex>
+IMPORT <Appointment.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <EpisodeOfCare.shex>
+IMPORT <DeviceRequest.shex>
+IMPORT <DomainResource.shex>
+IMPORT <ServiceRequest.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <CodeableReference.shex>
+IMPORT <HealthcareService.shex>
+IMPORT <MedicationRequest.shex>
+
+
+start=@<Encounter> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# An interaction during which services are provided to the patient
+<Encounter> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Encounter];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Identifier(s) by which this 
+                                            # encounter is known 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:encounter-status};  # planned | in-progress | onhold | 
+                                            # completed | cancelled | 
+                                            # entered-in-error | unknown 
+    fhir:statusHistory @<OneOrMore_BackboneElement>?;  # List of past encounter statuses
+    fhir:class @<CodeableConcept>;          # Classification of patient encounter
+    fhir:classHistory @<OneOrMore_BackboneElement>?;  # List of past encounter classes
+    fhir:type @<OneOrMore_CodeableConcept>?;  # Specific type of encounter
+    fhir:serviceType @<CodeableReference>?;  # Specific type of service
+    fhir:priority @<CodeableConcept>?;      # Indicates the urgency of the 
+                                            # encounter 
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Patient> }?;  # The patient or group present at 
+                                            # the encounter 
+    fhir:subjectStatus @<CodeableConcept>?;  # The current status of the subject 
+                                            # in relation to the Encounter 
+    fhir:episodeOfCare @<OneOrMore_Reference_EpisodeOfCare>?;  # Episode(s) of care that this 
+                                            # encounter should be recorded 
+                                            # against 
+    fhir:basedOn @<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_MedicationRequest_OR_ServiceRequest>?;  # The request that initiated this 
+                                            # encounter 
+    fhir:participant @<OneOrMore_BackboneElement>?;  # List of participants involved in 
+                                            # the encounter 
+    fhir:appointment @<OneOrMore_Reference_Appointment>?;  # The appointment that scheduled 
+                                            # this encounter 
+    fhir:actualPeriod @<Period>?;           # The actual start and end time of 
+                                            # the encounter 
+    fhir:plannedStartDate @<dateTime>?;     # The planned start date/time (or 
+                                            # admission date) of the encounter 
+    fhir:plannedEndDate @<dateTime>?;       # The planned end date/time (or 
+                                            # discharge date) of the encounter 
+    fhir:length @<Duration>?;               # Quantity of time the encounter 
+                                            # lasted (less time absent) 
+    fhir:reason @<OneOrMore_CodeableReference>?;  # Reason the encounter takes place 
+                                            # (core or reference) 
+    fhir:diagnosis @<OneOrMore_BackboneElement>?;  # The list of diagnosis relevant to 
+                                            # this encounter 
+    fhir:account @<OneOrMore_Reference_Account>?;  # The set of accounts that may be 
+                                            # used for billing for this 
+                                            # Encounter 
+    fhir:hospitalization @<BackboneElement>?;  # Details about the admission to a 
+                                            # healthcare service 
+    fhir:location @<OneOrMore_BackboneElement>?;  # List of locations where the 
+                                            # patient has been 
+    fhir:serviceProvider @<Reference> AND {fhir:link 
+    			@<Organization> }?;  # The organization (facility) 
+                                            # responsible for this encounter 
+    fhir:partOf @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # Another Encounter this encounter 
+                                            # is part of 
+}  
+
+# List of participants involved in the encounter
+<Encounter.participant> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<OneOrMore_CodeableConcept>?;  # Role of participant in encounter
+    fhir:period @<Period>?;                 # Period of time during the 
+                                            # encounter that the participant 
+                                            # participated 
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<HealthcareService> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Persons involved in the encounter 
+                                            # (including patient) 
+}  
+
+# The list of diagnosis relevant to this encounter
+<Encounter.diagnosis> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:condition @<Reference> AND {fhir:link 
+    			@<Condition> OR 
+    			@<Procedure> };  # The diagnosis or procedure 
+                                            # relevant to the encounter 
+    fhir:use @<CodeableConcept>?;           # Role that this diagnosis has 
+                                            # within the encounter (e.g. 
+                                            # admission, billing, discharge …) 
+    fhir:rank @<positiveInt>?;              # Ranking of the diagnosis (for each 
+                                            # role type) 
+}  
+
+# Details about the admission to a healthcare service
+<Encounter.hospitalization> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:preAdmissionIdentifier @<Identifier>?;  # Pre-admission identifier
+    fhir:origin @<Reference> AND {fhir:link 
+    			@<Location> OR 
+    			@<Organization> }?;  # The location/organization from 
+                                            # which the patient came before 
+                                            # admission 
+    fhir:admitSource @<CodeableConcept>?;   # From where patient was admitted 
+                                            # (physician referral, transfer) 
+    fhir:reAdmission @<CodeableConcept>?;   # The type of hospital re-admission 
+                                            # that has occurred (if any). If the 
+                                            # value is absent, then this is not 
+                                            # identified as a readmission 
+    fhir:dietPreference @<OneOrMore_CodeableConcept>?;  # Diet preferences reported by the 
+                                            # patient 
+    fhir:specialCourtesy @<OneOrMore_CodeableConcept>?;  # Special courtesies (VIP, board 
+                                            # member) 
+    fhir:specialArrangement @<OneOrMore_CodeableConcept>?;  # Wheelchair, translator, stretcher, 
+                                            # etc. 
+    fhir:destination @<Reference> AND {fhir:link 
+    			@<Location> OR 
+    			@<Organization> }?;  # Location/organization to which the 
+                                            # patient is discharged 
+    fhir:dischargeDisposition @<CodeableConcept>?;  # Category or kind of location after 
+                                            # discharge 
+}  
+
+# List of past encounter statuses
+<Encounter.statusHistory> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:encounter-status};  # planned | in-progress | onhold | 
+                                            # completed | cancelled | 
+                                            # entered-in-error | unknown 
+    fhir:period @<Period>;                  # The time that the episode was in 
+                                            # the specified status 
+}  
+
+# List of locations where the patient has been
+<Encounter.location> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:location @<Reference> AND {fhir:link 
+    			@<Location> };  # Location the encounter takes place
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:encounter-location-status}?;  # planned | active | reserved | 
+                                            # completed 
+    fhir:physicalType @<CodeableConcept>?;  # The physical type of the location 
+                                            # (usually the level in the location 
+                                            # hierachy - bed room ward etc.) 
+    fhir:period @<Period>?;                 # Time period during which the 
+                                            # patient was present at the 
+                                            # location 
+}  
+
+# List of past encounter classes
+<Encounter.classHistory> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:class @<Coding>;                   # inpatient | outpatient | 
+                                            # ambulatory | emergency + 
+    fhir:period @<Period>;                  # The time that the episode was in 
+                                            # the specified class 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_EpisodeOfCare> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<EpisodeOfCare> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_EpisodeOfCare> 
+}
+
+<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_MedicationRequest_OR_ServiceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CarePlan> OR 
+			@<DeviceRequest> OR 
+			@<MedicationRequest> OR 
+			@<ServiceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_MedicationRequest_OR_ServiceRequest> 
+}
+
+<OneOrMore_Reference_Appointment> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Appointment> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Appointment> 
+}
+
+<OneOrMore_CodeableReference> CLOSED {
+    rdf:first @<CodeableReference>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableReference> 
+}
+
+<OneOrMore_Reference_Account> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Account> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Account> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Current state of the encounter.
+fhirvs:encounter-status ["planned" "in-progress" "onhold" "completed" "cancelled" "entered-in-error" "unknown"]
+
+# The status of the location.
+fhirvs:encounter-location-status ["planned" "active" "reserved" "completed"]
+

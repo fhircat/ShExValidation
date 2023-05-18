@@ -1,0 +1,266 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Task.shex>
+IMPORT <Goal.shex>
+IMPORT <Group.shex>
+IMPORT <string.shex>
+IMPORT <Period.shex>
+IMPORT <Device.shex>
+IMPORT <Timing.shex>
+IMPORT <Patient.shex>
+IMPORT <boolean.shex>
+IMPORT <dateTime.shex>
+IMPORT <CareTeam.shex>
+IMPORT <Quantity.shex>
+IMPORT <CarePlan.shex>
+IMPORT <Resource.shex>
+IMPORT <Reference.shex>
+IMPORT <Encounter.shex>
+IMPORT <Substance.shex>
+IMPORT <Medication.shex>
+IMPORT <Appointment.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RequestGroup.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DeviceRequest.shex>
+IMPORT <DomainResource.shex>
+IMPORT <NutritionOrder.shex>
+IMPORT <ServiceRequest.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <MedicationRequest.shex>
+IMPORT <CodeableReference.shex>
+IMPORT <HealthcareService.shex>
+IMPORT <VisionPrescription.shex>
+IMPORT <CommunicationRequest.shex>
+IMPORT <ImmunizationRecommendation.shex>
+
+
+start=@<CarePlan> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Healthcare plan for patient or group
+<CarePlan> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:CarePlan];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # External Ids for this plan
+    fhir:instantiatesCanonical @<OneOrMore_canonical>?;  # Instantiates FHIR protocol or 
+                                            # definition 
+    fhir:instantiatesUri @<OneOrMore_uri>?;  # Instantiates external protocol or 
+                                            # definition 
+    fhir:basedOn @<OneOrMore_Reference_CarePlan>?;  # Fulfills CarePlan
+    fhir:replaces @<OneOrMore_Reference_CarePlan>?;  # CarePlan replaced by this CarePlan
+    fhir:partOf @<OneOrMore_Reference_CarePlan>?;  # Part of referenced CarePlan
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:request-status};  # draft | active | on-hold | revoked 
+                                            # | completed | entered-in-error | 
+                                            # unknown 
+    fhir:intent @<code> AND
+    	{fhir:v @fhirvs:care-plan-intent};  # proposal | plan | order | option | 
+                                            # directive 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Type of plan
+    fhir:title @<string>?;                  # Human-friendly name for the care 
+                                            # plan 
+    fhir:description @<string>?;            # Summary of nature of plan
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Patient> };  # Who the care plan is for
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # The Encounter during which this 
+                                            # CarePlan was created 
+    fhir:period @<Period>?;                 # Time period plan covers
+    fhir:created @<dateTime>?;              # Date record was first recorded
+    fhir:custodian @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Who is the designated responsible 
+                                            # party 
+    fhir:contributor @<OneOrMore_Reference_CareTeam_OR_Device_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Who provided the content of the 
+                                            # care plan 
+    fhir:careTeam @<OneOrMore_Reference_CareTeam>?;  # Who's involved in plan?
+    fhir:addresses @<OneOrMore_CodeableReference>?;  # Health issues this plan addresses
+    fhir:supportingInfo @<OneOrMore_Reference_Resource>?;  # Information considered as part of 
+                                            # plan 
+    fhir:goal @<OneOrMore_Reference_Goal>?;  # Desired outcome of plan
+    fhir:activity @<OneOrMore_BackboneElement>?;  # Action to occur or has occurred as 
+                                            # part of plan 
+    fhir:note @<OneOrMore_Annotation>?;     # Comments about the plan
+}  
+
+# Action to occur or has occurred as part of plan
+<CarePlan.activity> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:performedActivity @<OneOrMore_CodeableReference>?;  # Results of the activity (concept, 
+                                            # or Appointment, Encounter, 
+                                            # Procedure, etc) 
+    fhir:progress @<OneOrMore_Annotation>?;  # Comments about the activity 
+                                            # status/progress 
+    fhir:plannedActivityReference @<Reference> AND {fhir:link 
+    			@<Appointment> OR 
+    			@<CommunicationRequest> OR 
+    			@<DeviceRequest> OR 
+    			@<ImmunizationRecommendation> OR 
+    			@<MedicationRequest> OR 
+    			@<NutritionOrder> OR 
+    			@<RequestGroup> OR 
+    			@<ServiceRequest> OR 
+    			@<Task> OR 
+    			@<VisionPrescription> }?;  # Activity that is intended to be 
+                                            # part of the care plan 
+    fhir:plannedActivityDetail @<BackboneElement>?;  # In-line definition of activity
+}  
+
+# In-line definition of activity
+<CarePlan.activity.plannedActivityDetail> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:kind @<code> AND
+    	{fhir:v @fhirvs:care-plan-activity-kind}?;  # Appointment | CommunicationRequest 
+                                            # | DeviceRequest | 
+                                            # MedicationRequest | NutritionOrder 
+                                            # | Task | ServiceRequest | 
+                                            # VisionPrescription 
+    fhir:instantiatesCanonical @<OneOrMore_canonical>?;  # Instantiates FHIR protocol or 
+                                            # definition 
+    fhir:instantiatesUri @<OneOrMore_uri>?;  # Instantiates external protocol or 
+                                            # definition 
+    fhir:code @<CodeableConcept>?;          # Detail type of activity
+    fhir:reason @<OneOrMore_CodeableReference>?;  # Why activity should be done or why 
+                                            # activity was prohibited 
+    fhir:goal @<OneOrMore_Reference_Goal>?;  # Goals this activity relates to
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:care-plan-activity-status};  # not-started | scheduled | 
+                                            # in-progress | on-hold | completed 
+                                            # | cancelled | stopped | unknown | 
+                                            # entered-in-error 
+    fhir:statusReason @<CodeableConcept>?;  # Reason for current status
+    fhir:doNotPerform @<boolean>?;          # If true, activity is prohibiting 
+                                            # action 
+    fhir:scheduled (@<Timing>  OR 
+    			@<Period>  OR 
+    			@<string> )  AND { rdf:type IRI } ?;  # When activity is to occur
+    fhir:location @<CodeableReference>?;    # Where it should happen
+    fhir:reported (@<boolean>  OR 
+    			(@<Reference>  AND {fhir:link @<Patient> OR 
+    			 @<RelatedPerson> OR 
+    			 @<Practitioner> OR 
+    			 @<PractitionerRole> OR 
+    			 @<Organization> }) )  AND { rdf:type IRI } ?;  # Reported rather than primary record
+    fhir:performer @<OneOrMore_Reference_CareTeam_OR_Device_OR_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Who will be responsible?
+    fhir:product (@<CodeableConcept>  OR 
+    			(@<Reference>  AND {fhir:link @<Medication> OR 
+    			 @<Substance> }) )  AND { rdf:type IRI } ?;  # What is to be administered/supplied
+    fhir:dailyAmount @<Quantity>?;          # How to consume/day?
+    fhir:quantity @<Quantity>?;             # How much to 
+                                            # administer/supply/consume 
+    fhir:description @<string>?;            # Extra info describing activity to 
+                                            # perform 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_canonical> CLOSED {
+    rdf:first @<canonical>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_canonical> 
+}
+
+<OneOrMore_uri> CLOSED {
+    rdf:first @<uri>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_uri> 
+}
+
+<OneOrMore_Reference_CarePlan> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CarePlan> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CarePlan> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_CareTeam_OR_Device_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> OR 
+			@<Device> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam_OR_Device_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+<OneOrMore_Reference_CareTeam> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam> 
+}
+
+<OneOrMore_CodeableReference> CLOSED {
+    rdf:first @<CodeableReference>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableReference> 
+}
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+
+<OneOrMore_Reference_Goal> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Goal> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Goal> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_Reference_CareTeam_OR_Device_OR_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> OR 
+			@<Device> OR 
+			@<HealthcareService> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam_OR_Device_OR_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Codes indicating the degree of authority/intentionality associated with a care plan.
+fhirvs:care-plan-intent ["proposal" "plan" "order" "option" "directive"]
+
+# Codes identifying the lifecycle stage of a request.
+fhirvs:request-status ["draft" "active" "on-hold" "revoked" "completed" "entered-in-error" "unknown"]
+
+# Resource types defined as part of FHIR that can be represented as in-line definitions of a care plan activity.
+fhirvs:care-plan-activity-kind ["Appointment" "CommunicationRequest" "DeviceRequest" "MedicationRequest" "NutritionOrder" "Task" "ServiceRequest" "VisionPrescription"]
+
+# Codes that reflect the current state of a care plan activity within its overall life cycle.
+fhirvs:care-plan-activity-status ["not-started" "scheduled" "in-progress" "on-hold" "completed" "cancelled" "stopped" "unknown" "entered-in-error"]
+

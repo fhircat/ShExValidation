@@ -1,0 +1,340 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <id.shex>
+IMPORT <uri.shex>
+IMPORT <oid.shex>
+IMPORT <url.shex>
+IMPORT <Age.shex>
+IMPORT <code.shex>
+IMPORT <date.shex>
+IMPORT <time.shex>
+IMPORT <uuid.shex>
+IMPORT <Meta.shex>
+IMPORT <Task.shex>
+IMPORT <Count.shex>
+IMPORT <Money.shex>
+IMPORT <Range.shex>
+IMPORT <Ratio.shex>
+IMPORT <Group.shex>
+IMPORT <string.shex>
+IMPORT <Period.shex>
+IMPORT <Device.shex>
+IMPORT <Coding.shex>
+IMPORT <Timing.shex>
+IMPORT <Dosage.shex>
+IMPORT <Patient.shex>
+IMPORT <boolean.shex>
+IMPORT <decimal.shex>
+IMPORT <instant.shex>
+IMPORT <integer.shex>
+IMPORT <Address.shex>
+IMPORT <Resource.shex>
+IMPORT <dateTime.shex>
+IMPORT <CareTeam.shex>
+IMPORT <Location.shex>
+IMPORT <markdown.shex>
+IMPORT <Distance.shex>
+IMPORT <Duration.shex>
+IMPORT <Quantity.shex>
+IMPORT <Coverage.shex>
+IMPORT <canonical.shex>
+IMPORT <Reference.shex>
+IMPORT <Encounter.shex>
+IMPORT <integer64.shex>
+IMPORT <HumanName.shex>
+IMPORT <Signature.shex>
+IMPORT <Identifier.shex>
+IMPORT <Annotation.shex>
+IMPORT <Attachment.shex>
+IMPORT <RatioRange.shex>
+IMPORT <Expression.shex>
+IMPORT <Provenance.shex>
+IMPORT <positiveInt.shex>
+IMPORT <unsignedInt.shex>
+IMPORT <SampledData.shex>
+IMPORT <Contributor.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <base64Binary.shex>
+IMPORT <ContactPoint.shex>
+IMPORT <UsageContext.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <ContactDetail.shex>
+IMPORT <ClaimResponse.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <DataRequirement.shex>
+IMPORT <RelatedArtifact.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <HealthcareService.shex>
+IMPORT <CodeableReference.shex>
+IMPORT <TriggerDefinition.shex>
+IMPORT <ParameterDefinition.shex>
+
+
+start=@<Task> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A task to be performed
+<Task> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Task];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Task Instance Identifier
+    fhir:instantiatesCanonical @<canonical>?;  # Formal definition of task
+    fhir:instantiatesUri @<uri>?;           # Formal definition of task
+    fhir:basedOn @<OneOrMore_Reference_Resource>?;  # Request fulfilled by this task
+    fhir:groupIdentifier @<Identifier>?;    # Requisition or grouper id
+    fhir:partOf @<OneOrMore_Reference_Task>?;  # Composite task
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:task-status};  # draft | requested | received | 
+                                            # accepted | + 
+    fhir:statusReason @<CodeableConcept>?;  # Reason for current status
+    fhir:businessStatus @<CodeableConcept>?;  # E.g. "Specimen collected", "IV 
+                                            # prepped" 
+    fhir:intent @<code> AND
+    	{fhir:v @fhirvs:task-intent};  # unknown | proposal | plan | order 
+                                            # | original-order | reflex-order | 
+                                            # filler-order | instance-order | 
+                                            # option 
+    fhir:priority @<code> AND
+    	{fhir:v @fhirvs:request-priority}?;  # routine | urgent | asap | stat
+    fhir:code @<CodeableConcept>?;          # Task Type
+    fhir:description @<string>?;            # Human-readable explanation of task
+    fhir:focus @<Reference> AND {fhir:link 
+    			@<Resource> }?;  # What task is acting on
+    fhir:for @<Reference> AND {fhir:link 
+    			@<Resource> }?;  # Beneficiary of the Task
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # Healthcare event during which this 
+                                            # task originated 
+    fhir:executionPeriod @<Period>?;        # Start and end time of execution
+    fhir:authoredOn @<dateTime>?;           # Task Creation Date
+    fhir:lastModified @<dateTime>?;         # Task Last Modified Date
+    fhir:requester @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Who is asking for task to be done
+    fhir:performerType @<OneOrMore_CodeableConcept>?;  # Requested performer
+    fhir:owner @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<HealthcareService> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Responsible individual
+    fhir:location @<Reference> AND {fhir:link 
+    			@<Location> }?;  # Where task occurs
+    fhir:reasonCode @<CodeableConcept>?;    # Why task is needed
+    fhir:reasonReference @<Reference> AND {fhir:link 
+    			@<Resource> }?;  # Why task is needed
+    fhir:insurance @<OneOrMore_Reference_ClaimResponse_OR_Coverage>?;  # Associated insurance coverage
+    fhir:note @<OneOrMore_Annotation>?;     # Comments made about the task
+    fhir:relevantHistory @<OneOrMore_Reference_Provenance>?;  # Key events in history of the Task
+    fhir:restriction @<BackboneElement>?;   # Constraints on fulfillment tasks
+    fhir:input @<OneOrMore_BackboneElement>?;  # Information used to perform task
+    fhir:output @<OneOrMore_BackboneElement>?;  # Information produced as part of 
+                                            # task 
+}  
+
+# Information produced as part of task
+<Task.output> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # Label for output
+    fhir:v (@<base64Binary>  OR 
+    			@<boolean>  OR 
+    			@<canonical>  OR 
+    			@<code>  OR 
+    			@<date>  OR 
+    			@<dateTime>  OR 
+    			@<decimal>  OR 
+    			@<id>  OR 
+    			@<instant>  OR 
+    			@<integer>  OR 
+    			@<integer64>  OR 
+    			@<markdown>  OR 
+    			@<oid>  OR 
+    			@<positiveInt>  OR 
+    			@<string>  OR 
+    			@<time>  OR 
+    			@<unsignedInt>  OR 
+    			@<uri>  OR 
+    			@<url>  OR 
+    			@<uuid>  OR 
+    			@<Address>  OR 
+    			@<Age>  OR 
+    			@<Annotation>  OR 
+    			@<Attachment>  OR 
+    			@<CodeableConcept>  OR 
+    			@<CodeableReference>  OR 
+    			@<Coding>  OR 
+    			@<ContactPoint>  OR 
+    			@<Count>  OR 
+    			@<Distance>  OR 
+    			@<Duration>  OR 
+    			@<HumanName>  OR 
+    			@<Identifier>  OR 
+    			@<Money>  OR 
+    			@<Period>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<Ratio>  OR 
+    			@<RatioRange>  OR 
+    			@<Reference>  OR 
+    			@<SampledData>  OR 
+    			@<Signature>  OR 
+    			@<Timing>  OR 
+    			@<ContactDetail>  OR 
+    			@<Contributor>  OR 
+    			@<DataRequirement>  OR 
+    			@<Expression>  OR 
+    			@<ParameterDefinition>  OR 
+    			@<RelatedArtifact>  OR 
+    			@<TriggerDefinition>  OR 
+    			@<UsageContext>  OR 
+    			@<Dosage>  OR 
+    			@<Meta> )  AND { rdf:type IRI } ;  # Result of output
+}  
+
+# Information used to perform task
+<Task.input> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # Label for the input
+    fhir:v (@<base64Binary>  OR 
+    			@<boolean>  OR 
+    			@<canonical>  OR 
+    			@<code>  OR 
+    			@<date>  OR 
+    			@<dateTime>  OR 
+    			@<decimal>  OR 
+    			@<id>  OR 
+    			@<instant>  OR 
+    			@<integer>  OR 
+    			@<integer64>  OR 
+    			@<markdown>  OR 
+    			@<oid>  OR 
+    			@<positiveInt>  OR 
+    			@<string>  OR 
+    			@<time>  OR 
+    			@<unsignedInt>  OR 
+    			@<uri>  OR 
+    			@<url>  OR 
+    			@<uuid>  OR 
+    			@<Address>  OR 
+    			@<Age>  OR 
+    			@<Annotation>  OR 
+    			@<Attachment>  OR 
+    			@<CodeableConcept>  OR 
+    			@<CodeableReference>  OR 
+    			@<Coding>  OR 
+    			@<ContactPoint>  OR 
+    			@<Count>  OR 
+    			@<Distance>  OR 
+    			@<Duration>  OR 
+    			@<HumanName>  OR 
+    			@<Identifier>  OR 
+    			@<Money>  OR 
+    			@<Period>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<Ratio>  OR 
+    			@<RatioRange>  OR 
+    			@<Reference>  OR 
+    			@<SampledData>  OR 
+    			@<Signature>  OR 
+    			@<Timing>  OR 
+    			@<ContactDetail>  OR 
+    			@<Contributor>  OR 
+    			@<DataRequirement>  OR 
+    			@<Expression>  OR 
+    			@<ParameterDefinition>  OR 
+    			@<RelatedArtifact>  OR 
+    			@<TriggerDefinition>  OR 
+    			@<UsageContext>  OR 
+    			@<Dosage>  OR 
+    			@<Meta> )  AND { rdf:type IRI } ;  # Content to use in performing the 
+                                            # task 
+}  
+
+# Constraints on fulfillment tasks
+<Task.restriction> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:repetitions @<positiveInt>?;       # How many times to repeat
+    fhir:period @<Period>?;                 # When fulfillment sought
+    fhir:recipient @<OneOrMore_Reference_Group_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # For whom is fulfillment sought?
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+
+<OneOrMore_Reference_Task> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Task> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Task> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_ClaimResponse_OR_Coverage> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ClaimResponse> OR 
+			@<Coverage> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ClaimResponse_OR_Coverage> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_Reference_Provenance> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Provenance> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Provenance> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Reference_Group_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Group> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Group_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Distinguishes whether the task is a proposal, plan or full order.
+fhirvs:task-intent ["unknown" "proposal" "plan" "order" "original-order" "reflex-order" "filler-order" "instance-order" "option"]
+
+# Identifies the level of importance to be assigned to actioning the request.
+fhirvs:request-priority ["routine" "urgent" "asap" "stat"]
+
+# The current status of the task.
+fhirvs:task-status ["draft" "requested" "received" "accepted" "rejected" "ready" "cancelled" "in-progress" "on-hold" "failed" "completed" "entered-in-error"]
+

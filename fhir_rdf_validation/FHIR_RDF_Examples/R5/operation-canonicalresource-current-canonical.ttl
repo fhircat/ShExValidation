@@ -1,0 +1,89 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:OperationDefinition ;
+  fhir:id [ fhir:v "CanonicalResource-current-canonical"] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/OperationDefinition/CanonicalResource-current-canonical"], [ fhir:v "http://hl7.org/fhir/OperationDefinition/CanonicalResource-current-canonical"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "CurrentCanonical"], [ fhir:v "CurrentCanonical"] ;
+  fhir:title [ fhir:v "Fetch the current version of a canonical resource (based on canonical versioning)"], [ fhir:v "Fetch the current version of a canonical resource (based on canonical versioning)"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Returns the most current version of the canonical resource with the specified url available on the server.  It optionally also allows filtering to only expose the most current version with a particular status or set of statuses.\r\rNote that 'current' is determined by comparing version values using the specified versionAlgorithm, NOT by looking at lastUpdated."], [ fhir:v "Returns the most current version of the canonical resource with the specified url available on the server.  It optionally also allows filtering to only expose the most current version with a particular status or set of statuses.\r\rNote that 'current' is determined by comparing version values using the specified versionAlgorithm, NOT by looking at lastUpdated."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:kind [ fhir:v "operation"] ;
+  fhir:affectsState [ fhir:v "false"] ;
+  fhir:code [ fhir:v "current-canonical"] ;
+  fhir:comment [ fhir:v "If none of the instances define the versionAlgorithm to use, a server may  dynamically attempt to determine which versioning system is implied by the data.\r\rIf the instances found with the provided canonical URL define different versionAlgorithm values the server may return an error.\r\rNote that the *CanonicalResource* is an interface and not an actual resource type, as such the operation is actually called on the canonical resource types such as CodeSystem, Questionnaire etc."] ;
+  fhir:resource ( [ fhir:v "CanonicalResource"] ) ;
+  fhir:system [ fhir:v "true"] ;
+  fhir:type [ fhir:v "true"] ;
+  fhir:instance [ fhir:v "false"] ;
+  fhir:parameter ( [
+     fhir:name [ fhir:v "url" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "1" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "This is the canonical URL (with no version declared)" ] ;
+     fhir:type [ fhir:v "uri" ]
+  ] [
+     fhir:name [ fhir:v "status" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "*" ] ;
+     fhir:documentation [ fhir:v "The statuses to allow to be returned. If no status codes are provided, then any status is ok" ] ;
+     fhir:type [ fhir:v "code" ]
+  ] [
+     fhir:name [ fhir:v "result" ] ;
+     fhir:use [ fhir:v "out" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "If no resources can be found, will return nothing.  If multiple resources are found for the specified statuses and 'most current' can't be determined by comparing the versions, the operation will fail with an operation outcome." ] ;
+     fhir:type [ fhir:v "CanonicalResource" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

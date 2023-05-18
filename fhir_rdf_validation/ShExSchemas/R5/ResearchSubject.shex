@@ -1,0 +1,87 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Group.shex>
+IMPORT <Period.shex>
+IMPORT <Device.shex>
+IMPORT <string.shex>
+IMPORT <Patient.shex>
+IMPORT <Consent.shex>
+IMPORT <Specimen.shex>
+IMPORT <dateTime.shex>
+IMPORT <Reference.shex>
+IMPORT <Substance.shex>
+IMPORT <Medication.shex>
+IMPORT <ResearchStudy.shex>
+IMPORT <DomainResource.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BiologicallyDerivedProduct.shex>
+
+
+start=@<ResearchSubject> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Physical entity which is the primary unit of interest in the study
+<ResearchSubject> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:ResearchSubject];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business Identifier for research 
+                                            # subject in a study 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:progress @<OneOrMore_BackboneElement>?;  # Subject status
+    fhir:period @<Period>?;                 # Start and end of participation
+    fhir:study @<Reference> AND {fhir:link 
+    			@<ResearchStudy> };  # Study subject is part of
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<BiologicallyDerivedProduct> OR 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<Medication> OR 
+    			@<Patient> OR 
+    			@<Specimen> OR 
+    			@<Substance> };  # Who or what is part of study
+    fhir:assignedArm @<string>?;            # What path should be followed
+    fhir:actualArm @<string>?;              # What path was followed
+    fhir:consent @<Reference> AND {fhir:link 
+    			@<Consent> }?;  # Agreement to participate in study
+}  
+
+# Subject status
+<ResearchSubject.progress> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>?;          # state | milestone
+    fhir:subjectState @<CodeableConcept>?;  # candidate | eligible | follow-up | 
+                                            # ineligible | not-registered | 
+                                            # off-study | on-study | 
+                                            # on-study-intervention | 
+                                            # on-study-observation | 
+                                            # pending-on-study | 
+                                            # potential-candidate | screening | 
+                                            # withdrawn 
+    fhir:milestone @<CodeableConcept>?;     # SignedUp | Screened | Randomized
+    fhir:reason @<CodeableConcept>?;        # State change reason
+    fhir:startDate @<dateTime>?;            # State change date
+    fhir:endDate @<dateTime>?;              # State change date
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+

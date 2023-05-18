@@ -1,0 +1,29 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <string.shex>
+IMPORT <decimal.shex>
+IMPORT <DataType.shex>
+IMPORT <Quantity.shex>
+IMPORT <positiveInt.shex>
+
+# A series of measurements taken by a device
+<SampledData> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:SampledData];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:origin @<Quantity>;                # Zero value and units
+    fhir:period @<decimal>;                 # Number of milliseconds between 
+                                            # samples 
+    fhir:factor @<decimal>?;                # Multiply data by this before 
+                                            # adding to origin 
+    fhir:lowerLimit @<decimal>?;            # Lower limit of detection
+    fhir:upperLimit @<decimal>?;            # Upper limit of detection
+    fhir:dimensions @<positiveInt>;         # Number of sample points at each 
+                                            # time point 
+    fhir:data @<string>?;                   # Decimal values with spaces, or "E" 
+                                            # | "U" | "L" 
+}  
+

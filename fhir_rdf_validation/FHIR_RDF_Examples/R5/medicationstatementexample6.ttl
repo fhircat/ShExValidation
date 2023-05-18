@@ -1,0 +1,81 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:MedicationStatement ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example006"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicationStatement</b><a name=\"example006\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicationStatement &quot;example006&quot; </p></div><p><b>status</b>: recorded</p><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Amoxicillin (product) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#27658006)</span></td></tr></table><p><b>subject</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><p><b>effective</b>: 2014-02-01</p><p><b>dateAsserted</b>: 2014-02-22</p><p><b>informationSource</b>: <a href=\"relatedperson-example-peter.html\">RelatedPerson/peter: Peter Chalmers</a> &quot;Peter CHALMERS&quot;</p><p><b>note</b>: Father indicates they miss the occasional dose</p><blockquote><p><b>dosage</b></p><p><b>sequence</b>: 1</p><p><b>text</b>: 5ml three times daily</p><p><b>asNeeded</b>: false</p><p><b>route</b>: Oral <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#260548002)</span></p><blockquote><p><b>doseAndRate</b></p></blockquote><p><b>maxDosePerPeriod</b>: 3/1 d<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code d = 'd')</span></p></blockquote></div>"
+  ] ; # 
+  fhir:status [ fhir:v "recorded"] ; # 
+  fhir:medication [
+     fhir:concept [
+       fhir:coding ( [
+         a sct:27658006 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "27658006" ] ;
+         fhir:display [ fhir:v "Amoxicillin (product)" ]
+       ] )
+     ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat1" ] ;
+     fhir:display [ fhir:v "Donald Duck" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2014-02-01"^^xsd:date] ; # 
+  fhir:dateAsserted [ fhir:v "2014-02-22"^^xsd:date] ; # 
+  fhir:informationSource ( [
+     fhir:reference [ fhir:v "RelatedPerson/peter" ] ;
+     fhir:display [ fhir:v "Peter Chalmers" ]
+  ] ) ; # 
+  fhir:note ( [
+     fhir:text [ fhir:v "Father indicates they miss the occasional dose" ]
+  ] ) ; # 
+  fhir:dosage ( [
+     fhir:sequence [ fhir:v "1"^^xsd:integer ] ;
+     fhir:text [ fhir:v "5ml three times daily" ] ;
+     fhir:asNeeded [ fhir:v "false"^^xsd:boolean ] ;
+     fhir:route [
+       fhir:coding ( [
+         a sct:260548002 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "260548002" ] ;
+         fhir:display [ fhir:v "Oral" ]
+       ] )
+     ] ;
+     fhir:doseAndRate ( [
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/dose-rate-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "ordered" ] ;
+           fhir:display [ fhir:v "Ordered" ]
+         ] )
+       ] ;
+       fhir:dose [
+         a fhir:Quantity ;
+         fhir:value [ fhir:v "5"^^xsd:decimal ] ;
+         fhir:unit [ fhir:v "mL" ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "mL" ]
+       ]
+     ] ) ;
+     fhir:maxDosePerPeriod ( [
+       fhir:numerator [
+         fhir:value [ fhir:v "3"^^xsd:decimal ]
+       ] ;
+       fhir:denominator [
+         fhir:value [ fhir:v "1"^^xsd:decimal ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "d" ]
+       ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

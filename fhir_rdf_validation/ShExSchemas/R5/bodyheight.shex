@@ -1,0 +1,53 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <Coding.shex>
+IMPORT <Quantity.shex>
+IMPORT <vitalsigns.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+
+
+start=@<bodyheight> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# FHIR Body Height Profile
+<bodyheight> EXTENDS @<vitalsigns> CLOSED {   
+
+    a [fhir:bodyheight];
+    fhir:nodeRole [fhir:treeRoot]?;
+}  
+
+# Code defined by a terminology system
+<CodeableConcept.coding> EXTENDS @<Coding> CLOSED {   
+}  
+
+# Classification of  type of observation
+<Observation.category> EXTENDS @<CodeableConcept> CLOSED {   
+}  
+
+# Provides guide for interpretation
+<Observation.referenceRange> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Vital Signs value are recorded using the Quantity data type. For supporting observations such as Cuff size could use other datatypes such as CodeableConcept.
+<Observation.value[x]> EXTENDS @<Quantity> CLOSED {   
+}  
+
+# Body Height
+<Observation.code> EXTENDS @<CodeableConcept> CLOSED {   
+}  
+
+# Triggering observation(s)
+<Observation.triggeredBy> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Used when reporting systolic and diastolic blood pressure.
+<Observation.component> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Code defined by a terminology system
+<CodeableConcept.coding> EXTENDS @<Coding> CLOSED {   
+}  
+

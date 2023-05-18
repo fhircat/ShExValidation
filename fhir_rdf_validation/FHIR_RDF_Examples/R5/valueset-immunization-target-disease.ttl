@@ -1,0 +1,159 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ValueSet ;
+  fhir:id [ fhir:v "immunization-target-disease"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablevalueset" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "pher" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "draft" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/immunization-target-disease"], [ fhir:v "http://hl7.org/fhir/ValueSet/immunization-target-disease"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.1047" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.1047" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "ImmunizationTargetDiseaseCodes"], [ fhir:v "ImmunizationTargetDiseaseCodes"] ;
+  fhir:title [ fhir:v "Immunization Target Disease Codes"], [ fhir:v "Immunization Target Disease Codes"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "true"], [ fhir:v "true"] ;
+  fhir:publisher [ fhir:v "FHIR Project team"], [ fhir:v "FHIR Project team"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the disease that the dose is being administered against. This value set is provided as a suggestive example and includes SNOMED CT concepts from the 64572001 (Disease) hierarchy."], [ fhir:v "The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the disease that the dose is being administered against. This value set is provided as a suggestive example and includes SNOMED CT concepts from the 64572001 (Disease) hierarchy."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:copyright [ fhir:v "This resource includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these specifications must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/get-snomed-ct or info@snomed.org"], [ fhir:v "This resource includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these specifications must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/get-snomed-ct or info@snomed.org"] ;
+  fhir:compose [
+     fhir:include ( [
+       fhir:system [ fhir:v "http://snomed.info/sct" ] ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "397428000" ]
+       ] [
+         fhir:code [ fhir:v "27836007" ]
+       ] [
+         fhir:code [ fhir:v "76902006" ]
+       ] [
+         fhir:code [ fhir:v "721764008" ]
+       ] [
+         fhir:code [ fhir:v "14189004" ]
+       ] [
+         fhir:code [ fhir:v "36989005" ]
+       ] [
+         fhir:code [ fhir:v "36653000" ]
+       ] [
+         fhir:code [ fhir:v "16814004" ]
+       ] [
+         fhir:code [ fhir:v "23511006" ]
+       ] [
+         fhir:code [ fhir:v "709410003" ]
+       ] [
+         fhir:code [ fhir:v "56717001" ]
+       ] [
+         fhir:code [ fhir:v "363354003" ]
+       ] [
+         fhir:code [ fhir:v "266113007" ]
+       ] [
+         fhir:code [ fhir:v "415822001" ]
+       ] [
+         fhir:code [ fhir:v "66071002" ]
+       ] [
+         fhir:code [ fhir:v "40468003" ]
+       ] [
+         fhir:code [ fhir:v "7111000119109" ]
+       ] [
+         fhir:code [ fhir:v "719590007" ]
+       ] [
+         fhir:code [ fhir:v "719865001" ]
+       ] [
+         fhir:code [ fhir:v "38907003" ]
+       ] [
+         fhir:code [ fhir:v "4740000" ]
+       ] [
+         fhir:code [ fhir:v "55735004" ]
+       ] [
+         fhir:code [ fhir:v "240613006" ]
+       ] [
+         fhir:code [ fhir:v "4834000" ]
+       ] [
+         fhir:code [ fhir:v "85904008" ]
+       ] [
+         fhir:code [ fhir:v "63650001" ]
+       ] [
+         fhir:code [ fhir:v "16541001" ]
+       ] [
+         fhir:code [ fhir:v "38362002" ]
+       ] [
+         fhir:code [ fhir:v "61462000" ]
+       ] [
+         fhir:code [ fhir:v "14168008" ]
+       ] [
+         fhir:code [ fhir:v "186772009" ]
+       ] [
+         fhir:code [ fhir:v "712986001" ]
+       ] [
+         fhir:code [ fhir:v "52947006" ]
+       ] [
+         fhir:code [ fhir:v "186788009" ]
+       ] [
+         fhir:code [ fhir:v "409498004" ]
+       ] [
+         fhir:code [ fhir:v "58750007" ]
+       ] [
+         fhir:code [ fhir:v "19265001" ]
+       ] [
+         fhir:code [ fhir:v "23502006" ]
+       ] [
+         fhir:code [ fhir:v "75702008" ]
+       ] [
+         fhir:code [ fhir:v "80612004" ]
+       ] [
+         fhir:code [ fhir:v "186747009" ]
+       ] [
+         fhir:code [ fhir:v "67924001" ]
+       ] [
+         fhir:code [ fhir:v "70090004" ]
+       ] )
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

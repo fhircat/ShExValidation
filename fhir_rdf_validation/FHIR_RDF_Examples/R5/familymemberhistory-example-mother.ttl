@@ -1,0 +1,48 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:FamilyMemberHistory ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "mother"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">Mother died of a stroke aged 56</div>"
+  ] ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:patient [
+     fhir:reference [ fhir:v "Patient/100" ] ;
+     fhir:display [ fhir:v "Peter Patient" ]
+  ] ; # 
+  fhir:relationship [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-RoleCode"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "MTH" ] ;
+       fhir:display [ fhir:v "mother" ]
+     ] )
+  ] ; # 
+  fhir:condition ( [
+     fhir:code [
+       fhir:coding ( [
+         a sct:371041009 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "371041009" ] ;
+         fhir:display [ fhir:v "Embolic Stroke" ]
+       ] ) ;
+       fhir:text [ fhir:v "Stroke" ]
+     ] ;
+     fhir:onset [
+       a fhir:Age ;
+       fhir:value [ fhir:v "56"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "yr" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "a" ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

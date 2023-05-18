@@ -1,0 +1,30 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:BiologicallyDerivedProduct ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "allogeneicHCT"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: BiologicallyDerivedProduct</b><a name=\"allogeneicHCT\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource BiologicallyDerivedProduct &quot;allogeneicHCT&quot; </p></div><p><b>request</b>: <span title=\"  &lt;text&gt;\n    &lt;status value=&quot;generated&quot; /&gt;\n    &lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;[Put rendering here]&lt;/div&gt;\n  &lt;/text&gt;  \"><a href=\"broken-link.html\">BiologicallyDerivedProduct/HCTcollection-servicerequest: Service Request for HCT Collection</a></span></p><h3>Collections</h3><table class=\"grid\"><tr><td>-</td><td><b>Source</b></td></tr><tr><td>*</td><td><a href=\"broken-link.html\">Patient/example-b: HCT Donor</a></td></tr></table></div>"
+  ] ; #    <text>
+#    <status value="generated" />
+#    <div xmlns="http://www.w3.org/1999/xhtml">[Put rendering here]</div>
+#  </text>   
+  fhir:request ( [
+     fhir:reference [ fhir:v "BiologicallyDerivedProduct/HCTcollection-servicerequest" ] ;
+     fhir:display [ fhir:v "Service Request for HCT Collection" ]
+  ] ) ; # 
+  fhir:collection [
+     fhir:source [
+       fhir:reference [ fhir:v "Patient/example-b" ] ;
+       fhir:display [ fhir:v "HCT Donor" ]
+     ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

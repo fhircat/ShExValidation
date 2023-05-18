@@ -1,0 +1,107 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <Group.shex>
+IMPORT <Device.shex>
+IMPORT <string.shex>
+IMPORT <Patient.shex>
+IMPORT <dateTime.shex>
+IMPORT <Resource.shex>
+IMPORT <Reference.shex>
+IMPORT <Identifier.shex>
+IMPORT <Practitioner.shex>
+IMPORT <Organization.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+
+
+start=@<DocumentManifest> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A list that defines a set of documents
+<DocumentManifest> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:DocumentManifest];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:masterIdentifier @<Identifier>?;   # Unique Identifier for the set of 
+                                            # documents 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Other identifiers for the manifest
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:document-reference-status};  # current | superseded | 
+                                            # entered-in-error 
+    fhir:type @<CodeableConcept>?;          # Kind of document set
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<Patient> OR 
+    			@<Practitioner> }?;  # The subject of the set of documents
+    fhir:created @<dateTime>?;              # When this document manifest created
+    fhir:author @<OneOrMore_Reference_Device_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Who and/or what authored the 
+                                            # DocumentManifest 
+    fhir:recipient @<OneOrMore_Reference_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Intended to get notified about 
+                                            # this set of documents 
+    fhir:source @<uri>?;                    # The source 
+                                            # system/application/software 
+    fhir:description @<string>?;            # Human-readable description (title)
+    fhir:content @<OneOrMore_Reference_Resource>;  # Items in manifest
+    fhir:related @<OneOrMore_BackboneElement>?;  # Related things
+}  
+
+# Related things
+<DocumentManifest.related> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:identifier @<Identifier>?;         # Identifiers of things that are 
+                                            # related 
+    fhir:ref @<Reference> AND {fhir:link 
+    			@<Resource> }?;  # Related Resource
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_Reference_Device_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Device> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Device_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+<OneOrMore_Reference_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The status of the document reference.
+fhirvs:document-reference-status ["current" "superseded" "entered-in-error"]
+

@@ -1,0 +1,183 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Group.shex>
+IMPORT <Ratio.shex>
+IMPORT <Period.shex>
+IMPORT <string.shex>
+IMPORT <Device.shex>
+IMPORT <Patient.shex>
+IMPORT <boolean.shex>
+IMPORT <dateTime.shex>
+IMPORT <Quantity.shex>
+IMPORT <CarePlan.shex>
+IMPORT <Resource.shex>
+IMPORT <Reference.shex>
+IMPORT <Encounter.shex>
+IMPORT <Procedure.shex>
+IMPORT <Provenance.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <SimpleQuantity.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <CodeableReference.shex>
+IMPORT <MedicationRequest.shex>
+IMPORT <MedicationAdministration.shex>
+
+
+start=@<MedicationAdministration> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Administration of medication to a patient
+<MedicationAdministration> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:MedicationAdministration];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # External identifier
+    fhir:instantiatesCanonical @<OneOrMore_canonical>?;  # Instantiates protocol or definition
+    fhir:instantiatesUri @<OneOrMore_uri>?;  # Instantiates external protocol or 
+                                            # definition 
+    fhir:basedOn @<OneOrMore_Reference_CarePlan>?;  # Plan this is fulfilled by this 
+                                            # administration 
+    fhir:partOf @<OneOrMore_Reference_MedicationAdministration_OR_Procedure>?;  # Part of referenced event
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:medication-admin-status};  # in-progress | not-done | on-hold | 
+                                            # completed | entered-in-error | 
+                                            # stopped | unknown 
+    fhir:statusReason @<OneOrMore_CodeableConcept>?;  # Reason administration not performed
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Type of medication administration
+    fhir:medication @<CodeableReference>;   # What was administered
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Patient> };  # Who received medication
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # Encounter administered as part of
+    fhir:supportingInformation @<OneOrMore_Reference_Resource>?;  # Additional information to support 
+                                            # administration 
+    fhir:occurence (@<dateTime>  OR 
+    			@<Period> )  AND { rdf:type IRI } ;  # Start and end time of 
+                                            # administration 
+    fhir:recorded @<dateTime>?;             # When the MedicationAdministration 
+                                            # was first captured in the 
+                                            # subject's record 
+    fhir:isSubPotent @<boolean>?;           # Full dose was not administered
+    fhir:subPotentReason @<OneOrMore_CodeableConcept>?;  # Reason full dose was not 
+                                            # administered 
+    fhir:performer @<OneOrMore_BackboneElement>?;  # Who performed the medication 
+                                            # administration and what they did 
+    fhir:reason @<OneOrMore_CodeableReference>?;  # Concept, condition or observation 
+                                            # that supports why the medication 
+                                            # was administered 
+    fhir:request @<Reference> AND {fhir:link 
+    			@<MedicationRequest> }?;  # Request administration performed 
+                                            # against 
+    fhir:device @<OneOrMore_Reference_Device>?;  # Device used to administer
+    fhir:note @<OneOrMore_Annotation>?;     # Information about the 
+                                            # administration 
+    fhir:dosage @<BackboneElement>?;        # Details of how medication was taken
+    fhir:eventHistory @<OneOrMore_Reference_Provenance>?;  # A list of events of interest in 
+                                            # the lifecycle 
+}  
+
+# Details of how medication was taken
+<MedicationAdministration.dosage> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:text @<string>?;                   # Free text dosage instructions e.g. 
+                                            # SIG 
+    fhir:site @<CodeableConcept>?;          # Body site administered to
+    fhir:route @<CodeableConcept>?;         # Path of substance into body
+    fhir:method @<CodeableConcept>?;        # How drug was administered
+    fhir:dose @<Quantity>?;                 # Amount of medication per dose
+    fhir:rate (@<Ratio>  OR 
+    			@<SimpleQuantity> )  AND { rdf:type IRI } ?;  # Dose quantity per unit of time
+}  
+
+# Who performed the medication administration and what they did
+<MedicationAdministration.performer> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:function @<CodeableConcept>?;      # Type of performance
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> };  # Who performed the medication 
+                                            # administration 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_canonical> CLOSED {
+    rdf:first @<canonical>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_canonical> 
+}
+
+<OneOrMore_uri> CLOSED {
+    rdf:first @<uri>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_uri> 
+}
+
+<OneOrMore_Reference_CarePlan> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CarePlan> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CarePlan> 
+}
+
+<OneOrMore_Reference_MedicationAdministration_OR_Procedure> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<MedicationAdministration> OR 
+			@<Procedure> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_MedicationAdministration_OR_Procedure> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_CodeableReference> CLOSED {
+    rdf:first @<CodeableReference>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableReference> 
+}
+
+<OneOrMore_Reference_Device> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Device> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Device> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_Reference_Provenance> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Provenance> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Provenance> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# MedicationAdministration Status Codes
+fhirvs:medication-admin-status ["in-progress" "not-done" "on-hold" "completed" "entered-in-error" "stopped" "unknown"]
+

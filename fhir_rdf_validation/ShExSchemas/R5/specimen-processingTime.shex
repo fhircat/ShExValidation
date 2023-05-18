@@ -1,0 +1,23 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Period.shex>
+IMPORT <Duration.shex>
+IMPORT <Extension.shex>
+
+# Time of processing
+<specimen-processingTime> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:specimen-processingTime];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/specimen-processingTime"]}; 
+    fhir:v (@<Period>  OR 
+    			@<Duration> )  AND { rdf:type IRI } ; 
+    ^fhir:extension { ^fhir:processing {a [fhir:Specimen]}
+        }
+}  
+

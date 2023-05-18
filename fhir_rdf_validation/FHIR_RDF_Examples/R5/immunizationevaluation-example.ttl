@@ -1,0 +1,50 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ImmunizationEvaluation ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: ImmunizationEvaluation</b><a name=\"example\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource ImmunizationEvaluation &quot;example&quot; </p></div><p><b>identifier</b>: id: urn:oid:1.3.6.1.4.1.21367.2005.3.7.1234</p><p><b>status</b>: completed</p><p><b>patient</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>date</b>: 2013-01-10</p><p><b>authority</b>: <a href=\"organization-example.html\">Organization/hl7</a> &quot;Health Level Seven International&quot;</p><p><b>targetDisease</b>: Gestational rubella syndrome <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#1857005)</span></p><p><b>immunizationEvent</b>: <a href=\"immunization-example.html\">Immunization/example</a></p><p><b>doseStatus</b>: Valid <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-immunization-evaluation-dose-status.html\">Immunization Evaluation Dose Status codes</a>#valid)</span></p><p><b>series</b>: Vaccination Series 1</p><p><b>doseNumber</b>: 1</p><p><b>seriesDoses</b>: 3</p></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:1.3.6.1.4.1.21367.2005.3.7.1234" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:patient [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:date [ fhir:v "2013-01-10"^^xsd:date] ; # 
+  fhir:authority [
+     fhir:reference [ fhir:v "Organization/hl7" ]
+  ] ; # 
+  fhir:targetDisease [
+     fhir:coding ( [
+       a sct:1857005 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "1857005" ]
+     ] )
+  ] ; # 
+  fhir:immunizationEvent [
+     fhir:reference [ fhir:v "Immunization/example" ]
+  ] ; # 
+  fhir:doseStatus [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/immunization-evaluation-dose-status"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "valid" ] ;
+       fhir:display [ fhir:v "Valid" ]
+     ] )
+  ] ; # 
+  fhir:series [ fhir:v "Vaccination Series 1"] ; # 
+  fhir:doseNumber [ fhir:v "1"] ; # 
+  fhir:seriesDoses [ fhir:v "3"]] . # 
+
+# -------------------------------------------------------------------------------------
+

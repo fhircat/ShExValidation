@@ -1,0 +1,278 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:OperationDefinition ;
+  fhir:id [ fhir:v "CodeSystem-find-matches"] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "0" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/OperationDefinition/CodeSystem-find-matches"], [ fhir:v "http://hl7.org/fhir/OperationDefinition/CodeSystem-find-matches"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "FindMatches"], [ fhir:v "FindMatches"] ;
+  fhir:title [ fhir:v "Finding codes based on supplied properties"], [ fhir:v "Finding codes based on supplied properties"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Given a set of properties (and text), return one or more possible matching codes\n\nThis operation takes a set of properties, and examines the code system looking for codes in the code system that match a set of known properties. \n\nWhen looking for matches, there are 3 possible types of match:\n* a complete match - a code that represents all the provided properties correctly\n* a partial match - a code that represents some of the provided properties correctly, and not others \n* a possible match - a code that may represent the provided properties closely, but may capture less or more precise information for some of the properties\n\nThe $find-matches operation can be called in one of 2 modes:\n* By a human, looking for the best match for a set of properties. In this mode, the server returns a list of complete, possible or partial matches (possibly with comments), so that the user can choose (or not) the most appropriate code\n* By a machine (typically in a system interface performing a transformation). In this mode, the server returns only a list of complete and partial matches, but no possible matches. The machine can choose a code from the list (or not) based on what properties are not coded\n\nThese modes are differentiated by the 'exact' parameter, so the client can indicate whether it only wants exact matches (including partial matches) or whether potential matches based on text matching are desired\n \nThe find-matches operation is still preliminary. The interface can be expected to change as more experience is gained from implementations."], [ fhir:v "Given a set of properties (and text), return one or more possible matching codes\n\nThis operation takes a set of properties, and examines the code system looking for codes in the code system that match a set of known properties. \n\nWhen looking for matches, there are 3 possible types of match:\n* a complete match - a code that represents all the provided properties correctly\n* a partial match - a code that represents some of the provided properties correctly, and not others \n* a possible match - a code that may represent the provided properties closely, but may capture less or more precise information for some of the properties\n\nThe $find-matches operation can be called in one of 2 modes:\n* By a human, looking for the best match for a set of properties. In this mode, the server returns a list of complete, possible or partial matches (possibly with comments), so that the user can choose (or not) the most appropriate code\n* By a machine (typically in a system interface performing a transformation). In this mode, the server returns only a list of complete and partial matches, but no possible matches. The machine can choose a code from the list (or not) based on what properties are not coded\n\nThese modes are differentiated by the 'exact' parameter, so the client can indicate whether it only wants exact matches (including partial matches) or whether potential matches based on text matching are desired\n \nThe find-matches operation is still preliminary. The interface can be expected to change as more experience is gained from implementations."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:kind [ fhir:v "operation"] ;
+  fhir:affectsState [ fhir:v "false"] ;
+  fhir:code [ fhir:v "find-matches"] ;
+  fhir:resource ( [ fhir:v "CodeSystem"] ) ;
+  fhir:system [ fhir:v "false"] ;
+  fhir:type [ fhir:v "true"] ;
+  fhir:instance [ fhir:v "true"] ;
+  fhir:parameter ( [
+     fhir:name [ fhir:v "system" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:scope ( [ fhir:v "type" ] ) ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The system in which composition is to be performed. This must be provided unless the operation is invoked on a code system instance" ] ;
+     fhir:type [ fhir:v "uri" ]
+  ] [
+     fhir:name [ fhir:v "version" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:scope ( [ fhir:v "type" ] ) ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The version of the system for the inferencing to be performed" ] ;
+     fhir:type [ fhir:v "string" ]
+  ] [
+     fhir:name [ fhir:v "property" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "*" ] ;
+     fhir:documentation [ fhir:v "One or more properties that contain information to be composed into the code" ] ;
+     fhir:part ( [
+       fhir:name [ fhir:v "code" ] ;
+       fhir:use [ fhir:v "in" ] ;
+       fhir:min [ fhir:v "1" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:documentation [ fhir:v "Identifies the property provided" ] ;
+       fhir:type [ fhir:v "code" ]
+     ] [
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+         fhir:value [ fhir:v "Coding" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+         fhir:value [ fhir:v "boolean" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+         fhir:value [ fhir:v "code" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+         fhir:value [ fhir:v "dateTime" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+         fhir:value [ fhir:v "integer" ]
+       ] [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+         fhir:value [ fhir:v "string" ]
+       ] ) ;
+       fhir:name [ fhir:v "value" ] ;
+       fhir:use [ fhir:v "in" ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:documentation [ fhir:v "The value of the property provided" ] ;
+       fhir:type [ fhir:v "Element" ]
+     ] [
+       fhir:name [ fhir:v "subproperty" ] ;
+       fhir:use [ fhir:v "in" ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "*" ] ;
+       fhir:documentation [ fhir:v "Nested Properties (mainly used for SNOMED CT composition, for relationship Groups)" ] ;
+       fhir:part ( [
+         fhir:name [ fhir:v "code" ] ;
+         fhir:use [ fhir:v "in" ] ;
+         fhir:min [ fhir:v "1" ] ;
+         fhir:max [ fhir:v "1" ] ;
+         fhir:documentation [ fhir:v "Identifies the sub-property provided" ] ;
+         fhir:type [ fhir:v "code" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+           fhir:value [ fhir:v "Coding" ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+           fhir:value [ fhir:v "boolean" ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+           fhir:value [ fhir:v "code" ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+           fhir:value [ fhir:v "dateTime" ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+           fhir:value [ fhir:v "integer" ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+           fhir:value [ fhir:v "string" ]
+         ] ) ;
+         fhir:name [ fhir:v "value" ] ;
+         fhir:use [ fhir:v "in" ] ;
+         fhir:min [ fhir:v "1" ] ;
+         fhir:max [ fhir:v "1" ] ;
+         fhir:documentation [ fhir:v "The value of the sub-property provided" ] ;
+         fhir:type [ fhir:v "Element" ]
+       ] )
+     ] )
+  ] [
+     fhir:name [ fhir:v "exact" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "1" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "Whether the operation is being used by a human ('false'), or a machine ('true'). If the operation is being used by a human, the terminology server can return a list of possible matches, with commentary. For a machine, the server returns complete or partial matches, not possible matches. The default value is 'false'" ] ;
+     fhir:type [ fhir:v "boolean" ]
+  ] [
+     fhir:name [ fhir:v "compositional" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "Post-coordinated expressions are allowed to be returned in the matching codes (mainly for SNOMED CT). Default = false" ] ;
+     fhir:type [ fhir:v "boolean" ]
+  ] [
+     fhir:name [ fhir:v "match" ] ;
+     fhir:use [ fhir:v "out" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "*" ] ;
+     fhir:documentation [ fhir:v "Concepts returned by the server as a result of the inferencing operation" ] ;
+     fhir:part ( [
+       fhir:name [ fhir:v "code" ] ;
+       fhir:use [ fhir:v "out" ] ;
+       fhir:min [ fhir:v "1" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:documentation [ fhir:v "A code that matches the properties provided" ] ;
+       fhir:type [ fhir:v "Coding" ]
+     ] [
+       fhir:name [ fhir:v "unmatched" ] ;
+       fhir:use [ fhir:v "out" ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "*" ] ;
+       fhir:documentation [ fhir:v "One or more properties that contain properties that could not be matched into the code" ] ;
+       fhir:part ( [
+         fhir:name [ fhir:v "code" ] ;
+         fhir:use [ fhir:v "out" ] ;
+         fhir:min [ fhir:v "1" ] ;
+         fhir:max [ fhir:v "1" ] ;
+         fhir:documentation [ fhir:v "Identifies the property provided" ] ;
+         fhir:type [ fhir:v "code" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+           fhir:value [ fhir:v "Coding" ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+           fhir:value [ fhir:v "boolean" ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+           fhir:value [ fhir:v "code" ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+           fhir:value [ fhir:v "dateTime" ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+           fhir:value [ fhir:v "integer" ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+           fhir:value [ fhir:v "string" ]
+         ] ) ;
+         fhir:name [ fhir:v "value" ] ;
+         fhir:use [ fhir:v "out" ] ;
+         fhir:min [ fhir:v "1" ] ;
+         fhir:max [ fhir:v "1" ] ;
+         fhir:documentation [ fhir:v "The value of the property provided" ] ;
+         fhir:type [ fhir:v "Element" ]
+       ] [
+         fhir:name [ fhir:v "property" ] ;
+         fhir:use [ fhir:v "out" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "*" ] ;
+         fhir:documentation [ fhir:v "Nested Properties (mainly used for SNOMED CT composition, for relationship Groups)" ] ;
+         fhir:part ( [
+           fhir:name [ fhir:v "code" ] ;
+           fhir:use [ fhir:v "out" ] ;
+           fhir:min [ fhir:v "1" ] ;
+           fhir:max [ fhir:v "1" ] ;
+           fhir:documentation [ fhir:v "Identifies the sub-property provided" ] ;
+           fhir:type [ fhir:v "code" ]
+         ] [
+           fhir:extension ( [
+             fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+             fhir:value [ fhir:v "Coding" ]
+           ] [
+             fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+             fhir:value [ fhir:v "boolean" ]
+           ] [
+             fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+             fhir:value [ fhir:v "code" ]
+           ] [
+             fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+             fhir:value [ fhir:v "dateTime" ]
+           ] [
+             fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+             fhir:value [ fhir:v "integer" ]
+           ] [
+             fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/operationdefinition-allowed-type" ] ;
+             fhir:value [ fhir:v "string" ]
+           ] ) ;
+           fhir:name [ fhir:v "value" ] ;
+           fhir:use [ fhir:v "out" ] ;
+           fhir:min [ fhir:v "1" ] ;
+           fhir:max [ fhir:v "1" ] ;
+           fhir:documentation [ fhir:v "The value of the sub-property provided" ] ;
+           fhir:type [ fhir:v "Element" ]
+         ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "comment" ] ;
+       fhir:use [ fhir:v "out" ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:documentation [ fhir:v "Information about the quality of the match, if operation is for a human" ] ;
+       fhir:type [ fhir:v "string" ]
+     ] )
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

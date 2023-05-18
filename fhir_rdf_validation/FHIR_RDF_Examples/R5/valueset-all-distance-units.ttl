@@ -1,0 +1,54 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ValueSet ;
+  fhir:id [ fhir:v "all-distance-units"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablevalueset" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/all-distance-units"], [ fhir:v "http://hl7.org/fhir/ValueSet/all-distance-units"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.3303" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.3303" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "AllUCUMExpressionForDistance"], [ fhir:v "AllUCUMExpressionForDistance"] ;
+  fhir:title [ fhir:v "All UCUM Expression for Distance"], [ fhir:v "All UCUM Expression for Distance"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:publisher [ fhir:v "FHIR Project team"], [ fhir:v "FHIR Project team"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Unified Code for Units of Measure (UCUM). This value set includes all possible UCUM codes used for distance measures - that it is, all units which have the same canonical unit as 'm' (metre)"], [ fhir:v "Unified Code for Units of Measure (UCUM). This value set includes all possible UCUM codes used for distance measures - that it is, all units which have the same canonical unit as 'm' (metre)"] ;
+  fhir:copyright [ fhir:v "The UCUM codes, UCUM table (regardless of format), and UCUM Specification are copyright © 1999-2009, Regenstrief Institute, Inc. and the Unified Codes for Units of Measures (UCUM) Organization. All rights reserved."], [ fhir:v "The UCUM codes, UCUM table (regardless of format), and UCUM Specification are copyright © 1999-2009, Regenstrief Institute, Inc. and the Unified Codes for Units of Measures (UCUM) Organization. All rights reserved."] ;
+  fhir:compose [
+     fhir:include ( [
+       fhir:system [ fhir:v "http://unitsofmeasure.org" ] ;
+       fhir:filter ( [
+         fhir:property [ fhir:v "canonical" ] ;
+         fhir:op [ fhir:v "=" ] ;
+         fhir:value [ fhir:v "m" ]
+       ] )
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

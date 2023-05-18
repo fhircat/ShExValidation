@@ -1,0 +1,23 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Extension.shex>
+
+# Language Translation (Localization)
+<translation> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:translation];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:lang @<Extension>; 
+    fhir:content @<Extension>; 
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/translation"]}; 
+    ^fhir:extension { a [fhir:string] OR 
+          a [fhir:code] OR 
+          a [fhir:markdown]
+        }
+}  
+

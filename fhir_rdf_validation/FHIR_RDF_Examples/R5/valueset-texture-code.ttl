@@ -1,0 +1,132 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ValueSet ;
+  fhir:id [ fhir:v "texture-code"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablevalueset" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "oo" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "draft" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/texture-code"], [ fhir:v "http://hl7.org/fhir/ValueSet/texture-code"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.387" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.374" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.2.208" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.387" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.374" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.2.208" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "TextureModifierCodes"], [ fhir:v "TextureModifierCodes"] ;
+  fhir:title [ fhir:v "Texture Modifier Codes"], [ fhir:v "Texture Modifier Codes"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "true"], [ fhir:v "true"] ;
+  fhir:publisher [ fhir:v "FHIR NutritionOrder team"], [ fhir:v "FHIR NutritionOrder team"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "TextureModifier: Codes for food consistency types or texture modifications to apply to foods. This value set is composed of SNOMED CT (US Extension and Core) Concepts from SCTID 229961002 Food consistency types (substance) hierarchy and is provided as a suggestive example."], [ fhir:v "TextureModifier: Codes for food consistency types or texture modifications to apply to foods. This value set is composed of SNOMED CT (US Extension and Core) Concepts from SCTID 229961002 Food consistency types (substance) hierarchy and is provided as a suggestive example."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:copyright [ fhir:v "This resource includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these specifications must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/get-snomed-ct or info@snomed.org"], [ fhir:v "This resource includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers of these specifications must have the appropriate SNOMED CT Affiliate license - for more information contact http://www.snomed.org/snomed-ct/get-snomed-ct or info@snomed.org"] ;
+  fhir:compose [
+     fhir:include ( [
+       fhir:system [ fhir:v "http://snomed.info/sct" ] ;
+       fhir:version [ fhir:v "http://snomed.info/sct/731000124108" ] ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "228053002" ] ;
+         fhir:display [ fhir:v "Cut-up food" ]
+       ] [
+         fhir:code [ fhir:v "439091000124107" ] ;
+         fhir:display [ fhir:v "Easy to chew food" ]
+       ] [
+         fhir:code [ fhir:v "228049004" ] ;
+         fhir:display [ fhir:v "Chopped food" ]
+       ] [
+         fhir:code [ fhir:v "441881000124103" ] ;
+         fhir:display [ fhir:v "Ground food" ]
+       ] [
+         fhir:code [ fhir:v "441761000124103" ] ;
+         fhir:display [ fhir:v "Minced food" ]
+       ] [
+         fhir:code [ fhir:v "441751000124100" ] ;
+         fhir:display [ fhir:v "Mashed food" ]
+       ] [
+         fhir:code [ fhir:v "228059003" ] ;
+         fhir:display [ fhir:v "Soft food" ]
+       ] [
+         fhir:code [ fhir:v "441791000124106" ] ;
+         fhir:display [ fhir:v "Strained food" ]
+       ] [
+         fhir:code [ fhir:v "228055009" ] ;
+         fhir:display [ fhir:v "Liquidized food" ]
+       ] [
+         fhir:code [ fhir:v "228056005" ] ;
+         fhir:display [ fhir:v "Lumpy food" ]
+       ] [
+         fhir:code [ fhir:v "441771000124105" ] ;
+         fhir:display [ fhir:v "Moist food" ]
+       ] [
+         fhir:code [ fhir:v "228057001" ] ;
+         fhir:display [ fhir:v "Semi-solid food" ]
+       ] [
+         fhir:code [ fhir:v "228058006" ] ;
+         fhir:display [ fhir:v "Single texture food" ]
+       ] [
+         fhir:code [ fhir:v "228060008" ] ;
+         fhir:display [ fhir:v "Solid food" ]
+       ] )
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

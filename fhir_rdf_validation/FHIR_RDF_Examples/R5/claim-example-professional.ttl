@@ -1,0 +1,92 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Claim ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "860150"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Claim</div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://happypdocs.com/claim"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "8612345" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:type [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/claim-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "professional" ]
+     ] )
+  ] ; # 
+  fhir:use [ fhir:v "claim"] ; # 
+  fhir:patient [
+     fhir:reference [ fhir:v "Patient/1" ]
+  ] ; # 
+  fhir:created [ fhir:v "2014-08-16"^^xsd:date] ; # 
+  fhir:insurer [
+     fhir:reference [ fhir:v "Organization/2" ]
+  ] ; # 
+  fhir:provider [
+     fhir:reference [ fhir:v "Organization/1" ]
+  ] ; # 
+  fhir:priority [
+     fhir:coding ( [
+       fhir:code [ fhir:v "normal" ]
+     ] )
+  ] ; # 
+  fhir:payee [
+     fhir:type [
+       fhir:coding ( [
+         fhir:code [ fhir:v "provider" ]
+       ] )
+     ]
+  ] ; # 
+  fhir:careTeam ( [
+     fhir:sequence [ fhir:v "1"^^xsd:positiveInteger ] ;
+     fhir:provider [
+       fhir:reference [ fhir:v "Practitioner/example" ]
+     ]
+  ] ) ; # 
+  fhir:diagnosis ( [
+     fhir:sequence [ fhir:v "1"^^xsd:positiveInteger ] ;
+     fhir:diagnosis [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         fhir:code [ fhir:v "654456" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:insurance ( [
+     fhir:sequence [ fhir:v "1"^^xsd:positiveInteger ] ;
+     fhir:focal [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:coverage [
+       fhir:reference [ fhir:v "Coverage/9876B1" ]
+     ]
+  ] ) ; # 
+  fhir:item ( [
+     fhir:sequence [ fhir:v "1"^^xsd:positiveInteger ] ;
+     fhir:careTeamSequence ( [ fhir:v "1"^^xsd:positiveInteger ] ) ;
+     fhir:productOrService [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/ex-serviceproduct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "exam" ]
+       ] )
+     ] ;
+     fhir:serviced [ fhir:v "2014-08-16"^^xsd:date ] ;
+     fhir:unitPrice [
+       fhir:value [ fhir:v "75.00"^^xsd:decimal ] ;
+       fhir:currency [ fhir:v "USD" ]
+     ] ;
+     fhir:net [
+       fhir:value [ fhir:v "75.00"^^xsd:decimal ] ;
+       fhir:currency [ fhir:v "USD" ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

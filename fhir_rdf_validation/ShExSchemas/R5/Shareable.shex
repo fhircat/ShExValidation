@@ -1,0 +1,46 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <string.shex>
+IMPORT <boolean.shex>
+IMPORT <markdown.shex>
+
+# Shareable Pattern
+<Shareable> CLOSED {   
+
+    a [fhir:Shareable];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:url @<uri>;                        # Canonical identifier for this 
+                                            # {{title}}, represented as a URI 
+                                            # (globally unique) 
+    fhir:version @<string>;                 # Business version of the {{title}}
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:publisher @<string>;               # Name of the publisher (or steward) 
+                                            # (organization or individual) 
+    fhir:description @<markdown>;           # Natural language description of 
+                                            # the {{title}} 
+    fhir:knowledgeCapability @<OneOrMore_CodeableConcept>?;  # shareable | publishable | 
+                                            # computable | executable 
+    fhir:knowledgeRepresentationLevel @<OneOrMore_CodeableConcept>?;  # narrative | semi-structured | 
+                                            # structured | executable 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+

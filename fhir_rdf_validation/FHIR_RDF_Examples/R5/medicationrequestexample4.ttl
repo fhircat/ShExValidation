@@ -1,0 +1,92 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:MedicationRequest ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "medrx004"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicationRequest</b><a name=\"medrx004\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicationRequest &quot;medrx004&quot; </p></div><p><b>identifier</b>: id: 12345689 (use: OFFICIAL)</p><p><b>status</b>: completed</p><p><b>intent</b>: order</p><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a name=\"med0312\"> </a><blockquote><p/><p><a name=\"med0312\"> </a></p><p><b>code</b>: GAMMAGARD Liquid <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#0944-2700)</span></p></blockquote></td></tr></table><p><b>subject</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><p><b>authoredOn</b>: 2015-01-15</p><p><b>requester</b>: <a href=\"practitioner-example-f007-sh.html\">Practitioner/f007: Patrick Pump</a> &quot;Simone HEPS&quot;</p><blockquote><p><b>dosageInstruction</b></p><p><b>sequence</b>: 1</p><p><b>text</b>: Administer in 100cc NS as follows: First treatment infuse over 90 minutes, if no reaction then second treatment infuse over 60 minutes, if no reaction then on third and following treatments give over 30 minutes.</p><p><b>timing</b>: Events: 2023-01-18T00:00:00Z</p><p><b>route</b>: IV <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (Route#IV)</span></p><blockquote><p><b>doseAndRate</b></p></blockquote><blockquote><p><b>doseAndRate</b></p></blockquote></blockquote></div>"
+  ] ; # 
+  fhir:contained ( [
+     a fhir:Medication ;
+     fhir:id [ fhir:v "med0312" ] ;
+     fhir:code [
+       fhir:coding ( [
+         a sct:0944-2700 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "0944-2700" ] ;
+         fhir:display [ fhir:v "GAMMAGARD Liquid" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "official" ] ;
+     fhir:system [ fhir:v "http://www.bmc.nl/portal/prescriptions"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "12345689" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:intent [ fhir:v "order"] ; # 
+  fhir:medication [
+     fhir:reference [
+       fhir:reference [ fhir:v "#med0312" ] ;
+       fhir:display [ fhir:v "Nystatin 100,000 u/ml oral suspension" ]
+     ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat1" ] ; #    Linked to the resource patient who needs the medication   
+     fhir:display [ fhir:v "Donald Duck" ]
+  ] ; # 
+  fhir:authoredOn [ fhir:v "2015-01-15"^^xsd:date] ; # 
+  fhir:requester [
+     fhir:reference [ fhir:v "Practitioner/f007" ] ;
+     fhir:display [ fhir:v "Patrick Pump" ]
+  ] ; # 
+  fhir:dosageInstruction ( [
+     fhir:sequence [ fhir:v "1"^^xsd:integer ] ;
+     fhir:text [ fhir:v "Administer in 100cc NS as follows: First treatment infuse over 90 minutes, if no reaction then second treatment infuse over 60 minutes, if no reaction then on third and following treatments give over 30 minutes." ] ;
+     fhir:timing [
+       fhir:event ( [ fhir:v "2023-01-18T00:00:00.000Z"^^xsd:dateTime ] )
+     ] ;
+     fhir:route [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://flatiron.com/CodeSystem/Route"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "IV" ]
+       ] )
+     ] ;
+     fhir:doseAndRate ( [
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/dose-rate-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "ordered" ] ;
+           fhir:display [ fhir:v "Ordered" ]
+         ] )
+       ] ;
+       fhir:dose [
+         a fhir:Quantity ;
+         fhir:value [ fhir:v "5"^^xsd:decimal ] ;
+         fhir:unit [ fhir:v "mg/kg" ]
+       ]
+     ] [
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/dose-rate-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "calculated" ] ;
+           fhir:display [ fhir:v "Calculated" ]
+         ] )
+       ] ;
+       fhir:dose [
+         a fhir:Quantity ;
+         fhir:value [ fhir:v "340"^^xsd:decimal ] ;
+         fhir:unit [ fhir:v "mg" ]
+       ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

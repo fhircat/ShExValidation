@@ -1,0 +1,71 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Group.shex>
+IMPORT <Device.shex>
+IMPORT <string.shex>
+IMPORT <instant.shex>
+IMPORT <Patient.shex>
+IMPORT <Location.shex>
+IMPORT <Reference.shex>
+IMPORT <Appointment.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <HealthcareService.shex>
+
+
+start=@<AppointmentResponse> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A reply to an appointment request for a patient and/or practitioner(s), such as a confirmation or rejection
+<AppointmentResponse> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:AppointmentResponse];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # External Ids for this item
+    fhir:appointment @<Reference> AND {fhir:link 
+    			@<Appointment> };  # Appointment this response relates 
+                                            # to 
+    fhir:start @<instant>?;                 # Time from appointment, or 
+                                            # requested new start time 
+    fhir:end @<instant>?;                   # Time from appointment, or 
+                                            # requested new end time 
+    fhir:participantType @<OneOrMore_CodeableConcept>?;  # Role of participant in the 
+                                            # appointment 
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<HealthcareService> OR 
+    			@<Location> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Person(s), Location, 
+                                            # HealthcareService, or Device 
+    fhir:participantStatus @<code> AND
+    	{fhir:v @fhirvs:participationstatus};  # accepted | declined | tentative | 
+                                            # needs-action 
+    fhir:comment @<string>?;                # Additional comments
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The Participation status of an appointment.
+fhirvs:participationstatus ["accepted" "declined" "tentative" "needs-action"]
+

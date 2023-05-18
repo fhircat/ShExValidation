@@ -1,0 +1,59 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Observation ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "f004"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"f004\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;f004&quot; </p></div><p><b>identifier</b>: <span title=\"    urn:oid:2.16.840.1.113883.4.642.1.7    \">id: 6326 (use: OFFICIAL)</span></p><p><b>status</b>: final</p><p><b>code</b>: Erythrocytes [#/volume] in Blood by Automated count <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#789-8)</span></p><p><b>subject</b>: <a href=\"patient-example-f001-pieter.html\">Patient/f001: P. van de Heuvel</a> &quot;Pieter VAN DE HEUVEL&quot;</p><p><b>effective</b>: 2013-04-02T10:30:10+01:00</p><p><b>issued</b>: 4 Apr 2013, 1:30:10 am</p><p><b>performer</b>: <a href=\"practitioner-example-f005-al.html\">Practitioner/f005: A. Langeveld</a> &quot;Langeveld ANNE&quot;</p><p><b>value</b>: 4.12 10^12/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*12/L = '10*12/L')</span></p><p><b>interpretation</b>: Low <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#L)</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Text</b></td></tr><tr><td>*</td><td>12-14 y Male: 4.4 - 5.2  x  10^12/L ; 12-14 y Female: 4.2 - 4.8  x  10^12/L ; 15-17 y Male: 4.6 - 5.4  x  10^12/L ; 15-17 y Female: 4.2 - 4.8  x  10^12/L ; 18-64 y Male: 4.6 - 5.4  x  10^12/L ; 18-64 y Female: 4.0 - 4.8  x  10^12/L ; 65-74 y Male: 4.3 - 5.3  x  10^12/L ; 65-74 y Female: 4.1 - 4.9  x  10^12/L</td></tr></table></div>"
+  ] ; #      urn:oid:2.16.840.1.113883.4.642.1.7     
+  fhir:identifier ( [
+     fhir:use [ fhir:v "official" ] ;
+     fhir:system [ fhir:v "http://www.bmc.nl/zorgportal/identifiers/observations"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "6326" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:789-8 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "789-8" ] ;
+       fhir:display [ fhir:v "Erythrocytes [#/volume] in Blood by Automated count" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/f001" ] ;
+     fhir:display [ fhir:v "P. van de Heuvel" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2013-04-02T10:30:10+01:00"^^xsd:dateTime] ; # 
+  fhir:issued [ fhir:v "2013-04-03T15:30:10+01:00"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Practitioner/f005" ] ;
+     fhir:display [ fhir:v "A. Langeveld" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "4.12"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "10^12/L" ] ; #     Actually, 4.12E+12    
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "10*12/L" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "L" ] ;
+       fhir:display [ fhir:v "Low" ]
+     ] )
+  ] ) ; # 
+  fhir:referenceRange ( [
+     fhir:text [ fhir:v "12-14 y Male: 4.4 - 5.2  x  10^12/L ; 12-14 y Female: 4.2 - 4.8  x  10^12/L ; 15-17 y Male: 4.6 - 5.4  x  10^12/L ; 15-17 y Female: 4.2 - 4.8  x  10^12/L ; 18-64 y Male: 4.6 - 5.4  x  10^12/L ; 18-64 y Female: 4.0 - 4.8  x  10^12/L ; 65-74 y Male: 4.3 - 5.3  x  10^12/L ; 65-74 y Female: 4.1 - 4.9  x  10^12/L" ]
+  ] )] . #    this example demonstrates using the reference range text element for stuff that is not easily structured !  
+
+# -------------------------------------------------------------------------------------
+

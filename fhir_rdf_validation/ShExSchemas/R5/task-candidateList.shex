@@ -1,0 +1,30 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Device.shex>
+IMPORT <Patient.shex>
+IMPORT <Extension.shex>
+IMPORT <Reference.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+
+# List of possible owners of Task
+<task-candidateList> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:task-candidateList];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/task-candidateList"]}; 
+    fhir:v ((@<Reference>  AND {fhir:link @<Device> OR 
+    			 @<Organization> OR 
+    			 @<Patient> OR 
+    			 @<Practitioner> OR 
+    			 @<RelatedPerson> }) )  AND { rdf:type IRI } ; 
+    ^fhir:extension { a [fhir:Task]
+        }
+}  
+

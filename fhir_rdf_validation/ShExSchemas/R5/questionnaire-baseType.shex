@@ -1,0 +1,27 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <Extension.shex>
+
+# Base Type for answer
+<questionnaire-baseType> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:questionnaire-baseType];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/questionnaire-baseType"]}; 
+    fhir:v (@<code> AND
+    	{fhir:v @fhirvs:data-types} )  AND { rdf:type IRI } ; 
+    ^fhir:extension { ^fhir:item {a [fhir:Questionnaire]}
+        }
+}  
+
+#---------------------- Value Sets ------------------------
+
+# A version specific list of the data types defined by the FHIR specification for use as an element  type (any of the FHIR defined data types).
+fhirvs:data-types ["Address" "Age" "Annotation" "Attachment" "BackboneElement" "BackboneType" "Base" "CodeableConcept" "CodeableReference" "Coding" "ContactDetail" "ContactPoint" "Contributor" "Count" "DataRequirement" "DataType" "Distance" "Dosage" "Duration" "Element" "ElementDefinition" "Expression" "ExtendedContactDetail" "Extension" "HumanName" "Identifier" "MarketingStatus" "Meta" "Money" "MoneyQuantity" "Narrative" "ParameterDefinition" "Period" "Population" "PrimitiveType" "ProductShelfLife" "Quantity" "Range" "Ratio" "RatioRange" "Reference" "RelatedArtifact" "SampledData" "Signature" "SimpleQuantity" "Timing" "TriggerDefinition" "UsageContext" "base64Binary" "boolean" "canonical" "code" "date" "dateTime" "decimal" "id" "instant" "integer" "integer64" "markdown" "oid" "positiveInt" "string" "time" "unsignedInt" "uri" "url" "uuid" "xhtml"]
+

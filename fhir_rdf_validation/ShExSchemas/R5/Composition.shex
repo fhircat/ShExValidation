@@ -1,0 +1,182 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <string.shex>
+IMPORT <Period.shex>
+IMPORT <Device.shex>
+IMPORT <Patient.shex>
+IMPORT <Resource.shex>
+IMPORT <dateTime.shex>
+IMPORT <Reference.shex>
+IMPORT <Encounter.shex>
+IMPORT <Narrative.shex>
+IMPORT <Identifier.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+
+
+start=@<Composition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A set of resources composed into a single coherent clinical statement with clinical attestation
+<Composition> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Composition];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:url @<uri>?;                       # Canonical identifier for this 
+                                            # Composition, represented as a URI 
+                                            # (globally unique) 
+    fhir:identifier @<Identifier>?;         # Version-independent identifier for 
+                                            # the Composition 
+    fhir:version @<string>?;                # An explicitly assigned identifer 
+                                            # of a variation of the content in 
+                                            # the Composition 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:composition-status};  # preliminary | final | amended | 
+                                            # entered-in-error | deprecated 
+    fhir:type @<CodeableConcept>;           # Kind of composition (LOINC if 
+                                            # possible) 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Categorization of Composition
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Resource> }?;  # Who and/or what the composition is 
+                                            # about 
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # Context of the Composition
+    fhir:date @<dateTime>;                  # Composition editing time
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:author @<OneOrMore_Reference_Device_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>;  # Who and/or what authored the 
+                                            # composition 
+    fhir:name @<string>?;                   # Name for this Composition 
+                                            # (computer friendly) 
+    fhir:title @<string>;                   # Human Readable name/title
+    fhir:note @<OneOrMore_Annotation>?;     # For any additional notes
+    fhir:confidentiality @<code> AND
+    	{fhir:v @<http://terminology.hl7.org/ValueSet/v3-Confidentiality>}?;  # As defined by affinity domain
+    fhir:attester @<OneOrMore_BackboneElement>?;  # Attests to accuracy of composition
+    fhir:custodian @<Reference> AND {fhir:link 
+    			@<Organization> }?;  # Organization which maintains the 
+                                            # composition 
+    fhir:relatesTo @<OneOrMore_RelatedArtifact>?;  # Relationships to other 
+                                            # compositions/documents 
+    fhir:event @<OneOrMore_BackboneElement>?;  # The clinical service(s) being 
+                                            # documented 
+    fhir:section @<OneOrMore_BackboneElement>?;  # Composition is broken into sections
+}  
+
+# Attests to accuracy of composition
+<Composition.attester> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:mode @<CodeableConcept>;           # personal | professional | legal | 
+                                            # official 
+    fhir:time @<dateTime>?;                 # When the composition was attested
+    fhir:party @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Who attested the composition
+}  
+
+# Composition is broken into sections
+<Composition.section> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:title @<string>?;                  # Label for section (e.g. for ToC)
+    fhir:code @<CodeableConcept>?;          # Classification of section 
+                                            # (recommended) 
+    fhir:author @<OneOrMore_Reference_Device_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Who and/or what authored the 
+                                            # section 
+    fhir:focus @<Reference> AND {fhir:link 
+    			@<Resource> }?;  # Who/what the section is about, 
+                                            # when it is not about the subject 
+                                            # of composition 
+    fhir:text @<Narrative>?;                # Text summary of the section, for 
+                                            # human interpretation 
+    fhir:mode @<code> AND
+    	{fhir:v @fhirvs:list-mode}?;  # working | snapshot | changes
+    fhir:orderedBy @<CodeableConcept>?;     # Order of section entries
+    fhir:entry @<OneOrMore_Reference_Resource>?;  # A reference to data that supports 
+                                            # this section 
+    fhir:emptyReason @<CodeableConcept>?;   # Why the section is empty
+    fhir:section @<OneOrMore_Composition.section>?;  # Nested Section
+}  
+
+# Nested Section
+<Composition.section.section> CLOSED {   
+}  
+
+# The clinical service(s) being documented
+<Composition.event> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<OneOrMore_CodeableConcept>?;  # Code(s) that apply to the event 
+                                            # being documented 
+    fhir:period @<Period>?;                 # The period covered by the 
+                                            # documentation 
+    fhir:detail @<OneOrMore_Reference_Resource>?;  # The event(s) being documented
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_UsageContext> CLOSED {
+    rdf:first @<UsageContext>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_UsageContext> 
+}
+
+<OneOrMore_Reference_Device_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Device> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Device_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_RelatedArtifact> CLOSED {
+    rdf:first @<RelatedArtifact>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_RelatedArtifact> 
+}
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+
+<OneOrMore_Composition.section> CLOSED {
+    rdf:first @<Composition.section>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Composition.section> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The processing mode that applies to this list.
+fhirvs:list-mode ["working" "snapshot" "changes"]
+
+# The workflow/clinical status of the composition.
+fhirvs:composition-status ["preliminary" "final" "amended" "entered-in-error" "deprecated"]
+
+# Set of codes used to value Act.Confidentiality and Role.Confidentiality attribute in accordance with the definition for concept domain "Confidentiality".
+<http://terminology.hl7.org/ValueSet/v3-Confidentiality> ["L" "M" "N" "R" "U" "V"]
+

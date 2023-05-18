@@ -1,0 +1,1011 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "study-design"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "cds" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/study-design"], [ fhir:v "http://hl7.org/fhir/study-design"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "StudyDesign"], [ fhir:v "StudyDesign"] ;
+  fhir:title [ fhir:v "Study Design"], [ fhir:v "Study Design"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2020-12-28T16:55:11+11:00"], [ fhir:v "2020-12-28T16:55:11+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "This is a set of terms for study design characteristics."], [ fhir:v "This is a set of terms for study design characteristics."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/study-design"] ;
+  fhir:hierarchyMeaning [ fhir:v "is-a"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "SEVCO:01001" ] ;
+     fhir:display [ fhir:v "Interventional research" ] ;
+     fhir:definition [ fhir:v "A study design in which an independent variable (an exposure or intervention) is prospectively assigned or modified by the investigator to evaluate a response in the dependent variable (an effect or outcome)." ] ;
+     fhir:designation ( [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Interventional study" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Interventional study design" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "interventional primary research" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "international method of research" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "experimental research" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "experimental study" ]
+     ] ) ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "SEVCO:01003" ] ;
+       fhir:display [ fhir:v "randomized assignment" ] ;
+       fhir:definition [ fhir:v "An interventional study design in which an independent variable (an exposure or intervention) is prospectively assigned or modified by random chance to separate groups." ] ;
+       fhir:designation ( [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Interventional research with randomized assignment" ]
+       ] [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Randomized trial" ]
+       ] [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Randomized controlled trial" ]
+       ] [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "RCT" ]
+       ] ) ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "SEVCO:01006" ] ;
+         fhir:display [ fhir:v "simple randomization" ] ;
+         fhir:definition [ fhir:v "A randomized assignment in which each participant has the same prespecified likelihood of being assigned to a group as all other participants, independent of the assignment of any other participant." ] ;
+         fhir:designation ( [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Unrestricted Randomization" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "SEVCO:01007" ] ;
+         fhir:display [ fhir:v "stratified randomization" ] ;
+         fhir:definition [ fhir:v "A randomized assignment in which participants are stratified into groups based on prognostic variables and then randomized into balanced treatment groups" ]
+       ] [
+         fhir:code [ fhir:v "SEVCO:01008" ] ;
+         fhir:display [ fhir:v "block randomization" ] ;
+         fhir:definition [ fhir:v "A randomized assignment in which a pre-specified number of subjects is assigned to a block containing the same pre-specified ratio of group assignments in random order." ]
+       ] [
+         fhir:code [ fhir:v "SEVCO:01009" ] ;
+         fhir:display [ fhir:v "adaptive randomization" ] ;
+         fhir:definition [ fhir:v "A randomized assignment in which a participant’s group assignment probability is adjusted based on any factor such that the likelihood of assignment is not the same for all participants." ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "SEVCO:01005" ] ;
+       fhir:display [ fhir:v "Non-randomized assignment" ] ;
+       fhir:definition [ fhir:v "An interventional study design in which an independent variable (an exposure or intervention) is prospectively assigned or modified by methods other than random chance to separate groups." ] ;
+       fhir:designation ( [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Interventional research with non-randomized assignment" ]
+       ] ) ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "SEVCO:01004" ] ;
+         fhir:display [ fhir:v "Quasi-Randomized assignment" ] ;
+         fhir:definition [ fhir:v "An interventional study design with a method of allocation that is not limited to random chance but is intended to produce similar baseline groups for experimentation." ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "SEVCO:01029" ] ;
+       fhir:display [ fhir:v "Clinical trial" ] ;
+       fhir:definition [ fhir:v "Interventional research in which one or more healthcare-related actions (i.e., a diagnostic, prognostic, therapeutic, preventive or screening method or intervention) is evaluated for effects on health-related biomedical or behavioral processes and/or outcomes." ] ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "SEVCO:01041" ] ;
+         fhir:display [ fhir:v "Pragmatic clinical trial" ] ;
+         fhir:definition [ fhir:v "A clinical trial conducted under conditions of routine clinical practice." ] ;
+         fhir:designation ( [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Pragmatic trial" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "SEVCO:01038" ] ;
+         fhir:display [ fhir:v "Expanded Access study" ] ;
+         fhir:definition [ fhir:v "A clinical trial that provides a means for obtaining an experimental drug or device for patients who are not adequately treated by existing therapy, who do not meet the eligibility criteria for enrollment, or who are otherwise unable to participate in another clinical study. " ] ;
+         fhir:designation ( [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Compassionate use trial" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Compassionate use study" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Expanded access trial" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "SEVCO:01030" ] ;
+         fhir:display [ fhir:v "Phase 1 trial" ] ;
+         fhir:definition [ fhir:v "A clinical trial to gather initial evidence in humans to support further investigation of an intervention." ] ;
+         fhir:designation ( [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Phase I trial" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Phase 1 study" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "phase I clinical trial" ]
+         ] ) ;
+         fhir:concept ( [
+           fhir:code [ fhir:v "SEVCO:01031" ] ;
+           fhir:display [ fhir:v "Exploratory investigational new drug study" ] ;
+           fhir:definition [ fhir:v "A clinical trial that is conducted early in phase 1, involves very limited human exposure, and has no therapeutic or diagnostic intent (e.g., screening studies, microdose studies). " ] ;
+           fhir:designation ( [
+             fhir:use [
+               fhir:display [ fhir:v "Alternative term" ]
+             ] ;
+             fhir:value [ fhir:v "Phase 0 study" ]
+           ] [
+             fhir:use [
+               fhir:display [ fhir:v "Alternative term" ]
+             ] ;
+             fhir:value [ fhir:v "Pre-clinical trial" ]
+           ] [
+             fhir:use [
+               fhir:display [ fhir:v "Alternative term" ]
+             ] ;
+             fhir:value [ fhir:v "Exploratory IND study" ]
+           ] )
+         ] )
+       ] [
+         fhir:code [ fhir:v "SEVCO:01032" ] ;
+         fhir:display [ fhir:v "Phase 1/Phase 2 trial" ] ;
+         fhir:definition [ fhir:v " A clinical trial with a component meeting the definition of phase 1 trial and a component meeting the definition of phase 2 trial." ] ;
+         fhir:designation ( [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Phase I/II trial" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Phase 1-2 trial" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Phase 1/2 trial" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Trial phase 1-2" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Trial phase 1/2" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "SEVCO:01033" ] ;
+         fhir:display [ fhir:v "Phase 2 trial" ] ;
+         fhir:definition [ fhir:v "A clinical trial to gather evidence of effectiveness and safety for an intervention in patients with the disease or condition under study, but not intended to provide an adequate basis for regulatory approval for clinical use." ] ;
+         fhir:designation ( [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Phase II trial" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "phase 2 study" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Exploratory clinical study" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "phase II clinical trial" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "SEVCO:01034" ] ;
+         fhir:display [ fhir:v "Phase 2/Phase 3 trial" ] ;
+         fhir:definition [ fhir:v "A clinical trial with a component meeting the definition of phase 2 trial and a component meeting the definition of phase 3 trial." ] ;
+         fhir:designation ( [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Phase II/III trial" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Phase 2-3 trial" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Phase 2/3 trial" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Trial phase 2-3" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Trial phase 2/3" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "SEVCO:01035" ] ;
+         fhir:display [ fhir:v "Phase 3 Trial" ] ;
+         fhir:definition [ fhir:v "A clinical trial to gather the evidence of effectiveness and safety of an intervention, intended to provide an adequate basis for regulatory approval for clinical use." ] ;
+         fhir:designation ( [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Phase III trial" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "phase 3 study" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Confirmatory clinical study" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "phase III clinical trial" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "SEVCO:01036" ] ;
+         fhir:display [ fhir:v "Post-marketing study" ] ;
+         fhir:definition [ fhir:v "A clinical trial to gather additional evidence of effectiveness and safety of an intervention for an already approved clinical use." ] ;
+         fhir:designation ( [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Phase IV trial" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Phase 4 trial" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Phase 4 study" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Trial phase 4" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Post-approval study" ]
+         ] )
+       ] )
+     ] )
+  ] [
+     fhir:code [ fhir:v "SEVCO:01002" ] ;
+     fhir:display [ fhir:v "Observational research" ] ;
+     fhir:definition [ fhir:v "A study design in which the independent variables (exposures or interventions) are not prospectively assigned or modified by the investigator. " ] ;
+     fhir:designation ( [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Observational Study" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Observational Study Design" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Observational primary research" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "observational method of research" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Non-interventional research" ]
+     ] ) ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "SEVCO:01037" ] ;
+       fhir:display [ fhir:v "Post-Marketing Surveillance study" ] ;
+       fhir:definition [ fhir:v "An observational study to identify adverse events related to the use of an approved clinical intervention." ] ;
+       fhir:designation ( [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Postmarketing evaluation study" ]
+       ] )
+     ] )
+  ] [
+     fhir:code [ fhir:v "SEVCO:01010" ] ;
+     fhir:display [ fhir:v "Comparative study design" ] ;
+     fhir:definition [ fhir:v "A study design in which two or more groups are compared." ] ;
+     fhir:designation ( [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Comparative research" ]
+     ] ) ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "SEVCO:01011" ] ;
+       fhir:display [ fhir:v "Parallel cohort design" ] ;
+       fhir:definition [ fhir:v "A comparative study design in which the groups are compared concurrently and participants are expected to remain in the groups being compared for the entire duration of participation in the study." ] ;
+       fhir:designation ( [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Concurrent cohort study" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "SEVCO:01012" ] ;
+       fhir:display [ fhir:v "Crossover cohort design" ] ;
+       fhir:definition [ fhir:v "A comparative study design in which participants receive two or more alternative exposures during separate periods of time." ] ;
+       fhir:designation ( [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Crossover study" ]
+       ] [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Crossover trial" ]
+       ] ) ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "SEVCO:01024" ] ;
+         fhir:display [ fhir:v "Controlled crossover cohort design" ] ;
+         fhir:definition [ fhir:v "A crossover cohort design in which two or more cohorts have different orders of exposures." ]
+       ] [
+         fhir:code [ fhir:v "SEVCO:01025" ] ;
+         fhir:display [ fhir:v "Single-arm crossover design" ] ;
+         fhir:definition [ fhir:v "A crossover cohort design in which all participants are in a single cohort with the same order of exposures." ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "SEVCO:01013" ] ;
+       fhir:display [ fhir:v "Case control design" ] ;
+       fhir:definition [ fhir:v "A comparative study design in which the groups being compared are defined by outcome presence (case) or absence (control)." ]
+     ] [
+       fhir:code [ fhir:v "SEVCO:01014" ] ;
+       fhir:display [ fhir:v "Matching for comparison" ] ;
+       fhir:definition [ fhir:v "A comparative study design in which individual participants in different groups being compared are paired or matched into sets based on selected attributes for within-set analysis." ] ;
+       fhir:designation ( [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Matched study design" ]
+       ] ) ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "SEVCO:01020" ] ;
+         fhir:display [ fhir:v "Family study design" ] ;
+         fhir:definition [ fhir:v "A matched study design in which related or non-related family members are compared." ] ;
+         fhir:designation ( [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Familial study" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Family study" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Family based study" ]
+         ] ) ;
+         fhir:concept ( [
+           fhir:code [ fhir:v "SEVCO:01021" ] ;
+           fhir:display [ fhir:v "Twin study design" ] ;
+           fhir:definition [ fhir:v "A family study design in which twin siblings are compared." ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "SEVCO:01015" ] ;
+       fhir:display [ fhir:v "Cluster as unit of allocation" ] ;
+       fhir:definition [ fhir:v "A comparative study design in which participants are allocated to exposures (interventions) by their membership in groups (called clusters) rather than by individualized assignments." ] ;
+       fhir:designation ( [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Clustering for comparison" ]
+       ] )
+     ] )
+  ] [
+     fhir:code [ fhir:v "SEVCO:01023" ] ;
+     fhir:display [ fhir:v "Non-comparative study design" ] ;
+     fhir:definition [ fhir:v "A study design with no comparisons between groups with different exposures and no comparisons between groups with different outcomes." ] ;
+     fhir:designation ( [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Non-comparative research" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Descriptive study" ]
+     ] ) ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "SEVCO:01016" ] ;
+       fhir:display [ fhir:v "Uncontrolled cohort design" ] ;
+       fhir:definition [ fhir:v "A non-comparative study design in which two or more participants are evaluated in a single group (or cohort)." ] ;
+       fhir:designation ( [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Single cohort design" ]
+       ] [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Case series design" ]
+       ] [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Non-controlled cohort design" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "SEVCO:01017" ] ;
+       fhir:display [ fhir:v "Case report" ] ;
+       fhir:definition [ fhir:v "A non-comparative study design in which a single participant is evaluated." ] ;
+       fhir:designation ( [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Case study" ]
+       ] )
+     ] )
+  ] [
+     fhir:code [ fhir:v "SEVCO:01022" ] ;
+     fhir:display [ fhir:v "Population-based design" ] ;
+     fhir:definition [ fhir:v "A study design in which the unit of observation is a population or community. " ] ;
+     fhir:designation ( [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Population study" ]
+     ] ) ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "SEVCO:01044" ] ;
+       fhir:display [ fhir:v "Ecological design" ] ;
+       fhir:definition [ fhir:v "A study design in which the unit of observation is a population or community defined by social relationships or physical surroundings. " ] ;
+       fhir:designation ( [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Ecologic study" ]
+       ] )
+     ] )
+  ] [
+     fhir:code [ fhir:v "SEVCO:01027" ] ;
+     fhir:display [ fhir:v "Cross sectional data collection " ] ;
+     fhir:definition [ fhir:v "A study design process in which data is collected at a single point in time." ] ;
+     fhir:designation ( [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Cross-sectional study" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "SEVCO:01028" ] ;
+     fhir:display [ fhir:v "Longitudinal data collection" ] ;
+     fhir:definition [ fhir:v "A study design process in which data is collected at two or more points in time." ] ;
+     fhir:designation ( [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Longitudinal study" ]
+     ] ) ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "SEVCO:01018" ] ;
+       fhir:display [ fhir:v "Time series design" ] ;
+       fhir:definition [ fhir:v "A longitudinal data collection which includes a set of time-ordered observations." ] ;
+       fhir:designation ( [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Multiple time point comparison" ]
+       ] ) ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "SEVCO:01019" ] ;
+         fhir:display [ fhir:v "Before and after comparison" ] ;
+         fhir:definition [ fhir:v "A time series design which includes comparisons of observations before and after an event or exposure." ] ;
+         fhir:designation ( [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Before and After design" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Pre-Post Design" ]
+         ] [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Before-After Comparison" ]
+         ] )
+       ] )
+     ] )
+  ] [
+     fhir:code [ fhir:v "SEVCO:01045" ] ;
+     fhir:display [ fhir:v "Primary data collection" ] ;
+     fhir:definition [ fhir:v "A study design process in which the data are recorded and collected during the study for the purpose of the same study." ] ;
+     fhir:designation ( [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Study-generated data collection" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "SEVCO:01026" ] ;
+     fhir:display [ fhir:v "Real world data collection" ] ;
+     fhir:definition [ fhir:v "A study design process in which the study data are obtained from a source of data collected during a routine process in the natural environment rather than using a process designed or controlled by the researcher." ] ;
+     fhir:designation ( [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "RWD collection" ]
+     ] ) ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "SEVCO:01039" ] ;
+       fhir:display [ fhir:v "Real world data collection from healthcare records" ] ;
+       fhir:definition [ fhir:v "Real world data collection from data obtained routinely for a purpose of recording healthcare delivery in a record controlled by a healthcare professional." ] ;
+       fhir:designation ( [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "RWD collection from clinical care records" ]
+       ] [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "RWD from health care records" ]
+       ] [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "RWD from healthcare delivery records" ]
+       ] [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Real world data collection from medical records" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "SEVCO:01050" ] ;
+       fhir:display [ fhir:v "Real world data collection from personal health records" ] ;
+       fhir:definition [ fhir:v "Real world data collection from data obtained routinely for a purpose of recording data related to personal health in a record controlled by the person, guardian, or caretaker." ] ;
+       fhir:designation ( [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Real world data collection from personal care records" ]
+       ] [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "RWD collection from personal medical records" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "SEVCO:01040" ] ;
+       fhir:display [ fhir:v "Real world data collection from healthcare financing records" ] ;
+       fhir:definition [ fhir:v "Real world data collection from data obtained routinely for a purpose of recording healthcare financing." ] ;
+       fhir:designation ( [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "RWD collection from healthcare financing records" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "SEVCO:01048" ] ;
+       fhir:display [ fhir:v "Real world data collection from testing procedures" ] ;
+       fhir:definition [ fhir:v "Real world data collection from data obtained routinely for a purpose of testing, such as diagnostic testing or screening examination." ] ;
+       fhir:designation ( [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "RWD collection from testing procedures" ]
+       ] ) ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "SEVCO:01046" ] ;
+         fhir:display [ fhir:v "Real world data collection from monitoring procedures" ] ;
+         fhir:definition [ fhir:v "Real world data collection from data obtained routinely for a purpose of repeated testing." ] ;
+         fhir:designation ( [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "RWD collection from monitoring procedures" ]
+         ] )
+       ] )
+     ] )
+  ] [
+     fhir:code [ fhir:v "SEVCO:01049" ] ;
+     fhir:display [ fhir:v "Secondary data collection from prior research" ] ;
+     fhir:definition [ fhir:v "A study design process in which the data are collected from data obtained during a different study than the current study." ]
+  ] [
+     fhir:code [ fhir:v "SEVCO:01042" ] ;
+     fhir:display [ fhir:v "Secondary data collection from a registry" ] ;
+     fhir:definition [ fhir:v "A study design process in which the data are collected from a system organized to obtain and maintain uniform data for discovery and analysis, and this system is organized prior to the current study." ]
+  ] [
+     fhir:code [ fhir:v "SEVCO:01051" ] ;
+     fhir:display [ fhir:v "Multisite data collection" ] ;
+     fhir:definition [ fhir:v "A study design process in which data are collected from two or more geographic locations." ]
+  ] [
+     fhir:code [ fhir:v "SEVCO:01086" ] ;
+     fhir:display [ fhir:v "Quantitative analysis" ] ;
+     fhir:definition [ fhir:v "A study design process in which data are analyzed with mathematical or statistical methods and formulas." ]
+  ] [
+     fhir:code [ fhir:v "SEVCO:01087" ] ;
+     fhir:display [ fhir:v "Qualitative analysis" ] ;
+     fhir:definition [ fhir:v "A study design process in which data are analyzed, without primary reliance on mathematical or statistical techniques, by coding and organizing data to provide interpretation or understanding of experiences or hypotheses." ]
+  ] [
+     fhir:code [ fhir:v "SEVCO:01060" ] ;
+     fhir:display [ fhir:v "Blinding of study participants" ] ;
+     fhir:definition [ fhir:v "A study design process in which study participants are not informed of their intervention assignment." ] ;
+     fhir:designation ( [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Masking of study participants" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "SEVCO:01061" ] ;
+     fhir:display [ fhir:v "Blinding of intervention providers" ] ;
+     fhir:definition [ fhir:v "A study design process in which the people administering the intervention are not informed of the intervention assignment." ] ;
+     fhir:designation ( [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Masking of intervention providers" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Blinding of intervention deliverers" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Masking of intervention deliverers" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "SEVCO:01062" ] ;
+     fhir:display [ fhir:v "Blinding of outcome assessors" ] ;
+     fhir:definition [ fhir:v "A study design process in which the people determining the outcome are not informed of the intervention assignment." ] ;
+     fhir:designation ( [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Masking of outcome assessors" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "SEVCO:01063" ] ;
+     fhir:display [ fhir:v "Blinding of data analysts" ] ;
+     fhir:definition [ fhir:v "A study design process in which the people managing or processing the data and statistical analysis are not informed of the intervention assignment." ] ;
+     fhir:designation ( [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Masking of data analysts" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "SEVCO:01064" ] ;
+     fhir:display [ fhir:v "Allocation concealment" ] ;
+     fhir:definition [ fhir:v "A study design process in which all parties influencing study enrollment and allocation to study groups are unaware of the group assignment for the study participant at the time of enrollment and allocation." ] ;
+     fhir:designation ( [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Blinding of randomization assignment" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Masking of randomization assignment" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "SEVCO:01043" ] ;
+     fhir:display [ fhir:v "Multicentric" ] ;
+     fhir:definition [ fhir:v "A study design feature in which two or more institutions are responsible for the conduct of the study." ] ;
+     fhir:designation ( [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Multi-institutional study" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Multicenter trial" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Multicenter study" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "SEVCO:01052" ] ;
+     fhir:display [ fhir:v "Includes patient-reported outcome" ] ;
+     fhir:definition [ fhir:v "A study design feature in which one or more outcomes are reported directly from the patient without interpretation by a clinician or researcher." ] ;
+     fhir:designation ( [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "PRO" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Includes patient-reported outcomes" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "SEVCO:01053" ] ;
+     fhir:display [ fhir:v "Includes patient-centered outcome" ] ;
+     fhir:definition [ fhir:v "A study design feature in which one or more measures are outcomes that patients directly care about, i.e. outcomes that are directly related to patients' experience of their life." ] ;
+     fhir:designation ( [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Includes patient-oriented outcome" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Includes patient-important outcome" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Includes patient-relevant outcome" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Includes clinical outcome" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Includes patient-centered outcome measure" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Includes clinical outcome measure" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "SEVCO:01054" ] ;
+     fhir:display [ fhir:v "Includes disease-oriented outcome" ] ;
+     fhir:definition [ fhir:v "A study design feature in which one or more measures are outcomes that relate to a health or illness condition but are not outcomes which patients directly care about." ] ;
+     fhir:designation ( [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Includes disease-oriented outcome measure" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Includes surrogate outcome" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Includes surrogate outcome measure" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "SEVCO:01085" ] ;
+     fhir:display [ fhir:v "Includes process measure" ] ;
+     fhir:definition [ fhir:v "A study design feature in which one or more outcomes are actions or behaviors of a healthcare professional or care team." ] ;
+     fhir:designation ( [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Includes process outcome" ]
+     ] [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Includes process outcome measure" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "SEVCO:01089" ] ;
+     fhir:display [ fhir:v "Study Goal" ] ;
+     fhir:definition [ fhir:v "A study design feature specifying the intent of the study." ] ;
+     fhir:designation ( [
+       fhir:use [
+         fhir:display [ fhir:v "Alternative term" ]
+       ] ;
+       fhir:value [ fhir:v "Study Aim" ]
+     ] ) ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "SEVCO:01096" ] ;
+       fhir:display [ fhir:v "Evaluation Goal" ] ;
+       fhir:definition [ fhir:v "A study goal to assess the efficiency, effectiveness, and impact of a given program, process, person or piece of equipment." ] ;
+       fhir:designation ( [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Evaluation Study Goal" ]
+       ] [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Evaluation Aim" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "SEVCO:01097" ] ;
+       fhir:display [ fhir:v "Derivation Goal" ] ;
+       fhir:definition [ fhir:v "A study goal with the intent to generate a predictive algorithm." ] ;
+       fhir:designation ( [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Derivation Study Goal" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "SEVCO:01098" ] ;
+       fhir:display [ fhir:v "Validation Goal" ] ;
+       fhir:definition [ fhir:v "A study goal with the intent to determine the reliability and/or performance of a procedure for a specific predictive, classification, measurement, or communication purpose." ] ;
+       fhir:designation ( [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Validation Study Goal" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "SEVCO:01088" ] ;
+       fhir:display [ fhir:v "Comparison Goal" ] ;
+       fhir:definition [ fhir:v "A study design feature in which the study intent is to compare two or more interventions or exposures." ] ;
+       fhir:designation ( [
+         fhir:use [
+           fhir:display [ fhir:v "Alternative term" ]
+         ] ;
+         fhir:value [ fhir:v "Comparative Analysis Goal" ]
+       ] ) ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "SEVCO:01091" ] ;
+         fhir:display [ fhir:v "Comparative Effectiveness Goal" ] ;
+         fhir:definition [ fhir:v "A study design feature in which the study intent is to compare two or more interventions with respect to benefits and/or harms." ] ;
+         fhir:concept ( [
+           fhir:code [ fhir:v "SEVCO:01090" ] ;
+           fhir:display [ fhir:v "Comparative Efficacy Goal" ] ;
+           fhir:definition [ fhir:v "A study design feature in which the study intent is to compare two or more interventions with respect to effectiveness in ideal conditions." ]
+         ] [
+           fhir:code [ fhir:v "SEVCO:01092" ] ;
+           fhir:display [ fhir:v "Comparative Safety Goal" ] ;
+           fhir:definition [ fhir:v "A study design feature in which the study intent is to compare two or more interventions with respect to harms." ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "SEVCO:01093" ] ;
+         fhir:display [ fhir:v "Equivalence Goal" ] ;
+         fhir:definition [ fhir:v "A study goal with the intent to compare two or more interventions or exposures and determine that any difference in effects is within a prespecified range representing absence of a meaningful difference." ]
+       ] [
+         fhir:code [ fhir:v "SEVCO:01094" ] ;
+         fhir:display [ fhir:v "Non-inferiority Goal" ] ;
+         fhir:definition [ fhir:v "A study goal with the intent to compare two or more interventions or exposures and determine that any difference in effects is below a prespecified value representing a threshold between a meaningful difference and absence of a meaningful difference." ]
+       ] [
+         fhir:code [ fhir:v "SEVCO:01095" ] ;
+         fhir:display [ fhir:v "Superiority Goal" ] ;
+         fhir:definition [ fhir:v "A study goal with the intent to compare two or more interventions or exposures and detect a difference in effects." ] ;
+         fhir:designation ( [
+           fhir:use [
+             fhir:display [ fhir:v "Alternative term" ]
+           ] ;
+           fhir:value [ fhir:v "Superiority study goal" ]
+         ] )
+       ] )
+     ] )
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

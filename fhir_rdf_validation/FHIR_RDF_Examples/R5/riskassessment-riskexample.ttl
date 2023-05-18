@@ -1,0 +1,79 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:RiskAssessment ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "riskexample"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">Risk assessment for reference only</div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "official" ] ;
+     fhir:system [ fhir:v "http://example.org"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "risk-assessment-breastcancer1" ]
+  ] ) ; # 
+  fhir:basedOn [
+     fhir:reference [ fhir:v "ImmunizationRecommendation/example" ]
+  ] ; # 
+  fhir:parent [
+     fhir:reference [ fhir:v "DiagnosticReport/example" ]
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://browser.ihtsdotools.org/"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "709510001" ] ;
+       fhir:display [ fhir:v "Assessment of risk for disease (procedure)" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/example" ] ;
+     fhir:display [ fhir:v "Encounter with patient @example" ]
+  ] ; # 
+  fhir:occurrence [ fhir:v "2017-10-10"^^xsd:date] ; # 
+  fhir:condition [
+     fhir:reference [ fhir:v "Condition/example" ]
+  ] ; # 
+  fhir:performer [
+     fhir:reference [ fhir:v "Practitioner/example" ]
+  ] ; # 
+  fhir:basis ( [
+     fhir:reference [ fhir:v "DiagnosticReport/example" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/example" ]
+  ] ) ; # 
+  fhir:prediction ( [
+     fhir:outcome [
+       fhir:text [ fhir:v "Breast Cancer" ]
+     ] ;
+     fhir:probability [ fhir:v "0.000368"^^xsd:decimal ] ;
+     fhir:when [
+       a fhir:Range ;
+       fhir:low [
+         fhir:value [ fhir:v "54"^^xsd:decimal ] ;
+         fhir:unit [ fhir:v "years" ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "a" ]
+       ] ;
+       fhir:high [
+         fhir:value [ fhir:v "57"^^xsd:decimal ] ;
+         fhir:unit [ fhir:v "years" ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "a" ]
+       ]
+     ]
+  ] ) ; # 
+  fhir:note ( [
+     fhir:text [ fhir:v "This risk assessment is for reference only" ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

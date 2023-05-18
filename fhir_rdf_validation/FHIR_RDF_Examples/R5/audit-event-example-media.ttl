@@ -1,0 +1,136 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+#    TODO need to make a new style entity with entity.agent for this media
+#		<media>
+#			<coding>
+#				<system value="http://dicom.nema.org/resources/ontology/DCM"/>
+#				<code value="110033"/>
+#				<display value="DVD"/>
+#			</coding>
+#		</media>
+#    
+
+[a fhir:AuditEvent ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-media"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: AuditEvent</b><a name=\"example-media\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource AuditEvent &quot;example-media&quot; </p></div><p><b>category</b>: Export <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://dicom.nema.org/resources/ontology/DCM\">DICOM</a>#110106)</span></p><p><b>code</b>: Distribute Document Set on Media <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#ITI-32)</span></p><p><b>action</b>: R</p><p><b>recorded</b>: 28 Aug 2015, 9:42:24 am</p><h3>Outcomes</h3><table class=\"grid\"><tr><td>-</td><td><b>Code</b></td></tr><tr><td>*</td><td>Success (Details: http://terminology.hl7.org/CodeSystem/audit-event-outcome code 0 = 'Success', stated as 'Success')</td></tr></table><blockquote><p><b>agent</b></p><p><b>type</b>: <span title=\"  Source active participant, the software making the PIX query\n  UserId - The identity of the Patient Identifier Cross-reference Consumer Actor facility and sending application from the HL7 message; \n  concatenated together, separated by the | character. \n  AlternativeUserId - Process ID\n   \">Source Role ID <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://dicom.nema.org/resources/ontology/DCM\">DICOM</a>#110153)</span></span></p><p><b>who</b>: <span>: ExportToMedia.app</span></p><p><b>requestor</b>: false</p></blockquote><blockquote><p><b>agent</b></p><p><b>type</b>: <span title=\"   The Human using the software, if known   \">human user <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-extra-security-role-type.html\">Security Role Type</a>#humanuser)</span></span></p><p><b>who</b>: <span>: Grahame Grieve</span></p><p><b>requestor</b>: true</p></blockquote><blockquote><p><b>agent</b></p><p><b>type</b>: <span title=\"   The media exported onto   \">Destination Media <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://dicom.nema.org/resources/ontology/DCM\">DICOM</a>#110154)</span></span></p><p><b>who</b>: <span>: Media title: Hello World</span></p><p><b>requestor</b>: false</p></blockquote><h3>Sources</h3><table class=\"grid\"><tr><td>-</td><td><b>Observer</b></td></tr><tr><td>*</td><td><span>: Cloud</span></td></tr></table><blockquote><p><b>entity</b></p><p><b>what</b>: <span title=\" \n  The Patient\n   \"><span/></span></p><p><b>role</b>: Patient <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-object-role.html\">AuditEventEntityRole</a>#1)</span></p></blockquote><blockquote><p><b>entity</b></p><p><b>what</b>: <span title=\"  The SubmissionSet identifier  \"><span/></span></p><p><b>role</b>: Job <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-object-role.html\">AuditEventEntityRole</a>#20)</span></p></blockquote><blockquote><p><b>entity</b></p><p><b>what</b>: <span title=\"  The Document Manifest exported  \"><a href=\"documentreference-example.html\">DocumentReference/example</a></span></p></blockquote></div>"
+  ] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://dicom.nema.org/resources/ontology/DCM"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "110106" ] ;
+       fhir:display [ fhir:v "Export" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:ihe:event-type-code"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "ITI-32" ] ;
+       fhir:display [ fhir:v "Distribute Document Set on Media" ]
+     ] )
+  ] ; # 
+  fhir:action [ fhir:v "R"] ; # 
+  fhir:recorded [ fhir:v "2015-08-27T23:42:24Z"^^xsd:dateTime] ; # 
+  fhir:outcome [
+     fhir:code [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/audit-event-outcome"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "0" ] ;
+       fhir:display [ fhir:v "Success" ]
+     ]
+  ] ; # 
+  fhir:agent ( [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://dicom.nema.org/resources/ontology/DCM"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "110153" ] ;
+         fhir:display [ fhir:v "Source Role ID" ]
+       ] )
+     ] ; #    Source active participant, the software making the PIX query\n  UserId - The identity of the Patient Identifier Cross-reference Consumer Actor facility and sending application from the HL7 message; \n  concatenated together, separated by the | character. \n  AlternativeUserId - Process ID\n    
+     fhir:who [
+       fhir:display [ fhir:v "ExportToMedia.app" ]
+     ] ;
+     fhir:requestor [ fhir:v "false"^^xsd:boolean ]
+  ] [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/extra-security-role-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "humanuser" ] ;
+         fhir:display [ fhir:v "human user" ]
+       ] )
+     ] ; #     The Human using the software, if known    
+     fhir:who [
+       fhir:identifier [
+         fhir:value [ fhir:v "95" ]
+       ] ;
+       fhir:display [ fhir:v "Grahame Grieve" ]
+     ] ;
+     fhir:requestor [ fhir:v "true"^^xsd:boolean ]
+  ] [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://dicom.nema.org/resources/ontology/DCM"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "110154" ] ;
+         fhir:display [ fhir:v "Destination Media" ]
+       ] )
+     ] ; #     The media exported onto    
+     fhir:who [
+       fhir:display [ fhir:v "Media title: Hello World" ]
+     ] ;
+     fhir:requestor [ fhir:v "false"^^xsd:boolean ]
+  ] ) ; # 
+  fhir:source [
+     fhir:observer [
+       fhir:identifier [
+         fhir:value [ fhir:v "hl7connect.healthintersections.com.au" ]
+       ] ;
+       fhir:display [ fhir:v "Cloud" ]
+     ]
+  ] ; # 
+  fhir:entity ( [
+     fhir:what [
+       fhir:identifier [
+         fhir:value [ fhir:v "e3cdfc81a0d24bd^^^&2.16.840.1.113883.4.2&ISO" ]
+       ]
+     ] ; #   \n  The Patient\n    
+     fhir:role [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/object-role"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "1" ] ;
+         fhir:display [ fhir:v "Patient" ]
+       ] )
+     ]
+  ] [
+     fhir:what [
+       fhir:identifier [
+         fhir:type [
+           fhir:coding ( [
+             fhir:system [ fhir:v "urn:uuid:a54d6aa5-d40d-43f9-88c5-b4633d873bdd"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "IHE XDS Metadata" ] ;
+             fhir:display [ fhir:v "submission set classificationNode" ]
+           ] )
+         ] ;
+         fhir:value [ fhir:v "e3cdfc81a0d24bd^^^&2.16.840.1.113883.4.2&ISO" ]
+       ]
+     ] ; #    The SubmissionSet identifier   
+     fhir:role [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/object-role"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "20" ] ;
+         fhir:display [ fhir:v "Job" ]
+       ] )
+     ]
+  ] [
+     fhir:what [
+       fhir:reference [ fhir:v "DocumentReference/example" ]
+     ] #    The Document Manifest exported   
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

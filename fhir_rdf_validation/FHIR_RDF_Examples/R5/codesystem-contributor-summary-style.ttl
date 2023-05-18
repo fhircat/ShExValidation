@@ -1,0 +1,141 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "contributor-summary-style"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "cds" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "0" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/contributor-summary-style"], [ fhir:v "http://hl7.org/fhir/contributor-summary-style"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1882" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1882" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "ContributorSummaryStyle"], [ fhir:v "ContributorSummaryStyle"] ;
+  fhir:title [ fhir:v "Contributor Summary Style"], [ fhir:v "Contributor Summary Style"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2020-12-28T16:55:11+11:00"], [ fhir:v "2020-12-28T16:55:11+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Used to code the format of the display string."], [ fhir:v "Used to code the format of the display string."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/contributor-summary-style"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "a1full" ] ;
+     fhir:display [ fhir:v "First author (full name) et al" ] ;
+     fhir:definition [ fhir:v "Example: Jennifer Laskowski et al." ]
+  ] [
+     fhir:code [ fhir:v "a1init" ] ;
+     fhir:display [ fhir:v "First author (last name first initials) et al" ] ;
+     fhir:definition [ fhir:v "Example: Laskowski J et al." ]
+  ] [
+     fhir:code [ fhir:v "a3full" ] ;
+     fhir:display [ fhir:v "First 3 authors (full name) et al" ] ;
+     fhir:definition [ fhir:v "Example: Jennifer Laskowski, Brandon Renner, Matthew C. Pickering, et al." ]
+  ] [
+     fhir:code [ fhir:v "a3init" ] ;
+     fhir:display [ fhir:v "First 3 authors (last name first initials) et al" ] ;
+     fhir:definition [ fhir:v "Example:  Laskowski J, Renner B, Pickering MC, et al." ]
+  ] [
+     fhir:code [ fhir:v "a6full" ] ;
+     fhir:display [ fhir:v "First 6 authors (full name) et al" ] ;
+     fhir:definition [ fhir:v "Example: Jennifer Laskowski, Brandon Renner, Matthew C. Pickering, Natalie J. Serkova, Peter M. Smith-Jones, Eric T. Clambey, et al." ]
+  ] [
+     fhir:code [ fhir:v "a6init" ] ;
+     fhir:display [ fhir:v "First 6 authors (last name first initials) et al" ] ;
+     fhir:definition [ fhir:v "Example: Laskowski J, Renner B, Pickering MC, Serkova NJ, Smith-Jones PM, Clambey ET, et al." ]
+  ] [
+     fhir:code [ fhir:v "aallfull" ] ;
+     fhir:display [ fhir:v "All authors (full name)" ] ;
+     fhir:definition [ fhir:v "Example: Jennifer Laskowski, Brandon Renner, Matthew C. Pickering, Natalie J. Serkova, Peter M. Smith-Jones, Eric T. Clambey, Raphael A. Nemenoff, Joshua M. Thurman." ]
+  ] [
+     fhir:code [ fhir:v "aallfullwithand" ] ;
+     fhir:display [ fhir:v "All authors (full name) with and before last author" ] ;
+     fhir:definition [ fhir:v "Example: Jennifer Laskowski, Brandon Renner, Matthew C. Pickering, Natalie J. Serkova, Peter M. Smith-Jones, Eric T. Clambey, Raphael A. Nemenoff, and Joshua M. Thurman." ]
+  ] [
+     fhir:code [ fhir:v "aallfullwithampersand" ] ;
+     fhir:display [ fhir:v "All authors (full name) with an ampersand before last author" ] ;
+     fhir:definition [ fhir:v "Example: Jennifer Laskowski, Brandon Renner, Matthew C. Pickering, Natalie J. Serkova, Peter M. Smith-Jones, Eric T. Clambey, Raphael A. Nemenoff, & Joshua M. Thurman." ]
+  ] [
+     fhir:code [ fhir:v "aallinit" ] ;
+     fhir:display [ fhir:v "All authors (last name first initials)" ] ;
+     fhir:definition [ fhir:v "Example: Laskowski J, Renner B, Pickering MC, Serkova NJ, Smith-Jones PM, Clambey ET, Nemenoff RA, Thurman JM." ]
+  ] [
+     fhir:code [ fhir:v "aallinitwithand" ] ;
+     fhir:display [ fhir:v "All authors (last name first initials) with and before last author" ] ;
+     fhir:definition [ fhir:v "Example: Laskowski J, Renner B, Pickering MC, Serkova NJ, Smith-Jones PM, Clambey ET, Nemenoff RA, and Thurman JM." ]
+  ] [
+     fhir:code [ fhir:v "aallinitwithampersand" ] ;
+     fhir:display [ fhir:v "All authors (last name first initials) with an ampersand before last author" ] ;
+     fhir:definition [ fhir:v "Example: Laskowski J, Renner B, Pickering MC, Serkova NJ, Smith-Jones PM, Clambey ET, Nemenoff RA, & Thurman JM." ]
+  ] [
+     fhir:code [ fhir:v "contr-full-by-person" ] ;
+     fhir:display [ fhir:v "Contributorship statement listed by person with full names" ] ;
+     fhir:definition [ fhir:v "Jennnifer Laskowski designed project; developed and performed experiments; collected and analyzed data; wrote and revised manuscript. Brandon Renner performed critical review of manuscript. Matthew C. Pickering provided technical advice and contributed to study design. Natalie J. Serkova and Peter M. Smith-Jones performed PET imaging and associated analyses. Eric T. Clambey and Raphael A. Nemenoff provided conceptual and technical guidance and critical review of manuscript. Joshua M. Thurman contributed to experimental design and wrote manuscript." ]
+  ] [
+     fhir:code [ fhir:v "contr-init-by-person" ] ;
+     fhir:display [ fhir:v "Contributorship statement listed by person with initials" ] ;
+     fhir:definition [ fhir:v "J.L. designed project; developed and performed experiments; collected and analyzed data; wrote and revised manuscript. B.R. performed critical review of manuscript. M.C.P. provided technical advice and contributed to study design. N.J.S and P.M.S.-J. performed PET imaging and associated analyses. E.T.C. and R.A.N provided conceptual and technical guidance and critical review of manuscript. J.M.T contributed to experimental design and wrote manuscript." ]
+  ] [
+     fhir:code [ fhir:v "contr-full-by-contr" ] ;
+     fhir:display [ fhir:v "Contributorship statement listed by contribution with full names" ] ;
+     fhir:definition [ fhir:v "Project design by Jennnifer Laskowski (JL), Experiment design by JL and Joshua M. Thurman (JMT), technical advice and study design contribution by Matthew C. Pickering, experiments performed by JL, data collection and analysis by JL, PET imaging and associated analyses by Natalie J. Serkova and Peter M. Smith-Jones, conceptual and technical guidance by Eric T. Clambey (etc.) and Raphael A. Nemenoff (RAN), manuscript writing by JL and JMT, manuscript revised critically by JL, Brandon Renner, etc., and RAN." ]
+  ] [
+     fhir:code [ fhir:v "contr-init-by-contr" ] ;
+     fhir:display [ fhir:v "Contributorship statement listed by contribution with initials" ] ;
+     fhir:definition [ fhir:v "Project design by JL, Experiment design by JL and JMT, technical advice and study design contribution by MCP, experiments performed by JL, data collection and analysis by JL, PET imaging and associated analyses by NJS and PMS-J, conceptual and technical guidance by etc. and RAN, manuscript writing by JL and JMT, manuscript revised critically by JL, BR, etc., and RAN." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

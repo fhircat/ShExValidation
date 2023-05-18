@@ -1,0 +1,103 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ValueSet ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-metadata-2"] ; # 
+  fhir:meta [
+     fhir:profile ( [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/shareablevalueset"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/shareablevalueset>
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <ul>\n        <li>Include all codes defined in \n          <a href=\"codesystem-example-metadata.html\">\n            <code>http://hl7.org/fhir/CodeSystem/example-metadata</code>\n          </a>\n        </li>\n      </ul>\n    </div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/example-metadata-2"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.3143" ]
+  ] ) ; # 
+  fhir:version [ fhir:v "5.0.0"] ; # 
+  fhir:name [ fhir:v "ExampleMetadata"] ; # 
+  fhir:title [ fhir:v "Metadata Example"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:experimental [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:date [ fhir:v "2022-07-21"^^xsd:date] ; # 
+  fhir:publisher [ fhir:v "FHIR (Example)"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "FHIR project team" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "This is an example value set that illustrates usage of the metadata resource elements introduced in R5"] ; # 
+  fhir:approvalDate [ fhir:v "2021-07-21"^^xsd:date] ; # 
+  fhir:lastReviewDate [ fhir:v "2022-07-21"^^xsd:date] ; # 
+  fhir:effectivePeriod [
+     fhir:start [ fhir:v "2022-08-01"^^xsd:date ] ;
+     fhir:end [ fhir:v "2023-07-31"^^xsd:date ]
+  ] ; # 
+  fhir:topic ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/definition-topic"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "treatment" ] ;
+       fhir:display [ fhir:v "Treatment" ]
+     ] )
+  ] ) ; # 
+  fhir:author ( [
+     fhir:name [ fhir:v "ACME ValueSet Development" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://acme.org/development" ]
+     ] )
+  ] ) ; # 
+  fhir:editor ( [
+     fhir:name [ fhir:v "ACME ValueSet Management" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://acme.org/management" ]
+     ] )
+  ] ) ; # 
+  fhir:reviewer ( [
+     fhir:name [ fhir:v "Society for Creative ValueSet Review" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://example.org/scvr" ]
+     ] )
+  ] ) ; # 
+  fhir:endorser ( [
+     fhir:name [ fhir:v "National Foundation for ValueSet Quality" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://example.org/nfvq" ]
+     ] )
+  ] ) ; # 
+  fhir:relatedArtifact ( [
+     fhir:type [ fhir:v "derived-from" ] ;
+     fhir:resource [
+       fhir:v "http://hl7.org/fhir/ValueSet/example"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/ValueSet/example>
+     ]
+  ] [
+     fhir:type [ fhir:v "predecessor" ] ;
+     fhir:resource [
+       fhir:v "http://hl7.org/fhir/ValueSet/example-metadata|20210701"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/ValueSet/example-metadata|20210701>
+     ]
+  ] ) ; # 
+  fhir:compose [
+     fhir:include ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/CodeSystem/example-metadata"^^xsd:anyURI ] ;
+       fhir:version [ fhir:v "20220721" ]
+     ] )
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

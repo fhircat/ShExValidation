@@ -1,0 +1,102 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "research-study-prim-purp-type"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "brr" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "0" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/research-study-prim-purp-type"], [ fhir:v "http://hl7.org/fhir/research-study-prim-purp-type"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "ResearchStudyPrimaryPurposeType"], [ fhir:v "ResearchStudyPrimaryPurposeType"] ;
+  fhir:title [ fhir:v "ResearchStudy Primary Purpose Type Code System"], [ fhir:v "ResearchStudy Primary Purpose Type Code System"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2022-05-15T16:55:11.085+11:00"], [ fhir:v "2022-05-15T16:55:11.085+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Codes for the main intent of a research study."], [ fhir:v "Codes for the main intent of a research study."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/research-study-prim-purp-type"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "treatment" ] ;
+     fhir:display [ fhir:v "Treatment" ] ;
+     fhir:definition [ fhir:v "One or more interventions are being evaluated for treating a disease, syndrome, or condition." ]
+  ] [
+     fhir:code [ fhir:v "prevention" ] ;
+     fhir:display [ fhir:v "Prevention" ] ;
+     fhir:definition [ fhir:v "One or more interventions are being assessed for preventing the development of a specific disease or health condition." ]
+  ] [
+     fhir:code [ fhir:v "diagnostic" ] ;
+     fhir:display [ fhir:v "Diagnostic" ] ;
+     fhir:definition [ fhir:v "One or more interventions are being evaluated for identifying a disease or health condition." ]
+  ] [
+     fhir:code [ fhir:v "supportive-care" ] ;
+     fhir:display [ fhir:v "Supportive Care" ] ;
+     fhir:definition [ fhir:v "One or more interventions are evaluated for maximizing comfort, minimizing side effects, or mitigating against a decline in the participant's health or function." ]
+  ] [
+     fhir:code [ fhir:v "screening" ] ;
+     fhir:display [ fhir:v "Screening" ] ;
+     fhir:definition [ fhir:v "One or more interventions are assessed or examined for identifying a condition, or risk factors for a condition, in people who are not yet known to have the condition or risk factor." ]
+  ] [
+     fhir:code [ fhir:v "health-services-research" ] ;
+     fhir:display [ fhir:v "Health Services Research" ] ;
+     fhir:definition [ fhir:v "One or more interventions for evaluating the delivery, processes, management, organization, or financing of healthcare." ]
+  ] [
+     fhir:code [ fhir:v "basic-science" ] ;
+     fhir:display [ fhir:v "Basic Science" ] ;
+     fhir:definition [ fhir:v "One or more interventions for examining the basic mechanism of action (for example, physiology or biomechanics of an intervention)." ]
+  ] [
+     fhir:code [ fhir:v "device-feasibility" ] ;
+     fhir:display [ fhir:v "Device Feasibility" ] ;
+     fhir:definition [ fhir:v "An intervention of a device product is being evaluated to determine the feasibility of the product or to test a prototype device and not health outcomes. Such studies are conducted to confirm the design and operating specifications of a device before beginning a full clinical trial." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

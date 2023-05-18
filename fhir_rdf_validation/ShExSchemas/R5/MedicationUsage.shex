@@ -1,0 +1,137 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Group.shex>
+IMPORT <Period.shex>
+IMPORT <string.shex>
+IMPORT <Patient.shex>
+IMPORT <dateTime.shex>
+IMPORT <Resource.shex>
+IMPORT <Reference.shex>
+IMPORT <Encounter.shex>
+IMPORT <Procedure.shex>
+IMPORT <Condition.shex>
+IMPORT <Observation.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <CodeableReference.shex>
+
+
+start=@<MedicationUsage> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Record of medication being taken by a patient
+<MedicationUsage> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:MedicationUsage];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # External identifier
+    fhir:partOf @<OneOrMore_Reference_Procedure>?;  # Part of referenced event
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:medication-usage-status};  # recorded | entered-in-error | draft
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Type of medication usage
+    fhir:medication @<CodeableReference>;   # What medication was taken
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Patient> };  # Who is/was taking  the medication
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # Encounter associated with 
+                                            # MedicationUsage 
+    fhir:effective (@<dateTime>  OR 
+    			@<Period> )  AND { rdf:type IRI } ?;  # The date/time or interval when the 
+                                            # medication is/was/will be taken 
+    fhir:dateAsserted @<dateTime>?;         # When the usage was asserted?
+    fhir:informationSource @<OneOrMore_Reference_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Person or organization that 
+                                            # provided the information about the 
+                                            # taking of this medication 
+    fhir:derivedFrom @<OneOrMore_Reference_Resource>?;  # Link to information used to derive 
+                                            # the MedicationUsage 
+    fhir:reason @<OneOrMore_CodeableReference>?;  # Reason for why the medication is 
+                                            # being/was taken 
+    fhir:note @<OneOrMore_Annotation>?;     # Further information about the usage
+    fhir:relatedClinicalInformation @<OneOrMore_Reference_Condition_OR_Observation>?;  # Link to information relevant to 
+                                            # the usage of a medication 
+    fhir:renderedDosageInstruction @<string>?;  # Full representation of the dosage 
+                                            # instructions 
+    fhir:dosage @<OneOrMore_Dosage>?;       # Details of how medication is/was 
+                                            # taken or should be taken 
+    fhir:adherence @<BackboneElement>?;     # Indicates if the medication is 
+                                            # being consumed or administered as 
+                                            # instructed 
+}  
+
+# Indicates if the medication is being consumed or administered as instructed
+<MedicationUsage.adherence> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>;           # Type of adherence
+    fhir:reason @<CodeableConcept>?;        # Details of the reason for the 
+                                            # current use of the medication 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_Reference_Procedure> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Procedure> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Procedure> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+
+<OneOrMore_CodeableReference> CLOSED {
+    rdf:first @<CodeableReference>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableReference> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_Reference_Condition_OR_Observation> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Condition> OR 
+			@<Observation> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Condition_OR_Observation> 
+}
+
+<OneOrMore_Dosage> CLOSED {
+    rdf:first @<Dosage>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Dosage> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# MedicationUsage Status Codes
+fhirvs:medication-usage-status ["recorded" "entered-in-error" "draft"]
+

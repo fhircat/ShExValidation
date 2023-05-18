@@ -1,0 +1,145 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:OperationDefinition ;
+  fhir:id [ fhir:v "NamingSystem-translate-id"] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/OperationDefinition/NamingSystem-translate-id"], [ fhir:v "http://hl7.org/fhir/OperationDefinition/NamingSystem-translate-id"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "TranslateId"], [ fhir:v "TranslateId"] ;
+  fhir:title [ fhir:v "Translate id"], [ fhir:v "Translate id"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "This operation returns an identifier of the target type. The operation takes 5 parameters:     \n\n* a source identifier value - either a URI, an OID, or a v2 table 0396 (other) code  \n*  a code for what type of identifier the source identifier is     \n\n* a code for what kind of identifier is desired (URI, OID, v2 table 0396 identifier)     \n\n* an optional parameter preferredOnly for whether only the preferred identifier is desired     \n\n* an optional date to return only identifiers that have a validity period that includes that date   \n\nand returns either the requested identifier(s), or an HTTP errors response with an OperationOutcome because either the provided identifier was not recognized, or the requested identiifer type is not known."], [ fhir:v "This operation returns an identifier of the target type. The operation takes 5 parameters:     \n\n* a source identifier value - either a URI, an OID, or a v2 table 0396 (other) code  \n*  a code for what type of identifier the source identifier is     \n\n* a code for what kind of identifier is desired (URI, OID, v2 table 0396 identifier)     \n\n* an optional parameter preferredOnly for whether only the preferred identifier is desired     \n\n* an optional date to return only identifiers that have a validity period that includes that date   \n\nand returns either the requested identifier(s), or an HTTP errors response with an OperationOutcome because either the provided identifier was not recognized, or the requested identiifer type is not known."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:kind [ fhir:v "operation"] ;
+  fhir:affectsState [ fhir:v "false"] ;
+  fhir:code [ fhir:v "translate-id"] ;
+  fhir:comment [ fhir:v "Servers handle this request by finding the provided identifier in their known naming systems, and returning the requested identifier type ([NamingSystem.uniqueId.type](namingsystem-definitions.html#NamingSystem.uniqueId.type)).  \n\nIf the server wishes, it can also look through all code systems and value sets it knows about when attempting to find the requested identifier"] ;
+  fhir:resource ( [ fhir:v "NamingSystem"] ) ;
+  fhir:system [ fhir:v "false"] ;
+  fhir:type [ fhir:v "true"] ;
+  fhir:instance [ fhir:v "false"] ;
+  fhir:parameter ( [
+     fhir:name [ fhir:v "id" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "1" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The server parses the provided identifier to see what type it is (e.g. a URI, an OID as a URI, a plain OID, or a v2 table 0396 code). If the server can't tell what type of identifier it is, it can try it as multiple types. It is an error if more than one system matches the provided identifier" ] ;
+     fhir:type [ fhir:v "string" ]
+  ] [
+     fhir:name [ fhir:v "sourceType" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "1" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:type [ fhir:v "code" ] ;
+     fhir:binding [
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName" ] ;
+         fhir:value [ fhir:v "NamingSystemIdentifierType" ]
+       ] ) ;
+       fhir:strength [ fhir:v "required" ] ;
+       fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/namingsystem-identifier-type|5.0.0" ]
+     ]
+  ] [
+     fhir:name [ fhir:v "targetType" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "1" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:type [ fhir:v "code" ] ;
+     fhir:binding [
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName" ] ;
+         fhir:value [ fhir:v "NamingSystemIdentifierType" ]
+       ] ) ;
+       fhir:strength [ fhir:v "required" ] ;
+       fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/namingsystem-identifier-type|5.0.0" ]
+     ]
+  ] [
+     fhir:name [ fhir:v "preferredOnly" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "If preferredOnly = true then return only the preferred identifier, or if preferredOnly = false then return all available ids." ] ;
+     fhir:type [ fhir:v "boolean" ]
+  ] [
+     fhir:name [ fhir:v "date" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "If 'date' is supplied return only ids that have a validity period that includes that date." ] ;
+     fhir:type [ fhir:v "dateTime" ]
+  ] [
+     fhir:name [ fhir:v "result" ] ;
+     fhir:use [ fhir:v "out" ] ;
+     fhir:min [ fhir:v "1" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "True if the identifier could be translated successfully." ] ;
+     fhir:type [ fhir:v "boolean" ]
+  ] [
+     fhir:name [ fhir:v "targetIdentifier" ] ;
+     fhir:use [ fhir:v "out" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "*" ] ;
+     fhir:documentation [ fhir:v "The target identifer(s) of the requested type" ] ;
+     fhir:type [ fhir:v "string" ]
+  ] [
+     fhir:name [ fhir:v "targetIdentifer.preferred" ] ;
+     fhir:use [ fhir:v "out" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "Whether the target identifier is preferred." ] ;
+     fhir:type [ fhir:v "boolean" ]
+  ] [
+     fhir:name [ fhir:v "targetIdentifier.period" ] ;
+     fhir:use [ fhir:v "out" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The perioid when the target identifier is valid." ] ;
+     fhir:type [ fhir:v "Period" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

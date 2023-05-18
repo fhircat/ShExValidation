@@ -1,0 +1,150 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <date.shex>
+IMPORT <Money.shex>
+IMPORT <Period.shex>
+IMPORT <string.shex>
+IMPORT <Patient.shex>
+IMPORT <boolean.shex>
+IMPORT <dateTime.shex>
+IMPORT <Location.shex>
+IMPORT <Quantity.shex>
+IMPORT <Resource.shex>
+IMPORT <Coverage.shex>
+IMPORT <Reference.shex>
+IMPORT <Condition.shex>
+IMPORT <positiveInt.shex>
+IMPORT <Practitioner.shex>
+IMPORT <Organization.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+
+
+start=@<CoverageEligibilityRequest> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# CoverageEligibilityRequest resource
+<CoverageEligibilityRequest> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:CoverageEligibilityRequest];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business Identifier for coverage 
+                                            # eligiblity request 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:fm-status};  # active | cancelled | draft | 
+                                            # entered-in-error 
+    fhir:priority @<CodeableConcept>?;      # Desired processing priority
+    fhir:purpose @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:eligibilityrequest-purpose};  # auth-requirements | benefits | 
+                                            # discovery | validation 
+    fhir:patient @<Reference> AND {fhir:link 
+    			@<Patient> };  # Intended recipient of products and 
+                                            # services 
+    fhir:serviced (@<date>  OR 
+    			@<Period> )  AND { rdf:type IRI } ?;  # Estimated date or dates of service
+    fhir:created @<dateTime>;               # Creation date
+    fhir:enterer @<Reference> AND {fhir:link 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> }?;  # Author
+    fhir:provider @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> }?;  # Party responsible for the request
+    fhir:insurer @<Reference> AND {fhir:link 
+    			@<Organization> };  # Coverage issuer
+    fhir:facility @<Reference> AND {fhir:link 
+    			@<Location> }?;  # Servicing facility
+    fhir:supportingInfo @<OneOrMore_BackboneElement>?;  # Supporting information
+    fhir:insurance @<OneOrMore_BackboneElement>?;  # Patient insurance information
+    fhir:item @<OneOrMore_BackboneElement>?;  # Item to be evaluated for eligibiity
+}  
+
+# Applicable diagnosis
+<CoverageEligibilityRequest.item.diagnosis> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:diagnosis (@<CodeableConcept>  OR 
+    			(@<Reference>  AND {fhir:link @<Condition> }) )  AND { rdf:type IRI } ?;  # Nature of illness or problem
+}  
+
+# Item to be evaluated for eligibiity
+<CoverageEligibilityRequest.item> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:supportingInfoSequence @<OneOrMore_positiveInt>?;  # Applicable exception or supporting 
+                                            # information 
+    fhir:category @<CodeableConcept>?;      # Benefit classification
+    fhir:productOrService @<CodeableConcept>?;  # Billing, service, product, or drug 
+                                            # code 
+    fhir:modifier @<OneOrMore_CodeableConcept>?;  # Product or service billing 
+                                            # modifiers 
+    fhir:provider @<Reference> AND {fhir:link 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> }?;  # Perfoming practitioner
+    fhir:quantity @<Quantity>?;             # Count of products or services
+    fhir:unitPrice @<Money>?;               # Fee, charge or cost per item
+    fhir:facility @<Reference> AND {fhir:link 
+    			@<Location> OR 
+    			@<Organization> }?;  # Servicing facility
+    fhir:diagnosis @<OneOrMore_BackboneElement>?;  # Applicable diagnosis
+    fhir:detail @<OneOrMore_Reference_Resource>?;  # Product or service details
+}  
+
+# Supporting information
+<CoverageEligibilityRequest.supportingInfo> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:sequence @<positiveInt>;           # Information instance identifier
+    fhir:information @<Reference> AND {fhir:link 
+    			@<Resource> };  # Data to be provided
+    fhir:appliesToAll @<boolean>?;          # Applies to all items
+}  
+
+# Patient insurance information
+<CoverageEligibilityRequest.insurance> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:focal @<boolean>?;                 # Applicable coverage
+    fhir:coverage @<Reference> AND {fhir:link 
+    			@<Coverage> };  # Insurance information
+    fhir:businessArrangement @<string>?;    # Additional provider contract number
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_code> CLOSED {
+    rdf:first @<code>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_code> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_positiveInt> CLOSED {
+    rdf:first @<positiveInt>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_positiveInt> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# This value set includes Status codes.
+fhirvs:fm-status ["active" "cancelled" "draft" "entered-in-error"]
+
+# A code specifying the types of information being requested.
+fhirvs:eligibilityrequest-purpose ["auth-requirements" "benefits" "discovery" "validation"]
+

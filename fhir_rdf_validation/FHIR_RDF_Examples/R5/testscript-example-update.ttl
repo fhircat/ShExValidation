@@ -1,0 +1,181 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:TestScript ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "testscript-example-update"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: TestScript</b><a name=\"testscript-example-update\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource TestScript &quot;testscript-example-update&quot; </p></div><p><b>url</b>: <code>http://hl7.org/fhir/TestScript/testscript-example-update</code></p><p><b>identifier</b>: id: urn:oid:2.16.840.1.113883.4.642.12.5</p><p><b>version</b>: 1.0</p><p><b>name</b>: TestScriptExampleUpdate</p><p><b>title</b>: TestScript Example Update</p><p><b>status</b>: draft</p><p><b>experimental</b>: true</p><p><b>date</b>: 2017-01-18</p><p><b>publisher</b>: HL7</p><p><b>contact</b>: Support: <a href=\"mailto:support@HL7.org\">support@HL7.org</a></p><p><b>description</b>: TestScript example resource with setup to delete if present and create a new instance of a Patient; and single test definition to update that Patient with various asserts.</p><p><b>jurisdiction</b>: United States of America (the) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-ISO3166Part1.html\">ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code</a>#US)</span></p><p><b>purpose</b>: Patient (Conditional) Create, Update, Delete Operations</p><p><b>copyright</b>: © HL7.org 2011+</p><blockquote><p><b>metadata</b></p><h3>Links</h3><table class=\"grid\"><tr><td>-</td><td><b>Url</b></td><td><b>Description</b></td></tr><tr><td>*</td><td><a href=\"http://hl7.org/fhir/patient.html\">http://hl7.org/fhir/patient.html</a></td><td>Demographics and other administrative information about an individual or animal receiving care or other health-related services.</td></tr></table><h3>Capabilities</h3><table class=\"grid\"><tr><td>-</td><td><b>Required</b></td><td><b>Validated</b></td><td><b>Description</b></td><td><b>Link</b></td><td><b>Capabilities</b></td></tr><tr><td>*</td><td>true</td><td>false</td><td>Patient Update and Delete Operations</td><td><a href=\"http://hl7.org/fhir/http.html#update\">http://hl7.org/fhir/http.html#update</a>, <a href=\"http://hl7.org/fhir/http.html#delete\">http://hl7.org/fhir/http.html#delete</a></td><td><a href=\"http://hl7.org/fhir/CapabilityStatement/example\">http://hl7.org/fhir/CapabilityStatement/example</a></td></tr></table></blockquote><blockquote><p><b>fixture</b></p><p><b>autocreate</b>: false</p><p><b>autodelete</b>: false</p><p><b>resource</b>: <a href=\"patient-example.html\">Patient/example: Peter Chalmers</a> &quot;Peter CHALMERS&quot;</p></blockquote><blockquote><p><b>fixture</b></p><p><b>autocreate</b>: false</p><p><b>autodelete</b>: false</p><p><b>resource</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p></blockquote><p><b>profile</b>: <a href=\"patient.html\">Patient</a></p><h3>Variables</h3><table class=\"grid\"><tr><td>-</td><td><b>Name</b></td><td><b>Path</b></td><td><b>SourceId</b></td></tr><tr><td>*</td><td>createResourceId</td><td>Patient/id</td><td>fixture-patient-create</td></tr></table><blockquote><p><b>setup</b></p><blockquote><p><b>action</b></p><h3>Operations</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Resource</b></td><td><b>Label</b></td><td><b>Description</b></td><td><b>Accept</b></td><td><b>EncodeRequestUrl</b></td><td><b>Params</b></td></tr><tr><td>*</td><td>delete (Details: http://hl7.org/fhir/restful-interaction code delete = 'delete', stated as 'null')</td><td><a href=\"patient.html\">Patient</a></td><td>SetupDeletePatient</td><td>Execute a delete operation to insure the patient does not exist on the server.</td><td>xml</td><td>true</td><td>/${createResourceId}</td></tr></table></blockquote><blockquote><p><b>action</b></p><h3>Asserts</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Direction</b></td><td><b>Operator</b></td><td><b>ResponseCode</b></td><td><b>StopTestOnFail</b></td><td><b>WarningOnly</b></td></tr><tr><td>*</td><td>Confirm that the returned HTTP status is 200(OK) or 204(No Content).</td><td>response</td><td>in</td><td>200,204</td><td>false</td><td>false</td></tr></table></blockquote><blockquote><p><b>action</b></p><h3>Operations</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Resource</b></td><td><b>Label</b></td><td><b>Description</b></td><td><b>Accept</b></td><td><b>ContentType</b></td><td><b>EncodeRequestUrl</b></td><td><b>Params</b></td><td><b>SourceId</b></td></tr><tr><td>*</td><td>update (Details: http://hl7.org/fhir/restful-interaction code update = 'update', stated as 'null')</td><td><a href=\"patient.html\">Patient</a></td><td>SetupCreatePatient</td><td>Create patient resource on test server using the contents of fixture-patient-create</td><td>xml</td><td>xml</td><td>true</td><td>/${createResourceId}</td><td>fixture-patient-create</td></tr></table></blockquote><blockquote><p><b>action</b></p><h3>Asserts</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Direction</b></td><td><b>ResponseCode</b></td><td><b>StopTestOnFail</b></td><td><b>WarningOnly</b></td></tr><tr><td>*</td><td>Confirm that the returned HTTP status is 201(Created).</td><td>response</td><td>201</td><td>false</td><td>false</td></tr></table></blockquote></blockquote><blockquote><p><b>test</b></p><p><b>name</b>: Update Patient</p><p><b>description</b>: Update a Patient and validate response.</p><blockquote><p><b>action</b></p><h3>Operations</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Resource</b></td><td><b>Label</b></td><td><b>Description</b></td><td><b>Accept</b></td><td><b>ContentType</b></td><td><b>EncodeRequestUrl</b></td><td><b>Params</b></td><td><b>SourceId</b></td></tr><tr><td>*</td><td>update (Details: http://hl7.org/fhir/restful-interaction code update = 'update', stated as 'null')</td><td><a href=\"patient.html\">Patient</a></td><td>SetupUpdatePatient</td><td>Update patient resource on test server using the contents of fixture-patient-update</td><td>xml</td><td>xml</td><td>true</td><td>/${createResourceId}</td><td>fixture-patient-update</td></tr></table></blockquote><blockquote><p><b>action</b></p><h3>Asserts</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Response</b></td><td><b>StopTestOnFail</b></td><td><b>WarningOnly</b></td></tr><tr><td>*</td><td>Confirm that the returned HTTP status is 200(OK).</td><td>okay</td><td>false</td><td>false</td></tr></table></blockquote><blockquote><p><b>action</b></p><h3>Asserts</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>ContentType</b></td><td><b>StopTestOnFail</b></td><td><b>WarningOnly</b></td></tr><tr><td>*</td><td>Confirm that the returned format is XML.</td><td>xml</td><td>false</td><td>false</td></tr></table></blockquote><blockquote><p><b>action</b></p><h3>Asserts</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>HeaderField</b></td><td><b>Operator</b></td><td><b>StopTestOnFail</b></td><td><b>WarningOnly</b></td></tr><tr><td>*</td><td>Confirm that the returned HTTP Header Last-Modified is present. Warning only as the server might not support versioning.</td><td>Last-Modified</td><td>notEmpty</td><td>false</td><td>true</td></tr></table></blockquote></blockquote></div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/TestScript/testscript-example-update"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.12.5" ]
+  ] ) ; # 
+  fhir:version [ fhir:v "1.0"] ; # 
+  fhir:name [ fhir:v "TestScriptExampleUpdate"] ; # 
+  fhir:title [ fhir:v "TestScript Example Update"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:experimental [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:date [ fhir:v "2017-01-18"^^xsd:date] ; # 
+  fhir:publisher [ fhir:v "HL7"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "Support" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "support@HL7.org" ] ;
+       fhir:use [ fhir:v "work" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "TestScript example resource with setup to delete if present and create a new instance of a Patient; and single test definition to update that Patient with various asserts."] ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:iso:std:iso:3166"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "US" ] ;
+       fhir:display [ fhir:v "United States of America (the)" ]
+     ] )
+  ] ) ; # 
+  fhir:purpose [ fhir:v "Patient (Conditional) Create, Update, Delete Operations"] ; # 
+  fhir:copyright [ fhir:v "© HL7.org 2011+"] ; # 
+  fhir:metadata [
+     fhir:link ( [
+       fhir:url [ fhir:v "http://hl7.org/fhir/patient.html"^^xsd:anyURI ] ;
+       fhir:description [ fhir:v "Demographics and other administrative information about an individual or animal receiving care or other health-related services." ]
+     ] ) ;
+     fhir:capability ( [
+       fhir:required [ fhir:v "true"^^xsd:boolean ] ;
+       fhir:validated [ fhir:v "false"^^xsd:boolean ] ;
+       fhir:description [ fhir:v "Patient Update and Delete Operations" ] ;
+       fhir:link ( [ fhir:v "http://hl7.org/fhir/http.html#update"^^xsd:anyURI ] [ fhir:v "http://hl7.org/fhir/http.html#delete"^^xsd:anyURI ] ) ;
+       fhir:capabilities [
+         fhir:v "http://hl7.org/fhir/CapabilityStatement/example"^^xsd:anyURI ;
+         fhir:link <http://hl7.org/fhir/CapabilityStatement/example>
+       ]
+     ] )
+  ] ; # 
+  fhir:fixture ( [
+     fhir:id [ fhir:v "fixture-patient-create" ] ;
+     fhir:autocreate [ fhir:v "false"^^xsd:boolean ] ;
+     fhir:autodelete [ fhir:v "false"^^xsd:boolean ] ;
+     fhir:resource [
+       fhir:reference [ fhir:v "Patient/example" ] ;
+       fhir:display [ fhir:v "Peter Chalmers" ]
+     ]
+  ] [
+     fhir:id [ fhir:v "fixture-patient-update" ] ;
+     fhir:autocreate [ fhir:v "false"^^xsd:boolean ] ;
+     fhir:autodelete [ fhir:v "false"^^xsd:boolean ] ;
+     fhir:resource [
+       fhir:reference [ fhir:v "Patient/pat1" ] ;
+       fhir:display [ fhir:v "Donald Duck" ]
+     ]
+  ] ) ; # 
+  fhir:profile ( [
+     fhir:v "http://hl7.org/fhir/StructureDefinition/Patient"^^xsd:anyURI ;
+     fhir:link <http://hl7.org/fhir/StructureDefinition/Patient> ;
+     fhir:id [ fhir:v "patient-profile" ]
+  ] ) ; # 
+  fhir:variable ( [
+     fhir:name [ fhir:v "createResourceId" ] ;
+     fhir:path [ fhir:v "Patient/id" ] ;
+     fhir:sourceId [ fhir:v "fixture-patient-create" ]
+  ] ) ; # 
+  fhir:setup [
+     fhir:action ( [
+       fhir:operation [
+         fhir:type [
+           fhir:system [ fhir:v "http://hl7.org/fhir/restful-interaction"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "delete" ]
+         ] ;
+         fhir:resource [ fhir:v "Patient"^^xsd:anyURI ] ;
+         fhir:label [ fhir:v "SetupDeletePatient" ] ;
+         fhir:description [ fhir:v "Execute a delete operation to insure the patient does not exist on the server." ] ;
+         fhir:accept [ fhir:v "xml" ] ;
+         fhir:encodeRequestUrl [ fhir:v "true"^^xsd:boolean ] ;
+         fhir:params [ fhir:v "/${createResourceId}" ]
+       ]
+     ] [
+       fhir:assert [
+         fhir:description [ fhir:v "Confirm that the returned HTTP status is 200(OK) or 204(No Content)." ] ;
+         fhir:direction [ fhir:v "response" ] ;
+         fhir:operator [ fhir:v "in" ] ;
+         fhir:responseCode [ fhir:v "200,204" ] ;
+         fhir:stopTestOnFail [ fhir:v "false"^^xsd:boolean ] ;
+         fhir:warningOnly [ fhir:v "false"^^xsd:boolean ]
+       ]
+     ] [
+       fhir:operation [
+         fhir:type [
+           fhir:system [ fhir:v "http://hl7.org/fhir/restful-interaction"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "update" ]
+         ] ;
+         fhir:resource [ fhir:v "Patient"^^xsd:anyURI ] ;
+         fhir:label [ fhir:v "SetupCreatePatient" ] ;
+         fhir:description [ fhir:v "Create patient resource on test server using the contents of fixture-patient-create" ] ;
+         fhir:accept [ fhir:v "xml" ] ;
+         fhir:contentType [ fhir:v "xml" ] ;
+         fhir:encodeRequestUrl [ fhir:v "true"^^xsd:boolean ] ;
+         fhir:params [ fhir:v "/${createResourceId}" ] ;
+         fhir:sourceId [ fhir:v "fixture-patient-create" ]
+       ]
+     ] [
+       fhir:assert [
+         fhir:description [ fhir:v "Confirm that the returned HTTP status is 201(Created)." ] ;
+         fhir:direction [ fhir:v "response" ] ;
+         fhir:responseCode [ fhir:v "201" ] ;
+         fhir:stopTestOnFail [ fhir:v "false"^^xsd:boolean ] ;
+         fhir:warningOnly [ fhir:v "false"^^xsd:boolean ]
+       ]
+     ] )
+  ] ; # 
+  fhir:test ( [
+     fhir:id [ fhir:v "01-UpdatePatient" ] ;
+     fhir:name [ fhir:v "Update Patient" ] ;
+     fhir:description [ fhir:v "Update a Patient and validate response." ] ;
+     fhir:action ( [
+       fhir:operation [
+         fhir:type [
+           fhir:system [ fhir:v "http://hl7.org/fhir/restful-interaction"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "update" ]
+         ] ;
+         fhir:resource [ fhir:v "Patient"^^xsd:anyURI ] ;
+         fhir:label [ fhir:v "SetupUpdatePatient" ] ;
+         fhir:description [ fhir:v "Update patient resource on test server using the contents of fixture-patient-update" ] ;
+         fhir:accept [ fhir:v "xml" ] ;
+         fhir:contentType [ fhir:v "xml" ] ;
+         fhir:encodeRequestUrl [ fhir:v "true"^^xsd:boolean ] ;
+         fhir:params [ fhir:v "/${createResourceId}" ] ;
+         fhir:sourceId [ fhir:v "fixture-patient-update" ]
+       ]
+     ] [
+       fhir:assert [
+         fhir:description [ fhir:v "Confirm that the returned HTTP status is 200(OK)." ] ;
+         fhir:response [ fhir:v "okay" ] ;
+         fhir:stopTestOnFail [ fhir:v "false"^^xsd:boolean ] ;
+         fhir:warningOnly [ fhir:v "false"^^xsd:boolean ]
+       ]
+     ] [
+       fhir:assert [
+         fhir:description [ fhir:v "Confirm that the returned format is XML." ] ;
+         fhir:contentType [ fhir:v "xml" ] ;
+         fhir:stopTestOnFail [ fhir:v "false"^^xsd:boolean ] ;
+         fhir:warningOnly [ fhir:v "false"^^xsd:boolean ]
+       ]
+     ] [
+       fhir:assert [
+         fhir:description [ fhir:v "Confirm that the returned HTTP Header Last-Modified is present. Warning only as the server might not support versioning." ] ;
+         fhir:headerField [ fhir:v "Last-Modified" ] ;
+         fhir:operator [ fhir:v "notEmpty" ] ;
+         fhir:stopTestOnFail [ fhir:v "false"^^xsd:boolean ] ;
+         fhir:warningOnly [ fhir:v "true"^^xsd:boolean ]
+       ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

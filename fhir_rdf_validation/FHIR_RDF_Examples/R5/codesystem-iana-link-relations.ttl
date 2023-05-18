@@ -1,0 +1,545 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "iana-link-relations"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "fhir" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "normative" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version" ] ;
+     fhir:value [ fhir:v "4.0.0" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "5" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/CodeSystem/iana-link-relations"], [ fhir:v "http://hl7.org/fhir/CodeSystem/iana-link-relations"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "LinkRelationTypes"], [ fhir:v "LinkRelationTypes"] ;
+  fhir:title [ fhir:v "Link Relation Types"], [ fhir:v "Link Relation Types"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:publisher [ fhir:v "Internet Assigned Numbers Authority (IANA)"], [ fhir:v "Internet Assigned Numbers Authority (IANA)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "https://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "https://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Link Relation Types defined at https://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1"], [ fhir:v "Link Relation Types defined at https://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1"] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "about" ] ;
+     fhir:display [ fhir:v "Refers to a resource that is the subject of the link's context." ] ;
+     fhir:definition [ fhir:v "Refers to a resource that is the subject of the link's context." ]
+  ] [
+     fhir:code [ fhir:v "acl" ] ;
+     fhir:display [ fhir:v "Asserts that the link target provides an access control description for the link context." ] ;
+     fhir:definition [ fhir:v "Asserts that the link target provides an access control description for the link context." ]
+  ] [
+     fhir:code [ fhir:v "alternate" ] ;
+     fhir:display [ fhir:v "Refers to a substitute for this context" ] ;
+     fhir:definition [ fhir:v "Refers to a substitute for this context" ]
+  ] [
+     fhir:code [ fhir:v "amphtml" ] ;
+     fhir:display [ fhir:v "Used to reference alternative content that uses the AMP profile of the HTML format." ] ;
+     fhir:definition [ fhir:v "Used to reference alternative content that uses the AMP profile of the HTML format." ]
+  ] [
+     fhir:code [ fhir:v "appendix" ] ;
+     fhir:display [ fhir:v "Refers to an appendix." ] ;
+     fhir:definition [ fhir:v "Refers to an appendix." ]
+  ] [
+     fhir:code [ fhir:v "apple-touch-icon" ] ;
+     fhir:display [ fhir:v "Refers to an icon for the context. Synonym for icon." ] ;
+     fhir:definition [ fhir:v "Refers to an icon for the context. Synonym for icon." ]
+  ] [
+     fhir:code [ fhir:v "apple-touch-startup-image" ] ;
+     fhir:display [ fhir:v "Refers to a launch screen for the context." ] ;
+     fhir:definition [ fhir:v "Refers to a launch screen for the context." ]
+  ] [
+     fhir:code [ fhir:v "archives" ] ;
+     fhir:display [ fhir:v "Refers to a collection of records, documents, or other\n      materials of historical interest." ] ;
+     fhir:definition [ fhir:v "Refers to a collection of records, documents, or other\n      materials of historical interest." ]
+  ] [
+     fhir:code [ fhir:v "author" ] ;
+     fhir:display [ fhir:v "Refers to the context's author." ] ;
+     fhir:definition [ fhir:v "Refers to the context's author." ]
+  ] [
+     fhir:code [ fhir:v "blocked-by" ] ;
+     fhir:display [ fhir:v "Identifies the entity that blocks access to a resource\n      following receipt of a legal demand." ] ;
+     fhir:definition [ fhir:v "Identifies the entity that blocks access to a resource\n      following receipt of a legal demand." ]
+  ] [
+     fhir:code [ fhir:v "bookmark" ] ;
+     fhir:display [ fhir:v "Gives a permanent link to use for bookmarking purposes." ] ;
+     fhir:definition [ fhir:v "Gives a permanent link to use for bookmarking purposes." ]
+  ] [
+     fhir:code [ fhir:v "canonical" ] ;
+     fhir:display [ fhir:v "Designates the preferred version of a resource (the IRI and its contents)." ] ;
+     fhir:definition [ fhir:v "Designates the preferred version of a resource (the IRI and its contents)." ]
+  ] [
+     fhir:code [ fhir:v "chapter" ] ;
+     fhir:display [ fhir:v "Refers to a chapter in a collection of resources." ] ;
+     fhir:definition [ fhir:v "Refers to a chapter in a collection of resources." ]
+  ] [
+     fhir:code [ fhir:v "cite-as" ] ;
+     fhir:display [ fhir:v "Indicates that the link target is preferred over the link context for the purpose of permanent citation." ] ;
+     fhir:definition [ fhir:v "Indicates that the link target is preferred over the link context for the purpose of permanent citation." ]
+  ] [
+     fhir:code [ fhir:v "collection" ] ;
+     fhir:display [ fhir:v "The target IRI points to a resource which represents the collection resource for the context IRI." ] ;
+     fhir:definition [ fhir:v "The target IRI points to a resource which represents the collection resource for the context IRI." ]
+  ] [
+     fhir:code [ fhir:v "contents" ] ;
+     fhir:display [ fhir:v "Refers to a table of contents." ] ;
+     fhir:definition [ fhir:v "Refers to a table of contents." ]
+  ] [
+     fhir:code [ fhir:v "convertedFrom" ] ;
+     fhir:display [ fhir:v "The document linked to was later converted to the\n      document that contains this link relation.  For example, an RFC can\n      have a link to the Internet-Draft that became the RFC; in that case,\n      the link relation would be \"convertedFrom\"." ] ;
+     fhir:definition [ fhir:v "The document linked to was later converted to the\n      document that contains this link relation.  For example, an RFC can\n      have a link to the Internet-Draft that became the RFC; in that case,\n      the link relation would be \"convertedFrom\"." ]
+  ] [
+     fhir:code [ fhir:v "copyright" ] ;
+     fhir:display [ fhir:v "Refers to a copyright statement that applies to the\n    link's context." ] ;
+     fhir:definition [ fhir:v "Refers to a copyright statement that applies to the\n    link's context." ]
+  ] [
+     fhir:code [ fhir:v "create-form" ] ;
+     fhir:display [ fhir:v "The target IRI points to a resource where a submission form can be obtained." ] ;
+     fhir:definition [ fhir:v "The target IRI points to a resource where a submission form can be obtained." ]
+  ] [
+     fhir:code [ fhir:v "current" ] ;
+     fhir:display [ fhir:v "Refers to a resource containing the most recent\n      item(s) in a collection of resources." ] ;
+     fhir:definition [ fhir:v "Refers to a resource containing the most recent\n      item(s) in a collection of resources." ]
+  ] [
+     fhir:code [ fhir:v "describedby" ] ;
+     fhir:display [ fhir:v "Refers to a resource providing information about the\n      link's context." ] ;
+     fhir:definition [ fhir:v "Refers to a resource providing information about the\n      link's context." ]
+  ] [
+     fhir:code [ fhir:v "describes" ] ;
+     fhir:display [ fhir:v "The relationship A 'describes' B asserts that\n      resource A provides a description of resource B. There are no\n      constraints on the format or representation of either A or B,\n      neither are there any further constraints on either resource." ] ;
+     fhir:definition [ fhir:v "The relationship A 'describes' B asserts that\n      resource A provides a description of resource B. There are no\n      constraints on the format or representation of either A or B,\n      neither are there any further constraints on either resource." ]
+  ] [
+     fhir:code [ fhir:v "disclosure" ] ;
+     fhir:display [ fhir:v "Refers to a list of patent disclosures made with respect to \n      material for which 'disclosure' relation is specified." ] ;
+     fhir:definition [ fhir:v "Refers to a list of patent disclosures made with respect to \n      material for which 'disclosure' relation is specified." ]
+  ] [
+     fhir:code [ fhir:v "dns-prefetch" ] ;
+     fhir:display [ fhir:v "Used to indicate an origin that will be used to fetch required \n      resources for the link context, and that the user agent ought to resolve \n      as early as possible." ] ;
+     fhir:definition [ fhir:v "Used to indicate an origin that will be used to fetch required \n      resources for the link context, and that the user agent ought to resolve \n      as early as possible." ]
+  ] [
+     fhir:code [ fhir:v "duplicate" ] ;
+     fhir:display [ fhir:v "Refers to a resource whose available representations\n      are byte-for-byte identical with the corresponding representations of\n      the context IRI." ] ;
+     fhir:definition [ fhir:v "Refers to a resource whose available representations\n      are byte-for-byte identical with the corresponding representations of\n      the context IRI." ]
+  ] [
+     fhir:code [ fhir:v "edit" ] ;
+     fhir:display [ fhir:v "Refers to a resource that can be used to edit the\n      link's context." ] ;
+     fhir:definition [ fhir:v "Refers to a resource that can be used to edit the\n      link's context." ]
+  ] [
+     fhir:code [ fhir:v "edit-form" ] ;
+     fhir:display [ fhir:v "The target IRI points to a resource where a submission form for\n      editing associated resource can be obtained." ] ;
+     fhir:definition [ fhir:v "The target IRI points to a resource where a submission form for\n      editing associated resource can be obtained." ]
+  ] [
+     fhir:code [ fhir:v "edit-media" ] ;
+     fhir:display [ fhir:v "Refers to a resource that can be used to edit media\n      associated with the link's context." ] ;
+     fhir:definition [ fhir:v "Refers to a resource that can be used to edit media\n      associated with the link's context." ]
+  ] [
+     fhir:code [ fhir:v "enclosure" ] ;
+     fhir:display [ fhir:v "Identifies a related resource that is potentially\n      large and might require special handling." ] ;
+     fhir:definition [ fhir:v "Identifies a related resource that is potentially\n      large and might require special handling." ]
+  ] [
+     fhir:code [ fhir:v "external" ] ;
+     fhir:display [ fhir:v "Refers to a resource that is not part of the same site as the current context." ] ;
+     fhir:definition [ fhir:v "Refers to a resource that is not part of the same site as the current context." ]
+  ] [
+     fhir:code [ fhir:v "first" ] ;
+     fhir:display [ fhir:v "An IRI that refers to the furthest preceding resource\n    in a series of resources." ] ;
+     fhir:definition [ fhir:v "An IRI that refers to the furthest preceding resource\n    in a series of resources." ]
+  ] [
+     fhir:code [ fhir:v "glossary" ] ;
+     fhir:display [ fhir:v "Refers to a glossary of terms." ] ;
+     fhir:definition [ fhir:v "Refers to a glossary of terms." ]
+  ] [
+     fhir:code [ fhir:v "help" ] ;
+     fhir:display [ fhir:v "Refers to context-sensitive help." ] ;
+     fhir:definition [ fhir:v "Refers to context-sensitive help." ]
+  ] [
+     fhir:code [ fhir:v "hosts" ] ;
+     fhir:display [ fhir:v "Refers to a resource hosted by the server indicated by\n      the link context." ] ;
+     fhir:definition [ fhir:v "Refers to a resource hosted by the server indicated by\n      the link context." ]
+  ] [
+     fhir:code [ fhir:v "hub" ] ;
+     fhir:display [ fhir:v "Refers to a hub that enables registration for\n    notification of updates to the context." ] ;
+     fhir:definition [ fhir:v "Refers to a hub that enables registration for\n    notification of updates to the context." ]
+  ] [
+     fhir:code [ fhir:v "icon" ] ;
+     fhir:display [ fhir:v "Refers to an icon representing the link's context." ] ;
+     fhir:definition [ fhir:v "Refers to an icon representing the link's context." ]
+  ] [
+     fhir:code [ fhir:v "index" ] ;
+     fhir:display [ fhir:v "Refers to an index." ] ;
+     fhir:definition [ fhir:v "Refers to an index." ]
+  ] [
+     fhir:code [ fhir:v "intervalAfter" ] ;
+     fhir:display [ fhir:v "refers to a resource associated with a time interval that ends before the beginning of the time interval associated with the context resource" ] ;
+     fhir:definition [ fhir:v "refers to a resource associated with a time interval that ends before the beginning of the time interval associated with the context resource" ]
+  ] [
+     fhir:code [ fhir:v "intervalBefore" ] ;
+     fhir:display [ fhir:v "refers to a resource associated with a time interval that begins after the end of the time interval associated with the context resource" ] ;
+     fhir:definition [ fhir:v "refers to a resource associated with a time interval that begins after the end of the time interval associated with the context resource" ]
+  ] [
+     fhir:code [ fhir:v "intervalContains" ] ;
+     fhir:display [ fhir:v "refers to a resource associated with a time interval that begins after the beginning of the time interval associated with the context resource, and ends before the end of the time interval associated with the context resource" ] ;
+     fhir:definition [ fhir:v "refers to a resource associated with a time interval that begins after the beginning of the time interval associated with the context resource, and ends before the end of the time interval associated with the context resource" ]
+  ] [
+     fhir:code [ fhir:v "intervalDisjoint" ] ;
+     fhir:display [ fhir:v "refers to a resource associated with a time interval that begins after the end of the time interval associated with the context resource, or ends before the beginning of the time interval associated with the context resource" ] ;
+     fhir:definition [ fhir:v "refers to a resource associated with a time interval that begins after the end of the time interval associated with the context resource, or ends before the beginning of the time interval associated with the context resource" ]
+  ] [
+     fhir:code [ fhir:v "intervalDuring" ] ;
+     fhir:display [ fhir:v "refers to a resource associated with a time interval that begins before the beginning of the time interval associated with the context resource, and ends after the end of the time interval associated with the context resource" ] ;
+     fhir:definition [ fhir:v "refers to a resource associated with a time interval that begins before the beginning of the time interval associated with the context resource, and ends after the end of the time interval associated with the context resource" ]
+  ] [
+     fhir:code [ fhir:v "intervalEquals" ] ;
+     fhir:display [ fhir:v "refers to a resource associated with a time interval whose beginning coincides with the beginning of the time interval associated with the context resource, and whose end coincides with the end of the time interval associated with the context resource" ] ;
+     fhir:definition [ fhir:v "refers to a resource associated with a time interval whose beginning coincides with the beginning of the time interval associated with the context resource, and whose end coincides with the end of the time interval associated with the context resource" ]
+  ] [
+     fhir:code [ fhir:v "intervalFinishedBy" ] ;
+     fhir:display [ fhir:v "refers to a resource associated with a time interval that begins after the beginning of the time interval associated with the context resource, and whose end coincides with the end of the time interval associated with the context resource" ] ;
+     fhir:definition [ fhir:v "refers to a resource associated with a time interval that begins after the beginning of the time interval associated with the context resource, and whose end coincides with the end of the time interval associated with the context resource" ]
+  ] [
+     fhir:code [ fhir:v "intervalFinishes" ] ;
+     fhir:display [ fhir:v "refers to a resource associated with a time interval that begins before the beginning of the time interval associated with the context resource, and whose end coincides with the end of the time interval associated with the context resource" ] ;
+     fhir:definition [ fhir:v "refers to a resource associated with a time interval that begins before the beginning of the time interval associated with the context resource, and whose end coincides with the end of the time interval associated with the context resource" ]
+  ] [
+     fhir:code [ fhir:v "intervalIn" ] ;
+     fhir:display [ fhir:v "refers to a resource associated with a time interval that begins before or is coincident with the beginning of the time interval associated with the context resource, and ends after or is coincident with the end of the time interval associated with the context resource" ] ;
+     fhir:definition [ fhir:v "refers to a resource associated with a time interval that begins before or is coincident with the beginning of the time interval associated with the context resource, and ends after or is coincident with the end of the time interval associated with the context resource" ]
+  ] [
+     fhir:code [ fhir:v "intervalMeets" ] ;
+     fhir:display [ fhir:v "refers to a resource associated with a time interval whose beginning coincides with the end of the time interval associated with the context resource" ] ;
+     fhir:definition [ fhir:v "refers to a resource associated with a time interval whose beginning coincides with the end of the time interval associated with the context resource" ]
+  ] [
+     fhir:code [ fhir:v "intervalMetBy" ] ;
+     fhir:display [ fhir:v "refers to a resource associated with a time interval whose end coincides with the beginning of the time interval associated with the context resource" ] ;
+     fhir:definition [ fhir:v "refers to a resource associated with a time interval whose end coincides with the beginning of the time interval associated with the context resource" ]
+  ] [
+     fhir:code [ fhir:v "intervalOverlappedBy" ] ;
+     fhir:display [ fhir:v "refers to a resource associated with a time interval that begins before the beginning of the time interval associated with the context resource, and ends after the beginning of the time interval associated with the context resource" ] ;
+     fhir:definition [ fhir:v "refers to a resource associated with a time interval that begins before the beginning of the time interval associated with the context resource, and ends after the beginning of the time interval associated with the context resource" ]
+  ] [
+     fhir:code [ fhir:v "intervalOverlaps" ] ;
+     fhir:display [ fhir:v "refers to a resource associated with a time interval that begins before the end of the time interval associated with the context resource, and ends after the end of the time interval associated with the context resource" ] ;
+     fhir:definition [ fhir:v "refers to a resource associated with a time interval that begins before the end of the time interval associated with the context resource, and ends after the end of the time interval associated with the context resource" ]
+  ] [
+     fhir:code [ fhir:v "intervalStartedBy" ] ;
+     fhir:display [ fhir:v "refers to a resource associated with a time interval whose beginning coincides with the beginning of the time interval associated with the context resource, and ends before the end of the time interval associated with the context resource" ] ;
+     fhir:definition [ fhir:v "refers to a resource associated with a time interval whose beginning coincides with the beginning of the time interval associated with the context resource, and ends before the end of the time interval associated with the context resource" ]
+  ] [
+     fhir:code [ fhir:v "intervalStarts" ] ;
+     fhir:display [ fhir:v "refers to a resource associated with a time interval whose beginning coincides with the beginning of the time interval associated with the context resource, and ends after the end of the time interval associated with the context resource" ] ;
+     fhir:definition [ fhir:v "refers to a resource associated with a time interval whose beginning coincides with the beginning of the time interval associated with the context resource, and ends after the end of the time interval associated with the context resource" ]
+  ] [
+     fhir:code [ fhir:v "item" ] ;
+     fhir:display [ fhir:v "The target IRI points to a resource that is a member of the collection represented by the context IRI." ] ;
+     fhir:definition [ fhir:v "The target IRI points to a resource that is a member of the collection represented by the context IRI." ]
+  ] [
+     fhir:code [ fhir:v "last" ] ;
+     fhir:display [ fhir:v "An IRI that refers to the furthest following resource\n      in a series of resources." ] ;
+     fhir:definition [ fhir:v "An IRI that refers to the furthest following resource\n      in a series of resources." ]
+  ] [
+     fhir:code [ fhir:v "latest-version" ] ;
+     fhir:display [ fhir:v "Points to a resource containing the latest (e.g.,\n      current) version of the context." ] ;
+     fhir:definition [ fhir:v "Points to a resource containing the latest (e.g.,\n      current) version of the context." ]
+  ] [
+     fhir:code [ fhir:v "license" ] ;
+     fhir:display [ fhir:v "Refers to a license associated with this context." ] ;
+     fhir:definition [ fhir:v "Refers to a license associated with this context." ]
+  ] [
+     fhir:code [ fhir:v "linkset" ] ;
+     fhir:display [ fhir:v "The link target of a link with the \"linkset\" relation\n      type provides a set of links, including links in which the link\n      context of the link participates.\n    " ] ;
+     fhir:definition [ fhir:v "The link target of a link with the \"linkset\" relation\n      type provides a set of links, including links in which the link\n      context of the link participates.\n    " ]
+  ] [
+     fhir:code [ fhir:v "lrdd" ] ;
+     fhir:display [ fhir:v "Refers to further information about the link's context,\n      expressed as a LRDD (\"Link-based Resource Descriptor Document\")\n      resource.  See  for information about\n      processing this relation type in host-meta documents. When used\n      elsewhere, it refers to additional links and other metadata.\n      Multiple instances indicate additional LRDD resources. LRDD\n      resources MUST have an \"application/xrd+xml\" representation, and\n      MAY have others." ] ;
+     fhir:definition [ fhir:v "Refers to further information about the link's context,\n      expressed as a LRDD (\"Link-based Resource Descriptor Document\")\n      resource.  See  for information about\n      processing this relation type in host-meta documents. When used\n      elsewhere, it refers to additional links and other metadata.\n      Multiple instances indicate additional LRDD resources. LRDD\n      resources MUST have an \"application/xrd+xml\" representation, and\n      MAY have others." ]
+  ] [
+     fhir:code [ fhir:v "manifest" ] ;
+     fhir:display [ fhir:v "Links to a manifest file for the context." ] ;
+     fhir:definition [ fhir:v "Links to a manifest file for the context." ]
+  ] [
+     fhir:code [ fhir:v "mask-icon" ] ;
+     fhir:display [ fhir:v "Refers to a mask that can be applied to the icon for the context." ] ;
+     fhir:definition [ fhir:v "Refers to a mask that can be applied to the icon for the context." ]
+  ] [
+     fhir:code [ fhir:v "media-feed" ] ;
+     fhir:display [ fhir:v "Refers to a feed of personalised media recommendations relevant to the link context." ] ;
+     fhir:definition [ fhir:v "Refers to a feed of personalised media recommendations relevant to the link context." ]
+  ] [
+     fhir:code [ fhir:v "memento" ] ;
+     fhir:display [ fhir:v "The Target IRI points to a Memento, a fixed resource that will not change state anymore." ] ;
+     fhir:definition [ fhir:v "The Target IRI points to a Memento, a fixed resource that will not change state anymore." ]
+  ] [
+     fhir:code [ fhir:v "micropub" ] ;
+     fhir:display [ fhir:v "Links to the context's Micropub endpoint." ] ;
+     fhir:definition [ fhir:v "Links to the context's Micropub endpoint." ]
+  ] [
+     fhir:code [ fhir:v "modulepreload" ] ;
+     fhir:display [ fhir:v "Refers to a module that the user agent is to preemptively fetch and store for use in the current context." ] ;
+     fhir:definition [ fhir:v "Refers to a module that the user agent is to preemptively fetch and store for use in the current context." ]
+  ] [
+     fhir:code [ fhir:v "monitor" ] ;
+     fhir:display [ fhir:v "Refers to a resource that can be used to monitor changes in an HTTP resource.\n    " ] ;
+     fhir:definition [ fhir:v "Refers to a resource that can be used to monitor changes in an HTTP resource.\n    " ]
+  ] [
+     fhir:code [ fhir:v "monitor-group" ] ;
+     fhir:display [ fhir:v "Refers to a resource that can be used to monitor changes in a specified group of HTTP resources.\n    " ] ;
+     fhir:definition [ fhir:v "Refers to a resource that can be used to monitor changes in a specified group of HTTP resources.\n    " ]
+  ] [
+     fhir:code [ fhir:v "next" ] ;
+     fhir:display [ fhir:v "Indicates that the link's context is a part of a series, and\n      that the next in the series is the link target.\n    " ] ;
+     fhir:definition [ fhir:v "Indicates that the link's context is a part of a series, and\n      that the next in the series is the link target.\n    " ]
+  ] [
+     fhir:code [ fhir:v "next-archive" ] ;
+     fhir:display [ fhir:v "Refers to the immediately following archive resource." ] ;
+     fhir:definition [ fhir:v "Refers to the immediately following archive resource." ]
+  ] [
+     fhir:code [ fhir:v "nofollow" ] ;
+     fhir:display [ fhir:v "Indicates that the context’s original author or publisher does not endorse the link target." ] ;
+     fhir:definition [ fhir:v "Indicates that the context’s original author or publisher does not endorse the link target." ]
+  ] [
+     fhir:code [ fhir:v "noopener" ] ;
+     fhir:display [ fhir:v "Indicates that any newly created top-level browsing context which results from following the link will not be an auxiliary browsing context." ] ;
+     fhir:definition [ fhir:v "Indicates that any newly created top-level browsing context which results from following the link will not be an auxiliary browsing context." ]
+  ] [
+     fhir:code [ fhir:v "noreferrer" ] ;
+     fhir:display [ fhir:v "Indicates that no referrer information is to be leaked when following the link." ] ;
+     fhir:definition [ fhir:v "Indicates that no referrer information is to be leaked when following the link." ]
+  ] [
+     fhir:code [ fhir:v "opener" ] ;
+     fhir:display [ fhir:v "Indicates that any newly created top-level browsing context which results from following the link will be an auxiliary browsing context." ] ;
+     fhir:definition [ fhir:v "Indicates that any newly created top-level browsing context which results from following the link will be an auxiliary browsing context." ]
+  ] [
+     fhir:code [ fhir:v "openid2.local_id" ] ;
+     fhir:display [ fhir:v "Refers to an OpenID Authentication server on which the context relies for an assertion that the end user controls an Identifier." ] ;
+     fhir:definition [ fhir:v "Refers to an OpenID Authentication server on which the context relies for an assertion that the end user controls an Identifier." ]
+  ] [
+     fhir:code [ fhir:v "openid2.provider" ] ;
+     fhir:display [ fhir:v "Refers to a resource which accepts OpenID Authentication protocol messages for the context." ] ;
+     fhir:definition [ fhir:v "Refers to a resource which accepts OpenID Authentication protocol messages for the context." ]
+  ] [
+     fhir:code [ fhir:v "original" ] ;
+     fhir:display [ fhir:v "The Target IRI points to an Original Resource." ] ;
+     fhir:definition [ fhir:v "The Target IRI points to an Original Resource." ]
+  ] [
+     fhir:code [ fhir:v "P3Pv1" ] ;
+     fhir:display [ fhir:v "Refers to a P3P privacy policy for the context." ] ;
+     fhir:definition [ fhir:v "Refers to a P3P privacy policy for the context." ]
+  ] [
+     fhir:code [ fhir:v "payment" ] ;
+     fhir:display [ fhir:v "Indicates a resource where payment is accepted." ] ;
+     fhir:definition [ fhir:v "Indicates a resource where payment is accepted." ]
+  ] [
+     fhir:code [ fhir:v "pingback" ] ;
+     fhir:display [ fhir:v "Gives the address of the pingback resource for the link context." ] ;
+     fhir:definition [ fhir:v "Gives the address of the pingback resource for the link context." ]
+  ] [
+     fhir:code [ fhir:v "preconnect" ] ;
+     fhir:display [ fhir:v "Used to indicate an origin that will be used to fetch required \n      resources for the link context. Initiating an early connection, which \n      includes the DNS lookup, TCP handshake, and optional TLS negotiation, \n      allows the user agent to mask the high latency costs of establishing a \n      connection." ] ;
+     fhir:definition [ fhir:v "Used to indicate an origin that will be used to fetch required \n      resources for the link context. Initiating an early connection, which \n      includes the DNS lookup, TCP handshake, and optional TLS negotiation, \n      allows the user agent to mask the high latency costs of establishing a \n      connection." ]
+  ] [
+     fhir:code [ fhir:v "predecessor-version" ] ;
+     fhir:display [ fhir:v "Points to a resource containing the predecessor\n      version in the version history.\n    " ] ;
+     fhir:definition [ fhir:v "Points to a resource containing the predecessor\n      version in the version history.\n    " ]
+  ] [
+     fhir:code [ fhir:v "prefetch" ] ;
+     fhir:display [ fhir:v "The prefetch link relation type is used to identify a resource \n      that might be required by the next navigation from the link context, and \n      that the user agent ought to fetch, such that the user agent can deliver a \n      faster response once the resource is requested in the future." ] ;
+     fhir:definition [ fhir:v "The prefetch link relation type is used to identify a resource \n      that might be required by the next navigation from the link context, and \n      that the user agent ought to fetch, such that the user agent can deliver a \n      faster response once the resource is requested in the future." ]
+  ] [
+     fhir:code [ fhir:v "preload" ] ;
+     fhir:display [ fhir:v "Refers to a resource that should be loaded early in the \n      processing of the link's context, without blocking rendering." ] ;
+     fhir:definition [ fhir:v "Refers to a resource that should be loaded early in the \n      processing of the link's context, without blocking rendering." ]
+  ] [
+     fhir:code [ fhir:v "prerender" ] ;
+     fhir:display [ fhir:v "Used to identify a resource that might be required by the next \n      navigation from the link context, and that the user agent ought to fetch \n      and execute, such that the user agent can deliver a faster response once \n      the resource is requested in the future." ] ;
+     fhir:definition [ fhir:v "Used to identify a resource that might be required by the next \n      navigation from the link context, and that the user agent ought to fetch \n      and execute, such that the user agent can deliver a faster response once \n      the resource is requested in the future." ]
+  ] [
+     fhir:code [ fhir:v "prev" ] ;
+     fhir:display [ fhir:v "Indicates that the link's context is a part of a series, and\n      that the previous in the series is the link target.\n    " ] ;
+     fhir:definition [ fhir:v "Indicates that the link's context is a part of a series, and\n      that the previous in the series is the link target.\n    " ]
+  ] [
+     fhir:code [ fhir:v "preview" ] ;
+     fhir:display [ fhir:v "Refers to a resource that provides a preview of the link's context." ] ;
+     fhir:definition [ fhir:v "Refers to a resource that provides a preview of the link's context." ]
+  ] [
+     fhir:code [ fhir:v "previous" ] ;
+     fhir:display [ fhir:v "Refers to the previous resource in an ordered series\n      of resources.  Synonym for \"prev\"." ] ;
+     fhir:definition [ fhir:v "Refers to the previous resource in an ordered series\n      of resources.  Synonym for \"prev\"." ]
+  ] [
+     fhir:code [ fhir:v "prev-archive" ] ;
+     fhir:display [ fhir:v "Refers to the immediately preceding archive resource." ] ;
+     fhir:definition [ fhir:v "Refers to the immediately preceding archive resource." ]
+  ] [
+     fhir:code [ fhir:v "privacy-policy" ] ;
+     fhir:display [ fhir:v "Refers to a privacy policy associated with the link's context." ] ;
+     fhir:definition [ fhir:v "Refers to a privacy policy associated with the link's context." ]
+  ] [
+     fhir:code [ fhir:v "profile" ] ;
+     fhir:display [ fhir:v "Identifying that a resource representation conforms\nto a certain profile, without affecting the non-profile semantics\nof the resource representation." ] ;
+     fhir:definition [ fhir:v "Identifying that a resource representation conforms\nto a certain profile, without affecting the non-profile semantics\nof the resource representation." ]
+  ] [
+     fhir:code [ fhir:v "publication" ] ;
+     fhir:display [ fhir:v "Links to a publication manifest. A manifest represents \n      structured information about a publication, such as informative metadata, \n      a list of resources, and a default reading order." ] ;
+     fhir:definition [ fhir:v "Links to a publication manifest. A manifest represents \n      structured information about a publication, such as informative metadata, \n      a list of resources, and a default reading order." ]
+  ] [
+     fhir:code [ fhir:v "related" ] ;
+     fhir:display [ fhir:v "Identifies a related resource." ] ;
+     fhir:definition [ fhir:v "Identifies a related resource." ]
+  ] [
+     fhir:code [ fhir:v "restconf" ] ;
+     fhir:display [ fhir:v "Identifies the root of RESTCONF API as configured on this HTTP server.\n      The \"restconf\" relation defines the root of the API defined in RFC8040.\n      Subsequent revisions of RESTCONF will use alternate relation values to support \n      protocol versioning." ] ;
+     fhir:definition [ fhir:v "Identifies the root of RESTCONF API as configured on this HTTP server.\n      The \"restconf\" relation defines the root of the API defined in RFC8040.\n      Subsequent revisions of RESTCONF will use alternate relation values to support \n      protocol versioning." ]
+  ] [
+     fhir:code [ fhir:v "replies" ] ;
+     fhir:display [ fhir:v "Identifies a resource that is a reply to the context\n      of the link.\n    " ] ;
+     fhir:definition [ fhir:v "Identifies a resource that is a reply to the context\n      of the link.\n    " ]
+  ] [
+     fhir:code [ fhir:v "ruleinput" ] ;
+     fhir:display [ fhir:v "The resource identified by the link target provides an input value to an \n    instance of a rule, where the resource which represents the rule instance is \n    identified by the link context.\n    " ] ;
+     fhir:definition [ fhir:v "The resource identified by the link target provides an input value to an \n    instance of a rule, where the resource which represents the rule instance is \n    identified by the link context.\n    " ]
+  ] [
+     fhir:code [ fhir:v "search" ] ;
+     fhir:display [ fhir:v "Refers to a resource that can be used to search through\n      the link's context and related resources." ] ;
+     fhir:definition [ fhir:v "Refers to a resource that can be used to search through\n      the link's context and related resources." ]
+  ] [
+     fhir:code [ fhir:v "section" ] ;
+     fhir:display [ fhir:v "Refers to a section in a collection of resources." ] ;
+     fhir:definition [ fhir:v "Refers to a section in a collection of resources." ]
+  ] [
+     fhir:code [ fhir:v "self" ] ;
+     fhir:display [ fhir:v "Conveys an identifier for the link's context.\n    " ] ;
+     fhir:definition [ fhir:v "Conveys an identifier for the link's context.\n    " ]
+  ] [
+     fhir:code [ fhir:v "service" ] ;
+     fhir:display [ fhir:v "Indicates a URI that can be used to retrieve a\n      service document." ] ;
+     fhir:definition [ fhir:v "Indicates a URI that can be used to retrieve a\n      service document." ]
+  ] [
+     fhir:code [ fhir:v "service-desc" ] ;
+     fhir:display [ fhir:v "Identifies service description for the context that\n      is primarily intended for consumption by machines." ] ;
+     fhir:definition [ fhir:v "Identifies service description for the context that\n      is primarily intended for consumption by machines." ]
+  ] [
+     fhir:code [ fhir:v "service-doc" ] ;
+     fhir:display [ fhir:v "Identifies service documentation for the context that\n      is primarily intended for human consumption." ] ;
+     fhir:definition [ fhir:v "Identifies service documentation for the context that\n      is primarily intended for human consumption." ]
+  ] [
+     fhir:code [ fhir:v "service-meta" ] ;
+     fhir:display [ fhir:v "Identifies general metadata for the context that is\n      primarily intended for consumption by machines." ] ;
+     fhir:definition [ fhir:v "Identifies general metadata for the context that is\n      primarily intended for consumption by machines." ]
+  ] [
+     fhir:code [ fhir:v "sponsored" ] ;
+     fhir:display [ fhir:v "Refers to a resource that is within a context that is \n		sponsored (such as advertising or another compensation agreement)." ] ;
+     fhir:definition [ fhir:v "Refers to a resource that is within a context that is \n		sponsored (such as advertising or another compensation agreement)." ]
+  ] [
+     fhir:code [ fhir:v "start" ] ;
+     fhir:display [ fhir:v "Refers to the first resource in a collection of\n      resources." ] ;
+     fhir:definition [ fhir:v "Refers to the first resource in a collection of\n      resources." ]
+  ] [
+     fhir:code [ fhir:v "status" ] ;
+     fhir:display [ fhir:v "Identifies a resource that represents the context's\n      status." ] ;
+     fhir:definition [ fhir:v "Identifies a resource that represents the context's\n      status." ]
+  ] [
+     fhir:code [ fhir:v "stylesheet" ] ;
+     fhir:display [ fhir:v "Refers to a stylesheet." ] ;
+     fhir:definition [ fhir:v "Refers to a stylesheet." ]
+  ] [
+     fhir:code [ fhir:v "subsection" ] ;
+     fhir:display [ fhir:v "Refers to a resource serving as a subsection in a\n      collection of resources." ] ;
+     fhir:definition [ fhir:v "Refers to a resource serving as a subsection in a\n      collection of resources." ]
+  ] [
+     fhir:code [ fhir:v "successor-version" ] ;
+     fhir:display [ fhir:v "Points to a resource containing the successor version\n      in the version history.\n    " ] ;
+     fhir:definition [ fhir:v "Points to a resource containing the successor version\n      in the version history.\n    " ]
+  ] [
+     fhir:code [ fhir:v "sunset" ] ;
+     fhir:display [ fhir:v "Identifies a resource that provides information about\n      the context's retirement policy.\n    " ] ;
+     fhir:definition [ fhir:v "Identifies a resource that provides information about\n      the context's retirement policy.\n    " ]
+  ] [
+     fhir:code [ fhir:v "tag" ] ;
+     fhir:display [ fhir:v "Gives a tag (identified by the given address) that applies to\n      the current document.\n    " ] ;
+     fhir:definition [ fhir:v "Gives a tag (identified by the given address) that applies to\n      the current document.\n    " ]
+  ] [
+     fhir:code [ fhir:v "terms-of-service" ] ;
+     fhir:display [ fhir:v "Refers to the terms of service associated with the link's context." ] ;
+     fhir:definition [ fhir:v "Refers to the terms of service associated with the link's context." ]
+  ] [
+     fhir:code [ fhir:v "timegate" ] ;
+     fhir:display [ fhir:v "The Target IRI points to a TimeGate for an Original Resource." ] ;
+     fhir:definition [ fhir:v "The Target IRI points to a TimeGate for an Original Resource." ]
+  ] [
+     fhir:code [ fhir:v "timemap" ] ;
+     fhir:display [ fhir:v "The Target IRI points to a TimeMap for an Original Resource." ] ;
+     fhir:definition [ fhir:v "The Target IRI points to a TimeMap for an Original Resource." ]
+  ] [
+     fhir:code [ fhir:v "type" ] ;
+     fhir:display [ fhir:v "Refers to a resource identifying the abstract semantic type of which the link's context is considered to be an instance." ] ;
+     fhir:definition [ fhir:v "Refers to a resource identifying the abstract semantic type of which the link's context is considered to be an instance." ]
+  ] [
+     fhir:code [ fhir:v "ugc" ] ;
+     fhir:display [ fhir:v "Refers to a resource that is within a context that is User Generated Content.\n    " ] ;
+     fhir:definition [ fhir:v "Refers to a resource that is within a context that is User Generated Content.\n    " ]
+  ] [
+     fhir:code [ fhir:v "up" ] ;
+     fhir:display [ fhir:v "Refers to a parent document in a hierarchy of\n      documents.\n    " ] ;
+     fhir:definition [ fhir:v "Refers to a parent document in a hierarchy of\n      documents.\n    " ]
+  ] [
+     fhir:code [ fhir:v "version-history" ] ;
+     fhir:display [ fhir:v "Points to a resource containing the version history\n      for the context.\n    " ] ;
+     fhir:definition [ fhir:v "Points to a resource containing the version history\n      for the context.\n    " ]
+  ] [
+     fhir:code [ fhir:v "via" ] ;
+     fhir:display [ fhir:v "Identifies a resource that is the source of the\n      information in the link's context.\n    " ] ;
+     fhir:definition [ fhir:v "Identifies a resource that is the source of the\n      information in the link's context.\n    " ]
+  ] [
+     fhir:code [ fhir:v "webmention" ] ;
+     fhir:display [ fhir:v "Identifies a target URI that supports the Webmention protocol.\n    This allows clients that mention a resource in some form of publishing process\n    to contact that endpoint and inform it that this resource has been mentioned." ] ;
+     fhir:definition [ fhir:v "Identifies a target URI that supports the Webmention protocol.\n    This allows clients that mention a resource in some form of publishing process\n    to contact that endpoint and inform it that this resource has been mentioned." ]
+  ] [
+     fhir:code [ fhir:v "working-copy" ] ;
+     fhir:display [ fhir:v "Points to a working copy for this resource." ] ;
+     fhir:definition [ fhir:v "Points to a working copy for this resource." ]
+  ] [
+     fhir:code [ fhir:v "working-copy-of" ] ;
+     fhir:display [ fhir:v "Points to the versioned resource from which this\n      working copy was obtained.\n    " ] ;
+     fhir:definition [ fhir:v "Points to the versioned resource from which this\n      working copy was obtained.\n    " ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

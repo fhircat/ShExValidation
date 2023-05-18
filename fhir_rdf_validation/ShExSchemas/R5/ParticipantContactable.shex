@@ -1,0 +1,27 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+# Contactable Participant Pattern
+<ParticipantContactable> CLOSED {   
+
+    a [fhir:ParticipantContactable];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:telecom @<OneOrMore_ContactPoint>?;  # A contact detail for the 
+                                            # participant 
+    fhir:active @<OneOrMore_Address>?;      # An address for the individual
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_ContactPoint> CLOSED {
+    rdf:first @<ContactPoint>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactPoint> 
+}
+
+<OneOrMore_Address> CLOSED {
+    rdf:first @<Address>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Address> 
+}
+

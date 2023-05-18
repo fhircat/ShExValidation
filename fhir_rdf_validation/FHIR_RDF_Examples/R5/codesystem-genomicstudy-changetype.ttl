@@ -1,0 +1,97 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "genomicstudy-changetype"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-25T23:21:02.749-05:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "cg" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/genomicstudy-changetype"], [ fhir:v "http://hl7.org/fhir/genomicstudy-changetype"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1977" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1977" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "GenomicStudyChangeType"], [ fhir:v "GenomicStudyChangeType"] ;
+  fhir:title [ fhir:v "Genomic Study Change Type"], [ fhir:v "Genomic Study Change Type"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "true"], [ fhir:v "true"] ;
+  fhir:date [ fhir:v "2022-08-17T15:48:24-05:00"], [ fhir:v "2022-08-17T15:48:24-05:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The change type relevant to GenomicStudy analysis."], [ fhir:v "The change type relevant to GenomicStudy analysis."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/genomicstudy-changetype"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "DNA" ] ;
+     fhir:display [ fhir:v "DNA change" ] ;
+     fhir:definition [ fhir:v "Change that involves Deoxyribonucleic acid (DNA) sequences." ]
+  ] [
+     fhir:code [ fhir:v "RNA" ] ;
+     fhir:display [ fhir:v "RNA change" ] ;
+     fhir:definition [ fhir:v "Change that involves Ribonucleic Acid (RNA) sequences." ]
+  ] [
+     fhir:code [ fhir:v "AA" ] ;
+     fhir:display [ fhir:v "Protein/amino Acids change " ] ;
+     fhir:definition [ fhir:v "Change that involves Amino Acid (AA) or protein sequences." ]
+  ] [
+     fhir:code [ fhir:v "CHR" ] ;
+     fhir:display [ fhir:v "Chromosomal changes" ] ;
+     fhir:definition [ fhir:v "Change that involves number or strcture of chromosomes." ]
+  ] [
+     fhir:code [ fhir:v "CNV" ] ;
+     fhir:display [ fhir:v "Copy number variations" ] ;
+     fhir:definition [ fhir:v "Change that involves copy number variations among various genomes." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

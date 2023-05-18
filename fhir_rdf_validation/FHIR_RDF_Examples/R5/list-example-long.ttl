@@ -1,0 +1,1041 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:List ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "long"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><table class=\"clstu\"><tr><td>Date: 21 Feb 2018, 12:17:00 pmMode: changesStatus: current</td></tr><tr><td/></tr></table><table class=\"grid\"><tr style=\"backgound-color: #eeeeee\"><td><b>Items</b></td></tr><tr><td><a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</td></tr><tr><td><a href=\"patient-example-a.html\">Patient/pat1</a> &quot;Donald DUCK&quot;</td></tr><tr><td><a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</td></tr><tr><td><a href=\"patient-example-c.html\">Patient/pat3</a> &quot;Simon NOTSOWELL&quot;</td></tr><tr><td><a href=\"patient-example-d.html\">Patient/pat4</a> &quot;Sandy NOTSOWELL&quot;</td></tr><tr><td><a href=\"broken-link.html\">Patient/1</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/2</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/3</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/4</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/5</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/6</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/7</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/8</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/9</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/10</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/11</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/12</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/71</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/72</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/73</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/74</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/75</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/76</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/77</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/78</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/79</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/80</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/81</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/82</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/83</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/84</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/85</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/86</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/87</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/88</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/89</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/90</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/91</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/92</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/93</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/94</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/95</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/96</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/97</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/98</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/99</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/100</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/101</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/102</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/103</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/104</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/105</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/106</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/107</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/108</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/109</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/110</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/111</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/112</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/113</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/114</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/115</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/116</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/117</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/118</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/119</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/120</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/121</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/122</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/123</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/124</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/125</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/126</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/127</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/128</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/129</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/130</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/131</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/132</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/133</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/134</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/135</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/136</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/137</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/138</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/139</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/140</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/141</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/142</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/143</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/144</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/145</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/146</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/147</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/148</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/149</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/150</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/151</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/152</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/153</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/154</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/155</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/156</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/157</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/158</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/159</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/160</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/161</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/162</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/163</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/164</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/165</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/166</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/167</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/168</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/169</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/170</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/171</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/172</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/173</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/174</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/175</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/176</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/177</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/178</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/179</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/180</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/181</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/182</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/183</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/184</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/185</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/186</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/187</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/188</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/189</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/190</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/191</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/192</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/193</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/194</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/195</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/196</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/197</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/198</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/199</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/200</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/201</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/202</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/203</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/204</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/205</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/206</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/207</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/208</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/209</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/210</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/211</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/212</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/213</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/214</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/215</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/216</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/217</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/218</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/219</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/220</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/221</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/222</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/223</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/224</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/225</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/226</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/227</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/228</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/229</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/230</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/231</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/232</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/233</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/234</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/235</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/236</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/237</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/238</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/239</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/240</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/241</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/242</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/243</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/244</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/245</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/246</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/247</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/248</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/249</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/250</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/251</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/252</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/253</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/254</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/255</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/256</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/257</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/258</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/259</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/260</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/261</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/262</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/263</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/264</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/265</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/266</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/267</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/268</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/269</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/270</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/271</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/272</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/273</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/274</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/275</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/276</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/277</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/278</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/279</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/280</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/281</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/282</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/283</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/284</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/285</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/286</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/287</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/288</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/289</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/290</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/291</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/292</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/293</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/294</a></td></tr><tr><td><a href=\"broken-link.html\">Patient/295</a></td></tr><tr><td><a href=\"patient-example-xcda.html\">Patient/xcda</a> &quot;Henry LEVIN&quot;</td></tr><tr><td><a href=\"patient-example-xds.html\">Patient/xds</a> &quot;John DOE&quot;</td></tr><tr><td><a href=\"patient-example-animal.html\">Patient/animal</a> &quot;Kenzi&quot;</td></tr><tr><td><a href=\"patient-example-dicom.html\">Patient/dicom</a> &quot; MINT_TEST&quot;</td></tr><tr><td><a href=\"patient-example-ihe-pcd.html\">Patient/ihe-pcd</a> &quot;ALBERT BROOKS&quot;</td></tr><tr><td><a href=\"patient-example-f001-pieter.html\">Patient/f001</a> &quot;Pieter VAN DE HEUVEL&quot;</td></tr><tr><td><a href=\"patient-example-f201-roel.html\">Patient/f201</a> &quot;Roel&quot;</td></tr><tr><td><a href=\"patient-glossy-example.html\">Patient/glossy</a> &quot;Henry LEVIN&quot;</td></tr><tr><td><a href=\"patient-example-proband.html\">Patient/proband</a></td></tr><tr><td><a href=\"patient-genetics-example1.html\">Patient/genetics-example1</a> &quot;Eve EVERYWOMAN&quot;</td></tr><tr><td><a href=\"patient-example-chinese.html\">Patient/ch-example</a> &quot;张无忌&quot;</td></tr><tr><td><a href=\"patient-example-newborn.html\">Patient/newborn</a></td></tr><tr><td><a href=\"patient-example-mom.html\">Patient/mom</a> &quot;Eve EVERYWOMAN&quot;</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "current"] ; # 
+  fhir:mode [ fhir:v "changes"] ; # 
+  fhir:date [ fhir:v "2018-02-21T12:17:00+11:00"^^xsd:dateTime] ; # 
+  fhir:entry ( [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/example" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/pat1" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/pat2" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/pat3" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/pat4" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/1" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/2" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/3" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/4" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/5" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/6" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/7" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/8" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/9" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/10" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/11" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/12" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/71" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/72" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/73" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/74" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/75" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/76" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/77" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/78" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/79" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/80" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/81" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/82" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/83" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/84" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/85" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/86" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/87" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/88" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/89" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/90" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/91" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/92" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/93" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/94" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/95" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/96" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/97" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/98" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/99" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/100" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/101" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/102" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/103" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/104" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/105" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/106" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/107" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/108" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/109" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/110" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/111" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/112" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/113" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/114" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/115" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/116" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/117" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/118" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/119" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/120" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/121" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/122" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/123" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/124" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/125" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/126" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/127" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/128" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/129" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/130" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/131" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/132" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/133" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/134" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/135" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/136" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/137" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/138" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/139" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/140" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/141" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/142" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/143" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/144" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/145" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/146" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/147" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/148" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/149" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/150" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/151" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/152" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/153" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/154" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/155" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/156" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/157" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/158" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/159" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/160" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/161" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/162" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/163" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/164" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/165" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/166" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/167" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/168" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/169" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/170" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/171" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/172" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/173" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/174" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/175" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/176" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/177" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/178" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/179" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/180" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/181" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/182" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/183" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/184" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/185" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/186" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/187" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/188" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/189" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/190" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/191" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/192" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/193" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/194" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/195" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/196" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/197" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/198" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/199" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/200" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/201" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/202" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/203" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/204" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/205" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/206" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/207" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/208" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/209" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/210" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/211" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/212" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/213" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/214" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/215" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/216" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/217" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/218" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/219" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/220" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/221" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/222" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/223" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/224" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/225" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/226" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/227" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/228" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/229" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/230" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/231" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/232" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/233" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/234" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/235" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/236" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/237" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/238" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/239" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/240" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/241" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/242" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/243" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/244" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/245" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/246" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/247" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/248" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/249" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/250" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/251" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/252" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/253" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/254" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/255" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/256" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/257" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/258" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/259" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/260" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/261" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/262" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/263" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/264" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/265" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/266" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/267" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/268" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/269" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/270" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/271" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/272" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/273" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/274" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/275" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/276" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/277" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/278" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/279" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/280" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/281" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/282" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/283" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/284" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/285" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/286" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/287" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/288" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/289" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/290" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/291" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/292" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/293" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/294" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/295" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/xcda" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/xds" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/animal" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/dicom" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/ihe-pcd" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/f001" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/f201" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/glossy" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/proband" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/genetics-example1" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/ch-example" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/newborn" ]
+     ]
+  ] [
+     fhir:item [
+       fhir:reference [ fhir:v "Patient/mom" ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

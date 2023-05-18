@@ -1,0 +1,395 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:StructureDefinition ;
+  fhir:id [ fhir:v "VirtualServiceDetail"] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/VirtualServiceDetail"], [ fhir:v "http://hl7.org/fhir/StructureDefinition/VirtualServiceDetail"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "VirtualServiceDetail"], [ fhir:v "VirtualServiceDetail"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 FHIR Standard"], [ fhir:v "HL7 FHIR Standard"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "VirtualServiceDetail Type: Virtual Service Contact Details."], [ fhir:v "VirtualServiceDetail Type: Virtual Service Contact Details."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:fhirVersion [ fhir:v "5.0.0"] ;
+  fhir:mapping ( [
+     fhir:identity [ fhir:v "rim" ] ;
+     fhir:uri [ fhir:v "http://hl7.org/v3" ] ;
+     fhir:name [ fhir:v "RIM Mapping" ]
+  ] ) ;
+  fhir:kind [ fhir:v "complex-type"] ;
+  fhir:abstract [ fhir:v "false"] ;
+  fhir:type [ fhir:v "VirtualServiceDetail"] ;
+  fhir:baseDefinition [ fhir:v "http://hl7.org/fhir/StructureDefinition/DataType"] ;
+  fhir:derivation [ fhir:v "specialization"] ;
+  fhir:snapshot [
+     fhir:element ( [
+       fhir:id [ fhir:v "VirtualServiceDetail" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+         fhir:value [ fhir:v "trial-use" ]
+       ] ) ;
+       fhir:path [ fhir:v "VirtualServiceDetail" ] ;
+       fhir:short [ fhir:v "Virtual Service Contact Details" ] ;
+       fhir:definition [ fhir:v "Virtual Service Contact Details." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "*" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "VirtualServiceDetail" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "*" ]
+       ] ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "n/a" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "VirtualServiceDetail.id" ] ;
+       fhir:path [ fhir:v "VirtualServiceDetail.id" ] ;
+       fhir:representation ( [ fhir:v "xmlAttr" ] ) ;
+       fhir:short [ fhir:v "Unique id for inter-element referencing" ] ;
+       fhir:definition [ fhir:v "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "Element.id" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fhir-type" ] ;
+           fhir:value [ fhir:v "id" ]
+         ] ) ;
+         fhir:code [ fhir:v "http://hl7.org/fhirpath/System.String" ]
+       ] ) ;
+       fhir:condition ( [ fhir:v "ele-1" ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "false" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "n/a" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "VirtualServiceDetail.extension" ] ;
+       fhir:path [ fhir:v "VirtualServiceDetail.extension" ] ;
+       fhir:slicing [
+         fhir:discriminator ( [
+           fhir:type [ fhir:v "value" ] ;
+           fhir:path [ fhir:v "url" ]
+         ] ) ;
+         fhir:description [ fhir:v "Extensions are always sliced by (at least) url" ] ;
+         fhir:rules [ fhir:v "open" ]
+       ] ;
+       fhir:short [ fhir:v "Additional content defined by implementations" ] ;
+       fhir:definition [ fhir:v "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and managable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." ] ;
+       fhir:comment [ fhir:v "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." ] ;
+       fhir:alias ( [ fhir:v "extensions" ] [ fhir:v "user content" ] ) ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "*" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "Element.extension" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "*" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "Extension" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] [
+         fhir:key [ fhir:v "ext-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "Must have either extensions or value[x], not both" ] ;
+         fhir:expression [ fhir:v "extension.exists() != value.exists()" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Extension" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "false" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "n/a" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "VirtualServiceDetail.channelType" ] ;
+       fhir:path [ fhir:v "VirtualServiceDetail.channelType" ] ;
+       fhir:short [ fhir:v "Channel Type" ] ;
+       fhir:definition [ fhir:v "The type of virtual service to connect to (i.e. Teams, Zoom, Specific VMR technology, WhatsApp)." ] ;
+       fhir:comment [ fhir:v "As this type defines what the virtual service is, it then defines what address and additional information might be relevant.\n\nSome profiles could be used for specific types to define what the other values could/should be." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "VirtualServiceDetail.channelType" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "Coding" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:binding [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/binding-definition" ] ;
+           fhir:value [ fhir:v "The purpose for which an extended contact detail should be used." ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName" ] ;
+           fhir:value [ fhir:v "VirtualServiceType" ]
+         ] ) ;
+         fhir:strength [ fhir:v "example" ] ;
+         fhir:description [ fhir:v "The purpose for which an extended contact detail should be used." ] ;
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/virtual-service-type" ]
+       ]
+     ] [
+       fhir:id [ fhir:v "VirtualServiceDetail.address[x]" ] ;
+       fhir:path [ fhir:v "VirtualServiceDetail.address[x]" ] ;
+       fhir:short [ fhir:v "Contact address/number" ] ;
+       fhir:definition [ fhir:v "What address or number needs to be used for a user to connect to the virtual service to join. The channelType informs as to which datatype is appropriate to use (requires knowledge of the specific type)." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "VirtualServiceDetail.address[x]" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "url" ]
+       ] [
+         fhir:code [ fhir:v "string" ]
+       ] [
+         fhir:code [ fhir:v "ContactPoint" ]
+       ] [
+         fhir:code [ fhir:v "ExtendedContactDetail" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "VirtualServiceDetail.additionalInfo" ] ;
+       fhir:path [ fhir:v "VirtualServiceDetail.additionalInfo" ] ;
+       fhir:short [ fhir:v "Address to see alternative connection details" ] ;
+       fhir:definition [ fhir:v "Address to see alternative connection details." ] ;
+       fhir:comment [ fhir:v "This web address can be used to provide additional details on the call, such as alternative/regional call in numbers, or other associated services." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "*" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "VirtualServiceDetail.additionalInfo" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "*" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "url" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "VirtualServiceDetail.maxParticipants" ] ;
+       fhir:path [ fhir:v "VirtualServiceDetail.maxParticipants" ] ;
+       fhir:short [ fhir:v "Maximum number of participants supported by the virtual service" ] ;
+       fhir:definition [ fhir:v "Maximum number of participants supported by the virtual service." ] ;
+       fhir:comment [ fhir:v "Some services have only a limitted number of participants permitted to connect at a time, this is typically used in \"shared\" virtual services that you might find on location resources.\n\nTypically on-demand services might not have these restrictions." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "VirtualServiceDetail.maxParticipants" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "positiveInt" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "VirtualServiceDetail.sessionKey" ] ;
+       fhir:path [ fhir:v "VirtualServiceDetail.sessionKey" ] ;
+       fhir:short [ fhir:v "Session Key required by the virtual service" ] ;
+       fhir:definition [ fhir:v "Session Key required by the virtual service." ] ;
+       fhir:comment [ fhir:v "Some services require a session key to be able to access the service once connected.\n\nThis could be in cases where a shared number is used, and a session key is added to put into a private line, or to identify the participant in a call." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "VirtualServiceDetail.sessionKey" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "string" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] )
+  ] ;
+  fhir:differential [
+     fhir:element ( [
+       fhir:id [ fhir:v "VirtualServiceDetail" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+         fhir:value [ fhir:v "trial-use" ]
+       ] ) ;
+       fhir:path [ fhir:v "VirtualServiceDetail" ] ;
+       fhir:short [ fhir:v "Virtual Service Contact Details" ] ;
+       fhir:definition [ fhir:v "Virtual Service Contact Details." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "*" ]
+     ] [
+       fhir:id [ fhir:v "VirtualServiceDetail.channelType" ] ;
+       fhir:path [ fhir:v "VirtualServiceDetail.channelType" ] ;
+       fhir:short [ fhir:v "Channel Type" ] ;
+       fhir:definition [ fhir:v "The type of virtual service to connect to (i.e. Teams, Zoom, Specific VMR technology, WhatsApp)." ] ;
+       fhir:comment [ fhir:v "As this type defines what the virtual service is, it then defines what address and additional information might be relevant.\n\nSome profiles could be used for specific types to define what the other values could/should be." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "Coding" ]
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:binding [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/binding-definition" ] ;
+           fhir:value [ fhir:v "The purpose for which an extended contact detail should be used." ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName" ] ;
+           fhir:value [ fhir:v "VirtualServiceType" ]
+         ] ) ;
+         fhir:strength [ fhir:v "example" ] ;
+         fhir:description [ fhir:v "The purpose for which an extended contact detail should be used." ] ;
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/virtual-service-type" ]
+       ]
+     ] [
+       fhir:id [ fhir:v "VirtualServiceDetail.address[x]" ] ;
+       fhir:path [ fhir:v "VirtualServiceDetail.address[x]" ] ;
+       fhir:short [ fhir:v "Contact address/number" ] ;
+       fhir:definition [ fhir:v "What address or number needs to be used for a user to connect to the virtual service to join. The channelType informs as to which datatype is appropriate to use (requires knowledge of the specific type)." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "url" ]
+       ] [
+         fhir:code [ fhir:v "string" ]
+       ] [
+         fhir:code [ fhir:v "ContactPoint" ]
+       ] [
+         fhir:code [ fhir:v "ExtendedContactDetail" ]
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "VirtualServiceDetail.additionalInfo" ] ;
+       fhir:path [ fhir:v "VirtualServiceDetail.additionalInfo" ] ;
+       fhir:short [ fhir:v "Address to see alternative connection details" ] ;
+       fhir:definition [ fhir:v "Address to see alternative connection details." ] ;
+       fhir:comment [ fhir:v "This web address can be used to provide additional details on the call, such as alternative/regional call in numbers, or other associated services." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "*" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "url" ]
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "VirtualServiceDetail.maxParticipants" ] ;
+       fhir:path [ fhir:v "VirtualServiceDetail.maxParticipants" ] ;
+       fhir:short [ fhir:v "Maximum number of participants supported by the virtual service" ] ;
+       fhir:definition [ fhir:v "Maximum number of participants supported by the virtual service." ] ;
+       fhir:comment [ fhir:v "Some services have only a limitted number of participants permitted to connect at a time, this is typically used in \"shared\" virtual services that you might find on location resources.\n\nTypically on-demand services might not have these restrictions." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "positiveInt" ]
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "VirtualServiceDetail.sessionKey" ] ;
+       fhir:path [ fhir:v "VirtualServiceDetail.sessionKey" ] ;
+       fhir:short [ fhir:v "Session Key required by the virtual service" ] ;
+       fhir:definition [ fhir:v "Session Key required by the virtual service." ] ;
+       fhir:comment [ fhir:v "Some services require a session key to be able to access the service once connected.\n\nThis could be in cases where a shared number is used, and a session key is added to put into a private line, or to identify the participant in a call." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "string" ]
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,88 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "usage-context-agreement-scope"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "fhir" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/CodeSystem/usage-context-agreement-scope"], [ fhir:v "http://hl7.org/fhir/CodeSystem/usage-context-agreement-scope"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1798" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1798" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "UsageContextAgreementScope"], [ fhir:v "UsageContextAgreementScope"] ;
+  fhir:title [ fhir:v "Usage Context Agreement Scope"], [ fhir:v "Usage Context Agreement Scope"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:publisher [ fhir:v "FHIR Infrastructure"], [ fhir:v "FHIR Infrastructure"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "This codesystem defines codes describing the type of agreement represented by an artifact, for example for use in CanonicalResource.usageContext."], [ fhir:v "This codesystem defines codes describing the type of agreement represented by an artifact, for example for use in CanonicalResource.usageContext."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/usage-context-agreement-scope"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "realm-base" ] ;
+     fhir:display [ fhir:v "Realm Base" ] ;
+     fhir:definition [ fhir:v "Defines use-case independent foundational expectations for exchange within a particular country or jurisdiction.  Should be accompanied by a jurisdiction.  Commonly used as a 'base' for more restrictive artifacts." ]
+  ] [
+     fhir:code [ fhir:v "knowledge" ] ;
+     fhir:display [ fhir:v "Knowledge" ] ;
+     fhir:definition [ fhir:v "Defines use-case-specific information or guidance that is relevant to a specific business or health domain but is not mandated for particular use." ]
+  ] [
+     fhir:code [ fhir:v "domain" ] ;
+     fhir:display [ fhir:v "Domain" ] ;
+     fhir:definition [ fhir:v "Defines use-case-specific requirements for a specific business or health domain.  May vary in jurisdictional scope from international to small region and in business scope from broad to narrow." ]
+  ] [
+     fhir:code [ fhir:v "community" ] ;
+     fhir:display [ fhir:v "Community" ] ;
+     fhir:definition [ fhir:v "Sets contractual or business expectations for systems participating in a particular exchange community." ]
+  ] [
+     fhir:code [ fhir:v "system-design" ] ;
+     fhir:display [ fhir:v "System Design" ] ;
+     fhir:definition [ fhir:v "Documents the specific capabilities of a single system as 'available' for purchase or use.  May have some variability reflecting options that can be configured." ]
+  ] [
+     fhir:code [ fhir:v "system-implementation" ] ;
+     fhir:display [ fhir:v "System Implementation" ] ;
+     fhir:definition [ fhir:v "Documents the specific points of a single production system or endpoint.  This may be time-specific - i.e. reflecting the system 'as it is now' or 'as it was at some point in the past'." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

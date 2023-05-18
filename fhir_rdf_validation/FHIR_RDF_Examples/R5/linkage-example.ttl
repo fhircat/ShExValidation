@@ -1,0 +1,33 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Linkage ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n  <p>\n     Links\n      defined by <a href=\"practitioner-example-f201-ab.html\">Practitioner/f201</a> &quot;Dokter Bronsig&quot; \n     :\n  </p>\n  <ul>\n    \n    <li>source: <a href=\"condition-example.html\">Condition/example: Severe burn of left ear (Date: 24-May 2012)</a> </li>\n    \n    <li>alternate: <a href=\"condition-example-linkage.html\">Condition/example-linkage: Severe burn of left ear (Date: 24-May 2012)</a> </li>\n    \n  </ul>\n</div>"
+  ] ; # 
+  fhir:author [
+     fhir:reference [ fhir:v "Practitioner/f201" ]
+  ] ; # 
+  fhir:item ( [
+     fhir:type [ fhir:v "source" ] ;
+     fhir:resource [
+       fhir:reference [ fhir:v "Condition/example" ] ;
+       fhir:display [ fhir:v "Severe burn of left ear (Date: 24-May 2012)" ]
+     ]
+  ] [
+     fhir:type [ fhir:v "alternate" ] ;
+     fhir:resource [
+       fhir:reference [ fhir:v "Condition/example-linkage" ] ;
+       fhir:display [ fhir:v "Severe burn of left ear (Date: 24-May 2012)" ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

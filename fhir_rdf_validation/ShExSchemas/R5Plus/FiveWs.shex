@@ -1,0 +1,141 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <Base.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Timing.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <instant.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <Resource.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Location.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Encounter.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <EpisodeOfCare.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+# Who What When Where Why - Common pattern for all resources that deals with attribution
+<FiveWs> EXTENDS @<Base> CLOSED {   
+
+    a [fhir:FiveWs]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business Identifier
+    fhir:version @<string>?;                # Identifier for this version
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:resource-status}?;  # Status Field
+    fhir:class @<OneOrMore_CodeableConcept>?;  # Classifier Field
+    fhir:grade @<CodeableConcept>?;         # A field that indicates the 
+                                            # potential impact of the content of 
+                                            # the resource 
+    fhir:what @<CodeableConcept>  OR 
+    			(@<Reference>  AND {fhir:link @<Resource> })  ?;  # What this resource is about
+    fhir:subject @<OneOrMore_Reference_Organization_OR_Patient_OR_Practitioner_OR_RelatedPerson>?;  # Who this resource is about
+    fhir:context @<Reference> AND {fhir:link 
+    			@<Encounter> OR 
+    			@<EpisodeOfCare> ? }?;  # Context for the work described in 
+                                            # this resource 
+    fhir:init @<dateTime>?;                 # When the work described in this 
+                                            # resource was started (or will be) 
+    fhir:planned @<OneOrMore_Timing>?;      # When this resource is planned to 
+                                            # occur 
+    fhir:done @<dateTime>  OR 
+    			@<Period>  ?;  # When the work described in this 
+                                            # resource was completed (or will 
+                                            # be) 
+    fhir:recorded @<instant>?;              # When this resource itself was 
+                                            # created 
+    fhir:author @<OneOrMore_Reference_Organization_OR_Patient_OR_Practitioner_OR_RelatedPerson>?;  # Who authored the content of the 
+                                            # resource 
+    fhir:source @<OneOrMore_Reference_Organization_OR_Patient_OR_Practitioner_OR_RelatedPerson>?;  # Who provided the information in 
+                                            # this resource 
+    fhir:actor @<OneOrMore_Reference_Organization_OR_Patient_OR_Practitioner_OR_RelatedPerson>?;  # Who did the work described the 
+                                            # resource (or will do) 
+    fhir:cause @<OneOrMore_Reference_Organization_OR_Patient_OR_Practitioner_OR_RelatedPerson>?;  # Who prompted the work described in 
+                                            # the resource 
+    fhir:witness @<OneOrMore_Reference_Patient_OR_Practitioner_OR_RelatedPerson>?;  # Who attests to the content of the 
+                                            # resource (individual or org) 
+    fhir:who @<OneOrMore_Reference_Organization_OR_Patient_OR_Practitioner_OR_RelatedPerson>?;  # An actor involved in the work 
+                                            # described by this resource 
+    fhir:where @<OneOrMore_CodeableConcept>  OR 
+    			(@<OneOrMore_Reference>  AND {fhir:link @<OneOrMore_Location> })  ?;  # The location of the work described
+    fhir:why @<OneOrMore_CodeableConcept>  OR 
+    			(@<OneOrMore_Reference>  AND {fhir:link @<OneOrMore_Resource> })  ?;  # Why this work was done
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#---------------------- Value Sets ------------------------
+
+

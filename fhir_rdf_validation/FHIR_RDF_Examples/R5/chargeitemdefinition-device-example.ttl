@@ -1,0 +1,128 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ChargeItemDefinition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "device"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: ChargeItemDefinition</b><a name=\"device\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource ChargeItemDefinition &quot;device&quot; </p></div><p><b>url</b>: <code>http://sap.org/ChargeItemDefinition/device-123</code></p><p><b>identifier</b>: id: urn:oid:2.16.840.1.113883.4.642.29.2</p><p><b>name</b>: CustomDevice345675</p><p><b>title</b>: Financial details for custom made device (345675)</p><p><b>status</b>: active</p><p><b>date</b>: 2023-02</p><p><b>publisher</b>: Example Publisher</p><p><b>description</b>: Financial details for custom made device</p><h3>UseContexts</h3><table class=\"grid\"><tr><td>-</td><td><b>Code</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Clinical Venue (Details: http://terminology.hl7.org/CodeSystem/usage-context-type code venue = 'Clinical Venue', stated as 'null')</td><td>Outpatient environment <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#440655000)</span></td></tr><tr><td>*</td><td>Age Range (Details: http://terminology.hl7.org/CodeSystem/usage-context-type code age = 'Age Range', stated as 'null')</td><td>&gt;18 yrs<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code a = 'a')</span></td></tr></table><p><b>jurisdiction</b>: World <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (m49.htm#001)</span></p><p><b>instance</b>: <a href=\"device-example.html\">Device/example</a></p><blockquote><p><b>applicability</b></p><h3>Conditions</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Language</b></td><td><b>Expression</b></td></tr><tr><td>*</td><td>Verify ChargeItem pertains to Device 12345</td><td>text/fhirpath</td><td><span title=\"  syntax of expression may be incorrect, but you get the idea \">%context.service.suppliedItem.reference='Device/12345'</span></td></tr></table></blockquote><blockquote><p><b>propertyGroup</b></p><blockquote><p><b>priceComponent</b></p><p><b>type</b>: base</p><p><b>code</b>: Verkaufspreis (netto) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (billing-attributes#VK)</span></p><blockquote><p><b>amount</b></p><p><span title=\"Euro\">€67.44</span> (EUR)</p></blockquote></blockquote></blockquote><blockquote><p><b>propertyGroup</b></p><blockquote><p><b>applicability</b></p><blockquote><p><b>condition</b></p><p><span title=\"text/fhirpath\"><code>%context.occurenceDateTime &gt; '2018-04-01'</code></span>(&quot;Gültigkeit Steuersatz&quot;)</p></blockquote></blockquote><h3>PriceComponents</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Code</b></td><td><b>Factor</b></td></tr><tr><td>*</td><td>tax</td><td>Mehrwersteuersatz <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (billing-attributes#MWST)</span></td><td>1.19</td></tr></table></blockquote><blockquote><p><b>propertyGroup</b></p><blockquote><p><b>applicability</b></p><blockquote><p><b>condition</b></p><p><span title=\"text/fhirpath\"><code>%context.occurenceDateTime &lt;= '2018-04-01'</code></span>(&quot;Gültigkeit Steuersatz&quot;)</p></blockquote></blockquote><h3>PriceComponents</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Code</b></td><td><b>Factor</b></td></tr><tr><td>*</td><td>tax</td><td>Mehrwersteuersatz <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (billing-attributes#MWST)</span></td><td>1.07</td></tr></table></blockquote></div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://sap.org/ChargeItemDefinition/device-123"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.29.2" ]
+  ] ) ; # 
+  fhir:name [ fhir:v "CustomDevice345675"] ; # 
+  fhir:title [ fhir:v "Financial details for custom made device (345675)"] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:date [ fhir:v "2023-02"^^xsd:gYearMonth] ; # 
+  fhir:publisher [ fhir:v "Example Publisher"] ; # 
+  fhir:description [ fhir:v "Financial details for custom made device"] ; # 
+  fhir:useContext ( [
+     fhir:code [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/usage-context-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "venue" ]
+     ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         a sct:440655000 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "440655000" ] ;
+         fhir:display [ fhir:v "Outpatient environment" ]
+       ] )
+     ]
+  ] [
+     fhir:code [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/usage-context-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "age" ]
+     ] ;
+     fhir:value [
+       a fhir:Quantity ;
+       fhir:value [ fhir:v "18"^^xsd:decimal ] ;
+       fhir:comparator [ fhir:v ">" ] ;
+       fhir:unit [ fhir:v "yrs" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "a" ]
+     ]
+  ] ) ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ; # 
+  fhir:instance ( [
+     fhir:reference [ fhir:v "Device/example" ]
+  ] ) ; # 
+  fhir:applicability ( [
+     fhir:condition [
+       fhir:description [ fhir:v "Verify ChargeItem pertains to Device 12345" ] ;
+       fhir:language [ fhir:v "text/fhirpath" ] ;
+       fhir:expression [ fhir:v "%context.service.suppliedItem.reference='Device/12345'" ] #    syntax of expression may be incorrect, but you get the idea  
+     ]
+  ] ) ; #    definition only applicable if the ChargeItem pertains to the device this    
+  fhir:propertyGroup ( [
+     fhir:priceComponent ( [
+       fhir:type [ fhir:v "base" ] ;
+       fhir:code [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://fhir.de/CodeSystem/billing-attributes"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "VK" ] ;
+           fhir:display [ fhir:v "Verkaufspreis (netto)" ]
+         ] )
+       ] ;
+       fhir:amount [
+         fhir:value [ fhir:v "67.44"^^xsd:decimal ] ;
+         fhir:currency [ fhir:v "EUR" ]
+       ]
+     ] )
+  ] [
+     fhir:applicability ( [
+       fhir:condition [
+         fhir:description [ fhir:v "Gültigkeit Steuersatz" ] ;
+         fhir:language [ fhir:v "text/fhirpath" ] ;
+         fhir:expression [ fhir:v "%context.occurenceDateTime > '2018-04-01'" ] #    syntax of expression may be incorrect, but you get the idea  
+       ]
+     ] ) ;
+     fhir:priceComponent ( [
+       fhir:type [ fhir:v "tax" ] ;
+       fhir:code [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://fhir.de/CodeSystem/billing-attributes"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "MWST" ] ;
+           fhir:display [ fhir:v "Mehrwersteuersatz" ]
+         ] )
+       ] ;
+       fhir:factor [ fhir:v "1.19"^^xsd:decimal ]
+     ] )
+  ] [
+     fhir:applicability ( [
+       fhir:condition [
+         fhir:description [ fhir:v "Gültigkeit Steuersatz" ] ;
+         fhir:language [ fhir:v "text/fhirpath" ] ;
+         fhir:expression [ fhir:v "%context.occurenceDateTime <= '2018-04-01'" ] #    syntax of expression may be incorrect, but you get the idea  
+       ]
+     ] ) ;
+     fhir:priceComponent ( [
+       fhir:type [ fhir:v "tax" ] ;
+       fhir:code [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://fhir.de/CodeSystem/billing-attributes"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "MWST" ] ;
+           fhir:display [ fhir:v "Mehrwersteuersatz" ]
+         ] )
+       ] ;
+       fhir:factor [ fhir:v "1.07"^^xsd:decimal ]
+     ] )
+  ] )] . #    the base price for this device is constant, so no additional rules apply  
+
+# -------------------------------------------------------------------------------------
+

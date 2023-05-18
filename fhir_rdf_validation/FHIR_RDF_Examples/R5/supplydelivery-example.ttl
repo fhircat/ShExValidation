@@ -1,0 +1,55 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:SupplyDelivery ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "simpledelivery"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: SupplyDelivery</b><a name=\"simpledelivery\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource SupplyDelivery &quot;simpledelivery&quot; </p></div><p><b>identifier</b>: <span title=\" \nbusiness identifier - in this case the same as the request id\n \">id: Order10284</span></p><p><b>basedOn</b>: <a href=\"supplyrequest-example-simpleorder.html\">SupplyRequest/simpleorder</a></p><p><b>partOf</b>: <span>: Central Supply Restock</span></p><p><b>status</b>: completed</p><p><b>type</b>: Blood collect tubes blue cap <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-supplydelivery-supplyitemtype.html\">Supply Delivery Supply Item Type</a>#device)</span></p><h3>SuppliedItems</h3><table class=\"grid\"><tr><td>-</td><td><b>Quantity</b></td><td><b>Item[x]</b></td></tr><tr><td>*</td><td>10</td><td>Blood collect tubes blue cap <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#BlueTubes)</span></td></tr></table><p><b>occurrence</b>: 2016-12-31</p><p><b>supplier</b>: <span>: Vendor1</span></p><p><b>destination</b>: <span>: Location 1</span></p></div>"
+  ] ; #   
+#business identifier - in this case the same as the request id
+#  
+  fhir:identifier ( [
+     fhir:value [ fhir:v "Order10284" ]
+  ] ) ; # 
+  fhir:basedOn ( [
+     fhir:reference [ fhir:v "SupplyRequest/simpleorder" ]
+  ] ) ; # 
+  fhir:partOf ( [
+     fhir:display [ fhir:v "Central Supply Restock" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:type [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/supplydelivery-supplyitemtype"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "device" ]
+     ] ) ;
+     fhir:text [ fhir:v "Blood collect tubes blue cap" ]
+  ] ; # 
+  fhir:suppliedItem ( [
+     fhir:quantity [
+       fhir:value [ fhir:v "10"^^xsd:decimal ]
+     ] ;
+     fhir:item [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         fhir:code [ fhir:v "BlueTubes" ] ;
+         fhir:display [ fhir:v "Blood collect tubes blue cap" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:occurrence [ fhir:v "2016-12-31"^^xsd:date] ; # 
+  fhir:supplier [
+     fhir:display [ fhir:v "Vendor1" ]
+  ] ; # 
+  fhir:destination [
+     fhir:display [ fhir:v "Location 1" ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

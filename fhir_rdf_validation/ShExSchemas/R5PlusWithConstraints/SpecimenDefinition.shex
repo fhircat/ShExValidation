@@ -1,0 +1,213 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <date.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <Range.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
+IMPORT <Duration.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <UsageContext.shex>
+#imported_end
+#imported_begin 
+IMPORT <ContactDetail.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <SimpleQuantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <SubstanceDefinition.shex>
+#imported_end
+
+start=@<SpecimenDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Kind of specimen
+<SpecimenDefinition> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:SpecimenDefinition]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri>?;                       # Logical canonical URL to reference 
+                                            # this SpecimenDefinition (globally 
+                                            # unique) 
+    fhir:identifier @<Identifier>?;         # Business identifier
+    fhir:version @<string>?;                # Business version of the 
+                                            # SpecimenDefinition 
+    fhir:title @<string>?;                  # Name for this SpecimenDefinition 
+                                            # (Human friendly) 
+    fhir:derivedFromCanonical @<OneOrMore_canonical>?;  # Based on FHIR definition of 
+                                            # another SpecimenDefinition 
+    fhir:derivedFromUri @<OneOrMore_uri>?;  # Based on external definition
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # If this SpecimenDefinition is not 
+                                            # for real usage 
+    fhir:subject @<CodeableConcept>  OR 
+    			(@<Reference>  AND {fhir:link @<Group> })  ?;  # Type of subject for specimen 
+                                            # collection 
+    fhir:date @<dateTime>?;                 # Date status first applied
+    fhir:publisher @<string>?;              # The name of the individual or 
+                                            # organization that published the 
+                                            # SpecimenDefinition 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the SpecimenDefinition 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # Content intends to support these 
+                                            # contexts 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for this 
+                                            # SpecimenDefinition (if applicable) 
+    fhir:purpose @<markdown>?;              # Why this SpecimenDefinition is 
+                                            # defined 
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:approvalDate @<date>?;             # When SpecimenDefinition was 
+                                            # approved by publisher 
+    fhir:lastReviewDate @<date>?;           # The date on which the asset 
+                                            # content was last reviewed 
+    fhir:effectivePeriod @<Period>?;        # The effective date range for the 
+                                            # SpecimenDefinition 
+    fhir:typeCollected @<CodeableConcept>?;  # Kind of material to collect
+    fhir:patientPreparation @<OneOrMore_CodeableConcept>?;  # Patient preparation for collection
+    fhir:timeAspect @<string>?;             # Time aspect for collection
+    fhir:collection @<OneOrMore_CodeableConcept>?;  # Specimen collection procedure
+    fhir:typeTested @<OneOrMore_SpecimenDefinition.typeTested>?;  # Specimen in container intended for 
+                                            # testing by lab 
+}  
+
+# Specimen in container intended for testing by lab
+<SpecimenDefinition.typeTested> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:isDerived @<boolean>?;             # Primary or secondary specimen
+    fhir:type @<CodeableConcept>?;          # Type of intended specimen
+    fhir:preference @<code> AND
+    	{fhir:v @fhirvs:specimen-contained-preference};  # preferred | alternate
+    fhir:container @<SpecimenDefinition.typeTested.container>?;  # The specimen's container
+    fhir:requirement @<string>?;            # Requirements for specimen delivery 
+                                            # and special handling 
+    fhir:retentionTime @<Duration>?;        # The usual time for retaining this 
+                                            # kind of specimen 
+    fhir:singleUse @<boolean>?;             # Specimen for single use only
+    fhir:rejectionCriterion @<OneOrMore_CodeableConcept>?;  # Criterion specified for specimen 
+                                            # rejection 
+    fhir:handling @<OneOrMore_SpecimenDefinition.typeTested.handling>?;  # Specimen handling before testing
+    fhir:testingDestination @<OneOrMore_CodeableConcept>?;  # Where the specimen will be tested
+}  
+
+# The specimen's container
+<SpecimenDefinition.typeTested.container> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:material @<CodeableConcept>?;      # The material type used for the 
+                                            # container 
+    fhir:type @<CodeableConcept>?;          # Kind of container associated with 
+                                            # the kind of specimen 
+    fhir:cap @<CodeableConcept>?;           # Color of container cap
+    fhir:description @<string>?;            # The description of the kind of 
+                                            # container 
+    fhir:capacity @<Quantity>?;             # The capacity of this kind of 
+                                            # container 
+    fhir:minimumVolume @<SimpleQuantity>  OR 
+    			@<string>  ?;  # Minimum volume
+    fhir:additive @<OneOrMore_SpecimenDefinition.typeTested.container.additive>?;  # Additive associated with container
+    fhir:preparation @<string>?;            # Special processing applied to the 
+                                            # container for this specimen type 
+}  
+
+# Additive associated with container
+<SpecimenDefinition.typeTested.container.additive> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:additive @<CodeableConcept>  OR 
+    			(@<Reference>  AND {fhir:link @<SubstanceDefinition> })  ;  # Additive associated with container
+}  
+
+# Specimen handling before testing
+<SpecimenDefinition.typeTested.handling> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:temperatureQualifier @<CodeableConcept>?;  # Qualifies the interval of 
+                                            # temperature 
+    fhir:temperatureRange @<Range>?;        # Temperature range for these 
+                                            # handling instructions 
+    fhir:maxDuration @<Duration>?;          # Maximum preservation time
+    fhir:instruction @<string>?;            # Preservation instruction
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_SpecimenDefinition.typeTested> CLOSED {
+    rdf:first @<SpecimenDefinition.typeTested>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_SpecimenDefinition.typeTested> 
+}
+
+<OneOrMore_SpecimenDefinition.typeTested.handling> CLOSED {
+    rdf:first @<SpecimenDefinition.typeTested.handling>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_SpecimenDefinition.typeTested.handling> 
+}
+
+<OneOrMore_SpecimenDefinition.typeTested.container.additive> CLOSED {
+    rdf:first @<SpecimenDefinition.typeTested.container.additive>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_SpecimenDefinition.typeTested.container.additive> 
+}
+
+#---------------------- Value Sets ------------------------
+
+
+

@@ -1,0 +1,41 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <Resource.shex>
+#imported_end
+#imported_begin 
+IMPORT <Narrative.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+
+start=@<DomainResource> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A resource with narrative, extensions, and contained resources
+<DomainResource> EXTENDS @<Resource> CLOSED {   
+
+    a [fhir:DomainResource]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:text @<Narrative>?;                # Text summary of the resource, for 
+                                            # human interpretation 
+    fhir:contained @<OneOrMore_Resource>?;  # Contained, inline Resources
+    fhir:extension @<OneOrMore_Extension>?;  # Additional content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<OneOrMore_Extension>?;  # Extensions that cannot be ignored
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+

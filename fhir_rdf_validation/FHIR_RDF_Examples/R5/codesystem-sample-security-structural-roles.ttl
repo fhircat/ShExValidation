@@ -1,0 +1,98 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "sample-security-structural-roles"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ]
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/sample-security-structural-roles"], [ fhir:v "http://hl7.org/fhir/sample-security-structural-roles"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1800" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1800" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "SampleSecurityStructuralRoles"], [ fhir:v "SampleSecurityStructuralRoles"] ;
+  fhir:title [ fhir:v "Sample Codes for Security Structural Role"], [ fhir:v "Sample Codes for Security Structural Role"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "true"], [ fhir:v "true"] ;
+  fhir:description [ fhir:v "This codeSystem contains example structural roles. In general, two types of roles can be distinguished: structural roles and functional roles. Structural Roles reflect human or organizational categories (hierarchies), and describe prerequisites, feasibilities, or competences for actions. Functional roles are bound to the realization or performance of actions.."], [ fhir:v "This codeSystem contains example structural roles. In general, two types of roles can be distinguished: structural roles and functional roles. Structural Roles reflect human or organizational categories (hierarchies), and describe prerequisites, feasibilities, or competences for actions. Functional roles are bound to the realization or performance of actions.."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:copyright [ fhir:v "This is an example set."], [ fhir:v "This is an example set."] ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:hierarchyMeaning [ fhir:v "is-a"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "regulated-health-professionals" ] ;
+     fhir:display [ fhir:v "Regulated Health Professionals" ] ;
+     fhir:definition [ fhir:v "A person who is authorized by a national recognized body to be qualified to perform health services" ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "general-medicine" ] ;
+       fhir:display [ fhir:v "General Medicine" ] ;
+       fhir:definition [ fhir:v "The branch of medicine involving the study and treatment of general diseases or those affecting the internal parts of the body, especially those not usually requiring surgical intervention" ]
+     ] [
+       fhir:code [ fhir:v "general-nursing" ] ;
+       fhir:display [ fhir:v "General Nursing" ] ;
+       fhir:definition [ fhir:v "The branch of healthcare concerned with caring for the sick or injured in any environment." ]
+     ] [
+       fhir:code [ fhir:v "dentist" ] ;
+       fhir:display [ fhir:v "Dentist" ] ;
+       fhir:definition [ fhir:v "The specialty relating to the function and diseases of the teeth, mouth, and gums." ]
+     ] [
+       fhir:code [ fhir:v "veterinarian" ] ;
+       fhir:display [ fhir:v "Veterinarian" ] ;
+       fhir:definition [ fhir:v "The specialty relating to non-human subjects." ]
+     ] [
+       fhir:code [ fhir:v "pharmacy" ] ;
+       fhir:display [ fhir:v "Pharmacy" ] ;
+       fhir:definition [ fhir:v "The branch of medical science that deals with drugs and their uses." ]
+     ] [
+       fhir:code [ fhir:v "dietician" ] ;
+       fhir:display [ fhir:v "Dietician" ] ;
+       fhir:definition [ fhir:v "The health profession concerned with the practical application of diet in the prophylaxis and treatment of disease." ]
+     ] [
+       fhir:code [ fhir:v "pediatrics" ] ;
+       fhir:display [ fhir:v "Pediatrics" ] ;
+       fhir:definition [ fhir:v "The medical specialty concerned with the study of treatment of children in health and disease during development from birth through adolescence." ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "non-regulated-health-professionals" ] ;
+     fhir:display [ fhir:v "Non-Regulated health Professionals" ] ;
+     fhir:definition [ fhir:v "person employed by a healthcare organization who is not a health professional" ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "receptionist" ] ;
+       fhir:display [ fhir:v "Receptionist" ]
+     ] [
+       fhir:code [ fhir:v "business-manager" ] ;
+       fhir:display [ fhir:v "Business Manager" ]
+     ] [
+       fhir:code [ fhir:v "transcriptionist" ] ;
+       fhir:display [ fhir:v "Transcriptionist" ]
+     ] [
+       fhir:code [ fhir:v "claims-adjudicator" ] ;
+       fhir:display [ fhir:v "Claims Adjudicator" ]
+     ] )
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

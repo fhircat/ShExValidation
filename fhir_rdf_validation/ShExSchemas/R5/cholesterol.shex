@@ -1,0 +1,35 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <Quantity.shex>
+IMPORT <Observation.shex>
+IMPORT <BackboneElement.shex>
+
+
+start=@<cholesterol> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Measurements and simple assertions
+<cholesterol> EXTENDS @<Observation> CLOSED {   
+
+    a [fhir:cholesterol];
+    fhir:nodeRole [fhir:treeRoot]?;
+}  
+
+# Provides guide for interpretation
+<Observation.referenceRange> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Component results
+<Observation.component> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Triggering observation(s)
+<Observation.triggeredBy> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Cholesterol value
+<Observation.value[x]> EXTENDS @<Quantity> CLOSED {   
+}  
+

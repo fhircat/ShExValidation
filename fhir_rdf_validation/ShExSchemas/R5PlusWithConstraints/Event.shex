@@ -1,0 +1,428 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <Base.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <Claim.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Timing.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <Element.shex>
+#imported_end
+#imported_begin 
+IMPORT <Consent.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Location.shex>
+#imported_end
+#imported_begin 
+IMPORT <CareTeam.shex>
+#imported_end
+#imported_begin 
+IMPORT <CarePlan.shex>
+#imported_end
+#imported_begin 
+IMPORT <Contract.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coverage.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Encounter.shex>
+#imported_end
+#imported_begin 
+IMPORT <Procedure.shex>
+#imported_end
+#imported_begin 
+IMPORT <Transport.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Annotation.shex>
+#imported_end
+#imported_begin 
+IMPORT <ChargeItem.shex>
+#imported_end
+#imported_begin 
+IMPORT <Provenance.shex>
+#imported_end
+#imported_begin 
+IMPORT <Appointment.shex>
+#imported_end
+#imported_begin 
+IMPORT <Composition.shex>
+#imported_end
+#imported_begin 
+IMPORT <DeviceUsage.shex>
+#imported_end
+#imported_begin 
+IMPORT <Observation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <ImagingStudy.shex>
+#imported_end
+#imported_begin 
+IMPORT <Immunization.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <DeviceRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <SupplyRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <ClaimResponse.shex>
+#imported_end
+#imported_begin 
+IMPORT <Communication.shex>
+#imported_end
+#imported_begin 
+IMPORT <DetectedIssue.shex>
+#imported_end
+#imported_begin 
+IMPORT <EpisodeOfCare.shex>
+#imported_end
+#imported_begin 
+IMPORT <PaymentNotice.shex>
+#imported_end
+#imported_begin 
+IMPORT <ResearchStudy.shex>
+#imported_end
+#imported_begin 
+IMPORT <NutritionOrder.shex>
+#imported_end
+#imported_begin 
+IMPORT <ServiceRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <RiskAssessment.shex>
+#imported_end
+#imported_begin 
+IMPORT <SupplyDelivery.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <InventoryReport.shex>
+#imported_end
+#imported_begin 
+IMPORT <MedicationUsage.shex>
+#imported_end
+#imported_begin 
+IMPORT <NutritionIntake.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+#imported_begin 
+IMPORT <DiagnosticReport.shex>
+#imported_end
+#imported_begin 
+IMPORT <DocumentManifest.shex>
+#imported_end
+#imported_begin 
+IMPORT <GuidanceResponse.shex>
+#imported_end
+#imported_begin 
+IMPORT <ImagingSelection.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableReference.shex>
+#imported_end
+#imported_begin 
+IMPORT <EnrollmentRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <MedicationRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <DocumentReference.shex>
+#imported_end
+#imported_begin 
+IMPORT <VisionPrescription.shex>
+#imported_end
+#imported_begin 
+IMPORT <ClinicalImpression.shex>
+#imported_end
+#imported_begin 
+IMPORT <EnrollmentResponse.shex>
+#imported_end
+#imported_begin 
+IMPORT <MedicationDispense.shex>
+#imported_end
+#imported_begin 
+IMPORT <AppointmentResponse.shex>
+#imported_end
+#imported_begin 
+IMPORT <FamilyMemberHistory.shex>
+#imported_end
+#imported_begin 
+IMPORT <CommunicationRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <RequestOrchestration.shex>
+#imported_end
+#imported_begin 
+IMPORT <ExplanationOfBenefit.shex>
+#imported_end
+#imported_begin 
+IMPORT <PaymentReconciliation.shex>
+#imported_end
+#imported_begin 
+IMPORT <QuestionnaireResponse.shex>
+#imported_end
+#imported_begin 
+IMPORT <ImmunizationEvaluation.shex>
+#imported_end
+#imported_begin 
+IMPORT <MedicationAdministration.shex>
+#imported_end
+#imported_begin 
+IMPORT <CoverageEligibilityRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <ImmunizationRecommendation.shex>
+#imported_end
+#imported_begin 
+IMPORT <CoverageEligibilityResponse.shex>
+#imported_end
+# Event Pattern
+<Event> EXTENDS @<Base> CLOSED {   
+
+    a [fhir:Event]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business Identifier for {{title}}
+    fhir:basedOn @<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_Claim_OR_CommunicationRequest_OR_Contract_OR_CoverageEligibilityRequest_OR_DeviceRequest_OR_EnrollmentRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_RequestOrchestration_OR_ServiceRequest_OR_SupplyRequest_OR_VisionPrescription>?;  # Fulfills plan, proposal or order
+    fhir:partOf @<OneOrMore_Reference_AuditEvent_OR_ChargeItem_OR_ClaimResponse_OR_ClinicalImpression_OR_Communication_OR_Composition_OR_Consent_OR_Coverage_OR_CoverageEligibilityResponse_OR_DetectedIssue_OR_DeviceUsage_OR_DiagnosticReport_OR_DocumentManifest_OR_DocumentReference_OR_Encounter_OR_EnrollmentResponse_OR_EpisodeOfCare_OR_ExplanationOfBenefit_OR_FamilyMemberHistory_OR_GuidanceResponse_OR_ImagingSelection_OR_ImagingStudy_OR_Immunization_OR_ImmunizationEvaluation_OR_InventoryReport_OR_MedicationAdministration_OR_MedicationDispense_OR_MedicationUsage_OR_NutritionIntake_OR_Observation_OR_PaymentNotice_OR_PaymentReconciliation_OR_Procedure_OR_Provenance_OR_QuestionnaireResponse_OR_RiskAssessment_OR_SupplyDelivery_OR_Transport>?;  # Part of referenced event
+    fhir:researchStudy @<OneOrMore_Reference_ResearchStudy>?;  # Associated research study
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:event-status};  # preparation | in-progress | 
+                                            # not-done | suspended | aborted | 
+                                            # completed | entered-in-error | 
+                                            # unknown 
+    fhir:statusReason @<CodeableConcept>?;  # Reason for current status
+    fhir:category @<OneOrMore_CodeableConcept>?;  # High level categorization of 
+                                            # {{title}} 
+    fhir:code @<CodeableConcept>?;          # What service was done
+    fhir:product @<CodeableReference>?;     # Product used/provided
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Patient> ? };  # Individual service was done for/to
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> ? }?;  # Encounter the {{title}} is part of
+    fhir:occurrence @<dateTime>  OR 
+    			@<Period>  OR 
+    			@<Timing>  ?;  # When {{title}} occurred/is 
+                                            # occurring 
+    fhir:recorded @<dateTime>?;             # When {{title}} was first captured 
+                                            # in the subject's record 
+    fhir:reported @<boolean>  OR 
+    			(@<Reference>  AND {fhir:link @<Patient> OR 
+    			 @<RelatedPerson> OR 
+    			 @<Practitioner> OR 
+    			 @<PractitionerRole> OR 
+    			 @<Organization> })  ?;  # Reported rather than primary record
+    fhir:performer @<OneOrMore_Element>?;   # Who performed {{title}} and what 
+                                            # they did 
+    fhir:location @<Reference> AND {fhir:link 
+    			@<Location> ? }?;  # Where {{title}} occurred
+    fhir:reason @<OneOrMore_CodeableReference>?;  # Why was {{title}} performed?
+    fhir:note @<OneOrMore_Annotation>?;     # Comments made about the event
+    fhir:relevantHistory @<OneOrMore_Reference_Provenance>?;  # Key events in history of {{title}}
+}  
+
+# Who performed {{title}} and what they did
+<Event.performer> EXTENDS @<Element> CLOSED {   
+    fhir:function @<CodeableConcept>?;      # Type of performance
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ? };  # Who performed {{title}}
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#---------------------- Value Sets ------------------------
+
+

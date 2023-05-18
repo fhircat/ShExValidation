@@ -1,0 +1,153 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "search-modifier-code"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "fhir" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "3" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/search-modifier-code"], [ fhir:v "http://hl7.org/fhir/search-modifier-code"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.640" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.1.625" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.2.92" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.640" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.1.625" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.2.92" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "SearchModifierCode"], [ fhir:v "SearchModifierCode"] ;
+  fhir:title [ fhir:v "Search Modifier Code"], [ fhir:v "Search Modifier Code"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2021-01-05T10:01:24+11:00"], [ fhir:v "2021-01-05T10:01:24+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "A supported modifier for a search parameter."], [ fhir:v "A supported modifier for a search parameter."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/search-modifier-code"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "missing" ] ;
+     fhir:display [ fhir:v "Missing" ] ;
+     fhir:definition [ fhir:v "The search parameter returns resources that have a value or not." ]
+  ] [
+     fhir:code [ fhir:v "exact" ] ;
+     fhir:display [ fhir:v "Exact" ] ;
+     fhir:definition [ fhir:v "The search parameter returns resources that have a value that exactly matches the supplied parameter (the whole string, including casing and accents)." ]
+  ] [
+     fhir:code [ fhir:v "contains" ] ;
+     fhir:display [ fhir:v "Contains" ] ;
+     fhir:definition [ fhir:v "The search parameter returns resources that include the supplied parameter value anywhere within the field being searched." ]
+  ] [
+     fhir:code [ fhir:v "not" ] ;
+     fhir:display [ fhir:v "Not" ] ;
+     fhir:definition [ fhir:v "The search parameter returns resources that do not contain a match." ]
+  ] [
+     fhir:code [ fhir:v "text" ] ;
+     fhir:display [ fhir:v "Text" ] ;
+     fhir:definition [ fhir:v "The search parameter is processed as a string that searches text associated with the code/value - either CodeableConcept.text, Coding.display, Identifier.type.text, or Reference.display." ]
+  ] [
+     fhir:code [ fhir:v "in" ] ;
+     fhir:display [ fhir:v "In" ] ;
+     fhir:definition [ fhir:v "The search parameter is a URI (relative or absolute) that identifies a value set, and the search parameter tests whether the coding is in the specified value set." ]
+  ] [
+     fhir:code [ fhir:v "not-in" ] ;
+     fhir:display [ fhir:v "Not In" ] ;
+     fhir:definition [ fhir:v "The search parameter is a URI (relative or absolute) that identifies a value set, and the search parameter tests whether the coding is not in the specified value set." ]
+  ] [
+     fhir:code [ fhir:v "below" ] ;
+     fhir:display [ fhir:v "Below" ] ;
+     fhir:definition [ fhir:v "The search parameter tests whether the value in a resource is subsumed by the specified value (is-a, or hierarchical relationships)." ]
+  ] [
+     fhir:code [ fhir:v "above" ] ;
+     fhir:display [ fhir:v "Above" ] ;
+     fhir:definition [ fhir:v "The search parameter tests whether the value in a resource subsumes the specified value (is-a, or hierarchical relationships)." ]
+  ] [
+     fhir:code [ fhir:v "type" ] ;
+     fhir:display [ fhir:v "Type" ] ;
+     fhir:definition [ fhir:v "The search parameter only applies to the Resource Type specified as a modifier (e.g. the modifier is not actually :type, but :Patient etc.)." ]
+  ] [
+     fhir:code [ fhir:v "identifier" ] ;
+     fhir:display [ fhir:v "Identifier" ] ;
+     fhir:definition [ fhir:v "The search parameter applies to the identifier on the resource, not the reference." ]
+  ] [
+     fhir:code [ fhir:v "of-type" ] ;
+     fhir:display [ fhir:v "Of Type" ] ;
+     fhir:definition [ fhir:v "The search parameter has the format system|code|value, where the system and code refer to an Identifier.type.coding.system and .code, and match if any of the type codes match. All 3 parts must be present." ]
+  ] [
+     fhir:code [ fhir:v "code-text" ] ;
+     fhir:display [ fhir:v "Code Text" ] ;
+     fhir:definition [ fhir:v "Tests whether the textual display value in a resource (e.g., CodeableConcept.text, Coding.display, or Reference.display) matches the supplied parameter value." ]
+  ] [
+     fhir:code [ fhir:v "text-advanced" ] ;
+     fhir:display [ fhir:v "Text Advanced" ] ;
+     fhir:definition [ fhir:v "Tests whether the value in a resource matches the supplied parameter value using advanced text handling that searches text associated with the code/value - e.g., CodeableConcept.text, Coding.display, or Identifier.type.text." ]
+  ] [
+     fhir:code [ fhir:v "iterate" ] ;
+     fhir:display [ fhir:v "Iterate" ] ;
+     fhir:definition [ fhir:v "The search parameter indicates an inclusion directive (_include, _revinclude) that is applied to an included resource instead of the matching resource." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

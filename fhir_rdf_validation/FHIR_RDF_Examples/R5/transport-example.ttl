@@ -1,0 +1,38 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Transport ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "simpledelivery"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Transport</b><a name=\"simpledelivery\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Transport &quot;simpledelivery&quot; </p></div><p><b>identifier</b>: <span title=\" \nbusiness identifier - in this case the same as the request id\n \">id: Transport1234</span></p><p><b>basedOn</b>: <a href=\"supplyrequest-example-simpleorder.html\">SupplyRequest/simpleorder</a></p><p><b>partOf</b>: <span>: Central Supply Restock</span></p><p><b>status</b>: completed</p><p><b>intent</b>: order</p><p><b>requestedLocation</b>: <a href=\"broken-link.html\">Transport/location-hospitalLab: Requested location for item at City Hospital Lab</a></p><p><b>currentLocation</b>: <a href=\"broken-link.html\">Transport/location-labA: Current location for item at Lab A</a></p></div>"
+  ] ; #   
+#business identifier - in this case the same as the request id
+#  
+  fhir:identifier ( [
+     fhir:value [ fhir:v "Transport1234" ]
+  ] ) ; # 
+  fhir:basedOn ( [
+     fhir:reference [ fhir:v "SupplyRequest/simpleorder" ]
+  ] ) ; # 
+  fhir:partOf ( [
+     fhir:display [ fhir:v "Central Supply Restock" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:intent [ fhir:v "order"] ; # 
+  fhir:requestedLocation [
+     fhir:reference [ fhir:v "Transport/location-hospitalLab" ] ;
+     fhir:display [ fhir:v "Requested location for item at City Hospital Lab" ]
+  ] ; # 
+  fhir:currentLocation [
+     fhir:reference [ fhir:v "Transport/location-labA" ] ;
+     fhir:display [ fhir:v "Current location for item at Lab A" ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

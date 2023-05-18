@@ -1,0 +1,111 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Task.shex>
+IMPORT <date.shex>
+IMPORT <Money.shex>
+IMPORT <Period.shex>
+IMPORT <string.shex>
+IMPORT <dateTime.shex>
+IMPORT <Resource.shex>
+IMPORT <Reference.shex>
+IMPORT <Identifier.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+
+
+start=@<PaymentReconciliation> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# PaymentReconciliation resource
+<PaymentReconciliation> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:PaymentReconciliation];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business Identifier for a payment 
+                                            # reconciliation 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:fm-status};  # active | cancelled | draft | 
+                                            # entered-in-error 
+    fhir:period @<Period>?;                 # Period covered
+    fhir:created @<dateTime>;               # Creation date
+    fhir:paymentIssuer @<Reference> AND {fhir:link 
+    			@<Organization> }?;  # Party generating payment
+    fhir:request @<Reference> AND {fhir:link 
+    			@<Task> }?;  # Reference to requesting resource
+    fhir:requestor @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> }?;  # Responsible practitioner
+    fhir:outcome @<code> AND
+    	{fhir:v @fhirvs:payment-outcome}?;  # queued | complete | error | partial
+    fhir:disposition @<string>?;            # Disposition message
+    fhir:paymentDate @<date>;               # When payment issued
+    fhir:paymentAmount @<Money>;            # Total amount of Payment
+    fhir:paymentIdentifier @<Identifier>?;  # Business identifier for the payment
+    fhir:detail @<OneOrMore_BackboneElement>?;  # Settlement particulars
+    fhir:formCode @<CodeableConcept>?;      # Printed form identifier
+    fhir:processNote @<OneOrMore_BackboneElement>?;  # Note concerning processing
+}  
+
+# Settlement particulars
+<PaymentReconciliation.detail> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:identifier @<Identifier>?;         # Business identifier of the payment 
+                                            # detail 
+    fhir:predecessor @<Identifier>?;        # Business identifier of the prior 
+                                            # payment detail 
+    fhir:type @<CodeableConcept>;           # Category of payment
+    fhir:request @<Reference> AND {fhir:link 
+    			@<Resource> }?;  # Request giving rise to the payment
+    fhir:submitter @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> }?;  # Submitter of the request
+    fhir:response @<Reference> AND {fhir:link 
+    			@<Resource> }?;  # Response committing to a payment
+    fhir:date @<date>?;                     # Date of commitment to pay
+    fhir:responsible @<Reference> AND {fhir:link 
+    			@<PractitionerRole> }?;  # Contact for the response
+    fhir:payee @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> }?;  # Recipient of the payment
+    fhir:amount @<Money>?;                  # Amount allocated to this payable
+}  
+
+# Note concerning processing
+<PaymentReconciliation.processNote> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:note-type}?;  # display | print | printoper
+    fhir:text @<string>?;                   # Note explanatory text
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# This value set includes Status codes.
+fhirvs:fm-status ["active" "cancelled" "draft" "entered-in-error"]
+
+# The presentation types of notes.
+fhirvs:note-type ["display" "print" "printoper"]
+
+# The outcome of the processing.
+fhirvs:payment-outcome ["queued" "complete" "error" "partial"]
+

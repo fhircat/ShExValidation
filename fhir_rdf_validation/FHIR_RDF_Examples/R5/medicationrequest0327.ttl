@@ -1,0 +1,89 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:MedicationRequest ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "medrx0327"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicationRequest</b><a name=\"medrx0327\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicationRequest &quot;medrx0327&quot; </p></div><p><b>identifier</b>: id: 12345689 (use: OFFICIAL)</p><p><b>status</b>: active</p><p><b>intent</b>: order</p><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Fentanyl 25micrograms/hour patch (product) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#333919005)</span></td></tr></table><p><b>subject</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><p><b>authoredOn</b>: 2015-01-15</p><p><b>requester</b>: <a href=\"practitioner-example-f007-sh.html\">Practitioner/f007: Patrick Pump</a> &quot;Simone HEPS&quot;</p><blockquote><p><b>dosageInstruction</b></p><p><b>sequence</b>: 1</p><p><b>text</b>: apply one patch three times per week</p><p><b>timing</b>: 3 per 1 weeks</p><blockquote><p><b>doseAndRate</b></p></blockquote></blockquote><blockquote><p><b>dispenseRequest</b></p><p><b>validityPeriod</b>: 2015-01-15 --&gt; 2016-01-15</p><p><b>quantity</b>: 6 patch<span style=\"background: LightGoldenRodYellow\"> (Details: http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm code PATCH = 'Patch')</span></p><h3>ExpectedSupplyDurations</h3><table class=\"grid\"><tr><td>-</td><td><b>Value</b></td><td><b>Unit</b></td><td><b>System</b></td><td><b>Code</b></td></tr><tr><td>*</td><td>14</td><td>days</td><td><a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ucum.html\">Unified Code for Units of Measure (UCUM)</a></td><td>d</td></tr></table></blockquote></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "official" ] ;
+     fhir:system [ fhir:v "http://www.bmc.nl/portal/prescriptions"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "12345689" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:intent [ fhir:v "order"] ; # 
+  fhir:medication [
+     fhir:concept [
+       fhir:coding ( [
+         a sct:333919005 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "333919005" ] ;
+         fhir:display [ fhir:v "Fentanyl 25micrograms/hour patch (product)" ]
+       ] )
+     ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat1" ] ; #    Linked to the resource patient who needs the medication   
+     fhir:display [ fhir:v "Donald Duck" ]
+  ] ; # 
+  fhir:authoredOn [ fhir:v "2015-01-15"^^xsd:date] ; # 
+  fhir:requester [
+     fhir:reference [ fhir:v "Practitioner/f007" ] ;
+     fhir:display [ fhir:v "Patrick Pump" ]
+  ] ; # 
+  fhir:dosageInstruction ( [
+     fhir:sequence [ fhir:v "1"^^xsd:integer ] ;
+     fhir:text [ fhir:v "apply one patch three times per week" ] ;
+     fhir:timing [
+       fhir:repeat [
+         fhir:frequency [ fhir:v "3"^^xsd:positiveInteger ] ;
+         fhir:period [ fhir:v "1"^^xsd:decimal ] ;
+         fhir:periodUnit [ fhir:v "wk" ]
+       ]
+     ] ;
+     fhir:doseAndRate ( [
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/dose-rate-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "ordered" ] ;
+           fhir:display [ fhir:v "Ordered" ]
+         ] )
+       ] ;
+       fhir:dose [
+         a fhir:Quantity ;
+         fhir:value [ fhir:v "1"^^xsd:decimal ] ;
+         fhir:unit [ fhir:v "patch" ] ;
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "PATCH" ]
+       ]
+     ] )
+  ] ) ; # 
+  fhir:dispenseRequest [
+     fhir:validityPeriod [
+       fhir:start [ fhir:v "2015-01-15"^^xsd:date ] ;
+       fhir:end [ fhir:v "2016-01-15"^^xsd:date ]
+     ] ;
+     fhir:quantity [
+       fhir:value [ fhir:v "6"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "patch" ] ;
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "PATCH" ]
+     ] ;
+     fhir:expectedSupplyDuration [
+       fhir:value [ fhir:v "14"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "days" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "d" ]
+     ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

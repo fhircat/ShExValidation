@@ -1,0 +1,168 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <date.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <Money.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <Account.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Annotation.shex>
+#imported_end
+#imported_begin 
+IMPORT <ChargeItem.shex>
+#imported_end
+#imported_begin 
+IMPORT <positiveInt.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+#imported_begin 
+IMPORT <MonetaryComponent.shex>
+#imported_end
+
+start=@<Invoice> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Invoice containing ChargeItems from an Account
+<Invoice> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Invoice]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business Identifier for item
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:invoice-status};  # draft | issued | balanced | 
+                                            # cancelled | entered-in-error 
+    fhir:cancelledReason @<string>?;        # Reason for cancellation of this 
+                                            # Invoice 
+    fhir:type @<CodeableConcept>?;          # Type of Invoice
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Patient> ? }?;  # Recipient(s) of goods and services
+    fhir:recipient @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<RelatedPerson> ? }?;  # Recipient of this invoice
+    fhir:date @<dateTime>?;                 # DEPRICATED
+    fhir:creation @<dateTime>?;             # When posted
+    fhir:period @<date>  OR 
+    			@<Period>  ?;  # Billing date or period
+    fhir:participant @<OneOrMore_Invoice.participant>?;  # Participant in creation of this 
+                                            # Invoice 
+    fhir:issuer @<Reference> AND {fhir:link 
+    			@<Organization> ? }?;  # Issuing Organization of Invoice
+    fhir:account @<Reference> AND {fhir:link 
+    			@<Account> ? }?;  # Account that is being balanced
+    fhir:lineItem @<OneOrMore_Invoice.lineItem>?;  # Line items of this Invoice
+    fhir:totalPriceComponent @<OneOrMore_MonetaryComponent>?;  # Components of Invoice total
+    fhir:totalNet @<Money>?;                # Net total of this Invoice
+    fhir:totalGross @<Money>?;              # Gross total of this Invoice
+    fhir:paymentTerms @<markdown>?;         # Payment details
+    fhir:note @<OneOrMore_Annotation>?;     # Comments made about the invoice
+}  
+
+# Participant in creation of this Invoice
+<Invoice.participant> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:role @<CodeableConcept>?;          # Type of involvement in creation of 
+                                            # this Invoice 
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ? };  # Individual who was involved
+}  
+
+# Line items of this Invoice
+<Invoice.lineItem> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:sequence @<positiveInt>?;          # Sequence number of line item
+    fhir:serviced @<date>  OR 
+    			@<Period>  ?;  # Service data or period
+    fhir:chargeItem (@<Reference>  AND {fhir:link @<ChargeItem> })  OR 
+    			@<CodeableConcept>  ;  # Reference to ChargeItem containing 
+                                            # details of this line item or an 
+                                            # inline billing code 
+    fhir:priceComponent @<OneOrMore_MonetaryComponent>?;  # Components of total line item price
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+<OneOrMore_Invoice.participant> CLOSED {
+    rdf:first @<Invoice.participant>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Invoice.participant> 
+}
+
+<OneOrMore_Invoice.lineItem> CLOSED {
+    rdf:first @<Invoice.lineItem>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Invoice.lineItem> 
+}
+
+
+
+
+
+#---------------------- Value Sets ------------------------
+
+

@@ -1,0 +1,93 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ConceptMap ;
+  fhir:id [ fhir:v "cm-contact-point-use-v3"] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ConceptMap/cm-contact-point-use-v3"], [ fhir:v "http://hl7.org/fhir/ConceptMap/cm-contact-point-use-v3"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "v3.ContactPointUse"], [ fhir:v "v3.ContactPointUse"] ;
+  fhir:title [ fhir:v "v3 map for ContactPointUse"], [ fhir:v "v3 map for ContactPointUse"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:sourceScope [ fhir:v "http://hl7.org/fhir/ValueSet/contact-point-use"] ;
+  fhir:targetScope [ fhir:v "http://terminology.hl7.org/ValueSet/v3-AddressUse"] ;
+  fhir:group ( [
+     fhir:source [ fhir:v "http://hl7.org/fhir/contact-point-use" ] ;
+     fhir:target [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-AddressUse" ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "home" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "H" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "work" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "WP" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "temp" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "TMP" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "old" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "OLD" ] ;
+         fhir:relationship [ fhir:v "source-is-broader-than-target" ] ;
+         fhir:comment [ fhir:v "Old and Bad" ]
+       ] [
+         fhir:code [ fhir:v "BAD" ] ;
+         fhir:relationship [ fhir:v "source-is-broader-than-target" ] ;
+         fhir:comment [ fhir:v "Old and Bad" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "mobile" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "MC" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] )
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

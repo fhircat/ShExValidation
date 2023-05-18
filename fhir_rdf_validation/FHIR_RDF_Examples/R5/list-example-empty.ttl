@@ -1,0 +1,41 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:List ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-empty"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <p>The patient is not on any medications</p>\n    </div>"
+  ] ; # 
+  fhir:status [ fhir:v "current"] ; # 
+  fhir:mode [ fhir:v "snapshot"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a sct:182836005 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "182836005" ] ;
+       fhir:display [ fhir:v "Review of medication" ]
+     ] ) ;
+     fhir:text [ fhir:v "Medication Review" ]
+  ] ; # 
+  fhir:date [ fhir:v "2012-11-26T07:30:23+11:00"^^xsd:dateTime] ; # 
+  fhir:source [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:emptyReason [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/list-empty-reason"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "nilknown" ] ;
+       fhir:display [ fhir:v "Nil Known" ]
+     ] ) ;
+     fhir:text [ fhir:v "The patient is not on any medications" ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,97 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "search-param-type"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ]
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "fhir" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "normative" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version" ] ;
+     fhir:value [ fhir:v "4.0.0" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "5" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/search-param-type"], [ fhir:v "http://hl7.org/fhir/search-param-type"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.12" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.12" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "SearchParamType"], [ fhir:v "SearchParamType"] ;
+  fhir:title [ fhir:v "SearchParamType"], [ fhir:v "SearchParamType"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:description [ fhir:v "Data types allowed to be used for search parameters."], [ fhir:v "Data types allowed to be used for search parameters."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/search-param-type"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "number" ] ;
+     fhir:display [ fhir:v "Number" ] ;
+     fhir:definition [ fhir:v "Search parameter SHALL be a number (a whole number, or a decimal)." ]
+  ] [
+     fhir:code [ fhir:v "date" ] ;
+     fhir:display [ fhir:v "Date/DateTime" ] ;
+     fhir:definition [ fhir:v "Search parameter is on a date/time. The date format is the standard XML format, though other formats may be supported." ]
+  ] [
+     fhir:code [ fhir:v "string" ] ;
+     fhir:display [ fhir:v "String" ] ;
+     fhir:definition [ fhir:v "Search parameter is a simple string, like a name part. Search is case-insensitive and accent-insensitive. May match just the start of a string. String parameters may contain spaces." ]
+  ] [
+     fhir:code [ fhir:v "token" ] ;
+     fhir:display [ fhir:v "Token" ] ;
+     fhir:definition [ fhir:v "Search parameter on a coded element or identifier. May be used to search through the text, display, code and code/codesystem (for codes) and label, system and key (for identifier). Its value is either a string or a pair of namespace and value, separated by a \"|\", depending on the modifier used." ]
+  ] [
+     fhir:code [ fhir:v "reference" ] ;
+     fhir:display [ fhir:v "Reference" ] ;
+     fhir:definition [ fhir:v "A reference to another resource (Reference or canonical)." ]
+  ] [
+     fhir:code [ fhir:v "composite" ] ;
+     fhir:display [ fhir:v "Composite" ] ;
+     fhir:definition [ fhir:v "A composite search parameter that combines a search on two values together." ]
+  ] [
+     fhir:code [ fhir:v "quantity" ] ;
+     fhir:display [ fhir:v "Quantity" ] ;
+     fhir:definition [ fhir:v "A search parameter that searches on a quantity." ]
+  ] [
+     fhir:code [ fhir:v "uri" ] ;
+     fhir:display [ fhir:v "URI" ] ;
+     fhir:definition [ fhir:v "A search parameter that searches on a URI (RFC 3986)." ]
+  ] [
+     fhir:code [ fhir:v "special" ] ;
+     fhir:display [ fhir:v "Special" ] ;
+     fhir:definition [ fhir:v "Special logic applies to this parameter per the description of the search parameter." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

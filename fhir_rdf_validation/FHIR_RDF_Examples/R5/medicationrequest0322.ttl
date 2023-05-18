@@ -1,0 +1,158 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:MedicationRequest ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "medrx0322"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicationRequest</b><a name=\"medrx0322\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicationRequest &quot;medrx0322&quot; </p></div><p><b>identifier</b>: id: 12345689 (use: OFFICIAL)</p><p><b>status</b>: completed</p><p><b>intent</b>: order</p><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><span title=\"  Linked to a RESOURCE Medication  \"><a name=\"med0317\"> </a></span><blockquote><p/><p><a name=\"med0317\"> </a></p><p><b>doseForm</b>: Injection Solution (qualifier value) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#385219001)</span></p><blockquote><p><b>ingredient</b></p><h3>Items</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Potassium Chloride <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-rxNorm.html\">RxNorm</a>#204520)</span></td></tr></table><p><b>strength</b>: 2 meq<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code meq = 'meq')</span>/1 mL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mL = 'mL')</span></p></blockquote><blockquote><p><b>ingredient</b></p><h3>Items</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Sodium Chloride 0.9% injectable solution <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-rxNorm.html\">RxNorm</a>#313002)</span></td></tr></table><p><b>strength</b>: 0.9 g<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code g = 'g')</span>/100 mL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mL = 'mL')</span></p></blockquote></blockquote></td></tr></table><p><b>subject</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><p><b>authoredOn</b>: 2015-01-15</p><p><b>requester</b>: <a href=\"practitioner-example-f007-sh.html\">Practitioner/f007: Patrick Pump</a> &quot;Simone HEPS&quot;</p><h3>Reasons</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Disorder of Electrolytes (disorder) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#237840007)</span></td></tr></table><blockquote><p><b>dosageInstruction</b></p><p><b>sequence</b>: 1</p><p><b>text</b>: KCl 20 mEq in 1 L 0.9%NS IV at 100 ml/hr</p><p><b>timing</b>: Once per 1 hours</p><p><b>route</b>: Intravenous route (qualifier value) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#47625008)</span></p><blockquote><p><b>doseAndRate</b></p></blockquote></blockquote></div>"
+  ] ; # 
+  fhir:contained ( [
+     a fhir:Medication ;
+     fhir:id [ fhir:v "med0317" ] ;
+     fhir:doseForm [
+       fhir:coding ( [
+         a sct:385219001 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "385219001" ] ;
+         fhir:display [ fhir:v "Injection Solution (qualifier value)" ]
+       ] ) ;
+       fhir:text [ fhir:v "Injection Solution (qualifier value)" ]
+     ] ;
+     fhir:ingredient ( [
+       fhir:item [
+         fhir:concept [
+           fhir:coding ( [
+             fhir:system [ fhir:v "http://www.nlm.nih.gov/research/umls/rxnorm"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "204520" ] ;
+             fhir:display [ fhir:v "Potassium Chloride" ]
+           ] )
+         ]
+       ] ;
+       fhir:strength [
+         a fhir:Ratio ;
+         fhir:numerator [
+           fhir:value [ fhir:v "2"^^xsd:decimal ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "meq" ]
+         ] ;
+         fhir:denominator [
+           fhir:value [ fhir:v "1"^^xsd:decimal ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "mL" ]
+         ]
+       ]
+     ] [
+       fhir:item [
+         fhir:concept [
+           fhir:coding ( [
+             fhir:system [ fhir:v "http://www.nlm.nih.gov/research/umls/rxnorm"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "313002" ] ;
+             fhir:display [ fhir:v "Sodium Chloride 0.9% injectable solution" ]
+           ] )
+         ]
+       ] ;
+       fhir:strength [
+         a fhir:Ratio ;
+         fhir:numerator [
+           fhir:value [ fhir:v "0.9"^^xsd:decimal ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "g" ]
+         ] ;
+         fhir:denominator [
+           fhir:value [ fhir:v "100"^^xsd:decimal ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "mL" ]
+         ]
+       ]
+     ] )
+  ] ) ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "official" ] ;
+     fhir:system [ fhir:v "http://www.bmc.nl/portal/prescriptions"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "12345689" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:intent [ fhir:v "order"] ; # 
+  fhir:medication [
+     fhir:reference [
+       fhir:reference [ fhir:v "#med0317" ] ;
+       fhir:display [ fhir:v "Potassium Chloride 20mEq in 1L Normal Saline" ]
+     ] #    Linked to a RESOURCE Medication   
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat1" ] ; #    Linked to the resource patient who needs the medication   
+     fhir:display [ fhir:v "Donald Duck" ]
+  ] ; # 
+  fhir:authoredOn [ fhir:v "2015-01-15"^^xsd:date] ; # 
+  fhir:requester [
+     fhir:reference [ fhir:v "Practitioner/f007" ] ;
+     fhir:display [ fhir:v "Patrick Pump" ]
+  ] ; # 
+  fhir:reason ( [
+     fhir:concept [
+       fhir:coding ( [
+         a sct:237840007 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "237840007" ] ;
+         fhir:display [ fhir:v "Disorder of Electrolytes (disorder)" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:dosageInstruction ( [
+     fhir:sequence [ fhir:v "1"^^xsd:integer ] ;
+     fhir:text [ fhir:v "KCl 20 mEq in 1 L 0.9%NS IV at 100 ml/hr" ] ;
+     fhir:timing [
+       fhir:repeat [
+         fhir:frequency [ fhir:v "1"^^xsd:positiveInteger ] ;
+         fhir:period [ fhir:v "1"^^xsd:decimal ] ;
+         fhir:periodUnit [ fhir:v "h" ]
+       ]
+     ] ;
+     fhir:route [
+       fhir:coding ( [
+         a sct:47625008 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "47625008" ] ;
+         fhir:display [ fhir:v "Intravenous route (qualifier value)" ]
+       ] )
+     ] ;
+     fhir:doseAndRate ( [
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/dose-rate-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "ordered" ] ;
+           fhir:display [ fhir:v "Ordered" ]
+         ] )
+       ] ;
+       fhir:dose [
+         a fhir:Quantity ;
+         fhir:value [ fhir:v "20"^^xsd:decimal ] ;
+         fhir:unit [ fhir:v "meq" ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "meq" ]
+       ] ;
+       fhir:rate [
+         a fhir:Ratio ;
+         fhir:numerator [
+           fhir:value [ fhir:v "100"^^xsd:decimal ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "mL" ]
+         ] ;
+         fhir:denominator [
+           fhir:value [ fhir:v "1"^^xsd:decimal ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "h" ]
+         ]
+       ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

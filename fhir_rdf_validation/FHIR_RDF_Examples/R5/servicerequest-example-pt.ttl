@@ -1,0 +1,65 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ServiceRequest ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "physical-therapy"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: ServiceRequest</b><a name=\"physical-therapy\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource ServiceRequest &quot;physical-therapy&quot; </p></div><p><b>status</b>: <span title=\"  insert contents here  \">completed</span></p><p><b>intent</b>: order</p><p><b>category</b>: Evaluation <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#386053000 &quot;Evaluation procedure (procedure)&quot;)</span></p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Assessment of passive range of motion <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#710830005 &quot;Assessment of passive range of motion (procedure)&quot;)</span></td></tr></table><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>occurrence</b>: 2016-09-27</p><p><b>authoredOn</b>: 2016-09-20</p><p><b>requester</b>: <span>: Ollie Ortho, MD</span></p><p><b>performer</b>: <span>: Paul Therapist, PT</span></p><h3>Reasons</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>assessment of mobility limitations due to osteoarthritis <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table><p><b>bodySite</b>: Both knees <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#36701003 &quot;Both knees (body structure)&quot;)</span></p></div>"
+  ] ; #    insert contents here   
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:intent [ fhir:v "order"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       a sct:386053000 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "386053000" ] ;
+       fhir:display [ fhir:v "Evaluation procedure (procedure)" ]
+     ] ) ;
+     fhir:text [ fhir:v "Evaluation" ]
+  ] ) ; # 
+  fhir:code [
+     fhir:concept [
+       fhir:coding ( [
+         a sct:710830005 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "710830005" ] ;
+         fhir:display [ fhir:v "Assessment of passive range of motion (procedure)" ]
+       ] ) ;
+       fhir:text [ fhir:v "Assessment of passive range of motion" ]
+     ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:occurrence [ fhir:v "2016-09-27"^^xsd:date] ; # 
+  fhir:authoredOn [ fhir:v "2016-09-20"^^xsd:date] ; # 
+  fhir:requester [
+     fhir:display [ fhir:v "Ollie Ortho, MD" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:display [ fhir:v "Paul Therapist, PT" ]
+  ] ) ; # 
+  fhir:reason ( [
+     fhir:concept [
+       fhir:text [ fhir:v "assessment of mobility limitations due to osteoarthritis" ]
+     ]
+  ] ) ; # 
+  fhir:bodySite ( [
+     fhir:coding ( [
+       a sct:36701003 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "36701003" ] ;
+       fhir:display [ fhir:v "Both knees (body structure)" ]
+     ] ) ;
+     fhir:text [ fhir:v "Both knees" ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

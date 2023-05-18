@@ -1,0 +1,109 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "audit-event-severity"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "sec" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "3" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/audit-event-severity"], [ fhir:v "http://hl7.org/fhir/audit-event-severity"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1894" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1894" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "AuditEventSeverity"], [ fhir:v "AuditEventSeverity"] ;
+  fhir:title [ fhir:v "Audit Event Severity"], [ fhir:v "Audit Event Severity"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2022-06-06T10:01:24+11:00"], [ fhir:v "2022-06-06T10:01:24+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The severity of the audit entry."], [ fhir:v "The severity of the audit entry."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/audit-event-severity"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "emergency" ] ;
+     fhir:display [ fhir:v "Emergency" ] ;
+     fhir:definition [ fhir:v "System is unusable. e.g., This level should only be reported by infrastructure and should not be used by applications." ]
+  ] [
+     fhir:code [ fhir:v "alert" ] ;
+     fhir:display [ fhir:v "Alert" ] ;
+     fhir:definition [ fhir:v "Notification should be sent to trigger action be taken. e.g., Loss of the primary network connection needing attention." ]
+  ] [
+     fhir:code [ fhir:v "critical" ] ;
+     fhir:display [ fhir:v "Critical" ] ;
+     fhir:definition [ fhir:v "Critical conditions. e.g., A failure in the system's primary application that will reset automatically." ]
+  ] [
+     fhir:code [ fhir:v "error" ] ;
+     fhir:display [ fhir:v "Error" ] ;
+     fhir:definition [ fhir:v "Error conditions. e.g., An application has exceeded its file storage limit and attempts to write are failing. " ]
+  ] [
+     fhir:code [ fhir:v "warning" ] ;
+     fhir:display [ fhir:v "Warning" ] ;
+     fhir:definition [ fhir:v "Warning conditions. May indicate that an error will occur if action is not taken. e.g., A non-root file system has only 2GB remaining." ]
+  ] [
+     fhir:code [ fhir:v "notice" ] ;
+     fhir:display [ fhir:v "Notice" ] ;
+     fhir:definition [ fhir:v "Notice messages. Normal but significant condition. Events that are unusual, but not error conditions." ]
+  ] [
+     fhir:code [ fhir:v "informational" ] ;
+     fhir:display [ fhir:v "Informational" ] ;
+     fhir:definition [ fhir:v "Normal operational messages that require no action. e.g., An application has started, paused, or ended successfully." ]
+  ] [
+     fhir:code [ fhir:v "debug" ] ;
+     fhir:display [ fhir:v "Debug" ] ;
+     fhir:definition [ fhir:v "Debug-level messages. Information useful to developers for debugging the application." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

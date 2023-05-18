@@ -1,0 +1,282 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Ratio.shex>
+#imported_end
+#imported_begin 
+IMPORT <Range.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Timing.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <Location.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <CarePlan.shex>
+#imported_end
+#imported_begin 
+IMPORT <Resource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CareTeam.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coverage.shex>
+#imported_end
+#imported_begin 
+IMPORT <Specimen.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Encounter.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Annotation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Provenance.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <BodyStructure.shex>
+#imported_end
+#imported_begin 
+IMPORT <ClaimResponse.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableReference.shex>
+#imported_end
+#imported_begin 
+IMPORT <MedicationRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <HealthcareService.shex>
+#imported_end
+
+start=@<ServiceRequest> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A request for a service to be performed
+<ServiceRequest> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:ServiceRequest]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Identifiers assigned to this order
+    fhir:instantiatesCanonical @<OneOrMore_canonical>?;  # Instantiates FHIR protocol or 
+                                            # definition 
+    fhir:instantiatesUri @<OneOrMore_uri>?;  # Instantiates external protocol or 
+                                            # definition 
+    fhir:basedOn @<OneOrMore_Reference_CarePlan_OR_MedicationRequest_OR_ServiceRequest>?;  # What request fulfills
+    fhir:replaces @<OneOrMore_Reference_ServiceRequest>?;  # What request replaces
+    fhir:requisition @<Identifier>?;        # Composite Request ID
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:request-status};  # draft | active | on-hold | revoked 
+                                            # | completed | entered-in-error | 
+                                            # unknown 
+    fhir:intent @<code> AND
+    	{fhir:v @fhirvs:request-intent};  # proposal | plan | directive | 
+                                            # order + 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Classification of service
+    fhir:priority @<code> AND
+    	{fhir:v @fhirvs:request-priority}?;  # routine | urgent | asap | stat
+    fhir:doNotPerform @<boolean>?;          # True if service/procedure should 
+                                            # not be performed 
+    fhir:code @<CodeableReference>?;        # What is being requested/ordered
+    fhir:orderDetail @<OneOrMore_CodeableConcept>?;  # Additional order information
+    fhir:quantity @<Quantity>  OR 
+    			@<Ratio>  OR 
+    			@<Range>  ?;  # Service amount
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<Location> OR 
+    			@<Patient> ? };  # Individual or Entity the service 
+                                            # is ordered for 
+    fhir:focus @<OneOrMore_Reference_Resource>?;  # What the service request is about, 
+                                            # when it is not about the subject 
+                                            # of record 
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> ? }?;  # Encounter in which the request was 
+                                            # created 
+    fhir:occurrence @<dateTime>  OR 
+    			@<Period>  OR 
+    			@<Timing>  ?;  # When service should occur
+    fhir:asNeeded @<boolean>  OR 
+    			@<CodeableConcept>  ?;  # Preconditions for service
+    fhir:authoredOn @<dateTime>?;           # Date request signed
+    fhir:requester @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ? }?;  # Who/what is requesting service
+    fhir:performerType @<CodeableConcept>?;  # Performer role
+    fhir:performer @<OneOrMore_Reference_CareTeam_OR_Device_OR_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Requested performer
+    fhir:location @<OneOrMore_CodeableReference>?;  # Requested location
+    fhir:reason @<OneOrMore_CodeableReference>?;  # Explanation/Justification for 
+                                            # procedure or service 
+    fhir:insurance @<OneOrMore_Reference_ClaimResponse_OR_Coverage>?;  # Associated insurance coverage
+    fhir:supportingInfo @<OneOrMore_Reference_Resource>?;  # Additional clinical information
+    fhir:specimen @<OneOrMore_Reference_Specimen>?;  # Procedure Samples
+    fhir:bodySite @<OneOrMore_CodeableConcept>?;  # Coded location on Body
+    fhir:bodyStructure @<Reference> AND {fhir:link 
+    			@<BodyStructure> ? }?;  # BodyStructure-based location on 
+                                            # the body 
+    fhir:note @<OneOrMore_Annotation>?;     # Comments
+    fhir:patientInstruction @<string>?;     # Patient or consumer-oriented 
+                                            # instructions 
+    fhir:relevantHistory @<OneOrMore_Reference_Provenance>?;  # Request provenance
+} AND (
+
+# Constraint UniqueKey:bdystr-1
+# Human readable:bodyStructure SHALL only be present if bodySite is not present
+
+# Constraint: bodySite.exists() or bodyStructure.exists()
+# ShEx:
+
+{fhir:bodySite . OR {fhir:bodyStructure .}}
+
+) AND (
+
+# Constraint UniqueKey:prr-1
+# Human readable:orderDetail SHALL only be present if code is present
+
+# Constraint: orderDetail.empty() or code.exists()
+# ShEx:
+
+ NOT { fhir:orderDetail {fhir:v .} }  OR {fhir:code .}
+
+)
+ 
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#---------------------- Value Sets ------------------------
+
+
+
+

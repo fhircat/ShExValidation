@@ -1,0 +1,31 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <Extension.shex>
+
+# SHALL | SHOULD | MAY |SHOULD-NOT
+<capabilitystatement2-expectation> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:capabilitystatement2-expectation];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/capabilitystatement2-expectation"]}; 
+    fhir:v (@<code> AND
+    	{fhir:v @fhirvs:conformance-expectation} )  AND { rdf:type IRI } ; 
+    ^fhir:extension { ^fhir:interaction {^fhir:resource {^fhir:rest {a [fhir:CapabilityStatement2]}}} OR 
+          ^fhir:searchParam {^fhir:resource {^fhir:rest {a [fhir:CapabilityStatement2]}}} OR 
+          ^fhir:searchParam {^fhir:rest {a [fhir:CapabilityStatement2]}} OR 
+          ^fhir:operation {^fhir:rest {a [fhir:CapabilityStatement2]}} OR 
+          ^fhir:interaction {^fhir:rest {a [fhir:CapabilityStatement2]}}
+        }
+}  
+
+#---------------------- Value Sets ------------------------
+
+# Description Needed Here
+fhirvs:conformance-expectation ["SHALL" "SHOULD" "MAY" "SHOULD-NOT"]
+

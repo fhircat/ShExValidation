@@ -1,0 +1,143 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <date.shex>
+IMPORT <time.shex>
+IMPORT <Device.shex>
+IMPORT <string.shex>
+IMPORT <Coding.shex>
+IMPORT <Patient.shex>
+IMPORT <boolean.shex>
+IMPORT <decimal.shex>
+IMPORT <integer.shex>
+IMPORT <Resource.shex>
+IMPORT <dateTime.shex>
+IMPORT <Quantity.shex>
+IMPORT <CarePlan.shex>
+IMPORT <canonical.shex>
+IMPORT <Reference.shex>
+IMPORT <Encounter.shex>
+IMPORT <Procedure.shex>
+IMPORT <Attachment.shex>
+IMPORT <Observation.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <ServiceRequest.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+
+
+start=@<QuestionnaireResponse> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A structured set of questions and their answers
+<QuestionnaireResponse> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:QuestionnaireResponse];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Unique id for this set of answers
+    fhir:basedOn @<OneOrMore_Reference_CarePlan_OR_ServiceRequest>?;  # Request fulfilled by this 
+                                            # QuestionnaireResponse 
+    fhir:partOf @<OneOrMore_Reference_Observation_OR_Procedure>?;  # Part of this action
+    fhir:questionnaire @<canonical>?;       # Form being answered
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:questionnaire-answers-status};  # in-progress | completed | amended 
+                                            # | entered-in-error | stopped 
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Resource> }?;  # The subject of the questions
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # Encounter created as part of
+    fhir:authored @<dateTime>?;             # Date the answers were gathered
+    fhir:author @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # The individual or device that 
+                                            # received and recorded the answers 
+    fhir:source @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # The individual or device that 
+                                            # answered the questions 
+    fhir:item @<OneOrMore_BackboneElement>?;  # Groups and questions
+}  
+
+# The response(s) to the question
+<QuestionnaireResponse.item.answer> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:v (@<boolean>  OR 
+    			@<decimal>  OR 
+    			@<integer>  OR 
+    			@<date>  OR 
+    			@<dateTime>  OR 
+    			@<time>  OR 
+    			@<string>  OR 
+    			@<uri>  OR 
+    			@<Attachment>  OR 
+    			@<Coding>  OR 
+    			@<Quantity>  OR 
+    			(@<Reference>  AND {fhir:link @<Resource> }) )  AND { rdf:type IRI } ;  # Single-valued answer to the 
+                                            # question 
+    fhir:item @<OneOrMore_QuestionnaireResponse.item>?;  # Child items of question
+}  
+
+# Child items of group item
+<QuestionnaireResponse.item.item> CLOSED {   
+}  
+
+# Groups and questions
+<QuestionnaireResponse.item> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:linkId @<string>;                  # Pointer to specific item from 
+                                            # Questionnaire 
+    fhir:definition @<uri>?;                # ElementDefinition - details for 
+                                            # the item 
+    fhir:text @<string>?;                   # Name for group or question text
+    fhir:answer @<OneOrMore_BackboneElement>?;  # The response(s) to the question
+    fhir:item @<OneOrMore_QuestionnaireResponse.item>?;  # Child items of group item
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_Reference_CarePlan_OR_ServiceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CarePlan> OR 
+			@<ServiceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CarePlan_OR_ServiceRequest> 
+}
+
+<OneOrMore_Reference_Observation_OR_Procedure> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Observation> OR 
+			@<Procedure> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Observation_OR_Procedure> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_QuestionnaireResponse.item> CLOSED {
+    rdf:first @<QuestionnaireResponse.item>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_QuestionnaireResponse.item> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Lifecycle status of the questionnaire response.
+fhirvs:questionnaire-answers-status ["in-progress" "completed" "amended" "entered-in-error" "stopped"]
+

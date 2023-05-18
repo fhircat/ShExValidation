@@ -1,0 +1,142 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <instant.shex>
+#imported_end
+#imported_begin 
+IMPORT <decimal.shex>
+#imported_end
+#imported_begin 
+IMPORT <Resource.shex>
+#imported_end
+#imported_begin 
+IMPORT <Signature.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <unsignedInt.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+
+start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Contains a collection of resources
+<Bundle> EXTENDS @<Resource> CLOSED {   
+
+    a [fhir:Bundle]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<Identifier>?;         # Persistent identifier for the 
+                                            # bundle 
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:bundle-type};  # document | message | transaction | 
+                                            # transaction-response | batch | 
+                                            # batch-response | history | 
+                                            # searchset | collection | 
+                                            # subscription-notification 
+    fhir:timestamp @<instant>?;             # When the bundle was assembled
+    fhir:total @<unsignedInt>?;             # If search, the total number of 
+                                            # matches 
+    fhir:link @<OneOrMore_Bundle.link>?;    # Links related to this Bundle
+    fhir:entry @<OneOrMore_Bundle.entry>?;  # Entry in the bundle - will have a 
+                                            # resource or information 
+    fhir:signature @<Signature>?;           # Digital Signature
+    fhir:issues @<Resource>?;               # Issues with the Bundle
+}  
+
+# Entry in the bundle - will have a resource or information
+<Bundle.entry> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:link @<OneOrMore_Bundle.link>?;    # Links related to this entry
+    fhir:fullUrl @<uri>?;                   # URI for resource (e.g. the 
+                                            # absolute URL server address, URI 
+                                            # for UUID/OID, etc.) 
+    fhir:resource @<Resource>?;             # A resource in the bundle
+    fhir:search @<Bundle.entry.search>?;    # Search related information
+    fhir:request @<Bundle.entry.request>?;  # Additional execution information 
+                                            # (transaction/batch/history) 
+    fhir:response @<Bundle.entry.response>?;  # Results of execution 
+                                            # (transaction/batch/history) 
+}  
+
+# Results of execution (transaction/batch/history)
+<Bundle.entry.response> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:status @<string>;                  # Status response code (text 
+                                            # optional) 
+    fhir:location @<uri>?;                  # The location (if the operation 
+                                            # returns a location) 
+    fhir:etag @<string>?;                   # The Etag for the resource (if 
+                                            # relevant) 
+    fhir:lastModified @<instant>?;          # Server's date time modified
+    fhir:outcome @<Resource>?;              # OperationOutcome with hints and 
+                                            # warnings (for batch/transaction) 
+}  
+
+# Additional execution information (transaction/batch/history)
+<Bundle.entry.request> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:method @<code> AND
+    	{fhir:v @fhirvs:http-verb};  # GET | HEAD | POST | PUT | DELETE | 
+                                            # PATCH 
+    fhir:url @<uri>;                        # URL for HTTP equivalent of this 
+                                            # entry 
+    fhir:ifNoneMatch @<string>?;            # For managing cache validation
+    fhir:ifModifiedSince @<instant>?;       # For managing cache currency
+    fhir:ifMatch @<string>?;                # For managing update contention
+    fhir:ifNoneExist @<string>?;            # For conditional creates
+}  
+
+# Links related to this Bundle
+<Bundle.link> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:relation @<code> AND
+    	{fhir:v @fhirvs:iana-link-relations};  # See 
+                                            # http://www.iana.org/assignments/-
+                                            # link-relations/link-relations.xh-
+                                            # tml#link-relations-1 
+    fhir:url @<uri>;                        # Reference details for the link
+}  
+
+# Search related information
+<Bundle.entry.search> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:mode @<code> AND
+    	{fhir:v @fhirvs:search-entry-mode}?;  # match | include - why this is in 
+                                            # the result set 
+    fhir:score @<decimal>?;                 # Search ranking (between 0 and 1)
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Bundle.link> CLOSED {
+    rdf:first @<Bundle.link>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Bundle.link> 
+}
+
+<OneOrMore_Bundle.entry> CLOSED {
+    rdf:first @<Bundle.entry>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Bundle.entry> 
+}
+
+#---------------------- Value Sets ------------------------
+
+
+
+
+

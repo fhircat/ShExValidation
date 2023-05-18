@@ -1,0 +1,50 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Provenance ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-create-consent"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Provenance</b><a name=\"example-create-consent\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Provenance &quot;example-create-consent&quot; </p></div><p><b>target</b>: <a href=\"consent-example.html\">Consent/consent-example-basic/_history/1</a></p><p><b>recorded</b>: 10 Sept 2021, 5:08:21 pm</p><p><b>activity</b>: create <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-DataOperation.html\">DataOperation</a>#CREATE)</span></p><p><b>patient</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><h3>Agents</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Who</b></td></tr><tr><td>*</td><td>Assembler <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-provenance-participant-type.html\">Provenance participant type</a>#assembler)</span></td><td><span>: LEAP Consent Management Service</span></td></tr></table><h3>Entities</h3><table class=\"grid\"><tr><td>-</td><td><b>Role</b></td><td><b>What</b></td></tr><tr><td>*</td><td>source</td><td><a href=\"broken-link.html\">http://example.org/fhir/QuestionnaireResponse/some-questionnaire-response</a></td></tr></table></div>"
+  ] ; # 
+  fhir:target ( [
+     fhir:reference [ fhir:v "Consent/consent-example-basic/_history/1" ]
+  ] ) ; # 
+  fhir:recorded [ fhir:v "2021-09-10T07:08:21.722+00:00"^^xsd:dateTime] ; # 
+  fhir:activity [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-DataOperation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "CREATE" ] ;
+       fhir:display [ fhir:v "create" ]
+     ] )
+  ] ; # 
+  fhir:patient [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:agent ( [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/provenance-participant-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "assembler" ] ;
+         fhir:display [ fhir:v "Assembler" ]
+       ] )
+     ] ;
+     fhir:who [
+       fhir:display [ fhir:v "LEAP Consent Management Service" ]
+     ]
+  ] ) ; # 
+  fhir:entity ( [
+     fhir:role [ fhir:v "source" ] ;
+     fhir:what [
+       fhir:link <http://example.org/fhir/QuestionnaireResponse/some-questionnaire-response> ;
+       fhir:reference [ fhir:v "http://example.org/fhir/QuestionnaireResponse/some-questionnaire-response" ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

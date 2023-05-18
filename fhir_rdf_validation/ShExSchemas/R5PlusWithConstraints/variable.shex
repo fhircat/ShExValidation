@@ -1,0 +1,51 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+#imported_begin 
+IMPORT <Expression.shex>
+#imported_end
+# Variable for processing
+<variable> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:variable]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri> AND
+    	{fhir:value ["http://hl7.org/fhir/StructureDefinition/variable"]}; 
+    fhir:value @<Expression>  ; 
+    ^fhir:extension { a [fhir:Questionnaire]} OR 
+          {^fhir:item {a [fhir:Questionnaire]}} OR 
+          {^fhir:item {^fhir:item {a [fhir:Questionnaire]}}} OR 
+          {a [fhir:PlanDefinition]} OR 
+          {^fhir:action {a [fhir:PlanDefinition]}} OR 
+          {^fhir:action {^fhir:action {a [fhir:PlanDefinition]}}} OR 
+          {a [fhir:RequestOrchestration]} OR 
+          {^fhir:action {a [fhir:RequestOrchestration]}} OR 
+          {^fhir:action {^fhir:action {a [fhir:RequestOrchestration]}}} OR 
+          {a [fhir:ActivityDefinition]} OR 
+          {a [fhir:Measure]} OR 
+          {^fhir:group {a [fhir:Measure]}} OR 
+          {^fhir:population {^fhir:group {a [fhir:Measure]}}}
+
+} AND (
+
+# Constraint UniqueKey:var-1
+# Human readable:Variable expressions must have a name
+
+# Constraint: value.name.exists()
+# ShEx:
+
+{fhir:value.name .}
+
+)
+ 
+

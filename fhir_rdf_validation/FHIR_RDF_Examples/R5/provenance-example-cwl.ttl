@@ -1,0 +1,59 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Provenance ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-cwl"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n			<p>\n				<b>Generated Narrative with Details</b>\n			</p><p>\n				<b>id</b>: cwl-example</p><p>\n				<b>target</b>: <a href=\"sequence-example-pgx-1.html\">MolecularSequence/example-pgx-1</a>\n			</p><p>\n				<b>period</b>: Nov 30, 2016 --&gt; (ongoing)</p><p>\n				<b>recorded</b>: Dec 1, 2016 8:12:14 AM</p><p>\n				<b>reason</b>: profiling Short Tandem Repeats (STRs) from high throughput sequencing data. (Details:\n         [not stated] code null = 'null', stated as 'profiling Short Tandem Repeats (STRs) from\n         high throughput sequencing data.')</p>\n			<h3>Agents</h3>\n			<table>\n				<tr>\n					<td>-</td>\n					<td>\n						<b>Role</b>\n					</td>\n					<td>\n						<b>Who</b>\n					</td>\n				</tr>\n				<tr>\n					<td>*</td>\n					<td>Author (Details: http://hl7.org/fhir/provenance-participant-role code author = 'Author',\n             stated as 'null')</td>\n					<td>\n						<a href=\"patient-example.html\">Patient/example</a>\n					</td>\n				</tr>\n			</table>\n			<h3>Entities</h3>\n			<table>\n				<tr>\n					<td>-</td>\n					<td>\n						<b>Role</b>\n					</td>\n					<td>\n						<b>Reference</b>\n					</td>\n				</tr>\n				<tr>\n					<td>*</td>\n					<td>source</td>\n					<td>\n						<a href=\"https://github.com/common-workflow-language/workflows/blob/master/workflows/lobSTR/lobSTR-workflow.cwl\">CWL example</a>\n					</td>\n				</tr>\n			</table>\n		</div>"
+  ] ; # 
+  fhir:target ( [
+     fhir:reference [ fhir:v "MolecularSequence/example-pgx-1/_history/1" ]
+  ] ) ; # 
+  fhir:occurred [
+     a fhir:Period ;
+     fhir:start [ fhir:v "2016-11-30"^^xsd:date ]
+  ] ; # 
+  fhir:recorded [ fhir:v "2016-12-01T08:12:14+10:00"^^xsd:dateTime] ; # 
+  fhir:activity [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-DataOperation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "CREATE" ] ;
+       fhir:display [ fhir:v "create" ]
+     ] ) ;
+     fhir:text [ fhir:v "profiling Short Tandem Repeats (STRs) from high throughput sequencing data." ]
+  ] ; # 
+  fhir:agent ( [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ParticipationType"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "AUT" ]
+       ] )
+     ] ;
+     fhir:who [
+       fhir:reference [ fhir:v "Patient/example" ]
+     ]
+  ] ) ; # 
+  fhir:entity ( [
+     fhir:role [ fhir:v "source" ] ;
+     fhir:what [
+       fhir:identifier [
+         fhir:type [
+           fhir:coding ( [
+             fhir:system [ fhir:v "https://github.com/common-workflow-language/workflows"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "CWL" ] ;
+             fhir:display [ fhir:v "lobSTR" ]
+           ] )
+         ] ; #  \n    <reference value=\"https:\/\/github.com\/common-workflow-language\/workflows\/blob\/master\/workflows\/lobSTR\/lobSTR-workflow.cwl\"\/>\n  removed this as it throws warnings in build. Could not figure out what to replace it with.\n   
+         fhir:value [ fhir:v "https://github.com/common-workflow-language/workflows/blob/master/workflows/lobSTR/lobSTR-workflow.cwl" ]
+       ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

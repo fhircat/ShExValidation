@@ -1,0 +1,105 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "evidence-variable-event"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "cds" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "5" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/evidence-variable-event"], [ fhir:v "http://hl7.org/fhir/evidence-variable-event"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1955" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1955" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "EvidenceVariableEvent"], [ fhir:v "EvidenceVariableEvent"] ;
+  fhir:title [ fhir:v "Evidence Variable Event"], [ fhir:v "Evidence Variable Event"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2021-01-05T10:01:24+11:00"], [ fhir:v "2021-01-05T10:01:24+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The event used as a base point (reference point) in time."], [ fhir:v "The event used as a base point (reference point) in time."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/evidence-variable-event"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "study-start" ] ;
+     fhir:display [ fhir:v "Study Start" ] ;
+     fhir:definition [ fhir:v "The time of enrollment for the study participant" ]
+  ] [
+     fhir:code [ fhir:v "treatment-start" ] ;
+     fhir:display [ fhir:v "Start of Treatment" ] ;
+     fhir:definition [ fhir:v "The time of initiation of the treatment" ]
+  ] [
+     fhir:code [ fhir:v "condition-detection" ] ;
+     fhir:display [ fhir:v "Detection of Condition" ] ;
+     fhir:definition [ fhir:v "The time of first detection of the condition" ]
+  ] [
+     fhir:code [ fhir:v "condition-treatment" ] ;
+     fhir:display [ fhir:v "Treatment of Condition" ] ;
+     fhir:definition [ fhir:v "The time of first treatment of the condition" ]
+  ] [
+     fhir:code [ fhir:v "hospital-admission" ] ;
+     fhir:display [ fhir:v "Hospital Admission" ] ;
+     fhir:definition [ fhir:v "The time of admission to the hospital" ]
+  ] [
+     fhir:code [ fhir:v "hospital-discharge" ] ;
+     fhir:display [ fhir:v "Hospital Discharge" ] ;
+     fhir:definition [ fhir:v "The time of discharge from the hospital" ]
+  ] [
+     fhir:code [ fhir:v "operative-procedure" ] ;
+     fhir:display [ fhir:v "Operative Procedure" ] ;
+     fhir:definition [ fhir:v "The time of surgery" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

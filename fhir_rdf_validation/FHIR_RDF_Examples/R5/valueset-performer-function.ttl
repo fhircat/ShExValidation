@@ -1,0 +1,95 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ValueSet ;
+  fhir:id [ fhir:v "performer-function"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablevalueset" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "fhir" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/performer-function"], [ fhir:v "http://hl7.org/fhir/ValueSet/performer-function"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.3012" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.3012" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "PerformerFunctionCodes"], [ fhir:v "PerformerFunctionCodes"] ;
+  fhir:title [ fhir:v "Performer Function Codes"], [ fhir:v "Performer Function Codes"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 International - Orders and Observations WG"], [ fhir:v "HL7 International - Orders and Observations WG"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://www.hl7.org/Special/committees/orders/index.cfm" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://www.hl7.org/Special/committees/orders/index.cfm" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The types of involvement of the performer in the Event."], [ fhir:v "The types of involvement of the performer in the Event."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:compose [
+     fhir:include ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ParticipationType" ] ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "TRANS" ]
+       ] [
+         fhir:code [ fhir:v "PART" ]
+       ] [
+         fhir:code [ fhir:v "ATND" ]
+       ] [
+         fhir:code [ fhir:v "CON" ]
+       ] [
+         fhir:code [ fhir:v "AUT" ]
+       ] [
+         fhir:code [ fhir:v "INF" ]
+       ] [
+         fhir:code [ fhir:v "ENT" ]
+       ] [
+         fhir:code [ fhir:v "WIT" ]
+       ] [
+         fhir:code [ fhir:v "PPRF" ]
+       ] [
+         fhir:code [ fhir:v "SPRF" ]
+       ] [
+         fhir:code [ fhir:v "RESP" ]
+       ] [
+         fhir:code [ fhir:v "VRF" ]
+       ] [
+         fhir:code [ fhir:v "AUTHEN" ]
+       ] [
+         fhir:code [ fhir:v "LA" ]
+       ] )
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,33 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
+IMPORT <ConceptMap.shex>
+#imported_end
+# Mapping from permitted to transmitted
+<11179-permitted-value-conceptmap> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:11179-permitted-value-conceptmap]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri> AND
+    	{fhir:value ["http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap"]}; 
+    fhir:value (@<canonical>  AND {fhir:link @<ConceptMap> })  ; 
+    ^fhir:extension { ^fhir:valueSet {^fhir:binding {^fhir:element {^fhir:snapshot {a [fhir:StructureDefinition]}}}}} OR 
+          {^fhir:valueSet {^fhir:binding {^fhir:element {^fhir:differential {a [fhir:StructureDefinition]}}}}} OR 
+          {^fhir:answerValueSet {^fhir:item {a [fhir:Questionnaire]}}}
+
+}  
+

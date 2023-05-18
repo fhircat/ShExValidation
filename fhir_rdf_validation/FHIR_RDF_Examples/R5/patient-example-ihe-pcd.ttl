@@ -1,0 +1,28 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Patient ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "ihe-pcd"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p style=\"border: 1px #661aff solid; background-color: #e6e6ff; padding: 10px;\"><b>ALBERT BROOKS </b> (no stated gender), DoB Unknown ( Internal Identifier: AB60001)</p><hr/><table class=\"grid\"><tr><td style=\"background-color: #f3f5da\" title=\"Record is active\">Active:</td><td colspan=\"3\">true</td></tr></table></div>"
+  ] ; #     MRN assigned by ACME healthcare on 6-May 2001    
+  fhir:identifier ( [
+     fhir:type [
+       fhir:text [ fhir:v "Internal Identifier" ]
+     ] ;
+     fhir:value [ fhir:v "AB60001" ]
+  ] ) ; # 
+  fhir:active [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:name ( [
+     fhir:family [ fhir:v "BROOKS" ] ;
+     fhir:given ( [ fhir:v "ALBERT" ] )
+  ] )] . #     Peter James Chalmers, but called "Jim"    
+
+# -------------------------------------------------------------------------------------
+

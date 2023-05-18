@@ -1,0 +1,203 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <date.shex>
+IMPORT <string.shex>
+IMPORT <boolean.shex>
+IMPORT <integer.shex>
+IMPORT <dateTime.shex>
+IMPORT <markdown.shex>
+IMPORT <Quantity.shex>
+IMPORT <Attachment.shex>
+IMPORT <Organization.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CodeableReference.shex>
+IMPORT <DocumentReference.shex>
+IMPORT <MedicinalProductDefinition.shex>
+IMPORT <MarketingStatus.shex>
+IMPORT <ProductShelfLife.shex>
+
+
+start=@<PackagedProductDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A medically related item or items, in a container or package
+<PackagedProductDefinition> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:PackagedProductDefinition];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # A unique identifier for this 
+                                            # package as whole - not for the 
+                                            # content of the package 
+    fhir:name @<string>?;                   # A name for this package. Typically 
+                                            # as listed in a drug formulary, 
+                                            # catalogue, inventory etc 
+    fhir:type @<CodeableConcept>?;          # A high level category e.g. 
+                                            # medicinal product, raw material, 
+                                            # shipping container etc 
+    fhir:packageFor @<OneOrMore_Reference_MedicinalProductDefinition>?;  # The product that this is a pack for
+    fhir:status @<CodeableConcept>?;        # The status within the lifecycle of 
+                                            # this item. High level - not 
+                                            # intended to duplicate details 
+                                            # elsewhere e.g. legal status, or 
+                                            # authorization/marketing status 
+    fhir:statusDate @<dateTime>?;           # The date at which the given status 
+                                            # became applicable 
+    fhir:containedItemQuantity @<OneOrMore_Quantity>?;  # A total of the complete count of 
+                                            # contained items of a particular 
+                                            # type/form, independent of 
+                                            # sub-packaging or organization. 
+                                            # This can be considered as the pack 
+                                            # size 
+    fhir:description @<markdown>?;          # Textual description. Note that 
+                                            # this is not the name of the 
+                                            # package or product 
+    fhir:legalStatusOfSupply @<OneOrMore_BackboneElement>?;  # The legal status of supply of the 
+                                            # packaged item as classified by the 
+                                            # regulator 
+    fhir:marketingStatus @<OneOrMore_MarketingStatus>?;  # Allows specifying that an item is 
+                                            # on the market for sale, or that it 
+                                            # is not available, and the dates 
+                                            # and locations associated 
+    fhir:characteristic @<OneOrMore_CodeableConcept>?;  # Allows the key features to be 
+                                            # recorded, such as "hospital pack", 
+                                            # "nurse prescribable" 
+    fhir:copackagedIndicator @<boolean>?;   # Identifies if the drug product is 
+                                            # supplied with another item such as 
+                                            # a diluent or adjuvant 
+    fhir:manufacturer @<OneOrMore_Reference_Organization>?;  # Manufacturer of this package type 
+                                            # (multiple means these are all 
+                                            # possible manufacturers) 
+    fhir:attachedDocument @<OneOrMore_Reference_DocumentReference>?;  # Additional information or 
+                                            # supporting documentation about the 
+                                            # packaged product 
+    fhir:packaging @<BackboneElement>?;     # A packaging item, as a container 
+                                            # for medically related items, 
+                                            # possibly with other packaging 
+                                            # items within, or a packaging 
+                                            # component, such as bottle cap 
+}  
+
+# General characteristics of this item
+<PackagedProductDefinition.packaging.property> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # A code expressing the type of 
+                                            # characteristic 
+    fhir:v (@<CodeableConcept>  OR 
+    			@<Quantity>  OR 
+    			@<date>  OR 
+    			@<boolean>  OR 
+    			@<Attachment> )  AND { rdf:type IRI } ?;  # A value for the characteristic
+}  
+
+# The legal status of supply of the packaged item as classified by the regulator
+<PackagedProductDefinition.legalStatusOfSupply> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>?;          # The actual status of supply. In 
+                                            # what situation this package type 
+                                            # may be supplied for use 
+    fhir:jurisdiction @<CodeableConcept>?;  # The place where the legal status 
+                                            # of supply applies 
+}  
+
+# Allows containers (and parts of containers) within containers, still a single packaged product
+<PackagedProductDefinition.packaging.packaging> CLOSED {   
+}  
+
+# A packaging item, as a container for medically related items, possibly with other packaging items within, or a packaging component, such as bottle cap
+<PackagedProductDefinition.packaging> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:identifier @<OneOrMore_Identifier>?;  # An identifier that is specific to 
+                                            # this particular part of the 
+                                            # packaging. Including possibly a 
+                                            # Data Carrier Identifier 
+    fhir:type @<CodeableConcept>?;          # The physical type of the container 
+                                            # of the items 
+    fhir:quantity @<integer>?;              # The quantity of this level of 
+                                            # packaging in the package that 
+                                            # contains it (with the outermost 
+                                            # level being 1) 
+    fhir:material @<OneOrMore_CodeableConcept>?;  # Material type of the package item
+    fhir:alternateMaterial @<OneOrMore_CodeableConcept>?;  # A possible alternate material for 
+                                            # this part of the packaging, that 
+                                            # is allowed to be used instead of 
+                                            # the usual material 
+    fhir:shelfLifeStorage @<OneOrMore_ProductShelfLife>?;  # Shelf Life and storage information
+    fhir:manufacturer @<OneOrMore_Reference_Organization>?;  # Manufacturer of this packaging 
+                                            # item (multiple means these are all 
+                                            # potential manufacturers) 
+    fhir:property @<OneOrMore_BackboneElement>?;  # General characteristics of this 
+                                            # item 
+    fhir:containedItem @<OneOrMore_BackboneElement>?;  # The item(s) within the packaging
+    fhir:packaging @<OneOrMore_PackagedProductDefinition.packaging>?;  # Allows containers (and parts of 
+                                            # containers) within containers, 
+                                            # still a single packaged product 
+}  
+
+# The item(s) within the packaging
+<PackagedProductDefinition.packaging.containedItem> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:item @<CodeableReference>;         # The actual item(s) of medication, 
+                                            # as manufactured, or a device, or 
+                                            # other medically related item 
+                                            # (food, biologicals, raw materials, 
+                                            # medical fluids, gases etc.), as 
+                                            # contained in the package 
+    fhir:amount @<Quantity>?;               # The number of this type of item 
+                                            # within this packaging 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_Reference_MedicinalProductDefinition> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<MedicinalProductDefinition> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_MedicinalProductDefinition> 
+}
+
+<OneOrMore_Quantity> CLOSED {
+    rdf:first @<Quantity>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Quantity> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_MarketingStatus> CLOSED {
+    rdf:first @<MarketingStatus>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_MarketingStatus> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_Organization> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Organization> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Organization> 
+}
+
+<OneOrMore_Reference_DocumentReference> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<DocumentReference> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_DocumentReference> 
+}
+
+<OneOrMore_ProductShelfLife> CLOSED {
+    rdf:first @<ProductShelfLife>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ProductShelfLife> 
+}
+
+<OneOrMore_PackagedProductDefinition.packaging> CLOSED {
+    rdf:first @<PackagedProductDefinition.packaging>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_PackagedProductDefinition.packaging> 
+}
+

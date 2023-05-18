@@ -1,0 +1,74 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <url.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <decimal.shex>
+#imported_end
+#imported_begin 
+IMPORT <DataType.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <integer64.shex>
+#imported_end
+#imported_begin 
+IMPORT <positiveInt.shex>
+#imported_end
+#imported_begin 
+IMPORT <base64Binary.shex>
+#imported_end
+# Content in a format defined elsewhere
+<Attachment> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:Attachment]?;
+
+    fhir:contentType @<code> AND
+    	{fhir:v @fhirvs:mimetypes}?;  # Mime type of the content, with 
+                                            # charset etc. 
+    fhir:language @<code>?;                 # Human language of the content 
+                                            # (BCP-47) 
+    fhir:data @<base64Binary>?;             # Data inline, base64ed
+    fhir:url @<url>?;                       # Uri where the data can be found
+    fhir:size @<integer64>?;                # Number of bytes of content (if url 
+                                            # provided) 
+    fhir:hash @<base64Binary>?;             # Hash of the data (sha-1, base64ed)
+    fhir:title @<string>?;                  # Label to display in place of the 
+                                            # data 
+    fhir:creation @<dateTime>?;             # Date attachment was first created
+    fhir:height @<positiveInt>?;            # Height of the image in pixels 
+                                            # (photo/video) 
+    fhir:width @<positiveInt>?;             # Width of the image in pixels 
+                                            # (photo/video) 
+    fhir:frames @<positiveInt>?;            # Number of frames if > 1 (photo)
+    fhir:duration @<decimal>?;              # Length in seconds (audio / video)
+    fhir:pages @<positiveInt>?;             # Number of printed pages
+} AND (
+
+# Constraint UniqueKey:att-1
+# Human readable:If the Attachment has data, it SHALL have a contentType
+
+# Constraint: data.empty() or contentType.exists()
+# ShEx:
+
+ NOT { fhir:data {fhir:v .} }  OR {fhir:contentType .}
+
+)
+ 
+
+#---------------------- Value Sets ------------------------
+
+

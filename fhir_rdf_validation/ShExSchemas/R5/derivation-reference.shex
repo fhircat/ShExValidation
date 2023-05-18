@@ -1,0 +1,24 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Extension.shex>
+
+# References a location within a set of source text from which the discrete information described by this Resource/Element was extracted.
+<derivation-reference> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:derivation-reference];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:reference @<Extension>?; 
+    fhir:path @<Extension>?; 
+    fhir:offset @<Extension>?; 
+    fhir:length @<Extension>?; 
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/derivation-reference"]}; 
+    ^fhir:extension { a [fhir:Resource] OR 
+          a [fhir:Element]
+        }
+}  
+

@@ -1,0 +1,137 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "artifact-url-classifier"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "cds" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "0" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/artifact-url-classifier"], [ fhir:v "http://hl7.org/fhir/artifact-url-classifier"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1876" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1876" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "ArtifactUrlClassifier"], [ fhir:v "ArtifactUrlClassifier"] ;
+  fhir:title [ fhir:v "Artifact Url Classifier"], [ fhir:v "Artifact Url Classifier"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2020-12-28T16:55:11+11:00"], [ fhir:v "2020-12-28T16:55:11+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Code the reason for different URLs, eg abstract and full-text."], [ fhir:v "Code the reason for different URLs, eg abstract and full-text."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/artifact-url-classifier"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "abstract" ] ;
+     fhir:display [ fhir:v "Abstract" ] ;
+     fhir:definition [ fhir:v "The URL will reach a brief summary for the article." ]
+  ] [
+     fhir:code [ fhir:v "full-text" ] ;
+     fhir:display [ fhir:v "Full-Text" ] ;
+     fhir:definition [ fhir:v "The URL will reach the full-text of the article." ]
+  ] [
+     fhir:code [ fhir:v "supplement" ] ;
+     fhir:display [ fhir:v "Supplement" ] ;
+     fhir:definition [ fhir:v "The URL will reach a supplement, appendix, or additional supporting information for the article." ]
+  ] [
+     fhir:code [ fhir:v "webpage" ] ;
+     fhir:display [ fhir:v "Webpage" ] ;
+     fhir:definition [ fhir:v "The URL will reach a webpage related to the article, where the content is not easily classified as abstract, full-text or supplement." ]
+  ] [
+     fhir:code [ fhir:v "file-directory" ] ;
+     fhir:display [ fhir:v "File directory" ] ;
+     fhir:definition [ fhir:v "The URL will reach a file directory." ]
+  ] [
+     fhir:code [ fhir:v "code-repository" ] ;
+     fhir:display [ fhir:v "Code repository" ] ;
+     fhir:definition [ fhir:v "File archive and web hosting facility for source code of software, documentation, web pages, and other works." ]
+  ] [
+     fhir:code [ fhir:v "restricted" ] ;
+     fhir:display [ fhir:v "Restricted" ] ;
+     fhir:definition [ fhir:v "The URL content has restricted access (e.g. subcription required)." ]
+  ] [
+     fhir:code [ fhir:v "compressed-file" ] ;
+     fhir:display [ fhir:v "Compressed file" ] ;
+     fhir:definition [ fhir:v "Compressed archive file (e.g. a zip file) that contains multiple files" ]
+  ] [
+     fhir:code [ fhir:v "doi-based" ] ;
+     fhir:display [ fhir:v "DOI Based" ] ;
+     fhir:definition [ fhir:v "The URL is derived from the Digital Object Identifier (DOI)." ]
+  ] [
+     fhir:code [ fhir:v "pdf" ] ;
+     fhir:display [ fhir:v "PDF" ] ;
+     fhir:definition [ fhir:v "The URL will reach content in PDF form." ]
+  ] [
+     fhir:code [ fhir:v "json" ] ;
+     fhir:display [ fhir:v "JSON" ] ;
+     fhir:definition [ fhir:v "The URL will reach content in JSON format." ]
+  ] [
+     fhir:code [ fhir:v "xml" ] ;
+     fhir:display [ fhir:v "XML" ] ;
+     fhir:definition [ fhir:v "The URL will reach content in XML format." ]
+  ] [
+     fhir:code [ fhir:v "version-specific" ] ;
+     fhir:display [ fhir:v "Version Specific" ] ;
+     fhir:definition [ fhir:v "The URL will reach content that is a specific version of the article." ]
+  ] [
+     fhir:code [ fhir:v "computable-resource" ] ;
+     fhir:display [ fhir:v "Computable resource" ] ;
+     fhir:definition [ fhir:v "The URL will reach content that is machine-interpretable." ]
+  ] [
+     fhir:code [ fhir:v "not-specified" ] ;
+     fhir:display [ fhir:v "Not Specified" ] ;
+     fhir:definition [ fhir:v "Used when URL classifier is not specified but expected in a system." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

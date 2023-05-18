@@ -1,0 +1,96 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Patient ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "animal"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p style=\"border: 1px #661aff solid; background-color: #e6e6ff; padding: 10px;\"><b>Kenzi </b> female, DoB: 2010-03-23 ( Dog Tag: 1234123 (period: 2010-05-31 --&gt; (ongoing)))</p><hr/><table class=\"grid\"><tr><td style=\"background-color: #f3f5da\" title=\"Record is active\">Active:</td><td colspan=\"3\">true</td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Nominated Contact: Emergency Contact\">Emergency Contact:</td><td colspan=\"3\"><ul><li>Peter James Chalmers </li><li>ph: (03) 5555 6473(WORK)</li></ul></td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Patient Links\">Links:</td><td colspan=\"3\"><ul><li>Managing Organization: <span>: Pete's Vetinary Services</span></li></ul></td></tr><tr><td style=\"background-color: #f3f5da\" title=\"This patient is known to be an animal.\">Patient Animal:</td><td colspan=\"3\"><ul><li>species: <span title=\"Codes: {http://hl7.org/fhir/animal-species canislf}\">Dog</span></li><li>breed: <span title=\"Codes: {http://snomed.info/sct 58108001}, {http://example.org/fhir/CodeSystem/animal-breed gret}\">Golden retriever</span></li><li>genderStatus: <span title=\"Codes: {http://hl7.org/fhir/animal-genderstatus neutered}\">Neutered</span></li></ul></td></tr></table></div>"
+  ] ; # 
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/patient-animal"^^xsd:anyURI ] ;
+     fhir:extension ( [
+       fhir:url [ fhir:v "species"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/animal-species"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "canislf" ] ;
+           fhir:display [ fhir:v "Dog" ]
+         ] )
+       ]
+     ] [
+       fhir:url [ fhir:v "breed"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:coding ( [
+           a sct:58108001 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "58108001" ] ;
+           fhir:display [ fhir:v "Golden retriever" ]
+         ] [
+           fhir:system [ fhir:v "http://example.org/fhir/CodeSystem/animal-breed"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "gret" ] ;
+           fhir:display [ fhir:v "Golden Retriever" ]
+         ] )
+       ]
+     ] [
+       fhir:url [ fhir:v "genderStatus"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/animal-genderstatus"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "neutered" ]
+         ] )
+       ]
+     ] )
+  ] ) ; # 
+  fhir:identifier ( [
+     fhir:type [
+       fhir:text [ fhir:v "Dog Tag" ]
+     ] ;
+     fhir:system [ fhir:v "http://www.maroondah.vic.gov.au/AnimalRegFees.aspx"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "1234123" ] ;
+     fhir:period [
+       fhir:start [ fhir:v "2010-05-31"^^xsd:date ]
+     ] ;
+     fhir:assigner [
+       fhir:display [ fhir:v "Maroondah City Council" ]
+     ]
+  ] ) ; #     Dog tag, under Maroondah City council    
+  fhir:active [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:name ( [
+     fhir:use [ fhir:v "usual" ] ;
+     fhir:given ( [ fhir:v "Kenzi" ] )
+  ] ) ; #     Dog's name: Kenzi    
+  fhir:gender [ fhir:v "female"] ; # 
+  fhir:birthDate [ fhir:v "2010-03-23"^^xsd:date] ; # 
+  fhir:contact ( [
+     fhir:relationship ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0131"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "C" ]
+       ] )
+     ] ) ;
+     fhir:name [
+       fhir:family [ fhir:v "Chalmers" ] ;
+       fhir:given ( [ fhir:v "Peter" ] [ fhir:v "James" ] )
+     ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "phone" ] ;
+       fhir:value [ fhir:v "(03) 5555 6473" ] ;
+       fhir:use [ fhir:v "work" ]
+     ] )
+  ] ) ; # 
+  fhir:managingOrganization [
+     fhir:display [ fhir:v "Pete's Vetinary Services" ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

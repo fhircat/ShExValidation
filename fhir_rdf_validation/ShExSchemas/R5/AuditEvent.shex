@@ -1,0 +1,201 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <time.shex>
+IMPORT <Task.shex>
+IMPORT <Range.shex>
+IMPORT <Ratio.shex>
+IMPORT <Period.shex>
+IMPORT <Device.shex>
+IMPORT <string.shex>
+IMPORT <Coding.shex>
+IMPORT <instant.shex>
+IMPORT <Patient.shex>
+IMPORT <boolean.shex>
+IMPORT <integer.shex>
+IMPORT <dateTime.shex>
+IMPORT <Resource.shex>
+IMPORT <CareTeam.shex>
+IMPORT <Location.shex>
+IMPORT <Endpoint.shex>
+IMPORT <Quantity.shex>
+IMPORT <CarePlan.shex>
+IMPORT <Reference.shex>
+IMPORT <Encounter.shex>
+IMPORT <base64Binary.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DeviceRequest.shex>
+IMPORT <DomainResource.shex>
+IMPORT <NutritionOrder.shex>
+IMPORT <ServiceRequest.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <MedicationRequest.shex>
+IMPORT <ImmunizationRecommendation.shex>
+
+
+start=@<AuditEvent> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Record of an event
+<AuditEvent> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:AuditEvent];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Type/identifier of event
+    fhir:code @<CodeableConcept>;           # Specific type of event
+    fhir:action @<code> AND
+    	{fhir:v @fhirvs:audit-event-action}?;  # Type of action performed during 
+                                            # the event 
+    fhir:severity @<code> AND
+    	{fhir:v @fhirvs:audit-event-severity}?;  # emergency | alert | critical | 
+                                            # error | warning | notice | 
+                                            # informational | debug 
+    fhir:occurred (@<Period>  OR 
+    			@<dateTime> )  AND { rdf:type IRI } ?;  # When the activity occurred
+    fhir:recorded @<instant>;               # Time when the event was recorded
+    fhir:outcome @<BackboneElement>?;       # Whether the event succeeded or 
+                                            # failed 
+    fhir:authorization @<OneOrMore_CodeableConcept>?;  # Authorization related to the event
+    fhir:basedOn @<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest_OR_Task>?;  # Workflow authorization within 
+                                            # which this event occurred 
+    fhir:patient @<Reference> AND {fhir:link 
+    			@<Patient> }?;  # The patient is the subject of the 
+                                            # data used/created/updated/deleted 
+                                            # during the activity 
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # Encounter within which this event 
+                                            # occurred or which the event is 
+                                            # tightly associated 
+    fhir:agent @<OneOrMore_BackboneElement>;  # Actor involved in the event
+    fhir:source @<BackboneElement>;         # Audit Event Reporter
+    fhir:entity @<OneOrMore_BackboneElement>?;  # Data or objects used
+}  
+
+# Data or objects used
+<AuditEvent.entity> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:what @<Reference> AND {fhir:link 
+    			@<Resource> }?;  # Specific instance of resource
+    fhir:role @<CodeableConcept>?;          # What role the entity played
+    fhir:securityLabel @<OneOrMore_CodeableConcept>?;  # Security labels on the entity
+    fhir:query @<base64Binary>?;            # Query parameters
+    fhir:detail @<OneOrMore_BackboneElement>?;  # Additional Information about the 
+                                            # entity 
+    fhir:agent @<OneOrMore_AuditEvent.agent>?;  # Entity is attributed to this agent
+}  
+
+# Actor involved in the event
+<AuditEvent.agent> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>?;          # How agent participated
+    fhir:role @<OneOrMore_CodeableConcept>?;  # Agent role in the event
+    fhir:who @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> };  # Identifier of who
+    fhir:requestor @<boolean>?;             # Whether user is initiator
+    fhir:location @<Reference> AND {fhir:link 
+    			@<Location> }?;  # The agent location when the event 
+                                            # occurred 
+    fhir:policy @<OneOrMore_uri>?;          # Policy that authorized the agent 
+                                            # participation in the event 
+    fhir:network ((@<Reference>  AND {fhir:link @<Endpoint> })  OR 
+    			@<uri>  OR 
+    			@<string> )  AND { rdf:type IRI } ?;  # This agent network location for 
+                                            # the activity 
+    fhir:authorization @<OneOrMore_CodeableConcept>?;  # Allowable authorization for this 
+                                            # agent 
+}  
+
+# Whether the event succeeded or failed
+<AuditEvent.outcome> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<Coding>;                    # Whether the event succeeded or 
+                                            # failed 
+    fhir:detail @<OneOrMore_CodeableConcept>?;  # Additional outcome detail
+}  
+
+# Audit Event Reporter
+<AuditEvent.source> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:site @<Reference> AND {fhir:link 
+    			@<Location> }?;  # Logical source location within the 
+                                            # enterprise 
+    fhir:observer @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> };  # The identity of source detecting 
+                                            # the event 
+    fhir:type @<OneOrMore_CodeableConcept>?;  # The type of source where event 
+                                            # originated 
+}  
+
+# Additional Information about the entity
+<AuditEvent.entity.detail> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # Name of the property
+    fhir:v (@<Quantity>  OR 
+    			@<CodeableConcept>  OR 
+    			@<string>  OR 
+    			@<boolean>  OR 
+    			@<integer>  OR 
+    			@<Range>  OR 
+    			@<Ratio>  OR 
+    			@<time>  OR 
+    			@<dateTime>  OR 
+    			@<Period>  OR 
+    			@<base64Binary> )  AND { rdf:type IRI } ;  # Property value
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest_OR_Task> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CarePlan> OR 
+			@<DeviceRequest> OR 
+			@<ImmunizationRecommendation> OR 
+			@<MedicationRequest> OR 
+			@<NutritionOrder> OR 
+			@<ServiceRequest> OR 
+			@<Task> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest_OR_Task> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_AuditEvent.agent> CLOSED {
+    rdf:first @<AuditEvent.agent>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_AuditEvent.agent> 
+}
+
+<OneOrMore_uri> CLOSED {
+    rdf:first @<uri>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_uri> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Indicator for type of action performed during the event that generated the event.
+fhirvs:audit-event-action ["C" "R" "U" "D" "E"]
+
+# The severity of the audit entry.
+fhirvs:audit-event-severity ["emergency" "alert" "critical" "error" "warning" "notice" "informational" "debug"]
+

@@ -1,0 +1,127 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ValueSet ;
+  fhir:id [ fhir:v "relatedperson-relationshiptype"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablevalueset" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "pa" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/relatedperson-relationshiptype"], [ fhir:v "http://hl7.org/fhir/ValueSet/relatedperson-relationshiptype"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.449" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.442" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.2.259" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.449" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.442" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.2.259" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "PatientRelationshipType"], [ fhir:v "PatientRelationshipType"] ;
+  fhir:title [ fhir:v "Patient Relationship Type"], [ fhir:v "Patient Relationship Type"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:publisher [ fhir:v "FHIR Project team"], [ fhir:v "FHIR Project team"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "A set of codes that can be used to indicate the relationship between a Patient and a Related Person."], [ fhir:v "A set of codes that can be used to indicate the relationship between a Patient and a Related Person."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:compose [
+     fhir:include ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ParticipationType" ] ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "WIT" ]
+       ] )
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-RoleClass" ] ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "NOT" ]
+       ] [
+         fhir:code [ fhir:v "ECON" ]
+       ] [
+         fhir:code [ fhir:v "NOK" ]
+       ] [
+         fhir:code [ fhir:v "GUARD" ]
+       ] [
+         fhir:code [ fhir:v "DEPEN" ]
+       ] [
+         fhir:code [ fhir:v "EMP" ]
+       ] [
+         fhir:code [ fhir:v "GUAR" ]
+       ] [
+         fhir:code [ fhir:v "CAREGIVER" ]
+       ] )
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0131" ] ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "E" ]
+       ] [
+         fhir:code [ fhir:v "O" ]
+       ] [
+         fhir:code [ fhir:v "U" ]
+       ] )
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-RoleCode" ] ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "INTPRTER" ]
+       ] [
+         fhir:code [ fhir:v "POWATT" ]
+       ] [
+         fhir:code [ fhir:v "DPOWATT" ]
+       ] [
+         fhir:code [ fhir:v "HPOWATT" ]
+       ] [
+         fhir:code [ fhir:v "SPOWATT" ]
+       ] [
+         fhir:code [ fhir:v "BILL" ]
+       ] )
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,57 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Procedure ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "ob"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">Vaginal delivery of healthy male infant on June 2, 2012</div>"
+  ] ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       a sct:386637004 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "386637004" ] ;
+       fhir:display [ fhir:v "Obstetric procedure (procedure)" ]
+     ] ) ;
+     fhir:text [ fhir:v "OB" ]
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a sct:22633006 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "22633006" ] ;
+       fhir:display [ fhir:v "Vaginal delivery, medical personnel present (procedure)" ]
+     ] ) ;
+     fhir:text [ fhir:v "Vaginal delivery" ]
+  ] ; # 
+  fhir:subject [
+     fhir:display [ fhir:v "Jane Doe" ]
+  ] ; # 
+  fhir:occurrence [ fhir:v "2012-06-02"^^xsd:date] ; # 
+  fhir:performer ( [
+     fhir:actor [
+       fhir:display [ fhir:v "Martha Midwife, RNP" ]
+     ]
+  ] ) ; # 
+  fhir:location [
+     fhir:display [ fhir:v "Women’s Hospital" ]
+  ] ; # 
+  fhir:reason ( [
+     fhir:concept [
+       fhir:text [ fhir:v "term pregnancy, active labor" ]
+     ]
+  ] ) ; # 
+  fhir:outcome [
+     fhir:text [ fhir:v "delivery of healthy male infant" ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

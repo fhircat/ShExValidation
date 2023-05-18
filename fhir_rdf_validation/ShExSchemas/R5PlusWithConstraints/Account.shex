@@ -1,0 +1,192 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Money.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <instant.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coverage.shex>
+#imported_end
+#imported_begin 
+IMPORT <Location.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <positiveInt.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+#imported_begin 
+IMPORT <HealthcareService.shex>
+#imported_end
+
+start=@<Account> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Tracks balance, charges, for patient or cost center
+<Account> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Account]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Account number
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:account-status};  # active | inactive | 
+                                            # entered-in-error | on-hold | 
+                                            # unknown 
+    fhir:billingStatus @<CodeableConcept>?;  # Tracks the lifecycle of the 
+                                            # account through the billing 
+                                            # process 
+    fhir:type @<CodeableConcept>?;          # E.g. patient, expense, depreciation
+    fhir:name @<string>?;                   # Human-readable label
+    fhir:subject @<OneOrMore_Reference_Device_OR_HealthcareService_OR_Location_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole>?;  # The entity that caused the expenses
+    fhir:servicePeriod @<Period>?;          # Transaction window
+    fhir:coverage @<OneOrMore_Account.coverage>?;  # The party(s) that are responsible 
+                                            # for covering the payment of this 
+                                            # account, and what order should 
+                                            # they be applied to the account 
+    fhir:owner @<Reference> AND {fhir:link 
+    			@<Organization> ? }?;  # Entity managing the Account
+    fhir:description @<string>?;            # Explanation of purpose/use
+    fhir:guarantor @<OneOrMore_Account.guarantor>?;  # The parties ultimately responsible 
+                                            # for balancing the Account 
+    fhir:relatedAccount @<OneOrMore_Account.relatedAccount>?;  # Other associated accounts related 
+                                            # to this account 
+    fhir:currency @<CodeableConcept>?;      # The base or default currency
+    fhir:balance @<OneOrMore_Account.balance>?;  # Calculated account balance(s)
+    fhir:calculatedAt @<instant>?;          # Time the balance amount was 
+                                            # calculated 
+}  
+
+# Calculated account balance(s)
+<Account.balance> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:aggregate @<CodeableConcept>?;     # Who is expected to pay this part 
+                                            # of the balance 
+    fhir:term @<CodeableConcept>?;          # current | 30 | 60 | 90 | 120
+    fhir:estimate @<boolean>?;              # Estimated balance
+    fhir:amount @<Money>;                   # Calculated amount
+}  
+
+# The parties ultimately responsible for balancing the Account
+<Account.guarantor> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:party @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<RelatedPerson> ? };  # Responsible entity
+    fhir:onHold @<boolean>?;                # Credit or other hold applied
+    fhir:period @<Period>?;                 # Guarantee account during
+}  
+
+# The party(s) that are responsible for covering the payment of this account, and what order should they be applied to the account
+<Account.coverage> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:coverage @<Reference> AND {fhir:link 
+    			@<Coverage> ? };  # The party(s), such as insurances, 
+                                            # that may contribute to the payment 
+                                            # of this account 
+    fhir:priority @<positiveInt>?;          # The priority of the coverage in 
+                                            # the context of this account 
+}  
+
+# Other associated accounts related to this account
+<Account.relatedAccount> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:relationship @<CodeableConcept>?;  # Relationship of the associated 
+                                            # Account 
+    fhir:account @<Reference> AND {fhir:link 
+    			@<Account> ? };  # Reference to an associated Account
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_Account.coverage> CLOSED {
+    rdf:first @<Account.coverage>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Account.coverage> 
+}
+
+<OneOrMore_Account.guarantor> CLOSED {
+    rdf:first @<Account.guarantor>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Account.guarantor> 
+}
+
+<OneOrMore_Account.relatedAccount> CLOSED {
+    rdf:first @<Account.relatedAccount>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Account.relatedAccount> 
+}
+
+<OneOrMore_Account.balance> CLOSED {
+    rdf:first @<Account.balance>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Account.balance> 
+}
+
+#---------------------- Value Sets ------------------------
+
+

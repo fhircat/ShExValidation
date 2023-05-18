@@ -1,0 +1,619 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:StructureDefinition ;
+  fhir:id [ fhir:v "RelatedArtifact"] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/RelatedArtifact"], [ fhir:v "http://hl7.org/fhir/StructureDefinition/RelatedArtifact"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "RelatedArtifact"], [ fhir:v "RelatedArtifact"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 FHIR Standard"], [ fhir:v "HL7 FHIR Standard"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "RelatedArtifact Type: Related artifacts such as additional documentation, justification, or bibliographic references."], [ fhir:v "RelatedArtifact Type: Related artifacts such as additional documentation, justification, or bibliographic references."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:purpose [ fhir:v "Knowledge resources must be able to provide enough information for consumers of the content (and/or interventions or results produced by the content) to be able to determine and understand the justification for and evidence in support of the content."], [ fhir:v "Knowledge resources must be able to provide enough information for consumers of the content (and/or interventions or results produced by the content) to be able to determine and understand the justification for and evidence in support of the content."] ;
+  fhir:fhirVersion [ fhir:v "5.0.0"] ;
+  fhir:mapping ( [
+     fhir:identity [ fhir:v "rim" ] ;
+     fhir:uri [ fhir:v "http://hl7.org/v3" ] ;
+     fhir:name [ fhir:v "RIM Mapping" ]
+  ] ) ;
+  fhir:kind [ fhir:v "complex-type"] ;
+  fhir:abstract [ fhir:v "false"] ;
+  fhir:type [ fhir:v "RelatedArtifact"] ;
+  fhir:baseDefinition [ fhir:v "http://hl7.org/fhir/StructureDefinition/DataType"] ;
+  fhir:derivation [ fhir:v "specialization"] ;
+  fhir:snapshot [
+     fhir:element ( [
+       fhir:id [ fhir:v "RelatedArtifact" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+         fhir:value [ fhir:v "trial-use" ]
+       ] ) ;
+       fhir:path [ fhir:v "RelatedArtifact" ] ;
+       fhir:short [ fhir:v "Related artifacts for a knowledge resource" ] ;
+       fhir:definition [ fhir:v "Related artifacts such as additional documentation, justification, or bibliographic references." ] ;
+       fhir:comment [ fhir:v "Each related artifact is either an attachment, or a reference to another knowledge resource, but not both." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "*" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "RelatedArtifact" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "*" ]
+       ] ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "n/a" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "RelatedArtifact.id" ] ;
+       fhir:path [ fhir:v "RelatedArtifact.id" ] ;
+       fhir:representation ( [ fhir:v "xmlAttr" ] ) ;
+       fhir:short [ fhir:v "Unique id for inter-element referencing" ] ;
+       fhir:definition [ fhir:v "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "Element.id" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fhir-type" ] ;
+           fhir:value [ fhir:v "id" ]
+         ] ) ;
+         fhir:code [ fhir:v "http://hl7.org/fhirpath/System.String" ]
+       ] ) ;
+       fhir:condition ( [ fhir:v "ele-1" ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "false" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "n/a" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "RelatedArtifact.extension" ] ;
+       fhir:path [ fhir:v "RelatedArtifact.extension" ] ;
+       fhir:slicing [
+         fhir:discriminator ( [
+           fhir:type [ fhir:v "value" ] ;
+           fhir:path [ fhir:v "url" ]
+         ] ) ;
+         fhir:description [ fhir:v "Extensions are always sliced by (at least) url" ] ;
+         fhir:rules [ fhir:v "open" ]
+       ] ;
+       fhir:short [ fhir:v "Additional content defined by implementations" ] ;
+       fhir:definition [ fhir:v "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and managable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." ] ;
+       fhir:comment [ fhir:v "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." ] ;
+       fhir:alias ( [ fhir:v "extensions" ] [ fhir:v "user content" ] ) ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "*" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "Element.extension" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "*" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "Extension" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] [
+         fhir:key [ fhir:v "ext-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "Must have either extensions or value[x], not both" ] ;
+         fhir:expression [ fhir:v "extension.exists() != value.exists()" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Extension" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "false" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "n/a" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "RelatedArtifact.type" ] ;
+       fhir:path [ fhir:v "RelatedArtifact.type" ] ;
+       fhir:short [ fhir:v "documentation | justification | citation | predecessor | successor | derived-from | depends-on | composed-of | part-of | amends | amended-with | appends | appended-with | cites | cited-by | comments-on | comment-in | contains | contained-in | corrects | correction-in | replaces | replaced-with | retracts | retracted-by | signs | similar-to | supports | supported-with | transforms | transformed-into | transformed-with | documents | specification-of | created-with | cite-as" ] ;
+       fhir:definition [ fhir:v "The type of relationship to the related artifact." ] ;
+       fhir:comment [ fhir:v "The presence of both sides of a relationship type (e.g. successor and predecessor) is required to support use cases where one side of a relationship is not represented in FHIR. However, this feature SHALL NOT be used to create bi-directional resource links in FHIR instances. Specifically, following the methodology of \"new points to old\" and \"many points to one\", when using related artifact elements to describe and reference FHIR resources, the type element SHALL be drawn from the fhir-related-artifact-type ValueSet." ] ;
+       fhir:min [ fhir:v "1" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "RelatedArtifact.type" ] ;
+         fhir:min [ fhir:v "1" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "code" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:binding [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/binding-definition" ] ;
+           fhir:value [ fhir:v "The type of relationship to the related artifact." ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName" ] ;
+           fhir:value [ fhir:v "RelatedArtifactType" ]
+         ] ) ;
+         fhir:strength [ fhir:v "required" ] ;
+         fhir:description [ fhir:v "The type of relationship to the related artifact." ] ;
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/related-artifact-type|5.0.0" ]
+       ]
+     ] [
+       fhir:id [ fhir:v "RelatedArtifact.classifier" ] ;
+       fhir:path [ fhir:v "RelatedArtifact.classifier" ] ;
+       fhir:short [ fhir:v "Additional classifiers" ] ;
+       fhir:definition [ fhir:v "Provides additional classifiers of the related artifact." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "*" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "RelatedArtifact.classifier" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "*" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "CodeableConcept" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:binding [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/binding-definition" ] ;
+           fhir:value [ fhir:v "Additional classifiers for the related artifact." ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName" ] ;
+           fhir:value [ fhir:v "RelatedArtifactClassifier" ]
+         ] ) ;
+         fhir:strength [ fhir:v "example" ] ;
+         fhir:description [ fhir:v "Additional classifiers for the related artifact." ] ;
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/citation-artifact-classifier" ]
+       ]
+     ] [
+       fhir:id [ fhir:v "RelatedArtifact.label" ] ;
+       fhir:path [ fhir:v "RelatedArtifact.label" ] ;
+       fhir:short [ fhir:v "Short label" ] ;
+       fhir:definition [ fhir:v "A short label that can be used to reference the citation from elsewhere in the containing artifact, such as a footnote index." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "RelatedArtifact.label" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "string" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "RelatedArtifact.display" ] ;
+       fhir:path [ fhir:v "RelatedArtifact.display" ] ;
+       fhir:short [ fhir:v "Brief description of the related artifact" ] ;
+       fhir:definition [ fhir:v "A brief description of the document or knowledge resource being referenced, suitable for display to a consumer." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "RelatedArtifact.display" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "string" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "RelatedArtifact.citation" ] ;
+       fhir:path [ fhir:v "RelatedArtifact.citation" ] ;
+       fhir:short [ fhir:v "Bibliographic citation for the artifact" ] ;
+       fhir:definition [ fhir:v "A bibliographic citation for the related artifact. This text SHOULD be formatted according to an accepted citation format." ] ;
+       fhir:comment [ fhir:v "Additional structured information about citations should be captured as extensions." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "RelatedArtifact.citation" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "markdown" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "RelatedArtifact.document" ] ;
+       fhir:path [ fhir:v "RelatedArtifact.document" ] ;
+       fhir:short [ fhir:v "What document is being referenced" ] ;
+       fhir:definition [ fhir:v "The document being referenced, represented as an attachment. This is exclusive with the resource element." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "RelatedArtifact.document" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "Attachment" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "RelatedArtifact.resource" ] ;
+       fhir:path [ fhir:v "RelatedArtifact.resource" ] ;
+       fhir:short [ fhir:v "What artifact is being referenced" ] ;
+       fhir:definition [ fhir:v "The related artifact, such as a library, value set, profile, or other knowledge resource." ] ;
+       fhir:comment [ fhir:v "If the type is predecessor, this is a reference to the succeeding knowledge resource. If the type is successor, this is a reference to the prior knowledge resource." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "RelatedArtifact.resource" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "canonical" ] ;
+         fhir:targetProfile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/Resource" ] )
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "RelatedArtifact.resourceReference" ] ;
+       fhir:path [ fhir:v "RelatedArtifact.resourceReference" ] ;
+       fhir:short [ fhir:v "What artifact, if not a conformance resource" ] ;
+       fhir:definition [ fhir:v "The related artifact, if the artifact is not a canonical resource, or a resource reference to a canonical resource." ] ;
+       fhir:comment [ fhir:v "If both resource and resourceReference are present, they SHOULD be consistent and reference the same resource. Although relatedArtifact is intended to support references to definitional resources, there are cases where non-definitional resources can be definitional (such as Location where the kind is mode). Related artifacts SHOULD be used to reference definitional resources, and profiles SHOULD be used to make that explicit for particular use cases." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "RelatedArtifact.resourceReference" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "Reference" ] ;
+         fhir:targetProfile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/Resource" ] )
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "RelatedArtifact.publicationStatus" ] ;
+       fhir:path [ fhir:v "RelatedArtifact.publicationStatus" ] ;
+       fhir:short [ fhir:v "draft | active | retired | unknown" ] ;
+       fhir:definition [ fhir:v "The publication status of the artifact being referred to." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "RelatedArtifact.publicationStatus" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "code" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:binding [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/binding-definition" ] ;
+           fhir:value [ fhir:v "Publication status of an artifact being referred to." ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName" ] ;
+           fhir:value [ fhir:v "RelatedArtifactPublicationStatus" ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding" ] ;
+           fhir:value [ fhir:v "true" ]
+         ] ) ;
+         fhir:strength [ fhir:v "required" ] ;
+         fhir:description [ fhir:v "Publication status of an artifact being referred to." ] ;
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/publication-status|5.0.0" ]
+       ]
+     ] [
+       fhir:id [ fhir:v "RelatedArtifact.publicationDate" ] ;
+       fhir:path [ fhir:v "RelatedArtifact.publicationDate" ] ;
+       fhir:short [ fhir:v "Date of publication of the artifact being referred to" ] ;
+       fhir:definition [ fhir:v "The date of publication of the artifact being referred to." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "RelatedArtifact.publicationDate" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "date" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] )
+  ] ;
+  fhir:differential [
+     fhir:element ( [
+       fhir:id [ fhir:v "RelatedArtifact" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+         fhir:value [ fhir:v "trial-use" ]
+       ] ) ;
+       fhir:path [ fhir:v "RelatedArtifact" ] ;
+       fhir:short [ fhir:v "Related artifacts for a knowledge resource" ] ;
+       fhir:definition [ fhir:v "Related artifacts such as additional documentation, justification, or bibliographic references." ] ;
+       fhir:comment [ fhir:v "Each related artifact is either an attachment, or a reference to another knowledge resource, but not both." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "*" ]
+     ] [
+       fhir:id [ fhir:v "RelatedArtifact.type" ] ;
+       fhir:path [ fhir:v "RelatedArtifact.type" ] ;
+       fhir:short [ fhir:v "documentation | justification | citation | predecessor | successor | derived-from | depends-on | composed-of | part-of | amends | amended-with | appends | appended-with | cites | cited-by | comments-on | comment-in | contains | contained-in | corrects | correction-in | replaces | replaced-with | retracts | retracted-by | signs | similar-to | supports | supported-with | transforms | transformed-into | transformed-with | documents | specification-of | created-with | cite-as" ] ;
+       fhir:definition [ fhir:v "The type of relationship to the related artifact." ] ;
+       fhir:comment [ fhir:v "The presence of both sides of a relationship type (e.g. successor and predecessor) is required to support use cases where one side of a relationship is not represented in FHIR. However, this feature SHALL NOT be used to create bi-directional resource links in FHIR instances. Specifically, following the methodology of \"new points to old\" and \"many points to one\", when using related artifact elements to describe and reference FHIR resources, the type element SHALL be drawn from the fhir-related-artifact-type ValueSet." ] ;
+       fhir:min [ fhir:v "1" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "code" ]
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:binding [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/binding-definition" ] ;
+           fhir:value [ fhir:v "The type of relationship to the related artifact." ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName" ] ;
+           fhir:value [ fhir:v "RelatedArtifactType" ]
+         ] ) ;
+         fhir:strength [ fhir:v "required" ] ;
+         fhir:description [ fhir:v "The type of relationship to the related artifact." ] ;
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/related-artifact-type|5.0.0" ]
+       ]
+     ] [
+       fhir:id [ fhir:v "RelatedArtifact.classifier" ] ;
+       fhir:path [ fhir:v "RelatedArtifact.classifier" ] ;
+       fhir:short [ fhir:v "Additional classifiers" ] ;
+       fhir:definition [ fhir:v "Provides additional classifiers of the related artifact." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "*" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "CodeableConcept" ]
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:binding [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/binding-definition" ] ;
+           fhir:value [ fhir:v "Additional classifiers for the related artifact." ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName" ] ;
+           fhir:value [ fhir:v "RelatedArtifactClassifier" ]
+         ] ) ;
+         fhir:strength [ fhir:v "example" ] ;
+         fhir:description [ fhir:v "Additional classifiers for the related artifact." ] ;
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/citation-artifact-classifier" ]
+       ]
+     ] [
+       fhir:id [ fhir:v "RelatedArtifact.label" ] ;
+       fhir:path [ fhir:v "RelatedArtifact.label" ] ;
+       fhir:short [ fhir:v "Short label" ] ;
+       fhir:definition [ fhir:v "A short label that can be used to reference the citation from elsewhere in the containing artifact, such as a footnote index." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "string" ]
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "RelatedArtifact.display" ] ;
+       fhir:path [ fhir:v "RelatedArtifact.display" ] ;
+       fhir:short [ fhir:v "Brief description of the related artifact" ] ;
+       fhir:definition [ fhir:v "A brief description of the document or knowledge resource being referenced, suitable for display to a consumer." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "string" ]
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "RelatedArtifact.citation" ] ;
+       fhir:path [ fhir:v "RelatedArtifact.citation" ] ;
+       fhir:short [ fhir:v "Bibliographic citation for the artifact" ] ;
+       fhir:definition [ fhir:v "A bibliographic citation for the related artifact. This text SHOULD be formatted according to an accepted citation format." ] ;
+       fhir:comment [ fhir:v "Additional structured information about citations should be captured as extensions." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "markdown" ]
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "RelatedArtifact.document" ] ;
+       fhir:path [ fhir:v "RelatedArtifact.document" ] ;
+       fhir:short [ fhir:v "What document is being referenced" ] ;
+       fhir:definition [ fhir:v "The document being referenced, represented as an attachment. This is exclusive with the resource element." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "Attachment" ]
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "RelatedArtifact.resource" ] ;
+       fhir:path [ fhir:v "RelatedArtifact.resource" ] ;
+       fhir:short [ fhir:v "What artifact is being referenced" ] ;
+       fhir:definition [ fhir:v "The related artifact, such as a library, value set, profile, or other knowledge resource." ] ;
+       fhir:comment [ fhir:v "If the type is predecessor, this is a reference to the succeeding knowledge resource. If the type is successor, this is a reference to the prior knowledge resource." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "canonical" ] ;
+         fhir:targetProfile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/Resource" ] )
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "RelatedArtifact.resourceReference" ] ;
+       fhir:path [ fhir:v "RelatedArtifact.resourceReference" ] ;
+       fhir:short [ fhir:v "What artifact, if not a conformance resource" ] ;
+       fhir:definition [ fhir:v "The related artifact, if the artifact is not a canonical resource, or a resource reference to a canonical resource." ] ;
+       fhir:comment [ fhir:v "If both resource and resourceReference are present, they SHOULD be consistent and reference the same resource. Although relatedArtifact is intended to support references to definitional resources, there are cases where non-definitional resources can be definitional (such as Location where the kind is mode). Related artifacts SHOULD be used to reference definitional resources, and profiles SHOULD be used to make that explicit for particular use cases." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "Reference" ] ;
+         fhir:targetProfile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/Resource" ] )
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "RelatedArtifact.publicationStatus" ] ;
+       fhir:path [ fhir:v "RelatedArtifact.publicationStatus" ] ;
+       fhir:short [ fhir:v "draft | active | retired | unknown" ] ;
+       fhir:definition [ fhir:v "The publication status of the artifact being referred to." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "code" ]
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:binding [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/binding-definition" ] ;
+           fhir:value [ fhir:v "Publication status of an artifact being referred to." ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName" ] ;
+           fhir:value [ fhir:v "RelatedArtifactPublicationStatus" ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding" ] ;
+           fhir:value [ fhir:v "true" ]
+         ] ) ;
+         fhir:strength [ fhir:v "required" ] ;
+         fhir:description [ fhir:v "Publication status of an artifact being referred to." ] ;
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/publication-status|5.0.0" ]
+       ]
+     ] [
+       fhir:id [ fhir:v "RelatedArtifact.publicationDate" ] ;
+       fhir:path [ fhir:v "RelatedArtifact.publicationDate" ] ;
+       fhir:short [ fhir:v "Date of publication of the artifact being referred to" ] ;
+       fhir:definition [ fhir:v "The date of publication of the artifact being referred to." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "date" ]
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

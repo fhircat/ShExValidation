@@ -1,0 +1,314 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <time.shex>
+#imported_end
+#imported_begin 
+IMPORT <Range.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Element.shex>
+#imported_end
+#imported_begin 
+IMPORT <decimal.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Duration.shex>
+#imported_end
+#imported_begin 
+IMPORT <positiveInt.shex>
+#imported_end
+#imported_begin 
+IMPORT <unsignedInt.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneType.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+# A timing schedule that specifies an event that may occur multiple times
+<Timing> EXTENDS @<BackboneType> CLOSED {   
+
+    a [fhir:Timing]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:event @<OneOrMore_dateTime>?;      # When the event occurs
+    fhir:repeat @<Element>?;                # When the event is to occur
+    fhir:code @<CodeableConcept>?;          # C | BID | TID | QID | AM | PM | QD 
+                                            # | QOD | + 
+} AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: allFalse
+# Unmapped construct found: select
+# # Constraint UniqueKey:tim-9
+# Human readable:If there's an offset, there must be a when (and not C, CM, CD, CV)
+#
+# Constraint: offset.empty() or (when.exists() and when.select($this in ('C' | 'CM' | 'CD' | 'CV')).allFalse())
+# ShEx:
+#
+# NOT { fhir:offset {fhir:v .} }  OR ({fhir:when . AND    allFalse  ( fhir:when. select  ($this { fhir:v ['C' 'CM' 'CD' 'CV'] } ) )})
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:tim-5
+# Human readable:period SHALL be a non-negative value
+#
+# Constraint: period.exists() implies period >= 0
+# ShEx:
+#
+#{fhir:period .  Implies  ({ fhir:period { fhir:v MinInclusive 0 }  })}
+{}
+
+) AND (
+
+# Constraint UniqueKey:tim-6
+# Human readable:If there's a periodMax, there must be a period
+
+# Constraint: periodMax.empty() or period.exists()
+# ShEx:
+
+ NOT { fhir:periodMax {fhir:v .} }  OR {fhir:period .}
+
+) AND (
+
+# Constraint UniqueKey:tim-7
+# Human readable:If there's a durationMax, there must be a duration
+
+# Constraint: durationMax.empty() or duration.exists()
+# ShEx:
+
+ NOT { fhir:durationMax {fhir:v .} }  OR {fhir:duration .}
+
+) AND (
+
+# Constraint UniqueKey:tim-8
+# Human readable:If there's a countMax, there must be a count
+
+# Constraint: countMax.empty() or count.exists()
+# ShEx:
+
+ NOT { fhir:countMax {fhir:v .} }  OR {fhir:count .}
+
+) AND (
+
+# Constraint UniqueKey:tim-1
+# Human readable:if there's a duration, there needs to be duration units
+
+# Constraint: duration.empty() or durationUnit.exists()
+# ShEx:
+
+ NOT { fhir:duration {fhir:v .} }  OR {fhir:durationUnit .}
+
+) AND (
+
+# Constraint UniqueKey:tim-10
+# Human readable:If there's a timeOfDay, there cannot be a when, or vice versa
+
+# Constraint: timeOfDay.empty() or when.empty()
+# ShEx:
+
+ NOT { fhir:timeOfDay {fhir:v .} }  OR  NOT { fhir:when {fhir:v .} } 
+
+) AND (
+
+# Constraint UniqueKey:tim-2
+# Human readable:if there's a period, there needs to be period units
+
+# Constraint: period.empty() or periodUnit.exists()
+# ShEx:
+
+ NOT { fhir:period {fhir:v .} }  OR {fhir:periodUnit .}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:tim-4
+# Human readable:duration SHALL be a non-negative value
+#
+# Constraint: duration.exists() implies duration >= 0
+# ShEx:
+#
+#{fhir:duration .  Implies  ({ fhir:duration { fhir:v MinInclusive 0 }  })}
+{}
+
+)
+ 
+
+# When the event is to occur
+<Timing.repeat> EXTENDS @<Element> CLOSED {   
+    fhir:bounds @<Duration>  OR 
+    			@<Range>  OR 
+    			@<Period>  ?;  # Length/Range of lengths, or (Start 
+                                            # and/or end) limits 
+    fhir:count @<positiveInt>?;             # Number of times to repeat
+    fhir:countMax @<positiveInt>?;          # Maximum number of times to repeat
+    fhir:duration @<decimal>?;              # How long when it happens
+    fhir:durationMax @<decimal>?;           # How long when it happens (Max)
+    fhir:durationUnit @<code> AND
+    	{fhir:v @fhirvs:units-of-time}?;  # s | min | h | d | wk | mo | a - 
+                                            # unit of time (UCUM) 
+    fhir:frequency @<positiveInt>?;         # Indicates the number of 
+                                            # repetitions that should occur 
+                                            # within a period. I.e. Event occurs 
+                                            # frequency times per period 
+    fhir:frequencyMax @<positiveInt>?;      # Event occurs up to frequencyMax 
+                                            # times per period 
+    fhir:period @<decimal>?;                # The duration to which the 
+                                            # frequency applies. I.e. Event 
+                                            # occurs frequency times per period 
+    fhir:periodMax @<decimal>?;             # Upper limit of period (3-4 hours)
+    fhir:periodUnit @<code> AND
+    	{fhir:v @fhirvs:units-of-time}?;  # s | min | h | d | wk | mo | a - 
+                                            # unit of time (UCUM) 
+    fhir:dayOfWeek @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:days-of-week}?;  # mon | tue | wed | thu | fri | sat 
+                                            # | sun 
+    fhir:timeOfDay @<OneOrMore_time>?;      # Time of day for action
+    fhir:when @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:event-timing}?;  # Code for time period of occurrence
+    fhir:offset @<unsignedInt>?;            # Minutes from event (before or 
+                                            # after) 
+} AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: allFalse
+# Unmapped construct found: select
+# # Constraint UniqueKey:tim-9
+# Human readable:If there's an offset, there must be a when (and not C, CM, CD, CV)
+#
+# Constraint: offset.empty() or (when.exists() and when.select($this in ('C' | 'CM' | 'CD' | 'CV')).allFalse())
+# ShEx:
+#
+# NOT { fhir:offset {fhir:v .} }  OR ({fhir:when . AND    allFalse  ( fhir:when. select  ($this { fhir:v ['C' 'CM' 'CD' 'CV'] } ) )})
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:tim-5
+# Human readable:period SHALL be a non-negative value
+#
+# Constraint: period.exists() implies period >= 0
+# ShEx:
+#
+#{fhir:period .  Implies  ({ fhir:period { fhir:v MinInclusive 0 }  })}
+{}
+
+) AND (
+
+# Constraint UniqueKey:tim-6
+# Human readable:If there's a periodMax, there must be a period
+
+# Constraint: periodMax.empty() or period.exists()
+# ShEx:
+
+ NOT { fhir:periodMax {fhir:v .} }  OR {fhir:period .}
+
+) AND (
+
+# Constraint UniqueKey:tim-7
+# Human readable:If there's a durationMax, there must be a duration
+
+# Constraint: durationMax.empty() or duration.exists()
+# ShEx:
+
+ NOT { fhir:durationMax {fhir:v .} }  OR {fhir:duration .}
+
+) AND (
+
+# Constraint UniqueKey:tim-8
+# Human readable:If there's a countMax, there must be a count
+
+# Constraint: countMax.empty() or count.exists()
+# ShEx:
+
+ NOT { fhir:countMax {fhir:v .} }  OR {fhir:count .}
+
+) AND (
+
+# Constraint UniqueKey:tim-1
+# Human readable:if there's a duration, there needs to be duration units
+
+# Constraint: duration.empty() or durationUnit.exists()
+# ShEx:
+
+ NOT { fhir:duration {fhir:v .} }  OR {fhir:durationUnit .}
+
+) AND (
+
+# Constraint UniqueKey:tim-10
+# Human readable:If there's a timeOfDay, there cannot be a when, or vice versa
+
+# Constraint: timeOfDay.empty() or when.empty()
+# ShEx:
+
+ NOT { fhir:timeOfDay {fhir:v .} }  OR  NOT { fhir:when {fhir:v .} } 
+
+) AND (
+
+# Constraint UniqueKey:tim-2
+# Human readable:if there's a period, there needs to be period units
+
+# Constraint: period.empty() or periodUnit.exists()
+# ShEx:
+
+ NOT { fhir:period {fhir:v .} }  OR {fhir:periodUnit .}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:tim-4
+# Human readable:duration SHALL be a non-negative value
+#
+# Constraint: duration.exists() implies duration >= 0
+# ShEx:
+#
+#{fhir:duration .  Implies  ({ fhir:duration { fhir:v MinInclusive 0 }  })}
+{}
+
+)
+ 
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+#---------------------- Value Sets ------------------------
+
+
+
+

@@ -1,0 +1,106 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <date.shex>
+IMPORT <Period.shex>
+IMPORT <boolean.shex>
+IMPORT <dateTime.shex>
+IMPORT <Reference.shex>
+IMPORT <Organization.shex>
+IMPORT <DomainResource.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CodeableConcept.shex>
+
+
+start=@<Practitioner> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A person with a  formal responsibility in the provisioning of healthcare or related services
+<Practitioner> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Practitioner]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # An identifier for the person as 
+                                            # this agent 
+    fhir:active @<boolean>?;                # Whether this practitioner's record 
+                                            # is in active use 
+    fhir:name @<OneOrMore_HumanName>?;      # The name(s) associated with the 
+                                            # practitioner 
+    fhir:telecom @<OneOrMore_ContactPoint>?;  # A contact detail for the 
+                                            # practitioner (that apply to all 
+                                            # roles) 
+    fhir:deceased (@<boolean>  OR 
+    			@<dateTime> )  AND { rdf:type IRI } ?;  # Indicates if the practitioner is 
+                                            # deceased or not 
+    fhir:address @<OneOrMore_Address>?;     # Address(es) of the practitioner 
+                                            # that are not role specific 
+                                            # (typically home address) 
+    fhir:gender @<code> AND
+    	{fhir:v @fhirvs:administrative-gender}?;  # male | female | other | unknown
+    fhir:birthDate @<date>?;                # The date  on which the 
+                                            # practitioner was born 
+    fhir:photo @<OneOrMore_Attachment>?;    # Image of the person
+    fhir:qualification @<OneOrMore_BackboneElement>?;  # Certification, licenses, or 
+                                            # training pertaining to the 
+                                            # provision of care 
+    fhir:communication @<OneOrMore_CodeableConcept>?;  # A language the practitioner can 
+                                            # use in patient communication 
+}  
+
+# Certification, licenses, or training pertaining to the provision of care
+<Practitioner.qualification> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:identifier @<OneOrMore_Identifier>?;  # An identifier for this 
+                                            # qualification for the practitioner 
+    fhir:code @<CodeableConcept>;           # Coded representation of the 
+                                            # qualification 
+    fhir:period @<Period>?;                 # Period during which the 
+                                            # qualification is valid 
+    fhir:issuer @<Reference> AND {fhir:link 
+    			@<Organization> }?;  # Organization that regulates and 
+                                            # issues the qualification 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_HumanName> CLOSED {
+    rdf:first @<HumanName>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_HumanName> 
+}
+
+<OneOrMore_ContactPoint> CLOSED {
+    rdf:first @<ContactPoint>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactPoint> 
+}
+
+<OneOrMore_Address> CLOSED {
+    rdf:first @<Address>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Address> 
+}
+
+<OneOrMore_Attachment> CLOSED {
+    rdf:first @<Attachment>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Attachment> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The gender of a person used for administrative purposes.
+fhirvs:administrative-gender ["male" "female" "other" "unknown"]
+

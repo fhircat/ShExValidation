@@ -1,0 +1,41 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Bundle ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "bundle-request-medsallergies"] ; # 
+  fhir:type [ fhir:v "batch"] ; #   This bundle is a batch of reqests to the FHIR RESTful API  
+  fhir:entry ( [
+     fhir:request [
+       fhir:method [ fhir:v "GET" ] ;
+       fhir:url [ fhir:v "/Patient/example"^^xsd:anyURI ]
+     ]
+  ] [
+     fhir:request [
+       fhir:method [ fhir:v "GET" ] ;
+       fhir:url [ fhir:v "/MedicationStatement?patient=example&_list=$current-medications"^^xsd:anyURI ]
+     ]
+  ] [
+     fhir:request [
+       fhir:method [ fhir:v "GET" ] ;
+       fhir:url [ fhir:v "/AllergyIntolerance?patient=example&_list=$current-allergies"^^xsd:anyURI ]
+     ]
+  ] [
+     fhir:request [
+       fhir:method [ fhir:v "GET" ] ;
+       fhir:url [ fhir:v "/Condition?patient=example&_list=$current-problems"^^xsd:anyURI ]
+     ]
+  ] [
+     fhir:request [
+       fhir:method [ fhir:v "GET" ] ;
+       fhir:url [ fhir:v "/MedicationStatement?patient=example&notgiven:not=true"^^xsd:anyURI ]
+     ]
+  ] )] . #   Each entry is used to represent a RESTful API request
+#       This request retrieves a single Patient resource  
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,40 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Substance ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Substance</b><a name=\"example\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Substance &quot;example&quot; </p></div><p><b>identifier</b>: <span title=\" \n  &lt;text&gt;\n    &lt;status value=&quot;generated&quot;/&gt;\n    &lt;div xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;Apitoxin (known as Honey Bee Venom)&lt;/div&gt;\n  &lt;/text&gt;\n \">id: 1463</span></p><p><b>instance</b>: false</p><p><b>status</b>: active</p><p><b>category</b>: Allergen <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-substance-category.html\">Substance Category Codes</a>#allergen)</span></p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>apitoxin (Honey Bee Venom) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table></div>"
+  ] ; #   
+#  <text>
+#    <status value="generated"/>
+#    <div xmlns="http://www.w3.org/1999/xhtml">Apitoxin (known as Honey Bee Venom)</div>
+#  </text>
+#  
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://acme.org/identifiers/substances"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "1463" ]
+  ] ) ; # 
+  fhir:instance [ fhir:v "false"^^xsd:boolean] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/substance-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "allergen" ] ;
+       fhir:display [ fhir:v "Allergen" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:concept [
+       fhir:text [ fhir:v "apitoxin (Honey Bee Venom)" ]
+     ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

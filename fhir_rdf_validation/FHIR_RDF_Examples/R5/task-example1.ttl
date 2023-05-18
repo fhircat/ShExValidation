@@ -1,0 +1,142 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+#   The expected output of this task is a DiagnosticRequest and will generated once the task is near completion   
+
+[a fhir:Task ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example1"] ; #   This is an example to demonstrate using task for actioning a servicerequest and to illustrate how to populate many of the task elements - this is the parent task that will be broken into subtask to grab the specimen
+#example1 action lipid panel -in progress =>. example2 specimen collection subtask -accepted => example4  specimen collection subtask - completed  with output Specimen=>example 5 action lipid panel -in progress specimen collected => example 6 action lipid panel - completed with output DiagnosticReport   
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Task</b><a name=\"example1\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Task &quot;example1&quot; </p></div><p><b>identifier</b>: id: 20170201-001 (use: OFFICIAL)</p><p><b>basedOn</b>: <span>: General Wellness Careplan</span></p><p><b>groupIdentifier</b>: id: G20170201-001 (use: OFFICIAL)</p><p><b>status</b>: in-progress</p><p><b>businessStatus</b>: <span title=\" fictive business status populated for this example  \">waiting for specimen <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></span></p><p><b>intent</b>: order</p><p><b>priority</b>: routine</p><p><b>code</b>: <span title=\" fictive code and description elements populated for this example  \">Lipid Panel <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-task-code.html\">Task Codes</a>#fulfill)</span></span></p><p><b>description</b>: Create order for getting specimen, Set up inhouse testing,  generate order for any sendouts and submit with specimen</p><p><b>focus</b>: <span title=\" 	Use the lipid servicerequest example  \"><a href=\"servicerequest-example-lipid.html\">ServiceRequest/lipid: Lipid Panel Request</a></span></p><p><b>for</b>: <span title=\" 	who the task is for\n \"><a href=\"patient-example.html\">Patient/example: Peter James Chalmers</a> &quot;Peter CHALMERS&quot;</span></p><p><b>encounter</b>: <a href=\"encounter-example.html\">Encounter/example: Example In-Patient Encounter</a></p><p><b>executionPeriod</b>: <span title=\" 	Lots of dates  \">2016-10-31T08:25:05+10:00 --&gt; (ongoing)</span></p><p><b>authoredOn</b>: 2016-10-31T08:25:05+10:00</p><p><b>lastModified</b>: 2016-10-31T09:45:05+10:00</p><p><b>requester</b>: <a href=\"practitioner-example.html\">Practitioner/example: Dr Adam Careful</a> &quot;Adam CAREFUL&quot;</p><h3>RequestedPerformers</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Performer <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#18850004 &quot;Laboratory hematologist&quot;)</span></td></tr></table><p><b>owner</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Clinical Laboratory @ Acme Hospital</a> &quot;Clinical Lab&quot;</p><h3>Reasons</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>The Task.reason should only be included if there is no Task.focus or if it differs from the reason indicated on the focus <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table><p><b>note</b>: This is an example to demonstrate using task for actioning a servicerequest and to illustrate how to populate many of the task elements - this is the parent task that will be broken into subtask to grab the specimen and a sendout lab test</p><p><b>relevantHistory</b>: <span title=\" 	add the link to the signature on the task to show how this element is usedemonstrating in this example the relevant history element using a contained resource for the purpose of this example only typically would reference an external resource\n\n \"><a name=\"signature\"> </a></span></p><blockquote><p/><p><a name=\"signature\"> </a></p><p><b>target</b>: <a href=\"servicerequest-example2.html\">ServiceRequest/physiotherapy/_history/1</a></p><p><b>recorded</b>: 31 Oct 2016, 9:25:05 am</p><h3>Agents</h3><table class=\"grid\"><tr><td>-</td><td><b>Role</b></td><td><b>Who</b></td></tr><tr><td>*</td><td>author (originator) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ParticipationType.html\">ParticipationType</a>#AUT)</span></td><td><a href=\"practitioner-example-f202-lm.html\">Practitioner/f202: Luigi Maas</a> &quot;Luigi Maas&quot;</td></tr></table><h3>Signatures</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>When</b></td><td><b>Who</b></td><td><b>TargetFormat</b></td><td><b>SigFormat</b></td><td><b>Data</b></td></tr><tr><td>*</td><td>Author's Signature (Details: urn:iso-astm:E1762-95:2013 code 1.2.840.10065.1.12.1.1 = 'Author's Signature', stated as 'Author's Signature')</td><td>31 Oct 2016, 9:25:05 am</td><td><a href=\"practitioner-example.html\">Practitioner/example: Dr Adam Careful</a> &quot;Adam CAREFUL&quot;</td><td>application/fhir+xml</td><td>application/signature+xml</td><td>dGhpcyBibG9iIGlzIHNuaXBwZWQ=</td></tr></table></blockquote><h3>Restrictions</h3><table class=\"grid\"><tr><td>-</td><td><b>Repetitions</b></td><td><b>Period</b></td></tr><tr><td>*</td><td>1</td><td>?? --&gt; 2016-11-02T09:45:05+10:00</td></tr></table></div>"
+  ] ; # 
+  fhir:contained ( [
+     a fhir:Provenance ;
+     fhir:id [ fhir:v "signature" ] ;
+     fhir:target ( [
+       fhir:reference [ fhir:v "ServiceRequest/physiotherapy/_history/1" ]
+     ] ) ;
+     fhir:recorded [ fhir:v "2016-10-31T08:25:05+10:00"^^xsd:dateTime ] ;
+     fhir:agent ( [
+       fhir:role ( [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ParticipationType"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "AUT" ]
+         ] )
+       ] ) ;
+       fhir:who [
+         fhir:reference [ fhir:v "Practitioner/f202" ] ;
+         fhir:display [ fhir:v "Luigi Maas" ]
+       ]
+     ] ) ;
+     fhir:signature ( [
+       fhir:type ( [
+         fhir:system [ fhir:v "urn:iso-astm:E1762-95:2013"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "1.2.840.10065.1.12.1.1" ] ;
+         fhir:display [ fhir:v "Author's Signature" ]
+       ] ) ;
+       fhir:when [ fhir:v "2016-10-31T08:25:05+10:00"^^xsd:dateTime ] ;
+       fhir:who [
+         fhir:reference [ fhir:v "Practitioner/example" ] ;
+         fhir:display [ fhir:v "Dr Adam Careful" ]
+       ] ;
+       fhir:targetFormat [ fhir:v "application/fhir+xml" ] ;
+       fhir:sigFormat [ fhir:v "application/signature+xml" ] ;
+       fhir:data [ fhir:v "dGhpcyBibG9iIGlzIHNuaXBwZWQ="^^xsd:base64Binary ]
+     ] )
+  ] ) ; #    using contained resource for the purpose of this example only typically this would be a separate independent resource   
+  fhir:identifier ( [
+     fhir:use [ fhir:v "official" ] ;
+     fhir:system [ fhir:v "http:/goodhealth.org/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "20170201-001" ]
+  ] ) ; # 
+  fhir:basedOn ( [
+     fhir:display [ fhir:v "General Wellness Careplan" ]
+  ] ) ; # 
+  fhir:groupIdentifier [
+     fhir:use [ fhir:v "official" ] ;
+     fhir:system [ fhir:v "http:/goodhealth.org/accession/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "G20170201-001" ]
+  ] ; # 
+  fhir:status [ fhir:v "in-progress"] ; # 
+  fhir:businessStatus [
+     fhir:text [ fhir:v "waiting for specimen" ]
+  ] ; #   fictive business status populated for this example   
+  fhir:intent [ fhir:v "order"] ; # 
+  fhir:priority [ fhir:v "routine"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/CodeSystem/task-code"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "fulfill" ]
+     ] ) ;
+     fhir:text [ fhir:v "Lipid Panel" ]
+  ] ; #   fictive code and description elements populated for this example   
+  fhir:description [ fhir:v "Create order for getting specimen, Set up inhouse testing,  generate order for any sendouts and submit with specimen"] ; # 
+  fhir:focus [
+     fhir:reference [ fhir:v "ServiceRequest/lipid" ] ;
+     fhir:display [ fhir:v "Lipid Panel Request" ]
+  ] ; #   	Use the lipid servicerequest example   
+  fhir:for [
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "Peter James Chalmers" ]
+  ] ; #   	who the task is for
+#  
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/example" ] ;
+     fhir:display [ fhir:v "Example In-Patient Encounter" ]
+  ] ; # 
+  fhir:executionPeriod [
+     fhir:start [ fhir:v "2016-10-31T08:25:05+10:00"^^xsd:dateTime ]
+  ] ; #   	Lots of dates   
+  fhir:authoredOn [ fhir:v "2016-10-31T08:25:05+10:00"^^xsd:dateTime] ; # 
+  fhir:lastModified [ fhir:v "2016-10-31T09:45:05+10:00"^^xsd:dateTime] ; # 
+  fhir:requester [
+     fhir:reference [ fhir:v "Practitioner/example" ] ;
+     fhir:display [ fhir:v "Dr Adam Careful" ]
+  ] ; # 
+  fhir:requestedPerformer ( [
+     fhir:concept [
+       fhir:coding ( [
+         a sct:18850004 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "18850004" ] ;
+         fhir:display [ fhir:v "Laboratory hematologist" ]
+       ] ) ;
+       fhir:text [ fhir:v "Performer" ]
+     ]
+  ] ) ; # 
+  fhir:owner [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Clinical Laboratory @ Acme Hospital" ]
+  ] ; # 
+  fhir:reason ( [
+     fhir:concept [
+       fhir:text [ fhir:v "The Task.reason should only be included if there is no Task.focus or if it differs from the reason indicated on the focus" ]
+     ]
+  ] ) ; #   	populate the reason just to demonstrate it use in this example
+#  
+  fhir:note ( [
+     fhir:text [ fhir:v "This is an example to demonstrate using task for actioning a servicerequest and to illustrate how to populate many of the task elements - this is the parent task that will be broken into subtask to grab the specimen and a sendout lab test" ]
+  ] ) ; # 
+  fhir:relevantHistory ( [
+     fhir:reference [ fhir:v "#signature" ] ;
+     fhir:display [ fhir:v "Author's Signature" ]
+  ] ) ; #   	add the link to the signature on the task to show how this element is usedemonstrating in this example the relevant history element using a contained resource for the purpose of this example only typically would reference an external resource
+#
+#  
+  fhir:restriction [
+     fhir:repetitions [ fhir:v "1"^^xsd:positiveInteger ] ;
+     fhir:period [
+       fhir:end [ fhir:v "2016-11-02T09:45:05+10:00"^^xsd:dateTime ]
+     ]
+  ]] . #   	complete the request within 48 hrs
+#  
+
+# -------------------------------------------------------------------------------------
+

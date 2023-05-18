@@ -1,0 +1,30 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <string.shex>
+IMPORT <Extension.shex>
+
+# What should be displayed to human (if default is not appropriate)
+<rendered-value> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:rendered-value];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/rendered-value"]}; 
+    fhir:v (@<string> )  AND { rdf:type IRI } ; 
+    ^fhir:extension { ^fhir:v {a [fhir:Identifier]} OR 
+          a [fhir:date] OR 
+          a [fhir:dateTime] OR 
+          a [fhir:time] OR 
+          a [fhir:instant] OR 
+          a [fhir:integer] OR 
+          a [fhir:decimal] OR 
+          a [fhir:string] OR 
+          a [fhir:code] OR 
+          a [fhir:canonical]
+        }
+}  
+

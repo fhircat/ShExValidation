@@ -1,0 +1,27 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <Attachment.shex>
+IMPORT <RelatedArtifact.shex>
+IMPORT <shareablelibrary.shex>
+
+
+start=@<logiclibrary> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Represents a library of quality improvement components
+<logiclibrary> EXTENDS @<shareablelibrary> CLOSED {   
+
+    a [fhir:logiclibrary];
+    fhir:nodeRole [fhir:treeRoot]?;
+}  
+
+# Additional documentation, citations, etc.
+<Library.relatedArtifact> EXTENDS @<RelatedArtifact> CLOSED {   
+}  
+
+# Contents of the library, either embedded or referenced
+<Library.content> EXTENDS @<Attachment> CLOSED {   
+}  
+

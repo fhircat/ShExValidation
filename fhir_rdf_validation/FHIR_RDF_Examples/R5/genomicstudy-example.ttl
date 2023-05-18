@@ -1,0 +1,262 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:GenomicStudy ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; #   from Resource: id, meta, implicitRules, and language  
+  fhir:text [
+     fhir:status [ fhir:v "additional" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">This is a genomic study that involves a de novo mutation analysis of a proband, mother, and father. The analysis involves the use use of NGS device and a specilized analysis platform.</div>"
+  ] ; #   from DomainResource: text, contained, extension, and modifierExtension  
+  fhir:identifier ( [
+     fhir:use [ fhir:v "temp" ] ;
+     fhir:system [ fhir:v "http://www.somesystemabc.net/identifiers/genomicstudies"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:uuid:1111-1111-1111-1111" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "unknown"] ; # 
+  fhir:type ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/genomicstudy-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "fam-var-segr" ] ;
+       fhir:display [ fhir:v "Familial variant segregation" ]
+     ] )
+  ] ) ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/denovoChild" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/denovoEncounter" ]
+  ] ; # 
+  fhir:startDate [ fhir:v "2021-01-01"^^xsd:date] ; # 
+  fhir:basedOn ( [
+     fhir:reference [ fhir:v "ServiceRequest/genomicServiceRequest" ]
+  ] ) ; # 
+  fhir:referrer [
+     fhir:reference [ fhir:v "Practitioner/practitioner01" ]
+  ] ; # 
+  fhir:interpreter ( [
+     fhir:reference [ fhir:v "Practitioner/practitioner02" ]
+  ] ) ; # 
+  fhir:reason ( [
+     fhir:concept [
+       fhir:coding ( [
+         a sct:267431006 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "267431006" ] ;
+         fhir:display [ fhir:v "Disorder of lipid metabolism (disorder)" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:note ( [
+     fhir:text [ fhir:v "This de novo mutation is urgent and important for establishing the treatment plan." ]
+  ] ) ; # 
+  fhir:description [ fhir:v "De novo mutation study of the patient."] ; # 
+  fhir:analysis ( [
+     fhir:identifier ( [
+       fhir:use [ fhir:v "temp" ] ;
+       fhir:system [ fhir:v "http://www.somesystemabc.net/identifiers/genomicAnalyses"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "urn:uuid:1111-1111-1111-1111" ]
+     ] ) ; #   0..* Genomic Analysis Event of proband  
+     fhir:instantiatesUri [ fhir:v "https://pubmed.ncbi.nlm.nih.gov/33927380/"^^xsd:anyURI ] ; #   <instantiatesCanonical>0..1 canonical(PlanDefinition) The defined protocol that describes the analysis<\/instantiatesCanonical>  
+     fhir:title [ fhir:v "Proband Sequence Variation Detection Using Next Generation Sequencing" ] ;
+     fhir:specimen ( [
+       fhir:reference [ fhir:v "Specimen/denovo-1" ]
+     ] ) ;
+     fhir:date [ fhir:v "2021-01-01T01:01:10-06:00"^^xsd:dateTime ] ;
+     fhir:note ( [
+       fhir:text [ fhir:v "This is a next generation sequencing analysis of a proband." ]
+     ] ) ; #   0..1 The date of the analysis event  
+     fhir:input ( [
+       fhir:file [
+         fhir:reference [ fhir:v "DocumentReference/genomicFile1" ]
+       ] ; #   0..* Inputs for the analysis event of Child 
+       fhir:type [
+         fhir:coding ( [
+           fhir:code [ fhir:v "vcf" ] ;
+           fhir:display [ fhir:v "VCF" ]
+         ] )
+       ]
+     ] ) ; #   <protocolPerformed>0..1 Reference(Procedure|Task) The protocol that was performed for the analysis event<\/protocolPerformed>  ,   <regionsCalled>0..1 Reference(DocumentReference) Genomic regions actually called in the analysis event (BED file)<\/regionsCalled>  ,   <generatedBy[x]>0..1 Identifier|Reference(GenomicStudy) The analysis event or other GenomicStudy that generated this input file<\/generatedBy[x]>  
+     fhir:performer ( [
+       fhir:actor [
+         fhir:reference [ fhir:v "Practitioner/practitioner02" ]
+       ] ; #   0..* Performer for the analysis event  
+       fhir:role [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/3.1.0/CodeSystem-v3-ParticipationType.html"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "PRF" ] ;
+           fhir:display [ fhir:v "Performer" ]
+         ] )
+       ]
+     ] ) ;
+     fhir:device ( [
+       fhir:device [
+         fhir:reference [ fhir:v "Device/NGS-device" ]
+       ] ; #   0..* Devices used for the analysis (e.g., instruments, software), with settings and parameters  
+       fhir:function [
+         fhir:coding ( [
+           fhir:display [ fhir:v "Next Generation Sequencing" ]
+         ] )
+       ]
+     ] )
+  ] [
+     fhir:identifier ( [
+       fhir:use [ fhir:v "temp" ] ;
+       fhir:system [ fhir:v "http://www.somesystemabc.net/identifiers/genomicAnalyses"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "urn:uuid:1111-1111-1111-1112" ]
+     ] ) ; #   0..* Genomic Analysis Event of mother  
+     fhir:instantiatesUri [ fhir:v "https://pubmed.ncbi.nlm.nih.gov/33927380/"^^xsd:anyURI ] ; #   <instantiatesCanonical>0..1 canonical(PlanDefinition) The defined protocol that describes the analysis<\/instantiatesCanonical>  
+     fhir:title [ fhir:v "Maternal Sequence Variation Detection Using Next Generation Sequencing" ] ;
+     fhir:focus ( [
+       fhir:reference [ fhir:v "Patient/denovoMother" ]
+     ] ) ; #   0..1 Name of the analysis event (human friendly)  
+     fhir:specimen ( [
+       fhir:reference [ fhir:v "Specimen/denovo-2" ]
+     ] ) ;
+     fhir:date [ fhir:v "2021-01-01T01:01:10-06:00"^^xsd:dateTime ] ;
+     fhir:note ( [
+       fhir:text [ fhir:v "This is a next generation sequencing analysis of a mother of a proband." ]
+     ] ) ; #   0..1 The date of the analysis event  
+     fhir:input ( [
+       fhir:file [
+         fhir:reference [ fhir:v "DocumentReference/genomicFile2" ]
+       ] ; #   0..* Inputs for the analysis event of Mother 
+       fhir:type [
+         fhir:coding ( [
+           fhir:code [ fhir:v "vcf" ] ;
+           fhir:display [ fhir:v "VCF" ]
+         ] )
+       ]
+     ] ) ; #   <generatedBy[x]>0..1 Identifier|Reference(GenomicStudy) The analysis event or other GenomicStudy that generated this input file<\/generatedBy[x]>  
+     fhir:performer ( [
+       fhir:actor [
+         fhir:reference [ fhir:v "Practitioner/practitioner02" ]
+       ] ; #   0..* Performer for the analysis event  
+       fhir:role [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/3.1.0/CodeSystem-v3-ParticipationType.html"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "PRF" ] ;
+           fhir:display [ fhir:v "Performer" ]
+         ] )
+       ]
+     ] ) ;
+     fhir:device ( [
+       fhir:device [
+         fhir:reference [ fhir:v "Device/NGS-device" ]
+       ] #   0..* Devices used for the analysis (e.g., instruments, software), with settings and parameters  
+     ] ) #   <function>0..1 CodeableConcept Specific function for the device used for the analysis<\/function>  
+  ] [
+     fhir:identifier ( [
+       fhir:use [ fhir:v "temp" ] ;
+       fhir:system [ fhir:v "http://www.somesystemabc.net/identifiers/genomicAnalyses"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "urn:uuid:1111-1111-1111-1113" ]
+     ] ) ; #   0..* Genomic Analysis Event of father  
+     fhir:instantiatesUri [ fhir:v "https://pubmed.ncbi.nlm.nih.gov/33927380/"^^xsd:anyURI ] ; #   <instantiatesCanonical>0..1 canonical(PlanDefinition) The defined protocol that describes the analysis<\/instantiatesCanonical>  
+     fhir:title [ fhir:v "Paternal Sequence Variation Detection Using Next Generation Sequencing" ] ;
+     fhir:focus ( [
+       fhir:reference [ fhir:v "Patient/denovoFather" ]
+     ] ) ;
+     fhir:specimen ( [
+       fhir:reference [ fhir:v "Specimen/denovo-3" ]
+     ] ) ;
+     fhir:date [ fhir:v "2021-01-01T01:01:10-06:00"^^xsd:dateTime ] ;
+     fhir:note ( [
+       fhir:text [ fhir:v "This is a next generation sequencing analysis of a father of a proband." ]
+     ] ) ; #   0..1 The date of the analysis event  
+     fhir:input ( [
+       fhir:file [
+         fhir:reference [ fhir:v "DocumentReference/genomicFile3" ]
+       ] ; #   0..* Inputs for the analysis event  
+       fhir:type [
+         fhir:coding ( [
+           fhir:code [ fhir:v "vcf" ] ;
+           fhir:display [ fhir:v "VCF" ]
+         ] )
+       ]
+     ] ) ; #   <generatedBy[x]>0..1 Identifier|Reference(GenomicStudy) The analysis event or other GenomicStudy that generated this input file<\/generatedBy[x]>  
+     fhir:performer ( [
+       fhir:actor [
+         fhir:reference [ fhir:v "Practitioner/practitioner02" ]
+       ] ; #   0..* Performer for the analysis event  
+       fhir:role [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/3.1.0/CodeSystem-v3-ParticipationType.html"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "PRF" ] ;
+           fhir:display [ fhir:v "Performer" ]
+         ] )
+       ]
+     ] ) ;
+     fhir:device ( [
+       fhir:device [
+         fhir:reference [ fhir:v "Device/NGS-device" ]
+       ] #   0..* Devices used for the analysis (e.g., instruments, software), with settings and parameters  
+     ] ) #   <function>0..1 CodeableConcept Specific function for the device used for the analysis<\/function>  
+  ] [
+     fhir:identifier ( [
+       fhir:use [ fhir:v "temp" ] ;
+       fhir:system [ fhir:v "http://www.somesystemabc.net/identifiers/genomicAnalyses"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "urn:uuid:1111-1111-1111-1114" ]
+     ] ) ; #   0..* De Novo Mutation Analysis  
+     fhir:instantiatesUri [ fhir:v "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6885382/"^^xsd:anyURI ] ; #   <instantiatesCanonical>0..1 canonical(PlanDefinition) The defined protocol that describes the analysis<\/instantiatesCanonical>  
+     fhir:title [ fhir:v "De Novo Mutation Detection and Interpretation" ] ;
+     fhir:date [ fhir:v "2021-01-01T03:01:10-06:00"^^xsd:dateTime ] ; #   <specimen> 0..1 Reference(Specimen) The specimen used in the analysis event<\/specimen>  
+     fhir:note ( [
+       fhir:text [ fhir:v "This is a next generation sequencing analysis of the comparison analysis of proband and parents sequences." ]
+     ] ) ; #   0..1 The date of the analysis event  
+     fhir:input ( [
+       fhir:file [
+         fhir:reference [ fhir:v "DocumentReference/genomicFile1" ]
+       ] ; #   0..* Inputs for the analysis event of Child 
+       fhir:type [
+         fhir:coding ( [
+           fhir:code [ fhir:v "vcf" ] ;
+           fhir:display [ fhir:v "VCF" ]
+         ] )
+       ]
+     ] [
+       fhir:file [
+         fhir:reference [ fhir:v "DocumentReference/genomicFile2" ]
+       ] ; #   0..* Inputs for the analysis event of Mother 
+       fhir:type [
+         fhir:coding ( [
+           fhir:code [ fhir:v "vcf" ] ;
+           fhir:display [ fhir:v "VCF" ]
+         ] )
+       ]
+     ] [
+       fhir:file [
+         fhir:reference [ fhir:v "DocumentReference/genomicFile3" ]
+       ] ; #   0..* Inputs for the analysis event of Father  
+       fhir:type [
+         fhir:coding ( [
+           fhir:code [ fhir:v "vcf" ] ;
+           fhir:display [ fhir:v "VCF" ]
+         ] )
+       ]
+     ] ) ; #   <generatedBy[x]>0..1 Identifier|Reference(GenomicStudy) The analysis event or other GenomicStudy that generated this input file<\/generatedBy[x]>  
+     fhir:performer ( [
+       fhir:actor [
+         fhir:reference [ fhir:v "Practitioner/practitioner02" ]
+       ] ; #   0..* Performer for the analysis event  
+       fhir:role [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/3.1.0/CodeSystem-v3-ParticipationType.html"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "PRF" ] ;
+           fhir:display [ fhir:v "Performer" ]
+         ] )
+       ]
+     ] ) ;
+     fhir:device ( [
+       fhir:device [
+         fhir:reference [ fhir:v "Device/Triodenovo-SW" ]
+       ] #   0..* Devices used for the analysis (e.g., instruments, software), with settings and parameters  
+     ] ) #   <function>0..1 CodeableConcept Specific function for the device used for the analysis<\/function>  
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

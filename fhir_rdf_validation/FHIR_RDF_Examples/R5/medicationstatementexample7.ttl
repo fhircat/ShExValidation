@@ -1,0 +1,54 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:MedicationStatement ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example007"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicationStatement</b><a name=\"example007\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicationStatement &quot;example007&quot; </p></div><p><b>status</b>: recorded</p><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><span title=\"  Linked to a RESOURCE Medication  \"><a name=\"med0315\"> </a></span><blockquote><p/><p><a name=\"med0315\"> </a></p><p><b>code</b>: Mometasone Furoate 0.05mg/Actuat <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-rxNorm.html\">RxNorm</a>#358793)</span></p><p><b>doseForm</b>: Nasal Spray <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#385157007)</span></p></blockquote></td></tr></table><p><b>subject</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><p><b>informationSource</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><p><b>note</b>: patient plans to start using for seasonal allergies in the Spring when pollen is in the air</p></div>"
+  ] ; # 
+  fhir:contained ( [
+     a fhir:Medication ;
+     fhir:id [ fhir:v "med0315" ] ;
+     fhir:code [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://www.nlm.nih.gov/research/umls/rxnorm"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "358793" ] ;
+         fhir:display [ fhir:v "Mometasone Furoate 0.05mg/Actuat" ]
+       ] )
+     ] ;
+     fhir:doseForm [
+       fhir:coding ( [
+         a sct:385157007 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "385157007" ] ;
+         fhir:display [ fhir:v "Nasal Spray" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:status [ fhir:v "recorded"] ; # 
+  fhir:medication [
+     fhir:reference [
+       fhir:reference [ fhir:v "#med0315" ]
+     ] #    Linked to a RESOURCE Medication   
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat1" ] ;
+     fhir:display [ fhir:v "Donald Duck" ]
+  ] ; # 
+  fhir:informationSource ( [
+     fhir:reference [ fhir:v "Patient/pat1" ] ;
+     fhir:display [ fhir:v "Donald Duck" ]
+  ] ) ; # 
+  fhir:note ( [
+     fhir:text [ fhir:v "patient plans to start using for seasonal allergies in the Spring when pollen is in the air" ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

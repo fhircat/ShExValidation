@@ -1,0 +1,162 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <string.shex>
+IMPORT <boolean.shex>
+IMPORT <dateTime.shex>
+IMPORT <markdown.shex>
+IMPORT <Quantity.shex>
+IMPORT <CareTeam.shex>
+IMPORT <Reference.shex>
+IMPORT <Questionnaire.shex>
+IMPORT <PlanDefinition.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <MetadataResource.shex>
+
+
+start=@<ConditionDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A definition of a condition
+<ConditionDefinition> EXTENDS @<MetadataResource> CLOSED {   
+
+    a [fhir:ConditionDefinition];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:url @<uri>?;                       # Canonical identifier for this 
+                                            # condition definition, represented 
+                                            # as a URI (globally unique) 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
+                                            # condition definition 
+    fhir:version @<string>?;                # Business version of the condition 
+                                            # definition 
+    fhir:name @<string>?;                   # Name for this condition definition 
+                                            # (computer friendly) 
+    fhir:title @<string>?;                  # Name for this condition definition 
+                                            # (human friendly) 
+    fhir:subtitle @<string>?;               # Subordinate title of the event 
+                                            # definition 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:date @<dateTime>?;                 # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the condition definition 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for 
+                                            # condition definition (if 
+                                            # applicable) 
+    fhir:code @<CodeableConcept>;           # Identification of the condition, 
+                                            # problem or diagnosis 
+    fhir:severity @<CodeableConcept>?;      # Subjective severity of condition
+    fhir:bodySite @<CodeableConcept>?;      # Anatomical location, if relevant
+    fhir:stage @<CodeableConcept>?;         # Stage/grade, usually assessed 
+                                            # formally 
+    fhir:hasSeverity @<boolean>?;           # Whether Severity is appropriate
+    fhir:hasBodySite @<boolean>?;           # Whether bodySite is appropriate
+    fhir:hasStage @<boolean>?;              # Whether stage is appropriate
+    fhir:definition @<OneOrMore_uri>?;      # Formal Definition for the condition
+    fhir:observation @<OneOrMore_BackboneElement>?;  # Observations particularly relevant 
+                                            # to this condition 
+    fhir:medication @<OneOrMore_BackboneElement>?;  # Medications particularly relevant 
+                                            # for this condition 
+    fhir:precondition @<OneOrMore_BackboneElement>?;  # Observation that suggets this 
+                                            # condition 
+    fhir:team @<OneOrMore_Reference_CareTeam>?;  # Appropriate team for this condition
+    fhir:questionnaire @<OneOrMore_BackboneElement>?;  # Questionnaire for this condition
+    fhir:plan @<OneOrMore_BackboneElement>?;  # Plan that is appropriate
+}  
+
+# Plan that is appropriate
+<ConditionDefinition.plan> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:role @<CodeableConcept>?;          # Use for the plan
+    fhir:reference @<Reference> AND {fhir:link 
+    			@<PlanDefinition> };  # The actual plan
+}  
+
+# Medications particularly relevant for this condition
+<ConditionDefinition.medication> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:category @<CodeableConcept>?;      # Category that is relevant
+    fhir:code @<CodeableConcept>?;          # Code for relevant Medication
+}  
+
+# Observations particularly relevant to this condition
+<ConditionDefinition.observation> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:category @<CodeableConcept>?;      # Category that is relevant
+    fhir:code @<CodeableConcept>?;          # Code for relevant Observation
+}  
+
+# Questionnaire for this condition
+<ConditionDefinition.questionnaire> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:purpose @<code> AND
+    	{fhir:v @fhirvs:condition-questionnaire-purpose};  # preadmit | diff-diagnosis | outcome
+    fhir:reference @<Reference> AND {fhir:link 
+    			@<Questionnaire> };  # Specific Questionnaire
+}  
+
+# Observation that suggets this condition
+<ConditionDefinition.precondition> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:condition-precondition-type};  # sensitive | specific
+    fhir:code @<CodeableConcept>;           # Code for relevant Observation
+    fhir:v (@<CodeableConcept>  OR 
+    			@<Quantity> )  AND { rdf:type IRI } ?;  # Value of Observation
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_ContactDetail> CLOSED {
+    rdf:first @<ContactDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactDetail> 
+}
+
+<OneOrMore_UsageContext> CLOSED {
+    rdf:first @<UsageContext>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_UsageContext> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_uri> CLOSED {
+    rdf:first @<uri>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_uri> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Reference_CareTeam> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Kind of precondition for the condition.
+fhirvs:condition-precondition-type ["sensitive" "specific"]
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+
+# The use of a questionnaire.
+fhirvs:condition-questionnaire-purpose ["preadmit" "diff-diagnosis" "outcome"]
+

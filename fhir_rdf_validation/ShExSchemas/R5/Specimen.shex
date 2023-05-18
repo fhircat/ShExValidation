@@ -1,0 +1,170 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Group.shex>
+IMPORT <Device.shex>
+IMPORT <string.shex>
+IMPORT <Period.shex>
+IMPORT <Patient.shex>
+IMPORT <Location.shex>
+IMPORT <dateTime.shex>
+IMPORT <Quantity.shex>
+IMPORT <Duration.shex>
+IMPORT <Specimen.shex>
+IMPORT <Reference.shex>
+IMPORT <Substance.shex>
+IMPORT <Procedure.shex>
+IMPORT <Identifier.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <ServiceRequest.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <CodeableReference.shex>
+IMPORT <BiologicallyDerivedProduct.shex>
+
+
+start=@<Specimen> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Sample for analysis
+<Specimen> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Specimen];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # External Identifier
+    fhir:accessionIdentifier @<Identifier>?;  # Identifier assigned by the lab
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:specimen-status}?;  # available | unavailable | 
+                                            # unsatisfactory | entered-in-error 
+    fhir:type @<CodeableConcept>?;          # Kind of material that forms the 
+                                            # specimen 
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<BiologicallyDerivedProduct> OR 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<Location> OR 
+    			@<Patient> OR 
+    			@<Substance> }?;  # Where the specimen came from. This 
+                                            # may be from patient(s), from a 
+                                            # location (e.g., the source of an 
+                                            # environmental sample), or a 
+                                            # sampling of a substance, a 
+                                            # biologically-derived product, or a 
+                                            # device 
+    fhir:receivedTime @<dateTime>?;         # The time when specimen is received 
+                                            # by the testing laboratory 
+    fhir:parent @<OneOrMore_Reference_Specimen>?;  # Specimen from which this specimen 
+                                            # originated 
+    fhir:request @<OneOrMore_Reference_ServiceRequest>?;  # Why the specimen was collected
+    fhir:feature @<OneOrMore_BackboneElement>?;  # The physical feature of a specimen 
+    fhir:collection @<BackboneElement>?;    # Collection details
+    fhir:processing @<OneOrMore_BackboneElement>?;  # Processing and processing step 
+                                            # details 
+    fhir:container @<OneOrMore_BackboneElement>?;  # Direct container of specimen 
+                                            # (tube/slide, etc.) 
+    fhir:condition @<OneOrMore_CodeableConcept>?;  # State of the specimen
+    fhir:note @<OneOrMore_Annotation>?;     # Comments
+}  
+
+# The physical feature of a specimen 
+<Specimen.feature> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # Highlighted feature
+    fhir:description @<string>;             # Information about the feature
+}  
+
+# Processing and processing step details
+<Specimen.processing> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:description @<string>?;            # Textual description of procedure
+    fhir:method @<CodeableConcept>?;        # Indicates the treatment step  
+                                            # applied to the specimen 
+    fhir:additive @<OneOrMore_Reference_Substance>?;  # Material used in the processing 
+                                            # step 
+    fhir:time (@<dateTime>  OR 
+    			@<Period> )  AND { rdf:type IRI } ?;  # Date and time of specimen 
+                                            # processing 
+}  
+
+# Direct container of specimen (tube/slide, etc.)
+<Specimen.container> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:device @<Reference> AND {fhir:link 
+    			@<Device> };  # Device resource for the container
+    fhir:location @<Reference> AND {fhir:link 
+    			@<Location> }?;  # Where the container is
+    fhir:specimenQuantity @<Quantity>?;     # Quantity of specimen within 
+                                            # container 
+}  
+
+# Collection details
+<Specimen.collection> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:collector @<Reference> AND {fhir:link 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Who collected the specimen
+    fhir:collected (@<dateTime>  OR 
+    			@<Period> )  AND { rdf:type IRI } ?;  # Collection time
+    fhir:duration @<Duration>?;             # How long it took to collect 
+                                            # specimen 
+    fhir:quantity @<Quantity>?;             # The quantity of specimen collected
+    fhir:method @<CodeableConcept>?;        # Technique used to perform 
+                                            # collection 
+    fhir:device @<CodeableReference>?;      # Device used to perform collection
+    fhir:procedure @<Reference> AND {fhir:link 
+    			@<Procedure> }?;  # The procedure that collects the 
+                                            # specimen 
+    fhir:bodySite @<CodeableReference>?;    # Anatomical collection site
+    fhir:fastingStatus (@<CodeableConcept>  OR 
+    			@<Duration> )  AND { rdf:type IRI } ?;  # Whether or how long patient 
+                                            # abstained from food and/or drink 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_Reference_Specimen> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Specimen> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Specimen> 
+}
+
+<OneOrMore_Reference_ServiceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ServiceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ServiceRequest> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_Reference_Substance> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Substance> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Substance> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Codes providing the status/availability of a specimen.
+fhirvs:specimen-status ["available" "unavailable" "unsatisfactory" "entered-in-error"]
+

@@ -1,0 +1,89 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "medicationdispense-status"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "phx" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/CodeSystem/medicationdispense-status"], [ fhir:v "http://hl7.org/fhir/CodeSystem/medicationdispense-status"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1971" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1971" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "MedicationDispenseStatusCodes"], [ fhir:v "MedicationDispenseStatusCodes"] ;
+  fhir:title [ fhir:v "Medication Dispense Status Codes"], [ fhir:v "Medication Dispense Status Codes"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:publisher [ fhir:v "HL7 International"], [ fhir:v "HL7 International"] ;
+  fhir:description [ fhir:v "Medication Dispense Status Codes"], [ fhir:v "Medication Dispense Status Codes"] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/medicationDispense-status"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "preparation" ] ;
+     fhir:display [ fhir:v "Preparation" ] ;
+     fhir:definition [ fhir:v "The core event has not started yet, but some staging activities have begun (e.g. initial compounding or packaging of medication). Preparation stages may be tracked for billing purposes." ]
+  ] [
+     fhir:code [ fhir:v "in-progress" ] ;
+     fhir:display [ fhir:v "In Progress" ] ;
+     fhir:definition [ fhir:v "The dispensed product is ready for pickup." ]
+  ] [
+     fhir:code [ fhir:v "cancelled" ] ;
+     fhir:display [ fhir:v "Cancelled" ] ;
+     fhir:definition [ fhir:v "The dispensed product was not and will never be picked up by the patient." ]
+  ] [
+     fhir:code [ fhir:v "on-hold" ] ;
+     fhir:display [ fhir:v "On Hold" ] ;
+     fhir:definition [ fhir:v "The dispense process is paused while waiting for an external event to reactivate the dispense.  For example, new stock has arrived or the prescriber has called." ]
+  ] [
+     fhir:code [ fhir:v "completed" ] ;
+     fhir:display [ fhir:v "Completed" ] ;
+     fhir:definition [ fhir:v "The dispensed product has been picked up." ]
+  ] [
+     fhir:code [ fhir:v "entered-in-error" ] ;
+     fhir:display [ fhir:v "Entered in Error" ] ;
+     fhir:definition [ fhir:v "The dispense was entered in error and therefore nullified." ]
+  ] [
+     fhir:code [ fhir:v "stopped" ] ;
+     fhir:display [ fhir:v "Stopped" ] ;
+     fhir:definition [ fhir:v "Actions implied by the dispense have been permanently halted, before all of them occurred." ]
+  ] [
+     fhir:code [ fhir:v "declined" ] ;
+     fhir:display [ fhir:v "Declined" ] ;
+     fhir:definition [ fhir:v "The dispense was declined and not performed." ]
+  ] [
+     fhir:code [ fhir:v "unknown" ] ;
+     fhir:display [ fhir:v "Unknown" ] ;
+     fhir:definition [ fhir:v "The authoring system does not know which of the status values applies for this medication dispense.  Note: this concept is not to be used for other - one of the listed statuses is presumed to apply, it's just now known which one." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

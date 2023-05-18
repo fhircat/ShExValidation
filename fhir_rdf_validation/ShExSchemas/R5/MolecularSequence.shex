@@ -1,0 +1,114 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Device.shex>
+IMPORT <string.shex>
+IMPORT <Patient.shex>
+IMPORT <integer.shex>
+IMPORT <Specimen.shex>
+IMPORT <Reference.shex>
+IMPORT <Organization.shex>
+IMPORT <DomainResource.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <MolecularSequence.shex>
+
+
+start=@<MolecularSequence> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Representation of a molecular sequence
+<MolecularSequence> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:MolecularSequence];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Unique ID for this particular 
+                                            # sequence 
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:sequence-type}?;  # aa | dna | rna
+    fhir:patient @<Reference> AND {fhir:link 
+    			@<Patient> }?;  # Patient this sequence is 
+                                            # associated too 
+    fhir:specimen @<Reference> AND {fhir:link 
+    			@<Specimen> }?;  # Specimen used for sequencing
+    fhir:device @<Reference> AND {fhir:link 
+    			@<Device> }?;  # The method for sequencing
+    fhir:performer @<Reference> AND {fhir:link 
+    			@<Organization> }?;  # Who should be responsible for test 
+                                            # result 
+    fhir:literal @<string>?;                # Sequence that was observed
+    fhir:formatted @<OneOrMore_Attachment>?;  # Embedded file or a link (URL) 
+                                            # which contains content to 
+                                            # represent the sequence 
+    fhir:relative @<OneOrMore_BackboneElement>?;  # A sequence defined relative to 
+                                            # another sequence 
+}  
+
+# A sequence used as reference
+<MolecularSequence.relative.reference> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:referenceSequenceAssembly @<CodeableConcept>?;  # The reference assembly used for 
+                                            # reference, e.g. GRCh38 
+    fhir:chromosome @<CodeableConcept>?;    # Chromosome Identifier
+    fhir:referenceSequence (@<CodeableConcept>  OR 
+    			@<string>  OR 
+    			(@<Reference>  AND {fhir:link @<MolecularSequence> }) )  AND { rdf:type IRI } ?;  # The reference sequence that 
+                                            # represents the starting sequence 
+    fhir:windowStart @<integer>?;           # Start position of the window on 
+                                            # the  reference sequence 
+    fhir:windowEnd @<integer>?;             # End position of the window on the 
+                                            # reference sequence 
+    fhir:orientation @<code> AND
+    	{fhir:v @fhirvs:orientation-type}?;  # sense | antisense
+    fhir:strand @<code> AND
+    	{fhir:v @fhirvs:strand-type}?;  # watson | crick
+}  
+
+# A sequence defined relative to another sequence
+<MolecularSequence.relative> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:coordinateSystem @<CodeableConcept>;  # Ways of identifying nucleotides or 
+                                            # amino acids within a sequence 
+    fhir:reference @<BackboneElement>?;     # A sequence used as reference
+    fhir:edit @<OneOrMore_BackboneElement>?;  # Changes in sequence from the 
+                                            # reference 
+}  
+
+# Changes in sequence from the reference
+<MolecularSequence.relative.edit> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:start @<integer>?;                 # Start position of the edit on the 
+                                            # reference sequence 
+    fhir:end @<integer>?;                   # End position of the edit on the 
+                                            # reference sequence 
+    fhir:observedAllele @<string>?;         # Allele that was observed
+    fhir:referenceAllele @<string>?;        # Allele in the reference sequence
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_Attachment> CLOSED {
+    rdf:first @<Attachment>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Attachment> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Type for strand.
+fhirvs:strand-type ["watson" "crick"]
+
+# Type if a sequence -- DNA, RNA, or amino acid sequence.
+fhirvs:sequence-type ["aa" "dna" "rna"]
+
+# Type for orientation.
+fhirvs:orientation-type ["sense" "antisense"]
+

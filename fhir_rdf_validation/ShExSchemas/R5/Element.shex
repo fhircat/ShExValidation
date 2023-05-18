@@ -1,0 +1,26 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <id.shex>
+IMPORT <Base.shex>
+IMPORT <Extension.shex>
+
+# Base for all elements
+<Element> EXTENDS @<Base> CLOSED {   
+
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:id @<id>?;                          # Unique id for inter-element 
+                                            # referencing 
+    fhir:extension @<OneOrMore_Extension>?;  # Additional content defined by 
+                                            # implementations 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Extension> CLOSED {
+    rdf:first @<Extension>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Extension> 
+}
+

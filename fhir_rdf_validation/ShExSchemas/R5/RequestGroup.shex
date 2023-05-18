@@ -1,0 +1,283 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <id.shex>
+IMPORT <Age.shex>
+IMPORT <code.shex>
+IMPORT <Goal.shex>
+IMPORT <Group.shex>
+IMPORT <Range.shex>
+IMPORT <Device.shex>
+IMPORT <string.shex>
+IMPORT <Period.shex>
+IMPORT <Timing.shex>
+IMPORT <Patient.shex>
+IMPORT <dateTime.shex>
+IMPORT <Duration.shex>
+IMPORT <Resource.shex>
+IMPORT <CareTeam.shex>
+IMPORT <Location.shex>
+IMPORT <Reference.shex>
+IMPORT <Encounter.shex>
+IMPORT <Identifier.shex>
+IMPORT <Expression.shex>
+IMPORT <Practitioner.shex>
+IMPORT <Organization.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <CodeableReference.shex>
+IMPORT <HealthcareService.shex>
+
+
+start=@<RequestGroup> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A group of related requests
+<RequestGroup> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:RequestGroup];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business identifier
+    fhir:instantiatesCanonical @<OneOrMore_canonical>?;  # Instantiates FHIR protocol or 
+                                            # definition 
+    fhir:instantiatesUri @<OneOrMore_uri>?;  # Instantiates external protocol or 
+                                            # definition 
+    fhir:basedOn @<OneOrMore_Reference_Resource>?;  # Fulfills plan, proposal, or order
+    fhir:replaces @<OneOrMore_Reference_Resource>?;  # Request(s) replaced by this request
+    fhir:groupIdentifier @<Identifier>?;    # Composite request this is part of
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:request-status};  # draft | active | on-hold | revoked 
+                                            # | completed | entered-in-error | 
+                                            # unknown 
+    fhir:intent @<code> AND
+    	{fhir:v @fhirvs:request-intent};  # proposal | plan | directive | 
+                                            # order | original-order | 
+                                            # reflex-order | filler-order | 
+                                            # instance-order | option 
+    fhir:priority @<code> AND
+    	{fhir:v @fhirvs:request-priority}?;  # routine | urgent | asap | stat
+    fhir:code @<CodeableConcept>?;          # What's being requested/ordered
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Patient> }?;  # Who the request group is about
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # Created as part of
+    fhir:authoredOn @<dateTime>?;           # When the request group was authored
+    fhir:author @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> }?;  # Device or practitioner that 
+                                            # authored the request group 
+    fhir:reason @<OneOrMore_CodeableReference>?;  # Why the request group is needed
+    fhir:goal @<OneOrMore_Reference_Goal>?;  # What goals
+    fhir:note @<OneOrMore_Annotation>?;     # Additional notes about the response
+    fhir:action @<OneOrMore_BackboneElement>?;  # Proposed actions, if any
+}  
+
+# Sub action
+<RequestGroup.action.action> CLOSED {   
+}  
+
+# Relationship to another action
+<RequestGroup.action.relatedAction> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:targetId @<id>;                    # What action this is related to
+    fhir:relationship @<code> AND
+    	{fhir:v @fhirvs:action-relationship-type};  # before-start | before | before-end 
+                                            # | concurrent-with-start | 
+                                            # concurrent | concurrent-with-end | 
+                                            # after-start | after | after-end 
+    fhir:offset (@<Duration>  OR 
+    			@<Range> )  AND { rdf:type IRI } ?;  # Time offset for the relationship
+}  
+
+# Proposed actions, if any
+<RequestGroup.action> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:linkId @<string>?;                 # Pointer to specific item from the 
+                                            # PlanDefinition 
+    fhir:prefix @<string>?;                 # User-visible prefix for the action 
+                                            # (e.g. 1. or A.) 
+    fhir:title @<string>?;                  # User-visible title
+    fhir:description @<string>?;            # Short description of the action
+    fhir:textEquivalent @<string>?;         # Static text equivalent of the 
+                                            # action, used if the dynamic 
+                                            # aspects cannot be interpreted by 
+                                            # the receiving system 
+    fhir:priority @<code> AND
+    	{fhir:v @fhirvs:request-priority}?;  # routine | urgent | asap | stat
+    fhir:code @<OneOrMore_CodeableConcept>?;  # Code representing the meaning of 
+                                            # the action or sub-actions 
+    fhir:documentation @<OneOrMore_RelatedArtifact>?;  # Supporting documentation for the 
+                                            # intended performer of the action 
+    fhir:goal @<OneOrMore_Reference_Goal>?;  # What goals
+    fhir:condition @<OneOrMore_BackboneElement>?;  # Whether or not the action is 
+                                            # applicable 
+    fhir:relatedAction @<OneOrMore_BackboneElement>?;  # Relationship to another action
+    fhir:timing (@<dateTime>  OR 
+    			@<Age>  OR 
+    			@<Period>  OR 
+    			@<Duration>  OR 
+    			@<Range>  OR 
+    			@<Timing> )  AND { rdf:type IRI } ?;  # When the action should take place
+    fhir:location @<CodeableReference>?;    # Where it should happen
+    fhir:participant @<OneOrMore_BackboneElement>?;  # Who should perform the action
+    fhir:type @<CodeableConcept>?;          # create | update | remove | 
+                                            # fire-event 
+    fhir:groupingBehavior @<code> AND
+    	{fhir:v @fhirvs:action-grouping-behavior}?;  # visual-group | logical-group | 
+                                            # sentence-group 
+    fhir:selectionBehavior @<code> AND
+    	{fhir:v @fhirvs:action-selection-behavior}?;  # any | all | all-or-none | 
+                                            # exactly-one | at-most-one | 
+                                            # one-or-more 
+    fhir:requiredBehavior @<code> AND
+    	{fhir:v @fhirvs:action-required-behavior}?;  # must | could | 
+                                            # must-unless-documented 
+    fhir:precheckBehavior @<code> AND
+    	{fhir:v @fhirvs:action-precheck-behavior}?;  # yes | no
+    fhir:cardinalityBehavior @<code> AND
+    	{fhir:v @fhirvs:action-cardinality-behavior}?;  # single | multiple
+    fhir:resource @<Reference> AND {fhir:link 
+    			@<Resource> }?;  # The target of the action
+    fhir:action @<OneOrMore_RequestGroup.action>?;  # Sub action
+}  
+
+# Who should perform the action
+<RequestGroup.action.participant> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:action-participant-type}?;  # careteam | device | group | 
+                                            # healthcareservice | location | 
+                                            # organization | patient | 
+                                            # practitioner | practitionerrole | 
+                                            # relatedperson 
+    fhir:typeReference @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<HealthcareService> OR 
+    			@<Location> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Who or what can participate
+    fhir:role @<CodeableConcept>?;          # E.g. Nurse, Surgeon, Parent, etc.
+    fhir:function @<CodeableConcept>?;      # E.g. Author, Reviewer, Witness, 
+                                            # etc. 
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<HealthcareService> OR 
+    			@<Location> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Who/what is participating?
+}  
+
+# Whether or not the action is applicable
+<RequestGroup.action.condition> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:kind @<code> AND
+    	{fhir:v @fhirvs:action-condition-kind};  # applicability | start | stop
+    fhir:expression @<Expression>?;         # Boolean-valued expression
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_canonical> CLOSED {
+    rdf:first @<canonical>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_canonical> 
+}
+
+<OneOrMore_uri> CLOSED {
+    rdf:first @<uri>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_uri> 
+}
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+
+<OneOrMore_CodeableReference> CLOSED {
+    rdf:first @<CodeableReference>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableReference> 
+}
+
+<OneOrMore_Reference_Goal> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Goal> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Goal> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_RelatedArtifact> CLOSED {
+    rdf:first @<RelatedArtifact>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_RelatedArtifact> 
+}
+
+<OneOrMore_RequestGroup.action> CLOSED {
+    rdf:first @<RequestGroup.action>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_RequestGroup.action> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Defines selection behavior of a group.
+fhirvs:action-selection-behavior ["any" "all" "all-or-none" "exactly-one" "at-most-one" "one-or-more"]
+
+# The type of participant for the action.
+fhirvs:action-participant-type ["careteam" "device" "group" "healthcareservice" "location" "organization" "patient" "practitioner" "practitionerrole" "relatedperson"]
+
+# Defines the kinds of conditions that can appear on actions.
+fhirvs:action-condition-kind ["applicability" "start" "stop"]
+
+# Codes identifying the lifecycle stage of a request.
+fhirvs:request-status ["draft" "active" "on-hold" "revoked" "completed" "entered-in-error" "unknown"]
+
+# Defines the types of relationships between actions.
+fhirvs:action-relationship-type ["before-start" "before" "before-end" "concurrent-with-start" "concurrent" "concurrent-with-end" "after-start" "after" "after-end"]
+
+# Defines organization behavior of a group.
+fhirvs:action-grouping-behavior ["visual-group" "logical-group" "sentence-group"]
+
+# Defines selection frequency behavior for an action or group.
+fhirvs:action-precheck-behavior ["yes" "no"]
+
+# Defines expectations around whether an action or action group is required.
+fhirvs:action-required-behavior ["must" "could" "must-unless-documented"]
+
+# Defines behavior for an action or a group for how many times that item may be repeated.
+fhirvs:action-cardinality-behavior ["single" "multiple"]
+
+# Codes indicating the degree of authority/intentionality associated with a request.
+fhirvs:request-intent ["proposal" "plan" "directive" "order" "original-order" "reflex-order" "filler-order" "instance-order" "option"]
+
+# Identifies the level of importance to be assigned to actioning the request.
+fhirvs:request-priority ["routine" "urgent" "asap" "stat"]
+

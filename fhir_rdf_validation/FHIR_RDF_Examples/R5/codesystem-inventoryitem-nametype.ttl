@@ -1,0 +1,62 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "inventoryitem-nametype"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "oo" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/inventoryitem-nametype"], [ fhir:v "http://hl7.org/fhir/inventoryitem-nametype"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "InventoryItemNameType"], [ fhir:v "InventoryItemNameType"] ;
+  fhir:title [ fhir:v "InventoryItem Name Type"], [ fhir:v "InventoryItem Name Type"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:publisher [ fhir:v "HL7 International"], [ fhir:v "HL7 International"] ;
+  fhir:description [ fhir:v "InventoryItem Name Type"], [ fhir:v "InventoryItem Name Type"] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/inventoryitem-nametype"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "trade-name" ] ;
+     fhir:display [ fhir:v "Trade Name" ] ;
+     fhir:definition [ fhir:v "The official trade name of the item." ]
+  ] [
+     fhir:code [ fhir:v "alias" ] ;
+     fhir:display [ fhir:v "Alias" ] ;
+     fhir:definition [ fhir:v "An alias or common name for the item." ]
+  ] [
+     fhir:code [ fhir:v "original-name" ] ;
+     fhir:display [ fhir:v "Original Name" ] ;
+     fhir:definition [ fhir:v "The original name of the item." ]
+  ] [
+     fhir:code [ fhir:v "preferred" ] ;
+     fhir:display [ fhir:v "Preferred" ] ;
+     fhir:definition [ fhir:v "The preferred name of the item." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

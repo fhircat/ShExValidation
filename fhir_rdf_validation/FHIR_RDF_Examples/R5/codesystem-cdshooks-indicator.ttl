@@ -1,0 +1,76 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "cdshooks-indicator"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "vocab" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://cds-hooks.hl7.org/CodeSystem/indicator"], [ fhir:v "http://cds-hooks.hl7.org/CodeSystem/indicator"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1066" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1066" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "Indicator"], [ fhir:v "Indicator"] ;
+  fhir:title [ fhir:v "CDS Hooks Indicator"], [ fhir:v "CDS Hooks Indicator"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:publisher [ fhir:v "FHIR Project team"], [ fhir:v "FHIR Project team"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "This codesystem captures the indicator codes defined by the CDS Hooks specification. The indicator is included as an element of the cards in a CDS Hooks response and conveys the urgency and/or importance of the information in each card. See [Card Attributes](https://cds-hooks.hl7.org/1.0/#card-attributes) in the CDS Hooks specification for more information."], [ fhir:v "This codesystem captures the indicator codes defined by the CDS Hooks specification. The indicator is included as an element of the cards in a CDS Hooks response and conveys the urgency and/or importance of the information in each card. See [Card Attributes](https://cds-hooks.hl7.org/1.0/#card-attributes) in the CDS Hooks specification for more information."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/cdshooks-indicator"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "info" ] ;
+     fhir:display [ fhir:v "Information" ] ;
+     fhir:definition [ fhir:v "The response is informational and indicates that it contains additional information or relevant guidance that may be of interest" ]
+  ] [
+     fhir:code [ fhir:v "warning" ] ;
+     fhir:display [ fhir:v "Warning" ] ;
+     fhir:definition [ fhir:v "The response is a warning and indicates that it contains urgent or highly relevant information that should be considered" ]
+  ] [
+     fhir:code [ fhir:v "critical" ] ;
+     fhir:display [ fhir:v "Critical" ] ;
+     fhir:definition [ fhir:v "The response is critical and indicates that it contains information or activities that have high urgency and importance that should be immediately addressed" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

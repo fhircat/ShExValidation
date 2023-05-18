@@ -1,0 +1,201 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "citation-artifact-classifier"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "cds" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/citation-artifact-classifier"], [ fhir:v "http://hl7.org/fhir/citation-artifact-classifier"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1982" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1982" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "CitationArtifactClassifier"], [ fhir:v "CitationArtifactClassifier"] ;
+  fhir:title [ fhir:v "Citation Artifact Classifier"], [ fhir:v "Citation Artifact Classifier"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "true"], [ fhir:v "true"] ;
+  fhir:date [ fhir:v "2021-03-11T10:55:11.085+11:00"], [ fhir:v "2021-03-11T10:55:11.085+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Citation artifact classifier"], [ fhir:v "Citation artifact classifier"] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/citation-artifact-classifier"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "audio" ] ;
+     fhir:display [ fhir:v "Audio file" ] ;
+     fhir:definition [ fhir:v "The article cited is an audio file." ]
+  ] [
+     fhir:code [ fhir:v "D001877" ] ;
+     fhir:display [ fhir:v "Book" ] ;
+     fhir:definition [ fhir:v "Non-periodical written or printed works consisting of sheets of pages fastened or bound together within covers." ]
+  ] [
+     fhir:code [ fhir:v "cds-artifact" ] ;
+     fhir:display [ fhir:v "Clinical Decision Support Artifact" ] ;
+     fhir:definition [ fhir:v "The artifact is used for decision support for healthcare decisions." ]
+  ] [
+     fhir:code [ fhir:v "D016420" ] ;
+     fhir:display [ fhir:v "Comment" ] ;
+     fhir:definition [ fhir:v "Comment" ]
+  ] [
+     fhir:code [ fhir:v "common-share" ] ;
+     fhir:display [ fhir:v "Common Share" ] ;
+     fhir:definition [ fhir:v "Citation Resource containing value added data that is openly shared" ]
+  ] [
+     fhir:code [ fhir:v "D019991" ] ;
+     fhir:display [ fhir:v "Database" ] ;
+     fhir:definition [ fhir:v "A structured file of information or a set of logically related data stored and retrieved using computer-based means." ]
+  ] [
+     fhir:code [ fhir:v "D064886" ] ;
+     fhir:display [ fhir:v "Dataset" ] ;
+     fhir:definition [ fhir:v "Works consisting of organized collections of data, which have been stored permanently in a formalized manner suitable for communication, interpretation, or processing." ]
+  ] [
+     fhir:code [ fhir:v "dataset-unpublished" ] ;
+     fhir:display [ fhir:v "Dataset Unpublished" ] ;
+     fhir:definition [ fhir:v "An organized collection of data that is not stored permanently for communication." ]
+  ] [
+     fhir:code [ fhir:v "Electronic" ] ;
+     fhir:display [ fhir:v "Electronic" ] ;
+     fhir:definition [ fhir:v "the journal is published in electronic format only" ]
+  ] [
+     fhir:code [ fhir:v "Electronic-eCollection" ] ;
+     fhir:display [ fhir:v "Electronic-eCollection" ] ;
+     fhir:definition [ fhir:v "used for electronic-only journals that publish individual articles first and then later collect them into an \"issue\" date that is typically called an eCollection." ]
+  ] [
+     fhir:code [ fhir:v "Electronic-Print" ] ;
+     fhir:display [ fhir:v "Electronic-Print" ] ;
+     fhir:definition [ fhir:v "the journal is published first in electronic format followed by print (this value is currently used for just one journal, Nucleic Acids Research)" ]
+  ] [
+     fhir:code [ fhir:v "executable-app" ] ;
+     fhir:display [ fhir:v "Executable app" ] ;
+     fhir:definition [ fhir:v "Executable app" ]
+  ] [
+     fhir:code [ fhir:v "fhir-resource" ] ;
+     fhir:display [ fhir:v "FHIR Resource" ] ;
+     fhir:definition [ fhir:v "The article cited is a FHIR resource." ]
+  ] [
+     fhir:code [ fhir:v "image" ] ;
+     fhir:display [ fhir:v "Image file" ] ;
+     fhir:definition [ fhir:v "The article cited is an image file." ]
+  ] [
+     fhir:code [ fhir:v "interactive-form" ] ;
+     fhir:display [ fhir:v "Interactive Form" ] ;
+     fhir:definition [ fhir:v "A user interface that supports data entry and data display." ]
+  ] [
+     fhir:code [ fhir:v "D016428" ] ;
+     fhir:display [ fhir:v "Journal Article" ] ;
+     fhir:definition [ fhir:v "Journal Article" ]
+  ] [
+     fhir:code [ fhir:v "D016422" ] ;
+     fhir:display [ fhir:v "Letter" ] ;
+     fhir:definition [ fhir:v "Letter" ]
+  ] [
+     fhir:code [ fhir:v "machine-code" ] ;
+     fhir:display [ fhir:v "Machine code" ] ;
+     fhir:definition [ fhir:v "The article cited is machine code." ]
+  ] [
+     fhir:code [ fhir:v "medline-base" ] ;
+     fhir:display [ fhir:v "Medline Base" ] ;
+     fhir:definition [ fhir:v "Citation Resource containing only data from Medline" ]
+  ] [
+     fhir:code [ fhir:v "prediction-model" ] ;
+     fhir:display [ fhir:v "Prediction Model" ] ;
+     fhir:definition [ fhir:v "A formula or expression used to calculate an outcome representing a predicted result." ]
+  ] [
+     fhir:code [ fhir:v "D000076942" ] ;
+     fhir:display [ fhir:v "Preprint" ] ;
+     fhir:definition [ fhir:v "Scientific manuscript made available prior to PEER REVIEW." ]
+  ] [
+     fhir:code [ fhir:v "Print" ] ;
+     fhir:display [ fhir:v "Print" ] ;
+     fhir:definition [ fhir:v "the journal is published in print format only" ]
+  ] [
+     fhir:code [ fhir:v "Print-Electronic" ] ;
+     fhir:display [ fhir:v "Print Electronic" ] ;
+     fhir:definition [ fhir:v "the journal is published in both print and electronic format" ]
+  ] [
+     fhir:code [ fhir:v "project-specific" ] ;
+     fhir:display [ fhir:v "Project Specific" ] ;
+     fhir:definition [ fhir:v "Citation Resource containing value added data specific to a project" ]
+  ] [
+     fhir:code [ fhir:v "protocol" ] ;
+     fhir:display [ fhir:v "Protocol" ] ;
+     fhir:definition [ fhir:v "The article cited is the protocol of an activity and not the results or findings." ]
+  ] [
+     fhir:code [ fhir:v "pseudocode" ] ;
+     fhir:display [ fhir:v "PseudoCode" ] ;
+     fhir:definition [ fhir:v "A non-executable, human-readable representation of software code." ]
+  ] [
+     fhir:code [ fhir:v "D016425" ] ;
+     fhir:display [ fhir:v "Published Erratum" ] ;
+     fhir:definition [ fhir:v "Published Erratum" ]
+  ] [
+     fhir:code [ fhir:v "standard-specification" ] ;
+     fhir:display [ fhir:v "Standard Specification" ] ;
+     fhir:definition [ fhir:v "An explicit set of requirements for an item, material, component, system or service, often used to define a technical standard which is an established norm or requirement for a repeatable technical task." ]
+  ] [
+     fhir:code [ fhir:v "terminology" ] ;
+     fhir:display [ fhir:v "Terminology" ] ;
+     fhir:definition [ fhir:v "A structured set of codes and display values, which may be subtyped as a code system, value set, taxonomy, or ontology." ]
+  ] [
+     fhir:code [ fhir:v "D059040" ] ;
+     fhir:display [ fhir:v "Video-Audio Media" ] ;
+     fhir:definition [ fhir:v "Used with articles which include video files or clips, or for articles which are entirely video." ]
+  ] [
+     fhir:code [ fhir:v "webpage" ] ;
+     fhir:display [ fhir:v "Webpage" ] ;
+     fhir:definition [ fhir:v "Webpage" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,669 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:StructureDefinition ;
+  fhir:id [ fhir:v "SampledData"] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/SampledData"], [ fhir:v "http://hl7.org/fhir/StructureDefinition/SampledData"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "SampledData"], [ fhir:v "SampledData"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 FHIR Standard"], [ fhir:v "HL7 FHIR Standard"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "SampledData Type: A series of measurements taken by a device, with upper and lower limits. There may be more than one dimension in the data."], [ fhir:v "SampledData Type: A series of measurements taken by a device, with upper and lower limits. There may be more than one dimension in the data."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:purpose [ fhir:v "There is a need for a concise way to handle the data produced by devices that sample a physical state at a high frequency."], [ fhir:v "There is a need for a concise way to handle the data produced by devices that sample a physical state at a high frequency."] ;
+  fhir:fhirVersion [ fhir:v "5.0.0"] ;
+  fhir:mapping ( [
+     fhir:identity [ fhir:v "v2" ] ;
+     fhir:uri [ fhir:v "http://hl7.org/v2" ] ;
+     fhir:name [ fhir:v "HL7 V2 Mapping" ]
+  ] [
+     fhir:identity [ fhir:v "rim" ] ;
+     fhir:uri [ fhir:v "http://hl7.org/v3" ] ;
+     fhir:name [ fhir:v "RIM Mapping" ]
+  ] ) ;
+  fhir:kind [ fhir:v "complex-type"] ;
+  fhir:abstract [ fhir:v "false"] ;
+  fhir:type [ fhir:v "SampledData"] ;
+  fhir:baseDefinition [ fhir:v "http://hl7.org/fhir/StructureDefinition/DataType"] ;
+  fhir:derivation [ fhir:v "specialization"] ;
+  fhir:snapshot [
+     fhir:element ( [
+       fhir:id [ fhir:v "SampledData" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+         fhir:value [ fhir:v "trial-use" ]
+       ] ) ;
+       fhir:path [ fhir:v "SampledData" ] ;
+       fhir:short [ fhir:v "A series of measurements taken by a device" ] ;
+       fhir:definition [ fhir:v "A series of measurements taken by a device, with upper and lower limits. There may be more than one dimension in the data." ] ;
+       fhir:comment [ fhir:v "The data is not interpretable without at least origin, period, and dimensions, but these are optional to allow a separation between the template of measurement and the actual measurement, such as between DeviceCapabilities and DeviceLog.  When providing a summary view (for example with Observation.value[x]) SampledData should be represented with a brief display text such as \"Sampled Data\"." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "*" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "SampledData" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "*" ]
+       ] ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] [
+         fhir:key [ fhir:v "sdd-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "A SampledData SAHLL have either an interval and offsets but not both" ] ;
+         fhir:expression [ fhir:v "interval.exists().not() xor offsets.exists().not()" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/SampledData" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "n/a,SLIST + GLIST" ]
+       ] [
+         fhir:identity [ fhir:v "v2" ] ;
+         fhir:map [ fhir:v "N/A (but see section 7.14 in v2.7)" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "SampledData.id" ] ;
+       fhir:path [ fhir:v "SampledData.id" ] ;
+       fhir:representation ( [ fhir:v "xmlAttr" ] ) ;
+       fhir:short [ fhir:v "Unique id for inter-element referencing" ] ;
+       fhir:definition [ fhir:v "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "Element.id" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fhir-type" ] ;
+           fhir:value [ fhir:v "id" ]
+         ] ) ;
+         fhir:code [ fhir:v "http://hl7.org/fhirpath/System.String" ]
+       ] ) ;
+       fhir:condition ( [ fhir:v "ele-1" ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "false" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "n/a" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "SampledData.extension" ] ;
+       fhir:path [ fhir:v "SampledData.extension" ] ;
+       fhir:slicing [
+         fhir:discriminator ( [
+           fhir:type [ fhir:v "value" ] ;
+           fhir:path [ fhir:v "url" ]
+         ] ) ;
+         fhir:description [ fhir:v "Extensions are always sliced by (at least) url" ] ;
+         fhir:rules [ fhir:v "open" ]
+       ] ;
+       fhir:short [ fhir:v "Additional content defined by implementations" ] ;
+       fhir:definition [ fhir:v "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and managable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." ] ;
+       fhir:comment [ fhir:v "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." ] ;
+       fhir:alias ( [ fhir:v "extensions" ] [ fhir:v "user content" ] ) ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "*" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "Element.extension" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "*" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "Extension" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] [
+         fhir:key [ fhir:v "ext-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "Must have either extensions or value[x], not both" ] ;
+         fhir:expression [ fhir:v "extension.exists() != value.exists()" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Extension" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "false" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "n/a" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "SampledData.origin" ] ;
+       fhir:path [ fhir:v "SampledData.origin" ] ;
+       fhir:short [ fhir:v "Zero value and units" ] ;
+       fhir:definition [ fhir:v "The base quantity that a measured value of zero represents. In addition, this provides the units of the entire measurement series." ] ;
+       fhir:min [ fhir:v "1" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "SampledData.origin" ] ;
+         fhir:min [ fhir:v "1" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "Quantity" ] ;
+         fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/SimpleQuantity" ] )
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "SLIST.origin" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "SampledData.interval" ] ;
+       fhir:path [ fhir:v "SampledData.interval" ] ;
+       fhir:short [ fhir:v "Number of intervalUnits between samples" ] ;
+       fhir:definition [ fhir:v "Amount of intervalUnits between samples, e.g. milliseconds for time-based sampling." ] ;
+       fhir:comment [ fhir:v "This is usually a whole number." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "SampledData.interval" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "decimal" ]
+       ] ) ;
+       fhir:condition ( [ fhir:v "sdd-1" ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "GLIST.increment" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "SampledData.intervalUnit" ] ;
+       fhir:path [ fhir:v "SampledData.intervalUnit" ] ;
+       fhir:short [ fhir:v "The measurement unit of the interval between samples" ] ;
+       fhir:definition [ fhir:v "The measurement unit in which the sample interval is expressed." ] ;
+       fhir:min [ fhir:v "1" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "SampledData.intervalUnit" ] ;
+         fhir:min [ fhir:v "1" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "code" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:binding [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/binding-definition" ] ;
+           fhir:value [ fhir:v "Units of measure allowed for an element." ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName" ] ;
+           fhir:value [ fhir:v "Units" ]
+         ] ) ;
+         fhir:strength [ fhir:v "required" ] ;
+         fhir:description [ fhir:v "Units of measure allowed for an element." ] ;
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/ucum-units|5.0.0" ]
+       ]
+     ] [
+       fhir:id [ fhir:v "SampledData.factor" ] ;
+       fhir:path [ fhir:v "SampledData.factor" ] ;
+       fhir:short [ fhir:v "Multiply data by this before adding to origin" ] ;
+       fhir:definition [ fhir:v "A correction factor that is applied to the sampled data points before they are added to the origin." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "SampledData.factor" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "decimal" ]
+       ] ) ;
+       fhir:meaningWhenMissing [ fhir:v "If no factor is assigned, the data is not adjusted before adding to the origin" ] ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "SLIST.factor" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "SampledData.lowerLimit" ] ;
+       fhir:path [ fhir:v "SampledData.lowerLimit" ] ;
+       fhir:short [ fhir:v "Lower limit of detection" ] ;
+       fhir:definition [ fhir:v "The lower limit of detection of the measured points. This is needed if any of the data points have the value \"L\" (lower than detection limit)." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "SampledData.lowerLimit" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "decimal" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "N/A (use SLIST.digits.nullFlavor)" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "SampledData.upperLimit" ] ;
+       fhir:path [ fhir:v "SampledData.upperLimit" ] ;
+       fhir:short [ fhir:v "Upper limit of detection" ] ;
+       fhir:definition [ fhir:v "The upper limit of detection of the measured points. This is needed if any of the data points have the value \"U\" (higher than detection limit)." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "SampledData.upperLimit" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "decimal" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "N/A (use SLIST.digits.nullFlavor)" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "SampledData.dimensions" ] ;
+       fhir:path [ fhir:v "SampledData.dimensions" ] ;
+       fhir:short [ fhir:v "Number of sample points at each time point" ] ;
+       fhir:definition [ fhir:v "The number of sample points at each time point. If this value is greater than one, then the dimensions will be interlaced - all the sample points for a point in time will be recorded at once." ] ;
+       fhir:comment [ fhir:v "If there is more than one dimension, the code for the type of data will define the meaning of the dimensions (typically ECG data)." ] ;
+       fhir:min [ fhir:v "1" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "SampledData.dimensions" ] ;
+         fhir:min [ fhir:v "1" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "positiveInt" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "N/A (fixed to 1)" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "SampledData.codeMap" ] ;
+       fhir:path [ fhir:v "SampledData.codeMap" ] ;
+       fhir:short [ fhir:v "Defines the codes used in the data" ] ;
+       fhir:definition [ fhir:v "Reference to ConceptMap that defines the codes used in the data." ] ;
+       fhir:comment [ fhir:v "The ConceptMap cannot define meanings for the codes 'E', 'U', or 'L' (nor 'e', 'u', or 'l')." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "SampledData.codeMap" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "canonical" ] ;
+         fhir:targetProfile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/ConceptMap" ] )
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "false" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "N/A" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "SampledData.offsets" ] ;
+       fhir:path [ fhir:v "SampledData.offsets" ] ;
+       fhir:short [ fhir:v "Offsets, typically in time, at which data values were taken" ] ;
+       fhir:definition [ fhir:v "A series of data points which are decimal values separated by a single space (character u20).  The units in which the offsets are expressed are found in intervalUnit.  The absolute point at which the measurements begin SHALL be conveyed outside the scope of this datatype, e.g. Observation.effectiveDateTime for a timing offset." ] ;
+       fhir:comment [ fhir:v "If offsets is present, the number of data points must be equal to the number of offsets mlutipled by the dimensions." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "SampledData.offsets" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "string" ]
+       ] ) ;
+       fhir:condition ( [ fhir:v "sdd-1" ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "false" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "N/A" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "SampledData.data" ] ;
+       fhir:path [ fhir:v "SampledData.data" ] ;
+       fhir:short [ fhir:v "Decimal values with spaces, or \"E\" | \"U\" | \"L\", or another code" ] ;
+       fhir:definition [ fhir:v "A series of data points which are decimal values or codes separated by a single space (character u20). The special codes \"E\" (error), \"L\" (below detection limit) and \"U\" (above detection limit) are also defined for used in place of decimal values." ] ;
+       fhir:comment [ fhir:v "The data may be missing if it is omitted for summarization purposes. In general, data is required for any actual use of a SampledData." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "SampledData.data" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "string" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "false" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "SLIST.digits" ]
+       ] )
+     ] )
+  ] ;
+  fhir:differential [
+     fhir:element ( [
+       fhir:id [ fhir:v "SampledData" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+         fhir:value [ fhir:v "trial-use" ]
+       ] ) ;
+       fhir:path [ fhir:v "SampledData" ] ;
+       fhir:short [ fhir:v "A series of measurements taken by a device" ] ;
+       fhir:definition [ fhir:v "A series of measurements taken by a device, with upper and lower limits. There may be more than one dimension in the data." ] ;
+       fhir:comment [ fhir:v "The data is not interpretable without at least origin, period, and dimensions, but these are optional to allow a separation between the template of measurement and the actual measurement, such as between DeviceCapabilities and DeviceLog.  When providing a summary view (for example with Observation.value[x]) SampledData should be represented with a brief display text such as \"Sampled Data\"." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "*" ] ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "sdd-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "A SampledData SAHLL have either an interval and offsets but not both" ] ;
+         fhir:expression [ fhir:v "interval.exists().not() xor offsets.exists().not()" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/SampledData" ]
+       ] ) ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "v2" ] ;
+         fhir:map [ fhir:v "N/A (but see section 7.14 in v2.7)" ]
+       ] [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "SLIST + GLIST" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "SampledData.origin" ] ;
+       fhir:path [ fhir:v "SampledData.origin" ] ;
+       fhir:short [ fhir:v "Zero value and units" ] ;
+       fhir:definition [ fhir:v "The base quantity that a measured value of zero represents. In addition, this provides the units of the entire measurement series." ] ;
+       fhir:min [ fhir:v "1" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "Quantity" ] ;
+         fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/SimpleQuantity" ] )
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "SLIST.origin" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "SampledData.interval" ] ;
+       fhir:path [ fhir:v "SampledData.interval" ] ;
+       fhir:short [ fhir:v "Number of intervalUnits between samples" ] ;
+       fhir:definition [ fhir:v "Amount of intervalUnits between samples, e.g. milliseconds for time-based sampling." ] ;
+       fhir:comment [ fhir:v "This is usually a whole number." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "decimal" ]
+       ] ) ;
+       fhir:condition ( [ fhir:v "sdd-1" ] ) ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "GLIST.increment" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "SampledData.intervalUnit" ] ;
+       fhir:path [ fhir:v "SampledData.intervalUnit" ] ;
+       fhir:short [ fhir:v "The measurement unit of the interval between samples" ] ;
+       fhir:definition [ fhir:v "The measurement unit in which the sample interval is expressed." ] ;
+       fhir:min [ fhir:v "1" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "code" ]
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:binding [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/binding-definition" ] ;
+           fhir:value [ fhir:v "Units of measure allowed for an element." ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName" ] ;
+           fhir:value [ fhir:v "Units" ]
+         ] ) ;
+         fhir:strength [ fhir:v "required" ] ;
+         fhir:description [ fhir:v "Units of measure allowed for an element." ] ;
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/ucum-units|5.0.0" ]
+       ]
+     ] [
+       fhir:id [ fhir:v "SampledData.factor" ] ;
+       fhir:path [ fhir:v "SampledData.factor" ] ;
+       fhir:short [ fhir:v "Multiply data by this before adding to origin" ] ;
+       fhir:definition [ fhir:v "A correction factor that is applied to the sampled data points before they are added to the origin." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "decimal" ]
+       ] ) ;
+       fhir:meaningWhenMissing [ fhir:v "If no factor is assigned, the data is not adjusted before adding to the origin" ] ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "SLIST.factor" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "SampledData.lowerLimit" ] ;
+       fhir:path [ fhir:v "SampledData.lowerLimit" ] ;
+       fhir:short [ fhir:v "Lower limit of detection" ] ;
+       fhir:definition [ fhir:v "The lower limit of detection of the measured points. This is needed if any of the data points have the value \"L\" (lower than detection limit)." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "decimal" ]
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "N/A (use SLIST.digits.nullFlavor)" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "SampledData.upperLimit" ] ;
+       fhir:path [ fhir:v "SampledData.upperLimit" ] ;
+       fhir:short [ fhir:v "Upper limit of detection" ] ;
+       fhir:definition [ fhir:v "The upper limit of detection of the measured points. This is needed if any of the data points have the value \"U\" (higher than detection limit)." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "decimal" ]
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "N/A (use SLIST.digits.nullFlavor)" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "SampledData.dimensions" ] ;
+       fhir:path [ fhir:v "SampledData.dimensions" ] ;
+       fhir:short [ fhir:v "Number of sample points at each time point" ] ;
+       fhir:definition [ fhir:v "The number of sample points at each time point. If this value is greater than one, then the dimensions will be interlaced - all the sample points for a point in time will be recorded at once." ] ;
+       fhir:comment [ fhir:v "If there is more than one dimension, the code for the type of data will define the meaning of the dimensions (typically ECG data)." ] ;
+       fhir:min [ fhir:v "1" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "positiveInt" ]
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "N/A (fixed to 1)" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "SampledData.codeMap" ] ;
+       fhir:path [ fhir:v "SampledData.codeMap" ] ;
+       fhir:short [ fhir:v "Defines the codes used in the data" ] ;
+       fhir:definition [ fhir:v "Reference to ConceptMap that defines the codes used in the data." ] ;
+       fhir:comment [ fhir:v "The ConceptMap cannot define meanings for the codes 'E', 'U', or 'L' (nor 'e', 'u', or 'l')." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "canonical" ] ;
+         fhir:targetProfile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/ConceptMap" ] )
+       ] ) ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "N/A" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "SampledData.offsets" ] ;
+       fhir:path [ fhir:v "SampledData.offsets" ] ;
+       fhir:short [ fhir:v "Offsets, typically in time, at which data values were taken" ] ;
+       fhir:definition [ fhir:v "A series of data points which are decimal values separated by a single space (character u20).  The units in which the offsets are expressed are found in intervalUnit.  The absolute point at which the measurements begin SHALL be conveyed outside the scope of this datatype, e.g. Observation.effectiveDateTime for a timing offset." ] ;
+       fhir:comment [ fhir:v "If offsets is present, the number of data points must be equal to the number of offsets mlutipled by the dimensions." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "string" ]
+       ] ) ;
+       fhir:condition ( [ fhir:v "sdd-1" ] ) ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "N/A" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "SampledData.data" ] ;
+       fhir:path [ fhir:v "SampledData.data" ] ;
+       fhir:short [ fhir:v "Decimal values with spaces, or \"E\" | \"U\" | \"L\", or another code" ] ;
+       fhir:definition [ fhir:v "A series of data points which are decimal values or codes separated by a single space (character u20). The special codes \"E\" (error), \"L\" (below detection limit) and \"U\" (above detection limit) are also defined for used in place of decimal values." ] ;
+       fhir:comment [ fhir:v "The data may be missing if it is omitted for summarization purposes. In general, data is required for any actual use of a SampledData." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "string" ]
+       ] ) ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "SLIST.digits" ]
+       ] )
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

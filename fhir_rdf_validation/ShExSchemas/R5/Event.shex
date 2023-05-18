@@ -1,0 +1,243 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Group.shex>
+IMPORT <Claim.shex>
+IMPORT <Period.shex>
+IMPORT <Timing.shex>
+IMPORT <Device.shex>
+IMPORT <Patient.shex>
+IMPORT <boolean.shex>
+IMPORT <Element.shex>
+IMPORT <Consent.shex>
+IMPORT <dateTime.shex>
+IMPORT <Location.shex>
+IMPORT <CareTeam.shex>
+IMPORT <CarePlan.shex>
+IMPORT <Contract.shex>
+IMPORT <Coverage.shex>
+IMPORT <Reference.shex>
+IMPORT <Encounter.shex>
+IMPORT <Procedure.shex>
+IMPORT <Transport.shex>
+IMPORT <AuditEvent.shex>
+IMPORT <ChargeItem.shex>
+IMPORT <Provenance.shex>
+IMPORT <Appointment.shex>
+IMPORT <Composition.shex>
+IMPORT <DeviceUsage.shex>
+IMPORT <Observation.shex>
+IMPORT <Practitioner.shex>
+IMPORT <Organization.shex>
+IMPORT <RequestGroup.shex>
+IMPORT <ImagingStudy.shex>
+IMPORT <Immunization.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DeviceRequest.shex>
+IMPORT <SupplyRequest.shex>
+IMPORT <ClaimResponse.shex>
+IMPORT <Communication.shex>
+IMPORT <DetectedIssue.shex>
+IMPORT <EpisodeOfCare.shex>
+IMPORT <PaymentNotice.shex>
+IMPORT <ResearchStudy.shex>
+IMPORT <NutritionOrder.shex>
+IMPORT <ServiceRequest.shex>
+IMPORT <RiskAssessment.shex>
+IMPORT <SupplyDelivery.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <InventoryReport.shex>
+IMPORT <MedicationUsage.shex>
+IMPORT <NutritionIntake.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <DiagnosticReport.shex>
+IMPORT <DocumentManifest.shex>
+IMPORT <GuidanceResponse.shex>
+IMPORT <ImagingSelection.shex>
+IMPORT <EnrollmentRequest.shex>
+IMPORT <MedicationRequest.shex>
+IMPORT <DocumentReference.shex>
+IMPORT <VisionPrescription.shex>
+IMPORT <ClinicalImpression.shex>
+IMPORT <EnrollmentResponse.shex>
+IMPORT <MedicationDispense.shex>
+IMPORT <AppointmentResponse.shex>
+IMPORT <FamilyMemberHistory.shex>
+IMPORT <CommunicationRequest.shex>
+IMPORT <ExplanationOfBenefit.shex>
+IMPORT <PaymentReconciliation.shex>
+IMPORT <QuestionnaireResponse.shex>
+IMPORT <ImmunizationEvaluation.shex>
+IMPORT <MedicationAdministration.shex>
+IMPORT <CoverageEligibilityRequest.shex>
+IMPORT <ImmunizationRecommendation.shex>
+IMPORT <CoverageEligibilityResponse.shex>
+
+# Event Pattern
+<Event> CLOSED {   
+
+    a [fhir:Event];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business Identifier for {{title}}
+    fhir:instantiatesCanonical @<OneOrMore_canonical>?;  # Instantiates FHIR protocol or 
+                                            # definition 
+    fhir:instantiatesUri @<OneOrMore_uri>?;  # Instantiates external protocol or 
+                                            # definition 
+    fhir:basedOn @<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_Claim_OR_CommunicationRequest_OR_Contract_OR_CoverageEligibilityRequest_OR_DeviceRequest_OR_EnrollmentRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_RequestGroup_OR_ServiceRequest_OR_SupplyRequest_OR_VisionPrescription>?;  # Fulfills plan, proposal or order
+    fhir:partOf @<OneOrMore_Reference_AuditEvent_OR_ChargeItem_OR_ClaimResponse_OR_ClinicalImpression_OR_Communication_OR_Composition_OR_Consent_OR_Coverage_OR_CoverageEligibilityResponse_OR_DetectedIssue_OR_DeviceUsage_OR_DiagnosticReport_OR_DocumentManifest_OR_DocumentReference_OR_Encounter_OR_EnrollmentResponse_OR_EpisodeOfCare_OR_ExplanationOfBenefit_OR_FamilyMemberHistory_OR_GuidanceResponse_OR_ImagingSelection_OR_ImagingStudy_OR_Immunization_OR_ImmunizationEvaluation_OR_InventoryReport_OR_MedicationAdministration_OR_MedicationDispense_OR_MedicationUsage_OR_NutritionIntake_OR_Observation_OR_PaymentNotice_OR_PaymentReconciliation_OR_Procedure_OR_Provenance_OR_QuestionnaireResponse_OR_RiskAssessment_OR_SupplyDelivery_OR_Transport>?;  # Part of referenced event
+    fhir:researchStudy @<OneOrMore_Reference_ResearchStudy>?;  # Associated research study
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:event-status};  # preparation | in-progress | 
+                                            # not-done | suspended | aborted | 
+                                            # completed | entered-in-error | 
+                                            # unknown 
+    fhir:statusReason @<CodeableConcept>?;  # Reason for current status
+    fhir:code @<CodeableConcept>?;          # What was done
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Patient> };  # Individual service was done for/to
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # Encounter created as part of
+    fhir:occurrence (@<dateTime>  OR 
+    			@<Period>  OR 
+    			@<Timing> )  AND { rdf:type IRI } ?;  # When {{title}} occurred/is 
+                                            # occurring 
+    fhir:recorded @<dateTime>?;             # When {{title}} was first captured 
+                                            # in the subject's record 
+    fhir:reported (@<boolean>  OR 
+    			(@<Reference>  AND {fhir:link @<Patient> OR 
+    			 @<RelatedPerson> OR 
+    			 @<Practitioner> OR 
+    			 @<PractitionerRole> OR 
+    			 @<Organization> }) )  AND { rdf:type IRI } ?;  # Reported rather than primary record
+    fhir:performer @<OneOrMore_Element>?;   # Who performed {{title}} and what 
+                                            # they did 
+    fhir:location @<Reference> AND {fhir:link 
+    			@<Location> }?;  # Where {{title}} occurred
+    fhir:reason @<OneOrMore_CodeableReference>?;  # Why was {{title}} performed?
+    fhir:note @<OneOrMore_Annotation>?;     # Comments made about the event
+}  
+
+# Who performed {{title}} and what they did
+<Event.performer> EXTENDS @<Element> CLOSED {   
+    fhir:function @<CodeableConcept>?;      # Type of performance
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> };  # Who performed {{title}}
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_canonical> CLOSED {
+    rdf:first @<canonical>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_canonical> 
+}
+
+<OneOrMore_uri> CLOSED {
+    rdf:first @<uri>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_uri> 
+}
+
+<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_Claim_OR_CommunicationRequest_OR_Contract_OR_CoverageEligibilityRequest_OR_DeviceRequest_OR_EnrollmentRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_RequestGroup_OR_ServiceRequest_OR_SupplyRequest_OR_VisionPrescription> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Appointment> OR 
+			@<AppointmentResponse> OR 
+			@<CarePlan> OR 
+			@<Claim> OR 
+			@<CommunicationRequest> OR 
+			@<Contract> OR 
+			@<CoverageEligibilityRequest> OR 
+			@<DeviceRequest> OR 
+			@<EnrollmentRequest> OR 
+			@<ImmunizationRecommendation> OR 
+			@<MedicationRequest> OR 
+			@<NutritionOrder> OR 
+			@<RequestGroup> OR 
+			@<ServiceRequest> OR 
+			@<SupplyRequest> OR 
+			@<VisionPrescription> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_Claim_OR_CommunicationRequest_OR_Contract_OR_CoverageEligibilityRequest_OR_DeviceRequest_OR_EnrollmentRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_RequestGroup_OR_ServiceRequest_OR_SupplyRequest_OR_VisionPrescription> 
+}
+
+<OneOrMore_Reference_AuditEvent_OR_ChargeItem_OR_ClaimResponse_OR_ClinicalImpression_OR_Communication_OR_Composition_OR_Consent_OR_Coverage_OR_CoverageEligibilityResponse_OR_DetectedIssue_OR_DeviceUsage_OR_DiagnosticReport_OR_DocumentManifest_OR_DocumentReference_OR_Encounter_OR_EnrollmentResponse_OR_EpisodeOfCare_OR_ExplanationOfBenefit_OR_FamilyMemberHistory_OR_GuidanceResponse_OR_ImagingSelection_OR_ImagingStudy_OR_Immunization_OR_ImmunizationEvaluation_OR_InventoryReport_OR_MedicationAdministration_OR_MedicationDispense_OR_MedicationUsage_OR_NutritionIntake_OR_Observation_OR_PaymentNotice_OR_PaymentReconciliation_OR_Procedure_OR_Provenance_OR_QuestionnaireResponse_OR_RiskAssessment_OR_SupplyDelivery_OR_Transport> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<AuditEvent> OR 
+			@<ChargeItem> OR 
+			@<ClaimResponse> OR 
+			@<ClinicalImpression> OR 
+			@<Communication> OR 
+			@<Composition> OR 
+			@<Consent> OR 
+			@<Coverage> OR 
+			@<CoverageEligibilityResponse> OR 
+			@<DetectedIssue> OR 
+			@<DeviceUsage> OR 
+			@<DiagnosticReport> OR 
+			@<DocumentManifest> OR 
+			@<DocumentReference> OR 
+			@<Encounter> OR 
+			@<EnrollmentResponse> OR 
+			@<EpisodeOfCare> OR 
+			@<ExplanationOfBenefit> OR 
+			@<FamilyMemberHistory> OR 
+			@<GuidanceResponse> OR 
+			@<ImagingSelection> OR 
+			@<ImagingStudy> OR 
+			@<Immunization> OR 
+			@<ImmunizationEvaluation> OR 
+			@<InventoryReport> OR 
+			@<MedicationAdministration> OR 
+			@<MedicationDispense> OR 
+			@<MedicationUsage> OR 
+			@<NutritionIntake> OR 
+			@<Observation> OR 
+			@<PaymentNotice> OR 
+			@<PaymentReconciliation> OR 
+			@<Procedure> OR 
+			@<Provenance> OR 
+			@<QuestionnaireResponse> OR 
+			@<RiskAssessment> OR 
+			@<SupplyDelivery> OR 
+			@<Transport> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_AuditEvent_OR_ChargeItem_OR_ClaimResponse_OR_ClinicalImpression_OR_Communication_OR_Composition_OR_Consent_OR_Coverage_OR_CoverageEligibilityResponse_OR_DetectedIssue_OR_DeviceUsage_OR_DiagnosticReport_OR_DocumentManifest_OR_DocumentReference_OR_Encounter_OR_EnrollmentResponse_OR_EpisodeOfCare_OR_ExplanationOfBenefit_OR_FamilyMemberHistory_OR_GuidanceResponse_OR_ImagingSelection_OR_ImagingStudy_OR_Immunization_OR_ImmunizationEvaluation_OR_InventoryReport_OR_MedicationAdministration_OR_MedicationDispense_OR_MedicationUsage_OR_NutritionIntake_OR_Observation_OR_PaymentNotice_OR_PaymentReconciliation_OR_Procedure_OR_Provenance_OR_QuestionnaireResponse_OR_RiskAssessment_OR_SupplyDelivery_OR_Transport> 
+}
+
+<OneOrMore_Reference_ResearchStudy> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ResearchStudy> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ResearchStudy> 
+}
+
+<OneOrMore_Element> CLOSED {
+    rdf:first @<Element>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Element> 
+}
+
+<OneOrMore_CodeableReference> CLOSED {
+    rdf:first @<CodeableReference>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableReference> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Codes identifying the lifecycle stage of an event.
+fhirvs:event-status ["preparation" "in-progress" "not-done" "on-hold" "stopped" "completed" "entered-in-error" "unknown"]
+

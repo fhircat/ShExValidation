@@ -1,0 +1,90 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Device.shex>
+IMPORT <Timing.shex>
+IMPORT <instant.shex>
+IMPORT <Reference.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+
+
+start=@<DeviceMetric> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Measurement, calculation or setting capability of a medical device
+<DeviceMetric> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:DeviceMetric];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Instance identifier
+    fhir:type @<CodeableConcept>;           # Identity of metric, for example 
+                                            # Heart Rate or PEEP Setting 
+    fhir:unit @<CodeableConcept>?;          # Unit of Measure for the Metric
+    fhir:source @<Reference> AND {fhir:link 
+    			@<Device> }?;  # Describes the link to the source 
+                                            # Device 
+    fhir:parent @<Reference> AND {fhir:link 
+    			@<Device> }?;  # Describes the link to the parent 
+                                            # Device 
+    fhir:operationalStatus @<code> AND
+    	{fhir:v @fhirvs:metric-operational-status}?;  # on | off | standby | 
+                                            # entered-in-error 
+    fhir:color @<code> AND
+    	{fhir:v @fhirvs:metric-color}?;  # black | red | green | yellow | 
+                                            # blue | magenta | cyan | white 
+    fhir:category @<code> AND
+    	{fhir:v @fhirvs:metric-category};  # measurement | setting | 
+                                            # calculation | unspecified 
+    fhir:measurementPeriod @<Timing>?;      # Describes the measurement 
+                                            # repetition time 
+    fhir:calibration @<OneOrMore_BackboneElement>?;  # Describes the calibrations that 
+                                            # have been performed or that are 
+                                            # required to be performed 
+}  
+
+# Describes the calibrations that have been performed or that are required to be performed
+<DeviceMetric.calibration> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:metric-calibration-type}?;  # unspecified | offset | gain | 
+                                            # two-point 
+    fhir:state @<code> AND
+    	{fhir:v @fhirvs:metric-calibration-state}?;  # not-calibrated | 
+                                            # calibration-required | calibrated 
+                                            # | unspecified 
+    fhir:time @<instant>?;                  # Describes the time last 
+                                            # calibration has been performed 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Describes the operational status of the DeviceMetric.
+fhirvs:metric-operational-status ["on" "off" "standby" "entered-in-error"]
+
+# Describes the category of the metric.
+fhirvs:metric-category ["measurement" "setting" "calculation" "unspecified"]
+
+# Describes the state of a metric calibration.
+fhirvs:metric-calibration-state ["not-calibrated" "calibration-required" "calibrated" "unspecified"]
+
+# Describes the typical color of representation.
+fhirvs:metric-color ["black" "red" "green" "yellow" "blue" "magenta" "cyan" "white"]
+
+# Describes the type of a metric calibration.
+fhirvs:metric-calibration-type ["unspecified" "offset" "gain" "two-point"]
+

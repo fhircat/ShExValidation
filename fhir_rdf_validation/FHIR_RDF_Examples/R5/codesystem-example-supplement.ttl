@@ -1,0 +1,66 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:CodeSystem ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-supplement"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "additional" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      \n      \n      \n      <p>A supplement pack for \n        \n        \n        <code>http://hl7.org/fhir/CodeSystem/example</code> that defines the administrative property 'legacy' for whether the test is currently performed \n      \n      \n      </p>\n      \n      \n      \n      <table class=\"grid\">\n        \n        \n        \n        <tr>\n          \n          \n          \n          <td>\n            \n            \n            \n            <b>Code</b>\n          \n          \n          \n          </td>\n          \n          \n          \n          <td>\n            \n            \n            \n            <b>Legacy</b>\n          \n          \n          \n          </td>\n        \n        \n        \n        </tr>\n        \n        \n        \n        <tr>\n          \n          \n          \n          <td>chol-mmol</td>\n          \n          \n          \n          <td>false</td>\n        \n        \n        \n        </tr>\n        \n        \n        \n        <tr>\n          \n          \n          \n          <td>chol-mass</td>\n          \n          \n          \n          <td>true</td>\n        \n        \n        \n        </tr>\n        \n        \n        \n        <tr>\n          \n          \n          \n          <td>chol</td>\n          \n          \n          \n          <td>true</td>\n        \n        \n        \n        </tr>\n      \n      \n      \n      </table>\n    \n    \n    \n    </div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/CodeSystem/example-supplement"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1820" ]
+  ] ) ; # 
+  fhir:version [ fhir:v "5.0.0"] ; # 
+  fhir:name [ fhir:v "CholCodeLegacyStatus"] ; # 
+  fhir:title [ fhir:v "Cholesterol Code Legacy Status"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:experimental [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:date [ fhir:v "2016-01-28"^^xsd:date] ; # 
+  fhir:publisher [ fhir:v "ACME Co"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "FHIR project team" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "CholCodeLegacyStatus"] ; # 
+  fhir:content [ fhir:v "supplement"] ; # 
+  fhir:supplements [
+     fhir:v "http://hl7.org/fhir/CodeSystem/example"^^xsd:anyURI ;
+     fhir:link <http://hl7.org/fhir/CodeSystem/example>
+  ] ; # 
+  fhir:property ( [
+     fhir:code [ fhir:v "legacy" ] ;
+     fhir:description [ fhir:v "hether the test is currently performed" ] ;
+     fhir:type [ fhir:v "boolean" ]
+  ] ) ; # 
+  fhir:concept ( [
+     fhir:code [ fhir:v "chol-mmol" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "legacy" ] ;
+       fhir:value [ fhir:v "false"^^xsd:boolean ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "chol-mass" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "legacy" ] ;
+       fhir:value [ fhir:v "true"^^xsd:boolean ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "chol" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "legacy" ] ;
+       fhir:value [ fhir:v "true"^^xsd:boolean ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

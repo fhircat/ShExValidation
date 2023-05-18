@@ -1,0 +1,421 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ValueSet ;
+  fhir:id [ fhir:v "c80-practice-codes"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablevalueset" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "pa" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "draft" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/c80-practice-codes"], [ fhir:v "http://hl7.org/fhir/ValueSet/c80-practice-codes"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.3.88.12.80.72" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.2.134" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.3.88.12.80.72" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.2.134" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "PracticeSettingCodeValueSet"], [ fhir:v "PracticeSettingCodeValueSet"] ;
+  fhir:title [ fhir:v "Practice Setting Code Value Set"], [ fhir:v "Practice Setting Code Value Set"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "true"], [ fhir:v "true"] ;
+  fhir:publisher [ fhir:v "HITSP"], [ fhir:v "HITSP"] ;
+  fhir:description [ fhir:v "This is the code representing the clinical specialty of the clinician or provider who    interacted with, treated, or provided a service to/for the patient. The value set used    for clinical specialty has been limited by HITSP to the value set reproduced from HITSP    C80 Table 2-149 Clinical Specialty Value Set Definition."], [ fhir:v "This is the code representing the clinical specialty of the clinician or provider who    interacted with, treated, or provided a service to/for the patient. The value set used    for clinical specialty has been limited by HITSP to the value set reproduced from HITSP    C80 Table 2-149 Clinical Specialty Value Set Definition."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:copyright [ fhir:v "This resource includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright    of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers    of these specifications must have the appropriate SNOMED CT Affiliate license - for more    information contact http://www.snomed.org/snomed-ct/get-snomed-ct or info@snomed.org"], [ fhir:v "This resource includes content from SNOMED Clinical Terms® (SNOMED CT®) which is copyright    of the International Health Terminology Standards Development Organisation (IHTSDO). Implementers    of these specifications must have the appropriate SNOMED CT Affiliate license - for more    information contact http://www.snomed.org/snomed-ct/get-snomed-ct or info@snomed.org"] ;
+  fhir:compose [
+     fhir:include ( [
+       fhir:system [ fhir:v "http://snomed.info/sct" ] ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "408467006" ] ;
+         fhir:display [ fhir:v "Adult mental illness" ]
+       ] [
+         fhir:code [ fhir:v "394577000" ] ;
+         fhir:display [ fhir:v "Anesthetics" ]
+       ] [
+         fhir:code [ fhir:v "394578005" ] ;
+         fhir:display [ fhir:v "Audiological medicine" ]
+       ] [
+         fhir:code [ fhir:v "421661004" ] ;
+         fhir:display [ fhir:v "Blood banking and transfusion medicine" ]
+       ] [
+         fhir:code [ fhir:v "408462000" ] ;
+         fhir:display [ fhir:v "Burns care" ]
+       ] [
+         fhir:code [ fhir:v "394579002" ] ;
+         fhir:display [ fhir:v "Cardiology" ]
+       ] [
+         fhir:code [ fhir:v "394804000" ] ;
+         fhir:display [ fhir:v "Clinical cytogenetics and molecular genetics" ]
+       ] [
+         fhir:code [ fhir:v "394580004" ] ;
+         fhir:display [ fhir:v "Clinical genetics" ]
+       ] [
+         fhir:code [ fhir:v "394803006" ] ;
+         fhir:display [ fhir:v "Clinical hematology" ]
+       ] [
+         fhir:code [ fhir:v "408480009" ] ;
+         fhir:display [ fhir:v "Clinical immunology" ]
+       ] [
+         fhir:code [ fhir:v "408454008" ] ;
+         fhir:display [ fhir:v "Clinical microbiology" ]
+       ] [
+         fhir:code [ fhir:v "394809005" ] ;
+         fhir:display [ fhir:v "Clinical neuro-physiology" ]
+       ] [
+         fhir:code [ fhir:v "394592004" ] ;
+         fhir:display [ fhir:v "Clinical oncology" ]
+       ] [
+         fhir:code [ fhir:v "394600006" ] ;
+         fhir:display [ fhir:v "Clinical pharmacology" ]
+       ] [
+         fhir:code [ fhir:v "394601005" ] ;
+         fhir:display [ fhir:v "Clinical physiology" ]
+       ] [
+         fhir:code [ fhir:v "394581000" ] ;
+         fhir:display [ fhir:v "Community medicine" ]
+       ] [
+         fhir:code [ fhir:v "408478003" ] ;
+         fhir:display [ fhir:v "Critical care medicine" ]
+       ] [
+         fhir:code [ fhir:v "394812008" ] ;
+         fhir:display [ fhir:v "Dental medicine specialties" ]
+       ] [
+         fhir:code [ fhir:v "408444009" ] ;
+         fhir:display [ fhir:v "Dental-General dental practice" ]
+       ] [
+         fhir:code [ fhir:v "394582007" ] ;
+         fhir:display [ fhir:v "Dermatology" ]
+       ] [
+         fhir:code [ fhir:v "408475000" ] ;
+         fhir:display [ fhir:v "Diabetic medicine" ]
+       ] [
+         fhir:code [ fhir:v "410005002" ] ;
+         fhir:display [ fhir:v "Dive medicine" ]
+       ] [
+         fhir:code [ fhir:v "394583002" ] ;
+         fhir:display [ fhir:v "Endocrinology" ]
+       ] [
+         fhir:code [ fhir:v "419772000" ] ;
+         fhir:display [ fhir:v "Family practice" ]
+       ] [
+         fhir:code [ fhir:v "394584008" ] ;
+         fhir:display [ fhir:v "Gastroenterology" ]
+       ] [
+         fhir:code [ fhir:v "408443003" ] ;
+         fhir:display [ fhir:v "General medical practice" ]
+       ] [
+         fhir:code [ fhir:v "394802001" ] ;
+         fhir:display [ fhir:v "General medicine" ]
+       ] [
+         fhir:code [ fhir:v "394915009" ] ;
+         fhir:display [ fhir:v "General pathology" ]
+       ] [
+         fhir:code [ fhir:v "394814009" ] ;
+         fhir:display [ fhir:v "General practice" ]
+       ] [
+         fhir:code [ fhir:v "394808002" ] ;
+         fhir:display [ fhir:v "Genito-urinary medicine" ]
+       ] [
+         fhir:code [ fhir:v "394811001" ] ;
+         fhir:display [ fhir:v "Geriatric medicine" ]
+       ] [
+         fhir:code [ fhir:v "408446006" ] ;
+         fhir:display [ fhir:v "Gynecological oncology" ]
+       ] [
+         fhir:code [ fhir:v "394586005" ] ;
+         fhir:display [ fhir:v "Gynecology" ]
+       ] [
+         fhir:code [ fhir:v "394916005" ] ;
+         fhir:display [ fhir:v "Hematopathology" ]
+       ] [
+         fhir:code [ fhir:v "408472002" ] ;
+         fhir:display [ fhir:v "Hepatology" ]
+       ] [
+         fhir:code [ fhir:v "394597005" ] ;
+         fhir:display [ fhir:v "Histopathology" ]
+       ] [
+         fhir:code [ fhir:v "394598000" ] ;
+         fhir:display [ fhir:v "Immunopathology" ]
+       ] [
+         fhir:code [ fhir:v "394807007" ] ;
+         fhir:display [ fhir:v "Infectious diseases" ]
+       ] [
+         fhir:code [ fhir:v "419192003" ] ;
+         fhir:display [ fhir:v "Internal medicine" ]
+       ] [
+         fhir:code [ fhir:v "408468001" ] ;
+         fhir:display [ fhir:v "Learning disability" ]
+       ] [
+         fhir:code [ fhir:v "394593009" ] ;
+         fhir:display [ fhir:v "Medical oncology" ]
+       ] [
+         fhir:code [ fhir:v "394813003" ] ;
+         fhir:display [ fhir:v "Medical ophthalmology" ]
+       ] [
+         fhir:code [ fhir:v "410001006" ] ;
+         fhir:display [ fhir:v "Military medicine" ]
+       ] [
+         fhir:code [ fhir:v "394589003" ] ;
+         fhir:display [ fhir:v "Nephrology" ]
+       ] [
+         fhir:code [ fhir:v "394591006" ] ;
+         fhir:display [ fhir:v "Neurology" ]
+       ] [
+         fhir:code [ fhir:v "394599008" ] ;
+         fhir:display [ fhir:v "Neuropathology" ]
+       ] [
+         fhir:code [ fhir:v "394649004" ] ;
+         fhir:display [ fhir:v "Nuclear medicine" ]
+       ] [
+         fhir:code [ fhir:v "408470005" ] ;
+         fhir:display [ fhir:v "Obstetrics" ]
+       ] [
+         fhir:code [ fhir:v "394585009" ] ;
+         fhir:display [ fhir:v "Obstetrics and gynecology" ]
+       ] [
+         fhir:code [ fhir:v "394821009" ] ;
+         fhir:display [ fhir:v "Occupational medicine" ]
+       ] [
+         fhir:code [ fhir:v "422191005" ] ;
+         fhir:display [ fhir:v "Ophthalmic surgery" ]
+       ] [
+         fhir:code [ fhir:v "394594003" ] ;
+         fhir:display [ fhir:v "Ophthalmology" ]
+       ] [
+         fhir:code [ fhir:v "416304004" ] ;
+         fhir:display [ fhir:v "Osteopathic manipulative medicine" ]
+       ] [
+         fhir:code [ fhir:v "418960008" ] ;
+         fhir:display [ fhir:v "Otolaryngology" ]
+       ] [
+         fhir:code [ fhir:v "394882004" ] ;
+         fhir:display [ fhir:v "Pain management" ]
+       ] [
+         fhir:code [ fhir:v "394806003" ] ;
+         fhir:display [ fhir:v "Palliative medicine" ]
+       ] [
+         fhir:code [ fhir:v "394588006" ] ;
+         fhir:display [ fhir:v "Pediatric (Child and adolescent) psychiatry" ]
+       ] [
+         fhir:code [ fhir:v "408459003" ] ;
+         fhir:display [ fhir:v "Pediatric cardiology" ]
+       ] [
+         fhir:code [ fhir:v "394607009" ] ;
+         fhir:display [ fhir:v "Pediatric dentistry" ]
+       ] [
+         fhir:code [ fhir:v "419610006" ] ;
+         fhir:display [ fhir:v "Pediatric endocrinology" ]
+       ] [
+         fhir:code [ fhir:v "418058008" ] ;
+         fhir:display [ fhir:v "Pediatric gastroenterology" ]
+       ] [
+         fhir:code [ fhir:v "420208008" ] ;
+         fhir:display [ fhir:v "Pediatric genetics" ]
+       ] [
+         fhir:code [ fhir:v "418652005" ] ;
+         fhir:display [ fhir:v "Pediatric hematology" ]
+       ] [
+         fhir:code [ fhir:v "418535003" ] ;
+         fhir:display [ fhir:v "Pediatric immunology" ]
+       ] [
+         fhir:code [ fhir:v "418862001" ] ;
+         fhir:display [ fhir:v "Pediatric infectious diseases" ]
+       ] [
+         fhir:code [ fhir:v "419365004" ] ;
+         fhir:display [ fhir:v "Pediatric nephrology" ]
+       ] [
+         fhir:code [ fhir:v "418002000" ] ;
+         fhir:display [ fhir:v "Pediatric oncology" ]
+       ] [
+         fhir:code [ fhir:v "419983000" ] ;
+         fhir:display [ fhir:v "Pediatric ophthalmology" ]
+       ] [
+         fhir:code [ fhir:v "419170002" ] ;
+         fhir:display [ fhir:v "Pediatric pulmonology" ]
+       ] [
+         fhir:code [ fhir:v "419472004" ] ;
+         fhir:display [ fhir:v "Pediatric rheumatology" ]
+       ] [
+         fhir:code [ fhir:v "394539006" ] ;
+         fhir:display [ fhir:v "Pediatric surgery" ]
+       ] [
+         fhir:code [ fhir:v "420112009" ] ;
+         fhir:display [ fhir:v "Pediatric surgery-bone marrow transplantation" ]
+       ] [
+         fhir:code [ fhir:v "409968004" ] ;
+         fhir:display [ fhir:v "Preventive medicine" ]
+       ] [
+         fhir:code [ fhir:v "394587001" ] ;
+         fhir:display [ fhir:v "Psychiatry" ]
+       ] [
+         fhir:code [ fhir:v "394913002" ] ;
+         fhir:display [ fhir:v "Psychotherapy" ]
+       ] [
+         fhir:code [ fhir:v "408440000" ] ;
+         fhir:display [ fhir:v "Public health medicine" ]
+       ] [
+         fhir:code [ fhir:v "418112009" ] ;
+         fhir:display [ fhir:v "Pulmonary medicine" ]
+       ] [
+         fhir:code [ fhir:v "419815003" ] ;
+         fhir:display [ fhir:v "Radiation oncology" ]
+       ] [
+         fhir:code [ fhir:v "394914008" ] ;
+         fhir:display [ fhir:v "Radiology" ]
+       ] [
+         fhir:code [ fhir:v "408455009" ] ;
+         fhir:display [ fhir:v "Radiology-Interventional radiology" ]
+       ] [
+         fhir:code [ fhir:v "394602003" ] ;
+         fhir:display [ fhir:v "Rehabilitation" ]
+       ] [
+         fhir:code [ fhir:v "408447002" ] ;
+         fhir:display [ fhir:v "Respite care" ]
+       ] [
+         fhir:code [ fhir:v "394810000" ] ;
+         fhir:display [ fhir:v "Rheumatology" ]
+       ] [
+         fhir:code [ fhir:v "408450004" ] ;
+         fhir:display [ fhir:v "Sleep studies" ]
+       ] [
+         fhir:code [ fhir:v "408476004" ] ;
+         fhir:display [ fhir:v "Surgery-Bone and marrow transplantation" ]
+       ] [
+         fhir:code [ fhir:v "408469009" ] ;
+         fhir:display [ fhir:v "Surgery-Breast surgery" ]
+       ] [
+         fhir:code [ fhir:v "408466002" ] ;
+         fhir:display [ fhir:v "Surgery-Cardiac surgery" ]
+       ] [
+         fhir:code [ fhir:v "408471009" ] ;
+         fhir:display [ fhir:v "Surgery-Cardiothoracic transplantation" ]
+       ] [
+         fhir:code [ fhir:v "408464004" ] ;
+         fhir:display [ fhir:v "Surgery-Colorectal surgery" ]
+       ] [
+         fhir:code [ fhir:v "408441001" ] ;
+         fhir:display [ fhir:v "Surgery-Dental-Endodontics" ]
+       ] [
+         fhir:code [ fhir:v "408465003" ] ;
+         fhir:display [ fhir:v "Surgery-Dental-Oral and maxillofacial surgery" ]
+       ] [
+         fhir:code [ fhir:v "394605001" ] ;
+         fhir:display [ fhir:v "Surgery-Dental-Oral surgery" ]
+       ] [
+         fhir:code [ fhir:v "394608004" ] ;
+         fhir:display [ fhir:v "Surgery-Dental-Orthodontics" ]
+       ] [
+         fhir:code [ fhir:v "408461007" ] ;
+         fhir:display [ fhir:v "Surgery-Dental-Periodontal surgery" ]
+       ] [
+         fhir:code [ fhir:v "408460008" ] ;
+         fhir:display [ fhir:v "Surgery-Dental-Prosthetic dentistry (Prosthodontics)" ]
+       ] [
+         fhir:code [ fhir:v "408460008" ] ;
+         fhir:display [ fhir:v "Surgery-Dental-surgical-Prosthodontics" ]
+       ] [
+         fhir:code [ fhir:v "394606000" ] ;
+         fhir:display [ fhir:v "Surgery-Dentistry-Restorative dentistry" ]
+       ] [
+         fhir:code [ fhir:v "408449004" ] ;
+         fhir:display [ fhir:v "Surgery-Dentistry--surgical" ]
+       ] [
+         fhir:code [ fhir:v "394608004" ] ;
+         fhir:display [ fhir:v "Surgery-Dentistry-surgical-Orthodontics" ]
+       ] [
+         fhir:code [ fhir:v "418018006" ] ;
+         fhir:display [ fhir:v "Surgery-Dermatologic surgery" ]
+       ] [
+         fhir:code [ fhir:v "394604002" ] ;
+         fhir:display [ fhir:v "Surgery-Ear, nose and throat surgery" ]
+       ] [
+         fhir:code [ fhir:v "394609007" ] ;
+         fhir:display [ fhir:v "Surgery-general" ]
+       ] [
+         fhir:code [ fhir:v "408474001" ] ;
+         fhir:display [ fhir:v "Surgery-Hepatobiliary and pancreatic surgery" ]
+       ] [
+         fhir:code [ fhir:v "394610002" ] ;
+         fhir:display [ fhir:v "Surgery-Neurosurgery" ]
+       ] [
+         fhir:code [ fhir:v "394611003" ] ;
+         fhir:display [ fhir:v "Surgery-Plastic surgery" ]
+       ] [
+         fhir:code [ fhir:v "408477008" ] ;
+         fhir:display [ fhir:v "Surgery-Transplantation surgery" ]
+       ] [
+         fhir:code [ fhir:v "394801008" ] ;
+         fhir:display [ fhir:v "Surgery-Trauma and orthopedics" ]
+       ] [
+         fhir:code [ fhir:v "408463005" ] ;
+         fhir:display [ fhir:v "Surgery-Vascular" ]
+       ] [
+         fhir:code [ fhir:v "419321007" ] ;
+         fhir:display [ fhir:v "Surgical oncology" ]
+       ] [
+         fhir:code [ fhir:v "394576009" ] ;
+         fhir:display [ fhir:v "Surgical-Accident & emergency" ]
+       ] [
+         fhir:code [ fhir:v "394590007" ] ;
+         fhir:display [ fhir:v "Thoracic medicine" ]
+       ] [
+         fhir:code [ fhir:v "409967009" ] ;
+         fhir:display [ fhir:v "Toxicology" ]
+       ] [
+         fhir:code [ fhir:v "408448007" ] ;
+         fhir:display [ fhir:v "Tropical medicine" ]
+       ] [
+         fhir:code [ fhir:v "419043006" ] ;
+         fhir:display [ fhir:v "Urological oncology" ]
+       ] [
+         fhir:code [ fhir:v "394612005" ] ;
+         fhir:display [ fhir:v "Urology" ]
+       ] [
+         fhir:code [ fhir:v "394733009" ] ;
+         fhir:display [ fhir:v "Medical specialty--OTHER--NOT LISTED" ]
+       ] [
+         fhir:code [ fhir:v "394732004" ] ;
+         fhir:display [ fhir:v "Surgical specialty--OTHER-NOT LISTED" ]
+       ] )
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

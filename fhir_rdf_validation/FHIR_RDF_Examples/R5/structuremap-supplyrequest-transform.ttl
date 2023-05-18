@@ -1,0 +1,158 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:StructureMap ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "supplyrequest-transform"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <pre class=\"fml\">\n\n        <span style=\"color: #cc00cc\">/// \n          <b>url</b> = \n        </span>\n        <span style=\"color: blue\">'http://hl7.org/fhir/StructureMap/supplyrequest-transform'</span>\n\n        <span style=\"color: #cc00cc\">/// \n          <b>name</b> = \n        </span>\n        <span style=\"color: blue\">'TransformFromAnActivityDefinitionToASupplyRequest'</span>\n\n        <span style=\"color: #cc00cc\">/// \n          <b>title</b> = \n        </span>\n        <span style=\"color: blue\">'Transform from an ActivityDefinition to a SupplyRequest'</span>\n\n        <span style=\"color: #cc00cc\">/// \n          <b>status</b> = \n        </span>\n        <span style=\"color: blue\">'draft'</span>\n\n\n        <b>uses</b>\n        <span style=\"color: navy\"> &quot;</span>\n        <a href=\"activitydefinition.html\" title=\"ActivityDefinition\">http://hl7.org/fhir/StructureDefinition/ActivityDefinition</a>\n        <span style=\"color: navy\">&quot; </span>\n        <b>as </b>\n        <b>source</b>\n\n        <b>uses</b>\n        <span style=\"color: navy\"> &quot;</span>\n        <a href=\"supplyrequest.html\" title=\"SupplyRequest\">http://hl7.org/fhir/StructureDefinition/SupplyRequest</a>\n        <span style=\"color: navy\">&quot; </span>\n        <b>as </b>\n        <b>target</b>\n\n\n        <b>group </b>main\n        <span style=\"color: navy\">(</span>\n        <b>source</b> \n        <span style=\"color: maroon\">source</span>\n        <span style=\"color: navy\"> : </span>ActivityDefinition, \n        <b>target</b> \n        <span style=\"color: maroon\">target</span>\n        <span style=\"color: navy\"> : </span>SupplyRequest\n        <span style=\"color: navy\">)</span>\n        <span style=\"color: navy\"> {\n</span>  source.id\n        <b> as </b>\n        <span style=\"color: maroon\">a</span>\n        <span style=\"color: navy\">\n          <b> -&gt; </b>\n        </span>target.status = \n        <span style=\"color: navy\">(</span>'draft'\n        <span style=\"color: navy\">)</span> \n        <i>&quot;status&quot;</i>\n        <span style=\"color: navy\">;</span>\n  source.id\n        <b> as </b>\n        <span style=\"color: maroon\">a</span>\n        <span style=\"color: navy\">\n          <b> -&gt; </b>\n        </span>target.category = \n        <span style=\"color: navy\">(</span>'non-stock'\n        <span style=\"color: navy\">)</span> \n        <i>&quot;category&quot;</i>\n        <span style=\"color: navy\">;</span>\n  source.id\n        <b> as </b>\n        <span style=\"color: maroon\">a</span>\n        <span style=\"color: navy\">\n          <b> -&gt; </b>\n        </span>target.priority = \n        <span style=\"color: navy\">(</span>'routine'\n        <span style=\"color: navy\">)</span> \n        <i>&quot;priority&quot;</i>\n        <span style=\"color: navy\">;</span>\n  source.quantity\n        <b> as </b>\n        <span style=\"color: maroon\">a</span>\n        <span style=\"color: navy\">\n          <b> -&gt; </b>\n        </span>target.category = \n        <b>copy</b>\n        <span style=\"color: navy\">(</span>\n        <span style=\"color: navy\">)</span>\n        <span style=\"color: navy\">;</span>\n  source.code\n        <b> as </b>\n        <span style=\"color: maroon\">a</span>\n        <span style=\"color: navy\">\n          <b> -&gt; </b>\n        </span> target.item = \n        <b>create</b>\n        <span style=\"color: navy\">(</span>\n        <span style=\"color: navy\">)</span>\n        <b> as </b>\n        <span style=\"color: maroon\">b</span>\n        <span style=\"color: navy\">, </span> b.concept = \n        <b>copy</b>\n        <span style=\"color: navy\">(</span>\n        <span style=\"color: navy\">)</span> \n        <i>&quot;item&quot;</i>\n        <span style=\"color: navy\">;</span>\n  source.id\n        <b> as </b>\n        <span style=\"color: maroon\">a</span>\n        <span style=\"color: navy\">\n          <b> -&gt; </b>\n        </span>target.occurrence = \n        <span style=\"color: navy\">(</span>now()\n        <span style=\"color: navy\">)</span> \n        <i>&quot;when&quot;</i>\n        <span style=\"color: navy\">;</span>\n  source.id\n        <b> as </b>\n        <span style=\"color: maroon\">a</span>\n        <span style=\"color: navy\">\n          <b> -&gt; </b>\n        </span>target.authoredOn = \n        <span style=\"color: navy\">(</span>now()\n        <span style=\"color: navy\">)</span> \n        <i>&quot;authoredOn&quot;</i>\n        <span style=\"color: navy\">;</span>\n\n        <span style=\"color: navy\">}\n\n</span>\n      </pre>\n    </div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/StructureMap/supplyrequest-transform"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.13.1" ]
+  ] ) ; # 
+  fhir:version [ fhir:v "5.0.0"] ; # 
+  fhir:name [ fhir:v "TransformFromAnActivityDefinitionToASupplyRequest"] ; # 
+  fhir:title [ fhir:v "Transform from an ActivityDefinition to a SupplyRequest"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:experimental [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:description [ fhir:v "Transform from an ActivityDefinition to a SupplyRequest"] ; # 
+  fhir:structure ( [
+     fhir:url [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/ActivityDefinition"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/ActivityDefinition>
+     ] ;
+     fhir:mode [ fhir:v "source" ]
+  ] [
+     fhir:url [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/SupplyRequest"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/SupplyRequest>
+     ] ;
+     fhir:mode [ fhir:v "target" ]
+  ] ) ; # 
+  fhir:group ( [
+     fhir:name [ fhir:v "main" ] ;
+     fhir:input ( [
+       fhir:name [ fhir:v "source" ] ;
+       fhir:type [ fhir:v "ActivityDefinition" ] ;
+       fhir:mode [ fhir:v "source" ]
+     ] [
+       fhir:name [ fhir:v "target" ] ;
+       fhir:type [ fhir:v "SupplyRequest" ] ;
+       fhir:mode [ fhir:v "target" ]
+     ] ) ;
+     fhir:rule ( [
+       fhir:name [ fhir:v "status" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "source" ] ;
+         fhir:element [ fhir:v "id" ] ;
+         fhir:variable [ fhir:v "a" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "target" ] ;
+         fhir:element [ fhir:v "status" ] ;
+         fhir:transform [ fhir:v "evaluate" ] ;
+         fhir:parameter ( [
+           fhir:value [ fhir:v "'draft'" ]
+         ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "category" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "source" ] ;
+         fhir:element [ fhir:v "id" ] ;
+         fhir:variable [ fhir:v "a" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "target" ] ;
+         fhir:element [ fhir:v "category" ] ;
+         fhir:transform [ fhir:v "evaluate" ] ;
+         fhir:parameter ( [
+           fhir:value [ fhir:v "'non-stock'" ]
+         ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "priority" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "source" ] ;
+         fhir:element [ fhir:v "id" ] ;
+         fhir:variable [ fhir:v "a" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "target" ] ;
+         fhir:element [ fhir:v "priority" ] ;
+         fhir:transform [ fhir:v "evaluate" ] ;
+         fhir:parameter ( [
+           fhir:value [ fhir:v "'routine'" ]
+         ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "quantity" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "source" ] ;
+         fhir:element [ fhir:v "quantity" ] ;
+         fhir:variable [ fhir:v "a" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "target" ] ;
+         fhir:element [ fhir:v "category" ] ;
+         fhir:transform [ fhir:v "copy" ]
+       ] )
+     ] [
+       fhir:name [ fhir:v "item" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "source" ] ;
+         fhir:element [ fhir:v "code" ] ;
+         fhir:variable [ fhir:v "a" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "target" ] ;
+         fhir:element [ fhir:v "item" ] ;
+         fhir:variable [ fhir:v "b" ] ;
+         fhir:transform [ fhir:v "create" ]
+       ] [
+         fhir:context [ fhir:v "b" ] ;
+         fhir:element [ fhir:v "concept" ] ;
+         fhir:transform [ fhir:v "copy" ]
+       ] )
+     ] [
+       fhir:name [ fhir:v "when" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "source" ] ;
+         fhir:element [ fhir:v "id" ] ;
+         fhir:variable [ fhir:v "a" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "target" ] ;
+         fhir:element [ fhir:v "occurrence" ] ;
+         fhir:transform [ fhir:v "evaluate" ] ;
+         fhir:parameter ( [
+           fhir:value [ fhir:v "now()" ]
+         ] )
+       ] )
+     ] [
+       fhir:name [ fhir:v "authoredOn" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "source" ] ;
+         fhir:element [ fhir:v "id" ] ;
+         fhir:variable [ fhir:v "a" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "target" ] ;
+         fhir:element [ fhir:v "authoredOn" ] ;
+         fhir:transform [ fhir:v "evaluate" ] ;
+         fhir:parameter ( [
+           fhir:value [ fhir:v "now()" ]
+         ] )
+       ] )
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

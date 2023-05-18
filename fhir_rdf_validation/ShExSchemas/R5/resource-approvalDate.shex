@@ -1,0 +1,31 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <date.shex>
+IMPORT <Extension.shex>
+
+# When resource approved by publisher
+<resource-approvalDate> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:resource-approvalDate];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/resource-approvalDate"]}; 
+    fhir:v (@<date> )  AND { rdf:type IRI } ; 
+    ^fhir:extension { a [fhir:StructureDefinition] OR 
+          a [fhir:StructureMap] OR 
+          a [fhir:CapabilityStatement] OR 
+          a [fhir:OperationDefinition] OR 
+          a [fhir:SearchParameter] OR 
+          a [fhir:CompartmentDefinition] OR 
+          a [fhir:ImplementationGuide] OR 
+          a [fhir:CodeSystem] OR 
+          a [fhir:ValueSet] OR 
+          a [fhir:ConceptMap] OR 
+          a [fhir:NamingSystem]
+        }
+}  
+

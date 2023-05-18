@@ -1,0 +1,50 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <date.shex>
+IMPORT <Period.shex>
+IMPORT <CanonicalResource.shex>
+
+
+start=@<MetadataResource> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Common Ancestor declaration for definitional resources
+<MetadataResource> EXTENDS @<CanonicalResource> CLOSED {   
+
+    a [fhir:MetadataResource];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:approvalDate @<date>?;             # When the {{title}} was approved by 
+                                            # publisher 
+    fhir:lastReviewDate @<date>?;           # When the {{title}} was last 
+                                            # reviewed 
+    fhir:effectivePeriod @<Period>?;        # When the {{title}} is expected to 
+                                            # be used 
+    fhir:topic @<OneOrMore_CodeableConcept>?;  # E.g. Education, Treatment, 
+                                            # Assessment, etc. 
+    fhir:author @<OneOrMore_ContactDetail>?;  # Who authored the {{title}}
+    fhir:editor @<OneOrMore_ContactDetail>?;  # Who edited the {{title}}
+    fhir:reviewer @<OneOrMore_ContactDetail>?;  # Who reviewed the {{title}}
+    fhir:endorser @<OneOrMore_ContactDetail>?;  # Who endorsed the {{title}}
+    fhir:relatedArtifact @<OneOrMore_RelatedArtifact>?;  # Additional documentation, 
+                                            # citations, etc. 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_ContactDetail> CLOSED {
+    rdf:first @<ContactDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactDetail> 
+}
+
+<OneOrMore_RelatedArtifact> CLOSED {
+    rdf:first @<RelatedArtifact>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_RelatedArtifact> 
+}
+

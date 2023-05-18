@@ -1,0 +1,155 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Task.shex>
+IMPORT <Period.shex>
+IMPORT <Device.shex>
+IMPORT <instant.shex>
+IMPORT <Patient.shex>
+IMPORT <dateTime.shex>
+IMPORT <Location.shex>
+IMPORT <CareTeam.shex>
+IMPORT <Resource.shex>
+IMPORT <CarePlan.shex>
+IMPORT <Reference.shex>
+IMPORT <Encounter.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DeviceRequest.shex>
+IMPORT <DomainResource.shex>
+IMPORT <NutritionOrder.shex>
+IMPORT <ServiceRequest.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <MedicationRequest.shex>
+IMPORT <ImmunizationRecommendation.shex>
+
+
+start=@<Provenance> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Who, What, When for a set of resources
+<Provenance> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Provenance];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:target @<OneOrMore_Reference_Resource>;  # Target Reference(s) (usually 
+                                            # version specific) 
+    fhir:occurred (@<Period>  OR 
+    			@<dateTime> )  AND { rdf:type IRI } ?;  # When the activity occurred
+    fhir:recorded @<instant>?;              # When the activity was recorded / 
+                                            # updated 
+    fhir:policy @<OneOrMore_uri>?;          # Policy or plan the activity was 
+                                            # defined by 
+    fhir:location @<Reference> AND {fhir:link 
+    			@<Location> }?;  # Where the activity occurred, if 
+                                            # relevant 
+    fhir:authorization @<OneOrMore_CodeableReference>?;  # Authorization (purposeOfUse) 
+                                            # related to the event 
+    fhir:activity @<CodeableConcept>?;      # Activity that occurred
+    fhir:basedOn @<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest_OR_Task>?;  # Workflow authorization within 
+                                            # which this event occurred 
+    fhir:patient @<Reference> AND {fhir:link 
+    			@<Patient> }?;  # The patient is the subject of the 
+                                            # data created/updated (.target) by 
+                                            # the activity 
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # Encounter within which this event 
+                                            # occurred or which the event is 
+                                            # tightly associated 
+    fhir:agent @<OneOrMore_BackboneElement>;  # Actor involved
+    fhir:entity @<OneOrMore_BackboneElement>?;  # An entity used in this activity
+    fhir:signature @<OneOrMore_Signature>?;  # Signature on target
+}  
+
+# Actor involved
+<Provenance.agent> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>?;          # How the agent participated
+    fhir:role @<OneOrMore_CodeableConcept>?;  # What the agents role was
+    fhir:who @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> };  # The agent that participated in the 
+                                            # event 
+    fhir:onBehalfOf @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # The agent that delegated
+}  
+
+# An entity used in this activity
+<Provenance.entity> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:role @<code> AND
+    	{fhir:v @fhirvs:provenance-entity-role};  # revision | quotation | source | 
+                                            # instantiates | removal 
+    fhir:what @<Reference> AND {fhir:link 
+    			@<Resource> };  # Identity of entity
+    fhir:agent @<OneOrMore_Provenance.agent>?;  # Entity is attributed to this agent
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+
+<OneOrMore_uri> CLOSED {
+    rdf:first @<uri>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_uri> 
+}
+
+<OneOrMore_CodeableReference> CLOSED {
+    rdf:first @<CodeableReference>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableReference> 
+}
+
+<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest_OR_Task> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CarePlan> OR 
+			@<DeviceRequest> OR 
+			@<ImmunizationRecommendation> OR 
+			@<MedicationRequest> OR 
+			@<NutritionOrder> OR 
+			@<ServiceRequest> OR 
+			@<Task> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest_OR_Task> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Signature> CLOSED {
+    rdf:first @<Signature>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Signature> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Provenance.agent> CLOSED {
+    rdf:first @<Provenance.agent>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Provenance.agent> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# How an entity was used in an activity.
+fhirvs:provenance-entity-role ["revision" "quotation" "source" "instantiates" "removal"]
+

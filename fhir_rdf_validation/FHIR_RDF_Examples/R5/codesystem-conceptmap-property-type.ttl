@@ -1,0 +1,108 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "conceptmap-property-type"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "vocab" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "normative" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version" ] ;
+     fhir:value [ fhir:v "4.0.0" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "5" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/conceptmap-property-type"], [ fhir:v "http://hl7.org/fhir/conceptmap-property-type"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.2118" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.2118" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "ConceptMapPropertyType"], [ fhir:v "ConceptMapPropertyType"] ;
+  fhir:title [ fhir:v "ConceptMap Property Type"], [ fhir:v "ConceptMap Property Type"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2021-01-05T10:01:24+11:00"], [ fhir:v "2021-01-05T10:01:24+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The type of a ConceptMap mapping property value."], [ fhir:v "The type of a ConceptMap mapping property value."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/conceptmap-property-type"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "Coding" ] ;
+     fhir:display [ fhir:v "Coding (external reference)" ] ;
+     fhir:definition [ fhir:v "The property  value is a code defined in an external code system. This may be used for translations, but is not the intent." ]
+  ] [
+     fhir:code [ fhir:v "string" ] ;
+     fhir:display [ fhir:v "string" ] ;
+     fhir:definition [ fhir:v "The property value is a string." ]
+  ] [
+     fhir:code [ fhir:v "integer" ] ;
+     fhir:display [ fhir:v "integer" ] ;
+     fhir:definition [ fhir:v "The property value is an integer (often used to assign ranking values to concepts for supporting score assessments)." ]
+  ] [
+     fhir:code [ fhir:v "boolean" ] ;
+     fhir:display [ fhir:v "boolean" ] ;
+     fhir:definition [ fhir:v "The property value is a boolean true | false." ]
+  ] [
+     fhir:code [ fhir:v "dateTime" ] ;
+     fhir:display [ fhir:v "dateTime" ] ;
+     fhir:definition [ fhir:v "The property is a date or a date + time." ]
+  ] [
+     fhir:code [ fhir:v "decimal" ] ;
+     fhir:display [ fhir:v "decimal" ] ;
+     fhir:definition [ fhir:v "The property value is a decimal number." ]
+  ] [
+     fhir:code [ fhir:v "code" ] ;
+     fhir:display [ fhir:v "code" ] ;
+     fhir:definition [ fhir:v "The property value is a code as defined in the CodeSystem in ConceptMap.property.system." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

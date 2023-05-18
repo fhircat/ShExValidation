@@ -1,0 +1,641 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <id.shex>
+#imported_end
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <oid.shex>
+#imported_end
+#imported_begin 
+IMPORT <url.shex>
+#imported_end
+#imported_begin 
+IMPORT <Age.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <date.shex>
+#imported_end
+#imported_begin 
+IMPORT <time.shex>
+#imported_end
+#imported_begin 
+IMPORT <uuid.shex>
+#imported_end
+#imported_begin 
+IMPORT <Meta.shex>
+#imported_end
+#imported_begin 
+IMPORT <Count.shex>
+#imported_end
+#imported_begin 
+IMPORT <Money.shex>
+#imported_end
+#imported_begin 
+IMPORT <Range.shex>
+#imported_end
+#imported_begin 
+IMPORT <Ratio.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Timing.shex>
+#imported_end
+#imported_begin 
+IMPORT <Dosage.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <Element.shex>
+#imported_end
+#imported_begin 
+IMPORT <decimal.shex>
+#imported_end
+#imported_begin 
+IMPORT <instant.shex>
+#imported_end
+#imported_begin 
+IMPORT <integer.shex>
+#imported_end
+#imported_begin 
+IMPORT <Address.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Distance.shex>
+#imported_end
+#imported_begin 
+IMPORT <Duration.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
+IMPORT <integer64.shex>
+#imported_end
+#imported_begin 
+IMPORT <HumanName.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Signature.shex>
+#imported_end
+#imported_begin 
+IMPORT <Annotation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Attachment.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <RatioRange.shex>
+#imported_end
+#imported_begin 
+IMPORT <Expression.shex>
+#imported_end
+#imported_begin 
+IMPORT <unsignedInt.shex>
+#imported_end
+#imported_begin 
+IMPORT <positiveInt.shex>
+#imported_end
+#imported_begin 
+IMPORT <SampledData.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneType.shex>
+#imported_end
+#imported_begin 
+IMPORT <base64Binary.shex>
+#imported_end
+#imported_begin 
+IMPORT <ContactPoint.shex>
+#imported_end
+#imported_begin 
+IMPORT <UsageContext.shex>
+#imported_end
+#imported_begin 
+IMPORT <Availability.shex>
+#imported_end
+#imported_begin 
+IMPORT <ContactDetail.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <DataRequirement.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedArtifact.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableReference.shex>
+#imported_end
+#imported_begin 
+IMPORT <TriggerDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <ParameterDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <ExtendedContactDetail.shex>
+#imported_end
+# Definition of an element in a resource or extension
+<ElementDefinition> EXTENDS @<BackboneType> CLOSED {   
+
+    a [fhir:ElementDefinition]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:path @<string>;                    # Path of the element in the 
+                                            # hierarchy of elements 
+    fhir:representation @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:property-representation}?;  # xmlAttr | xmlText | typeAttr | 
+                                            # cdaText | xhtml 
+    fhir:sliceName @<string>?;              # Name for this particular element 
+                                            # (in a set of slices) 
+    fhir:sliceIsConstraining @<boolean>?;   # If this slice definition 
+                                            # constrains an inherited slice 
+                                            # definition (or not) 
+    fhir:label @<string>?;                  # Name for element to display with 
+                                            # or prompt for element 
+    fhir:code @<OneOrMore_Coding>?;         # Corresponding codes in 
+                                            # terminologies 
+    fhir:slicing @<Element>?;               # This element is sliced - slices 
+                                            # follow 
+    fhir:short @<string>?;                  # Concise definition for 
+                                            # space-constrained presentation 
+    fhir:definition @<markdown>?;           # Full formal definition as 
+                                            # narrative text 
+    fhir:comment @<markdown>?;              # Comments about the use of this 
+                                            # element 
+    fhir:requirements @<markdown>?;         # Why this resource has been created
+    fhir:alias @<OneOrMore_string>?;        # Other names
+    fhir:min @<unsignedInt>?;               # Minimum Cardinality
+    fhir:max @<string>?;                    # Maximum Cardinality (a number or *)
+    fhir:base @<Element>?;                  # Base definition information for 
+                                            # tools 
+    fhir:contentReference @<uri>?;          # Reference to definition of content 
+                                            # for the element 
+    fhir:type @<OneOrMore_Element>?;        # Data type and Profile for this 
+                                            # element 
+    fhir:defaultValue @<base64Binary>  OR 
+    			@<boolean>  OR 
+    			@<canonical>  OR 
+    			@<code>  OR 
+    			@<date>  OR 
+    			@<dateTime>  OR 
+    			@<decimal>  OR 
+    			@<id>  OR 
+    			@<instant>  OR 
+    			@<integer>  OR 
+    			@<integer64>  OR 
+    			@<markdown>  OR 
+    			@<oid>  OR 
+    			@<positiveInt>  OR 
+    			@<string>  OR 
+    			@<time>  OR 
+    			@<unsignedInt>  OR 
+    			@<uri>  OR 
+    			@<url>  OR 
+    			@<uuid>  OR 
+    			@<Address>  OR 
+    			@<Age>  OR 
+    			@<Annotation>  OR 
+    			@<Attachment>  OR 
+    			@<CodeableConcept>  OR 
+    			@<CodeableReference>  OR 
+    			@<Coding>  OR 
+    			@<ContactPoint>  OR 
+    			@<Count>  OR 
+    			@<Distance>  OR 
+    			@<Duration>  OR 
+    			@<HumanName>  OR 
+    			@<Identifier>  OR 
+    			@<Money>  OR 
+    			@<Period>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<Ratio>  OR 
+    			@<RatioRange>  OR 
+    			@<Reference>  OR 
+    			@<SampledData>  OR 
+    			@<Signature>  OR 
+    			@<Timing>  OR 
+    			@<ContactDetail>  OR 
+    			@<DataRequirement>  OR 
+    			@<Expression>  OR 
+    			@<ParameterDefinition>  OR 
+    			@<RelatedArtifact>  OR 
+    			@<TriggerDefinition>  OR 
+    			@<UsageContext>  OR 
+    			@<Availability>  OR 
+    			@<ExtendedContactDetail>  OR 
+    			@<Dosage>  OR 
+    			@<Meta>  ?;  # Specified value if missing from 
+                                            # instance 
+    fhir:meaningWhenMissing @<markdown>?;   # Implicit meaning when this element 
+                                            # is missing 
+    fhir:orderMeaning @<string>?;           # What the order of the elements 
+                                            # means 
+    fhir:fixed @<base64Binary>  OR 
+    			@<boolean>  OR 
+    			@<canonical>  OR 
+    			@<code>  OR 
+    			@<date>  OR 
+    			@<dateTime>  OR 
+    			@<decimal>  OR 
+    			@<id>  OR 
+    			@<instant>  OR 
+    			@<integer>  OR 
+    			@<integer64>  OR 
+    			@<markdown>  OR 
+    			@<oid>  OR 
+    			@<positiveInt>  OR 
+    			@<string>  OR 
+    			@<time>  OR 
+    			@<unsignedInt>  OR 
+    			@<uri>  OR 
+    			@<url>  OR 
+    			@<uuid>  OR 
+    			@<Address>  OR 
+    			@<Age>  OR 
+    			@<Annotation>  OR 
+    			@<Attachment>  OR 
+    			@<CodeableConcept>  OR 
+    			@<CodeableReference>  OR 
+    			@<Coding>  OR 
+    			@<ContactPoint>  OR 
+    			@<Count>  OR 
+    			@<Distance>  OR 
+    			@<Duration>  OR 
+    			@<HumanName>  OR 
+    			@<Identifier>  OR 
+    			@<Money>  OR 
+    			@<Period>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<Ratio>  OR 
+    			@<RatioRange>  OR 
+    			@<Reference>  OR 
+    			@<SampledData>  OR 
+    			@<Signature>  OR 
+    			@<Timing>  OR 
+    			@<ContactDetail>  OR 
+    			@<DataRequirement>  OR 
+    			@<Expression>  OR 
+    			@<ParameterDefinition>  OR 
+    			@<RelatedArtifact>  OR 
+    			@<TriggerDefinition>  OR 
+    			@<UsageContext>  OR 
+    			@<Availability>  OR 
+    			@<ExtendedContactDetail>  OR 
+    			@<Dosage>  OR 
+    			@<Meta>  ?;  # Value must be exactly this
+    fhir:pattern @<base64Binary>  OR 
+    			@<boolean>  OR 
+    			@<canonical>  OR 
+    			@<code>  OR 
+    			@<date>  OR 
+    			@<dateTime>  OR 
+    			@<decimal>  OR 
+    			@<id>  OR 
+    			@<instant>  OR 
+    			@<integer>  OR 
+    			@<integer64>  OR 
+    			@<markdown>  OR 
+    			@<oid>  OR 
+    			@<positiveInt>  OR 
+    			@<string>  OR 
+    			@<time>  OR 
+    			@<unsignedInt>  OR 
+    			@<uri>  OR 
+    			@<url>  OR 
+    			@<uuid>  OR 
+    			@<Address>  OR 
+    			@<Age>  OR 
+    			@<Annotation>  OR 
+    			@<Attachment>  OR 
+    			@<CodeableConcept>  OR 
+    			@<CodeableReference>  OR 
+    			@<Coding>  OR 
+    			@<ContactPoint>  OR 
+    			@<Count>  OR 
+    			@<Distance>  OR 
+    			@<Duration>  OR 
+    			@<HumanName>  OR 
+    			@<Identifier>  OR 
+    			@<Money>  OR 
+    			@<Period>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<Ratio>  OR 
+    			@<RatioRange>  OR 
+    			@<Reference>  OR 
+    			@<SampledData>  OR 
+    			@<Signature>  OR 
+    			@<Timing>  OR 
+    			@<ContactDetail>  OR 
+    			@<DataRequirement>  OR 
+    			@<Expression>  OR 
+    			@<ParameterDefinition>  OR 
+    			@<RelatedArtifact>  OR 
+    			@<TriggerDefinition>  OR 
+    			@<UsageContext>  OR 
+    			@<Availability>  OR 
+    			@<ExtendedContactDetail>  OR 
+    			@<Dosage>  OR 
+    			@<Meta>  ?;  # Value must have at least these 
+                                            # property values 
+    fhir:example @<OneOrMore_Element>?;     # Example value (as defined for type)
+    fhir:minValue @<date>  OR 
+    			@<dateTime>  OR 
+    			@<instant>  OR 
+    			@<time>  OR 
+    			@<decimal>  OR 
+    			@<integer>  OR 
+    			@<integer64>  OR 
+    			@<positiveInt>  OR 
+    			@<unsignedInt>  OR 
+    			@<Quantity>  ?;  # Minimum Allowed Value (for some 
+                                            # types) 
+    fhir:maxValue @<date>  OR 
+    			@<dateTime>  OR 
+    			@<instant>  OR 
+    			@<time>  OR 
+    			@<decimal>  OR 
+    			@<integer>  OR 
+    			@<integer64>  OR 
+    			@<positiveInt>  OR 
+    			@<unsignedInt>  OR 
+    			@<Quantity>  ?;  # Maximum Allowed Value (for some 
+                                            # types) 
+    fhir:maxLength @<integer>?;             # Max length for string type data
+    fhir:condition @<OneOrMore_id>?;        # Reference to invariant about 
+                                            # presence 
+    fhir:constraint @<OneOrMore_Element>?;  # Condition that must evaluate to 
+                                            # true 
+    fhir:mustHaveValue @<boolean>?;         # For primitives, that a value must 
+                                            # be present - not replaced by an 
+                                            # extension 
+    fhir:valueAlternatives @<OneOrMore_canonical>?;  # Extensions that are allowed to 
+                                            # replace a primitive value 
+    fhir:mustSupport @<boolean>?;           # If the element must be supported 
+                                            # (discouraged - see obligations) 
+    fhir:obligation @<OneOrMore_Element>?;  # Documents obligations for 
+                                            # applications making use of this 
+                                            # element 
+    fhir:isModifier @<boolean>?;            # If this modifies the meaning of 
+                                            # other elements 
+    fhir:isModifierReason @<string>?;       # Reason that this element is marked 
+                                            # as a modifier 
+    fhir:isSummary @<boolean>?;             # Include when _summary = true?
+    fhir:binding @<Element>?;               # ValueSet details if this is coded
+    fhir:mapping @<OneOrMore_Element>?;     # Map element to another set of 
+                                            # definitions 
+}  
+
+# This element is sliced - slices follow
+<ElementDefinition.slicing> EXTENDS @<Element> CLOSED {   
+    fhir:discriminator @<OneOrMore_Element>?;  # Element values that are used to 
+                                            # distinguish the slices 
+    fhir:description @<string>?;            # Text description of how slicing 
+                                            # works (or not) 
+    fhir:ordered @<boolean>?;               # If elements must be in same order 
+                                            # as slices 
+    fhir:rules @<code> AND
+    	{fhir:v @fhirvs:resource-slicing-rules};  # closed | open | openAtEnd
+}  
+
+# Example value (as defined for type)
+<ElementDefinition.example> EXTENDS @<Element> CLOSED {   
+    fhir:label @<string>;                   # Describes the purpose of this 
+                                            # example 
+    fhir:value @<base64Binary>  OR 
+    			@<boolean>  OR 
+    			@<canonical>  OR 
+    			@<code>  OR 
+    			@<date>  OR 
+    			@<dateTime>  OR 
+    			@<decimal>  OR 
+    			@<id>  OR 
+    			@<instant>  OR 
+    			@<integer>  OR 
+    			@<integer64>  OR 
+    			@<markdown>  OR 
+    			@<oid>  OR 
+    			@<positiveInt>  OR 
+    			@<string>  OR 
+    			@<time>  OR 
+    			@<unsignedInt>  OR 
+    			@<uri>  OR 
+    			@<url>  OR 
+    			@<uuid>  OR 
+    			@<Address>  OR 
+    			@<Age>  OR 
+    			@<Annotation>  OR 
+    			@<Attachment>  OR 
+    			@<CodeableConcept>  OR 
+    			@<CodeableReference>  OR 
+    			@<Coding>  OR 
+    			@<ContactPoint>  OR 
+    			@<Count>  OR 
+    			@<Distance>  OR 
+    			@<Duration>  OR 
+    			@<HumanName>  OR 
+    			@<Identifier>  OR 
+    			@<Money>  OR 
+    			@<Period>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<Ratio>  OR 
+    			@<RatioRange>  OR 
+    			@<Reference>  OR 
+    			@<SampledData>  OR 
+    			@<Signature>  OR 
+    			@<Timing>  OR 
+    			@<ContactDetail>  OR 
+    			@<DataRequirement>  OR 
+    			@<Expression>  OR 
+    			@<ParameterDefinition>  OR 
+    			@<RelatedArtifact>  OR 
+    			@<TriggerDefinition>  OR 
+    			@<UsageContext>  OR 
+    			@<Availability>  OR 
+    			@<ExtendedContactDetail>  OR 
+    			@<Dosage>  OR 
+    			@<Meta>  ;  # Value of Example (one of allowed 
+                                            # types) 
+}  
+
+# Data type and Profile for this element
+<ElementDefinition.type> EXTENDS @<Element> CLOSED {   
+    fhir:code @<uri>;                       # Data type or Resource (reference 
+                                            # to definition) 
+    fhir:profile @<OneOrMore_canonical>?;   # Profiles (StructureDefinition or 
+                                            # IG) - one must apply 
+    fhir:targetProfile @<OneOrMore_canonical>?;  # Profile (StructureDefinition or 
+                                            # IG) on the Reference/canonical 
+                                            # target - one must apply 
+    fhir:aggregation @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:resource-aggregation-mode}?;  # contained | referenced | bundled - 
+                                            # how aggregated 
+    fhir:versioning @<code> AND
+    	{fhir:v @fhirvs:reference-version-rules}?;  # either | independent | specific
+}  
+
+# Condition that must evaluate to true
+<ElementDefinition.constraint> EXTENDS @<Element> CLOSED {   
+    fhir:key @<id>;                         # Target of 'condition' reference 
+                                            # above 
+    fhir:requirements @<markdown>?;         # Why this constraint is necessary 
+                                            # or appropriate 
+    fhir:severity @<code> AND
+    	{fhir:v @fhirvs:constraint-severity};  # error | warning
+    fhir:suppress @<boolean>?;              # Suppress warning or hint in profile
+    fhir:human @<string>;                   # Human description of constraint
+    fhir:expression @<string>?;             # FHIRPath expression of constraint
+    fhir:source @<canonical>?;              # Reference to original source of 
+                                            # constraint 
+}  
+
+# Map element to another set of definitions
+<ElementDefinition.mapping> EXTENDS @<Element> CLOSED {   
+    fhir:identity @<id>;                    # Reference to mapping declaration
+    fhir:language @<code> AND
+    	{fhir:v @fhirvs:mimetypes}?;  # Computable language of mapping
+    fhir:map @<string>;                     # Details of the mapping
+    fhir:comment @<markdown>?;              # Comments about the mapping or its 
+                                            # use 
+}  
+
+# Additional Bindings - more rules about the binding
+<ElementDefinition.binding.additional> EXTENDS @<Element> CLOSED {   
+    fhir:purpose @<code> AND
+    	{fhir:v @fhirvs:additional-binding-purpose};  # maximum | minimum | required | 
+                                            # extensible | candidate | current | 
+                                            # preferred | ui | starter | 
+                                            # component 
+    fhir:valueSet @<canonical>;             # The value set for the additional 
+                                            # binding 
+    fhir:documentation @<markdown>?;        # Documentation of the purpose of 
+                                            # use of the binding 
+    fhir:shortDoco @<string>?;              # Concise documentation - for 
+                                            # summary tables 
+    fhir:usage @<OneOrMore_UsageContext>?;  # Qualifies the usage - 
+                                            # jurisdiction, gender, workflow 
+                                            # status etc 
+    fhir:any @<boolean>?;                   # Whether binding can applies to all 
+                                            # repeats, or just one 
+}  
+
+# Element values that are used to distinguish the slices
+<ElementDefinition.slicing.discriminator> EXTENDS @<Element> CLOSED {   
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:discriminator-type};  # value | exists | type | profile | 
+                                            # position 
+    fhir:path @<string>;                    # Path to element value
+}  
+
+# Base definition information for tools
+<ElementDefinition.base> EXTENDS @<Element> CLOSED {   
+    fhir:path @<string>;                    # Path that identifies the base 
+                                            # element 
+    fhir:min @<unsignedInt>;                # Min cardinality of the base element
+    fhir:max @<string>;                     # Max cardinality of the base element
+}  
+
+# Documents obligations for applications making use of this element
+<ElementDefinition.obligation> EXTENDS @<Element> CLOSED {   
+    fhir:code @<Coding>;                    # Combination code describing the 
+                                            # nature of the obligation 
+    fhir:actor @<OneOrMore_canonical>?;     # Actor(s) this obligation applies 
+                                            # to (all actors if none) 
+    fhir:documentation @<markdown>?;        # Documentation of the purpose or 
+                                            # application of the obligation 
+    fhir:usage @<OneOrMore_UsageContext>?;  # Qualifies the usage - 
+                                            # jurisdiction, gender, workflow 
+                                            # status etc 
+    fhir:filter @<string>?;                 # Limits obligation to some repeats 
+                                            # by FHIRPath 
+    fhir:filterDocumentation @<string>?;    # Ddescribes the intent of the 
+                                            # filter (short) 
+    fhir:process @<OneOrMore_uri>?;         # The obligation only applies when 
+                                            # perfomring the indicated process 
+}  
+
+# ValueSet details if this is coded
+<ElementDefinition.binding> EXTENDS @<Element> CLOSED {   
+    fhir:strength @<code> AND
+    	{fhir:v @fhirvs:binding-strength};  # required | extensible | preferred 
+                                            # | example 
+    fhir:description @<markdown>?;          # Intended use of codes in the bound 
+                                            # value set 
+    fhir:valueSet @<canonical>?;            # Source of value set
+    fhir:additional @<OneOrMore_Element>?;  # Additional Bindings - more rules 
+                                            # about the binding 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#---------------------- Value Sets ------------------------
+
+
+
+
+
+
+
+
+
+

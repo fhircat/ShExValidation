@@ -1,0 +1,240 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Range.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <Person.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
+IMPORT <Citation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <Resource.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Narrative.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Annotation.shex>
+#imported_end
+#imported_begin 
+IMPORT <UsageContext.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <ContactDetail.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedArtifact.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+
+start=@<EvidenceReport> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A EvidenceReport
+<EvidenceReport> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:EvidenceReport]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri>?;                       # Canonical identifier for this 
+                                            # EvidenceReport, represented as a 
+                                            # globally unique URI 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Unique identifier for the evidence 
+                                            # report 
+    fhir:relatedIdentifier @<OneOrMore_Identifier>?;  # Identifiers for articles that may 
+                                            # relate to more than one evidence 
+                                            # report 
+    fhir:citeAs (@<Reference>  AND {fhir:link @<Citation> })  OR 
+    			@<markdown>  ?;  # Citation for this report
+    fhir:type @<CodeableConcept>?;          # Kind of report
+    fhir:note @<OneOrMore_Annotation>?;     # Used for footnotes and annotations
+    fhir:relatedArtifact @<OneOrMore_RelatedArtifact>?;  # Link, description or reference to 
+                                            # artifact associated with the 
+                                            # report 
+    fhir:subject @<EvidenceReport.subject>;  # Focus of the report
+    fhir:publisher @<string>?;              # Name of the publisher/steward 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:author @<OneOrMore_ContactDetail>?;  # Who authored the content
+    fhir:editor @<OneOrMore_ContactDetail>?;  # Who edited the content
+    fhir:reviewer @<OneOrMore_ContactDetail>?;  # Who reviewed the content
+    fhir:endorser @<OneOrMore_ContactDetail>?;  # Who endorsed the content
+    fhir:relatesTo @<OneOrMore_EvidenceReport.relatesTo>?;  # Relationships to other 
+                                            # compositions/documents 
+    fhir:section @<OneOrMore_EvidenceReport.section>?;  # Composition is broken into sections
+}  
+
+# Characteristic
+<EvidenceReport.subject.characteristic> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>;           # Characteristic code
+    fhir:value (@<Reference>  AND {fhir:link @<Resource> })  OR 
+    			@<CodeableConcept>  OR 
+    			@<boolean>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  ;  # Characteristic value
+    fhir:exclude @<boolean>?;               # Is used to express not the 
+                                            # characteristic 
+    fhir:period @<Period>?;                 # Timeframe for the characteristic
+}  
+
+# Nested Section
+<EvidenceReport.section.sectionnull> CLOSED {   
+}  
+
+# Target of the relationship
+<EvidenceReport.relatesTo.target> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:url @<uri>?;                       # Target of the relationship URL
+    fhir:identifier @<Identifier>?;         # Target of the relationship 
+                                            # Identifier 
+    fhir:display @<markdown>?;              # Target of the relationship Display
+    fhir:resource @<Reference> AND {fhir:link 
+    			@<Resource> ? }?;  # Target of the relationship 
+                                            # Resource reference 
+}  
+
+# Relationships to other compositions/documents
+<EvidenceReport.relatesTo> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code> AND
+    	{fhir:v @fhirvs:report-relation-type};  # replaces | amends | appends | 
+                                            # transforms | replacedWith | 
+                                            # amendedWith | appendedWith | 
+                                            # transformedWith 
+    fhir:target @<EvidenceReport.relatesTo.target>;  # Target of the relationship
+}  
+
+# Focus of the report
+<EvidenceReport.subject> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:characteristic @<OneOrMore_EvidenceReport.subject.characteristic>?;  # Characteristic
+    fhir:note @<OneOrMore_Annotation>?;     # Footnotes and/or explanatory notes
+}  
+
+# Composition is broken into sections
+<EvidenceReport.section> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:title @<string>?;                  # Label for section (e.g. for ToC)
+    fhir:focus @<CodeableConcept>?;         # Classification of section 
+                                            # (recommended) 
+    fhir:focusReference @<Reference> AND {fhir:link 
+    			@<Resource> ? }?;  # Classification of section by 
+                                            # Resource 
+    fhir:author @<OneOrMore_Reference_Device_OR_Group_OR_Organization_OR_Person>?;  # Who and/or what authored the 
+                                            # section 
+    fhir:text @<Narrative>?;                # Text summary of the section, for 
+                                            # human interpretation 
+    fhir:mode @<code> AND
+    	{fhir:v @fhirvs:list-mode}?;  # working | snapshot | changes
+    fhir:orderedBy @<CodeableConcept>?;     # Order of section entries
+    fhir:entryClassifier @<OneOrMore_CodeableConcept>?;  # Extensible classifiers as content
+    fhir:entryReference @<OneOrMore_Reference_Resource>?;  # Reference to resources as content
+    fhir:entryQuantity @<OneOrMore_Quantity>?;  # Quantity as content
+    fhir:emptyReason @<CodeableConcept>?;   # Why the section is empty
+    fhir:section @<OneOrMore_EvidenceReport.section>?;  # Nested Section
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_EvidenceReport.relatesTo> CLOSED {
+    rdf:first @<EvidenceReport.relatesTo>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_EvidenceReport.relatesTo> 
+}
+
+<OneOrMore_EvidenceReport.section> CLOSED {
+    rdf:first @<EvidenceReport.section>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_EvidenceReport.section> 
+}
+
+<OneOrMore_EvidenceReport.subject.characteristic> CLOSED {
+    rdf:first @<EvidenceReport.subject.characteristic>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_EvidenceReport.subject.characteristic> 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#---------------------- Value Sets ------------------------
+
+
+
+

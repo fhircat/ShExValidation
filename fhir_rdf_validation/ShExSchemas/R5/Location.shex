@@ -1,0 +1,140 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <time.shex>
+IMPORT <Coding.shex>
+IMPORT <string.shex>
+IMPORT <Address.shex>
+IMPORT <boolean.shex>
+IMPORT <decimal.shex>
+IMPORT <Endpoint.shex>
+IMPORT <Reference.shex>
+IMPORT <Organization.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <ExtendedContactDetail.shex>
+
+
+start=@<Location> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Details and position information for a physical place
+<Location> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Location];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Unique code or number identifying 
+                                            # the location to its users 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:location-status}?;  # active | suspended | inactive
+    fhir:operationalStatus @<Coding>?;      # The operational status of the 
+                                            # location (typically only for a 
+                                            # bed/room) 
+    fhir:name @<string>?;                   # Name of the location as used by 
+                                            # humans 
+    fhir:alias @<OneOrMore_string>?;        # A list of alternate names that the 
+                                            # location is known as, or was known 
+                                            # as, in the past 
+    fhir:description @<string>?;            # Additional details about the 
+                                            # location that could be displayed 
+                                            # as further information to identify 
+                                            # the location beyond its name 
+    fhir:mode @<code> AND
+    	{fhir:v @fhirvs:location-mode}?;  # instance | kind
+    fhir:type @<OneOrMore_CodeableConcept>?;  # Type of function performed
+    fhir:contact @<OneOrMore_ExtendedContactDetail>?;  # Official contact details for the 
+                                            # location 
+    fhir:telecom @<OneOrMore_ContactPoint>?;  # Deprecated - use contact.telecom
+    fhir:address @<Address>?;               # Physical location
+    fhir:physicalType @<CodeableConcept>?;  # Physical form of the location
+    fhir:position @<BackboneElement>?;      # The absolute geographic location
+    fhir:managingOrganization @<Reference> AND {fhir:link 
+    			@<Organization> }?;  # Organization responsible for 
+                                            # provisioning and upkeep 
+    fhir:partOf @<Reference> AND {fhir:link 
+    			@<Location> }?;  # Another Location this one is 
+                                            # physically a part of 
+    fhir:hoursOfOperation @<OneOrMore_BackboneElement>?;  # What days/times during a week is 
+                                            # this location usually open 
+    fhir:availabilityExceptions @<string>?;  # Description of availability 
+                                            # exceptions 
+    fhir:endpoint @<OneOrMore_Reference_Endpoint>?;  # Technical endpoints providing 
+                                            # access to services operated for 
+                                            # the location 
+}  
+
+# What days/times during a week is this location usually open
+<Location.hoursOfOperation> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:daysOfWeek @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:days-of-week}?;  # mon | tue | wed | thu | fri | sat 
+                                            # | sun 
+    fhir:allDay @<boolean>?;                # Always available? i.e. 24 hour 
+                                            # service 
+    fhir:openingTime @<time>?;              # Time that the Location opens
+    fhir:closingTime @<time>?;              # Time that the Location closes
+}  
+
+# The absolute geographic location
+<Location.position> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:longitude @<decimal>;              # Longitude with WGS84 datum
+    fhir:latitude @<decimal>;               # Latitude with WGS84 datum
+    fhir:altitude @<decimal>?;              # Altitude with WGS84 datum
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_string> CLOSED {
+    rdf:first @<string>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_string> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_ExtendedContactDetail> CLOSED {
+    rdf:first @<ExtendedContactDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ExtendedContactDetail> 
+}
+
+<OneOrMore_ContactPoint> CLOSED {
+    rdf:first @<ContactPoint>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactPoint> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Reference_Endpoint> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Endpoint> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Endpoint> 
+}
+
+<OneOrMore_code> CLOSED {
+    rdf:first @<code>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_code> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Indicates whether a resource instance represents a specific location or a class of locations.
+fhirvs:location-mode ["instance" "kind"]
+
+# Indicates whether the location is still in use.
+fhirvs:location-status ["active" "suspended" "inactive"]
+
+# The days of the week.
+fhirvs:days-of-week ["mon" "tue" "wed" "thu" "fri" "sat" "sun"]
+

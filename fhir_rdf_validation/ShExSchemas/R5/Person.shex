@@ -1,0 +1,113 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <date.shex>
+IMPORT <Person.shex>
+IMPORT <boolean.shex>
+IMPORT <Patient.shex>
+IMPORT <dateTime.shex>
+IMPORT <Reference.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+
+
+start=@<Person> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A generic person record
+<Person> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Person];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # A human identifier for this person
+    fhir:active @<boolean>?;                # This person's record is in active 
+                                            # use 
+    fhir:name @<OneOrMore_HumanName>?;      # A name associated with the person
+    fhir:telecom @<OneOrMore_ContactPoint>?;  # A contact detail for the person
+    fhir:gender @<code> AND
+    	{fhir:v @fhirvs:administrative-gender}?;  # male | female | other | unknown
+    fhir:birthDate @<date>?;                # The date on which the person was 
+                                            # born 
+    fhir:deceased (@<boolean>  OR 
+    			@<dateTime> )  AND { rdf:type IRI } ?;  # Indicates if the individual is 
+                                            # deceased or not 
+    fhir:address @<OneOrMore_Address>?;     # One or more addresses for the 
+                                            # person 
+    fhir:maritalStatus @<CodeableConcept>?;  # Marital (civil) status of a person
+    fhir:photo @<OneOrMore_Attachment>?;    # Image of the person
+    fhir:managingOrganization @<Reference> AND {fhir:link 
+    			@<Organization> }?;  # The organization that is the 
+                                            # custodian of the person record 
+    fhir:communication @<OneOrMore_BackboneElement>?;  # A language which may be used to 
+                                            # communicate with the person about 
+                                            # his or her health 
+    fhir:link @<OneOrMore_BackboneElement>?;  # Link to a resource that concerns 
+                                            # the same actual person 
+}  
+
+# A language which may be used to communicate with the person about his or her health
+<Person.communication> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:language @<CodeableConcept>;       # The language which can be used to 
+                                            # communicate with the person about 
+                                            # his or her health 
+    fhir:preferred @<boolean>?;             # Language preference indicator
+}  
+
+# Link to a resource that concerns the same actual person
+<Person.link> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:target @<Reference> AND {fhir:link 
+    			@<Patient> OR 
+    			@<Person> OR 
+    			@<Practitioner> OR 
+    			@<RelatedPerson> };  # The resource to which this actual 
+                                            # person is associated 
+    fhir:assurance @<code> AND
+    	{fhir:v @fhirvs:identity-assuranceLevel}?;  # level1 | level2 | level3 | level4
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_HumanName> CLOSED {
+    rdf:first @<HumanName>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_HumanName> 
+}
+
+<OneOrMore_ContactPoint> CLOSED {
+    rdf:first @<ContactPoint>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactPoint> 
+}
+
+<OneOrMore_Address> CLOSED {
+    rdf:first @<Address>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Address> 
+}
+
+<OneOrMore_Attachment> CLOSED {
+    rdf:first @<Attachment>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Attachment> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The level of confidence that this link represents the same actual person, based on NIST Authentication Levels.
+fhirvs:identity-assuranceLevel ["level1" "level2" "level3" "level4"]
+
+# The gender of a person used for administrative purposes.
+fhirvs:administrative-gender ["male" "female" "other" "unknown"]
+

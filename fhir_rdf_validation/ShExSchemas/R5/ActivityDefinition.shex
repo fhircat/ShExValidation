@@ -1,0 +1,244 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Age.shex>
+IMPORT <code.shex>
+IMPORT <date.shex>
+IMPORT <Group.shex>
+IMPORT <Range.shex>
+IMPORT <string.shex>
+IMPORT <Period.shex>
+IMPORT <Timing.shex>
+IMPORT <Device.shex>
+IMPORT <boolean.shex>
+IMPORT <Patient.shex>
+IMPORT <dateTime.shex>
+IMPORT <markdown.shex>
+IMPORT <Duration.shex>
+IMPORT <Quantity.shex>
+IMPORT <CareTeam.shex>
+IMPORT <Location.shex>
+IMPORT <Reference.shex>
+IMPORT <canonical.shex>
+IMPORT <Substance.shex>
+IMPORT <Medication.shex>
+IMPORT <Ingredient.shex>
+IMPORT <Expression.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <MetadataResource.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <CodeableReference.shex>
+IMPORT <HealthcareService.shex>
+IMPORT <SpecimenDefinition.shex>
+IMPORT <ObservationDefinition.shex>
+
+
+start=@<ActivityDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# The definition of a specific activity to be taken, independent of any particular patient or context
+<ActivityDefinition> EXTENDS @<MetadataResource> CLOSED {   
+
+    a [fhir:ActivityDefinition];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:url @<uri>?;                       # Canonical identifier for this 
+                                            # activity definition, represented 
+                                            # as a URI (globally unique) 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
+                                            # activity definition 
+    fhir:version @<string>?;                # Business version of the activity 
+                                            # definition 
+    fhir:name @<string>?;                   # Name for this activity definition 
+                                            # (computer friendly) 
+    fhir:title @<string>?;                  # Name for this activity definition 
+                                            # (human friendly) 
+    fhir:subtitle @<string>?;               # Subordinate title of the activity 
+                                            # definition 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:subject (@<CodeableConcept>  OR 
+    			(@<Reference>  AND {fhir:link @<Group> })  OR 
+    			@<canonical> )  AND { rdf:type IRI } ?;  # Type of individual the activity 
+                                            # definition is intended for 
+    fhir:date @<dateTime>?;                 # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the activity definition 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for activity 
+                                            # definition (if applicable) 
+    fhir:purpose @<markdown>?;              # Why this activity definition is 
+                                            # defined 
+    fhir:usage @<string>?;                  # Describes the clinical usage of 
+                                            # the activity definition 
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:approvalDate @<date>?;             # When the activity definition was 
+                                            # approved by publisher 
+    fhir:lastReviewDate @<date>?;           # When the activity definition was 
+                                            # last reviewed 
+    fhir:effectivePeriod @<Period>?;        # When the activity definition is 
+                                            # expected to be used 
+    fhir:topic @<OneOrMore_CodeableConcept>?;  # E.g. Education, Treatment, 
+                                            # Assessment, etc. 
+    fhir:author @<OneOrMore_ContactDetail>?;  # Who authored the content
+    fhir:editor @<OneOrMore_ContactDetail>?;  # Who edited the content
+    fhir:reviewer @<OneOrMore_ContactDetail>?;  # Who reviewed the content
+    fhir:endorser @<OneOrMore_ContactDetail>?;  # Who endorsed the content
+    fhir:relatedArtifact @<OneOrMore_RelatedArtifact>?;  # Additional documentation, 
+                                            # citations, etc. 
+    fhir:library @<OneOrMore_canonical>?;   # Logic used by the activity 
+                                            # definition 
+    fhir:kind @<code> AND
+    	{fhir:v @fhirvs:request-resource-types}?;  # Kind of resource
+    fhir:profile @<canonical>?;             # What profile the resource needs to 
+                                            # conform to 
+    fhir:code @<CodeableConcept>?;          # Detail type of activity
+    fhir:intent @<code> AND
+    	{fhir:v @fhirvs:request-intent}?;  # proposal | plan | directive | 
+                                            # order | original-order | 
+                                            # reflex-order | filler-order | 
+                                            # instance-order | option 
+    fhir:priority @<code> AND
+    	{fhir:v @fhirvs:request-priority}?;  # routine | urgent | asap | stat
+    fhir:doNotPerform @<boolean>?;          # True if the activity should not be 
+                                            # performed 
+    fhir:timing (@<Timing>  OR 
+    			@<Age>  OR 
+    			@<Range>  OR 
+    			@<Duration> )  AND { rdf:type IRI } ?;  # When activity is to occur
+    fhir:location @<CodeableReference>?;    # Where it should happen
+    fhir:participant @<OneOrMore_BackboneElement>?;  # Who should participate in the 
+                                            # action 
+    fhir:product ((@<Reference>  AND {fhir:link @<Medication> OR 
+    			 @<Substance> OR 
+    			 @<Ingredient> })  OR 
+    			@<CodeableConcept> )  AND { rdf:type IRI } ?;  # What's administered/supplied
+    fhir:quantity @<Quantity>?;             # How much is 
+                                            # administered/consumed/supplied 
+    fhir:dosage @<OneOrMore_Dosage>?;       # Detailed dosage instructions
+    fhir:bodySite @<OneOrMore_CodeableConcept>?;  # What part of body to perform on
+    fhir:specimenRequirement @<OneOrMore_Reference_SpecimenDefinition>?;  # What specimens are required to 
+                                            # perform this action 
+    fhir:observationRequirement @<OneOrMore_Reference_ObservationDefinition>?;  # What observations are required to 
+                                            # perform this action 
+    fhir:observationResultRequirement @<OneOrMore_Reference_ObservationDefinition>?;  # What observations must be produced 
+                                            # by this action 
+    fhir:transform @<canonical>?;           # Transform to apply the template
+    fhir:dynamicValue @<OneOrMore_BackboneElement>?;  # Dynamic aspects of the definition
+}  
+
+# Dynamic aspects of the definition
+<ActivityDefinition.dynamicValue> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:path @<string>;                    # The path to the element to be set 
+                                            # dynamically 
+    fhir:expression @<Expression>;          # An expression that provides the 
+                                            # dynamic value for the 
+                                            # customization 
+}  
+
+# Who should participate in the action
+<ActivityDefinition.participant> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:action-participant-type}?;  # careteam | device | group | 
+                                            # healthcareservice | location | 
+                                            # organization | patient | 
+                                            # practitioner | practitionerrole | 
+                                            # relatedperson 
+    fhir:typeReference @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<HealthcareService> OR 
+    			@<Location> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Who or what can participate
+    fhir:role @<CodeableConcept>?;          # E.g. Nurse, Surgeon, Parent, etc.
+    fhir:function @<CodeableConcept>?;      # E.g. Author, Reviewer, Witness, 
+                                            # etc. 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_ContactDetail> CLOSED {
+    rdf:first @<ContactDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactDetail> 
+}
+
+<OneOrMore_UsageContext> CLOSED {
+    rdf:first @<UsageContext>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_UsageContext> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_RelatedArtifact> CLOSED {
+    rdf:first @<RelatedArtifact>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_RelatedArtifact> 
+}
+
+<OneOrMore_canonical> CLOSED {
+    rdf:first @<canonical>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_canonical> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Dosage> CLOSED {
+    rdf:first @<Dosage>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Dosage> 
+}
+
+<OneOrMore_Reference_SpecimenDefinition> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<SpecimenDefinition> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_SpecimenDefinition> 
+}
+
+<OneOrMore_Reference_ObservationDefinition> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ObservationDefinition> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ObservationDefinition> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# A list of all the request resource types defined in this version of the FHIR specification.
+fhirvs:request-resource-types ["Appointment" "AppointmentResponse" "CarePlan" "Claim" "CommunicationRequest" "Contract" "DeviceRequest" "EnrollmentRequest" "ImmunizationRecommendation" "MedicationRequest" "NutritionOrder" "ServiceRequest" "SupplyRequest" "Task" "VisionPrescription"]
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+
+# The type of participant for the action.
+fhirvs:action-participant-type ["careteam" "device" "group" "healthcareservice" "location" "organization" "patient" "practitioner" "practitionerrole" "relatedperson"]
+
+# Codes indicating the degree of authority/intentionality associated with a request.
+fhirvs:request-intent ["proposal" "plan" "directive" "order" "original-order" "reflex-order" "filler-order" "instance-order" "option"]
+
+# Identifies the level of importance to be assigned to actioning the request.
+fhirvs:request-priority ["routine" "urgent" "asap" "stat"]
+

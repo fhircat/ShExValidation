@@ -1,0 +1,356 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <date.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <integer.shex>
+#imported_end
+#imported_begin 
+IMPORT <decimal.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <UsageContext.shex>
+#imported_end
+#imported_begin 
+IMPORT <ContactDetail.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedArtifact.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+
+start=@<ValueSet> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A set of codes drawn from one or more code systems
+<ValueSet> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:ValueSet]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri>?;                       # Canonical identifier for this 
+                                            # value set, represented as a URI 
+                                            # (globally unique) 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
+                                            # value set (business identifier) 
+    fhir:version @<string>?;                # Business version of the value set
+    fhir:name @<string>?;                   # Name for this value set (computer 
+                                            # friendly) 
+    fhir:title @<string>?;                  # Name for this value set (human 
+                                            # friendly) 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:date @<dateTime>?;                 # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher/steward 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the value set 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for value 
+                                            # set (if applicable) 
+    fhir:immutable @<boolean>?;             # Indicates whether or not any 
+                                            # change to the content logical 
+                                            # definition may occur 
+    fhir:purpose @<markdown>?;              # Why this value set is defined
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:approvalDate @<date>?;             # When the ValueSet was approved by 
+                                            # publisher 
+    fhir:lastReviewDate @<date>?;           # When the ValueSet was last reviewed
+    fhir:effectivePeriod @<Period>?;        # When the ValueSet is expected to 
+                                            # be used 
+    fhir:topic @<OneOrMore_CodeableConcept>?;  # E.g. Education, Treatment, 
+                                            # Assessment, etc. 
+    fhir:author @<OneOrMore_ContactDetail>?;  # Who authored the ValueSet
+    fhir:editor @<OneOrMore_ContactDetail>?;  # Who edited the ValueSet
+    fhir:reviewer @<OneOrMore_ContactDetail>?;  # Who reviewed the ValueSet
+    fhir:endorser @<OneOrMore_ContactDetail>?;  # Who endorsed the ValueSet
+    fhir:relatedArtifact @<OneOrMore_RelatedArtifact>?;  # Additional documentation, 
+                                            # citations, etc. 
+    fhir:compose @<ValueSet.compose>?;      # Content logical definition of the 
+                                            # value set (CLD) 
+    fhir:expansion @<ValueSet.expansion>?;  # Used when the value set is 
+                                            # "expanded" 
+    fhir:scope @<ValueSet.scope>?;          # Description of the semantic space 
+                                            # the Value Set Expansion is 
+                                            # intended to cover and should 
+                                            # further clarify the text in 
+                                            # ValueSet.description 
+}  
+
+# Additional representations for this concept
+<ValueSet.compose.include.concept.designation> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:language @<code>?;                 # Human language of the designation
+    fhir:use @<Coding>?;                    # Types of uses of designations
+    fhir:additionalUse @<OneOrMore_Coding>?;  # Additional ways how this 
+                                            # designation would be used 
+    fhir:value @<string>;                   # The text value for this designation
+}  
+
+# Codes contained under this entry
+<ValueSet.expansion.contains.containsnull> CLOSED {   
+}  
+
+# A concept defined in the system
+<ValueSet.compose.include.concept> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code>;                      # Code or expression from system
+    fhir:display @<string>?;                # Text to display for this code for 
+                                            # this value set in this valueset 
+    fhir:designation @<OneOrMore_ValueSet.compose.include.concept.designation>?;  # Additional representations for 
+                                            # this concept 
+}  
+
+# Content logical definition of the value set (CLD)
+<ValueSet.compose> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:lockedDate @<date>?;               # Fixed date for references with no 
+                                            # specified version (transitive) 
+    fhir:inactive @<boolean>?;              # Whether inactive codes are in the 
+                                            # value set 
+    fhir:include @<OneOrMore_ValueSet.compose.include>;  # Include one or more codes from a 
+                                            # code system or other value set(s) 
+    fhir:exclude @<OneOrMore_ValueSet.compose.include>?;  # Explicitly exclude codes from a 
+                                            # code system or other value sets 
+    fhir:property @<OneOrMore_string>?;     # Property to return if client 
+                                            # doesn't override 
+}  
+
+# Include one or more codes from a code system or other value set(s)
+<ValueSet.compose.include> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:system @<uri>?;                    # The system the codes come from
+    fhir:version @<string>?;                # Specific version of the code 
+                                            # system referred to 
+    fhir:concept @<OneOrMore_ValueSet.compose.include.concept>?;  # A concept defined in the system
+    fhir:filter @<OneOrMore_ValueSet.compose.include.filter>?;  # Select codes/concepts by their 
+                                            # properties (including 
+                                            # relationships) 
+    fhir:valueSet @<OneOrMore_canonical>?;  # Select the contents included in 
+                                            # this value set 
+    fhir:copyright @<string>?;              # A copyright statement for the 
+                                            # specific code system included in 
+                                            # the value set 
+}  
+
+# Parameter that controlled the expansion process
+<ValueSet.expansion.parameter> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>;                    # Name as assigned by the client or 
+                                            # server 
+    fhir:value @<string>  OR 
+    			@<boolean>  OR 
+    			@<integer>  OR 
+    			@<decimal>  OR 
+    			@<uri>  OR 
+    			@<code>  OR 
+    			@<dateTime>  ?;  # Value of the named parameter
+}  
+
+# Used when the value set is "expanded"
+<ValueSet.expansion> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:identifier @<uri>?;                # Identifies the value set expansion 
+                                            # (business identifier) 
+    fhir:next @<uri>?;                      # Opaque urls for paging through 
+                                            # expansion results 
+    fhir:timestamp @<dateTime>;             # Time ValueSet expansion happened
+    fhir:total @<integer>?;                 # Total number of codes in the 
+                                            # expansion 
+    fhir:offset @<integer>?;                # Offset at which this resource 
+                                            # starts 
+    fhir:parameter @<OneOrMore_ValueSet.expansion.parameter>?;  # Parameter that controlled the 
+                                            # expansion process 
+    fhir:property @<OneOrMore_ValueSet.expansion.property>?;  # Additional information supplied 
+                                            # about each concept 
+    fhir:contains @<OneOrMore_ValueSet.expansion.contains>?;  # Codes in the value set
+}  
+
+# Property value for the concept
+<ValueSet.expansion.contains.property> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code>;                      # Reference to 
+                                            # ValueSet.expansion.property.code 
+    fhir:value @<code>  OR 
+    			@<Coding>  OR 
+    			@<string>  OR 
+    			@<integer>  OR 
+    			@<boolean>  OR 
+    			@<dateTime>  OR 
+    			@<decimal>  ;  # Value of the property for this 
+                                            # concept 
+    fhir:subProperty @<OneOrMore_ValueSet.expansion.contains.property.subProperty>?;  # SubProperty value for the concept
+}  
+
+# SubProperty value for the concept
+<ValueSet.expansion.contains.property.subProperty> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code>;                      # Reference to 
+                                            # ValueSet.expansion.property.code 
+    fhir:value @<code>  OR 
+    			@<Coding>  OR 
+    			@<string>  OR 
+    			@<integer>  OR 
+    			@<boolean>  OR 
+    			@<dateTime>  OR 
+    			@<decimal>  ;  # Value of the subproperty for this 
+                                            # concept 
+}  
+
+# Codes in the value set
+<ValueSet.expansion.contains> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:system @<uri>?;                    # System value for the code
+    fhir:abstract @<boolean>?;              # If user cannot select this entry
+    fhir:inactive @<boolean>?;              # If concept is inactive in the code 
+                                            # system 
+    fhir:version @<string>?;                # Version in which this code/display 
+                                            # is defined 
+    fhir:code @<code>?;                     # Code - if blank, this is not a 
+                                            # selectable code 
+    fhir:display @<string>?;                # User display for the concept
+    fhir:designation @<OneOrMore_ValueSet.compose.include.concept.designation>?;  # Additional representations for 
+                                            # this item 
+    fhir:property @<OneOrMore_ValueSet.expansion.contains.property>?;  # Property value for the concept
+    fhir:contains @<OneOrMore_ValueSet.expansion.contains>?;  # Codes contained under this entry
+}  
+
+# Additional information supplied about each concept
+<ValueSet.expansion.property> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code>;                      # Identifies the property on the 
+                                            # concepts, and when referred to in 
+                                            # operations 
+    fhir:uri @<uri>?;                       # Formal identifier for the property
+}  
+
+# Description of the semantic space the Value Set Expansion is intended to cover and should further clarify the text in ValueSet.description
+<ValueSet.scope> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:inclusionCriteria @<string>?;      # Criteria describing which concepts 
+                                            # or codes should be included and 
+                                            # why 
+    fhir:exclusionCriteria @<string>?;      # Criteria describing which concepts 
+                                            # or codes should be excluded and 
+                                            # why 
+}  
+
+# Select codes/concepts by their properties (including relationships)
+<ValueSet.compose.include.filter> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:property @<code>;                  # A property/filter defined by the 
+                                            # code system 
+    fhir:op @<code> AND
+    	{fhir:v @fhirvs:filter-operator};  # = | is-a | descendent-of | 
+                                            # is-not-a | regex | in | not-in | 
+                                            # generalizes | child-of | 
+                                            # descendent-leaf | exists 
+    fhir:value @<string>;                   # Code from the system, or regex 
+                                            # criteria, or boolean value for 
+                                            # exists 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_ValueSet.compose.include.concept.designation> CLOSED {
+    rdf:first @<ValueSet.compose.include.concept.designation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ValueSet.compose.include.concept.designation> 
+}
+
+<OneOrMore_ValueSet.compose.include> CLOSED {
+    rdf:first @<ValueSet.compose.include>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ValueSet.compose.include> 
+}
+
+
+
+<OneOrMore_ValueSet.compose.include.concept> CLOSED {
+    rdf:first @<ValueSet.compose.include.concept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ValueSet.compose.include.concept> 
+}
+
+<OneOrMore_ValueSet.compose.include.filter> CLOSED {
+    rdf:first @<ValueSet.compose.include.filter>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ValueSet.compose.include.filter> 
+}
+
+
+
+<OneOrMore_ValueSet.expansion.parameter> CLOSED {
+    rdf:first @<ValueSet.expansion.parameter>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ValueSet.expansion.parameter> 
+}
+
+<OneOrMore_ValueSet.expansion.property> CLOSED {
+    rdf:first @<ValueSet.expansion.property>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ValueSet.expansion.property> 
+}
+
+<OneOrMore_ValueSet.expansion.contains> CLOSED {
+    rdf:first @<ValueSet.expansion.contains>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ValueSet.expansion.contains> 
+}
+
+<OneOrMore_ValueSet.expansion.contains.property.subProperty> CLOSED {
+    rdf:first @<ValueSet.expansion.contains.property.subProperty>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ValueSet.expansion.contains.property.subProperty> 
+}
+
+<OneOrMore_ValueSet.expansion.contains.property> CLOSED {
+    rdf:first @<ValueSet.expansion.contains.property>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ValueSet.expansion.contains.property> 
+}
+
+#---------------------- Value Sets ------------------------
+
+
+

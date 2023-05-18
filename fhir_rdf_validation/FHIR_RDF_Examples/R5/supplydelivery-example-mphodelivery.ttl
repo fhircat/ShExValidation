@@ -1,0 +1,207 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:SupplyDelivery ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "mphodelivery"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: SupplyDelivery</b><a name=\"mphodelivery\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource SupplyDelivery &quot;mphodelivery&quot; </p></div><p><b>identifier</b>: id: A999922123450101</p><p><b>type</b>: Blood Dispatch <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-supplydelivery-supplyitemtype.html\">Supply Delivery Supply Item Type</a>#biologicallyderivedproduct)</span></p><blockquote><p><b>suppliedItem</b></p><p><b>quantity</b>: 3</p><p><b>item</b>: <a name=\"Item1\"> </a></p><blockquote><p/><p><a name=\"Item1\"> </a></p><p><b>productCode</b>: E0398 <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#E0398)</span></p><p><b>identifier</b>: id: A9999E0398A999921123456000001</p><p><b>biologicalSourceEvent</b>: id: A999921123456</p><p><b>processingFacility</b>: <a href=\"broken-link.html\">Organization/A9999</a></p><p><b>division</b>: 000001</p><p><b>productStatus</b>: available (Details: [not stated] code available = 'available', stated as 'null')</p><p><b>expirationDate</b>: 2021-08-02T23:59:00-05:00</p><blockquote><p><b>property</b></p><p><b>type</b>: ABORhD <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#ABORhD)</span></p><p><b>value</b>: A RhD Positive <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (ABORhD#62)</span></p></blockquote><blockquote><p><b>property</b></p><p><b>type</b>: Donor <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#Donor)</span></p><p><b>value</b>: Volunteer <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (CollectionType#V)</span></p></blockquote></blockquote></blockquote><blockquote><p><b>suppliedItem</b></p><p><b>item</b>: <a name=\"Item2\"> </a></p><blockquote><p/><p><a name=\"Item2\"> </a></p><p><b>productCode</b>: E0398 <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#E0398)</span></p><p><b>identifier</b>: id: A9999E0398A999921123457000001</p><p><b>biologicalSourceEvent</b>: id: A999921123457</p><p><b>processingFacility</b>: <a href=\"broken-link.html\">Organization/A9999</a></p><p><b>division</b>: 000001</p><p><b>productStatus</b>: available (Details: [not stated] code available = 'available', stated as 'null')</p><p><b>expirationDate</b>: 2021-07-31T23:59:00-05:00</p><blockquote><p><b>property</b></p><p><b>type</b>: ABORhD <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#ABORhD)</span></p><p><b>value</b>: O RhD Positive <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (ABORhD#51)</span></p></blockquote><blockquote><p><b>property</b></p><p><b>type</b>: Donor <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#Donor)</span></p><p><b>value</b>: Volunteer <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (CollectionType#V)</span></p></blockquote></blockquote></blockquote><blockquote><p><b>suppliedItem</b></p><p><b>item</b>: <a name=\"Item3\"> </a></p><blockquote><p/><p><a name=\"Item3\"> </a></p><p><b>productCode</b>: E0398 <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#E0398)</span></p><p><b>identifier</b>: id: A9999E0398A999921123458000001</p><p><b>biologicalSourceEvent</b>: id: A999921123458</p><p><b>processingFacility</b>: <a href=\"broken-link.html\">Organization/A9999</a></p><p><b>division</b>: 000001</p><p><b>productStatus</b>: available (Details: [not stated] code available = 'available', stated as 'null')</p><p><b>expirationDate</b>: 2021-08-04T23:59:00-05:00</p><blockquote><p><b>property</b></p><p><b>type</b>: ABORhD <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#ABORhD)</span></p><p><b>value</b>: O RhD Positive <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (ABORhD#51)</span></p></blockquote><blockquote><p><b>property</b></p><p><b>type</b>: Donor <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated]#Donor)</span></p><p><b>value</b>: Volunteer <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (CollectionType#V)</span></p></blockquote></blockquote></blockquote></div>"
+  ] ; # 
+  fhir:contained ( [
+     a fhir:BiologicallyDerivedProduct ;
+     fhir:id [ fhir:v "Item1" ] ;
+     fhir:productCode [
+       fhir:coding ( [
+         fhir:code [ fhir:v "E0398" ]
+       ] )
+     ] ;
+     fhir:identifier ( [
+       fhir:system [ fhir:v "https://www.isbt128.org/uri/MPHOUniqueIdentifier"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "A9999E0398A999921123456000001" ]
+     ] ) ;
+     fhir:biologicalSourceEvent [
+       fhir:system [ fhir:v "https://www.isbt128.org/uri/DonationIdentificationNumber"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "A999921123456" ]
+     ] ;
+     fhir:processingFacility ( [
+       fhir:reference [ fhir:v "Organization/A9999" ]
+     ] ) ;
+     fhir:division [ fhir:v "000001" ] ;
+     fhir:productStatus [
+       fhir:code [ fhir:v "available" ]
+     ] ;
+     fhir:expirationDate [ fhir:v "2021-08-02T23:59:00-05:00"^^xsd:dateTime ] ;
+     fhir:property ( [
+       fhir:type [
+         fhir:coding ( [
+           fhir:code [ fhir:v "ABORhD" ]
+         ] )
+       ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:coding ( [
+           fhir:system [ fhir:v "https://www.isbt128.org/uri/ABORhD"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "62" ] ;
+           fhir:display [ fhir:v "A RhD Positive" ]
+         ] )
+       ]
+     ] [
+       fhir:type [
+         fhir:coding ( [
+           fhir:code [ fhir:v "Donor" ]
+         ] )
+       ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:coding ( [
+           fhir:system [ fhir:v "https://www.isbt128.org/uri/CollectionType"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "V" ] ;
+           fhir:display [ fhir:v "Volunteer" ]
+         ] )
+       ]
+     ] )
+  ] [
+     a fhir:BiologicallyDerivedProduct ;
+     fhir:id [ fhir:v "Item2" ] ;
+     fhir:productCode [
+       fhir:coding ( [
+         fhir:code [ fhir:v "E0398" ]
+       ] )
+     ] ;
+     fhir:identifier ( [
+       fhir:system [ fhir:v "https://www.isbt128.org/uri/MPHOUniqueIdentifier"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "A9999E0398A999921123457000001" ]
+     ] ) ;
+     fhir:biologicalSourceEvent [
+       fhir:system [ fhir:v "https://www.isbt128.org/uri/DonationIdentificationNumber"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "A999921123457" ]
+     ] ;
+     fhir:processingFacility ( [
+       fhir:reference [ fhir:v "Organization/A9999" ]
+     ] ) ;
+     fhir:division [ fhir:v "000001" ] ;
+     fhir:productStatus [
+       fhir:code [ fhir:v "available" ]
+     ] ;
+     fhir:expirationDate [ fhir:v "2021-07-31T23:59:00-05:00"^^xsd:dateTime ] ;
+     fhir:property ( [
+       fhir:type [
+         fhir:coding ( [
+           fhir:code [ fhir:v "ABORhD" ]
+         ] )
+       ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:coding ( [
+           fhir:system [ fhir:v "https://www.isbt128.org/uri/ABORhD"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "51" ] ;
+           fhir:display [ fhir:v "O RhD Positive" ]
+         ] )
+       ]
+     ] [
+       fhir:type [
+         fhir:coding ( [
+           fhir:code [ fhir:v "Donor" ]
+         ] )
+       ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:coding ( [
+           fhir:system [ fhir:v "https://www.isbt128.org/uri/CollectionType"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "V" ] ;
+           fhir:display [ fhir:v "Volunteer" ]
+         ] )
+       ]
+     ] )
+  ] [
+     a fhir:BiologicallyDerivedProduct ;
+     fhir:id [ fhir:v "Item3" ] ;
+     fhir:productCode [
+       fhir:coding ( [
+         fhir:code [ fhir:v "E0398" ]
+       ] )
+     ] ;
+     fhir:identifier ( [
+       fhir:system [ fhir:v "https://www.isbt128.org/uri/MPHOUniqueIdentifier"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "A9999E0398A999921123458000001" ]
+     ] ) ;
+     fhir:biologicalSourceEvent [
+       fhir:system [ fhir:v "https://www.isbt128.org/uri/DonationIdentificationNumber"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "A999921123458" ]
+     ] ;
+     fhir:processingFacility ( [
+       fhir:reference [ fhir:v "Organization/A9999" ]
+     ] ) ;
+     fhir:division [ fhir:v "000001" ] ;
+     fhir:productStatus [
+       fhir:code [ fhir:v "available" ]
+     ] ;
+     fhir:expirationDate [ fhir:v "2021-08-04T23:59:00-05:00"^^xsd:dateTime ] ;
+     fhir:property ( [
+       fhir:type [
+         fhir:coding ( [
+           fhir:code [ fhir:v "ABORhD" ]
+         ] )
+       ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:coding ( [
+           fhir:system [ fhir:v "https://www.isbt128.org/uri/ABORhD"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "51" ] ;
+           fhir:display [ fhir:v "O RhD Positive" ]
+         ] )
+       ]
+     ] [
+       fhir:type [
+         fhir:coding ( [
+           fhir:code [ fhir:v "Donor" ]
+         ] )
+       ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:coding ( [
+           fhir:system [ fhir:v "https://www.isbt128.org/uri/CollectionType"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "V" ] ;
+           fhir:display [ fhir:v "Volunteer" ]
+         ] )
+       ]
+     ] )
+  ] ) ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "https://www.isbt128.org/uri/ProductConsignment"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "A999922123450101" ]
+  ] ) ; # 
+  fhir:type [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/supplydelivery-supplyitemtype"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "biologicallyderivedproduct" ]
+     ] ) ;
+     fhir:text [ fhir:v "Blood Dispatch" ]
+  ] ; # 
+  fhir:suppliedItem ( [
+     fhir:quantity [
+       fhir:value [ fhir:v "3"^^xsd:decimal ]
+     ] ;
+     fhir:item [
+       a fhir:Reference ;
+       fhir:reference [ fhir:v "#Item1" ]
+     ]
+  ] [
+     fhir:item [
+       a fhir:Reference ;
+       fhir:reference [ fhir:v "#Item2" ]
+     ]
+  ] [
+     fhir:item [
+       a fhir:Reference ;
+       fhir:reference [ fhir:v "#Item3" ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

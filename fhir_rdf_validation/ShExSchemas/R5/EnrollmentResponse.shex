@@ -1,0 +1,56 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <string.shex>
+IMPORT <dateTime.shex>
+IMPORT <Reference.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <DomainResource.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <EnrollmentRequest.shex>
+
+
+start=@<EnrollmentResponse> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# EnrollmentResponse resource
+<EnrollmentResponse> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:EnrollmentResponse];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business Identifier
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:fm-status}?;  # active | cancelled | draft | 
+                                            # entered-in-error 
+    fhir:request @<Reference> AND {fhir:link 
+    			@<EnrollmentRequest> }?;  # Claim reference
+    fhir:outcome @<code> AND
+    	{fhir:v @fhirvs:enrollment-outcome}?;  # queued | complete | error | partial
+    fhir:disposition @<string>?;            # Disposition Message
+    fhir:created @<dateTime>?;              # Creation date
+    fhir:organization @<Reference> AND {fhir:link 
+    			@<Organization> }?;  # Insurer
+    fhir:requestProvider @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> }?;  # Responsible practitioner
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# This value set includes Status codes.
+fhirvs:fm-status ["active" "cancelled" "draft" "entered-in-error"]
+
+# The outcome of the processing.
+fhirvs:enrollment-outcome ["queued" "complete" "error" "partial"]
+

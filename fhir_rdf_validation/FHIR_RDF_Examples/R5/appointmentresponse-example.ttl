@@ -1,0 +1,26 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:AppointmentResponse ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">Accept Brian MRI results discussion</div>"
+  ] ; # 
+  fhir:appointment [
+     fhir:reference [ fhir:v "Appointment/example" ] ;
+     fhir:display [ fhir:v "Brian MRI results discussion" ]
+  ] ; # 
+  fhir:actor [
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "Peter James Chalmers" ]
+  ] ; # 
+  fhir:participantStatus [ fhir:v "accepted"]] . # 
+
+# -------------------------------------------------------------------------------------
+

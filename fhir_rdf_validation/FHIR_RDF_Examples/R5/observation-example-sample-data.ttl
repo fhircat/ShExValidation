@@ -1,0 +1,108 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Observation ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "ekg"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"ekg\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;ekg&quot; </p></div><p><b>status</b>: final</p><p><b>category</b>: Procedure <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-observation-category.html\">Observation Category Codes</a>#procedure)</span></p><p><b>code</b>: MDC_ECG_ELEC_POTL <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#131328)</span></p><p><b>subject</b>: <a href=\"patient-example-f001-pieter.html\">Patient/f001: P. van de Heuvel</a> &quot;Pieter VAN DE HEUVEL&quot;</p><p><b>effective</b>: 2015-02-19T09:30:35+01:00</p><p><b>performer</b>: <a href=\"practitioner-example-f005-al.html\">Practitioner/f005: A. Langeveld</a> &quot;Langeveld ANNE&quot;</p><p><b>device</b>: <span>: 12 lead EKG Device Metric</span></p><blockquote><p><b>component</b></p><p><b>code</b>: MDC_ECG_ELEC_POTL_I <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#131329)</span></p><p><b>value</b>: Origin: 2048, Interval: 10, ms, Factor: 1.612, Lower: -3300, Upper: 3300, Dimensions: 1, Data: 2041 2043 2037 2047 2060 2062 2051 2023 2014 2027 2034 2033 2040 2047 2047 2053 2058 2064 2059 2063 2061 2052 2053 2038 1966 1885 1884 2009 2129 2166 2137 2102 2086 2077 2067 2067 2060 2059 2062 2062 2060 2057 2045 2047 2057 2054 2042 2029 2027 2018 2007 1995 2001 2012 2024 2039 2068 2092 2111 2125 2131 2148 2137 2138 2128 2128 2115 2099 2097 2096 2101 2101 2091 2073 2076 2077 2084 2081 2088 2092 2070 2069 2074 2077 2075 2068 2064 2060 2062 2074 2075 2074 2075 2063 2058 2058 2064 2064 2070 2074 2067 2060 2062 2063 2061 2059 2048 2052 2049 2048 2051 2059 2059 2066 2077 2073</p></blockquote><blockquote><p><b>component</b></p><p><b>code</b>: MDC_ECG_ELEC_POTL_II <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#131330)</span></p><p><b>value</b>: Origin: 2048, Interval: 10, ms, Factor: 1.612, Lower: -3300, Upper: 3300, Dimensions: 1, Data: 2041 2043 2037 2047 2060 2062 2051 2023 2014 2027 2034 2033 2040 2047 2047 2053 2058 2064 2059 2063 2061 2052 2053 2038 1966 1885 1884 2009 2129 2166 2137 2102 2086 2077 2067 2067 2060 2059 2062 2062 2060 2057 2045 2047 2057 2054 2042 2029 2027 2018 2007 1995 2001 2012 2024 2039 2068 2092 2111 2125 2131 2148 2137 2138 2128 2128 2115 2099 2097 2096 2101 2101 2091 2073 2076 2077 2084 2081 2088 2092 2070 2069 2074 2077 2075 2068 2064 2060 2062 2074 2075 2074 2075 2063 2058 2058 2064 2064 2070 2074 2067 2060 2062 2063 2061 2059 2048 2052 2049 2048 2051 2059 2059 2066 2077 2073</p></blockquote><blockquote><p><b>component</b></p><p><b>code</b>: MDC_ECG_ELEC_POTL_III <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#131389)</span></p><p><b>value</b>: Origin: 2048, Interval: 10, ms, Factor: 1.612, Lower: -3300, Upper: 3300, Dimensions: 1, Data: 2041 2043 2037 2047 2060 2062 2051 2023 2014 2027 2034 2033 2040 2047 2047 2053 2058 2064 2059 2063 2061 2052 2053 2038 1966 1885 1884 2009 2129 2166 2137 2102 2086 2077 2067 2067 2060 2059 2062 2062 2060 2057 2045 2047 2057 2054 2042 2029 2027 2018 2007 1995 2001 2012 2024 2039 2068 2092 2111 2125 2131 2148 2137 2138 2128 2128 2115 2099 2097 2096 2101 2101 2091 2073 2076 2077 2084 2081 2088 2092 2070 2069 2074 2077 2075 2068 2064 2060 2062 2074 2075 2074 2075 2063 2058 2058 2064 2064 2070 2074 2067 2060 2062 2063 2061 2059 2048 2052 2049 2048 2051 2059 2059 2066 2077 2073</p></blockquote></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "procedure" ] ;
+       fhir:display [ fhir:v "Procedure" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.6.24"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "131328" ] ;
+       fhir:display [ fhir:v "MDC_ECG_ELEC_POTL" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/f001" ] ;
+     fhir:display [ fhir:v "P. van de Heuvel" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2015-02-19T09:30:35+01:00"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Practitioner/f005" ] ;
+     fhir:display [ fhir:v "A. Langeveld" ]
+  ] ) ; # 
+  fhir:device [
+     fhir:display [ fhir:v "12 lead EKG Device Metric" ]
+  ] ; # 
+  fhir:component ( [
+     fhir:code [
+       fhir:coding ( [
+         fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.6.24"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "131329" ] ;
+         fhir:display [ fhir:v "MDC_ECG_ELEC_POTL_I" ]
+       ] )
+     ] ;
+     fhir:value [
+       a fhir:SampledData ;
+       fhir:origin [
+         fhir:value [ fhir:v "2048"^^xsd:decimal ]
+       ] ; #    Zero potential   
+       fhir:interval [ fhir:v "10"^^xsd:decimal ] ; #    period in ms = 1000\/frequency   
+       fhir:intervalUnit [ fhir:v "ms" ] ;
+       fhir:factor [ fhir:v "1.612"^^xsd:decimal ] ; #     factor.value   
+       fhir:lowerLimit [ fhir:v "-3300"^^xsd:decimal ] ; #     voltage-min   
+       fhir:upperLimit [ fhir:v "3300"^^xsd:decimal ] ; #     voltage-max   
+       fhir:dimensions [ fhir:v "1"^^xsd:positiveInteger ] ;
+       fhir:data [ fhir:v "2041 2043 2037 2047 2060 2062 2051 2023 2014 2027 2034 2033 2040 2047 2047 2053 2058 2064 2059 2063 2061 2052 2053 2038 1966 1885 1884 2009 2129 2166 2137 2102 2086 2077 2067 2067 2060 2059 2062 2062 2060 2057 2045 2047 2057 2054 2042 2029 2027 2018 2007 1995 2001 2012 2024 2039 2068 2092 2111 2125 2131 2148 2137 2138 2128 2128 2115 2099 2097 2096 2101 2101 2091 2073 2076 2077 2084 2081 2088 2092 2070 2069 2074 2077 2075 2068 2064 2060 2062 2074 2075 2074 2075 2063 2058 2058 2064 2064 2070 2074 2067 2060 2062 2063 2061 2059 2048 2052 2049 2048 2051 2059 2059 2066 2077 2073" ]
+     ]
+  ] [
+     fhir:code [
+       fhir:coding ( [
+         fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.6.24"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "131330" ] ;
+         fhir:display [ fhir:v "MDC_ECG_ELEC_POTL_II" ]
+       ] )
+     ] ;
+     fhir:value [
+       a fhir:SampledData ;
+       fhir:origin [
+         fhir:value [ fhir:v "2048"^^xsd:decimal ]
+       ] ; #    Zero potential   
+       fhir:interval [ fhir:v "10"^^xsd:decimal ] ; #    period in ms = 1000\/frequency   
+       fhir:intervalUnit [ fhir:v "ms" ] ;
+       fhir:factor [ fhir:v "1.612"^^xsd:decimal ] ; #     factor.value   
+       fhir:lowerLimit [ fhir:v "-3300"^^xsd:decimal ] ; #     voltage-min   
+       fhir:upperLimit [ fhir:v "3300"^^xsd:decimal ] ; #     voltage-max   
+       fhir:dimensions [ fhir:v "1"^^xsd:positiveInteger ] ;
+       fhir:data [ fhir:v "2041 2043 2037 2047 2060 2062 2051 2023 2014 2027 2034 2033 2040 2047 2047 2053 2058 2064 2059 2063 2061 2052 2053 2038 1966 1885 1884 2009 2129 2166 2137 2102 2086 2077 2067 2067 2060 2059 2062 2062 2060 2057 2045 2047 2057 2054 2042 2029 2027 2018 2007 1995 2001 2012 2024 2039 2068 2092 2111 2125 2131 2148 2137 2138 2128 2128 2115 2099 2097 2096 2101 2101 2091 2073 2076 2077 2084 2081 2088 2092 2070 2069 2074 2077 2075 2068 2064 2060 2062 2074 2075 2074 2075 2063 2058 2058 2064 2064 2070 2074 2067 2060 2062 2063 2061 2059 2048 2052 2049 2048 2051 2059 2059 2066 2077 2073" ]
+     ]
+  ] [
+     fhir:code [
+       fhir:coding ( [
+         fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.6.24"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "131389" ] ;
+         fhir:display [ fhir:v "MDC_ECG_ELEC_POTL_III" ]
+       ] )
+     ] ;
+     fhir:value [
+       a fhir:SampledData ;
+       fhir:origin [
+         fhir:value [ fhir:v "2048"^^xsd:decimal ]
+       ] ; #    Zero potential   
+       fhir:interval [ fhir:v "10"^^xsd:decimal ] ; #    period in ms = 1000\/frequency   
+       fhir:intervalUnit [ fhir:v "ms" ] ;
+       fhir:factor [ fhir:v "1.612"^^xsd:decimal ] ; #     factor.value   
+       fhir:lowerLimit [ fhir:v "-3300"^^xsd:decimal ] ; #     voltage-min   
+       fhir:upperLimit [ fhir:v "3300"^^xsd:decimal ] ; #     voltage-max   
+       fhir:dimensions [ fhir:v "1"^^xsd:positiveInteger ] ;
+       fhir:data [ fhir:v "2041 2043 2037 2047 2060 2062 2051 2023 2014 2027 2034 2033 2040 2047 2047 2053 2058 2064 2059 2063 2061 2052 2053 2038 1966 1885 1884 2009 2129 2166 2137 2102 2086 2077 2067 2067 2060 2059 2062 2062 2060 2057 2045 2047 2057 2054 2042 2029 2027 2018 2007 1995 2001 2012 2024 2039 2068 2092 2111 2125 2131 2148 2137 2138 2128 2128 2115 2099 2097 2096 2101 2101 2091 2073 2076 2077 2084 2081 2088 2092 2070 2069 2074 2077 2075 2068 2064 2060 2062 2074 2075 2074 2075 2063 2058 2058 2064 2064 2070 2074 2067 2060 2062 2063 2061 2059 2048 2052 2049 2048 2051 2059 2059 2066 2077 2073" ]
+     ]
+  ] )] . #    Lead I data chunk 0   
+
+# -------------------------------------------------------------------------------------
+

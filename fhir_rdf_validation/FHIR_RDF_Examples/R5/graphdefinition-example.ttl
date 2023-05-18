@@ -1,0 +1,69 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:GraphDefinition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: GraphDefinition</b><a name=\"example\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource GraphDefinition &quot;example&quot; </p></div><p><b>url</b>: <code>http://h7.org/fhir/GraphDefinition/example</code></p><p><b>name</b>: DocumentGenerationTemplate</p><p><b>title</b>: Document Generation Template</p><p><b>status</b>: draft</p><p><b>date</b>: 2015-08-04</p><p><b>publisher</b>: FHIR Project</p><p><b>contact</b>: <a href=\"http://hl7.org/fhir\">http://hl7.org/fhir</a></p><p><b>description</b>: Specify to include list references when generating a document using the $document operation</p><p><b>start</b>: comp1</p><blockquote><p><b>node</b></p><p><b>nodeId</b>: comp1</p><p><b>description</b>: The base composition</p><p><b>type</b>: Composition</p><p><b>profile</b>: <a href=\"clinicaldocument.html\">Clinical  Document</a></p></blockquote><blockquote><p><b>node</b></p><p><b>nodeId</b>: list1</p><p><b>description</b>: A list resource that a section entry reference points to</p><p><b>type</b>: List</p></blockquote><blockquote><p><b>node</b></p><p><b>nodeId</b>: resN</p><p><b>description</b>: Generic resource that's the target of a list reference</p><p><b>type</b>: Resource</p></blockquote><blockquote><p><b>link</b></p><p><b>description</b>: Link from Composition.section to list</p><p><b>sourceId</b>: comp1</p><p><b>path</b>: Composition.section.entry</p><p><b>targetId</b>: list1</p><h3>Compartments</h3><table class=\"grid\"><tr><td>-</td><td><b>Use</b></td><td><b>Rule</b></td><td><b>Code</b></td></tr><tr><td>*</td><td>requires</td><td>identical</td><td>Patient</td></tr></table></blockquote><blockquote><p><b>link</b></p><p><b>description</b>: Include any list entries</p><p><b>sourceId</b>: list1</p><p><b>path</b>: List.entry.item</p><p><b>targetId</b>: resN</p><h3>Compartments</h3><table class=\"grid\"><tr><td>-</td><td><b>Use</b></td><td><b>Rule</b></td><td><b>Code</b></td></tr><tr><td>*</td><td>requires</td><td>identical</td><td>Patient</td></tr></table></blockquote></div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://h7.org/fhir/GraphDefinition/example"^^xsd:anyURI] ; # 
+  fhir:name [ fhir:v "DocumentGenerationTemplate"] ; # 
+  fhir:title [ fhir:v "Document Generation Template"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:date [ fhir:v "2015-08-04"^^xsd:date] ; # 
+  fhir:publisher [ fhir:v "FHIR Project"] ; # 
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Specify to include list references when generating a document using the $document operation"] ; # 
+  fhir:start [ fhir:v "comp1"] ; # 
+  fhir:node ( [
+     fhir:nodeId [ fhir:v "comp1" ] ;
+     fhir:description [ fhir:v "The base composition" ] ;
+     fhir:type [ fhir:v "Composition" ] ;
+     fhir:profile [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/clinicaldocument"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/clinicaldocument>
+     ]
+  ] [
+     fhir:nodeId [ fhir:v "list1" ] ;
+     fhir:description [ fhir:v "A list resource that a section entry reference points to" ] ;
+     fhir:type [ fhir:v "List" ]
+  ] [
+     fhir:nodeId [ fhir:v "resN" ] ;
+     fhir:description [ fhir:v "Generic resource that's the target of a list reference" ] ;
+     fhir:type [ fhir:v "Resource" ]
+  ] ) ; # 
+  fhir:link ( [
+     fhir:description [ fhir:v "Link from Composition.section to list" ] ;
+     fhir:sourceId [ fhir:v "comp1" ] ;
+     fhir:path [ fhir:v "Composition.section.entry" ] ;
+     fhir:targetId [ fhir:v "list1" ] ;
+     fhir:compartment ( [
+       fhir:use [ fhir:v "requires" ] ;
+       fhir:rule [ fhir:v "identical" ] ;
+       fhir:code [ fhir:v "Patient" ]
+     ] )
+  ] [
+     fhir:description [ fhir:v "Include any list entries" ] ;
+     fhir:sourceId [ fhir:v "list1" ] ;
+     fhir:path [ fhir:v "List.entry.item" ] ;
+     fhir:targetId [ fhir:v "resN" ] ;
+     fhir:compartment ( [
+       fhir:use [ fhir:v "requires" ] ;
+       fhir:rule [ fhir:v "identical" ] ;
+       fhir:code [ fhir:v "Patient" ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

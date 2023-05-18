@@ -1,0 +1,383 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "packaging-type"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "brr" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/packaging-type"], [ fhir:v "http://hl7.org/fhir/packaging-type"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1966" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1966" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "PackagingType"], [ fhir:v "PackagingType"] ;
+  fhir:title [ fhir:v "Packaging Type"], [ fhir:v "Packaging Type"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2021-01-05T10:01:24+11:00"], [ fhir:v "2021-01-05T10:01:24+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "A type of packaging."], [ fhir:v "A type of packaging."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/packaging-type"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "100000073490" ] ;
+     fhir:display [ fhir:v "Ampoule" ]
+  ] [
+     fhir:code [ fhir:v "100000073491" ] ;
+     fhir:display [ fhir:v "Applicator" ]
+  ] [
+     fhir:code [ fhir:v "100000073492" ] ;
+     fhir:display [ fhir:v "Automatic injection device" ]
+  ] [
+     fhir:code [ fhir:v "100000073493" ] ;
+     fhir:display [ fhir:v "Bag" ]
+  ] [
+     fhir:code [ fhir:v "100000073494" ] ;
+     fhir:display [ fhir:v "Balling gun" ]
+  ] [
+     fhir:code [ fhir:v "100000073495" ] ;
+     fhir:display [ fhir:v "Barrel" ]
+  ] [
+     fhir:code [ fhir:v "100000073496" ] ;
+     fhir:display [ fhir:v "Blister" ]
+  ] [
+     fhir:code [ fhir:v "100000073497" ] ;
+     fhir:display [ fhir:v "Bottle" ]
+  ] [
+     fhir:code [ fhir:v "100000073498" ] ;
+     fhir:display [ fhir:v "Box" ]
+  ] [
+     fhir:code [ fhir:v "100000073499" ] ;
+     fhir:display [ fhir:v "Brush" ]
+  ] [
+     fhir:code [ fhir:v "100000073500" ] ;
+     fhir:display [ fhir:v "Brush applicator" ]
+  ] [
+     fhir:code [ fhir:v "100000073501" ] ;
+     fhir:display [ fhir:v "Cannula" ]
+  ] [
+     fhir:code [ fhir:v "100000073502" ] ;
+     fhir:display [ fhir:v "Cap" ]
+  ] [
+     fhir:code [ fhir:v "100000073503" ] ;
+     fhir:display [ fhir:v "Cartridge" ]
+  ] [
+     fhir:code [ fhir:v "100000073504" ] ;
+     fhir:display [ fhir:v "Child-resistant closure" ]
+  ] [
+     fhir:code [ fhir:v "100000073505" ] ;
+     fhir:display [ fhir:v "Cup" ]
+  ] [
+     fhir:code [ fhir:v "100000073506" ] ;
+     fhir:display [ fhir:v "Dabbing applicator" ]
+  ] [
+     fhir:code [ fhir:v "100000073507" ] ;
+     fhir:display [ fhir:v "Dart" ]
+  ] [
+     fhir:code [ fhir:v "100000073508" ] ;
+     fhir:display [ fhir:v "Dredging applicator" ]
+  ] [
+     fhir:code [ fhir:v "100000073509" ] ;
+     fhir:display [ fhir:v "Dredging container" ]
+  ] [
+     fhir:code [ fhir:v "100000073510" ] ;
+     fhir:display [ fhir:v "Drench gun" ]
+  ] [
+     fhir:code [ fhir:v "100000073511" ] ;
+     fhir:display [ fhir:v "Dropper applicator" ]
+  ] [
+     fhir:code [ fhir:v "100000073512" ] ;
+     fhir:display [ fhir:v "Dropper container" ]
+  ] [
+     fhir:code [ fhir:v "100000073513" ] ;
+     fhir:display [ fhir:v "Fixed cryogenic vessel" ]
+  ] [
+     fhir:code [ fhir:v "100000073514" ] ;
+     fhir:display [ fhir:v "Gas cylinder" ]
+  ] [
+     fhir:code [ fhir:v "100000073515" ] ;
+     fhir:display [ fhir:v "High pressure transdermal delivery device" ]
+  ] [
+     fhir:code [ fhir:v "100000073516" ] ;
+     fhir:display [ fhir:v "Implanter" ]
+  ] [
+     fhir:code [ fhir:v "100000073517" ] ;
+     fhir:display [ fhir:v "Inhaler" ]
+  ] [
+     fhir:code [ fhir:v "100000073518" ] ;
+     fhir:display [ fhir:v "In-ovo injection device" ]
+  ] [
+     fhir:code [ fhir:v "100000073519" ] ;
+     fhir:display [ fhir:v "Injection needle" ]
+  ] [
+     fhir:code [ fhir:v "100000073520" ] ;
+     fhir:display [ fhir:v "Injection syringe" ]
+  ] [
+     fhir:code [ fhir:v "100000073521" ] ;
+     fhir:display [ fhir:v "Internal graduated calibration chamber" ]
+  ] [
+     fhir:code [ fhir:v "100000073522" ] ;
+     fhir:display [ fhir:v "Intramammary syringe" ]
+  ] [
+     fhir:code [ fhir:v "100000073523" ] ;
+     fhir:display [ fhir:v "Jar" ]
+  ] [
+     fhir:code [ fhir:v "100000073524" ] ;
+     fhir:display [ fhir:v "Measuring device" ]
+  ] [
+     fhir:code [ fhir:v "100000073525" ] ;
+     fhir:display [ fhir:v "Measuring spoon" ]
+  ] [
+     fhir:code [ fhir:v "100000073526" ] ;
+     fhir:display [ fhir:v "Metering pump" ]
+  ] [
+     fhir:code [ fhir:v "100000073527" ] ;
+     fhir:display [ fhir:v "Metering valve" ]
+  ] [
+     fhir:code [ fhir:v "100000073528" ] ;
+     fhir:display [ fhir:v "Mobile cryogenic vessel" ]
+  ] [
+     fhir:code [ fhir:v "100000073529" ] ;
+     fhir:display [ fhir:v "Mouthpiece" ]
+  ] [
+     fhir:code [ fhir:v "100000073530" ] ;
+     fhir:display [ fhir:v "Multidose container" ]
+  ] [
+     fhir:code [ fhir:v "100000073531" ] ;
+     fhir:display [ fhir:v "Multidose container with airless pump" ]
+  ] [
+     fhir:code [ fhir:v "100000073532" ] ;
+     fhir:display [ fhir:v "Multipuncturer" ]
+  ] [
+     fhir:code [ fhir:v "100000073533" ] ;
+     fhir:display [ fhir:v "Nasal applicator" ]
+  ] [
+     fhir:code [ fhir:v "100000073534" ] ;
+     fhir:display [ fhir:v "Nebuliser" ]
+  ] [
+     fhir:code [ fhir:v "100000073535" ] ;
+     fhir:display [ fhir:v "Needle applicator" ]
+  ] [
+     fhir:code [ fhir:v "100000073536" ] ;
+     fhir:display [ fhir:v "Nozzle" ]
+  ] [
+     fhir:code [ fhir:v "100000073537" ] ;
+     fhir:display [ fhir:v "Oral syringe" ]
+  ] [
+     fhir:code [ fhir:v "100000073538" ] ;
+     fhir:display [ fhir:v "Pipette" ]
+  ] [
+     fhir:code [ fhir:v "100000073539" ] ;
+     fhir:display [ fhir:v "Pipette applicator" ]
+  ] [
+     fhir:code [ fhir:v "100000073540" ] ;
+     fhir:display [ fhir:v "Pouch" ]
+  ] [
+     fhir:code [ fhir:v "100000073541" ] ;
+     fhir:display [ fhir:v "Pour-on container" ]
+  ] [
+     fhir:code [ fhir:v "100000073542" ] ;
+     fhir:display [ fhir:v "Pre-filled gastroenteral tube" ]
+  ] [
+     fhir:code [ fhir:v "100000073543" ] ;
+     fhir:display [ fhir:v "Pre-filled pen" ]
+  ] [
+     fhir:code [ fhir:v "100000073544" ] ;
+     fhir:display [ fhir:v "Pre-filled syringe" ]
+  ] [
+     fhir:code [ fhir:v "100000073545" ] ;
+     fhir:display [ fhir:v "Pressurised container" ]
+  ] [
+     fhir:code [ fhir:v "100000073546" ] ;
+     fhir:display [ fhir:v "Prick test applicator" ]
+  ] [
+     fhir:code [ fhir:v "100000073547" ] ;
+     fhir:display [ fhir:v "Sachet" ]
+  ] [
+     fhir:code [ fhir:v "100000073548" ] ;
+     fhir:display [ fhir:v "Scarifier" ]
+  ] [
+     fhir:code [ fhir:v "100000073549" ] ;
+     fhir:display [ fhir:v "Screw cap" ]
+  ] [
+     fhir:code [ fhir:v "100000073550" ] ;
+     fhir:display [ fhir:v "Single-dose container" ]
+  ] [
+     fhir:code [ fhir:v "100000073551" ] ;
+     fhir:display [ fhir:v "Spatula" ]
+  ] [
+     fhir:code [ fhir:v "100000073552" ] ;
+     fhir:display [ fhir:v "Spot-on applicator" ]
+  ] [
+     fhir:code [ fhir:v "100000073553" ] ;
+     fhir:display [ fhir:v "Spray container" ]
+  ] [
+     fhir:code [ fhir:v "100000073554" ] ;
+     fhir:display [ fhir:v "Spray pump" ]
+  ] [
+     fhir:code [ fhir:v "100000073555" ] ;
+     fhir:display [ fhir:v "Spray valve" ]
+  ] [
+     fhir:code [ fhir:v "100000073556" ] ;
+     fhir:display [ fhir:v "Stab vaccinator" ]
+  ] [
+     fhir:code [ fhir:v "100000073557" ] ;
+     fhir:display [ fhir:v "Stopper" ]
+  ] [
+     fhir:code [ fhir:v "100000073558" ] ;
+     fhir:display [ fhir:v "Straw" ]
+  ] [
+     fhir:code [ fhir:v "100000073559" ] ;
+     fhir:display [ fhir:v "Strip" ]
+  ] [
+     fhir:code [ fhir:v "100000073560" ] ;
+     fhir:display [ fhir:v "Tablet container" ]
+  ] [
+     fhir:code [ fhir:v "100000073561" ] ;
+     fhir:display [ fhir:v "Tube" ]
+  ] [
+     fhir:code [ fhir:v "100000073562" ] ;
+     fhir:display [ fhir:v "Vaginal sponge applicator" ]
+  ] [
+     fhir:code [ fhir:v "100000073563" ] ;
+     fhir:display [ fhir:v "Vial" ]
+  ] [
+     fhir:code [ fhir:v "100000075664" ] ;
+     fhir:display [ fhir:v "Administration system" ]
+  ] [
+     fhir:code [ fhir:v "100000116195" ] ;
+     fhir:display [ fhir:v "Calendar package" ]
+  ] [
+     fhir:code [ fhir:v "100000116196" ] ;
+     fhir:display [ fhir:v "Needle-free injector" ]
+  ] [
+     fhir:code [ fhir:v "100000116197" ] ;
+     fhir:display [ fhir:v "Roll-on container" ]
+  ] [
+     fhir:code [ fhir:v "100000125779" ] ;
+     fhir:display [ fhir:v "Multidose container with pump" ]
+  ] [
+     fhir:code [ fhir:v "100000137702" ] ;
+     fhir:display [ fhir:v "Container" ]
+  ] [
+     fhir:code [ fhir:v "100000137703" ] ;
+     fhir:display [ fhir:v "Oral applicator" ]
+  ] [
+     fhir:code [ fhir:v "100000143554" ] ;
+     fhir:display [ fhir:v "Multidose container with metering pump" ]
+  ] [
+     fhir:code [ fhir:v "100000143555" ] ;
+     fhir:display [ fhir:v "Pack" ]
+  ] [
+     fhir:code [ fhir:v "100000163233" ] ;
+     fhir:display [ fhir:v "disk" ]
+  ] [
+     fhir:code [ fhir:v "100000163234" ] ;
+     fhir:display [ fhir:v "plunger" ]
+  ] [
+     fhir:code [ fhir:v "100000164143" ] ;
+     fhir:display [ fhir:v "infusion port" ]
+  ] [
+     fhir:code [ fhir:v "100000166980" ] ;
+     fhir:display [ fhir:v "Valve" ]
+  ] [
+     fhir:code [ fhir:v "100000169899" ] ;
+     fhir:display [ fhir:v "Jerrycan" ]
+  ] [
+     fhir:code [ fhir:v "100000173982" ] ;
+     fhir:display [ fhir:v "Oral applicator" ]
+  ] [
+     fhir:code [ fhir:v "100000173983" ] ;
+     fhir:display [ fhir:v "Dose dispenser" ]
+  ] [
+     fhir:code [ fhir:v "100000174066" ] ;
+     fhir:display [ fhir:v "Unit-dose blister" ]
+  ] [
+     fhir:code [ fhir:v "100000174067" ] ;
+     fhir:display [ fhir:v "Pre-filled injector" ]
+  ] [
+     fhir:code [ fhir:v "100000174068" ] ;
+     fhir:display [ fhir:v "Pre-filled oral syringe" ]
+  ] [
+     fhir:code [ fhir:v "100000174069" ] ;
+     fhir:display [ fhir:v "Pre-filled oral applicator" ]
+  ] [
+     fhir:code [ fhir:v "100000174070" ] ;
+     fhir:display [ fhir:v "Dose-dispenser cartridge" ]
+  ] [
+     fhir:code [ fhir:v "200000005068" ] ;
+     fhir:display [ fhir:v "Pen" ]
+  ] [
+     fhir:code [ fhir:v "200000005585" ] ;
+     fhir:display [ fhir:v "Wrapper" ]
+  ] [
+     fhir:code [ fhir:v "200000010647" ] ;
+     fhir:display [ fhir:v "Lid" ]
+  ] [
+     fhir:code [ fhir:v "200000011726" ] ;
+     fhir:display [ fhir:v "Capsule for opening" ]
+  ] [
+     fhir:code [ fhir:v "200000012539" ] ;
+     fhir:display [ fhir:v "Child-resistant sachet" ]
+  ] [
+     fhir:code [ fhir:v "200000013191" ] ;
+     fhir:display [ fhir:v "Tamper-evident closure" ]
+  ] [
+     fhir:code [ fhir:v "200000024874" ] ;
+     fhir:display [ fhir:v "Tablet tube" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

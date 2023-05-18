@@ -1,0 +1,50 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Consent ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "consent-example-basic"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <p>\n	      Authorize Normal access for Treatment\n			</p>\n      <p>\n      Patient &quot;Peter James Chalmers (&quot;Jim&quot;)&quot; wishes to have all of the PHI collected at the Burgers University Medical Center available for normal treatment use.\n			</p>\n    </div>"
+  ] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       a loinc:59284-0 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "59284-0" ]
+     ] )
+  ] ) ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "Peter James Chalmers" ]
+  ] ; # 
+  fhir:date [ fhir:v "2018-12-28"^^xsd:date] ; # 
+  fhir:controller ( [
+     fhir:reference [ fhir:v "Organization/f001" ]
+  ] ) ; # 
+  fhir:sourceAttachment ( [
+     fhir:title [ fhir:v "The terms of the consent in lawyer speak." ]
+  ] ) ; #   the terms of the consent as signed by the patient in ink  ,   likely use url pointer to common text  
+  fhir:regulatoryBasis ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActCode"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "INFA" ]
+     ] )
+  ] ) ; #   this is plain out opt-in with no exceptions  
+  fhir:decision [ fhir:v "deny"] ; # 
+  fhir:provision ( [
+     fhir:period [
+       fhir:start [ fhir:v "1964-01-01"^^xsd:date ] ;
+       fhir:end [ fhir:v "2019-01-01"^^xsd:date ]
+     ] #   bound by a timeframe between 1964 and 2019 - consent.applies  
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

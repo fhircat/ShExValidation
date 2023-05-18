@@ -1,0 +1,47 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Specimen ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "sst"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Specimen</b><a name=\"sst\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Specimen &quot;sst&quot; </p></div><p><b>accessionIdentifier</b>: id: 20150816-00124</p><p><b>type</b>: Serum sample <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#119364003)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>request</b>: <a href=\"servicerequest-example-ft4.html\">ServiceRequest/ft4</a></p><h3>Collections</h3><table class=\"grid\"><tr><td>-</td><td><b>Collector</b></td><td><b>Collected[x]</b></td></tr><tr><td>*</td><td><a href=\"practitioner-example-f202-lm.html\">Practitioner/f202</a> &quot;Luigi Maas&quot;</td><td>2015-08-16T06:40:17Z</td></tr></table><h3>Containers</h3><table class=\"grid\"><tr><td>-</td><td><b>Device</b></td></tr><tr><td>*</td><td><a href=\"device-example-specimen-container-example-sst-vacutainer.html\">Device/device-example-specimen-container-example-sst-vacutainer</a></td></tr></table></div>"
+  ] ; # 
+  fhir:accessionIdentifier [
+     fhir:system [ fhir:v "http://acme.com/labs/accession-ids"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "20150816-00124" ]
+  ] ; # 
+  fhir:type [
+     fhir:coding ( [
+       a sct:119364003 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "119364003" ] ;
+       fhir:display [ fhir:v "Serum sample" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:request ( [
+     fhir:reference [ fhir:v "ServiceRequest/ft4" ]
+  ] ) ; # 
+  fhir:collection [
+     fhir:collector [
+       fhir:reference [ fhir:v "Practitioner/f202" ]
+     ] ;
+     fhir:collected [ fhir:v "2015-08-16T06:40:17Z"^^xsd:dateTime ]
+  ] ; # 
+  fhir:container ( [
+     fhir:device [
+       fhir:reference [ fhir:v "Device/device-example-specimen-container-example-sst-vacutainer" ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

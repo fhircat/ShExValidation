@@ -1,0 +1,36 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:SearchParameter ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-extension"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: SearchParameter</b><a name=\"example-extension\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource SearchParameter &quot;example-extension&quot; </p></div><p><b>url</b>: <code>http://hl7.org/fhir/SearchParameter/example-extension</code></p><p><b>name</b>: ExampleSearchParameterOnAnExtension</p><p><b>title</b>: Example Search Parameter on an extension</p><p><b>status</b>: draft</p><p><b>experimental</b>: true</p><p><b>publisher</b>: Health Level Seven International (FHIR Infrastructure)</p><p><b>contact</b>: <a href=\"http://hl7.org/fhir\">http://hl7.org/fhir</a></p><p><b>description</b>: Search by url for a participation agreement, which is stored as an extension referencing a DocumentReference</p><p><b>code</b>: part-agree</p><p><b>base</b>: Patient</p><p><b>type</b>: reference</p><p><b>expression</b>: Patient.extension('http://example.org/fhir/StructureDefinition/participation-agreement').value</p><p><b>processingMode</b>: normal</p><p><b>target</b>: DocumentReference</p></div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/SearchParameter/example-extension"^^xsd:anyURI] ; # 
+  fhir:name [ fhir:v "ExampleSearchParameterOnAnExtension"] ; # 
+  fhir:title [ fhir:v "Example Search Parameter on an extension"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:experimental [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:publisher [ fhir:v "Health Level Seven International (FHIR Infrastructure)"] ; # 
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Search by url for a participation agreement, which is stored as an extension referencing a DocumentReference"] ; # 
+  fhir:code [ fhir:v "part-agree"] ; # 
+  fhir:base ( [ fhir:v "Patient"] ) ; # 
+  fhir:type [ fhir:v "reference"] ; # 
+  fhir:expression [ fhir:v "Patient.extension('http://example.org/fhir/StructureDefinition/participation-agreement').value"] ; # 
+  fhir:processingMode [ fhir:v "normal"] ; # 
+  fhir:target ( [ fhir:v "DocumentReference"] )] . # 
+
+# -------------------------------------------------------------------------------------
+

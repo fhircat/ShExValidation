@@ -1,0 +1,54 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Provenance ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-delete"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Provenance</b><a name=\"example-delete\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Provenance &quot;example-delete&quot; </p></div><p><b>target</b>: <a href=\"broken-link.html\">http://terminology.hl7.org/CodeSystem/location-physical-type/_history/3</a></p><p><b>recorded</b>: 27 June 2015, 8:39:24 am</p><h3>Authorizations</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>metadata management <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ActReason.html\">ActReason</a>#METAMGT)</span></td></tr></table><p><b>activity</b>: delete <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-DataOperation.html\">DataOperation</a>#DELETE)</span></p><h3>Agents</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Who</b></td></tr><tr><td>*</td><td>Author <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-provenance-participant-type.html\">Provenance participant type</a>#author)</span></td><td><span>: Brian Postlethwaite</span></td></tr></table><h3>Entities</h3><table class=\"grid\"><tr><td>-</td><td><b>Role</b></td><td><b>What</b></td></tr><tr><td>*</td><td>source</td><td><a href=\"broken-link.html\">http://terminology.hl7.org/CodeSystem/location-physical-type/_history/3</a></td></tr></table></div>"
+  ] ; # 
+  fhir:target ( [
+     fhir:link <http://terminology.hl7.org/CodeSystem/location-physical-type/_history/3> ;
+     fhir:reference [ fhir:v "http://terminology.hl7.org/CodeSystem/location-physical-type/_history/3" ]
+  ] ) ; # 
+  fhir:recorded [ fhir:v "2015-06-27T08:39:24+10:00"^^xsd:dateTime] ; # 
+  fhir:authorization ( [
+     fhir:concept [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActReason"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "METAMGT" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:activity [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-DataOperation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "DELETE" ]
+     ] )
+  ] ; # 
+  fhir:agent ( [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/provenance-participant-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "author" ]
+       ] )
+     ] ;
+     fhir:who [
+       fhir:display [ fhir:v "Brian Postlethwaite" ]
+     ]
+  ] ) ; # 
+  fhir:entity ( [
+     fhir:role [ fhir:v "source" ] ;
+     fhir:what [
+       fhir:link <http://terminology.hl7.org/CodeSystem/location-physical-type/_history/3> ;
+       fhir:reference [ fhir:v "http://terminology.hl7.org/CodeSystem/location-physical-type/_history/3" ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

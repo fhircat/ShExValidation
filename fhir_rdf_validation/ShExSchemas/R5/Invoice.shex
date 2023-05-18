@@ -1,0 +1,129 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Group.shex>
+IMPORT <Money.shex>
+IMPORT <string.shex>
+IMPORT <Device.shex>
+IMPORT <Patient.shex>
+IMPORT <Account.shex>
+IMPORT <decimal.shex>
+IMPORT <dateTime.shex>
+IMPORT <markdown.shex>
+IMPORT <Reference.shex>
+IMPORT <ChargeItem.shex>
+IMPORT <positiveInt.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+
+
+start=@<Invoice> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Invoice containing ChargeItems from an Account
+<Invoice> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Invoice];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business Identifier for item
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:invoice-status};  # draft | issued | balanced | 
+                                            # cancelled | entered-in-error 
+    fhir:cancelledReason @<string>?;        # Reason for cancellation of this 
+                                            # Invoice 
+    fhir:type @<CodeableConcept>?;          # Type of Invoice
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Patient> }?;  # Recipient(s) of goods and services
+    fhir:recipient @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<RelatedPerson> }?;  # Recipient of this invoice
+    fhir:date @<dateTime>?;                 # Invoice date / posting date
+    fhir:participant @<OneOrMore_BackboneElement>?;  # Participant in creation of this 
+                                            # Invoice 
+    fhir:issuer @<Reference> AND {fhir:link 
+    			@<Organization> }?;  # Issuing Organization of Invoice
+    fhir:account @<Reference> AND {fhir:link 
+    			@<Account> }?;  # Account that is being balanced
+    fhir:lineItem @<OneOrMore_BackboneElement>?;  # Line items of this Invoice
+    fhir:totalPriceComponent @<OneOrMore_Invoice.lineItem.priceComponent>?;  # Components of Invoice total
+    fhir:totalNet @<Money>?;                # Net total of this Invoice
+    fhir:totalGross @<Money>?;              # Gross total of this Invoice
+    fhir:paymentTerms @<markdown>?;         # Payment details
+    fhir:note @<OneOrMore_Annotation>?;     # Comments made about the invoice
+}  
+
+# Participant in creation of this Invoice
+<Invoice.participant> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:role @<CodeableConcept>?;          # Type of involvement in creation of 
+                                            # this Invoice 
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> };  # Individual who was involved
+}  
+
+# Line items of this Invoice
+<Invoice.lineItem> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:sequence @<positiveInt>?;          # Sequence number of line item
+    fhir:chargeItem ((@<Reference>  AND {fhir:link @<ChargeItem> })  OR 
+    			@<CodeableConcept> )  AND { rdf:type IRI } ;  # Reference to ChargeItem containing 
+                                            # details of this line item or an 
+                                            # inline billing code 
+    fhir:priceComponent @<OneOrMore_BackboneElement>?;  # Components of total line item price
+}  
+
+# Components of total line item price
+<Invoice.lineItem.priceComponent> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:invoice-priceComponentType};  # base | surcharge | deduction | 
+                                            # discount | tax | informational 
+    fhir:code @<CodeableConcept>?;          # Code identifying the specific 
+                                            # component 
+    fhir:factor @<decimal>?;                # Factor used for calculating this 
+                                            # component 
+    fhir:amount @<Money>?;                  # Monetary amount associated with 
+                                            # this component 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Invoice.lineItem.priceComponent> CLOSED {
+    rdf:first @<Invoice.lineItem.priceComponent>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Invoice.lineItem.priceComponent> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Codes identifying the lifecycle stage of an Invoice.
+fhirvs:invoice-status ["draft" "issued" "balanced" "cancelled" "entered-in-error"]
+
+# Codes indicating the kind of the price component.
+fhirvs:invoice-priceComponentType ["base" "surcharge" "deduction" "discount" "tax" "informational"]
+

@@ -1,0 +1,174 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <date.shex>
+IMPORT <Money.shex>
+IMPORT <string.shex>
+IMPORT <Period.shex>
+IMPORT <Device.shex>
+IMPORT <boolean.shex>
+IMPORT <decimal.shex>
+IMPORT <dateTime.shex>
+IMPORT <markdown.shex>
+IMPORT <Substance.shex>
+IMPORT <Medication.shex>
+IMPORT <PlanDefinition.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <MetadataResource.shex>
+IMPORT <DeviceDefinition.shex>
+IMPORT <HealthcareService.shex>
+IMPORT <ActivityDefinition.shex>
+
+
+start=@<ChargeItemDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Definition of properties and rules about how the price and the applicability of a ChargeItem can be determined
+<ChargeItemDefinition> EXTENDS @<MetadataResource> CLOSED {   
+
+    a [fhir:ChargeItemDefinition];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:url @<uri>;                        # Canonical identifier for this 
+                                            # charge item definition, 
+                                            # represented as a URI (globally 
+                                            # unique) 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
+                                            # charge item definition 
+    fhir:version @<string>?;                # Business version of the charge 
+                                            # item definition 
+    fhir:title @<string>?;                  # Name for this charge item 
+                                            # definition (human friendly) 
+    fhir:derivedFromUri @<OneOrMore_uri>?;  # Underlying externally-defined 
+                                            # charge item definition 
+    fhir:partOf @<OneOrMore_canonical>?;    # A larger definition of which this 
+                                            # particular definition is a 
+                                            # component or step 
+    fhir:replaces @<OneOrMore_canonical>?;  # Completed or terminated request(s) 
+                                            # whose function is taken by this 
+                                            # new request 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:date @<dateTime>?;                 # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the charge item definition 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for charge 
+                                            # item definition (if applicable) 
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:approvalDate @<date>?;             # When the charge item definition 
+                                            # was approved by publisher 
+    fhir:lastReviewDate @<date>?;           # When the charge item definition 
+                                            # was last reviewed 
+    fhir:effectivePeriod @<Period>?;        # When the charge item definition is 
+                                            # expected to be used 
+    fhir:code @<CodeableConcept>?;          # Billing code or product type this 
+                                            # definition applies to 
+    fhir:instance @<OneOrMore_Reference_ActivityDefinition_OR_Device_OR_DeviceDefinition_OR_HealthcareService_OR_Medication_OR_PlanDefinition_OR_Substance>?;  # Instances this definition applies 
+                                            # to 
+    fhir:applicability @<OneOrMore_BackboneElement>?;  # Whether or not the billing code is 
+                                            # applicable 
+    fhir:propertyGroup @<OneOrMore_BackboneElement>?;  # Group of properties which are 
+                                            # applicable under the same 
+                                            # conditions 
+}  
+
+# Group of properties which are applicable under the same conditions
+<ChargeItemDefinition.propertyGroup> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:applicability @<OneOrMore_ChargeItemDefinition.applicability>?;  # Conditions under which the 
+                                            # priceComponent is applicable 
+    fhir:priceComponent @<OneOrMore_BackboneElement>?;  # Components of total line item price
+}  
+
+# Components of total line item price
+<ChargeItemDefinition.propertyGroup.priceComponent> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:invoice-priceComponentType};  # base | surcharge | deduction | 
+                                            # discount | tax | informational 
+    fhir:code @<CodeableConcept>?;          # Code identifying the specific 
+                                            # component 
+    fhir:factor @<decimal>?;                # Factor used for calculating this 
+                                            # component 
+    fhir:amount @<Money>?;                  # Monetary amount associated with 
+                                            # this component 
+}  
+
+# Whether or not the billing code is applicable
+<ChargeItemDefinition.applicability> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:description @<string>?;            # Natural language description of 
+                                            # the condition 
+    fhir:language @<string>?;               # Language of the expression
+    fhir:expression @<string>?;             # Boolean-valued expression
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_uri> CLOSED {
+    rdf:first @<uri>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_uri> 
+}
+
+<OneOrMore_canonical> CLOSED {
+    rdf:first @<canonical>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_canonical> 
+}
+
+<OneOrMore_ContactDetail> CLOSED {
+    rdf:first @<ContactDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactDetail> 
+}
+
+<OneOrMore_UsageContext> CLOSED {
+    rdf:first @<UsageContext>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_UsageContext> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_ActivityDefinition_OR_Device_OR_DeviceDefinition_OR_HealthcareService_OR_Medication_OR_PlanDefinition_OR_Substance> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ActivityDefinition> OR 
+			@<Device> OR 
+			@<DeviceDefinition> OR 
+			@<HealthcareService> OR 
+			@<Medication> OR 
+			@<PlanDefinition> OR 
+			@<Substance> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ActivityDefinition_OR_Device_OR_DeviceDefinition_OR_HealthcareService_OR_Medication_OR_PlanDefinition_OR_Substance> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_ChargeItemDefinition.applicability> CLOSED {
+    rdf:first @<ChargeItemDefinition.applicability>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ChargeItemDefinition.applicability> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+
+# Codes indicating the kind of the price component.
+fhirvs:invoice-priceComponentType ["base" "surcharge" "deduction" "discount" "tax" "informational"]
+

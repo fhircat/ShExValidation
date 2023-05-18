@@ -1,0 +1,58 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "extra-activity-type"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ]
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/extra-activity-type"], [ fhir:v "http://hl7.org/fhir/extra-activity-type"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1845" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1845" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "ExtraActivityType"], [ fhir:v "ExtraActivityType"] ;
+  fhir:title [ fhir:v "Extra Activity Type"], [ fhir:v "Extra Activity Type"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "true"], [ fhir:v "true"] ;
+  fhir:description [ fhir:v "This value set includes coded concepts not well covered in any of the included valuesets."], [ fhir:v "This value set includes coded concepts not well covered in any of the included valuesets."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "aggregate" ] ;
+     fhir:display [ fhir:v "aggregate" ] ;
+     fhir:definition [ fhir:v "Activity resulting in a structured collection of preexisting content that does not necessarily result in an integral object with semantic context making it more than the sum of component parts, from which components could be disaggregated without loss of semantic context, e.g., the assembly of multiple stand-alone documents." ]
+  ] [
+     fhir:code [ fhir:v "compose" ] ;
+     fhir:display [ fhir:v "compose" ] ;
+     fhir:definition [ fhir:v "Activity resulting in the structured compilation of new and preexisting content for the purposes of forming an integral object with  semantic context making it more than the sum of component parts, which would be lost if decomposed. For example, the composition of a document that includes in whole or part other documents along with new content that result in a new document that has unique semantic meaning." ]
+  ] [
+     fhir:code [ fhir:v "label" ] ;
+     fhir:display [ fhir:v "label" ] ;
+     fhir:definition [ fhir:v "The means used to associate a set of security attributes with a specific information object as part of the data structure for that object. [ISO-10181-3 Access Control]" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

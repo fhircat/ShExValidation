@@ -1,0 +1,68 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Procedure ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "ambulation"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">Ambulation procedure was not done</div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:value [ fhir:v "12345" ]
+  ] ) ; # 
+  fhir:instantiatesUri ( [ fhir:v "http://example.org/protocol-for-hypertension-during-pregnancy"^^xsd:anyURI] ) ; # 
+  fhir:basedOn ( [
+     fhir:reference [ fhir:v "CarePlan/preg" ] ;
+     fhir:display [ fhir:v "Maternity care plan" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "not-done"] ; # 
+  fhir:statusReason [
+     fhir:coding ( [
+       a sct:398254007 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "398254007" ] ;
+       fhir:display [ fhir:v "  Pre-eclampsia (disorder)" ]
+     ] ) ;
+     fhir:text [ fhir:v "Pre-eclampsia" ]
+  ] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a sct:62013009 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "62013009" ] ;
+       fhir:display [ fhir:v "Ambulating patient (procedure)" ]
+     ] ) ;
+     fhir:text [ fhir:v "Ambulation" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:actor [
+       fhir:reference [ fhir:v "CareTeam/example" ] ;
+       fhir:display [ fhir:v "Maternity CareTeam" ]
+     ] ;
+     fhir:onBehalfOf [
+       fhir:reference [ fhir:v "Organization/f001" ] ;
+       fhir:display [ fhir:v "University Medical Hospital" ]
+     ]
+  ] ) ; # 
+  fhir:location [
+     fhir:reference [ fhir:v "Location/1" ] ;
+     fhir:display [ fhir:v "Burgers University Medical Center, South Wing, second floor" ]
+  ] ; # 
+  fhir:reason ( [
+     fhir:reference [
+       fhir:reference [ fhir:v "Observation/blood-pressure" ] ;
+       fhir:display [ fhir:v "Blood Pressure" ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,93 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Patient ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "f001"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p style=\"border: 1px #661aff solid; background-color: #e6e6ff; padding: 10px;\"><b>Pieter van de Heuvel </b> male, DoB: 1944-11-17 ( id: 738472983 (use: USUAL))</p><hr/><table class=\"grid\"><tr><td style=\"background-color: #f3f5da\" title=\"Record is active\">Active:</td><td>true</td><td style=\"background-color: #f3f5da\" title=\"Known status of Patient\">Deceased:</td><td>false</td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Known Marital status of Patient\">Marital Status:</td><td><span title=\"Codes: {http://terminology.hl7.org/CodeSystem/v3-MaritalStatus M}\">Getrouwd</span></td><td style=\"background-color: #f3f5da\" title=\"Known multipleBirth status of Patient\">Multiple Birth:</td><td colspan=\"3\">true</td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Other Ids (see the one above)\">Other Id:</td><td colspan=\"3\">id: ?ngen-9? (use: USUAL)</td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Ways to contact the Patient\">Contact Details:</td><td colspan=\"3\"><ul><li>ph: 0648352638(MOBILE)</li><li><a href=\"mailto:p.heuvel@gmail.com\">p.heuvel@gmail.com</a></li><li>Van Egmondkade 23 Amsterdam 1024 RJ NLD (HOME)</li></ul></td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Languages spoken\">Language:</td><td colspan=\"3\"><span title=\"Codes: {urn:ietf:bcp:47 nl}\">Nederlands</span> (preferred)</td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Nominated Contact: Emergency Contact\">Emergency Contact:</td><td colspan=\"3\"><ul><li>Sarah Abels </li><li>ph: 0690383372(MOBILE)</li></ul></td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Patient Links\">Links:</td><td colspan=\"3\"><ul><li>Managing Organization: <a href=\"organization-example-f001-burgers.html\">Organization/f001: Burgers University Medical Centre</a> &quot;Burgers University Medical Center&quot;</li></ul></td></tr></table></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "usual" ] ;
+     fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.2.4.6.3"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "738472983" ] #     BSN identification system    
+  ] [
+     fhir:use [ fhir:v "usual" ] ;
+     fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.2.4.6.3"^^xsd:anyURI ]
+  ] ) ; # 
+  fhir:active [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:name ( [
+     fhir:use [ fhir:v "usual" ] ;
+     fhir:family [ fhir:v "van de Heuvel" ] ;
+     fhir:given ( [ fhir:v "Pieter" ] ) ;
+     fhir:suffix ( [ fhir:v "MSc" ] )
+  ] ) ; # 
+  fhir:telecom ( [
+     fhir:system [ fhir:v "phone" ] ;
+     fhir:value [ fhir:v "0648352638" ] ;
+     fhir:use [ fhir:v "mobile" ]
+  ] [
+     fhir:system [ fhir:v "email" ] ;
+     fhir:value [ fhir:v "p.heuvel@gmail.com" ] ;
+     fhir:use [ fhir:v "home" ]
+  ] ) ; # 
+  fhir:gender [ fhir:v "male"] ; # 
+  fhir:birthDate [ fhir:v "1944-11-17"^^xsd:date] ; # 
+  fhir:deceased [ fhir:v "false"^^xsd:boolean] ; # 
+  fhir:address ( [
+     fhir:use [ fhir:v "home" ] ;
+     fhir:line ( [ fhir:v "Van Egmondkade 23" ] ) ;
+     fhir:city [ fhir:v "Amsterdam" ] ;
+     fhir:postalCode [ fhir:v "1024 RJ" ] ;
+     fhir:country [ fhir:v "NLD" ]
+  ] ) ; #     ISO 3166 Codes (Countries)    
+  fhir:maritalStatus [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-MaritalStatus"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "M" ] ;
+       fhir:display [ fhir:v "Married" ]
+     ] ) ;
+     fhir:text [ fhir:v "Getrouwd" ]
+  ] ; # 
+  fhir:multipleBirth [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:contact ( [
+     fhir:relationship ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0131"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "C" ]
+       ] )
+     ] ) ;
+     fhir:name [
+       fhir:use [ fhir:v "usual" ] ;
+       fhir:family [ fhir:v "Abels" ] ;
+       fhir:given ( [ fhir:v "Sarah" ] )
+     ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "phone" ] ;
+       fhir:value [ fhir:v "0690383372" ] ;
+       fhir:use [ fhir:v "mobile" ]
+     ] )
+  ] ) ; # 
+  fhir:communication ( [
+     fhir:language [
+       fhir:coding ( [
+         fhir:system [ fhir:v "urn:ietf:bcp:47"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "nl" ] ; #     IETF language tag    
+         fhir:display [ fhir:v "Dutch" ]
+       ] ) ;
+       fhir:text [ fhir:v "Nederlands" ]
+     ] ;
+     fhir:preferred [ fhir:v "true"^^xsd:boolean ]
+  ] ) ; # 
+  fhir:managingOrganization [
+     fhir:reference [ fhir:v "Organization/f001" ] ;
+     fhir:display [ fhir:v "Burgers University Medical Centre" ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

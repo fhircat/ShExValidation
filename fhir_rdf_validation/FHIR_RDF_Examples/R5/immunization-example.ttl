@@ -1,0 +1,127 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Immunization ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Immunization</b><a name=\"example\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Immunization &quot;example&quot; </p></div><p><b>identifier</b>: id: urn:oid:1.3.6.1.4.1.21367.2005.3.7.1234</p><p><b>status</b>: completed</p><p><b>vaccineCode</b>: Flucelvax (Influenza) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#FLUCEL VAX)</span></p><h3>AdministeredProducts</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Flucelvax (Influenza, injectable, MDCK, preservative free, quadrivalent) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (unknown#70461-0321-03)</span></td></tr></table><h3>Manufacturers</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a href=\"organization-example.html\">Organization/hl7</a> &quot;Health Level Seven International&quot;</td></tr></table><p><b>lotNumber</b>: AAJN11K</p><p><b>expirationDate</b>: 2015-02-15</p><p><b>patient</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>encounter</b>: <a href=\"encounter-example.html\">Encounter/example</a></p><p><b>occurrence</b>: 2013-01-10</p><p><b>primarySource</b>: true</p><p><b>location</b>: <a href=\"location-example.html\">Location/1</a> &quot;South Wing, second floor&quot;</p><p><b>site</b>: left arm <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ActSite.html\">ActSite</a>#LA)</span></p><p><b>route</b>: Injection, intramuscular <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-RouteOfAdministration.html\">RouteOfAdministration</a>#IM)</span></p><p><b>doseQuantity</b>: 5 mg<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mg = 'mg')</span></p><blockquote><p><b>performer</b></p><p><b>function</b>: Ordering Provider <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v2-0443.html\">providerRole</a>#OP)</span></p><p><b>actor</b>: <a href=\"practitioner-example.html\">Practitioner/example</a> &quot;Adam CAREFUL&quot;</p></blockquote><blockquote><p><b>performer</b></p><p><b>function</b>: Administering Provider <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v2-0443.html\">providerRole</a>#AP)</span></p><p><b>actor</b>: <a href=\"practitioner-example.html\">Practitioner/example</a> &quot;Adam CAREFUL&quot;</p></blockquote><p><b>note</b>: Notes on adminstration of vaccine</p><h3>Reasons</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Procedure to meet occupational requirement <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#429060002)</span></td></tr></table><p><b>isSubpotent</b>: true</p><h3>ProgramEligibilities</h3><table class=\"grid\"><tr><td>-</td><td><b>Program</b></td><td><b>ProgramStatus</b></td></tr><tr><td>*</td><td>VFC <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td><td>Uninsured <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-immunization-program-eligibility.html\">Immunization Program Eligibility</a>#uninsured)</span></td></tr></table><p><b>fundingSource</b>: Private <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-immunization-funding-source.html\">Immunization Funding Source</a>#private)</span></p></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:1.3.6.1.4.1.21367.2005.3.7.1234" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:vaccineCode [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:oid:1.2.36.1.2001.1005.17"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "FLUCEL VAX" ]
+     ] ) ;
+     fhir:text [ fhir:v "Flucelvax (Influenza)" ]
+  ] ; # 
+  fhir:administeredProduct [
+     fhir:concept [
+       fhir:coding ( [
+         fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.6.69"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "70461-0321-03" ]
+       ] ) ;
+       fhir:text [ fhir:v "Flucelvax (Influenza, injectable, MDCK, preservative free, quadrivalent)" ]
+     ]
+  ] ; # 
+  fhir:manufacturer [
+     fhir:reference [
+       fhir:reference [ fhir:v "Organization/hl7" ]
+     ]
+  ] ; # 
+  fhir:lotNumber [ fhir:v "AAJN11K"] ; # 
+  fhir:expirationDate [ fhir:v "2015-02-15"^^xsd:date] ; # 
+  fhir:patient [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/example" ]
+  ] ; # 
+  fhir:occurrence [ fhir:v "2013-01-10"^^xsd:date] ; # 
+  fhir:primarySource [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:location [
+     fhir:reference [ fhir:v "Location/1" ]
+  ] ; # 
+  fhir:site [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActSite"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "LA" ] ;
+       fhir:display [ fhir:v "left arm" ]
+     ] )
+  ] ; # 
+  fhir:route [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-RouteOfAdministration"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "IM" ] ;
+       fhir:display [ fhir:v "Injection, intramuscular" ]
+     ] )
+  ] ; # 
+  fhir:doseQuantity [
+     fhir:value [ fhir:v "5"^^xsd:decimal ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "mg" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:function [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0443"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "OP" ]
+       ] )
+     ] ;
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/example" ]
+     ]
+  ] [
+     fhir:function [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0443"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "AP" ]
+       ] )
+     ] ;
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/example" ]
+     ]
+  ] ) ; # 
+  fhir:note ( [
+     fhir:text [ fhir:v "Notes on adminstration of vaccine" ]
+  ] ) ; # 
+  fhir:reason ( [
+     fhir:concept [
+       fhir:coding ( [
+         a sct:429060002 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "429060002" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:isSubpotent [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:programEligibility ( [
+     fhir:program [
+       fhir:text [ fhir:v "VFC" ]
+     ] ;
+     fhir:programStatus [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/immunization-program-eligibility"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "uninsured" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:fundingSource [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/immunization-funding-source"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "private" ]
+     ] )
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

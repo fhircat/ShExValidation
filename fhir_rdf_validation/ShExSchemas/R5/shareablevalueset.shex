@@ -1,0 +1,62 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <ValueSet.shex>
+IMPORT <BackboneElement.shex>
+
+
+start=@<shareablevalueset> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A set of codes drawn from one or more code systems
+<shareablevalueset> EXTENDS @<ValueSet> CLOSED {   
+
+    a [fhir:shareablevalueset];
+    fhir:nodeRole [fhir:treeRoot]?;
+}  
+
+# Include one or more codes from a code system or other value set(s)
+<ValueSet.compose.include> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Property value for the concept
+<ValueSet.expansion.contains.property> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Parameter that controlled the expansion process
+<ValueSet.expansion.parameter> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# A concept defined in the system
+<ValueSet.compose.include.concept> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Description of the semantic space the Value Set Expansion is intended to cover and should further clarify the text in ValueSet.description
+<ValueSet.scope> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Content logical definition of the value set (CLD)
+<ValueSet.compose> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Additional representations for this concept
+<ValueSet.compose.include.concept.designation> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Select codes/concepts by their properties (including relationships)
+<ValueSet.compose.include.filter> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Used when the value set is "expanded"
+<ValueSet.expansion> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Codes in the value set
+<ValueSet.expansion.contains> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Additional information supplied about each concept
+<ValueSet.expansion.property> EXTENDS @<BackboneElement> CLOSED {   
+}  
+

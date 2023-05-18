@@ -1,0 +1,84 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "organization-role"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "pa" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/organization-role"], [ fhir:v "http://hl7.org/fhir/organization-role"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.881" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.881" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "OrganizationAffiliationRole"], [ fhir:v "OrganizationAffiliationRole"] ;
+  fhir:title [ fhir:v "Organization Affiliation Role"], [ fhir:v "Organization Affiliation Role"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:publisher [ fhir:v "HL7 International"], [ fhir:v "HL7 International"] ;
+  fhir:description [ fhir:v "This example value set defines a set of codes that can be used to indicate the role of one Organization in relation to its affiliation with another."], [ fhir:v "This example value set defines a set of codes that can be used to indicate the role of one Organization in relation to its affiliation with another."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "provider" ] ;
+     fhir:display [ fhir:v "Provider" ] ;
+     fhir:definition [ fhir:v "An organization that delivers care services (e.g. hospitals, clinics, community and social services, etc.)." ]
+  ] [
+     fhir:code [ fhir:v "agency" ] ;
+     fhir:display [ fhir:v "Agency" ] ;
+     fhir:definition [ fhir:v "An organization such as a public health agency, community/social services provider, etc." ]
+  ] [
+     fhir:code [ fhir:v "research" ] ;
+     fhir:display [ fhir:v "Research" ] ;
+     fhir:definition [ fhir:v "An organization providing research-related services such as conducting research, recruiting research participants, analyzing data, etc." ]
+  ] [
+     fhir:code [ fhir:v "payer" ] ;
+     fhir:display [ fhir:v "Payer" ] ;
+     fhir:definition [ fhir:v "An organization providing reimbursement, payment, or related services" ]
+  ] [
+     fhir:code [ fhir:v "diagnostics" ] ;
+     fhir:display [ fhir:v "Diagnostics" ] ;
+     fhir:definition [ fhir:v "An organization providing diagnostic testing/laboratory services" ]
+  ] [
+     fhir:code [ fhir:v "supplier" ] ;
+     fhir:display [ fhir:v "Supplier" ] ;
+     fhir:definition [ fhir:v "An organization that provides medical supplies (e.g. medical devices, equipment, pharmaceutical products, etc.)" ]
+  ] [
+     fhir:code [ fhir:v "HIE/HIO" ] ;
+     fhir:display [ fhir:v "HIE/HIO" ] ;
+     fhir:definition [ fhir:v "An organization that facilitates electronic clinical data exchange between entities" ]
+  ] [
+     fhir:code [ fhir:v "member" ] ;
+     fhir:display [ fhir:v "Member" ] ;
+     fhir:definition [ fhir:v "A type of non-ownership relationship between entities (encompasses partnerships, collaboration, joint ventures, etc.)" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

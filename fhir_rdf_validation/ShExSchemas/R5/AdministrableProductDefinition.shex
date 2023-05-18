@@ -1,0 +1,154 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <date.shex>
+IMPORT <Ratio.shex>
+IMPORT <string.shex>
+IMPORT <boolean.shex>
+IMPORT <Quantity.shex>
+IMPORT <Duration.shex>
+IMPORT <Reference.shex>
+IMPORT <Attachment.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <DeviceDefinition.shex>
+IMPORT <MedicinalProductDefinition.shex>
+IMPORT <ManufacturedItemDefinition.shex>
+
+
+start=@<AdministrableProductDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A medicinal product in the final form, suitable for administration - after any mixing of multiple components
+<AdministrableProductDefinition> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:AdministrableProductDefinition];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # An identifier for the 
+                                            # administrable product 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:formOf @<OneOrMore_Reference_MedicinalProductDefinition>?;  # References a product from which 
+                                            # one or more of the constituent 
+                                            # parts of that product can be 
+                                            # prepared and used as described by 
+                                            # this administrable product 
+    fhir:administrableDoseForm @<CodeableConcept>?;  # The dose form of the final product 
+                                            # after necessary reconstitution or 
+                                            # processing 
+    fhir:unitOfPresentation @<CodeableConcept>?;  # The presentation type in which 
+                                            # this item is given to a patient. 
+                                            # e.g. for a spray - 'puff' 
+    fhir:producedFrom @<OneOrMore_Reference_ManufacturedItemDefinition>?;  # Indicates the specific 
+                                            # manufactured items that are part 
+                                            # of the 'formOf' product that are 
+                                            # used in the preparation of this 
+                                            # specific administrable form 
+    fhir:ingredient @<OneOrMore_CodeableConcept>?;  # The ingredients of this 
+                                            # administrable medicinal product. 
+                                            # This is only needed if the 
+                                            # ingredients are not specified 
+                                            # either using 
+                                            # ManufacturedItemDefiniton, or 
+                                            # using by incoming references from 
+                                            # the Ingredient resource 
+    fhir:device @<Reference> AND {fhir:link 
+    			@<DeviceDefinition> }?;  # A device that is integral to the 
+                                            # medicinal product, in effect being 
+                                            # considered as an "ingredient" of 
+                                            # the medicinal product 
+    fhir:property @<OneOrMore_BackboneElement>?;  # Characteristics e.g. a product's 
+                                            # onset of action 
+    fhir:routeOfAdministration @<OneOrMore_BackboneElement>;  # The path by which the product is 
+                                            # taken into or makes contact with 
+                                            # the body 
+}  
+
+# The path by which the product is taken into or makes contact with the body
+<AdministrableProductDefinition.routeOfAdministration> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>;           # Coded expression for the route
+    fhir:firstDose @<Quantity>?;            # The first dose (dose quantity) 
+                                            # administered can be specified for 
+                                            # the product 
+    fhir:maxSingleDose @<Quantity>?;        # The maximum single dose that can 
+                                            # be administered 
+    fhir:maxDosePerDay @<Quantity>?;        # The maximum dose quantity to be 
+                                            # administered in any one 24-h 
+                                            # period 
+    fhir:maxDosePerTreatmentPeriod @<Ratio>?;  # The maximum dose per treatment 
+                                            # period that can be administered 
+    fhir:maxTreatmentPeriod @<Duration>?;   # The maximum treatment period 
+                                            # during which the product can be 
+                                            # administered 
+    fhir:targetSpecies @<OneOrMore_BackboneElement>?;  # A species for which this route 
+                                            # applies 
+}  
+
+# A species specific time during which consumption of animal product is not appropriate
+<AdministrableProductDefinition.routeOfAdministration.targetSpecies.withdrawalPeriod> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:tissue @<CodeableConcept>;         # The type of tissue for which the 
+                                            # withdrawal period applies, e.g. 
+                                            # meat, milk 
+    fhir:v @<Quantity>;                 # A value for the time
+    fhir:supportingInformation @<string>?;  # Extra information about the 
+                                            # withdrawal period 
+}  
+
+# A species for which this route applies
+<AdministrableProductDefinition.routeOfAdministration.targetSpecies> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>;           # Coded expression for the species
+    fhir:withdrawalPeriod @<OneOrMore_BackboneElement>?;  # A species specific time during 
+                                            # which consumption of animal 
+                                            # product is not appropriate 
+}  
+
+# Characteristics e.g. a product's onset of action
+<AdministrableProductDefinition.property> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # A code expressing the type of 
+                                            # characteristic 
+    fhir:v (@<CodeableConcept>  OR 
+    			@<Quantity>  OR 
+    			@<date>  OR 
+    			@<boolean>  OR 
+    			@<Attachment> )  AND { rdf:type IRI } ?;  # A value for the characteristic
+    fhir:status @<CodeableConcept>?;        # The status of characteristic e.g. 
+                                            # assigned or pending 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_Reference_MedicinalProductDefinition> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<MedicinalProductDefinition> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_MedicinalProductDefinition> 
+}
+
+<OneOrMore_Reference_ManufacturedItemDefinition> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ManufacturedItemDefinition> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ManufacturedItemDefinition> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+

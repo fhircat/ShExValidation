@@ -1,0 +1,49 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <CodeSystem.shex>
+#imported_end
+
+start=@<shareablecodesystem> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Declares the existence of and describes a code system or code system supplement
+<shareablecodesystem> EXTENDS @<CodeSystem> CLOSED {   
+
+    a [fhir:shareablecodesystem]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+} AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:scs-1
+# Human readable:If a codesystem contains nested concepts, it must specify hierarchyMeaning
+#
+# Constraint: concept.concept.exists() implies hierarchyMeaning.exists()
+# ShEx:
+#
+#{fhir:concept.concept .  Implies  {fhir:hierarchyMeaning .}}
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:scs-2
+# Human readable:If a codesystem contains example, fragment, or complete content, it must have at least one concept
+#
+# Constraint: content in ( 'example' | 'fragment' | 'complete' ) implies concept.exists()
+# ShEx:
+#
+#{ fhir:content { fhir:v ['example' 'fragment' 'complete'  Implies  {fhir:concept .}] }  }
+{}
+
+)
+ 
+

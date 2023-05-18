@@ -1,0 +1,78 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ConceptMap ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "103"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <h2>SNOMEDCTToICD10CMMappingsForFractureOfUlna (http://hl7.org/fhir/ConceptMap/103)</h2>\n      <p>Mapping from http://snomed.info/sct?fhir_vs to (not specified)</p>\n      <p>DRAFT (not intended for production usage). Published on 2012-06-13 by HL7, Inc (FHIR project team (example): \n        <a href=\"http://hl7.org/fhir\">http://hl7.org/fhir</a>). Creative Commons 0\n      </p>\n      <div>\n        <p>Example rule-based mappings between SNOMED CT to ICD-10-CM for fracture of ulna</p>\n\n      </div>\n      <br/>\n      <p>\n        <b>Group 1</b>Mapping from \n        <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-snomed-CT.html\">SNOMED CT International Edition</a> to \n        <a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-icd10CM.html\">International Classification of Diseases, 10th Revision, Clinical Modification (ICD-10-CM)</a>\n      </p>\n      <table class=\"grid\">\n        <tr>\n          <td>\n            <b>Source Code</b>\n          </td>\n          <td>\n            <b>Relationship</b>\n          </td>\n          <td>\n            <b>Target Code</b>\n          </td>\n          <td>\n            <b>Comment</b>\n          </td>\n        </tr>\n        <tr>\n          <td>263204007 (Fracture of shaft of ulna)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#source-is-broader-than-target\" title=\"source-is-broader-than-target\">is broader than</a>\n          </td>\n          <td>S52.209A (Unsp fracture of shaft of unsp ulna, init for clos fx)</td>\n          <td>The target mapping to ICD-10-CM is 'source-is-broader-than-target', since additional patient data on the encounter (initial vs. subsequent) and fracture type is required for a valid ICD-10-CM mapping.</td>\n        </tr>\n        <tr>\n          <td>263204007 (Fracture of shaft of ulna)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#source-is-broader-than-target\" title=\"source-is-broader-than-target\">is broader than</a>\n          </td>\n          <td>S52.209D (Unsp fx shaft of unsp ulna, subs for clos fx w routn heal)</td>\n          <td>The target mapping to ICD-10-CM is 'source-is-broader-than-target', since additional patient data on the encounter (initial vs. subsequent), fracture type and healing (for subsequent encounter) is required for a valid ICD-10-CM mapping.</td>\n        </tr>\n      </table>\n    </div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/ConceptMap/103"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.14.7" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:uuid:53cd62ee-033e-414c-9f58-3ca97b5ffc3b" ]
+  ] ) ; # 
+  fhir:version [ fhir:v "5.0.0"] ; # 
+  fhir:name [ fhir:v "SNOMEDCTToICD10CMMappingsForFractureOfUlna"] ; # 
+  fhir:title [ fhir:v "SNOMED CT to ICD-10-CM mappings for fracture of ulna"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:experimental [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:date [ fhir:v "2012-06-13"^^xsd:date] ; # 
+  fhir:publisher [ fhir:v "HL7, Inc"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "FHIR project team (example)" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Example rule-based mappings between SNOMED CT to ICD-10-CM for fracture of ulna"] ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "840" ] ;
+       fhir:display [ fhir:v "United States of America" ]
+     ] )
+  ] ) ; # 
+  fhir:purpose [ fhir:v "Show example rule based mappings"] ; # 
+  fhir:copyright [ fhir:v "Creative Commons 0"] ; # 
+  fhir:sourceScope [
+     fhir:v "http://snomed.info/sct?fhir_vs"^^xsd:anyURI ;
+     fhir:link <http://snomed.info/sct?fhir_vs>
+  ] ; # 
+  fhir:group ( [
+     fhir:source [
+       fhir:v "http://snomed.info/sct"^^xsd:anyURI ;
+       fhir:link <http://snomed.info/sct>
+     ] ;
+     fhir:target [
+       fhir:v "http://hl7.org/fhir/sid/icd-10-cm"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/sid/icd-10-cm>
+     ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "263204007" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "S52.209A" ] ;
+         fhir:relationship [ fhir:v "source-is-broader-than-target" ] ;
+         fhir:comment [ fhir:v "The target mapping to ICD-10-CM is 'source-is-broader-than-target', since additional patient data on the encounter (initial vs. subsequent) and fracture type is required for a valid ICD-10-CM mapping." ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "263204007" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "S52.209D" ] ;
+         fhir:relationship [ fhir:v "source-is-broader-than-target" ] ;
+         fhir:comment [ fhir:v "The target mapping to ICD-10-CM is 'source-is-broader-than-target', since additional patient data on the encounter (initial vs. subsequent), fracture type and healing (for subsequent encounter) is required for a valid ICD-10-CM mapping." ]
+       ] )
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,65 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Account ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">HACC Funded Billing for Peter James Chalmers</div>"
+  ] ; # 
+
+  fhir:identifier [ rdf:first [
+     fhir:system [ fhir:v "urn:oid:0.1.2.3.4.5.6.7"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "654321" ]
+  ] ;
+     rdf:rest rdf:nil ] ; #
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:type [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActCode"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "PBILLACCT" ] ;
+       fhir:display [ fhir:v "patient billing account" ]
+     ] ) ;
+     fhir:text [ fhir:v "patient" ]
+  ] ; # 
+  fhir:name [ fhir:v "HACC Funded Billing for Peter James Chalmers"] ; # 
+  fhir:subject [ rdf:first  [
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "Peter James Chalmers" ]
+  ] ;
+     rdf:rest rdf:nil ] ; # 
+  fhir:servicePeriod [
+     fhir:start [ fhir:v "2016-01-01"^^xsd:date ] ;
+     fhir:end [ fhir:v "2016-06-30"^^xsd:date ]
+  ] ; # 
+  fhir:coverage ([ rdf:first [
+     fhir:coverage [
+       fhir:reference [ fhir:v "Coverage/7546D" ]
+     ] ;
+     fhir:priority [ fhir:v "1"^^xsd:positiveInteger ]
+     ];
+     rdf:rest rdf:nil ]); #
+  fhir:owner [
+     fhir:reference [ fhir:v "Organization/hl7" ]
+  ] ; # 
+  fhir:description [ fhir:v "Hospital charges"] ; # 
+  fhir:relatedAccount ( [
+     fhir:relationship [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/account-relationship"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "guarantor" ]
+       ] )
+     ] ;
+     fhir:account [
+       fhir:reference [ fhir:v "Account/ewg" ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

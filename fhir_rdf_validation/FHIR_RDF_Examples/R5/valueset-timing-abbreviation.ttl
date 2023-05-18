@@ -1,0 +1,188 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ValueSet ;
+  fhir:id [ fhir:v "timing-abbreviation"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablevalueset" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "fhir" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/timing-abbreviation"], [ fhir:v "http://hl7.org/fhir/ValueSet/timing-abbreviation"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.78" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.78" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "TimingAbbreviation"], [ fhir:v "TimingAbbreviation"] ;
+  fhir:title [ fhir:v "TimingAbbreviation"], [ fhir:v "TimingAbbreviation"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Code for a known / defined timing pattern."], [ fhir:v "Code for a known / defined timing pattern."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:immutable [ fhir:v "true"] ;
+  fhir:compose [
+     fhir:include ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/timing-abbreviation" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-GTSAbbreviation" ] ;
+       fhir:concept ( [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "Two times a day at institution specified time" ]
+         ] ) ;
+         fhir:code [ fhir:v "BID" ] ;
+         fhir:display [ fhir:v "BID" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "Three times a day at institution specified time" ]
+         ] ) ;
+         fhir:code [ fhir:v "TID" ] ;
+         fhir:display [ fhir:v "TID" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "Four times a day at institution specified time" ]
+         ] ) ;
+         fhir:code [ fhir:v "QID" ] ;
+         fhir:display [ fhir:v "QID" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "Every morning at institution specified times" ]
+         ] ) ;
+         fhir:code [ fhir:v "AM" ] ;
+         fhir:display [ fhir:v "AM" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "Every afternoon at institution specified times" ]
+         ] ) ;
+         fhir:code [ fhir:v "PM" ] ;
+         fhir:display [ fhir:v "PM" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "Every Day at institution specified times" ]
+         ] ) ;
+         fhir:code [ fhir:v "QD" ] ;
+         fhir:display [ fhir:v "QD" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "Every Other Day at institution specified times" ]
+         ] ) ;
+         fhir:code [ fhir:v "QOD" ] ;
+         fhir:display [ fhir:v "QOD" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "Every hour at institution specified times" ]
+         ] ) ;
+         fhir:code [ fhir:v "Q1H" ] ;
+         fhir:display [ fhir:v "every hour" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "Every 2 hours at institution specified times" ]
+         ] ) ;
+         fhir:code [ fhir:v "Q2H" ] ;
+         fhir:display [ fhir:v "every 2 hours" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "Every 3 hours at institution specified times" ]
+         ] ) ;
+         fhir:code [ fhir:v "Q3H" ] ;
+         fhir:display [ fhir:v "every 3 hours" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "Every 4 hours at institution specified times" ]
+         ] ) ;
+         fhir:code [ fhir:v "Q4H" ] ;
+         fhir:display [ fhir:v "Q4H" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "Every 6 Hours  at institution specified times" ]
+         ] ) ;
+         fhir:code [ fhir:v "Q6H" ] ;
+         fhir:display [ fhir:v "Q6H" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "Every 8 hours at institution specified times" ]
+         ] ) ;
+         fhir:code [ fhir:v "Q8H" ] ;
+         fhir:display [ fhir:v "every 8 hours" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "At bedtime (institution specified time)" ]
+         ] ) ;
+         fhir:code [ fhir:v "BED" ] ;
+         fhir:display [ fhir:v "at bedtime" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "Weekly at institution specified time" ]
+         ] ) ;
+         fhir:code [ fhir:v "WK" ] ;
+         fhir:display [ fhir:v "weekly" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "Monthly at institution specified time" ]
+         ] ) ;
+         fhir:code [ fhir:v "MO" ] ;
+         fhir:display [ fhir:v "monthly" ]
+       ] )
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

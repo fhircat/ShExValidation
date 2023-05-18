@@ -1,0 +1,113 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "action-code"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "cds" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "draft" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/action-code"], [ fhir:v "http://hl7.org/fhir/action-code"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1944" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1944" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "ActionCode"], [ fhir:v "ActionCode"] ;
+  fhir:title [ fhir:v "Action Code"], [ fhir:v "Action Code"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2020-12-28T16:55:11+11:00"], [ fhir:v "2020-12-28T16:55:11+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Provides examples of actions to be performed."], [ fhir:v "Provides examples of actions to be performed."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/action-code"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "send-message" ] ;
+     fhir:display [ fhir:v "Send a message" ] ;
+     fhir:definition [ fhir:v "The action indicates that a particular message should be sent to a participant in the process." ]
+  ] [
+     fhir:code [ fhir:v "collect-information" ] ;
+     fhir:display [ fhir:v "Collect information" ] ;
+     fhir:definition [ fhir:v "The action indicates that information should be collected from a participant in the process." ]
+  ] [
+     fhir:code [ fhir:v "prescribe-medication" ] ;
+     fhir:display [ fhir:v "Prescribe a medication" ] ;
+     fhir:definition [ fhir:v "The action indicates that a particular medication should be prescribed to the patient." ]
+  ] [
+     fhir:code [ fhir:v "recommend-immunization" ] ;
+     fhir:display [ fhir:v "Recommend an immunization" ] ;
+     fhir:definition [ fhir:v "The action indicates that a particular immunization should be performed." ]
+  ] [
+     fhir:code [ fhir:v "order-service" ] ;
+     fhir:display [ fhir:v "Order a service" ] ;
+     fhir:definition [ fhir:v "The action indicates that a particular service should be provided." ]
+  ] [
+     fhir:code [ fhir:v "propose-diagnosis" ] ;
+     fhir:display [ fhir:v "Propose a diagnosis" ] ;
+     fhir:definition [ fhir:v "The action indicates that a particular diagnosis should be proposed." ]
+  ] [
+     fhir:code [ fhir:v "record-detected-issue" ] ;
+     fhir:display [ fhir:v "Record a detected issue" ] ;
+     fhir:definition [ fhir:v "The action indicates that a particular detected issue should be recorded." ]
+  ] [
+     fhir:code [ fhir:v "record-inference" ] ;
+     fhir:display [ fhir:v "Record an inference" ] ;
+     fhir:definition [ fhir:v "The action indicates that a particular inference should be recorded." ]
+  ] [
+     fhir:code [ fhir:v "report-flag" ] ;
+     fhir:display [ fhir:v "Report a flag" ] ;
+     fhir:definition [ fhir:v "The action indicates that a particular flag should be reported." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

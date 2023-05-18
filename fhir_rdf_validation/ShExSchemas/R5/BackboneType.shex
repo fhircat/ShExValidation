@@ -1,0 +1,23 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <DataType.shex>
+
+# Base for datatypes that can carry modifier extensions
+<BackboneType> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:BackboneType];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:modifierExtension @<OneOrMore_Extension>?;  # Extensions that cannot be ignored 
+                                            # even if unrecognized 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Extension> CLOSED {
+    rdf:first @<Extension>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Extension> 
+}
+

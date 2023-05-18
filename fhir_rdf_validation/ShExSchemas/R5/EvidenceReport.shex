@@ -1,0 +1,205 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <Range.shex>
+IMPORT <Group.shex>
+IMPORT <string.shex>
+IMPORT <Period.shex>
+IMPORT <Device.shex>
+IMPORT <Person.shex>
+IMPORT <boolean.shex>
+IMPORT <markdown.shex>
+IMPORT <Citation.shex>
+IMPORT <Resource.shex>
+IMPORT <Quantity.shex>
+IMPORT <Reference.shex>
+IMPORT <Narrative.shex>
+IMPORT <Identifier.shex>
+IMPORT <Organization.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <MetadataResource.shex>
+
+
+start=@<EvidenceReport> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A EvidenceReport
+<EvidenceReport> EXTENDS @<MetadataResource> CLOSED {   
+
+    a [fhir:EvidenceReport];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:url @<uri>?;                       # Canonical identifier for this 
+                                            # EvidenceReport, represented as a 
+                                            # globally unique URI 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Unique identifier for the evidence 
+                                            # report 
+    fhir:relatedIdentifier @<OneOrMore_Identifier>?;  # Identifiers for articles that may 
+                                            # relate to more than one evidence 
+                                            # report 
+    fhir:citeAs ((@<Reference>  AND {fhir:link @<Citation> })  OR 
+    			@<markdown> )  AND { rdf:type IRI } ?;  # Citation for this report
+    fhir:type @<CodeableConcept>?;          # Kind of report
+    fhir:note @<OneOrMore_Annotation>?;     # Used for footnotes and annotations
+    fhir:relatedArtifact @<OneOrMore_RelatedArtifact>?;  # Link, description or reference to 
+                                            # artifact associated with the 
+                                            # report 
+    fhir:subject @<BackboneElement>;        # Focus of the report
+    fhir:publisher @<string>?;              # Name of the publisher 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:author @<OneOrMore_ContactDetail>?;  # Who authored the content
+    fhir:editor @<OneOrMore_ContactDetail>?;  # Who edited the content
+    fhir:reviewer @<OneOrMore_ContactDetail>?;  # Who reviewed the content
+    fhir:endorser @<OneOrMore_ContactDetail>?;  # Who endorsed the content
+    fhir:relatesTo @<OneOrMore_BackboneElement>?;  # Relationships to other 
+                                            # compositions/documents 
+    fhir:section @<OneOrMore_BackboneElement>?;  # Composition is broken into sections
+}  
+
+# Target of the relationship
+<EvidenceReport.relatesTo.target> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:url @<uri>?;                       # Target of the relationship URL
+    fhir:identifier @<Identifier>?;         # Target of the relationship 
+                                            # Identifier 
+    fhir:display @<markdown>?;              # Target of the relationship Display
+    fhir:resource @<Reference> AND {fhir:link 
+    			@<Resource> }?;  # Target of the relationship 
+                                            # Resource reference 
+}  
+
+# Characteristic
+<EvidenceReport.subject.characteristic> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>;           # Characteristic code
+    fhir:v ((@<Reference>  AND {fhir:link @<Resource> })  OR 
+    			@<CodeableConcept>  OR 
+    			@<boolean>  OR 
+    			@<Quantity>  OR 
+    			@<Range> )  AND { rdf:type IRI } ;  # Characteristic value
+    fhir:exclude @<boolean>?;               # Is used to express not the 
+                                            # characteristic 
+    fhir:period @<Period>?;                 # Timeframe for the characteristic
+}  
+
+# Focus of the report
+<EvidenceReport.subject> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:characteristic @<OneOrMore_BackboneElement>?;  # Characteristic
+    fhir:note @<OneOrMore_Annotation>?;     # Footnotes and/or explanatory notes
+}  
+
+# Nested Section
+<EvidenceReport.section.section> CLOSED {   
+}  
+
+# Composition is broken into sections
+<EvidenceReport.section> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:title @<string>?;                  # Label for section (e.g. for ToC)
+    fhir:focus @<CodeableConcept>?;         # Classification of section 
+                                            # (recommended) 
+    fhir:focusReference @<Reference> AND {fhir:link 
+    			@<Resource> }?;  # Classification of section by 
+                                            # Resource 
+    fhir:author @<OneOrMore_Reference_Device_OR_Group_OR_Organization_OR_Person>?;  # Who and/or what authored the 
+                                            # section 
+    fhir:text @<Narrative>?;                # Text summary of the section, for 
+                                            # human interpretation 
+    fhir:mode @<code> AND
+    	{fhir:v @fhirvs:list-mode}?;  # working | snapshot | changes
+    fhir:orderedBy @<CodeableConcept>?;     # Order of section entries
+    fhir:entryClassifier @<OneOrMore_CodeableConcept>?;  # Extensible classifiers as content
+    fhir:entryReference @<OneOrMore_Reference_Resource>?;  # Reference to resources as content
+    fhir:entryQuantity @<OneOrMore_Quantity>?;  # Quantity as content
+    fhir:emptyReason @<CodeableConcept>?;   # Why the section is empty
+    fhir:section @<OneOrMore_EvidenceReport.section>?;  # Nested Section
+}  
+
+# Relationships to other compositions/documents
+<EvidenceReport.relatesTo> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code> AND
+    	{fhir:v @fhirvs:report-relation-type};  # replaces | amends | appends | 
+                                            # transforms | replacedWith | 
+                                            # amendedWith | appendedWith | 
+                                            # transformedWith 
+    fhir:target @<BackboneElement>;         # Target of the relationship
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_UsageContext> CLOSED {
+    rdf:first @<UsageContext>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_UsageContext> 
+}
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_RelatedArtifact> CLOSED {
+    rdf:first @<RelatedArtifact>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_RelatedArtifact> 
+}
+
+<OneOrMore_ContactDetail> CLOSED {
+    rdf:first @<ContactDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactDetail> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Reference_Device_OR_Group_OR_Organization_OR_Person> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Device> OR 
+			@<Group> OR 
+			@<Organization> OR 
+			@<Person> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Device_OR_Group_OR_Organization_OR_Person> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+
+<OneOrMore_Quantity> CLOSED {
+    rdf:first @<Quantity>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Quantity> 
+}
+
+<OneOrMore_EvidenceReport.section> CLOSED {
+    rdf:first @<EvidenceReport.section>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_EvidenceReport.section> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+
+# The processing mode that applies to this list.
+fhirvs:list-mode ["working" "snapshot" "changes"]
+
+# The type of relationship between reports.
+fhirvs:report-relation-type ["replaces" "amends" "appends" "transforms" "replacedWith" "amendedWith" "appendedWith" "transformedWith"]
+

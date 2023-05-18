@@ -1,0 +1,138 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:AllergyIntolerance ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: AllergyIntolerance</b><a name=\"example\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource AllergyIntolerance &quot;example&quot; </p></div><p><b>identifier</b>: <span title=\"  an identifier used for this allergic propensity (adverse reaction risk)  \">id: 49476534</span></p><p><b>clinicalStatus</b>: <span title=\"  this individual has had several reactions  \">Active <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-allergyintolerance-clinical.html\">AllergyIntolerance Clinical Status Codes</a>#active)</span></span></p><p><b>verificationStatus</b>: Confirmed <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-allergyintolerance-verification.html\">AllergyIntolerance Verification Status</a>#confirmed)</span></p><p><b>type</b>: <span title=\"  note: it's often unknown whether an allergy is mediated by an immune response, and not as significant as once thought  \">Allergy <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-allergy-intolerance-type.html\">Allergy Intolerance Type</a>#allergy)</span></span></p><p><b>category</b>: <span title=\"  this categorization is implied by &quot;cashew nut&quot; and therefore basically \n    redundant, but many systems collect this field anyway, since it's either \n    useful when the substance is not coded, or it's quicker to sort/filter on\n    than using terminology based reasoning  \">food</span></p><p><b>criticality</b>: <span title=\"  there is no question that the allergy is real and serious  \">high</span></p><p><b>code</b>: <span title=\"  Allergy or intolerance code (substance, product, condition or negated/excluded statement) or text. A few times, \n    there's a full description of a complex substance/product - in these caes, use the\n    extension [url] to refer to a Substance resource.  \">Cashew nuts <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#227493005)</span></span></p><p><b>patient</b>: <span title=\"  the patient that actually has the risk of adverse reaction  \"><a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</span></p><p><b>onset</b>: <span title=\"  when the allergy was first noted (in this case the same as reaction.onset of the first occurrence)  \">2004</span></p><p><b>recordedDate</b>: <span title=\"  the date that this entry was recorded  \">2014-10-09T14:58:00+11:00</span></p><blockquote><p><b>participant</b></p><p><b>function</b>: Author <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-provenance-participant-type.html\">Provenance participant type</a>#author)</span></p><p><b>actor</b>: <a href=\"practitioner-example.html\">Practitioner/example</a> &quot;Adam CAREFUL&quot;</p></blockquote><blockquote><p><b>participant</b></p><p><b>function</b>: Informant <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-provenance-participant-type.html\">Provenance participant type</a>#informant)</span></p><p><b>actor</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p></blockquote><p><b>lastOccurrence</b>: <span title=\"  last happened June 2012. Typically, systems either track lastOccurrence,\n     or a list of events.  \">2012-06</span></p><p><b>note</b>: <span title=\"  an additional note about the allergy propensity by the recorder  \">The criticality is high becasue of the observed anaphylactic reaction when challenged with cashew extract.</span></p><blockquote><p><b>reaction</b></p><p><b>substance</b>: <span title=\"  \n      It's possible to list specific things to which the patient responded,\n      e.g. chocolate (that happened to contain cashew nuts). This event has\n      such a specific substance. Note that systems should ensure that what\n      goes in here does not conflict with the substance above, and systems\n      processing the data can be sure that what is here does not contravene\n      the substance above\n     \">cashew nut allergenic extract Injectable Product <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-rxNorm.html\">RxNorm</a>#1160593)</span></span></p><h3>Manifestations</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Anaphylactic reaction <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#39579001)</span></td></tr></table><p><b>description</b>: Challenge Protocol. Severe reaction to subcutaneous cashew extract. Epinephrine administered</p><p><b>onset</b>: 2012-06-12</p><p><b>severity</b>: severe</p><p><b>exposureRoute</b>: Subcutaneous route <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#34206005)</span></p></blockquote><blockquote><p><b>reaction</b></p><h3>Manifestations</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Urticaria <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#64305001)</span></td></tr></table><p><b>onset</b>: 2004</p><p><b>severity</b>: moderate</p><p><b>note</b>: <span title=\"  an additional note about the reaction by the recorder  \">The patient reports that the onset of urticaria was within 15 minutes of eating cashews.</span></p></blockquote></div>"
+  ] ; #    an identifier used for this allergic propensity (adverse reaction risk)   
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://acme.com/ids/patients/risks"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "49476534" ]
+  ] ) ; # 
+  fhir:clinicalStatus [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/allergyintolerance-clinical"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "active" ] ;
+       fhir:display [ fhir:v "Active" ]
+     ] )
+  ] ; #    this individual has had several reactions   
+  fhir:verificationStatus [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/allergyintolerance-verification"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "confirmed" ] ;
+       fhir:display [ fhir:v "Confirmed" ]
+     ] )
+  ] ; # 
+  fhir:type [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/allergy-intolerance-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "allergy" ] ;
+       fhir:display [ fhir:v "Allergy" ]
+     ] )
+  ] ; #    note: it's often unknown whether an allergy is mediated by an immune response, and not as significant as once thought   
+  fhir:category ( [ fhir:v "food"] ) ; #    this categorization is implied by "cashew nut" and therefore basically 
+#    redundant, but many systems collect this field anyway, since it's either 
+#    useful when the substance is not coded, or it's quicker to sort/filter on
+#    than using terminology based reasoning   
+  fhir:criticality [ fhir:v "high"] ; #    there is no question that the allergy is real and serious   
+  fhir:code [
+     fhir:coding ( [
+       a sct:227493005 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "227493005" ] ;
+       fhir:display [ fhir:v "Cashew nuts" ]
+     ] )
+  ] ; #    Allergy or intolerance code (substance, product, condition or negated/excluded statement) or text. A few times, 
+#    there's a full description of a complex substance/product - in these caes, use the
+#    extension [url] to refer to a Substance resource.   
+  fhir:patient [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; #    the patient that actually has the risk of adverse reaction   
+  fhir:onset [ fhir:v "2004"^^xsd:gYear] ; #    when the allergy was first noted (in this case the same as reaction.onset of the first occurrence)   
+  fhir:recordedDate [ fhir:v "2014-10-09T14:58:00+11:00"^^xsd:dateTime] ; #    the date that this entry was recorded   
+  fhir:participant ( [
+     fhir:function [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/provenance-participant-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "author" ] ;
+         fhir:display [ fhir:v "Author" ]
+       ] )
+     ] ;
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/example" ]
+     ]
+  ] [
+     fhir:function [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/provenance-participant-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "informant" ] ;
+         fhir:display [ fhir:v "Informant" ]
+       ] )
+     ] ;
+     fhir:actor [
+       fhir:reference [ fhir:v "Patient/example" ]
+     ]
+  ] ) ; # 
+  fhir:lastOccurrence [ fhir:v "2012-06"^^xsd:gYearMonth] ; #    last happened June 2012. Typically, systems either track lastOccurrence,
+#     or a list of events.   
+  fhir:note ( [
+     fhir:text [ fhir:v "The criticality is high becasue of the observed anaphylactic reaction when challenged with cashew extract." ]
+  ] ) ; #    an additional note about the allergy propensity by the recorder   
+  fhir:reaction ( [
+     fhir:substance [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://www.nlm.nih.gov/research/umls/rxnorm"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "1160593" ] ;
+         fhir:display [ fhir:v "cashew nut allergenic extract Injectable Product" ]
+       ] )
+     ] ; #    \n      It's possible to list specific things to which the patient responded,\n      e.g. chocolate (that happened to contain cashew nuts). This event has\n      such a specific substance. Note that systems should ensure that what\n      goes in here does not conflict with the substance above, and systems\n      processing the data can be sure that what is here does not contravene\n      the substance above\n      
+     fhir:manifestation ( [
+       fhir:concept [
+         fhir:coding ( [
+           a sct:39579001 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "39579001" ] ;
+           fhir:display [ fhir:v "Anaphylactic reaction" ]
+         ] )
+       ]
+     ] ) ;
+     fhir:description [ fhir:v "Challenge Protocol. Severe reaction to subcutaneous cashew extract. Epinephrine administered" ] ;
+     fhir:onset [ fhir:v "2012-06-12"^^xsd:date ] ;
+     fhir:severity [ fhir:v "severe" ] ;
+     fhir:exposureRoute [
+       fhir:coding ( [
+         a sct:34206005 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "34206005" ] ;
+         fhir:display [ fhir:v "Subcutaneous route" ]
+       ] )
+     ]
+  ] [
+     fhir:manifestation ( [
+       fhir:concept [
+         fhir:coding ( [
+           a sct:64305001 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "64305001" ] ;
+           fhir:display [ fhir:v "Urticaria" ]
+         ] )
+       ]
+     ] ) ;
+     fhir:onset [ fhir:v "2004"^^xsd:gYear ] ;
+     fhir:severity [ fhir:v "moderate" ] ;
+     fhir:note ( [
+       fhir:text [ fhir:v "The patient reports that the onset of urticaria was within 15 minutes of eating cashews." ]
+     ] ) #    an additional note about the reaction by the recorder   
+  ] )] . #    past events. There's no claim that this is all the events, and 
+#     that should not be assumed   
+
+# -------------------------------------------------------------------------------------
+

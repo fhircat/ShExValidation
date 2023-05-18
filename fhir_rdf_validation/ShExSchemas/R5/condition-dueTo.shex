@@ -1,0 +1,32 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Extension.shex>
+IMPORT <Reference.shex>
+IMPORT <Condition.shex>
+IMPORT <Procedure.shex>
+IMPORT <Immunization.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <MedicationUsage.shex>
+IMPORT <MedicationAdministration.shex>
+
+# Causes for this Condition
+<condition-dueTo> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:condition-dueTo];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/condition-dueTo"]}; 
+    fhir:v (@<CodeableConcept>  OR 
+    			(@<Reference>  AND {fhir:link @<Condition> OR 
+    			 @<Procedure> OR 
+    			 @<MedicationAdministration> OR 
+    			 @<Immunization> OR 
+    			 @<MedicationUsage> }) )  AND { rdf:type IRI } ; 
+    ^fhir:extension { a [fhir:Condition]
+        }
+}  
+

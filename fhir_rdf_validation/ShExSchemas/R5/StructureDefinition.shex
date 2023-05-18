@@ -1,0 +1,170 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <id.shex>
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <string.shex>
+IMPORT <boolean.shex>
+IMPORT <dateTime.shex>
+IMPORT <markdown.shex>
+IMPORT <canonical.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CanonicalResource.shex>
+
+
+start=@<StructureDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Structural Definition
+<StructureDefinition> EXTENDS @<CanonicalResource> CLOSED {   
+
+    a [fhir:StructureDefinition];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:url @<uri>;                        # Canonical identifier for this 
+                                            # structure definition, represented 
+                                            # as a URI (globally unique) 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
+                                            # structure definition 
+    fhir:version @<string>?;                # Business version of the structure 
+                                            # definition 
+    fhir:name @<string>;                    # Name for this structure definition 
+                                            # (computer friendly) 
+    fhir:title @<string>?;                  # Name for this structure definition 
+                                            # (human friendly) 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:date @<dateTime>?;                 # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the structure definition 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for 
+                                            # structure definition (if 
+                                            # applicable) 
+    fhir:purpose @<markdown>?;              # Why this structure definition is 
+                                            # defined 
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:keyword @<OneOrMore_Coding>?;      # Assist with indexing and finding
+    fhir:fhirVersion @<code> AND
+    	{fhir:v @fhirvs:FHIR-version}?;  # FHIR Version this 
+                                            # StructureDefinition targets 
+    fhir:mapping @<OneOrMore_BackboneElement>?;  # External specification that the 
+                                            # content is mapped to 
+    fhir:kind @<code> AND
+    	{fhir:v @fhirvs:structure-definition-kind};  # primitive-type | complex-type | 
+                                            # resource | logical 
+    fhir:abstract @<boolean>;               # Whether the structure is abstract
+    fhir:context @<OneOrMore_BackboneElement>?;  # If an extension, where it can be 
+                                            # used in instances 
+    fhir:contextInvariant @<OneOrMore_string>?;  # FHIRPath invariants - when the 
+                                            # extension can be used 
+    fhir:type @<uri>;                       # Type defined or constrained by 
+                                            # this structure 
+    fhir:baseDefinition @<canonical>?;      # Definition that this type is 
+                                            # constrained/specialized from 
+    fhir:derivation @<code> AND
+    	{fhir:v @fhirvs:type-derivation-rule}?;  # specialization | constraint - How 
+                                            # relates to base definition 
+    fhir:snapshot @<BackboneElement>?;      # Snapshot view of the structure
+    fhir:differential @<BackboneElement>?;  # Differential view of the structure
+}  
+
+# Snapshot view of the structure
+<StructureDefinition.snapshot> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:element @<OneOrMore_ElementDefinition>;  # Definition of elements in the 
+                                            # resource (if no 
+                                            # StructureDefinition) 
+}  
+
+# Differential view of the structure
+<StructureDefinition.differential> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:element @<OneOrMore_ElementDefinition>;  # Definition of elements in the 
+                                            # resource (if no 
+                                            # StructureDefinition) 
+}  
+
+# External specification that the content is mapped to
+<StructureDefinition.mapping> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:identity @<id>;                    # Internal id when this mapping is 
+                                            # used 
+    fhir:uri @<uri>?;                       # Identifies what this mapping 
+                                            # refers to 
+    fhir:name @<string>?;                   # Names what this mapping refers to
+    fhir:comment @<string>?;                # Versions, Issues, Scope 
+                                            # limitations etc. 
+}  
+
+# If an extension, where it can be used in instances
+<StructureDefinition.context> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:extension-context-type};  # fhirpath | element | extension
+    fhir:expression @<string>;              # Where the extension can be used in 
+                                            # instances 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_ContactDetail> CLOSED {
+    rdf:first @<ContactDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactDetail> 
+}
+
+<OneOrMore_UsageContext> CLOSED {
+    rdf:first @<UsageContext>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_UsageContext> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Coding> CLOSED {
+    rdf:first @<Coding>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Coding> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_string> CLOSED {
+    rdf:first @<string>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_string> 
+}
+
+<OneOrMore_ElementDefinition> CLOSED {
+    rdf:first @<ElementDefinition>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ElementDefinition> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Defines the type of structure that a definition is describing.
+fhirvs:structure-definition-kind ["primitive-type" "complex-type" "resource" "logical"]
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+
+# How an extension context is interpreted.
+fhirvs:extension-context-type ["fhirpath" "element" "extension"]
+
+# All published FHIR Versions.
+fhirvs:FHIR-version ["0.01" "0.05" "0.06" "0.11" "0.0" "0.0.80" "0.0.81" "0.0.82" "0.4" "0.4.0" "0.5" "0.5.0" "1.0" "1.0.0" "1.0.1" "1.0.2" "1.1" "1.1.0" "1.4" "1.4.0" "1.6" "1.6.0" "1.8" "1.8.0" "3.0" "3.0.0" "3.0.1" "3.0.2" "3.3" "3.3.0" "3.5" "3.5.0" "4.0" "4.0.0" "4.0.1" "4.1" "4.1.0" "4.2" "4.2.0" "4.3" "4.3.0" "4.4" "4.4.0" "4.5" "4.5.0" "4.6" "4.6.0"]
+
+# How a type relates to its baseDefinition.
+fhirvs:type-derivation-rule ["specialization" "constraint"]
+

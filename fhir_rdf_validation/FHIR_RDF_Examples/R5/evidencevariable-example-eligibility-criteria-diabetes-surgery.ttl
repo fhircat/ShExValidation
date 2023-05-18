@@ -1,0 +1,676 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:EvidenceVariable ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-eligibility-criteria-diabetes-surgery"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: EvidenceVariable</b><a name=\"example-eligibility-criteria-diabetes-surgery\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource EvidenceVariable &quot;example-eligibility-criteria-diabetes-surgery&quot; </p></div><p><b>identifier</b>: FEvIR Object Identifier: 32120</p><p><b>name</b>: StudyEligibilityCriteriaEligibilityCriteriaForBariatricSurgeryRandomizedTrialDiabetesSurgeryStudy</p><p><b>title</b>: StudyEligibilityCriteria: Eligibility Criteria for Bariatric Surgery Randomized Trial (Diabetes Surgery Study)</p><p><b>status</b>: active</p><p><b>publisher</b>: Computable Publishing LLC</p><p><b>contact</b>: <a href=\"mailto:support@computablepublishing.com\">support@computablepublishing.com</a></p><p><b>description</b>: Inclusion Criteria:    Age 30 to 67 years at eligibility visit.    Diagnosed with T2DM at least 6 months prior to enrollment, under the active care of a doctor for at least the six months prior to enrollment, and HbA1c ≥ 8.0%.    Body Mass Index (BMI) ≥ 30.0 kg/m2 and ≤ 39.9 kg/m2 at eligibility visit.    Willingness to accept random assignment to either treatment group.    Expect to live or work within approximately one hour's traveling time from the study clinic for the duration of the two-year trial.    Willingness to comply with the follow-up protocol and successful completion of the run-in.    Written informed consent. ///// Exclusion Criteria:   Cardiovascular event (myocardial infarction, acute coronary syndrome, coronary artery angioplasty or bypass, stroke) in the past six months.    Current evidence of congestive heart failure, angina pectoris, or symptomatic peripheral vascular disease.    Cardiac stress test indicating that surgery or IMM would not be safe.    Pulmonary embolus or thrombophlebitis in the past six months.    Cancer of any kind (except basal cell skin cancer or cancer in situ) unless documented to be disease-free for five years.    Significant anemia (hemoglobin 1.0 g or more below normal range) or history of coagulopathy.    Serum creatinine ≥ 1.5 mg/dl.    HbA1c &gt; 14.0%.</p><p><b>copyright</b>: https://creativecommons.org/licenses/by-nc-sa/4.0/</p><p><b>effectivePeriod</b>: 2008-02 --&gt; 2016-12</p><p><b>author</b>: Brian S. Alper: </p><p><b>actual</b>: true</p><blockquote><p><b>characteristic</b></p><p><b>description</b>: Age 30 to 67 years at eligibility visit.</p><p><b>exclude</b>: false</p><h3>DefinitionByTypeAndValues</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Age <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#397669002)</span></td><td>30-67 years</td></tr></table><h3>TimeFromEvents</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Event[x]</b></td><td><b>Quantity</b></td></tr><tr><td>*</td><td>at eligibility visit</td><td>EligibilityVisit</td><td>0</td></tr></table></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Diagnosed with T2DM at least 6 months prior to enrollment, under the active care of a doctor for at least the six months prior to enrollment, and HbA1c ≥ 8.0%.</p><p><b>exclude</b>: false</p><blockquote><p><b>definitionByCombination</b></p><p><b>code</b>: all-of</p><blockquote><p><b>characteristic</b></p><p><b>description</b>: Diagnosed with T2DM at least 6 months prior to enrollment</p><p><b>exclude</b>: false</p><blockquote><p><b>definitionByTypeAndValue</b></p></blockquote><blockquote><p><b>timeFromEvent</b></p></blockquote></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: under the active care of a doctor for at least the six months prior to enrollment</p><p><b>note</b>: assumption that active care means active care of type 2 diabetes mellitus</p><p><b>exclude</b>: false</p><p><b>definitionCodeableConcept</b>: under the active care of a doctor <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#305450004 &quot;Under care of doctor (finding)&quot;)</span></p><blockquote><p><b>timeFromEvent</b></p></blockquote></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: HbA1c ≥ 8.0%</p><p><b>note</b>: assumption that this is the last recorded HbA1c before the enrollment visit, but not explicitly stated in the short-phrase Eligibility Criteria</p><p><b>exclude</b>: false</p><blockquote><p><b>definitionByTypeAndValue</b></p></blockquote></blockquote></blockquote></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Body Mass Index (BMI) ≥ 30.0 kg/m2 and ≤ 39.9 kg/m2 at eligibility visit.</p><p><b>exclude</b>: false</p><h3>DefinitionByTypeAndValues</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Body mass index (BMI) [Ratio] <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#39156-5)</span></td><td>30-39.9 kg/m2</td></tr></table><h3>TimeFromEvents</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Event[x]</b></td><td><b>Quantity</b></td></tr><tr><td>*</td><td>at eligibility visit</td><td>EligibilityVisit</td><td>0</td></tr></table></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Willingness to accept random assignment to either treatment group.</p><p><b>exclude</b>: false</p></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Expect to live or work within approximately one hour's traveling time from the study clinic for the duration of the two-year trial.</p><p><b>exclude</b>: false</p></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Willingness to comply with the follow-up protocol and successful completion of the run-in.</p><p><b>exclude</b>: false</p></blockquote><blockquote><p><b>characteristic</b></p><p><b>linkId</b>: EligibilityVisit</p><p><b>description</b>: Written informed consent.</p><p><b>note</b>: The example used here acknowledges attainment of the written informed consent at the eligibility visit (which is also the time of enrollment) so is referencing this characteristic with the linkId EligibilityVisit to be used as a reference point from timeFromEvent in the specification of other characteristics.</p><p><b>exclude</b>: false</p><h3>TimeFromEvents</h3><table class=\"grid\"><tr><td>-</td><td><b>Event[x]</b></td></tr><tr><td>*</td><td>Assessment of eligibility for clinical trial (procedure) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#450332002)</span></td></tr></table></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Cardiovascular event (myocardial infarction, acute coronary syndrome, coronary artery angioplasty or bypass, stroke) in the past six months.</p><p><b>exclude</b>: true</p><blockquote><p><b>definitionByCombination</b></p><p><b>code</b>: any-of</p><blockquote><p><b>characteristic</b></p><p><b>description</b>: myocardial infarction</p><blockquote><p><b>definitionByTypeAndValue</b></p></blockquote></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: acute coronary syndrome</p><blockquote><p><b>definitionByTypeAndValue</b></p></blockquote></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: coronary artery angioplasty or bypass</p><blockquote><p><b>definitionByTypeAndValue</b></p></blockquote></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: stroke</p><blockquote><p><b>definitionByTypeAndValue</b></p></blockquote></blockquote></blockquote><h3>TimeFromEvents</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Note</b></td><td><b>Event[x]</b></td><td><b>Range</b></td></tr><tr><td>*</td><td>in the past six months</td><td>occurrence within the range is equivalent to 'in the past six months'</td><td>EligibilityVisit</td><td>-6-0 months</td></tr></table></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Current evidence of congestive heart failure, angina pectoris, or symptomatic peripheral vascular disease.</p><p><b>note</b>: This may be possible to encode as presence of Disease(disorder) without 'in remission'</p><p><b>exclude</b>: true</p></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Cardiac stress test indicating that surgery or IMM would not be safe.</p><p><b>exclude</b>: true</p></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Pulmonary embolus in the past six months.</p><p><b>exclude</b>: true</p><h3>DefinitionByTypeAndValues</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Disease (disorder) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#64572001; resource-types#Condition &quot;Condition&quot;)</span></td><td>Pulmonary embolism (disorder) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#59282003)</span></td></tr></table><h3>TimeFromEvents</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Note</b></td><td><b>Event[x]</b></td><td><b>Range</b></td></tr><tr><td>*</td><td>in the past six months</td><td>occurrence within the range is equivalent to 'in the past six months'</td><td>EligibilityVisit</td><td>-6-0 months</td></tr></table></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Thrombophlebitis in the past six months.</p><p><b>exclude</b>: true</p><h3>DefinitionByTypeAndValues</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Disease (disorder) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#64572001; resource-types#Condition &quot;Condition&quot;)</span></td><td>Thrombophlebitis (disorder) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#64156001)</span></td></tr></table><h3>TimeFromEvents</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Note</b></td><td><b>Event[x]</b></td><td><b>Range</b></td></tr><tr><td>*</td><td>in the past six months</td><td>occurrence within the range is equivalent to 'in the past six months'</td><td>EligibilityVisit</td><td>-6-0 months</td></tr></table></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Cancer of any kind (except basal cell skin cancer or cancer in situ) unless documented to be disease-free for five years.</p><p><b>exclude</b>: true</p><blockquote><p><b>definitionByCombination</b></p><p><b>code</b>: all-of</p><blockquote><p><b>characteristic</b></p><p><b>description</b>: Cancer of any kind</p><p><b>exclude</b>: false</p><blockquote><p><b>definitionByTypeAndValue</b></p></blockquote></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: (except basal cell skin cancer)</p><p><b>exclude</b>: true</p><blockquote><p><b>definitionByTypeAndValue</b></p></blockquote></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: (except cancer in situ)</p><p><b>exclude</b>: true</p><blockquote><p><b>definitionByTypeAndValue</b></p></blockquote></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: unless documented to be disease-free for five years</p><p><b>exclude</b>: true</p><p><b>definitionCodeableConcept</b>: No evidence of cancer found (situation) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#395100000)</span></p><blockquote><p><b>timeFromEvent</b></p></blockquote></blockquote></blockquote></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: History of coagulopathy</p><p><b>exclude</b>: true</p></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Significant anemia (hemoglobin 1.0 g or more below normal range)</p><p><b>exclude</b>: true</p><h3>DefinitionByTypeAndValues</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Value[x]</b></td><td><b>Offset</b></td></tr><tr><td>*</td><td>Hemoglobin [Mass/volume] in Blood <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#718-7)</span></td><td>&lt;=-1 g/dL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code g/dL = 'g/dL')</span></td><td>Lower Normal Limit <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-characteristic-offset.html\">Characteristic Offset</a>#LNL)</span></td></tr></table></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Serum creatinine ≥ 1.5 mg/dl</p><p><b>exclude</b>: true</p><h3>DefinitionByTypeAndValues</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Creatinine [Mass/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2160-0)</span></td><td>&gt;=1.5 mg/dl<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mg/dL = 'mg/dL')</span></td></tr></table></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: HbA1c ≥ 14.0%</p><p><b>exclude</b>: true</p><h3>DefinitionByTypeAndValues</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Hemoglobin A1c/Hemoglobin.total in Blood <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#59261-8)</span></td><td>&gt;=14 %<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code % = '%')</span></td></tr></table></blockquote></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:type [
+       fhir:text [ fhir:v "FEvIR Object Identifier" ]
+     ] ;
+     fhir:system [ fhir:v "https://fevir.net"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "32120" ] ;
+     fhir:assigner [
+       fhir:display [ fhir:v "Computable Publishing LLC" ]
+     ]
+  ] ) ; # 
+  fhir:name [ fhir:v "StudyEligibilityCriteriaEligibilityCriteriaForBariatricSurgeryRandomizedTrialDiabetesSurgeryStudy"] ; # 
+  fhir:title [ fhir:v "StudyEligibilityCriteria: Eligibility Criteria for Bariatric Surgery Randomized Trial (Diabetes Surgery Study)"] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:publisher [ fhir:v "Computable Publishing LLC"] ; # 
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "support@computablepublishing.com" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Inclusion Criteria:    Age 30 to 67 years at eligibility visit.    Diagnosed with T2DM at least 6 months prior to enrollment, under the active care of a doctor for at least the six months prior to enrollment, and HbA1c ≥ 8.0%.    Body Mass Index (BMI) ≥ 30.0 kg/m2 and ≤ 39.9 kg/m2 at eligibility visit.    Willingness to accept random assignment to either treatment group.    Expect to live or work within approximately one hour's traveling time from the study clinic for the duration of the two-year trial.    Willingness to comply with the follow-up protocol and successful completion of the run-in.    Written informed consent. ///// Exclusion Criteria:   Cardiovascular event (myocardial infarction, acute coronary syndrome, coronary artery angioplasty or bypass, stroke) in the past six months.    Current evidence of congestive heart failure, angina pectoris, or symptomatic peripheral vascular disease.    Cardiac stress test indicating that surgery or IMM would not be safe.    Pulmonary embolus or thrombophlebitis in the past six months.    Cancer of any kind (except basal cell skin cancer or cancer in situ) unless documented to be disease-free for five years.    Significant anemia (hemoglobin 1.0 g or more below normal range) or history of coagulopathy.    Serum creatinine ≥ 1.5 mg/dl.    HbA1c > 14.0%."] ; # 
+  fhir:copyright [ fhir:v "https://creativecommons.org/licenses/by-nc-sa/4.0/"] ; # 
+  fhir:effectivePeriod [
+     fhir:start [ fhir:v "2008-02"^^xsd:gYearMonth ] ;
+     fhir:end [ fhir:v "2016-12"^^xsd:gYearMonth ]
+  ] ; # 
+  fhir:author ( [
+     fhir:name [ fhir:v "Brian S. Alper" ]
+  ] ) ; # 
+  fhir:actual [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:characteristic ( [
+     fhir:description [ fhir:v "Age 30 to 67 years at eligibility visit." ] ;
+     fhir:exclude [ fhir:v "false"^^xsd:boolean ] ;
+     fhir:definitionByTypeAndValue [
+       fhir:type [
+         fhir:coding ( [
+           a sct:397669002 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "397669002" ] ;
+           fhir:display [ fhir:v "Age" ]
+         ] )
+       ] ;
+       fhir:value [
+         a fhir:Range ;
+         fhir:low [
+           fhir:value [ fhir:v "30"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "years" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "a" ]
+         ] ;
+         fhir:high [
+           fhir:value [ fhir:v "67"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "years" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "a" ]
+         ]
+       ]
+     ] ;
+     fhir:timeFromEvent ( [
+       fhir:description [ fhir:v "at eligibility visit" ] ;
+       fhir:event [ fhir:v "EligibilityVisit" ] ;
+       fhir:quantity [
+         fhir:value [ fhir:v "0"^^xsd:decimal ]
+       ]
+     ] )
+  ] [
+     fhir:description [ fhir:v "Diagnosed with T2DM at least 6 months prior to enrollment, under the active care of a doctor for at least the six months prior to enrollment, and HbA1c ≥ 8.0%." ] ;
+     fhir:exclude [ fhir:v "false"^^xsd:boolean ] ;
+     fhir:definitionByCombination [
+       fhir:code [ fhir:v "all-of" ] ;
+       fhir:characteristic ( [
+         fhir:description [ fhir:v "Diagnosed with T2DM at least 6 months prior to enrollment" ] ;
+         fhir:exclude [ fhir:v "false"^^xsd:boolean ] ;
+         fhir:definitionByTypeAndValue [
+           fhir:type [
+             fhir:coding ( [
+               a sct:64572001 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "64572001" ] ;
+               fhir:display [ fhir:v "Disease (disorder)" ]
+             ] [
+               fhir:system [ fhir:v "http://hl7.org/fhir/resource-types"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "Condition" ] ;
+               fhir:display [ fhir:v "Condition" ]
+             ] )
+           ] ;
+           fhir:value [
+             a fhir:CodeableConcept ;
+             fhir:coding ( [
+               a sct:44054006 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "44054006" ] ;
+               fhir:display [ fhir:v "Diabetes mellitus type 2 (disorder)" ]
+             ] )
+           ]
+         ] ;
+         fhir:timeFromEvent ( [
+           fhir:description [ fhir:v "at least 6 months prior to enrollment" ] ;
+           fhir:event [ fhir:v "EligibilityVisit" ] ;
+           fhir:quantity [
+             fhir:value [ fhir:v "-6"^^xsd:decimal ] ;
+             fhir:comparator [ fhir:v "<=" ] ;
+             fhir:unit [ fhir:v "months" ] ;
+             fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "mo" ]
+           ]
+         ] )
+       ] [
+         fhir:description [ fhir:v "under the active care of a doctor for at least the six months prior to enrollment" ] ;
+         fhir:note ( [
+           fhir:text [ fhir:v "assumption that active care means active care of type 2 diabetes mellitus" ]
+         ] ) ;
+         fhir:exclude [ fhir:v "false"^^xsd:boolean ] ;
+         fhir:definitionCodeableConcept [
+           fhir:coding ( [
+             a sct:305450004 ;
+             fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "305450004" ] ;
+             fhir:display [ fhir:v "Under care of doctor (finding)" ]
+           ] ) ;
+           fhir:text [ fhir:v "under the active care of a doctor" ]
+         ] ;
+         fhir:timeFromEvent ( [
+           fhir:description [ fhir:v "for at least the six months prior to enrollment" ] ;
+           fhir:note ( [
+             fhir:text [ fhir:v "presence throughout the range is equivalent to 'for at least the six months prior to'" ]
+           ] ) ;
+           fhir:event [
+             a fhir:CodeableConcept ;
+             fhir:coding ( [
+               a sct:450332002 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "450332002" ] ;
+               fhir:display [ fhir:v "Assessment of eligibility for clinical trial" ]
+             ] )
+           ] ;
+           fhir:range [
+             fhir:low [
+               fhir:value [ fhir:v "-6"^^xsd:decimal ] ;
+               fhir:unit [ fhir:v "months" ] ;
+               fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "mo" ]
+             ] ;
+             fhir:high [
+               fhir:value [ fhir:v "0"^^xsd:decimal ] ;
+               fhir:unit [ fhir:v "months" ] ;
+               fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "mo" ]
+             ]
+           ]
+         ] )
+       ] [
+         fhir:description [ fhir:v "HbA1c ≥ 8.0%" ] ;
+         fhir:note ( [
+           fhir:text [ fhir:v "assumption that this is the last recorded HbA1c before the enrollment visit, but not explicitly stated in the short-phrase Eligibility Criteria" ]
+         ] ) ;
+         fhir:exclude [ fhir:v "false"^^xsd:boolean ] ;
+         fhir:definitionByTypeAndValue [
+           fhir:type [
+             fhir:coding ( [
+               a loinc:59261-8 ;
+               fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "59261-8" ] ;
+               fhir:display [ fhir:v "Hemoglobin A1c/Hemoglobin.total in Blood" ]
+             ] )
+           ] ;
+           fhir:value [
+             a fhir:Quantity ;
+             fhir:value [ fhir:v "8"^^xsd:decimal ] ;
+             fhir:comparator [ fhir:v ">=" ] ;
+             fhir:unit [ fhir:v "%" ] ;
+             fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "%" ]
+           ]
+         ]
+       ] )
+     ]
+  ] [
+     fhir:description [ fhir:v "Body Mass Index (BMI) ≥ 30.0 kg/m2 and ≤ 39.9 kg/m2 at eligibility visit." ] ;
+     fhir:exclude [ fhir:v "false"^^xsd:boolean ] ;
+     fhir:definitionByTypeAndValue [
+       fhir:type [
+         fhir:coding ( [
+           a loinc:39156-5 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "39156-5" ] ;
+           fhir:display [ fhir:v "Body mass index (BMI) [Ratio]" ]
+         ] )
+       ] ;
+       fhir:value [
+         a fhir:Range ;
+         fhir:low [
+           fhir:value [ fhir:v "30"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "kg/m2" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "kg/m2" ]
+         ] ;
+         fhir:high [
+           fhir:value [ fhir:v "39.9"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "kg/m2" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "kg/m2" ]
+         ]
+       ]
+     ] ;
+     fhir:timeFromEvent ( [
+       fhir:description [ fhir:v "at eligibility visit" ] ;
+       fhir:event [ fhir:v "EligibilityVisit" ] ;
+       fhir:quantity [
+         fhir:value [ fhir:v "0"^^xsd:decimal ]
+       ]
+     ] )
+  ] [
+     fhir:description [ fhir:v "Willingness to accept random assignment to either treatment group." ] ;
+     fhir:exclude [ fhir:v "false"^^xsd:boolean ]
+  ] [
+     fhir:description [ fhir:v "Expect to live or work within approximately one hour's traveling time from the study clinic for the duration of the two-year trial." ] ;
+     fhir:exclude [ fhir:v "false"^^xsd:boolean ]
+  ] [
+     fhir:description [ fhir:v "Willingness to comply with the follow-up protocol and successful completion of the run-in." ] ;
+     fhir:exclude [ fhir:v "false"^^xsd:boolean ]
+  ] [
+     fhir:linkId [ fhir:v "EligibilityVisit" ] ;
+     fhir:description [ fhir:v "Written informed consent." ] ;
+     fhir:note ( [
+       fhir:text [ fhir:v "The example used here acknowledges attainment of the written informed consent at the eligibility visit (which is also the time of enrollment) so is referencing this characteristic with the linkId EligibilityVisit to be used as a reference point from timeFromEvent in the specification of other characteristics." ]
+     ] ) ;
+     fhir:exclude [ fhir:v "false"^^xsd:boolean ] ;
+     fhir:timeFromEvent ( [
+       fhir:event [
+         a fhir:CodeableConcept ;
+         fhir:coding ( [
+           a sct:450332002 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "450332002" ] ;
+           fhir:display [ fhir:v "Assessment of eligibility for clinical trial (procedure)" ]
+         ] )
+       ]
+     ] )
+  ] [
+     fhir:description [ fhir:v "Cardiovascular event (myocardial infarction, acute coronary syndrome, coronary artery angioplasty or bypass, stroke) in the past six months." ] ;
+     fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:definitionByCombination [
+       fhir:code [ fhir:v "any-of" ] ;
+       fhir:characteristic ( [
+         fhir:description [ fhir:v "myocardial infarction" ] ;
+         fhir:definitionByTypeAndValue [
+           fhir:type [
+             fhir:coding ( [
+               a sct:64572001 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "64572001" ] ;
+               fhir:display [ fhir:v "Disease (disorder)" ]
+             ] [
+               fhir:system [ fhir:v "http://hl7.org/fhir/resource-types"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "Condition" ] ;
+               fhir:display [ fhir:v "Condition" ]
+             ] )
+           ] ;
+           fhir:value [
+             a fhir:CodeableConcept ;
+             fhir:coding ( [
+               a sct:22298006 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "22298006" ] ;
+               fhir:display [ fhir:v "Myocardial infarction (disorder)" ]
+             ] )
+           ]
+         ]
+       ] [
+         fhir:description [ fhir:v "acute coronary syndrome" ] ;
+         fhir:definitionByTypeAndValue [
+           fhir:type [
+             fhir:coding ( [
+               a sct:64572001 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "64572001" ] ;
+               fhir:display [ fhir:v "Disease (disorder)" ]
+             ] [
+               fhir:system [ fhir:v "http://hl7.org/fhir/resource-types"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "Condition" ] ;
+               fhir:display [ fhir:v "Condition" ]
+             ] )
+           ] ;
+           fhir:value [
+             a fhir:CodeableConcept ;
+             fhir:coding ( [
+               a sct:394659003 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "394659003" ] ;
+               fhir:display [ fhir:v "Acute coronary syndrome (disorder)" ]
+             ] )
+           ]
+         ]
+       ] [
+         fhir:description [ fhir:v "coronary artery angioplasty or bypass" ] ;
+         fhir:definitionByTypeAndValue [
+           fhir:type [
+             fhir:coding ( [
+               a sct:71388002 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "71388002" ] ;
+               fhir:display [ fhir:v "Procedure (procedure)" ]
+             ] )
+           ] ;
+           fhir:value [
+             a fhir:CodeableConcept ;
+             fhir:coding ( [
+               a sct:81266008 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "81266008" ] ;
+               fhir:display [ fhir:v "Heart revascularization (procedure)" ]
+             ] )
+           ]
+         ]
+       ] [
+         fhir:description [ fhir:v "stroke" ] ;
+         fhir:definitionByTypeAndValue [
+           fhir:type [
+             fhir:coding ( [
+               a sct:64572001 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "64572001" ] ;
+               fhir:display [ fhir:v "Disease (disorder)" ]
+             ] [
+               fhir:system [ fhir:v "http://hl7.org/fhir/resource-types"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "Condition" ] ;
+               fhir:display [ fhir:v "Condition" ]
+             ] )
+           ] ;
+           fhir:value [
+             a fhir:CodeableConcept ;
+             fhir:coding ( [
+               a sct:230690007 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "230690007" ] ;
+               fhir:display [ fhir:v "Cerebrovascular accident (disorder)" ]
+             ] )
+           ]
+         ]
+       ] )
+     ] ;
+     fhir:timeFromEvent ( [
+       fhir:description [ fhir:v "in the past six months" ] ;
+       fhir:note ( [
+         fhir:text [ fhir:v "occurrence within the range is equivalent to 'in the past six months'" ]
+       ] ) ;
+       fhir:event [ fhir:v "EligibilityVisit" ] ;
+       fhir:range [
+         fhir:low [
+           fhir:value [ fhir:v "-6"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "months" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "mo" ]
+         ] ;
+         fhir:high [
+           fhir:value [ fhir:v "0"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "months" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "mo" ]
+         ]
+       ]
+     ] )
+  ] [
+     fhir:description [ fhir:v "Current evidence of congestive heart failure, angina pectoris, or symptomatic peripheral vascular disease." ] ;
+     fhir:note ( [
+       fhir:text [ fhir:v "This may be possible to encode as presence of Disease(disorder) without 'in remission'" ]
+     ] ) ;
+     fhir:exclude [ fhir:v "true"^^xsd:boolean ]
+  ] [
+     fhir:description [ fhir:v "Cardiac stress test indicating that surgery or IMM would not be safe." ] ;
+     fhir:exclude [ fhir:v "true"^^xsd:boolean ]
+  ] [
+     fhir:description [ fhir:v "Pulmonary embolus in the past six months." ] ;
+     fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:definitionByTypeAndValue [
+       fhir:type [
+         fhir:coding ( [
+           a sct:64572001 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "64572001" ] ;
+           fhir:display [ fhir:v "Disease (disorder)" ]
+         ] [
+           fhir:system [ fhir:v "http://hl7.org/fhir/resource-types"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Condition" ] ;
+           fhir:display [ fhir:v "Condition" ]
+         ] )
+       ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:coding ( [
+           a sct:59282003 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "59282003" ] ;
+           fhir:display [ fhir:v "Pulmonary embolism (disorder)" ]
+         ] )
+       ]
+     ] ;
+     fhir:timeFromEvent ( [
+       fhir:description [ fhir:v "in the past six months" ] ;
+       fhir:note ( [
+         fhir:text [ fhir:v "occurrence within the range is equivalent to 'in the past six months'" ]
+       ] ) ;
+       fhir:event [ fhir:v "EligibilityVisit" ] ;
+       fhir:range [
+         fhir:low [
+           fhir:value [ fhir:v "-6"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "months" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "mo" ]
+         ] ;
+         fhir:high [
+           fhir:value [ fhir:v "0"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "months" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "mo" ]
+         ]
+       ]
+     ] )
+  ] [
+     fhir:description [ fhir:v "Thrombophlebitis in the past six months." ] ;
+     fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:definitionByTypeAndValue [
+       fhir:type [
+         fhir:coding ( [
+           a sct:64572001 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "64572001" ] ;
+           fhir:display [ fhir:v "Disease (disorder)" ]
+         ] [
+           fhir:system [ fhir:v "http://hl7.org/fhir/resource-types"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Condition" ] ;
+           fhir:display [ fhir:v "Condition" ]
+         ] )
+       ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:coding ( [
+           a sct:64156001 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "64156001" ] ;
+           fhir:display [ fhir:v "Thrombophlebitis (disorder)" ]
+         ] )
+       ]
+     ] ;
+     fhir:timeFromEvent ( [
+       fhir:description [ fhir:v "in the past six months" ] ;
+       fhir:note ( [
+         fhir:text [ fhir:v "occurrence within the range is equivalent to 'in the past six months'" ]
+       ] ) ;
+       fhir:event [ fhir:v "EligibilityVisit" ] ;
+       fhir:range [
+         fhir:low [
+           fhir:value [ fhir:v "-6"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "months" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "mo" ]
+         ] ;
+         fhir:high [
+           fhir:value [ fhir:v "0"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "months" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "mo" ]
+         ]
+       ]
+     ] )
+  ] [
+     fhir:description [ fhir:v "Cancer of any kind (except basal cell skin cancer or cancer in situ) unless documented to be disease-free for five years." ] ;
+     fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:definitionByCombination [
+       fhir:code [ fhir:v "all-of" ] ;
+       fhir:characteristic ( [
+         fhir:description [ fhir:v "Cancer of any kind" ] ;
+         fhir:exclude [ fhir:v "false"^^xsd:boolean ] ;
+         fhir:definitionByTypeAndValue [
+           fhir:type [
+             fhir:coding ( [
+               a sct:64572001 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "64572001" ] ;
+               fhir:display [ fhir:v "Disease (disorder)" ]
+             ] [
+               fhir:system [ fhir:v "http://hl7.org/fhir/resource-types"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "Condition" ] ;
+               fhir:display [ fhir:v "Condition" ]
+             ] )
+           ] ;
+           fhir:value [
+             a fhir:CodeableConcept ;
+             fhir:coding ( [
+               a sct:363346000 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "363346000" ] ;
+               fhir:display [ fhir:v "Malignant neoplastic disease (disorder)" ]
+             ] )
+           ]
+         ]
+       ] [
+         fhir:description [ fhir:v "(except basal cell skin cancer)" ] ;
+         fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+         fhir:definitionByTypeAndValue [
+           fhir:type [
+             fhir:coding ( [
+               a sct:64572001 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "64572001" ] ;
+               fhir:display [ fhir:v "Disease (disorder)" ]
+             ] [
+               fhir:system [ fhir:v "http://hl7.org/fhir/resource-types"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "Condition" ] ;
+               fhir:display [ fhir:v "Condition" ]
+             ] )
+           ] ;
+           fhir:value [
+             a fhir:CodeableConcept ;
+             fhir:coding ( [
+               a sct:254701007 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "254701007" ] ;
+               fhir:display [ fhir:v "Basal cell carcinoma of skin (disorder)" ]
+             ] )
+           ]
+         ]
+       ] [
+         fhir:description [ fhir:v "(except cancer in situ)" ] ;
+         fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+         fhir:definitionByTypeAndValue [
+           fhir:type [
+             fhir:coding ( [
+               a sct:64572001 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "64572001" ] ;
+               fhir:display [ fhir:v "Disease (disorder)" ]
+             ] [
+               fhir:system [ fhir:v "http://hl7.org/fhir/resource-types"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "Condition" ] ;
+               fhir:display [ fhir:v "Condition" ]
+             ] )
+           ] ;
+           fhir:value [
+             a fhir:CodeableConcept ;
+             fhir:coding ( [
+               a sct:109355002 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "109355002" ] ;
+               fhir:display [ fhir:v "Carcinoma in situ (disorder)" ]
+             ] )
+           ]
+         ]
+       ] [
+         fhir:description [ fhir:v "unless documented to be disease-free for five years" ] ;
+         fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+         fhir:definitionCodeableConcept [
+           fhir:coding ( [
+             a sct:395100000 ;
+             fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "395100000" ] ;
+             fhir:display [ fhir:v "No evidence of cancer found (situation)" ]
+           ] )
+         ] ;
+         fhir:timeFromEvent ( [
+           fhir:description [ fhir:v "for five years" ] ;
+           fhir:note ( [
+             fhir:text [ fhir:v "presence throughout the range is equivalent to 'for five years" ]
+           ] ) ;
+           fhir:event [ fhir:v "EligibilityVisit" ] ;
+           fhir:range [
+             fhir:low [
+               fhir:value [ fhir:v "-5"^^xsd:decimal ] ;
+               fhir:unit [ fhir:v "years" ] ;
+               fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "a" ]
+             ] ;
+             fhir:high [
+               fhir:value [ fhir:v "0"^^xsd:decimal ] ;
+               fhir:unit [ fhir:v "years" ] ;
+               fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "a" ]
+             ]
+           ]
+         ] )
+       ] )
+     ]
+  ] [
+     fhir:description [ fhir:v "History of coagulopathy" ] ;
+     fhir:exclude [ fhir:v "true"^^xsd:boolean ]
+  ] [
+     fhir:description [ fhir:v "Significant anemia (hemoglobin 1.0 g or more below normal range)" ] ;
+     fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:definitionByTypeAndValue [
+       fhir:type [
+         fhir:coding ( [
+           a loinc:718-7 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "718-7" ] ;
+           fhir:display [ fhir:v "Hemoglobin [Mass/volume] in Blood" ]
+         ] )
+       ] ;
+       fhir:value [
+         a fhir:Quantity ;
+         fhir:value [ fhir:v "-1"^^xsd:decimal ] ;
+         fhir:comparator [ fhir:v "<=" ] ;
+         fhir:unit [ fhir:v "g/dL" ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "g/dL" ]
+       ] ;
+       fhir:offset [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/characteristic-offset"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "LNL" ] ;
+           fhir:display [ fhir:v "Lower Normal Limit" ]
+         ] )
+       ]
+     ]
+  ] [
+     fhir:description [ fhir:v "Serum creatinine ≥ 1.5 mg/dl" ] ;
+     fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:definitionByTypeAndValue [
+       fhir:type [
+         fhir:coding ( [
+           a loinc:2160-0 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "2160-0" ] ;
+           fhir:display [ fhir:v "Creatinine [Mass/volume] in Serum or Plasma" ]
+         ] )
+       ] ;
+       fhir:value [
+         a fhir:Quantity ;
+         fhir:value [ fhir:v "1.5"^^xsd:decimal ] ;
+         fhir:comparator [ fhir:v ">=" ] ;
+         fhir:unit [ fhir:v "mg/dl" ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "mg/dL" ]
+       ]
+     ]
+  ] [
+     fhir:description [ fhir:v "HbA1c ≥ 14.0%" ] ;
+     fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:definitionByTypeAndValue [
+       fhir:type [
+         fhir:coding ( [
+           a loinc:59261-8 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "59261-8" ] ;
+           fhir:display [ fhir:v "Hemoglobin A1c/Hemoglobin.total in Blood" ]
+         ] )
+       ] ;
+       fhir:value [
+         a fhir:Quantity ;
+         fhir:value [ fhir:v "14"^^xsd:decimal ] ;
+         fhir:comparator [ fhir:v ">=" ] ;
+         fhir:unit [ fhir:v "%" ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "%" ]
+       ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

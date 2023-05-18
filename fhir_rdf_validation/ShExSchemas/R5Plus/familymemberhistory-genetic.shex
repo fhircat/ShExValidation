@@ -1,0 +1,20 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <FamilyMemberHistory.shex>
+#imported_end
+
+start=@<familymemberhistory-genetic> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Information about patient's relatives, relevant for patient
+<familymemberhistory-genetic> EXTENDS @<FamilyMemberHistory> CLOSED {   
+
+    a [fhir:familymemberhistory-genetic]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+}  
+

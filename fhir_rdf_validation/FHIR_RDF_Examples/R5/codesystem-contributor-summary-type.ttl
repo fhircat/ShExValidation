@@ -1,0 +1,105 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "contributor-summary-type"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "cds" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "0" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/contributor-summary-type"], [ fhir:v "http://hl7.org/fhir/contributor-summary-type"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1893" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1893" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "ContributorSummaryType"], [ fhir:v "ContributorSummaryType"] ;
+  fhir:title [ fhir:v "Contributor Summary Type"], [ fhir:v "Contributor Summary Type"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2020-12-28T16:55:11+11:00"], [ fhir:v "2020-12-28T16:55:11+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Used to code author list statement, contributorship statement, and such."], [ fhir:v "Used to code author list statement, contributorship statement, and such."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/contributor-summary-type"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "author-string" ] ;
+     fhir:display [ fhir:v "Author string" ] ;
+     fhir:definition [ fhir:v "Display of the author list as a complete string." ]
+  ] [
+     fhir:code [ fhir:v "contributorship-list" ] ;
+     fhir:display [ fhir:v "Contributorship list" ] ;
+     fhir:definition [ fhir:v "Display of the list of contributors as a complete string." ]
+  ] [
+     fhir:code [ fhir:v "contributorship-statement" ] ;
+     fhir:display [ fhir:v "Contributorship statement" ] ;
+     fhir:definition [ fhir:v "Compiled summary of contributions." ]
+  ] [
+     fhir:code [ fhir:v "acknowledgement-list" ] ;
+     fhir:display [ fhir:v "Acknowledgment list" ] ;
+     fhir:definition [ fhir:v "Display of the list of acknowledged parties as a complete string." ]
+  ] [
+     fhir:code [ fhir:v "acknowledgment-statement" ] ;
+     fhir:display [ fhir:v "Acknowledgment statement" ] ;
+     fhir:definition [ fhir:v "Statement of acknowledgment of contributions beyond those compiled for formal contributorship statements." ]
+  ] [
+     fhir:code [ fhir:v "funding-statement" ] ;
+     fhir:display [ fhir:v "Funding statement" ] ;
+     fhir:definition [ fhir:v "Statement of financial support for the creation of the cited artifact." ]
+  ] [
+     fhir:code [ fhir:v "competing-interests-statement" ] ;
+     fhir:display [ fhir:v "Competing interests statement" ] ;
+     fhir:definition [ fhir:v "Statement of completing interests related to the creation of the cited artifact. Also called conflicts of interest or declaration of interests." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

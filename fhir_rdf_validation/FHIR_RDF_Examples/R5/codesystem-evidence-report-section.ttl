@@ -1,0 +1,188 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "evidence-report-section"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "cds" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "0" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/evidence-report-section"], [ fhir:v "http://hl7.org/fhir/evidence-report-section"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1961" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1961" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "ReportSectionType"], [ fhir:v "ReportSectionType"] ;
+  fhir:title [ fhir:v "Report Section Type"], [ fhir:v "Report Section Type"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2020-12-28T16:55:11+11:00"], [ fhir:v "2020-12-28T16:55:11+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Evidence Report Section Type."], [ fhir:v "Evidence Report Section Type."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/evidence-report-section"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "Evidence" ] ;
+     fhir:display [ fhir:v "Evidence Results" ] ;
+     fhir:definition [ fhir:v "Evidence Results." ]
+  ] [
+     fhir:code [ fhir:v "Intervention-group-alone-Evidence" ] ;
+     fhir:display [ fhir:v "Evidence Results for the intervention exposure only" ] ;
+     fhir:definition [ fhir:v "Evidence Results for the intervention exposure only." ]
+  ] [
+     fhir:code [ fhir:v "Intervention-vs-Control-Evidence" ] ;
+     fhir:display [ fhir:v "Evidence Results for comparison of Intervention and Control" ] ;
+     fhir:definition [ fhir:v "Evidence Results for comparison of Intervention and Control." ]
+  ] [
+     fhir:code [ fhir:v "Control-group-alone-Evidence" ] ;
+     fhir:display [ fhir:v "Evidence Results for the control exposure only" ] ;
+     fhir:definition [ fhir:v "Evidence Results for the control exposure only." ]
+  ] [
+     fhir:code [ fhir:v "EvidenceVariable" ] ;
+     fhir:display [ fhir:v "Evidence Variables used" ] ;
+     fhir:definition [ fhir:v "Evidence Variables used." ]
+  ] [
+     fhir:code [ fhir:v "EvidenceVariable-observed" ] ;
+     fhir:display [ fhir:v "Evidence Variables actually observed" ] ;
+     fhir:definition [ fhir:v "Evidence Variables as observed in the research data." ]
+  ] [
+     fhir:code [ fhir:v "EvidenceVariable-intended" ] ;
+     fhir:display [ fhir:v "Evidence Variables intended for interpretation" ] ;
+     fhir:definition [ fhir:v "Evidence Variables intended for interpretation." ]
+  ] [
+     fhir:code [ fhir:v "EvidenceVariable-population" ] ;
+     fhir:display [ fhir:v "Evidence Variable in variable role Population" ] ;
+     fhir:definition [ fhir:v "Evidence Variable in variable role Population." ]
+  ] [
+     fhir:code [ fhir:v "EvidenceVariable-exposure" ] ;
+     fhir:display [ fhir:v "Evidence Variable in variable role Exposure" ] ;
+     fhir:definition [ fhir:v "Evidence Variable in variable role Exposure." ]
+  ] [
+     fhir:code [ fhir:v "EvidenceVariable-outcome" ] ;
+     fhir:display [ fhir:v "Evidence Variable in variable role Outcome (MeasuredVariable)" ] ;
+     fhir:definition [ fhir:v "Evidence Variable in variable role Outcome (MeasuredVariable)." ]
+  ] [
+     fhir:code [ fhir:v "Efficacy-outcomes" ] ;
+     fhir:display [ fhir:v "Efficacy-outcomes" ] ;
+     fhir:definition [ fhir:v "Outcomes related to efficacy or potential benefits of interventions." ]
+  ] [
+     fhir:code [ fhir:v "Harms-outcomes" ] ;
+     fhir:display [ fhir:v "Harms outcomes" ] ;
+     fhir:definition [ fhir:v "Outcomes related to adverse effects or potential harms of interventions." ]
+  ] [
+     fhir:code [ fhir:v "SampleSize" ] ;
+     fhir:display [ fhir:v "Sample Size" ] ;
+     fhir:definition [ fhir:v "Sample Size." ]
+  ] [
+     fhir:code [ fhir:v "References" ] ;
+     fhir:display [ fhir:v "References" ] ;
+     fhir:definition [ fhir:v "References." ]
+  ] [
+     fhir:code [ fhir:v "Assertion" ] ;
+     fhir:display [ fhir:v "Assertion" ] ;
+     fhir:definition [ fhir:v "Assertion." ]
+  ] [
+     fhir:code [ fhir:v "Reasons" ] ;
+     fhir:display [ fhir:v "Reasons" ] ;
+     fhir:definition [ fhir:v "Reasons." ]
+  ] [
+     fhir:code [ fhir:v "Certainty-of-Evidence" ] ;
+     fhir:display [ fhir:v "Certainty of Evidence" ] ;
+     fhir:definition [ fhir:v "Certainty of Evidence." ]
+  ] [
+     fhir:code [ fhir:v "Evidence-Classifier" ] ;
+     fhir:display [ fhir:v "Evidence Classifier section" ] ;
+     fhir:definition [ fhir:v "This section is used for classifiers of the evidence." ]
+  ] [
+     fhir:code [ fhir:v "Warnings" ] ;
+     fhir:display [ fhir:v "Warnings" ] ;
+     fhir:definition [ fhir:v "Warnings." ]
+  ] [
+     fhir:code [ fhir:v "Text-Summary" ] ;
+     fhir:display [ fhir:v "Text Summary" ] ;
+     fhir:definition [ fhir:v "Denotes a section specifying text summary for a report." ]
+  ] [
+     fhir:code [ fhir:v "SummaryOfBodyOfEvidenceFindings" ] ;
+     fhir:display [ fhir:v "Summary of Body of Evidence Findings" ] ;
+     fhir:definition [ fhir:v "Summary of Body of Evidence Findings." ]
+  ] [
+     fhir:code [ fhir:v "SummaryOfIndividualStudyFindings" ] ;
+     fhir:display [ fhir:v "Summary of Individual Study Findings" ] ;
+     fhir:definition [ fhir:v "Summary of Individual Study Findings." ]
+  ] [
+     fhir:code [ fhir:v "Header" ] ;
+     fhir:display [ fhir:v "Header" ] ;
+     fhir:definition [ fhir:v "Denotes the header to use for a Text Summary or above a Table." ]
+  ] [
+     fhir:code [ fhir:v "Tables" ] ;
+     fhir:display [ fhir:v "Tables" ] ;
+     fhir:definition [ fhir:v "Tables." ]
+  ] [
+     fhir:code [ fhir:v "Table" ] ;
+     fhir:display [ fhir:v "Table" ]
+  ] [
+     fhir:code [ fhir:v "Row-Headers" ] ;
+     fhir:display [ fhir:v "Row Headers" ] ;
+     fhir:definition [ fhir:v "Denotes a section specifying row headers for a tabular report." ]
+  ] [
+     fhir:code [ fhir:v "Column-Header" ] ;
+     fhir:display [ fhir:v "Column Header" ] ;
+     fhir:definition [ fhir:v "Denotes the header to use for the column for a tabular report." ]
+  ] [
+     fhir:code [ fhir:v "Column-Headers" ] ;
+     fhir:display [ fhir:v "Column Headers" ] ;
+     fhir:definition [ fhir:v "Denotes a section specifying column headers for a tabular report." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

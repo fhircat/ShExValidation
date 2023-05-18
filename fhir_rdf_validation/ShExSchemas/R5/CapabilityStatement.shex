@@ -1,0 +1,327 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <url.shex>
+IMPORT <code.shex>
+IMPORT <string.shex>
+IMPORT <Coding.shex>
+IMPORT <boolean.shex>
+IMPORT <dateTime.shex>
+IMPORT <markdown.shex>
+IMPORT <canonical.shex>
+IMPORT <Reference.shex>
+IMPORT <unsignedInt.shex>
+IMPORT <Organization.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CanonicalResource.shex>
+
+
+start=@<CapabilityStatement> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A statement of system capabilities
+<CapabilityStatement> EXTENDS @<CanonicalResource> CLOSED {   
+
+    a [fhir:CapabilityStatement];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:url @<uri>?;                       # Canonical identifier for this 
+                                            # capability statement, represented 
+                                            # as a URI (globally unique) 
+    fhir:version @<string>?;                # Business version of the capability 
+                                            # statement 
+    fhir:name @<string>?;                   # Name for this capability statement 
+                                            # (computer friendly) 
+    fhir:title @<string>?;                  # Name for this capability statement 
+                                            # (human friendly) 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:date @<dateTime>;                  # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the capability statement 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for 
+                                            # capability statement (if 
+                                            # applicable) 
+    fhir:purpose @<markdown>?;              # Why this capability statement is 
+                                            # defined 
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:kind @<code> AND
+    	{fhir:v @fhirvs:capability-statement-kind};  # instance | capability | 
+                                            # requirements 
+    fhir:instantiates @<OneOrMore_canonical>?;  # Canonical URL of another 
+                                            # capability statement this 
+                                            # implements 
+    fhir:imports @<OneOrMore_canonical>?;   # Canonical URL of another 
+                                            # capability statement this adds to 
+    fhir:software @<BackboneElement>?;      # Software that is covered by this 
+                                            # capability statement 
+    fhir:implementation @<BackboneElement>?;  # If this describes a specific 
+                                            # instance 
+    fhir:fhirVersion @<code> AND
+    	{fhir:v @fhirvs:FHIR-version};  # FHIR Version the system supports
+    fhir:format @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:mimetypes};  # formats supported (xml | json | 
+                                            # ttl | mime type) 
+    fhir:patchFormat @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:mimetypes}?;  # Patch formats supported
+    fhir:implementationGuide @<OneOrMore_canonical>?;  # Implementation guides supported
+    fhir:rest @<OneOrMore_BackboneElement>?;  # If the endpoint is a RESTful one
+    fhir:messaging @<OneOrMore_BackboneElement>?;  # If messaging is supported
+    fhir:document @<OneOrMore_BackboneElement>?;  # Document definition
+}  
+
+# If the endpoint is a RESTful one
+<CapabilityStatement.rest> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:mode @<code> AND
+    	{fhir:v @fhirvs:restful-capability-mode};  # client | server
+    fhir:documentation @<markdown>?;        # General description of 
+                                            # implementation 
+    fhir:security @<BackboneElement>?;      # Information about security of 
+                                            # implementation 
+    fhir:resource @<OneOrMore_BackboneElement>?;  # Resource served on the REST 
+                                            # interface 
+    fhir:interaction @<OneOrMore_BackboneElement>?;  # What operations are supported?
+    fhir:searchParam @<OneOrMore_CapabilityStatement.rest.resource.searchParam>?;  # Search parameters for searching 
+                                            # all resources 
+    fhir:operation @<OneOrMore_CapabilityStatement.rest.resource.operation>?;  # Definition of a system level 
+                                            # operation 
+    fhir:compartment @<OneOrMore_canonical>?;  # Compartments served/used by system
+}  
+
+# Software that is covered by this capability statement
+<CapabilityStatement.software> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>;                    # A name the software is known by
+    fhir:version @<string>?;                # Version covered by this statement
+    fhir:releaseDate @<dateTime>?;          # Date this version was released
+}  
+
+# Definition of a resource operation
+<CapabilityStatement.rest.resource.operation> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>;                    # Name by which the operation/query 
+                                            # is invoked 
+    fhir:definition @<canonical>;           # The defined operation/query
+    fhir:documentation @<markdown>?;        # Specific details about operation 
+                                            # behavior 
+}  
+
+# What operations are supported?
+<CapabilityStatement.rest.resource.interaction> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code> AND
+    	{fhir:v @fhirvs:type-restful-interaction};  # read | vread | update | patch | 
+                                            # delete | history-instance | 
+                                            # history-type | create | 
+                                            # search-type 
+    fhir:documentation @<markdown>?;        # Anything special about operation 
+                                            # behavior 
+}  
+
+# Information about security of implementation
+<CapabilityStatement.rest.security> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:cors @<boolean>?;                  # Adds CORS Headers 
+                                            # (http://enable-cors.org/) 
+    fhir:service @<OneOrMore_CodeableConcept>?;  # OAuth | SMART-on-FHIR | NTLM | 
+                                            # Basic | Kerberos | Certificates 
+    fhir:description @<markdown>?;          # General description of how 
+                                            # security works 
+}  
+
+# What operations are supported?
+<CapabilityStatement.rest.interaction> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code> AND
+    	{fhir:v @fhirvs:system-restful-interaction};  # transaction | batch | 
+                                            # search-system | history-system 
+    fhir:documentation @<markdown>?;        # Anything special about operation 
+                                            # behavior 
+}  
+
+# Messages supported by this system
+<CapabilityStatement.messaging.supportedMessage> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:mode @<code> AND
+    	{fhir:v @fhirvs:event-capability-mode};  # sender | receiver
+    fhir:definition @<canonical>;           # Message supported by this system
+}  
+
+# If messaging is supported
+<CapabilityStatement.messaging> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:endpoint @<OneOrMore_BackboneElement>?;  # Where messages should be sent
+    fhir:reliableCache @<unsignedInt>?;     # Reliable Message Cache Length (min)
+    fhir:documentation @<markdown>?;        # Messaging interface behavior 
+                                            # details 
+    fhir:supportedMessage @<OneOrMore_BackboneElement>?;  # Messages supported by this system
+}  
+
+# Where messages should be sent
+<CapabilityStatement.messaging.endpoint> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:protocol @<Coding>;                # http | ftp | mllp +
+    fhir:address @<url>;                    # Network address or identifier of 
+                                            # the end-point 
+}  
+
+# Resource served on the REST interface
+<CapabilityStatement.rest.resource> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:resource-types};  # A resource type that is supported
+    fhir:profile @<canonical>?;             # Base System profile for all uses 
+                                            # of resource 
+    fhir:supportedProfile @<OneOrMore_canonical>?;  # Profiles for use cases supported
+    fhir:documentation @<markdown>?;        # Additional information about the 
+                                            # use of the resource type 
+    fhir:interaction @<OneOrMore_BackboneElement>?;  # What operations are supported?
+    fhir:versioning @<code> AND
+    	{fhir:v @fhirvs:versioning-policy}?;  # no-version | versioned | 
+                                            # versioned-update 
+    fhir:readHistory @<boolean>?;           # Whether vRead can return past 
+                                            # versions 
+    fhir:updateCreate @<boolean>?;          # If update can commit to a new 
+                                            # identity 
+    fhir:conditionalCreate @<boolean>?;     # If allows/uses conditional create
+    fhir:conditionalRead @<code> AND
+    	{fhir:v @fhirvs:conditional-read-status}?;  # not-supported | modified-since | 
+                                            # not-match | full-support 
+    fhir:conditionalUpdate @<boolean>?;     # If allows/uses conditional update
+    fhir:conditionalDelete @<code> AND
+    	{fhir:v @fhirvs:conditional-delete-status}?;  # not-supported | single | multiple 
+                                            # - how conditional delete is 
+                                            # supported 
+    fhir:referencePolicy @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:reference-handling-policy}?;  # literal | logical | resolves | 
+                                            # enforced | local 
+    fhir:searchInclude @<OneOrMore_string>?;  # _include values supported by the 
+                                            # server 
+    fhir:searchRevInclude @<OneOrMore_string>?;  # _revinclude values supported by 
+                                            # the server 
+    fhir:searchParam @<OneOrMore_BackboneElement>?;  # Search parameters supported by 
+                                            # implementation 
+    fhir:operation @<OneOrMore_BackboneElement>?;  # Definition of a resource operation
+}  
+
+# Document definition
+<CapabilityStatement.document> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:mode @<code> AND
+    	{fhir:v @fhirvs:document-mode};  # producer | consumer
+    fhir:documentation @<markdown>?;        # Description of document support
+    fhir:profile @<canonical>;              # Constraint on the resources used 
+                                            # in the document 
+}  
+
+# Search parameters supported by implementation
+<CapabilityStatement.rest.resource.searchParam> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>;                    # Name of search parameter
+    fhir:definition @<canonical>?;          # Source of definition for parameter
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:search-param-type};  # number | date | string | token | 
+                                            # reference | composite | quantity | 
+                                            # uri | special 
+    fhir:documentation @<markdown>?;        # Server-specific usage
+}  
+
+# If this describes a specific instance
+<CapabilityStatement.implementation> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:description @<string>;             # Describes this specific instance
+    fhir:url @<url>?;                       # Base URL for the installation
+    fhir:custodian @<Reference> AND {fhir:link 
+    			@<Organization> }?;  # Organization that manages the data
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_ContactDetail> CLOSED {
+    rdf:first @<ContactDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactDetail> 
+}
+
+<OneOrMore_UsageContext> CLOSED {
+    rdf:first @<UsageContext>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_UsageContext> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_canonical> CLOSED {
+    rdf:first @<canonical>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_canonical> 
+}
+
+<OneOrMore_code> CLOSED {
+    rdf:first @<code>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_code> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_CapabilityStatement.rest.resource.searchParam> CLOSED {
+    rdf:first @<CapabilityStatement.rest.resource.searchParam>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CapabilityStatement.rest.resource.searchParam> 
+}
+
+<OneOrMore_CapabilityStatement.rest.resource.operation> CLOSED {
+    rdf:first @<CapabilityStatement.rest.resource.operation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CapabilityStatement.rest.resource.operation> 
+}
+
+<OneOrMore_string> CLOSED {
+    rdf:first @<string>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_string> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# A code that indicates how the server supports conditional delete.
+fhirvs:conditional-delete-status ["not-supported" "single" "multiple"]
+
+# How a capability statement is intended to be used.
+fhirvs:capability-statement-kind ["instance" "capability" "requirements"]
+
+# Data types allowed to be used for search parameters.
+fhirvs:search-param-type ["number" "date" "string" "token" "reference" "composite" "quantity" "uri" "special"]
+
+# Operations supported by REST at the type or instance level.
+fhirvs:type-restful-interaction ["read" "vread" "update" "patch" "delete" "history-instance" "history-type" "create" "search-type"]
+
+# Whether the application produces or consumes documents.
+fhirvs:document-mode ["producer" "consumer"]
+
+# All published FHIR Versions.
+fhirvs:FHIR-version ["0.01" "0.05" "0.06" "0.11" "0.0" "0.0.80" "0.0.81" "0.0.82" "0.4" "0.4.0" "0.5" "0.5.0" "1.0" "1.0.0" "1.0.1" "1.0.2" "1.1" "1.1.0" "1.4" "1.4.0" "1.6" "1.6.0" "1.8" "1.8.0" "3.0" "3.0.0" "3.0.1" "3.0.2" "3.3" "3.3.0" "3.5" "3.5.0" "4.0" "4.0.0" "4.0.1" "4.1" "4.1.0" "4.2" "4.2.0" "4.3" "4.3.0" "4.4" "4.4.0" "4.5" "4.5.0" "4.6" "4.6.0"]
+
+# This value set includes all possible codes from BCP-13 (http://tools.ietf.org/html/bcp13)
+fhirvs:mimetypes xsd:string # EXTERNAL
+
+# Operations supported by REST at the system level.
+fhirvs:system-restful-interaction ["transaction" "batch" "search-system" "history-system"]
+
+# How the system supports versioning for a resource.
+fhirvs:versioning-policy ["no-version" "versioned" "versioned-update"]
+
+# The mode of a message capability statement.
+fhirvs:event-capability-mode ["sender" "receiver"]
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+
+# The mode of a RESTful capability statement.
+fhirvs:restful-capability-mode ["client" "server"]
+
+# One of the resource types defined as part of this version of FHIR.
+fhirvs:resource-types ["Resource" "Binary" "Bundle" "DomainResource" "Account" "AdministrableProductDefinition" "AdverseEvent" "AllergyIntolerance" "Appointment" "AppointmentResponse" "ArtifactAssessment" "AuditEvent" "Basic" "BiologicallyDerivedProduct" "BodyStructure" "CanonicalResource" "CapabilityStatement" "CapabilityStatement2" "CodeSystem" "CompartmentDefinition" "ExampleScenario" "GraphDefinition" "ImplementationGuide" "MessageDefinition" "MetadataResource" "ActivityDefinition" "ChargeItemDefinition" "Citation" "ConceptMap" "ConditionDefinition" "EventDefinition" "Evidence" "EvidenceReport" "EvidenceVariable" "Library" "Measure" "NamingSystem" "PlanDefinition" "Questionnaire" "OperationDefinition" "SearchParameter" "StructureDefinition" "StructureMap" "SubscriptionTopic" "TerminologyCapabilities" "TestScript" "ValueSet" "CarePlan" "CareTeam" "ChargeItem" "Claim" "ClaimResponse" "ClinicalImpression" "ClinicalUseDefinition" "Communication" "CommunicationRequest" "Composition" "Condition" "Consent" "Contract" "Coverage" "CoverageEligibilityRequest" "CoverageEligibilityResponse" "DetectedIssue" "Device" "DeviceDefinition" "DeviceDispense" "DeviceMetric" "DeviceRequest" "DeviceUsage" "DiagnosticReport" "DocumentManifest" "DocumentReference" "Encounter" "Endpoint" "EnrollmentRequest" "EnrollmentResponse" "EpisodeOfCare" "ExplanationOfBenefit" "FamilyMemberHistory" "Flag" "FormularyItem" "Goal" "Group" "GuidanceResponse" "HealthcareService" "ImagingSelection" "ImagingStudy" "Immunization" "ImmunizationEvaluation" "ImmunizationRecommendation" "Ingredient" "InsurancePlan" "InventoryReport" "Invoice" "Linkage" "List" "Location" "ManufacturedItemDefinition" "MeasureReport" "Medication" "MedicationAdministration" "MedicationDispense" "MedicationKnowledge" "MedicationRequest" "MedicationUsage" "MedicinalProductDefinition" "MessageHeader" "MolecularSequence" "NutritionIntake" "NutritionOrder" "NutritionProduct" "Observation" "ObservationDefinition" "OperationOutcome" "Organization" "OrganizationAffiliation" "PackagedProductDefinition" "Patient" "PaymentNotice" "PaymentReconciliation" "Permission" "Person" "Practitioner" "PractitionerRole" "Procedure" "Provenance" "QuestionnaireResponse" "RegulatedAuthorization" "RelatedPerson" "RequestGroup" "ResearchStudy" "ResearchSubject" "RiskAssessment" "Schedule" "ServiceRequest" "Slot" "Specimen" "SpecimenDefinition" "Subscription" "SubscriptionStatus" "Substance" "SubstanceDefinition" "SubstanceNucleicAcid" "SubstancePolymer" "SubstanceProtein" "SubstanceReferenceInformation" "SubstanceSourceMaterial" "SupplyDelivery" "SupplyRequest" "Task" "TestReport" "Transport" "VerificationResult" "VisionPrescription" "Parameters"]
+
+# A set of flags that defines how references are supported.
+fhirvs:reference-handling-policy ["literal" "logical" "resolves" "enforced" "local"]
+
+# A code that indicates how the server supports conditional read.
+fhirvs:conditional-read-status ["not-supported" "modified-since" "not-match" "full-support"]
+

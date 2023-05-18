@@ -1,0 +1,30 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+# The individual's gender identity
+<individual-genderIdentity> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:individual-genderIdentity]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:value @<Extension>; 
+    fhir:period @<Extension>?; 
+    fhir:comment @<Extension>?; 
+    fhir:url @<uri> AND
+    	{fhir:value ["http://hl7.org/fhir/StructureDefinition/individual-genderIdentity"]}; 
+    ^fhir:extension { a [fhir:Patient]} OR 
+          {a [fhir:RelatedPerson]} OR 
+          {a [fhir:Person]} OR 
+          {a [fhir:Practitioner]}
+
+}  
+

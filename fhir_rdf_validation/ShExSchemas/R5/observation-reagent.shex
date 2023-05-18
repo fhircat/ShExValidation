@@ -1,0 +1,22 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Extension.shex>
+IMPORT <Reference.shex>
+IMPORT <Substance.shex>
+
+# Reference to reagents used to generate this observation.
+<observation-reagent> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:observation-reagent];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/observation-reagent"]}; 
+    fhir:v ((@<Reference>  AND {fhir:link @<Substance> }) )  AND { rdf:type IRI } ; 
+    ^fhir:extension { a [fhir:Observation]
+        }
+}  
+

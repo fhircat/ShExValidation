@@ -1,0 +1,27 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <Extension.shex>
+
+# Template Status Code (more authoring statuses)
+<structuredefinition-template-status> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:structuredefinition-template-status];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/structuredefinition-template-status"]}; 
+    fhir:v (@<code> AND
+    	{fhir:v @fhirvs:template-status-code} )  AND { rdf:type IRI } ; 
+    ^fhir:extension { a [fhir:StructureDefinition]
+        }
+}  
+
+#---------------------- Value Sets ------------------------
+
+# Description Needed Here
+fhirvs:template-status-code xsd:string # EXTERNAL
+

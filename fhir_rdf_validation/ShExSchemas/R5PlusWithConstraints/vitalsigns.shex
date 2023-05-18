@@ -1,0 +1,45 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <Observation.shex>
+#imported_end
+
+start=@<vitalsigns> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# FHIR Vital Signs Profile
+<vitalsigns> EXTENDS @<Observation> CLOSED {   
+
+    a [fhir:vitalsigns]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+} AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:vs-2
+# Human readable:If there is no component or hasMember element then either a value[x] or a data absent reason must be present.
+#
+# Constraint: (component.empty() and hasMember.empty()) implies (dataAbsentReason.exists() or value.exists())
+# ShEx:
+#
+#( NOT { fhir:component {fhir:v .} }  AND  NOT { fhir:hasMember {fhir:v .} } )  Implies  ({fhir:dataAbsentReason . OR {fhir:value .}})
+{}
+
+) AND (
+
+# Constraint UniqueKey:vs-3
+# Human readable:If there is no a value a data absent reason must be present
+
+# Constraint: value.exists() or dataAbsentReason.exists()
+# ShEx:
+
+{fhir:value . OR {fhir:dataAbsentReason .}}
+
+)
+ 
+

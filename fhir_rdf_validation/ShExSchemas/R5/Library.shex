@@ -1,0 +1,128 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <date.shex>
+IMPORT <Group.shex>
+IMPORT <string.shex>
+IMPORT <Period.shex>
+IMPORT <boolean.shex>
+IMPORT <dateTime.shex>
+IMPORT <markdown.shex>
+IMPORT <Reference.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <MetadataResource.shex>
+
+
+start=@<Library> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Represents a library of quality improvement components
+<Library> EXTENDS @<MetadataResource> CLOSED {   
+
+    a [fhir:Library];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:url @<uri>?;                       # Canonical identifier for this 
+                                            # library, represented as a URI 
+                                            # (globally unique) 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
+                                            # library 
+    fhir:version @<string>?;                # Business version of the library
+    fhir:name @<string>?;                   # Name for this library (computer 
+                                            # friendly) 
+    fhir:title @<string>?;                  # Name for this library (human 
+                                            # friendly) 
+    fhir:subtitle @<string>?;               # Subordinate title of the library
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:type @<CodeableConcept>;           # logic-library | model-definition | 
+                                            # asset-collection | 
+                                            # module-definition 
+    fhir:subject (@<CodeableConcept>  OR 
+    			(@<Reference>  AND {fhir:link @<Group> }) )  AND { rdf:type IRI } ?;  # Type of individual the library 
+                                            # content is focused on 
+    fhir:date @<dateTime>?;                 # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the library 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for library 
+                                            # (if applicable) 
+    fhir:purpose @<markdown>?;              # Why this library is defined
+    fhir:usage @<string>?;                  # Describes the clinical usage of 
+                                            # the library 
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:approvalDate @<date>?;             # When the library was approved by 
+                                            # publisher 
+    fhir:lastReviewDate @<date>?;           # When the library was last reviewed
+    fhir:effectivePeriod @<Period>?;        # When the library is expected to be 
+                                            # used 
+    fhir:topic @<OneOrMore_CodeableConcept>?;  # E.g. Education, Treatment, 
+                                            # Assessment, etc. 
+    fhir:author @<OneOrMore_ContactDetail>?;  # Who authored the content
+    fhir:editor @<OneOrMore_ContactDetail>?;  # Who edited the content
+    fhir:reviewer @<OneOrMore_ContactDetail>?;  # Who reviewed the content
+    fhir:endorser @<OneOrMore_ContactDetail>?;  # Who endorsed the content
+    fhir:relatedArtifact @<OneOrMore_RelatedArtifact>?;  # Additional documentation, 
+                                            # citations, etc. 
+    fhir:parameter @<OneOrMore_ParameterDefinition>?;  # Parameters defined by the library
+    fhir:dataRequirement @<OneOrMore_DataRequirement>?;  # What data is referenced by this 
+                                            # library 
+    fhir:content @<OneOrMore_Attachment>?;  # Contents of the library, either 
+                                            # embedded or referenced 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_ContactDetail> CLOSED {
+    rdf:first @<ContactDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactDetail> 
+}
+
+<OneOrMore_UsageContext> CLOSED {
+    rdf:first @<UsageContext>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_UsageContext> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_RelatedArtifact> CLOSED {
+    rdf:first @<RelatedArtifact>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_RelatedArtifact> 
+}
+
+<OneOrMore_ParameterDefinition> CLOSED {
+    rdf:first @<ParameterDefinition>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ParameterDefinition> 
+}
+
+<OneOrMore_DataRequirement> CLOSED {
+    rdf:first @<DataRequirement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_DataRequirement> 
+}
+
+<OneOrMore_Attachment> CLOSED {
+    rdf:first @<Attachment>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Attachment> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+

@@ -1,0 +1,30 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:FormularyItem ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "formularyitemexample01"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: FormularyItem</b><a name=\"formularyitemexample01\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource FormularyItem &quot;formularyitemexample01&quot; </p></div><p><b>code</b>: <span title=\"  insert contents here  \">Phenoxymethylpenicillin 125mg/5mL oral solution (product) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#323418000; v2#22571011000036102 &quot;phenoxymethylpenicillin 125 mg / 5 mL oral liquid, 5 mL measure&quot;)</span></span></p></div>"
+  ] ; #    insert contents here   
+  fhir:code [
+     fhir:coding ( [
+       a sct:323418000 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "323418000" ] ;
+       fhir:display [ fhir:v "Phenoxymethylpenicillin 125mg/5mL oral solution (product)" ]
+     ] [
+       fhir:system [ fhir:v "http://nehta.gov.au/amt/v2"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "22571011000036102" ] ;
+       fhir:display [ fhir:v "phenoxymethylpenicillin 125 mg / 5 mL oral liquid, 5 mL measure" ]
+     ] )
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

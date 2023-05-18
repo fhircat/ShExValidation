@@ -1,0 +1,140 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <string.shex>
+IMPORT <boolean.shex>
+IMPORT <dateTime.shex>
+IMPORT <markdown.shex>
+IMPORT <canonical.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CanonicalResource.shex>
+
+
+start=@<SearchParameter> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Search parameter for a resource
+<SearchParameter> EXTENDS @<CanonicalResource> CLOSED {   
+
+    a [fhir:SearchParameter];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:url @<uri>;                        # Canonical identifier for this 
+                                            # search parameter, represented as a 
+                                            # URI (globally unique) 
+    fhir:version @<string>?;                # Business version of the search 
+                                            # parameter 
+    fhir:name @<string>;                    # Name for this search parameter 
+                                            # (computer friendly) 
+    fhir:title @<string>?;                  # Name for this search parameter 
+                                            # (human friendly) 
+    fhir:derivedFrom @<canonical>?;         # Original definition for the search 
+                                            # parameter 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:date @<dateTime>?;                 # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>;           # Natural language description of 
+                                            # the search parameter 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for search 
+                                            # parameter (if applicable) 
+    fhir:purpose @<markdown>?;              # Why this search parameter is 
+                                            # defined 
+    fhir:code @<code>;                      # Code used in URL
+    fhir:base @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:resource-types};  # The resource type(s) this search 
+                                            # parameter applies to 
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:search-param-type};  # number | date | string | token | 
+                                            # reference | composite | quantity | 
+                                            # uri | special 
+    fhir:expression @<string>?;             # FHIRPath expression that extracts 
+                                            # the values 
+    fhir:xpath @<string>?;                  # XPath that extracts the values
+    fhir:xpathUsage @<code> AND
+    	{fhir:v @fhirvs:search-xpath-usage}?;  # normal | phonetic | other
+    fhir:target @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:resource-types}?;  # Types of resource (if a resource 
+                                            # reference) 
+    fhir:multipleOr @<boolean>?;            # Allow multiple values per 
+                                            # parameter (or) 
+    fhir:multipleAnd @<boolean>?;           # Allow multiple parameters (and)
+    fhir:comparator @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:search-comparator}?;  # eq | ne | gt | lt | ge | le | sa | 
+                                            # eb | ap 
+    fhir:modifier @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:search-modifier-code}?;  # missing | exact | contains | not | 
+                                            # text | in | not-in | below | above 
+                                            # | type | identifier | ofType 
+    fhir:chain @<OneOrMore_string>?;        # Chained names supported
+    fhir:component @<OneOrMore_BackboneElement>?;  # For Composite resources to define 
+                                            # the parts 
+}  
+
+# For Composite resources to define the parts
+<SearchParameter.component> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:definition @<canonical>;           # Defines how the part works
+    fhir:expression @<string>;              # Subexpression relative to main 
+                                            # expression 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_ContactDetail> CLOSED {
+    rdf:first @<ContactDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactDetail> 
+}
+
+<OneOrMore_UsageContext> CLOSED {
+    rdf:first @<UsageContext>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_UsageContext> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_code> CLOSED {
+    rdf:first @<code>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_code> 
+}
+
+<OneOrMore_string> CLOSED {
+    rdf:first @<string>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_string> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Data types allowed to be used for search parameters.
+fhirvs:search-param-type ["number" "date" "string" "token" "reference" "composite" "quantity" "uri" "special"]
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+
+# How a search parameter relates to the set of elements returned by evaluating its xpath query.
+fhirvs:search-xpath-usage ["normal" "phonetic" "other"]
+
+# One of the resource types defined as part of this version of FHIR.
+fhirvs:resource-types ["Resource" "Binary" "Bundle" "DomainResource" "Account" "AdministrableProductDefinition" "AdverseEvent" "AllergyIntolerance" "Appointment" "AppointmentResponse" "ArtifactAssessment" "AuditEvent" "Basic" "BiologicallyDerivedProduct" "BodyStructure" "CanonicalResource" "CapabilityStatement" "CapabilityStatement2" "CodeSystem" "CompartmentDefinition" "ExampleScenario" "GraphDefinition" "ImplementationGuide" "MessageDefinition" "MetadataResource" "ActivityDefinition" "ChargeItemDefinition" "Citation" "ConceptMap" "ConditionDefinition" "EventDefinition" "Evidence" "EvidenceReport" "EvidenceVariable" "Library" "Measure" "NamingSystem" "PlanDefinition" "Questionnaire" "OperationDefinition" "SearchParameter" "StructureDefinition" "StructureMap" "SubscriptionTopic" "TerminologyCapabilities" "TestScript" "ValueSet" "CarePlan" "CareTeam" "ChargeItem" "Claim" "ClaimResponse" "ClinicalImpression" "ClinicalUseDefinition" "Communication" "CommunicationRequest" "Composition" "Condition" "Consent" "Contract" "Coverage" "CoverageEligibilityRequest" "CoverageEligibilityResponse" "DetectedIssue" "Device" "DeviceDefinition" "DeviceDispense" "DeviceMetric" "DeviceRequest" "DeviceUsage" "DiagnosticReport" "DocumentManifest" "DocumentReference" "Encounter" "Endpoint" "EnrollmentRequest" "EnrollmentResponse" "EpisodeOfCare" "ExplanationOfBenefit" "FamilyMemberHistory" "Flag" "FormularyItem" "Goal" "Group" "GuidanceResponse" "HealthcareService" "ImagingSelection" "ImagingStudy" "Immunization" "ImmunizationEvaluation" "ImmunizationRecommendation" "Ingredient" "InsurancePlan" "InventoryReport" "Invoice" "Linkage" "List" "Location" "ManufacturedItemDefinition" "MeasureReport" "Medication" "MedicationAdministration" "MedicationDispense" "MedicationKnowledge" "MedicationRequest" "MedicationUsage" "MedicinalProductDefinition" "MessageHeader" "MolecularSequence" "NutritionIntake" "NutritionOrder" "NutritionProduct" "Observation" "ObservationDefinition" "OperationOutcome" "Organization" "OrganizationAffiliation" "PackagedProductDefinition" "Patient" "PaymentNotice" "PaymentReconciliation" "Permission" "Person" "Practitioner" "PractitionerRole" "Procedure" "Provenance" "QuestionnaireResponse" "RegulatedAuthorization" "RelatedPerson" "RequestGroup" "ResearchStudy" "ResearchSubject" "RiskAssessment" "Schedule" "ServiceRequest" "Slot" "Specimen" "SpecimenDefinition" "Subscription" "SubscriptionStatus" "Substance" "SubstanceDefinition" "SubstanceNucleicAcid" "SubstancePolymer" "SubstanceProtein" "SubstanceReferenceInformation" "SubstanceSourceMaterial" "SupplyDelivery" "SupplyRequest" "Task" "TestReport" "Transport" "VerificationResult" "VisionPrescription" "Parameters"]
+
+# A supported modifier for a search parameter.
+fhirvs:search-modifier-code ["missing" "exact" "contains" "not" "text" "in" "not-in" "below" "above" "type" "identifier" "ofType"]
+
+# What Search Comparator Codes are supported in search.
+fhirvs:search-comparator ["eq" "ne" "gt" "lt" "ge" "le" "sa" "eb" "ap"]
+

@@ -1,0 +1,23 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Extension.shex>
+
+# Automated discovery of OAuth2 endpoints
+<oauth-uris> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:oauth-uris];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:authorize @<Extension>; 
+    fhir:token @<Extension>; 
+    fhir:register @<Extension>?; 
+    fhir:manage @<Extension>?; 
+    fhir:v @<uri> AND
+    	{fhir:v ["http://fhir-registry.smarthealthit.org/StructureDefinition/oauth-uris"]}; 
+    ^fhir:extension { ^fhir:security {^fhir:rest {a [fhir:CapabilityStatement]}}
+        }
+}  
+

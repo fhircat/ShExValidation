@@ -1,0 +1,145 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Ratio.shex>
+IMPORT <string.shex>
+IMPORT <boolean.shex>
+IMPORT <Quantity.shex>
+IMPORT <Reference.shex>
+IMPORT <Identifier.shex>
+IMPORT <RatioRange.shex>
+IMPORT <Organization.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CodeableReference.shex>
+IMPORT <ManufacturedItemDefinition.shex>
+IMPORT <MedicinalProductDefinition.shex>
+IMPORT <AdministrableProductDefinition.shex>
+
+
+start=@<Ingredient> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# An ingredient of a manufactured item or pharmaceutical product
+<Ingredient> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Ingredient];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<Identifier>?;         # An identifier or code by which the 
+                                            # ingredient can be referenced 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:for @<OneOrMore_Reference_AdministrableProductDefinition_OR_ManufacturedItemDefinition_OR_MedicinalProductDefinition>?;  # The product which this ingredient 
+                                            # is a constituent part of 
+    fhir:role @<CodeableConcept>;           # Purpose of the ingredient within 
+                                            # the product, e.g. active, inactive 
+    fhir:function @<OneOrMore_CodeableConcept>?;  # Precise action within the drug 
+                                            # product, e.g. antioxidant, 
+                                            # alkalizing agent 
+    fhir:group @<CodeableConcept>?;         # A classification of the ingredient 
+                                            # according to where in the physical 
+                                            # item it tends to be used, such the 
+                                            # outer shell of a tablet, inner 
+                                            # body or ink 
+    fhir:allergenicIndicator @<boolean>?;   # If the ingredient is a known or 
+                                            # suspected allergen 
+    fhir:manufacturer @<OneOrMore_BackboneElement>?;  # An organization that manufactures 
+                                            # this ingredient 
+    fhir:substance @<BackboneElement>;      # The substance that comprises this 
+                                            # ingredient 
+}  
+
+# The substance that comprises this ingredient
+<Ingredient.substance> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableReference>;         # A code or full resource that 
+                                            # represents the ingredient 
+                                            # substance 
+    fhir:strength @<OneOrMore_BackboneElement>?;  # The quantity of substance, per 
+                                            # presentation, or per volume or 
+                                            # mass, and type of quantity 
+}  
+
+# Strength expressed in terms of a reference substance
+<Ingredient.substance.strength.referenceStrength> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:substance @<CodeableReference>?;   # Relevant reference substance
+    fhir:strength (@<Ratio>  OR 
+    			@<RatioRange>  OR 
+    			@<Quantity> )  AND { rdf:type IRI } ;  # Strength expressed in terms of a 
+                                            # reference substance 
+    fhir:measurementPoint @<string>?;       # When strength is measured at a 
+                                            # particular point or distance 
+    fhir:country @<OneOrMore_CodeableConcept>?;  # Where the strength range applies
+}  
+
+# The quantity of substance, per presentation, or per volume or mass, and type of quantity
+<Ingredient.substance.strength> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:presentation (@<Ratio>  OR 
+    			@<RatioRange>  OR 
+    			@<CodeableConcept>  OR 
+    			@<Quantity> )  AND { rdf:type IRI } ?;  # The quantity of substance in the 
+                                            # unit of presentation 
+    fhir:textPresentation @<string>?;       # Text of either the whole 
+                                            # presentation strength or a part of 
+                                            # it (rest being in 
+                                            # Strength.presentation as a ratio) 
+    fhir:concentration (@<Ratio>  OR 
+    			@<RatioRange>  OR 
+    			@<CodeableConcept>  OR 
+    			@<Quantity> )  AND { rdf:type IRI } ?;  # The strength per unitary volume 
+                                            # (or mass) 
+    fhir:textConcentration @<string>?;      # Text of either the whole 
+                                            # concentration strength or a part 
+                                            # of it (rest being in 
+                                            # Strength.concentration as a ratio) 
+    fhir:basis @<CodeableConcept>?;         # A code that indicates if the 
+                                            # strength is, for example, based on 
+                                            # the ingredient substance as stated 
+                                            # or on the substance base (when the 
+                                            # ingredient is a salt) 
+    fhir:measurementPoint @<string>?;       # When strength is measured at a 
+                                            # particular point or distance 
+    fhir:country @<OneOrMore_CodeableConcept>?;  # Where the strength range applies
+    fhir:referenceStrength @<OneOrMore_BackboneElement>?;  # Strength expressed in terms of a 
+                                            # reference substance 
+}  
+
+# An organization that manufactures this ingredient
+<Ingredient.manufacturer> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:role @<code> AND
+    	{fhir:v @fhirvs:ingredient-manufacturer-role}?;  # allowed | possible | actual
+    fhir:manufacturer @<Reference> AND {fhir:link 
+    			@<Organization> };  # An organization that manufactures 
+                                            # this ingredient 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Reference_AdministrableProductDefinition_OR_ManufacturedItemDefinition_OR_MedicinalProductDefinition> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<AdministrableProductDefinition> OR 
+			@<ManufacturedItemDefinition> OR 
+			@<MedicinalProductDefinition> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_AdministrableProductDefinition_OR_ManufacturedItemDefinition_OR_MedicinalProductDefinition> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+
+# The way in which this manufacturer is associated with the ingredient. For example whether it is a possible one (others allowed), or an exclusive authorized one for this ingredient. Note that this is not the manufacturing process role.
+fhirvs:ingredient-manufacturer-role ["allowed" "possible" "actual"]
+

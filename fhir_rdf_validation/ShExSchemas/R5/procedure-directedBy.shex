@@ -1,0 +1,31 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Patient.shex>
+IMPORT <Extension.shex>
+IMPORT <Reference.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <PractitionerRole.shex>
+
+# Who has decision-making authority
+<procedure-directedBy> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:procedure-directedBy];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/procedure-directedBy"]}; 
+    fhir:v (@<CodeableConcept>  OR 
+    			(@<Reference>  AND {fhir:link @<Patient> OR 
+    			 @<RelatedPerson> OR 
+    			 @<Practitioner> OR 
+    			 @<PractitionerRole> }) )  AND { rdf:type IRI } ; 
+    ^fhir:extension { a [fhir:Procedure] OR 
+          a [fhir:ServiceRequest]
+        }
+}  
+

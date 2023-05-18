@@ -1,0 +1,46 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+#imported_begin 
+IMPORT <Condition.shex>
+#imported_end
+#imported_begin 
+IMPORT <Observation.shex>
+#imported_end
+#imported_begin 
+IMPORT <DiagnosticReport.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableReference.shex>
+#imported_end
+#imported_begin 
+IMPORT <DocumentReference.shex>
+#imported_end
+# Why is/was resource necessary?
+<workflow-reason> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:workflow-reason]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri> AND
+    	{fhir:value ["http://hl7.org/fhir/StructureDefinition/workflow-reason"]}; 
+    fhir:value (@<CodeableReference>  AND {fhir:link @<Condition> OR 
+    			 @<DiagnosticReport> OR 
+    			 @<DocumentReference> OR 
+    			 @<Observation> })  ; 
+    ^fhir:extension { a [fhir:Observation]} OR 
+          {a [fhir:DiagnosticReport]} OR 
+          {a [fhir:DocumentReference]} OR 
+          {a [fhir:NutritionOrder]}
+
+}  
+

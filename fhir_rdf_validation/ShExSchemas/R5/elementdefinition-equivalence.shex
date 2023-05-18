@@ -1,0 +1,27 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <Extension.shex>
+
+# equivalent | equal | wider | subsumes | narrower | specializes | inexact | unmatched | disjoint
+<elementdefinition-equivalence> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:elementdefinition-equivalence];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/elementdefinition-equivalence"]}; 
+    fhir:v (@<code> AND
+    	{fhir:v @fhirvs:concept-map-equivalence} )  AND { rdf:type IRI } ; 
+    ^fhir:extension { ^fhir:mapping {a [fhir:ElementDefinition]}
+        }
+}  
+
+#---------------------- Value Sets ------------------------
+
+# The degree of equivalence between concepts.
+fhirvs:concept-map-equivalence ["relatedto" "equivalent" "equal" "wider" "subsumes" "narrower" "specializes" "inexact" "unmatched" "disjoint"]
+

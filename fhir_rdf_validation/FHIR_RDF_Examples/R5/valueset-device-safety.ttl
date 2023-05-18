@@ -1,0 +1,144 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ValueSet ;
+  fhir:id [ fhir:v "device-safety"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T04:21:02.749+00:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablevalueset" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "oo" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "draft" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/device-safety"], [ fhir:v "http://hl7.org/fhir/ValueSet/device-safety"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.213" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.893" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.213" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.893" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "DeviceSafety"], [ fhir:v "DeviceSafety"] ;
+  fhir:title [ fhir:v "Device Safety"], [ fhir:v "Device Safety"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "true"], [ fhir:v "true"] ;
+  fhir:date [ fhir:v "2017-02-17T23:28:06+00:00"], [ fhir:v "2017-02-17T23:28:06+00:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Codes used to identify medical devices safety characteristics. These codes are taken from the [NCI Thesaurus](https://ncit.nci.nih.gov/ncitbrowser/pages/home.jsf) and are provided here as a suggestive example."], [ fhir:v "Codes used to identify medical devices safety characteristics. These codes are taken from the [NCI Thesaurus](https://ncit.nci.nih.gov/ncitbrowser/pages/home.jsf) and are provided here as a suggestive example."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:copyright [ fhir:v "MRI safety definitions reprinted, with permission, from F2503-08 Standard Practice for Marking Medical Devices and Other Items for Safety in the Magnetic Resonance Environment, copyright ASTM International, 100 Barr Harbor Drive, West Conshohocken, PA 19428.  See [ASTM F2503](https://www.astm.org/Standards/F2503.htm)."], [ fhir:v "MRI safety definitions reprinted, with permission, from F2503-08 Standard Practice for Marking Medical Devices and Other Items for Safety in the Magnetic Resonance Environment, copyright ASTM International, 100 Barr Harbor Drive, West Conshohocken, PA 19428.  See [ASTM F2503](https://www.astm.org/Standards/F2503.htm)."] ;
+  fhir:immutable [ fhir:v "true"] ;
+  fhir:compose [
+     fhir:include ( [
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-systemName" ] ;
+         fhir:value [ fhir:v "NCI Thesaurus" ]
+       ] ) ;
+       fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.3.26.1.1" ] ;
+       fhir:concept ( [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "A device with demonstrated safety in the MR environment within defined conditions. At a minimum, address the conditions of the static magnetic field, the switched gradient magnetic field and the radiofrequency fields. Additional conditions, including specific configurations of the item, may be required. See ASTM F2503" ]
+         ] ) ;
+         fhir:code [ fhir:v "C106046" ] ;
+         fhir:display [ fhir:v "Magnetic Resonance Conditional" ] ;
+         fhir:designation ( [
+           fhir:value [ fhir:v "MR Conditional" ]
+         ] )
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "The device poses no known hazards resulting from exposure to any MR environment. MR Safe items are composed of materials that are electrically nonconductive, nonmetallic, and nonmagnetic. See ASTM F2503" ]
+         ] ) ;
+         fhir:code [ fhir:v "C106045" ] ;
+         fhir:display [ fhir:v "Magnetic Resonance Safe" ] ;
+         fhir:designation ( [
+           fhir:value [ fhir:v "MR Safe" ]
+         ] )
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "The device which poses unacceptable risks to the patient, medical staff or other persons within the MR environment. See ASTM F2503" ]
+         ] ) ;
+         fhir:code [ fhir:v "C106047" ] ;
+         fhir:display [ fhir:v "Magnetic Resonance Unsafe" ] ;
+         fhir:designation ( [
+           fhir:value [ fhir:v "MR Unsafe" ]
+         ] )
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "Information on the safety of using a device in a magnetic resonance (MR) environment has not been provided in the labeling by the labeler." ]
+         ] ) ;
+         fhir:code [ fhir:v "C113844" ] ;
+         fhir:display [ fhir:v "Labeling does not Contain MRI Safety Information" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "The device label indicates natural rubber latex as a component." ]
+         ] ) ;
+         fhir:code [ fhir:v "C101673" ] ;
+         fhir:display [ fhir:v "Labeled as Containing Natural Rubber Latex" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "The composition of the materials of an item do not contain natural rubber latex." ]
+         ] ) ;
+         fhir:code [ fhir:v "C106038" ] ;
+         fhir:display [ fhir:v "Not Made with Natural Rubber Latex" ]
+       ] )
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

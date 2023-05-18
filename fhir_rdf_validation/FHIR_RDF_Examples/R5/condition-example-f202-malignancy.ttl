@@ -1,0 +1,92 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Condition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "f202"] ; # 
+  fhir:meta [
+     fhir:security ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActCode"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "TBOO" ] ;
+       fhir:display [ fhir:v "taboo" ]
+     ] )
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Condition</b><a name=\"f202\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Condition &quot;f202&quot; </p><p style=\"margin-bottom: 0px\">Security Labels: <span title=\"{http://terminology.hl7.org/CodeSystem/v3-ActCode http://terminology.hl7.org/CodeSystem/v3-ActCode}\">http://terminology.hl7.org/CodeSystem/v3-ActCode</span></p></div><p><b>clinicalStatus</b>: Resolved <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-condition-clinical.html\">Condition Clinical Status Codes</a>#resolved)</span></p><p><b>verificationStatus</b>: Confirmed <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-condition-ver-status.html\">ConditionVerificationStatus</a>#confirmed)</span></p><p><b>category</b>: Encounter Diagnosis <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-condition-category.html\">Condition Category Codes</a>#encounter-diagnosis)</span></p><p><b>severity</b>: Severe <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#24484000)</span></p><p><b>code</b>: Malignant neoplastic disease <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#363346000)</span></p><p><b>bodySite</b>: Entire head and neck <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#361355005)</span></p><p><b>subject</b>: <a href=\"patient-example-f201-roel.html\">Patient/f201: Roel</a> &quot;Roel&quot;</p><p><b>onset</b>: 52 years<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code a = 'a')</span></p><p><b>abatement</b>: 54 years<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code a = 'a')</span></p><p><b>recordedDate</b>: 2012-12-01</p><h3>Evidences</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><span title=\" Problem is confirmed in diagnostic report \"><a href=\"diagnosticreport-example-f201-brainct.html\">DiagnosticReport/f201: Erasmus' diagnostic report of Roel's tumor</a></span></td></tr></table></div>"
+  ] ; # 
+  fhir:clinicalStatus [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/condition-clinical"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "resolved" ]
+     ] )
+  ] ; # 
+  fhir:verificationStatus [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/condition-ver-status"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "confirmed" ]
+     ] )
+  ] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/condition-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "encounter-diagnosis" ]
+     ] )
+  ] ) ; # 
+  fhir:severity [
+     fhir:coding ( [
+       a sct:24484000 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "24484000" ] ;
+       fhir:display [ fhir:v "Severe" ]
+     ] )
+  ] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a sct:363346000 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "363346000" ] ;
+       fhir:display [ fhir:v "Malignant neoplastic disease" ]
+     ] ) #   The problem is a malignant tumor  
+  ] ; # 
+  fhir:bodySite ( [
+     fhir:coding ( [
+       a sct:361355005 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "361355005" ] ;
+       fhir:display [ fhir:v "Entire head and neck" ]
+     ] ) #   Head and neck malignancy  
+  ] ) ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/f201" ] ; #   It entails Roel's problem  
+     fhir:display [ fhir:v "Roel" ]
+  ] ; # 
+  fhir:onset [
+     a fhir:Age ;
+     fhir:value [ fhir:v "52"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "years" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "a" ]
+  ] ; # 
+  fhir:abatement [
+     a fhir:Age ;
+     fhir:value [ fhir:v "54"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "years" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "a" ]
+  ] ; # 
+  fhir:recordedDate [ fhir:v "2012-12-01"^^xsd:date] ; # 
+  fhir:evidence ( [
+     fhir:reference [
+       fhir:reference [ fhir:v "DiagnosticReport/f201" ] ;
+       fhir:display [ fhir:v "Erasmus' diagnostic report of Roel's tumor" ]
+     ] #   Problem is confirmed in diagnostic report  
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

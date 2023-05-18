@@ -1,0 +1,42 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Extension.shex>
+IMPORT <Reference.shex>
+IMPORT <Procedure.shex>
+IMPORT <Observation.shex>
+IMPORT <ImagingStudy.shex>
+IMPORT <Immunization.shex>
+IMPORT <MedicationUsage.shex>
+IMPORT <DiagnosticReport.shex>
+IMPORT <MedicationRequest.shex>
+IMPORT <AllergyIntolerance.shex>
+IMPORT <FamilyMemberHistory.shex>
+IMPORT <MedicationAdministration.shex>
+IMPORT <ImmunizationRecommendation.shex>
+
+# Related item that caused this procedure.
+<procedure-causedBy> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:procedure-causedBy];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/procedure-causedBy"]}; 
+    fhir:v ((@<Reference>  AND {fhir:link @<AllergyIntolerance> OR 
+    			 @<DiagnosticReport> OR 
+    			 @<FamilyMemberHistory> OR 
+    			 @<ImagingStudy> OR 
+    			 @<Immunization> OR 
+    			 @<ImmunizationRecommendation> OR 
+    			 @<MedicationAdministration> OR 
+    			 @<MedicationRequest> OR 
+    			 @<MedicationUsage> OR 
+    			 @<Observation> OR 
+    			 @<Procedure> }) )  AND { rdf:type IRI } ; 
+    ^fhir:extension { a [fhir:Procedure]
+        }
+}  
+

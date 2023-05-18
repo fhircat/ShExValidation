@@ -1,0 +1,75 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <string.shex>
+IMPORT <boolean.shex>
+IMPORT <Patient.shex>
+IMPORT <Reference.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+
+
+start=@<BodyStructure> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Specific and identified anatomical structure
+<BodyStructure> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:BodyStructure];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Bodystructure identifier
+    fhir:active @<boolean>?;                # Whether this record is in active 
+                                            # use 
+    fhir:morphology @<CodeableConcept>?;    # Kind of Structure
+    fhir:includedStructure @<OneOrMore_BackboneElement>;  # Included anatomic location(s)
+    fhir:excludedStructure @<OneOrMore_BackboneElement>?;  # Excluded anatomic locations(s)
+    fhir:description @<string>?;            # Text description
+    fhir:image @<OneOrMore_Attachment>?;    # Attached images
+    fhir:patient @<Reference> AND {fhir:link 
+    			@<Patient> };  # Who this is about
+}  
+
+# Excluded anatomic locations(s)
+<BodyStructure.excludedStructure> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:structure @<CodeableConcept>;      # Code that represents the excluded 
+                                            # structure 
+    fhir:laterality @<CodeableConcept>?;    # Code that represents the excluded 
+                                            # structure laterality 
+    fhir:qualifier @<OneOrMore_CodeableConcept>?;  # Code that represents the excluded 
+                                            # structure qualifier 
+}  
+
+# Included anatomic location(s)
+<BodyStructure.includedStructure> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:structure @<CodeableConcept>;      # Code that represents the included 
+                                            # structure 
+    fhir:laterality @<CodeableConcept>?;    # Code that represents the included 
+                                            # structure laterality 
+    fhir:qualifier @<OneOrMore_CodeableConcept>?;  # Code that represents the included 
+                                            # structure qualifier 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Attachment> CLOSED {
+    rdf:first @<Attachment>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Attachment> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+

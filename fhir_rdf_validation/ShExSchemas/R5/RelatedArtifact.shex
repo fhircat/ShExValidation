@@ -1,0 +1,59 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <string.shex>
+IMPORT <DataType.shex>
+IMPORT <markdown.shex>
+IMPORT <Resource.shex>
+IMPORT <canonical.shex>
+IMPORT <Reference.shex>
+IMPORT <Attachment.shex>
+
+# Related artifacts for a knowledge resource
+<RelatedArtifact> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:RelatedArtifact];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:related-artifact-type};  # documentation | justification | 
+                                            # citation | predecessor | successor 
+                                            # | derived-from | depends-on | 
+                                            # composed-of | part-of | amends | 
+                                            # amended-with | appends | 
+                                            # appended-with | cites | cited-by | 
+                                            # comments-on | comment-in | 
+                                            # contains | contained-in | corrects 
+                                            # | correction-in | replaces | 
+                                            # replaced-with | retracts | 
+                                            # retracted-by | signs | similar-to 
+                                            # | supports | supported-with | 
+                                            # transforms | transformed-into | 
+                                            # transformed-with 
+    fhir:classifier @<OneOrMore_CodeableConcept>?;  # Additional classifiers
+    fhir:label @<string>?;                  # Short label
+    fhir:display @<string>?;                # Brief description of the related 
+                                            # artifact 
+    fhir:citation @<markdown>?;             # Bibliographic citation for the 
+                                            # artifact 
+    fhir:document @<Attachment>?;           # What document is being referenced
+    fhir:resource @<canonical>?;            # What artifact is being referenced
+    fhir:resourceReference @<Reference> AND {fhir:link 
+    			@<Resource> }?;  # What artifact, if not a 
+                                            # conformance resource 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The type of relationship to the related artifact.
+fhirvs:related-artifact-type ["documentation" "justification" "citation" "predecessor" "successor" "derived-from" "depends-on" "composed-of" "part-of" "amends" "amended-with" "appends" "appended-with" "cites" "cited-by" "comments-on" "comment-in" "contains" "contained-in" "corrects" "correction-in" "replaces" "replaced-with" "retracts" "retracted-by" "signs" "similar-to" "supports" "supported-with" "transforms" "transformed-into" "transformed-with"]
+

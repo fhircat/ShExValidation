@@ -1,0 +1,57 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Specimen ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "genomicSpecimen"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource &quot;genomicSpecimen&quot; </p></div><p><b>identifier</b>: id: 4</p><p><b>status</b>: available</p><p><b>type</b>: Specimen from lung obtained by biopsy (specimen)  <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#122610009)</span></p><p><b>subject</b>: <a href=\"Patient-genomicPatient.html\">Patient/genomicPatient: John Doe</a> &quot; DOE&quot;</p><p><b>receivedTime</b>: 2019-03-01 01:01:01+0000</p><p><b>request</b>: <a href=\"ServiceRequest-genomicServiceRequest.html\">ServiceRequest/genomicServiceRequest</a></p><h3>Collections</h3><table class=\"grid\"><tr><td>-</td><td><b>Collector</b></td><td><b>Collected[x]</b></td><td><b>Quantity</b></td><td><b>Method</b></td></tr><tr><td>*</td><td><a href=\"Practitioner-practitioner01.html\">Practitioner/practitioner01</a> &quot; DOEL&quot;</td><td>2019-03-01 01:01:00+0000</td><td>1 mm2</td><td>Biopsy - action <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#129314006)</span></td></tr></table></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://www.somesystemabc.net/identifiers/specimens"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "4" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "available"] ; # 
+  fhir:type [
+     fhir:coding ( [
+       a sct:122610009 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "122610009" ] ;
+       fhir:display [ fhir:v "Specimen from lung obtained by biopsy (specimen)" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/genomicPatient" ] ;
+     fhir:display [ fhir:v "John Doe" ]
+  ] ; # 
+  fhir:receivedTime [ fhir:v "2019-03-01T01:01:01Z"^^xsd:dateTime] ; # 
+  fhir:request ( [
+     fhir:reference [ fhir:v "ServiceRequest/genomicServiceRequest" ]
+  ] ) ; # 
+  fhir:collection [
+     fhir:collector [
+       fhir:reference [ fhir:v "Practitioner/practitioner01" ]
+     ] ;
+     fhir:collected [ fhir:v "2019-03-01T01:01:00Z"^^xsd:dateTime ] ;
+     fhir:quantity [
+       fhir:value [ fhir:v "1"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mm2" ]
+     ] ;
+     fhir:method [
+       fhir:coding ( [
+         a sct:129314006 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "129314006" ] ;
+         fhir:display [ fhir:v "Biopsy - action" ]
+       ] )
+     ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

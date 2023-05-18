@@ -1,0 +1,124 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Range.shex>
+IMPORT <Period.shex>
+IMPORT <Timing.shex>
+IMPORT <Device.shex>
+IMPORT <Patient.shex>
+IMPORT <boolean.shex>
+IMPORT <Quantity.shex>
+IMPORT <dateTime.shex>
+IMPORT <CareTeam.shex>
+IMPORT <Location.shex>
+IMPORT <Resource.shex>
+IMPORT <Reference.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <CodeableReference.shex>
+IMPORT <HealthcareService.shex>
+
+
+start=@<SupplyRequest> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Request for a medication, substance or device
+<SupplyRequest> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:SupplyRequest];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business Identifier for 
+                                            # SupplyRequest 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:supplyrequest-status}?;  # draft | active | suspended +
+    fhir:basedOn @<OneOrMore_Reference_Resource>?;  # What other request is fulfilled by 
+                                            # this supply request 
+    fhir:category @<CodeableConcept>?;      # The kind of supply (central, 
+                                            # non-stock, etc.) 
+    fhir:priority @<code> AND
+    	{fhir:v @fhirvs:request-priority}?;  # routine | urgent | asap | stat
+    fhir:item @<CodeableReference>;         # Medication, Substance, or Device 
+                                            # requested to be supplied 
+    fhir:quantity @<Quantity>;              # The requested amount of the item 
+                                            # indicated 
+    fhir:parameter @<OneOrMore_BackboneElement>?;  # Ordered item details
+    fhir:occurrence (@<dateTime>  OR 
+    			@<Period>  OR 
+    			@<Timing> )  AND { rdf:type IRI } ?;  # When the request should be 
+                                            # fulfilled 
+    fhir:authoredOn @<dateTime>?;           # When the request was made
+    fhir:requester @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Individual making the request
+    fhir:supplier @<OneOrMore_Reference_HealthcareService_OR_Organization>?;  # Who is intended to fulfill the 
+                                            # request 
+    fhir:reason @<OneOrMore_CodeableReference>?;  # The reason why the supply item was 
+                                            # requested 
+    fhir:deliverFrom @<Reference> AND {fhir:link 
+    			@<Location> OR 
+    			@<Organization> }?;  # The origin of the supply
+    fhir:deliverTo @<Reference> AND {fhir:link 
+    			@<Location> OR 
+    			@<Organization> OR 
+    			@<Patient> }?;  # The destination of the supply
+}  
+
+# Ordered item details
+<SupplyRequest.parameter> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>?;          # Item detail
+    fhir:v (@<CodeableConcept>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<boolean> )  AND { rdf:type IRI } ?;  # Value of detail
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Reference_HealthcareService_OR_Organization> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<HealthcareService> OR 
+			@<Organization> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_HealthcareService_OR_Organization> 
+}
+
+<OneOrMore_CodeableReference> CLOSED {
+    rdf:first @<CodeableReference>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableReference> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Status of the supply request.
+fhirvs:supplyrequest-status ["draft" "active" "suspended" "cancelled" "completed" "entered-in-error" "unknown"]
+
+# Identifies the level of importance to be assigned to actioning the request.
+fhirvs:request-priority ["routine" "urgent" "asap" "stat"]
+

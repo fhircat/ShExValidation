@@ -1,0 +1,190 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <List.shex>
+IMPORT <Group.shex>
+IMPORT <Range.shex>
+IMPORT <Device.shex>
+IMPORT <Period.shex>
+IMPORT <Patient.shex>
+IMPORT <integer.shex>
+IMPORT <boolean.shex>
+IMPORT <Location.shex>
+IMPORT <dateTime.shex>
+IMPORT <Quantity.shex>
+IMPORT <Duration.shex>
+IMPORT <Resource.shex>
+IMPORT <canonical.shex>
+IMPORT <Reference.shex>
+IMPORT <Practitioner.shex>
+IMPORT <Organization.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+
+
+start=@<MeasureReport> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Results of a measure evaluation
+<MeasureReport> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:MeasureReport];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
+                                            # MeasureReport 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:measure-report-status};  # complete | pending | error
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:measure-report-type};  # individual | subject-list | 
+                                            # summary | data-collection 
+    fhir:dataUpdateType @<code> AND
+    	{fhir:v @fhirvs:submit-data-update-type}?;  # incremental | snapshot
+    fhir:measure @<canonical>;              # What measure was calculated
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<Location> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # What individual(s) the report is 
+                                            # for 
+    fhir:date @<dateTime>?;                 # When the report was generated
+    fhir:reporter @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Location> OR 
+    			@<Organization> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> }?;  # Who is reporting the data
+    fhir:reportingVendor @<Reference> AND {fhir:link 
+    			@<Organization> }?;  # What vendor prepared the data
+    fhir:period @<Period>;                  # What period the report covers
+    fhir:scoring @<CodeableConcept>?;       # What scoring method (e.g. 
+                                            # proportion, ratio, 
+                                            # continuous-variable) 
+    fhir:improvementNotation @<CodeableConcept>?;  # increase | decrease
+    fhir:group @<OneOrMore_BackboneElement>?;  # Measure results for each group
+    fhir:evaluatedResource @<OneOrMore_Reference_Resource>?;  # What data was used to calculate 
+                                            # the measure score 
+}  
+
+# The populations in the group
+<MeasureReport.group.population> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>?;          # initial-population | numerator | 
+                                            # numerator-exclusion | denominator 
+                                            # | denominator-exclusion | 
+                                            # denominator-exception | 
+                                            # measure-population | 
+                                            # measure-population-exclusion | 
+                                            # measure-observation 
+    fhir:count @<integer>?;                 # Size of the population
+    fhir:subjectResults @<Reference> AND {fhir:link 
+    			@<List> }?;  # For subject-list reports, the 
+                                            # subject results in this population 
+}  
+
+# Stratification results
+<MeasureReport.group.stratifier> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<OneOrMore_CodeableConcept>?;  # What stratifier of the group
+    fhir:stratum @<OneOrMore_BackboneElement>?;  # Stratum results, one for each 
+                                            # unique value, or set of values, in 
+                                            # the stratifier, or stratifier 
+                                            # components 
+}  
+
+# Measure results for each group
+<MeasureReport.group> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>?;          # Meaning of the group
+    fhir:population @<OneOrMore_BackboneElement>?;  # The populations in the group
+    fhir:measureScore (@<Quantity>  OR 
+    			@<dateTime>  OR 
+    			@<CodeableConcept>  OR 
+    			@<Period>  OR 
+    			@<Range>  OR 
+    			@<Duration> )  AND { rdf:type IRI } ?;  # What score this group achieved
+    fhir:stratifier @<OneOrMore_BackboneElement>?;  # Stratification results
+}  
+
+# Population results in this stratum
+<MeasureReport.group.stratifier.stratum.population> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>?;          # initial-population | numerator | 
+                                            # numerator-exclusion | denominator 
+                                            # | denominator-exclusion | 
+                                            # denominator-exception | 
+                                            # measure-population | 
+                                            # measure-population-exclusion | 
+                                            # measure-observation 
+    fhir:count @<integer>?;                 # Size of the population
+    fhir:subjectResults @<Reference> AND {fhir:link 
+    			@<List> }?;  # For subject-list reports, the 
+                                            # subject results in this population 
+}  
+
+# Stratum results, one for each unique value, or set of values, in the stratifier, or stratifier components
+<MeasureReport.group.stratifier.stratum> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:v (@<CodeableConcept>  OR 
+    			@<boolean>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<Reference> )  AND { rdf:type IRI } ?;  # The stratum value, e.g. male
+    fhir:component @<OneOrMore_BackboneElement>?;  # Stratifier component values
+    fhir:population @<OneOrMore_BackboneElement>?;  # Population results in this stratum
+    fhir:measureScore (@<Quantity>  OR 
+    			@<dateTime>  OR 
+    			@<CodeableConcept>  OR 
+    			@<Period>  OR 
+    			@<Range>  OR 
+    			@<Duration> )  AND { rdf:type IRI } ?;  # What score this stratum achieved
+}  
+
+# Stratifier component values
+<MeasureReport.group.stratifier.stratum.component> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>;           # What stratifier component of the 
+                                            # group 
+    fhir:v (@<CodeableConcept>  OR 
+    			@<boolean>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<Reference> )  AND { rdf:type IRI } ;  # The stratum component value, e.g. 
+                                            # male 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The status of the measure report.
+fhirvs:measure-report-status ["complete" "pending" "error"]
+
+# Concepts for how a measure report consumer and receiver coordinate data exchange updates. The choices are snapshot or incremental updates
+fhirvs:submit-data-update-type ["incremental" "snapshot"]
+
+# The type of the measure report.
+fhirvs:measure-report-type ["individual" "subject-list" "summary" "data-collection"]
+

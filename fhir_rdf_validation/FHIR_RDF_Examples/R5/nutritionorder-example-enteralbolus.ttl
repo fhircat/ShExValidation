@@ -1,0 +1,124 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:NutritionOrder ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "enteralbolus"] ; #    id = enteralbolus  file name = nutritionorder-example-enteralbolus.xml Name= Enteral Bolus  Description = Nutrition Order Enteral Bolus Feeding  Example
+#Tube feedings are given in boluses several times a day   edited by Eric Haas Health eData Inc
+#  ,   EH  Show all the elements in this examples for preference, and intolerance   
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: NutritionOrder</b><a name=\"enteralbolus\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource NutritionOrder &quot;enteralbolus&quot; </p></div><p><b>identifier</b>: id: 123</p><p><b>status</b>: active</p><p><b>intent</b>: order</p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example: Peter Chalmers</a> &quot;Peter CHALMERS&quot;</p><p><b>encounter</b>: <a href=\"encounter-example.html\">Encounter/example: Inpatient</a></p><p><b>dateTime</b>: 2014-09-17</p><p><b>orderer</b>: <a href=\"practitioner-example.html\">Practitioner/example: Dr Adam Careful</a> &quot;Adam CAREFUL&quot;</p><p><b>allergyIntolerance</b>: <a href=\"allergyintolerance-example.html\">AllergyIntolerance/example: Cashew Nuts</a></p><p><b>foodPreferenceModifier</b>: Dairy Free <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-diet.html\">Diet</a>#dairy-free)</span></p><p><b>excludeFoodModifier</b>: Cashew Nut <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT[20140730]</a>#227493005)</span></p><blockquote><p><b>enteralFormula</b></p><h3>BaseFormulaTypes</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Adult high protein formula <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#442991000124104)</span></td></tr></table><p><b>baseFormulaProductName</b>: Acme High Protein Formula</p><blockquote><p><b>additive</b></p><h3>Types</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Lipid <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-entformula-additive.html\">Enteral Formula Additive Type Code</a>#lipid)</span></td></tr></table><p><b>productName</b>: Acme Lipid Additive</p></blockquote><p><b>caloricDensity</b>: 1.5 calories per milliliter<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code cal/mL = 'cal/mL')</span></p><p><b>routeOfAdministration</b>: Instillation, gastrostomy tube <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-RouteOfAdministration.html\">RouteOfAdministration</a>#GT)</span></p><blockquote><p><b>administration</b></p><h3>Schedules</h3><table class=\"grid\"><tr><td>-</td><td><b>Timing</b></td></tr><tr><td>*</td><td>Starting 2014-09-17T16:00:00Z, Once per 4 hours</td></tr></table><p><b>quantity</b>: 240 milliliters<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mL = 'mL')</span></p></blockquote><p><b>maxVolumeToDeliver</b>: 1440 milliliter/day<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mL/d = 'mL/d')</span></p><p><b>administrationInstruction</b>: 240 mls every 4hrs</p></blockquote></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://www.acme.org/nutritionorders"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "123" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:intent [ fhir:v "order"] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "Peter Chalmers" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/example" ] ;
+     fhir:display [ fhir:v "Inpatient" ]
+  ] ; # 
+  fhir:dateTime [ fhir:v "2014-09-17"^^xsd:date] ; # 
+  fhir:orderer [
+     fhir:reference [ fhir:v "Practitioner/example" ] ;
+     fhir:display [ fhir:v "Dr Adam Careful" ]
+  ] ; # 
+  fhir:allergyIntolerance ( [
+     fhir:reference [ fhir:v "AllergyIntolerance/example" ] ;
+     fhir:display [ fhir:v "Cashew Nuts" ]
+  ] ) ; # 
+  fhir:foodPreferenceModifier ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/diet"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "dairy-free" ]
+     ] )
+  ] ) ; # 
+  fhir:excludeFoodModifier ( [
+     fhir:coding ( [
+       a sct:227493005 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:version [ fhir:v "20140730" ] ;
+       fhir:code [ fhir:v "227493005" ] ;
+       fhir:display [ fhir:v "Cashew Nut" ]
+     ] )
+  ] ) ; # 
+  fhir:enteralFormula [
+     fhir:baseFormulaType [
+       fhir:concept [
+         fhir:coding ( [
+           a sct:442991000124104 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ; #   EH:  bolus tube feeding instruction in text  
+           fhir:code [ fhir:v "442991000124104" ] ;
+           fhir:display [ fhir:v "Adult high protein formula" ]
+         ] )
+       ]
+     ] ;
+     fhir:baseFormulaProductName [ fhir:v "Acme High Protein Formula" ] ;
+     fhir:additive ( [
+       fhir:type [
+         fhir:concept [
+           fhir:coding ( [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/entformula-additive"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "lipid" ] ;
+             fhir:display [ fhir:v "Lipid" ]
+           ] )
+         ]
+       ] ;
+       fhir:productName [ fhir:v "Acme Lipid Additive" ]
+     ] ) ;
+     fhir:caloricDensity [
+       fhir:value [ fhir:v "1.5"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "calories per milliliter" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "cal/mL" ]
+     ] ;
+     fhir:routeOfAdministration [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-RouteOfAdministration"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "GT" ] ;
+         fhir:display [ fhir:v "Instillation, gastrostomy tube" ]
+       ] )
+     ] ;
+     fhir:administration ( [
+       fhir:schedule [
+         fhir:timing ( [
+           fhir:repeat [
+             fhir:bounds [
+               a fhir:Period ;
+               fhir:start [ fhir:v "2014-09-17T16:00:00Z"^^xsd:dateTime ]
+             ] ;
+             fhir:frequency [ fhir:v "1"^^xsd:positiveInteger ] ;
+             fhir:period [ fhir:v "4"^^xsd:decimal ] ;
+             fhir:periodUnit [ fhir:v "h" ]
+           ]
+         ] )
+       ] ;
+       fhir:quantity [
+         fhir:value [ fhir:v "240"^^xsd:decimal ] ;
+         fhir:unit [ fhir:v "milliliters" ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "mL" ]
+       ]
+     ] ) ;
+     fhir:maxVolumeToDeliver [
+       fhir:value [ fhir:v "1440"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "milliliter/day" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "mL/d" ]
+     ] ;
+     fhir:administrationInstruction [ fhir:v "240 mls every 4hrs" ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

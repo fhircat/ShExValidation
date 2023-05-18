@@ -1,0 +1,31 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Resource.shex>
+IMPORT <Reference.shex>
+
+
+start=@<Binary> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Pure binary content defined by a format other than FHIR
+<Binary> EXTENDS @<Resource> CLOSED {   
+
+    a [fhir:Binary];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:contentType @<code> AND
+    	{fhir:v @fhirvs:mimetypes};  # MimeType of the binary content
+    fhir:securityContext @<Reference> AND {fhir:link 
+    			@<Resource> }?;  # Identifies another resource to use 
+                                            # as proxy when enforcing access 
+                                            # control 
+    fhir:data @<base64Binary>?;             # The actual content
+}  
+
+#---------------------- Value Sets ------------------------
+
+# This value set includes all possible codes from BCP-13 (http://tools.ietf.org/html/bcp13)
+fhirvs:mimetypes xsd:string # EXTERNAL
+

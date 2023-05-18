@@ -1,0 +1,34 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:EvidenceVariable ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-placebo"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n		\n      <p>\n			Placebo is a specific exposure that may be used in expressing what an Evidence is about.\n		</p>\n	\n    </div>"
+  ] ; # 
+  fhir:name [ fhir:v "Placebo"] ; # 
+  fhir:title [ fhir:v "placebo"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:description [ fhir:v "placebo"] ; # 
+  fhir:actual [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:characteristic ( [
+     fhir:description [ fhir:v "placebo" ] ;
+     fhir:definitionCodeableConcept [
+       fhir:coding ( [
+         a sct:182886004 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "182886004" ] ;
+         fhir:display [ fhir:v "Placebo given (situation)" ]
+       ] )
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

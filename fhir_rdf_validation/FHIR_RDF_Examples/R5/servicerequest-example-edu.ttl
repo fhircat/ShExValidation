@@ -1,0 +1,56 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ServiceRequest ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "education"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: ServiceRequest</b><a name=\"education\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource ServiceRequest &quot;education&quot; </p></div><p><b>status</b>: <span title=\"  insert contents here  \">completed</span></p><p><b>intent</b>: order</p><p><b>category</b>: Education <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#311401005 &quot;Patient education (procedure)&quot;)</span></p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Health education - breast examination <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#48023004 &quot;Breast self-examination technique education (procedure)&quot;)</span></td></tr></table><p><b>subject</b>: <span>: Jane Doe</span></p><p><b>occurrence</b>: 2014-08-16</p><p><b>authoredOn</b>: 2016-08-16</p><p><b>requester</b>: <span>: Angela Care, MD</span></p><p><b>performer</b>: <span>: Pamela Educator, RN</span></p><h3>Reasons</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>early detection of breast mass <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table></div>"
+  ] ; #    insert contents here   
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:intent [ fhir:v "order"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       a sct:311401005 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "311401005" ] ;
+       fhir:display [ fhir:v "Patient education (procedure)" ]
+     ] ) ;
+     fhir:text [ fhir:v "Education" ]
+  ] ) ; # 
+  fhir:code [
+     fhir:concept [
+       fhir:coding ( [
+         a sct:48023004 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "48023004" ] ;
+         fhir:display [ fhir:v "Breast self-examination technique education (procedure)" ]
+       ] ) ;
+       fhir:text [ fhir:v "Health education - breast examination" ]
+     ]
+  ] ; # 
+  fhir:subject [
+     fhir:display [ fhir:v "Jane Doe" ]
+  ] ; # 
+  fhir:occurrence [ fhir:v "2014-08-16"^^xsd:date] ; # 
+  fhir:authoredOn [ fhir:v "2016-08-16"^^xsd:date] ; # 
+  fhir:requester [
+     fhir:display [ fhir:v "Angela Care, MD" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:display [ fhir:v "Pamela Educator, RN" ]
+  ] ) ; # 
+  fhir:reason ( [
+     fhir:concept [
+       fhir:text [ fhir:v "early detection of breast mass" ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

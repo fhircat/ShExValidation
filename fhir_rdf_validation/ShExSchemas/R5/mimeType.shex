@@ -1,0 +1,28 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <Extension.shex>
+
+# Type of attachment
+<mimeType> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:mimeType];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/mimeType"]}; 
+    fhir:v (@<code> AND
+    	{fhir:v @fhirvs:mimetypes} )  AND { rdf:type IRI } ; 
+    ^fhir:extension { ^fhir:item {a [fhir:Questionnaire]} OR 
+          a [fhir:ElementDefinition]
+        }
+}  
+
+#---------------------- Value Sets ------------------------
+
+# This value set includes all possible codes from BCP-13 (http://tools.ietf.org/html/bcp13)
+fhirvs:mimetypes xsd:string # EXTERNAL
+

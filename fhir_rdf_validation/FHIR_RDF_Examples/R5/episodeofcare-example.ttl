@@ -1,0 +1,91 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:EpisodeOfCare ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      HACC Program for Peter James Chalmers at HL7 Healthcare 15 Sept 2014 - current<br/>\n			was on leave from 22 Sept - 24 Sept while in respite care\n    </div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://example.org/sampleepisodeofcare-identifier"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "123" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:statusHistory ( [
+     fhir:status [ fhir:v "planned" ] ;
+     fhir:period [
+       fhir:start [ fhir:v "2014-09-01"^^xsd:date ] ;
+       fhir:end [ fhir:v "2014-09-14"^^xsd:date ]
+     ]
+  ] [
+     fhir:status [ fhir:v "active" ] ;
+     fhir:period [
+       fhir:start [ fhir:v "2014-09-15"^^xsd:date ] ;
+       fhir:end [ fhir:v "2014-09-21"^^xsd:date ]
+     ]
+  ] [
+     fhir:status [ fhir:v "onhold" ] ;
+     fhir:period [
+       fhir:start [ fhir:v "2014-09-22"^^xsd:date ] ;
+       fhir:end [ fhir:v "2014-09-24"^^xsd:date ]
+     ]
+  ] [
+     fhir:status [ fhir:v "active" ] ;
+     fhir:period [
+       fhir:start [ fhir:v "2014-09-25"^^xsd:date ]
+     ]
+  ] ) ; # 
+  fhir:type ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/episodeofcare-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "hacc" ] ;
+       fhir:display [ fhir:v "Home and Community Care" ]
+     ] )
+  ] ) ; # 
+  fhir:diagnosis ( [
+     fhir:condition ( [
+       fhir:reference [
+         fhir:reference [ fhir:v "Condition/stroke" ]
+       ]
+     ] ) ;
+     fhir:use [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/diagnosis-role"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "CC" ] ;
+         fhir:display [ fhir:v "Chief complaint" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:patient [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:managingOrganization [
+     fhir:reference [ fhir:v "Organization/hl7" ]
+  ] ; # 
+  fhir:period [
+     fhir:start [ fhir:v "2014-09-01"^^xsd:date ]
+  ] ; # 
+  fhir:referralRequest ( [
+     fhir:display [ fhir:v "Referral from Example Aged Care Services" ]
+  ] ) ; # 
+  fhir:careManager [
+     fhir:reference [ fhir:v "Practitioner/f204" ] ;
+     fhir:display [ fhir:v "Carla Espinosa" ]
+  ] ; # 
+  fhir:careTeam ( [
+     fhir:reference [ fhir:v "CareTeam/example" ] ;
+     fhir:display [ fhir:v "example care team" ]
+  ] ) ; # 
+  fhir:account ( [
+     fhir:reference [ fhir:v "Account/example" ] ;
+     fhir:display [ fhir:v "example account" ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

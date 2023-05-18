@@ -1,0 +1,33 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Extension.shex>
+
+# Constraint
+<questionnaire-constraint> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:questionnaire-constraint];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:key @<Extension>; 
+    fhir:requirements @<Extension>?; 
+    fhir:severity @<Extension>; 
+    fhir:expression @<Extension>; 
+    fhir:human @<Extension>; 
+    fhir:location @<OneOrMore_Extension>?; 
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/questionnaire-constraint"]}; 
+    ^fhir:extension { a [fhir:Questionnaire] OR 
+          ^fhir:item {a [fhir:Questionnaire]}
+        }
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Extension> CLOSED {
+    rdf:first @<Extension>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Extension> 
+}
+

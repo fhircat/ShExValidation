@@ -1,0 +1,20 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <Composition.shex>
+#imported_end
+
+start=@<example-section-library> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A set of resources composed into a single coherent clinical statement with clinical attestation
+<example-section-library> EXTENDS @<Composition> CLOSED {   
+
+    a [fhir:example-section-library]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+}  
+

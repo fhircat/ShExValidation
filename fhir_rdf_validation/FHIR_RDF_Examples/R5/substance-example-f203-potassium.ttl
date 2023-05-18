@@ -1,0 +1,40 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Substance ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "f203"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Substance</b><a name=\"f203\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Substance &quot;f203&quot; </p></div><p><b>identifier</b>: id: 1234</p><p><b>instance</b>: false</p><p><b>category</b>: Chemical <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-substance-category.html\">Substance Category Codes</a>#chemical)</span></p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Potassium <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#88480006)</span></td></tr></table></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://acme.org/identifiers/substances"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "1234" ]
+  ] ) ; # 
+  fhir:instance [ fhir:v "false"^^xsd:boolean] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/substance-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "chemical" ] ;
+       fhir:display [ fhir:v "Chemical" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:concept [
+       fhir:coding ( [
+         a sct:88480006 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "88480006" ] ;
+         fhir:display [ fhir:v "Potassium" ]
+       ] )
+     ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

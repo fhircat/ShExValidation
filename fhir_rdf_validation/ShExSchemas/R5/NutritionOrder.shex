@@ -1,0 +1,198 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Ratio.shex>
+IMPORT <string.shex>
+IMPORT <Timing.shex>
+IMPORT <Patient.shex>
+IMPORT <dateTime.shex>
+IMPORT <Quantity.shex>
+IMPORT <Reference.shex>
+IMPORT <Encounter.shex>
+IMPORT <Practitioner.shex>
+IMPORT <DomainResource.shex>
+IMPORT <SimpleQuantity.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <AllergyIntolerance.shex>
+
+
+start=@<NutritionOrder> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Diet, formula or nutritional supplement request
+<NutritionOrder> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:NutritionOrder];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Identifiers assigned to this order
+    fhir:instantiatesCanonical @<OneOrMore_canonical>?;  # Instantiates FHIR protocol or 
+                                            # definition 
+    fhir:instantiatesUri @<OneOrMore_uri>?;  # Instantiates external protocol or 
+                                            # definition 
+    fhir:instantiates @<OneOrMore_uri>?;    # Instantiates protocol or definition
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:request-status};  # draft | active | on-hold | revoked 
+                                            # | completed | entered-in-error | 
+                                            # unknown 
+    fhir:intent @<code> AND
+    	{fhir:v @fhirvs:request-intent};  # proposal | plan | directive | 
+                                            # order | original-order | 
+                                            # reflex-order | filler-order | 
+                                            # instance-order | option 
+    fhir:patient @<Reference> AND {fhir:link 
+    			@<Patient> };  # The person who requires the diet, 
+                                            # formula or nutritional supplement 
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # The encounter associated with this 
+                                            # nutrition order 
+    fhir:dateTime @<dateTime>;              # Date and time the nutrition order 
+                                            # was requested 
+    fhir:orderer @<Reference> AND {fhir:link 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> }?;  # Who ordered the diet, formula or 
+                                            # nutritional supplement 
+    fhir:allergyIntolerance @<OneOrMore_Reference_AllergyIntolerance>?;  # List of the patient's food and 
+                                            # nutrition-related allergies and 
+                                            # intolerances 
+    fhir:foodPreferenceModifier @<OneOrMore_CodeableConcept>?;  # Order-specific modifier about the 
+                                            # type of food that should be given 
+    fhir:excludeFoodModifier @<OneOrMore_CodeableConcept>?;  # Order-specific modifier about the 
+                                            # type of food that should not be 
+                                            # given 
+    fhir:oralDiet @<BackboneElement>?;      # Oral diet components
+    fhir:supplement @<OneOrMore_BackboneElement>?;  # Supplement components
+    fhir:enteralFormula @<BackboneElement>?;  # Enteral formula components
+    fhir:note @<OneOrMore_Annotation>?;     # Comments
+}  
+
+# Oral diet components
+<NutritionOrder.oralDiet> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<OneOrMore_CodeableConcept>?;  # Type of oral diet or diet 
+                                            # restrictions that describe what 
+                                            # can be consumed orally 
+    fhir:schedule @<OneOrMore_Timing>?;     # Scheduled frequency of diet
+    fhir:nutrient @<OneOrMore_BackboneElement>?;  # Required  nutrient modifications
+    fhir:texture @<OneOrMore_BackboneElement>?;  # Required  texture modifications
+    fhir:fluidConsistencyType @<OneOrMore_CodeableConcept>?;  # The required consistency of fluids 
+                                            # and liquids provided to the 
+                                            # patient 
+    fhir:instruction @<string>?;            # Instructions or additional 
+                                            # information about the oral diet 
+}  
+
+# Supplement components
+<NutritionOrder.supplement> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>?;          # Type of supplement product 
+                                            # requested 
+    fhir:productName @<string>?;            # Product or brand name of the 
+                                            # nutritional supplement 
+    fhir:schedule @<OneOrMore_Timing>?;     # Scheduled frequency of supplement
+    fhir:quantity @<Quantity>?;             # Amount of the nutritional 
+                                            # supplement 
+    fhir:instruction @<string>?;            # Instructions or additional 
+                                            # information about the oral 
+                                            # supplement 
+}  
+
+# Enteral formula components
+<NutritionOrder.enteralFormula> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:baseFormulaType @<CodeableConcept>?;  # Type of enteral or infant formula
+    fhir:baseFormulaProductName @<string>?;  # Product or brand name of the 
+                                            # enteral or infant formula 
+    fhir:additiveType @<CodeableConcept>?;  # Type of modular component to add 
+                                            # to the feeding 
+    fhir:additiveProductName @<string>?;    # Product or brand name of the 
+                                            # modular additive 
+    fhir:caloricDensity @<Quantity>?;       # Amount of energy per specified 
+                                            # volume that is required 
+    fhir:routeofAdministration @<CodeableConcept>?;  # How the formula should enter the 
+                                            # patient's gastrointestinal tract 
+    fhir:administration @<OneOrMore_BackboneElement>?;  # Formula feeding instruction as 
+                                            # structured data 
+    fhir:maxVolumeToDeliver @<Quantity>?;   # Upper limit on formula volume per 
+                                            # unit of time 
+    fhir:administrationInstruction @<string>?;  # Formula feeding instructions 
+                                            # expressed as text 
+}  
+
+# Formula feeding instruction as structured data
+<NutritionOrder.enteralFormula.administration> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:schedule @<Timing>?;               # Scheduled frequency of enteral 
+                                            # feeding 
+    fhir:quantity @<Quantity>?;             # The volume of formula to provide
+    fhir:rate (@<SimpleQuantity>  OR 
+    			@<Ratio> )  AND { rdf:type IRI } ?;  # Speed with which the formula is 
+                                            # provided per period of time 
+}  
+
+# Required  texture modifications
+<NutritionOrder.oralDiet.texture> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:modifier @<CodeableConcept>?;      # Code to indicate how to alter the 
+                                            # texture of the foods, e.g. pureed 
+    fhir:foodType @<CodeableConcept>?;      # Concepts that are used to identify 
+                                            # an entity that is ingested for 
+                                            # nutritional purposes 
+}  
+
+# Required  nutrient modifications
+<NutritionOrder.oralDiet.nutrient> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:modifier @<CodeableConcept>?;      # Type of nutrient that is being 
+                                            # modified 
+    fhir:amount @<Quantity>?;               # Quantity of the specified nutrient
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_canonical> CLOSED {
+    rdf:first @<canonical>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_canonical> 
+}
+
+<OneOrMore_uri> CLOSED {
+    rdf:first @<uri>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_uri> 
+}
+
+<OneOrMore_Reference_AllergyIntolerance> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<AllergyIntolerance> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_AllergyIntolerance> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_Timing> CLOSED {
+    rdf:first @<Timing>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Timing> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Codes identifying the lifecycle stage of a request.
+fhirvs:request-status ["draft" "active" "on-hold" "revoked" "completed" "entered-in-error" "unknown"]
+
+# Codes indicating the degree of authority/intentionality associated with a request.
+fhirvs:request-intent ["proposal" "plan" "directive" "order" "original-order" "reflex-order" "filler-order" "instance-order" "option"]
+

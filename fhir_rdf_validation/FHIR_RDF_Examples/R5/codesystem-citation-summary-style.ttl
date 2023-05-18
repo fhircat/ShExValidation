@@ -1,0 +1,133 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "citation-summary-style"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "cds" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "0" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/citation-summary-style"], [ fhir:v "http://hl7.org/fhir/citation-summary-style"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1890" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1890" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "CitationSummaryStyle"], [ fhir:v "CitationSummaryStyle"] ;
+  fhir:title [ fhir:v "Citation Summary Style"], [ fhir:v "Citation Summary Style"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2020-12-28T16:55:11+11:00"], [ fhir:v "2020-12-28T16:55:11+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The format for display of the citation."], [ fhir:v "The format for display of the citation."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/citation-summary-style"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "vancouver" ] ;
+     fhir:display [ fhir:v "Vancouver style" ] ;
+     fhir:definition [ fhir:v "Citation style used by International Committee of Medical Journal Editors and maintained by US National Library of Medicine." ]
+  ] [
+     fhir:code [ fhir:v "ama11" ] ;
+     fhir:display [ fhir:v "American Medical Association 11th edition" ] ;
+     fhir:definition [ fhir:v "Medicine." ]
+  ] [
+     fhir:code [ fhir:v "apa7" ] ;
+     fhir:display [ fhir:v "American Psychological Association 7th edition" ] ;
+     fhir:definition [ fhir:v "APA 7th edition (October 2019) used by Education, Psychology and Sciences." ]
+  ] [
+     fhir:code [ fhir:v "apa6" ] ;
+     fhir:display [ fhir:v "American Psychological Association 6th edition" ] ;
+     fhir:definition [ fhir:v "APA 6th edition used by Education, Psychology and Sciences." ]
+  ] [
+     fhir:code [ fhir:v "asa6" ] ;
+     fhir:display [ fhir:v "American Sociological Association 6th edition" ] ;
+     fhir:definition [ fhir:v "Sociology." ]
+  ] [
+     fhir:code [ fhir:v "mla8" ] ;
+     fhir:display [ fhir:v "Modern Language Association 8th edition" ] ;
+     fhir:definition [ fhir:v "MLA 8th edition used by the Humanities." ]
+  ] [
+     fhir:code [ fhir:v "cochrane" ] ;
+     fhir:display [ fhir:v "Cochrane Style" ] ;
+     fhir:definition [ fhir:v "Used by Cochrane reviews, example: Huang, M, Tang T, Pang, P, Li, M, Ma R, Lu, J, et al. Treating COVID-19 with Chloroquine. J Mol Cell Biol 2020; 12(4):322–5." ]
+  ] [
+     fhir:code [ fhir:v "elsevier-harvard" ] ;
+     fhir:display [ fhir:v "Elsevier-Harvard Style" ] ;
+     fhir:definition [ fhir:v "Biology ecology." ]
+  ] [
+     fhir:code [ fhir:v "nature" ] ;
+     fhir:display [ fhir:v "Nature Referencing style" ] ;
+     fhir:definition [ fhir:v "Biology." ]
+  ] [
+     fhir:code [ fhir:v "acs" ] ;
+     fhir:display [ fhir:v "American Chemical Society" ] ;
+     fhir:definition [ fhir:v "Chemistry." ]
+  ] [
+     fhir:code [ fhir:v "chicago-a-17" ] ;
+     fhir:display [ fhir:v "Chicago Style Version 17 Author Date" ] ;
+     fhir:definition [ fhir:v "Used by Business, History and the Fine Arts." ]
+  ] [
+     fhir:code [ fhir:v "chicago-b-17" ] ;
+     fhir:display [ fhir:v "Chicago Style Version 17 Full note" ] ;
+     fhir:definition [ fhir:v "Used by Business, History and the Fine Arts." ]
+  ] [
+     fhir:code [ fhir:v "ieee" ] ;
+     fhir:display [ fhir:v "Institute of Electrical and Electronics Engineers" ] ;
+     fhir:definition [ fhir:v "IT, Engineering." ]
+  ] [
+     fhir:code [ fhir:v "comppub" ] ;
+     fhir:display [ fhir:v "Computable Publishing" ] ;
+     fhir:definition [ fhir:v "Citation style to report human-readable and/or machine-readable access paths, example: Alper BS, Dehnbostel J, Shahin K. 14-day mortality remdesivir vs placebo meta-analysis (ACTT-1, Wang et al, WHO SOLIDARITY).  Fast Evidence Interoperability Resources (FEvIR) Platform, entry 55, version 4. Created 2020 Dec 17. Revised 2020 Dec 21. Accessed 2021 Mar 13. Computable resource at: https://fevir.net/resources/Evidence/55." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

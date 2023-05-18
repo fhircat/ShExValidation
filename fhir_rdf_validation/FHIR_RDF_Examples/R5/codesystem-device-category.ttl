@@ -1,0 +1,117 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "device-category"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "oo" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "0" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/device-category"], [ fhir:v "http://hl7.org/fhir/device-category"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.2105" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.2105" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "FHIRDeviceCategory"], [ fhir:v "FHIRDeviceCategory"] ;
+  fhir:title [ fhir:v "FHIR Device Category"], [ fhir:v "FHIR Device Category"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2022-03-28T10:01:24+11:00"], [ fhir:v "2022-03-28T10:01:24+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The category of the device."], [ fhir:v "The category of the device."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/device-category"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "active" ] ;
+     fhir:display [ fhir:v "Active" ] ;
+     fhir:definition [ fhir:v "Device where the operation depends on a source of energy." ]
+  ] [
+     fhir:code [ fhir:v "communicating" ] ;
+     fhir:display [ fhir:v "communicating" ] ;
+     fhir:definition [ fhir:v "Device communicates electronically to peer information systems or possibly another device." ]
+  ] [
+     fhir:code [ fhir:v "dme" ] ;
+     fhir:display [ fhir:v "Durable Medical Equipment" ] ;
+     fhir:definition [ fhir:v "Equipment and supplies that provides therapeutic benefits to a patient." ]
+  ] [
+     fhir:code [ fhir:v "home-use" ] ;
+     fhir:display [ fhir:v "Maintenance" ] ;
+     fhir:definition [ fhir:v "Medical device intended for users in a non-medical setting." ]
+  ] [
+     fhir:code [ fhir:v "implantable" ] ;
+     fhir:display [ fhir:v "Implantable" ] ;
+     fhir:definition [ fhir:v "A device that is placed into a surgically or naturally formed cavity of the human body." ]
+  ] [
+     fhir:code [ fhir:v "in-vitro" ] ;
+     fhir:display [ fhir:v "In vitro" ] ;
+     fhir:definition [ fhir:v "Tests done on samples such as blood or tissue that have been taken from the human body." ]
+  ] [
+     fhir:code [ fhir:v "point-of-care" ] ;
+     fhir:display [ fhir:v "Point of Care" ] ;
+     fhir:definition [ fhir:v "a class of communicating devices that are used by medical providers for various purposes (e.g., monitoring, delivering or measuring)." ]
+  ] [
+     fhir:code [ fhir:v "single-use" ] ;
+     fhir:display [ fhir:v "Single Use" ] ;
+     fhir:definition [ fhir:v "A device use on one individual during a single procedure." ]
+  ] [
+     fhir:code [ fhir:v "reusable" ] ;
+     fhir:display [ fhir:v "Reusable" ] ;
+     fhir:definition [ fhir:v "A device that healthcare providers can use to diagnose and treat one or more patients." ]
+  ] [
+     fhir:code [ fhir:v "software" ] ;
+     fhir:display [ fhir:v "Software" ] ;
+     fhir:definition [ fhir:v "A device that may include a software component or consist exclusively of software e.g. data transformer or converter, clinical support algorithms, clinical apps" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,133 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "medicinal-product-pediatric-use"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "brr" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/medicinal-product-pediatric-use"], [ fhir:v "http://hl7.org/fhir/medicinal-product-pediatric-use"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1914" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1914" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "PediatricUse"], [ fhir:v "PediatricUse"] ;
+  fhir:title [ fhir:v "Pediatric Use"], [ fhir:v "Pediatric Use"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2021-01-05T10:01:24+11:00"], [ fhir:v "2021-01-05T10:01:24+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Suitability for age groups, in particular children."], [ fhir:v "Suitability for age groups, in particular children."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/medicinal-product-pediatric-use"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "InUtero" ] ;
+     fhir:display [ fhir:v "In utero" ] ;
+     fhir:definition [ fhir:v "In utero" ]
+  ] [
+     fhir:code [ fhir:v "PretermNewborn" ] ;
+     fhir:display [ fhir:v "Preterm newborn infants (0 – 27 days)" ] ;
+     fhir:definition [ fhir:v "Preterm newborn infants (0 – 27 days)" ]
+  ] [
+     fhir:code [ fhir:v "TermNewborn" ] ;
+     fhir:display [ fhir:v "Term newborn infants (0 – 27 days)" ] ;
+     fhir:definition [ fhir:v "Term newborn infants (0 – 27 days)" ]
+  ] [
+     fhir:code [ fhir:v "Infants" ] ;
+     fhir:display [ fhir:v "Infants and toddlers (28 days – 23 months)" ] ;
+     fhir:definition [ fhir:v "Infants and toddlers (28 days – 23 months)" ]
+  ] [
+     fhir:code [ fhir:v "Children" ] ;
+     fhir:display [ fhir:v "Children (2 to < 12 years)" ] ;
+     fhir:definition [ fhir:v "Children (2 to < 12 years)" ]
+  ] [
+     fhir:code [ fhir:v "Adolescents" ] ;
+     fhir:display [ fhir:v "Adolescents (12 to < 18 years)" ] ;
+     fhir:definition [ fhir:v "Adolescents (12 to < 18 years)" ]
+  ] [
+     fhir:code [ fhir:v "Adults" ] ;
+     fhir:display [ fhir:v "Adults (18 to < 65 years)" ] ;
+     fhir:definition [ fhir:v "Adults (18 to < 65 years)" ]
+  ] [
+     fhir:code [ fhir:v "Elderly" ] ;
+     fhir:display [ fhir:v "Elderly (≥ 65 years)" ] ;
+     fhir:definition [ fhir:v "Elderly (≥ 65 years)" ]
+  ] [
+     fhir:code [ fhir:v "Neonate" ] ;
+     fhir:display [ fhir:v "Neonate" ] ;
+     fhir:definition [ fhir:v "Neonate" ]
+  ] [
+     fhir:code [ fhir:v "PediatricPopulation" ] ;
+     fhir:display [ fhir:v "Pediatric Population (< 18 years)" ] ;
+     fhir:definition [ fhir:v "Pediatric Population (< 18 years)" ]
+  ] [
+     fhir:code [ fhir:v "All" ] ;
+     fhir:display [ fhir:v "All" ] ;
+     fhir:definition [ fhir:v "All" ]
+  ] [
+     fhir:code [ fhir:v "Prepubertal" ] ;
+     fhir:display [ fhir:v "Prepubertal children (2 years to onset of puberty)" ] ;
+     fhir:definition [ fhir:v "Prepubertal children (2 years to onset of puberty)" ]
+  ] [
+     fhir:code [ fhir:v "AdultsAndElderly" ] ;
+     fhir:display [ fhir:v "Adult and elderly population (> 18 years)" ] ;
+     fhir:definition [ fhir:v "Adult and elderly population (> 18 years)" ]
+  ] [
+     fhir:code [ fhir:v "PubertalAndPostpubertal" ] ;
+     fhir:display [ fhir:v "Pubertal and postpubertal adolescents (onset of puberty to < 18 years)" ] ;
+     fhir:definition [ fhir:v "Pubertal and postpubertal adolescents (onset of puberty to < 18 years)" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

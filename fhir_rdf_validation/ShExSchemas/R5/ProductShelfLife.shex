@@ -1,0 +1,53 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <string.shex>
+IMPORT <Duration.shex>
+IMPORT <BackboneType.shex>
+IMPORT <CodeableConcept.shex>
+
+# The shelf-life and storage information for a medicinal product item or container can be described using this class
+<ProductShelfLife> EXTENDS @<BackboneType> CLOSED {   
+
+    a [fhir:ProductShelfLife];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:type @<CodeableConcept>?;          # This describes the shelf life, 
+                                            # taking into account various 
+                                            # scenarios such as shelf life of 
+                                            # the packaged Medicinal Product 
+                                            # itself, shelf life after 
+                                            # transformation where necessary and 
+                                            # shelf life after the first opening 
+                                            # of a bottle, etc. The shelf life 
+                                            # type shall be specified using an 
+                                            # appropriate controlled vocabulary 
+                                            # The controlled term and the 
+                                            # controlled term identifier shall 
+                                            # be specified 
+    fhir:period (@<Duration>  OR 
+    			@<string> )  AND { rdf:type IRI } ?;  # The shelf life time period can be 
+                                            # specified using a numerical value 
+                                            # for the period of time and its 
+                                            # unit of time measurement The unit 
+                                            # of measurement shall be specified 
+                                            # in accordance with ISO 11240 and 
+                                            # the resulting terminology The 
+                                            # symbol and the symbol identifier 
+                                            # shall be used 
+    fhir:specialPrecautionsForStorage @<OneOrMore_CodeableConcept>?;  # Special precautions for storage, 
+                                            # if any, can be specified using an 
+                                            # appropriate controlled vocabulary 
+                                            # The controlled term and the 
+                                            # controlled term identifier shall 
+                                            # be specified 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+

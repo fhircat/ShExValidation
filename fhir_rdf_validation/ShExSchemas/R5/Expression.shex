@@ -1,0 +1,26 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <id.shex>
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <string.shex>
+IMPORT <DataType.shex>
+
+# An expression that can be used to generate a value
+<Expression> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:Expression];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:description @<string>?;            # Natural language description of 
+                                            # the condition 
+    fhir:name @<id>?;                       # Short name assigned to expression 
+                                            # for reuse 
+    fhir:language @<code>;                  # text/cql | text/fhirpath | 
+                                            # application/x-fhir-query | etc. 
+    fhir:expression @<string>?;             # Expression in specified language
+    fhir:reference @<uri>?;                 # Where the expression is found
+}  
+

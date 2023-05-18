@@ -1,0 +1,102 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:NutritionOrder ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "diabeticsupplement"] ; #    id = diabeticsupplement  file name = nutritionorder-example-diabeticsupplement.xml Name= Diabetic Supplement  Description = Nutrition Order Diabetic Supplement Canonical Example
+#edited by Eric Haas Health eData Inc
+#
+#  ,    EH: use supplement element   
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: NutritionOrder</b><a name=\"diabeticsupplement\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource NutritionOrder &quot;diabeticsupplement&quot; </p></div><p><b>identifier</b>: id: 123</p><p><b>status</b>: active</p><p><b>intent</b>: order</p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example: Peter Chalmers</a> &quot;Peter CHALMERS&quot;</p><p><b>encounter</b>: <a href=\"encounter-example.html\">Encounter/example: Inpatient</a></p><p><b>dateTime</b>: 2014-09-17</p><p><b>orderer</b>: <a href=\"practitioner-example.html\">Practitioner/example: Dr Adam Careful</a> &quot;Adam CAREFUL&quot;</p><p><b>allergyIntolerance</b>: <a href=\"allergyintolerance-example.html\">AllergyIntolerance/example: Cashew Nuts</a></p><p><b>foodPreferenceModifier</b>: Kosher <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-diet.html\">Diet</a>#kosher)</span></p><p><b>excludeFoodModifier</b>: Cashew Nut <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT[20140730]</a>#227493005)</span></p><blockquote><p><b>supplement</b></p><h3>Types</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Adult diabetic formula <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#443051000124104 &quot;Adult diabetes specialty formula&quot;; supplement-type-codes#1010)</span></td></tr></table><p><b>productName</b>: Glucerna</p><h3>Schedules</h3><table class=\"grid\"><tr><td>-</td><td><b>Timing</b></td></tr><tr><td>*</td><td>Starting 2015-02-10T15:00:00Z, Once per 24 hours, Duration 1?ngen-7?, , before sleeping</td></tr></table><p><b>quantity</b>: 1 8 oz bottle</p></blockquote></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://goodhealthhospital.org/nutrition-requests"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "123" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:intent [ fhir:v "order"] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "Peter Chalmers" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/example" ] ;
+     fhir:display [ fhir:v "Inpatient" ]
+  ] ; # 
+  fhir:dateTime [ fhir:v "2014-09-17"^^xsd:date] ; # 
+  fhir:orderer [
+     fhir:reference [ fhir:v "Practitioner/example" ] ;
+     fhir:display [ fhir:v "Dr Adam Careful" ]
+  ] ; # 
+  fhir:allergyIntolerance ( [
+     fhir:reference [ fhir:v "AllergyIntolerance/example" ] ;
+     fhir:display [ fhir:v "Cashew Nuts" ]
+  ] ) ; # 
+  fhir:foodPreferenceModifier ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/diet"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "kosher" ]
+     ] )
+  ] ) ; # 
+  fhir:excludeFoodModifier ( [
+     fhir:coding ( [
+       a sct:227493005 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:version [ fhir:v "20140730" ] ;
+       fhir:code [ fhir:v "227493005" ] ;
+       fhir:display [ fhir:v "Cashew Nut" ]
+     ] )
+  ] ) ; # 
+  fhir:supplement ( [
+     fhir:type [
+       fhir:concept [
+         fhir:coding ( [
+           a sct:443051000124104 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "443051000124104" ] ;
+           fhir:display [ fhir:v "Adult diabetes specialty formula" ]
+         ] [
+           fhir:system [ fhir:v "http://goodhealthhospital.org/supplement-type-codes"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "1010" ] ;
+           fhir:display [ fhir:v "Adult diabetic formula" ]
+         ] ) ;
+         fhir:text [ fhir:v "Adult diabetic formula" ]
+       ]
+     ] ;
+     fhir:productName [ fhir:v "Glucerna" ] ;
+     fhir:schedule [
+       fhir:timing ( [
+         fhir:repeat [
+           fhir:bounds [
+             a fhir:Period ;
+             fhir:start [ fhir:v "2015-02-10T15:00:00Z"^^xsd:dateTime ]
+           ] ;
+           fhir:frequency [ fhir:v "1"^^xsd:positiveInteger ] ;
+           fhir:period [ fhir:v "24"^^xsd:decimal ] ;
+           fhir:periodUnit [ fhir:v "h" ]
+         ]
+       ] [
+         fhir:repeat [
+           fhir:duration [ fhir:v "1"^^xsd:decimal ] ;
+           fhir:durationUnit [ fhir:v "h" ] ;
+           fhir:when ( [ fhir:v "HS" ] )
+         ]
+       ] )
+     ] ; #   EH:Glucerna Shake at 3pm and HS  
+     fhir:quantity [
+       fhir:value [ fhir:v "1"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "8 oz bottle" ]
+     ]
+  ] )] . #    EH:  use the .instructions element to list diet  supplement order
+#		<instruction value="Glucerna Shake at 3pm and HS"/>
+#  
+
+# -------------------------------------------------------------------------------------
+

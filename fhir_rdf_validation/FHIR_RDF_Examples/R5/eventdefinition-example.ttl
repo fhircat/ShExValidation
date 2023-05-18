@@ -1,0 +1,31 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:EventDefinition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: EventDefinition</b><a name=\"example\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource EventDefinition &quot;example&quot; </p></div><p><b>status</b>: draft</p><p><b>purpose</b>: Monitor all admissions to Emergency</p><blockquote><p><b>trigger</b></p><p><b>type</b>: named-event</p><p><b>name</b>: monitor-emergency-admissions</p><blockquote><p><b>data</b></p><table class=\"grid\"><tr><td colspan=\"2\"><b>Type</b>: <a href=\"encounter.html\">Encounter</a></td></tr></table></blockquote><blockquote><p><b>condition</b></p><p><span title=\"text/fhirpath\"><code>(%current | %previous).location.where(location = 'Location/emergency' and status in {'active', 'completed'}).exists()</code></span>(&quot;Encounter Location = emergency (active/completed encounters, current or previous)&quot;)</p></blockquote></blockquote></div>"
+  ] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:purpose [ fhir:v "Monitor all admissions to Emergency"] ; # 
+  fhir:trigger ( [
+     fhir:type [ fhir:v "named-event" ] ;
+     fhir:name [ fhir:v "monitor-emergency-admissions" ] ;
+     fhir:data ( [
+       fhir:type [ fhir:v "Encounter" ]
+     ] ) ;
+     fhir:condition [
+       fhir:description [ fhir:v "Encounter Location = emergency (active/completed encounters, current or previous)" ] ;
+       fhir:language [ fhir:v "text/fhirpath" ] ;
+       fhir:expression [ fhir:v "(%current | %previous).location.where(location = 'Location/emergency' and status in {'active', 'completed'}).exists()" ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

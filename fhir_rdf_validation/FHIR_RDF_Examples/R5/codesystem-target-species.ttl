@@ -1,0 +1,677 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "target-species"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "brr" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/target-species"], [ fhir:v "http://hl7.org/fhir/target-species"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.2030" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.2030" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "TargetSpecies"], [ fhir:v "TargetSpecies"] ;
+  fhir:title [ fhir:v "Target Species"], [ fhir:v "Target Species"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2021-01-05T10:01:24+11:00"], [ fhir:v "2021-01-05T10:01:24+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "A species for which a medicinal product is intended."], [ fhir:v "A species for which a medicinal product is intended."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/target-species"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "100000108874" ] ;
+     fhir:display [ fhir:v "Dove" ]
+  ] [
+     fhir:code [ fhir:v "100000108875" ] ;
+     fhir:display [ fhir:v "Quail" ]
+  ] [
+     fhir:code [ fhir:v "100000108876" ] ;
+     fhir:display [ fhir:v "Snipe" ]
+  ] [
+     fhir:code [ fhir:v "100000108877" ] ;
+     fhir:display [ fhir:v "Sparrow" ]
+  ] [
+     fhir:code [ fhir:v "100000108878" ] ;
+     fhir:display [ fhir:v "Starling" ]
+  ] [
+     fhir:code [ fhir:v "100000108879" ] ;
+     fhir:display [ fhir:v "Swan" ]
+  ] [
+     fhir:code [ fhir:v "100000108880" ] ;
+     fhir:display [ fhir:v "Turkey hen" ]
+  ] [
+     fhir:code [ fhir:v "100000108881" ] ;
+     fhir:display [ fhir:v "Turkey cock" ]
+  ] [
+     fhir:code [ fhir:v "100000108882" ] ;
+     fhir:display [ fhir:v "Turkeys" ]
+  ] [
+     fhir:code [ fhir:v "100000108883" ] ;
+     fhir:display [ fhir:v "Turkey for reproduction" ]
+  ] [
+     fhir:code [ fhir:v "100000108884" ] ;
+     fhir:display [ fhir:v "Poult" ]
+  ] [
+     fhir:code [ fhir:v "100000108885" ] ;
+     fhir:display [ fhir:v "Turtle dove" ]
+  ] [
+     fhir:code [ fhir:v "100000108886" ] ;
+     fhir:display [ fhir:v "Bison" ]
+  ] [
+     fhir:code [ fhir:v "100000108887" ] ;
+     fhir:display [ fhir:v "Buffalo" ]
+  ] [
+     fhir:code [ fhir:v "100000108888" ] ;
+     fhir:display [ fhir:v "Cows" ]
+  ] [
+     fhir:code [ fhir:v "100000108889" ] ;
+     fhir:display [ fhir:v "Cow for reproduction" ]
+  ] [
+     fhir:code [ fhir:v "100000108890" ] ;
+     fhir:display [ fhir:v "Bull for reproduction" ]
+  ] [
+     fhir:code [ fhir:v "100000108891" ] ;
+     fhir:display [ fhir:v "Ox" ]
+  ] [
+     fhir:code [ fhir:v "100000108892" ] ;
+     fhir:display [ fhir:v "Bullock" ]
+  ] [
+     fhir:code [ fhir:v "100000108893" ] ;
+     fhir:display [ fhir:v "Cattle" ]
+  ] [
+     fhir:code [ fhir:v "100000108894" ] ;
+     fhir:display [ fhir:v "Beef cattle" ]
+  ] [
+     fhir:code [ fhir:v "100000108895" ] ;
+     fhir:display [ fhir:v "Dairy cattle" ]
+  ] [
+     fhir:code [ fhir:v "100000108896" ] ;
+     fhir:display [ fhir:v "Dry cow" ]
+  ] [
+     fhir:code [ fhir:v "100000108897" ] ;
+     fhir:display [ fhir:v "Bull" ]
+  ] [
+     fhir:code [ fhir:v "100000108898" ] ;
+     fhir:display [ fhir:v "Lactating cow" ]
+  ] [
+     fhir:code [ fhir:v "100000108899" ] ;
+     fhir:display [ fhir:v "All other food producing species" ]
+  ] [
+     fhir:code [ fhir:v "100000108900" ] ;
+     fhir:display [ fhir:v "All non-food producing species" ]
+  ] [
+     fhir:code [ fhir:v "100000108901" ] ;
+     fhir:display [ fhir:v "All species  " ]
+  ] [
+     fhir:code [ fhir:v "100000108902" ] ;
+     fhir:display [ fhir:v "Carnivores" ]
+  ] [
+     fhir:code [ fhir:v "100000108903" ] ;
+     fhir:display [ fhir:v "Domestic animals" ]
+  ] [
+     fhir:code [ fhir:v "100000108904" ] ;
+     fhir:display [ fhir:v "Fur animals" ]
+  ] [
+     fhir:code [ fhir:v "100000108905" ] ;
+     fhir:display [ fhir:v "Game animals" ]
+  ] [
+     fhir:code [ fhir:v "100000108906" ] ;
+     fhir:display [ fhir:v "Laboratory animals" ]
+  ] [
+     fhir:code [ fhir:v "100000108907" ] ;
+     fhir:display [ fhir:v "Major species" ]
+  ] [
+     fhir:code [ fhir:v "100000108908" ] ;
+     fhir:display [ fhir:v "Minor species" ]
+  ] [
+     fhir:code [ fhir:v "100000108909" ] ;
+     fhir:display [ fhir:v "Ruminant" ]
+  ] [
+     fhir:code [ fhir:v "100000108910" ] ;
+     fhir:display [ fhir:v "Ruminant and porcine" ]
+  ] [
+     fhir:code [ fhir:v "100000108911" ] ;
+     fhir:display [ fhir:v "Small animals" ]
+  ] [
+     fhir:code [ fhir:v "100000108912" ] ;
+     fhir:display [ fhir:v "Crocodile" ]
+  ] [
+     fhir:code [ fhir:v "100000108913" ] ;
+     fhir:display [ fhir:v "Frog" ]
+  ] [
+     fhir:code [ fhir:v "100000108914" ] ;
+     fhir:display [ fhir:v "Iguana" ]
+  ] [
+     fhir:code [ fhir:v "100000108915" ] ;
+     fhir:display [ fhir:v "Lizard" ]
+  ] [
+     fhir:code [ fhir:v "100000108916" ] ;
+     fhir:display [ fhir:v "Amphibians" ]
+  ] [
+     fhir:code [ fhir:v "100000108917" ] ;
+     fhir:display [ fhir:v "Reptiles" ]
+  ] [
+     fhir:code [ fhir:v "100000108918" ] ;
+     fhir:display [ fhir:v "Reptiles for production" ]
+  ] [
+     fhir:code [ fhir:v "100000108919" ] ;
+     fhir:display [ fhir:v "Snake" ]
+  ] [
+     fhir:code [ fhir:v "100000108920" ] ;
+     fhir:display [ fhir:v "Tortoise" ]
+  ] [
+     fhir:code [ fhir:v "100000108921" ] ;
+     fhir:display [ fhir:v "Turtle" ]
+  ] [
+     fhir:code [ fhir:v "100000108922" ] ;
+     fhir:display [ fhir:v "Honey bees" ]
+  ] [
+     fhir:code [ fhir:v "100000108923" ] ;
+     fhir:display [ fhir:v "Crustacean" ]
+  ] [
+     fhir:code [ fhir:v "100000108924" ] ;
+     fhir:display [ fhir:v "Spider" ]
+  ] [
+     fhir:code [ fhir:v "100000108925" ] ;
+     fhir:display [ fhir:v "Indian hen" ]
+  ] [
+     fhir:code [ fhir:v "100000108926" ] ;
+     fhir:display [ fhir:v "African Goshawk" ]
+  ] [
+     fhir:code [ fhir:v "100000108927" ] ;
+     fhir:display [ fhir:v "Black Kite" ]
+  ] [
+     fhir:code [ fhir:v "100000108928" ] ;
+     fhir:display [ fhir:v "Budgerigar" ]
+  ] [
+     fhir:code [ fhir:v "100000108929" ] ;
+     fhir:display [ fhir:v "Bustard" ]
+  ] [
+     fhir:code [ fhir:v "100000108930" ] ;
+     fhir:display [ fhir:v "Buzzard" ]
+  ] [
+     fhir:code [ fhir:v "100000108931" ] ;
+     fhir:display [ fhir:v "Hen" ]
+  ] [
+     fhir:code [ fhir:v "100000108932" ] ;
+     fhir:display [ fhir:v "Layer hen" ]
+  ] [
+     fhir:code [ fhir:v "100000108933" ] ;
+     fhir:display [ fhir:v "Cock" ]
+  ] [
+     fhir:code [ fhir:v "100000108934" ] ;
+     fhir:display [ fhir:v "Broiler" ]
+  ] [
+     fhir:code [ fhir:v "100000108935" ] ;
+     fhir:display [ fhir:v "Chickens" ]
+  ] [
+     fhir:code [ fhir:v "100000108936" ] ;
+     fhir:display [ fhir:v "Chicken embryonated eggs" ]
+  ] [
+     fhir:code [ fhir:v "100000108937" ] ;
+     fhir:display [ fhir:v "Chicken for reproduction" ]
+  ] [
+     fhir:code [ fhir:v "100000108938" ] ;
+     fhir:display [ fhir:v "Replacement chick" ]
+  ] [
+     fhir:code [ fhir:v "100000108939" ] ;
+     fhir:display [ fhir:v "Chick" ]
+  ] [
+     fhir:code [ fhir:v "100000108940" ] ;
+     fhir:display [ fhir:v "Pullet" ]
+  ] [
+     fhir:code [ fhir:v "100000108941" ] ;
+     fhir:display [ fhir:v "Cockatiel" ]
+  ] [
+     fhir:code [ fhir:v "100000108942" ] ;
+     fhir:display [ fhir:v "Cockatoo" ]
+  ] [
+     fhir:code [ fhir:v "100000108943" ] ;
+     fhir:display [ fhir:v "Common canary" ]
+  ] [
+     fhir:code [ fhir:v "100000108944" ] ;
+     fhir:display [ fhir:v "Crow" ]
+  ] [
+     fhir:code [ fhir:v "100000108945" ] ;
+     fhir:display [ fhir:v "Duck" ]
+  ] [
+     fhir:code [ fhir:v "100000108946" ] ;
+     fhir:display [ fhir:v "Duck broiler" ]
+  ] [
+     fhir:code [ fhir:v "100000108947" ] ;
+     fhir:display [ fhir:v "Duckling" ]
+  ] [
+     fhir:code [ fhir:v "100000108948" ] ;
+     fhir:display [ fhir:v "Eagle" ]
+  ] [
+     fhir:code [ fhir:v "100000108949" ] ;
+     fhir:display [ fhir:v "Emu" ]
+  ] [
+     fhir:code [ fhir:v "100000108950" ] ;
+     fhir:display [ fhir:v "Goose" ]
+  ] [
+     fhir:code [ fhir:v "100000108951" ] ;
+     fhir:display [ fhir:v "Guinea fowl" ]
+  ] [
+     fhir:code [ fhir:v "100000108952" ] ;
+     fhir:display [ fhir:v "Kestrel" ]
+  ] [
+     fhir:code [ fhir:v "100000108953" ] ;
+     fhir:display [ fhir:v "Kite" ]
+  ] [
+     fhir:code [ fhir:v "100000108954" ] ;
+     fhir:display [ fhir:v "Macaw" ]
+  ] [
+     fhir:code [ fhir:v "100000108955" ] ;
+     fhir:display [ fhir:v "Ostrich" ]
+  ] [
+     fhir:code [ fhir:v "100000108956" ] ;
+     fhir:display [ fhir:v "Birds" ]
+  ] [
+     fhir:code [ fhir:v "100000108957" ] ;
+     fhir:display [ fhir:v "Fowls" ]
+  ] [
+     fhir:code [ fhir:v "100000108958" ] ;
+     fhir:display [ fhir:v "Finch" ]
+  ] [
+     fhir:code [ fhir:v "100000108959" ] ;
+     fhir:display [ fhir:v "Galliformes" ]
+  ] [
+     fhir:code [ fhir:v "100000108960" ] ;
+     fhir:display [ fhir:v "Game birds" ]
+  ] [
+     fhir:code [ fhir:v "100000108961" ] ;
+     fhir:display [ fhir:v "Pekin duck" ]
+  ] [
+     fhir:code [ fhir:v "100000108962" ] ;
+     fhir:display [ fhir:v "Ornamental birds" ]
+  ] [
+     fhir:code [ fhir:v "100000108963" ] ;
+     fhir:display [ fhir:v "Poultry" ]
+  ] [
+     fhir:code [ fhir:v "100000108964" ] ;
+     fhir:display [ fhir:v "Owl" ]
+  ] [
+     fhir:code [ fhir:v "100000108965" ] ;
+     fhir:display [ fhir:v "Parakeet" ]
+  ] [
+     fhir:code [ fhir:v "100000108966" ] ;
+     fhir:display [ fhir:v "Parrot" ]
+  ] [
+     fhir:code [ fhir:v "100000108967" ] ;
+     fhir:display [ fhir:v "Partridge" ]
+  ] [
+     fhir:code [ fhir:v "100000108968" ] ;
+     fhir:display [ fhir:v "Peregrine Falcon" ]
+  ] [
+     fhir:code [ fhir:v "100000108969" ] ;
+     fhir:display [ fhir:v "Pheasants" ]
+  ] [
+     fhir:code [ fhir:v "100000108970" ] ;
+     fhir:display [ fhir:v "Carrier pigeon" ]
+  ] [
+     fhir:code [ fhir:v "100000108971" ] ;
+     fhir:display [ fhir:v "Newborn calves" ]
+  ] [
+     fhir:code [ fhir:v "100000108972" ] ;
+     fhir:display [ fhir:v "Pregnant cow" ]
+  ] [
+     fhir:code [ fhir:v "100000108973" ] ;
+     fhir:display [ fhir:v "Pregnant heifer" ]
+  ] [
+     fhir:code [ fhir:v "100000108974" ] ;
+     fhir:display [ fhir:v "Pre-ruminant cattle" ]
+  ] [
+     fhir:code [ fhir:v "100000108975" ] ;
+     fhir:display [ fhir:v "Ruminant cattle" ]
+  ] [
+     fhir:code [ fhir:v "100000108976" ] ;
+     fhir:display [ fhir:v "Wild cattle" ]
+  ] [
+     fhir:code [ fhir:v "100000108977" ] ;
+     fhir:display [ fhir:v "Calf" ]
+  ] [
+     fhir:code [ fhir:v "100000108978" ] ;
+     fhir:display [ fhir:v "Heifers" ]
+  ] [
+     fhir:code [ fhir:v "100000108979" ] ;
+     fhir:display [ fhir:v "Other Bovids" ]
+  ] [
+     fhir:code [ fhir:v "100000108980" ] ;
+     fhir:display [ fhir:v "Alpaca" ]
+  ] [
+     fhir:code [ fhir:v "100000108981" ] ;
+     fhir:display [ fhir:v "Camel" ]
+  ] [
+     fhir:code [ fhir:v "100000108982" ] ;
+     fhir:display [ fhir:v "Llama" ]
+  ] [
+     fhir:code [ fhir:v "100000108983" ] ;
+     fhir:display [ fhir:v "Other Camelids" ]
+  ] [
+     fhir:code [ fhir:v "100000108984" ] ;
+     fhir:display [ fhir:v "Bitch" ]
+  ] [
+     fhir:code [ fhir:v "100000108985" ] ;
+     fhir:display [ fhir:v "Bitch for reproduction" ]
+  ] [
+     fhir:code [ fhir:v "100000108986" ] ;
+     fhir:display [ fhir:v "Adult male dog" ]
+  ] [
+     fhir:code [ fhir:v "100000108987" ] ;
+     fhir:display [ fhir:v "Adult male dog for reproduction" ]
+  ] [
+     fhir:code [ fhir:v "100000108988" ] ;
+     fhir:display [ fhir:v "Dogs" ]
+  ] [
+     fhir:code [ fhir:v "100000108989" ] ;
+     fhir:display [ fhir:v "Lactating bitch" ]
+  ] [
+     fhir:code [ fhir:v "100000108990" ] ;
+     fhir:display [ fhir:v "Large dog" ]
+  ] [
+     fhir:code [ fhir:v "100000108991" ] ;
+     fhir:display [ fhir:v "Medium dog" ]
+  ] [
+     fhir:code [ fhir:v "100000108992" ] ;
+     fhir:display [ fhir:v "Pregnant bitch" ]
+  ] [
+     fhir:code [ fhir:v "100000108993" ] ;
+     fhir:display [ fhir:v "Small dog" ]
+  ] [
+     fhir:code [ fhir:v "100000108994" ] ;
+     fhir:display [ fhir:v "Very large dog" ]
+  ] [
+     fhir:code [ fhir:v "100000108995" ] ;
+     fhir:display [ fhir:v "Very small dog" ]
+  ] [
+     fhir:code [ fhir:v "100000108996" ] ;
+     fhir:display [ fhir:v "Puppy" ]
+  ] [
+     fhir:code [ fhir:v "100000108997" ] ;
+     fhir:display [ fhir:v "Foxes" ]
+  ] [
+     fhir:code [ fhir:v "100000108998" ] ;
+     fhir:display [ fhir:v "Jackal" ]
+  ] [
+     fhir:code [ fhir:v "100000108999" ] ;
+     fhir:display [ fhir:v "Other Canids" ]
+  ] [
+     fhir:code [ fhir:v "100000109000" ] ;
+     fhir:display [ fhir:v "Raccoon dogs" ]
+  ] [
+     fhir:code [ fhir:v "100000109001" ] ;
+     fhir:display [ fhir:v "Wolf" ]
+  ] [
+     fhir:code [ fhir:v "100000109002" ] ;
+     fhir:display [ fhir:v "Chamois" ]
+  ] [
+     fhir:code [ fhir:v "100000109003" ] ;
+     fhir:display [ fhir:v "Other Caprines" ]
+  ] [
+     fhir:code [ fhir:v "100000109004" ] ;
+     fhir:display [ fhir:v "Adult female goat" ]
+  ] [
+     fhir:code [ fhir:v "100000109005" ] ;
+     fhir:display [ fhir:v "Adult male goat" ]
+  ] [
+     fhir:code [ fhir:v "100000109006" ] ;
+     fhir:display [ fhir:v "Dry adult female goat" ]
+  ] [
+     fhir:code [ fhir:v "100000109007" ] ;
+     fhir:display [ fhir:v "Goats" ]
+  ] [
+     fhir:code [ fhir:v "100000109008" ] ;
+     fhir:display [ fhir:v "Lactating adult female goat" ]
+  ] [
+     fhir:code [ fhir:v "100000109009" ] ;
+     fhir:display [ fhir:v "Pregnant adult female goat" ]
+  ] [
+     fhir:code [ fhir:v "100000109010" ] ;
+     fhir:display [ fhir:v "Pre-ruminant goat" ]
+  ] [
+     fhir:code [ fhir:v "100000109011" ] ;
+     fhir:display [ fhir:v "Ruminant goat" ]
+  ] [
+     fhir:code [ fhir:v "100000109012" ] ;
+     fhir:display [ fhir:v "Wild goat" ]
+  ] [
+     fhir:code [ fhir:v "100000109013" ] ;
+     fhir:display [ fhir:v "Kid" ]
+  ] [
+     fhir:code [ fhir:v "100000109014" ] ;
+     fhir:display [ fhir:v "Other Ovids" ]
+  ] [
+     fhir:code [ fhir:v "100000109015" ] ;
+     fhir:display [ fhir:v "Ewe" ]
+  ] [
+     fhir:code [ fhir:v "100000109016" ] ;
+     fhir:display [ fhir:v "Ram" ]
+  ] [
+     fhir:code [ fhir:v "100000109017" ] ;
+     fhir:display [ fhir:v "Dry ewe" ]
+  ] [
+     fhir:code [ fhir:v "100000109018" ] ;
+     fhir:display [ fhir:v "Lactating ewe" ]
+  ] [
+     fhir:code [ fhir:v "100000109019" ] ;
+     fhir:display [ fhir:v "Pregnant ewe" ]
+  ] [
+     fhir:code [ fhir:v "100000109020" ] ;
+     fhir:display [ fhir:v "Pre-ruminant sheep" ]
+  ] [
+     fhir:code [ fhir:v "100000109021" ] ;
+     fhir:display [ fhir:v "Ruminant sheep" ]
+  ] [
+     fhir:code [ fhir:v "100000109022" ] ;
+     fhir:display [ fhir:v "Sheep" ]
+  ] [
+     fhir:code [ fhir:v "100000109023" ] ;
+     fhir:display [ fhir:v "Sheep for meat production" ]
+  ] [
+     fhir:code [ fhir:v "100000109024" ] ;
+     fhir:display [ fhir:v "Dairy sheep" ]
+  ] [
+     fhir:code [ fhir:v "100000109025" ] ;
+     fhir:display [ fhir:v "Wild sheep" ]
+  ] [
+     fhir:code [ fhir:v "100000109026" ] ;
+     fhir:display [ fhir:v "Lamb" ]
+  ] [
+     fhir:code [ fhir:v "100000109027" ] ;
+     fhir:display [ fhir:v "Elk" ]
+  ] [
+     fhir:code [ fhir:v "100000109028" ] ;
+     fhir:display [ fhir:v "Fallow deer" ]
+  ] [
+     fhir:code [ fhir:v "100000109029" ] ;
+     fhir:display [ fhir:v "Moose" ]
+  ] [
+     fhir:code [ fhir:v "100000109030" ] ;
+     fhir:display [ fhir:v "Antelope" ]
+  ] [
+     fhir:code [ fhir:v "100000109031" ] ;
+     fhir:display [ fhir:v "Cervid" ]
+  ] [
+     fhir:code [ fhir:v "100000109032" ] ;
+     fhir:display [ fhir:v "Deer" ]
+  ] [
+     fhir:code [ fhir:v "100000109033" ] ;
+     fhir:display [ fhir:v "Other Deer" ]
+  ] [
+     fhir:code [ fhir:v "100000109034" ] ;
+     fhir:display [ fhir:v "Red deer" ]
+  ] [
+     fhir:code [ fhir:v "100000109035" ] ;
+     fhir:display [ fhir:v "Reindeer" ]
+  ] [
+     fhir:code [ fhir:v "100000109036" ] ;
+     fhir:display [ fhir:v "Roe deer" ]
+  ] [
+     fhir:code [ fhir:v "100000109037" ] ;
+     fhir:display [ fhir:v "Donkey" ]
+  ] [
+     fhir:code [ fhir:v "100000109038" ] ;
+     fhir:display [ fhir:v "Mare" ]
+  ] [
+     fhir:code [ fhir:v "100000109039" ] ;
+     fhir:display [ fhir:v "Gelding" ]
+  ] [
+     fhir:code [ fhir:v "100000109040" ] ;
+     fhir:display [ fhir:v "Horses" ]
+  ] [
+     fhir:code [ fhir:v "100000109041" ] ;
+     fhir:display [ fhir:v "Stallion" ]
+  ] [
+     fhir:code [ fhir:v "100000109042" ] ;
+     fhir:display [ fhir:v "Pony" ]
+  ] [
+     fhir:code [ fhir:v "100000109043" ] ;
+     fhir:display [ fhir:v "Pregnant mare" ]
+  ] [
+     fhir:code [ fhir:v "100000109044" ] ;
+     fhir:display [ fhir:v "Non food-producing horse" ]
+  ] [
+     fhir:code [ fhir:v "100000109045" ] ;
+     fhir:display [ fhir:v "Suckling colt" ]
+  ] [
+     fhir:code [ fhir:v "100000109046" ] ;
+     fhir:display [ fhir:v "Colt" ]
+  ] [
+     fhir:code [ fhir:v "100000109047" ] ;
+     fhir:display [ fhir:v "Mule" ]
+  ] [
+     fhir:code [ fhir:v "100000109048" ] ;
+     fhir:display [ fhir:v "Equid" ]
+  ] [
+     fhir:code [ fhir:v "100000109049" ] ;
+     fhir:display [ fhir:v "Female equid" ]
+  ] [
+     fhir:code [ fhir:v "100000109050" ] ;
+     fhir:display [ fhir:v "Other Equids" ]
+  ] [
+     fhir:code [ fhir:v "100000109051" ] ;
+     fhir:display [ fhir:v "Zebra" ]
+  ] [
+     fhir:code [ fhir:v "100000109052" ] ;
+     fhir:display [ fhir:v "Bobcat" ]
+  ] [
+     fhir:code [ fhir:v "100000109053" ] ;
+     fhir:display [ fhir:v "Adult female cat" ]
+  ] [
+     fhir:code [ fhir:v "100000109054" ] ;
+     fhir:display [ fhir:v "Adult female cat for reproduction" ]
+  ] [
+     fhir:code [ fhir:v "100000109055" ] ;
+     fhir:display [ fhir:v "Adult male cat" ]
+  ] [
+     fhir:code [ fhir:v "100000109056" ] ;
+     fhir:display [ fhir:v "Cats" ]
+  ] [
+     fhir:code [ fhir:v "100000109057" ] ;
+     fhir:display [ fhir:v "Lactating cat" ]
+  ] [
+     fhir:code [ fhir:v "100000109058" ] ;
+     fhir:display [ fhir:v "Large cat" ]
+  ] [
+     fhir:code [ fhir:v "100000109059" ] ;
+     fhir:display [ fhir:v "Medium cat" ]
+  ] [
+     fhir:code [ fhir:v "100000109060" ] ;
+     fhir:display [ fhir:v "Pregnant cat" ]
+  ] [
+     fhir:code [ fhir:v "100000109061" ] ;
+     fhir:display [ fhir:v "Small cat" ]
+  ] [
+     fhir:code [ fhir:v "100000109062" ] ;
+     fhir:display [ fhir:v "Kitten" ]
+  ] [
+     fhir:code [ fhir:v "100000109063" ] ;
+     fhir:display [ fhir:v "Cougar" ]
+  ] [
+     fhir:code [ fhir:v "100000109064" ] ;
+     fhir:display [ fhir:v "Jaguar" ]
+  ] [
+     fhir:code [ fhir:v "100000109065" ] ;
+     fhir:display [ fhir:v "Leopard" ]
+  ] [
+     fhir:code [ fhir:v "100000109066" ] ;
+     fhir:display [ fhir:v "Lion" ]
+  ] [
+     fhir:code [ fhir:v "100000109067" ] ;
+     fhir:display [ fhir:v "Lynx" ]
+  ] [
+     fhir:code [ fhir:v "100000109068" ] ;
+     fhir:display [ fhir:v "Other Felids" ]
+  ] [
+     fhir:code [ fhir:v "100000109069" ] ;
+     fhir:display [ fhir:v "Tiger" ]
+  ] [
+     fhir:code [ fhir:v "100000109070" ] ;
+     fhir:display [ fhir:v "Tsushima wild cat" ]
+  ] [
+     fhir:code [ fhir:v "100000109071" ] ;
+     fhir:display [ fhir:v "Other Leporids" ]
+  ] [
+     fhir:code [ fhir:v "100000109072" ] ;
+     fhir:display [ fhir:v "Hare" ]
+  ] [
+     fhir:code [ fhir:v "100000109073" ] ;
+     fhir:display [ fhir:v "Female rabbit for reproduction" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

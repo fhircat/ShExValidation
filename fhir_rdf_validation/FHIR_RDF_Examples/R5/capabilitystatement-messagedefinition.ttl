@@ -1,0 +1,54 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:CapabilityStatement ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "messagedefinition"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:experimental [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:date [ fhir:v "2012-01-04"^^xsd:date] ; # 
+  fhir:publisher [ fhir:v "ACME Corporation"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "System Administrator" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "wile@acme.org" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Sample capability statement showing new MessageDefinition structure"] ; # 
+  fhir:kind [ fhir:v "instance"] ; # 
+  fhir:software [
+     fhir:name [ fhir:v "EHR" ]
+  ] ; # 
+  fhir:implementation [
+     fhir:description [ fhir:v "Acme Message endpoint" ] ;
+     fhir:url [ fhir:v "http://acem.com/fhir/message-drop"^^xsd:anyURI ]
+  ] ; # 
+  fhir:fhirVersion [ fhir:v "5.0.0"] ; #    while the FHIR infrastructure is turning over prior to development, a version is 
+#    required.    
+  fhir:format ( [ fhir:v "xml"] [ fhir:v "json"] ) ; #    this system can do either xml or json. (Listing both implies full support for either, with interconversion)   
+  fhir:messaging ( [
+     fhir:endpoint ( [
+       fhir:protocol [
+         fhir:system [ fhir:v "http://hl7.org/fhir/message-transport"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "mllp" ]
+       ] ;
+       fhir:address [ fhir:v "mllp:10.1.1.10:9234"^^xsd:anyURI ] #   LLP server at 10.1.1.10 on port 9234  
+     ] ) ;
+     fhir:reliableCache [ fhir:v "30"^^xsd:nonNegativeInteger ] ;
+     fhir:documentation [ fhir:v "ADT A08 equivalent for external system notifications" ] ;
+     fhir:supportedMessage ( [
+       fhir:mode [ fhir:v "receiver" ] ;
+       fhir:definition [
+         fhir:v "http://hl7.org/fhir/MessageDefinition/example"^^xsd:anyURI ;
+         fhir:link <http://hl7.org/fhir/MessageDefinition/example>
+       ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

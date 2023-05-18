@@ -1,0 +1,320 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "genomicstudy-methodtype"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-25T23:21:02-05:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "cg" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/genomicstudy-methodtype"], [ fhir:v "http://hl7.org/fhir/genomicstudy-methodtype"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1979" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1979" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "GenomicStudyMethodType"], [ fhir:v "GenomicStudyMethodType"] ;
+  fhir:title [ fhir:v "Genomic Study Method Type"], [ fhir:v "Genomic Study Method Type"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "true"], [ fhir:v "true"] ;
+  fhir:date [ fhir:v "2022-08-16T16:49:24-05:00"], [ fhir:v "2022-08-16T16:49:24-05:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The method type of the GenomicStudy analysis. These method types and relevant codes were pulled from [National Library of Medicine-Genetic Testing Registry](https://www.ncbi.nlm.nih.gov/gtr/) (NCBI-GTR) values of describing different testing methods on various levels: [major method category](https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Major_method_category.txt), [method category](https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Method_category.txt), and [primary methodology](https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Primary_test_methodology.txt)"], [ fhir:v "The method type of the GenomicStudy analysis. These method types and relevant codes were pulled from [National Library of Medicine-Genetic Testing Registry](https://www.ncbi.nlm.nih.gov/gtr/) (NCBI-GTR) values of describing different testing methods on various levels: [major method category](https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Major_method_category.txt), [method category](https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Method_category.txt), and [primary methodology](https://ftp.ncbi.nlm.nih.gov/pub/GTR/standard_terms/Primary_test_methodology.txt)"] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/genomicstudy-methodtype"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "biochemical-genetics" ] ;
+     fhir:display [ fhir:v "Biochemical Genetics" ]
+  ] [
+     fhir:code [ fhir:v "cytogenetics" ] ;
+     fhir:display [ fhir:v "Cytogenetics" ]
+  ] [
+     fhir:code [ fhir:v "molecular-genetics" ] ;
+     fhir:display [ fhir:v "Molecular Genetics" ]
+  ] [
+     fhir:code [ fhir:v "analyte" ] ;
+     fhir:display [ fhir:v "Analyte" ]
+  ] [
+     fhir:code [ fhir:v "chromosome-breakage-studies" ] ;
+     fhir:display [ fhir:v "Chromosome breakage studies" ]
+  ] [
+     fhir:code [ fhir:v "deletion-duplication-analysis" ] ;
+     fhir:display [ fhir:v "Deletion/duplication analysis" ]
+  ] [
+     fhir:code [ fhir:v "detection-of-homozygosity" ] ;
+     fhir:display [ fhir:v "Detection of homozygosity" ]
+  ] [
+     fhir:code [ fhir:v "enzyme-assay" ] ;
+     fhir:display [ fhir:v "Enzyme assay" ]
+  ] [
+     fhir:code [ fhir:v "fish-interphase" ] ;
+     fhir:display [ fhir:v "FISH-interphase" ]
+  ] [
+     fhir:code [ fhir:v "fish-metaphase" ] ;
+     fhir:display [ fhir:v "FISH-metaphase" ]
+  ] [
+     fhir:code [ fhir:v "flow-cytometry" ] ;
+     fhir:display [ fhir:v "Flow cytometry" ]
+  ] [
+     fhir:code [ fhir:v "fish" ] ;
+     fhir:display [ fhir:v "Fluorescence in situ hybridization (FISH)" ]
+  ] [
+     fhir:code [ fhir:v "immunohistochemistry" ] ;
+     fhir:display [ fhir:v "Immunohistochemistry" ]
+  ] [
+     fhir:code [ fhir:v "karyotyping" ] ;
+     fhir:display [ fhir:v "Karyotyping" ]
+  ] [
+     fhir:code [ fhir:v "linkage-analysis" ] ;
+     fhir:display [ fhir:v "Linkage analysis" ]
+  ] [
+     fhir:code [ fhir:v "methylation-analysis" ] ;
+     fhir:display [ fhir:v "Methylation analysis" ]
+  ] [
+     fhir:code [ fhir:v "msi" ] ;
+     fhir:display [ fhir:v "Microsatellite instability testing (MSI)" ]
+  ] [
+     fhir:code [ fhir:v "m-fish" ] ;
+     fhir:display [ fhir:v "Multicolor FISH (M-FISH)" ]
+  ] [
+     fhir:code [ fhir:v "mutation-scanning-of-select-exons" ] ;
+     fhir:display [ fhir:v "Mutation scanning of select exons" ]
+  ] [
+     fhir:code [ fhir:v "mutation-scanning-of-the-entire-coding-region" ] ;
+     fhir:display [ fhir:v "Mutation scanning of the entire coding region" ]
+  ] [
+     fhir:code [ fhir:v "protein-analysis" ] ;
+     fhir:display [ fhir:v "Protein analysis" ]
+  ] [
+     fhir:code [ fhir:v "protein-expression" ] ;
+     fhir:display [ fhir:v "Protein expression" ]
+  ] [
+     fhir:code [ fhir:v "rna-analysis" ] ;
+     fhir:display [ fhir:v "RNA analysis" ]
+  ] [
+     fhir:code [ fhir:v "sequence-analysis-of-select-exons" ] ;
+     fhir:display [ fhir:v "Sequence analysis of select exons" ]
+  ] [
+     fhir:code [ fhir:v "sequence-analysis-of-the-entire-coding-region" ] ;
+     fhir:display [ fhir:v "Sequence analysis of the entire coding region" ]
+  ] [
+     fhir:code [ fhir:v "sister-chromatid-exchange" ] ;
+     fhir:display [ fhir:v "Sister chromatid exchange" ]
+  ] [
+     fhir:code [ fhir:v "targeted-variant-analysis" ] ;
+     fhir:display [ fhir:v "Targeted variant analysis" ]
+  ] [
+     fhir:code [ fhir:v "udp" ] ;
+     fhir:display [ fhir:v "Uniparental disomy study (UPD)" ]
+  ] [
+     fhir:code [ fhir:v "aspe" ] ;
+     fhir:display [ fhir:v "Allele-specific primer extension (ASPE)" ]
+  ] [
+     fhir:code [ fhir:v "alternative-splicing-detection" ] ;
+     fhir:display [ fhir:v "Alternative splicing detection" ]
+  ] [
+     fhir:code [ fhir:v "bi-directional-sanger-sequence-analysis" ] ;
+     fhir:display [ fhir:v "Bi-directional Sanger Sequence Analysis" ]
+  ] [
+     fhir:code [ fhir:v "c-banding" ] ;
+     fhir:display [ fhir:v "C-banding" ]
+  ] [
+     fhir:code [ fhir:v "cia" ] ;
+     fhir:display [ fhir:v "Chemiluminescent Immunoassay (CIA)" ]
+  ] [
+     fhir:code [ fhir:v "chromatin-immunoprecipitation-on-chip" ] ;
+     fhir:display [ fhir:v "Chromatin Immunoprecipitation on ChIP" ]
+  ] [
+     fhir:code [ fhir:v "comparative-genomic-hybridization" ] ;
+     fhir:display [ fhir:v "Comparative Genomic Hybridization" ]
+  ] [
+     fhir:code [ fhir:v "damid" ] ;
+     fhir:display [ fhir:v "DamID" ]
+  ] [
+     fhir:code [ fhir:v "digital-virtual-karyotyping" ] ;
+     fhir:display [ fhir:v "Digital / Virtual karyotyping" ]
+  ] [
+     fhir:code [ fhir:v "digital-microfluidic-microspheres" ] ;
+     fhir:display [ fhir:v "Digital microfluidic microspheres" ]
+  ] [
+     fhir:code [ fhir:v "enzymatic-levels" ] ;
+     fhir:display [ fhir:v "Enzymatic levels" ]
+  ] [
+     fhir:code [ fhir:v "enzyme-activity" ] ;
+     fhir:display [ fhir:v "Enzyme activity" ]
+  ] [
+     fhir:code [ fhir:v "elisa" ] ;
+     fhir:display [ fhir:v "Enzyme-Linked Immunosorbent Assays (ELISA)" ]
+  ] [
+     fhir:code [ fhir:v "fluorometry" ] ;
+     fhir:display [ fhir:v "Fluorometry" ]
+  ] [
+     fhir:code [ fhir:v "fusion-genes-microarrays" ] ;
+     fhir:display [ fhir:v "Fusion genes microarrays" ]
+  ] [
+     fhir:code [ fhir:v "g-banding" ] ;
+     fhir:display [ fhir:v "G-banding" ]
+  ] [
+     fhir:code [ fhir:v "gc-ms" ] ;
+     fhir:display [ fhir:v "Gas chromatographyâ€“mass spectrometry (GC-MS)" ]
+  ] [
+     fhir:code [ fhir:v "gene-expression-profiling" ] ;
+     fhir:display [ fhir:v "Gene expression profiling" ]
+  ] [
+     fhir:code [ fhir:v "gene-id" ] ;
+     fhir:display [ fhir:v "GeneID" ]
+  ] [
+     fhir:code [ fhir:v "gold-nanoparticle-probe-technology" ] ;
+     fhir:display [ fhir:v "Gold nanoparticle probe technology" ]
+  ] [
+     fhir:code [ fhir:v "hplc" ] ;
+     fhir:display [ fhir:v "High-performance liquid chromatography (HPLC)" ]
+  ] [
+     fhir:code [ fhir:v "lc-ms" ] ;
+     fhir:display [ fhir:v "Liquid chromatography mass spectrometry (LC-MS)" ]
+  ] [
+     fhir:code [ fhir:v "lc-ms-ms" ] ;
+     fhir:display [ fhir:v "Liquid chromatography-tandem mass spectrometry (LC-MS/MS)" ]
+  ] [
+     fhir:code [ fhir:v "metabolite-levels" ] ;
+     fhir:display [ fhir:v "Metabolite levels" ]
+  ] [
+     fhir:code [ fhir:v "methylation-specific-pcr" ] ;
+     fhir:display [ fhir:v "Methylation-specific PCR" ]
+  ] [
+     fhir:code [ fhir:v "microarray" ] ;
+     fhir:display [ fhir:v "Microarray" ]
+  ] [
+     fhir:code [ fhir:v "mlpa" ] ;
+     fhir:display [ fhir:v "Multiplex Ligation-dependent Probe Amplification (MLPA)" ]
+  ] [
+     fhir:code [ fhir:v "ngs-mps" ] ;
+     fhir:display [ fhir:v "Next-Generation (NGS)/Massively parallel sequencing (MPS)" ]
+  ] [
+     fhir:code [ fhir:v "ola" ] ;
+     fhir:display [ fhir:v "Oligonucleotide Ligation Assay (OLA)" ]
+  ] [
+     fhir:code [ fhir:v "oligonucleotide-hybridization-based-dna-sequencing" ] ;
+     fhir:display [ fhir:v "Oligonucleotide hybridization-based DNA sequencing" ]
+  ] [
+     fhir:code [ fhir:v "other" ] ;
+     fhir:display [ fhir:v "Other" ]
+  ] [
+     fhir:code [ fhir:v "pcr" ] ;
+     fhir:display [ fhir:v "PCR" ]
+  ] [
+     fhir:code [ fhir:v "pcr-with-allele-specific-hybridization" ] ;
+     fhir:display [ fhir:v "PCR with allele specific hybridization" ]
+  ] [
+     fhir:code [ fhir:v "pcr-rflp-with-southern-hybridization" ] ;
+     fhir:display [ fhir:v "PCR-RFLP with Southern hybridization" ]
+  ] [
+     fhir:code [ fhir:v "protein-truncation-test" ] ;
+     fhir:display [ fhir:v "Protein truncation test" ]
+  ] [
+     fhir:code [ fhir:v "pyrosequencing" ] ;
+     fhir:display [ fhir:v "Pyrosequencing" ]
+  ] [
+     fhir:code [ fhir:v "q-banding" ] ;
+     fhir:display [ fhir:v "Q-banding" ]
+  ] [
+     fhir:code [ fhir:v "qpcr" ] ;
+     fhir:display [ fhir:v "Quantitative PCR (qPCR)" ]
+  ] [
+     fhir:code [ fhir:v "r-banding" ] ;
+     fhir:display [ fhir:v "R-banding" ]
+  ] [
+     fhir:code [ fhir:v "rflp" ] ;
+     fhir:display [ fhir:v "RFLP" ]
+  ] [
+     fhir:code [ fhir:v "rt-lamp" ] ;
+     fhir:display [ fhir:v "RT-LAMP" ]
+  ] [
+     fhir:code [ fhir:v "rt-pcr" ] ;
+     fhir:display [ fhir:v "RT-PCR" ]
+  ] [
+     fhir:code [ fhir:v "rt-pcr-with-gel-analysis" ] ;
+     fhir:display [ fhir:v "RT-PCR with gel analysis" ]
+  ] [
+     fhir:code [ fhir:v "rt-qpcr" ] ;
+     fhir:display [ fhir:v "RT-qPCR" ]
+  ] [
+     fhir:code [ fhir:v "snp-detection" ] ;
+     fhir:display [ fhir:v "SNP Detection" ]
+  ] [
+     fhir:code [ fhir:v "silver-staining" ] ;
+     fhir:display [ fhir:v "Silver staining" ]
+  ] [
+     fhir:code [ fhir:v "sky" ] ;
+     fhir:display [ fhir:v "Spectral karyotyping (SKY)" ]
+  ] [
+     fhir:code [ fhir:v "t-banding" ] ;
+     fhir:display [ fhir:v "T-banding" ]
+  ] [
+     fhir:code [ fhir:v "ms-ms" ] ;
+     fhir:display [ fhir:v "Tandem mass spectrometry (MS/MS)" ]
+  ] [
+     fhir:code [ fhir:v "tetra-nucleotide-repeat-by-pcr-or-southern-blot" ] ;
+     fhir:display [ fhir:v "Tetra-nucleotide repeat by PCR or Southern Blot" ]
+  ] [
+     fhir:code [ fhir:v "tiling-arrays" ] ;
+     fhir:display [ fhir:v "Tiling Arrays" ]
+  ] [
+     fhir:code [ fhir:v "trinucleotide-repeat-by-pcr-or-southern-blot" ] ;
+     fhir:display [ fhir:v "Trinucleotide repeat by PCR or Southern Blot" ]
+  ] [
+     fhir:code [ fhir:v "uni-directional-sanger-sequencing" ] ;
+     fhir:display [ fhir:v "Uni-directional Sanger sequencing" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

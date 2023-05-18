@@ -1,0 +1,52 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ServiceRequest ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "ambulation"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: ServiceRequest</b><a name=\"ambulation\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource ServiceRequest &quot;ambulation&quot; </p></div><p><b>identifier</b>: <span title=\"  Example of ambulation service request \">id: 45678</span></p><p><b>basedOn</b>: <a href=\"careplan-example-pregnancy.html\">CarePlan/preg: Maternity care plan</a></p><p><b>status</b>: completed</p><p><b>intent</b>: order</p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Ambulation <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#62013009 &quot;Ambulating patient (procedure)&quot;)</span></td></tr></table><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>authoredOn</b>: 2017-03-05</p><p><b>requester</b>: <a href=\"practitioner-examples-general.html\">Practitioner/3ad0687e-f477-468c-afd5-fcc2bf897809: Dr. Beverly Crusher</a></p><h3>Reasons</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a href=\"observation-example-bloodpressure.html\">Observation/blood-pressure: Blood Pressure</a></td></tr></table></div>"
+  ] ; #    Example of ambulation service request  
+  fhir:identifier ( [
+     fhir:value [ fhir:v "45678" ]
+  ] ) ; # 
+  fhir:basedOn ( [
+     fhir:reference [ fhir:v "CarePlan/preg" ] ;
+     fhir:display [ fhir:v "Maternity care plan" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:intent [ fhir:v "order"] ; # 
+  fhir:code [
+     fhir:concept [
+       fhir:coding ( [
+         a sct:62013009 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "62013009" ] ;
+         fhir:display [ fhir:v "Ambulating patient (procedure)" ]
+       ] ) ;
+       fhir:text [ fhir:v "Ambulation" ]
+     ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:authoredOn [ fhir:v "2017-03-05"^^xsd:date] ; # 
+  fhir:requester [
+     fhir:reference [ fhir:v "Practitioner/3ad0687e-f477-468c-afd5-fcc2bf897809" ] ;
+     fhir:display [ fhir:v "Dr. Beverly Crusher" ]
+  ] ; # 
+  fhir:reason ( [
+     fhir:reference [
+       fhir:reference [ fhir:v "Observation/blood-pressure" ] ;
+       fhir:display [ fhir:v "Blood Pressure" ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

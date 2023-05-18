@@ -1,0 +1,205 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <integer.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
+IMPORT <UsageContext.shex>
+#imported_end
+#imported_begin 
+IMPORT <ContactDetail.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+
+start=@<OperationDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Definition of an operation or a named query
+<OperationDefinition> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:OperationDefinition]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri>?;                       # Canonical identifier for this 
+                                            # operation definition, represented 
+                                            # as a URI (globally unique) 
+    fhir:version @<string>?;                # Business version of the operation 
+                                            # definition 
+    fhir:versionAlgorithm @<string>  OR 
+    			@<Coding>  ?;  # How to compare versions
+    fhir:name @<string>;                    # Name for this operation definition 
+                                            # (computer friendly) 
+    fhir:title @<string>?;                  # Name for this operation definition 
+                                            # (human friendly) 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:kind @<code> AND
+    	{fhir:v @fhirvs:operation-kind};  # operation | query
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:date @<dateTime>?;                 # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher/steward 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the operation definition 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for 
+                                            # operation definition (if 
+                                            # applicable) 
+    fhir:purpose @<markdown>?;              # Why this operation definition is 
+                                            # defined 
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:copyrightLabel @<string>?;         # Copyright holder and year(s)
+    fhir:affectsState @<boolean>?;          # Whether content is changed by the 
+                                            # operation 
+    fhir:code @<code>;                      # Recommended name for operation in 
+                                            # search url 
+    fhir:comment @<markdown>?;              # Additional information about use
+    fhir:base @<canonical>?;                # Marks this as a profile of the base
+    fhir:resource @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:resource-types}?;  # Types this operation applies to
+    fhir:system @<boolean>;                 # Invoke at the system level?
+    fhir:type @<boolean>;                   # Invoke at the type level?
+    fhir:instance @<boolean>;               # Invoke on an instance?
+    fhir:inputProfile @<canonical>?;        # Validation information for in 
+                                            # parameters 
+    fhir:outputProfile @<canonical>?;       # Validation information for out 
+                                            # parameters 
+    fhir:parameter @<OneOrMore_OperationDefinition.parameter>?;  # Parameters for the operation/query
+    fhir:overload @<OneOrMore_OperationDefinition.overload>?;  # Define overloaded variants for 
+                                            # when  generating code 
+}  
+
+# References to this parameter
+<OperationDefinition.parameter.referencedFrom> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:source @<string>;                  # Referencing parameter
+    fhir:sourceId @<string>?;               # Element id of reference
+}  
+
+# Parameters for the operation/query
+<OperationDefinition.parameter> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<code>;                      # Name in Parameters.parameter.name 
+                                            # or in URL 
+    fhir:use @<code> AND
+    	{fhir:v @fhirvs:operation-parameter-use};  # in | out
+    fhir:scope @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:operation-parameter-scope}?;  # instance | type | system
+    fhir:min @<integer>;                    # Minimum Cardinality
+    fhir:max @<string>;                     # Maximum Cardinality (a number or *)
+    fhir:documentation @<markdown>?;        # Description of meaning/use
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:fhir-types}?;  # What type this parameter has
+    fhir:allowedType @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:fhir-types}?;  # Allowed sub-type this parameter 
+                                            # can have (if type is abstract) 
+    fhir:targetProfile @<OneOrMore_canonical>?;  # If type is Reference | canonical, 
+                                            # allowed targets. If type is 
+                                            # 'Resource', then this constrains 
+                                            # the allowed resource types 
+    fhir:searchType @<code> AND
+    	{fhir:v @fhirvs:search-param-type}?;  # number | date | string | token | 
+                                            # reference | composite | quantity | 
+                                            # uri | special 
+    fhir:binding @<OperationDefinition.parameter.binding>?;  # ValueSet details if this is coded
+    fhir:referencedFrom @<OneOrMore_OperationDefinition.parameter.referencedFrom>?;  # References to this parameter
+    fhir:part @<OneOrMore_OperationDefinition.parameter>?;  # Parts of a nested Parameter
+}  
+
+# ValueSet details if this is coded
+<OperationDefinition.parameter.binding> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:strength @<code> AND
+    	{fhir:v @fhirvs:binding-strength};  # required | extensible | preferred 
+                                            # | example 
+    fhir:valueSet @<canonical>;             # Source of value set
+}  
+
+# Parts of a nested Parameter
+<OperationDefinition.parameter.partnull> CLOSED {   
+}  
+
+# Define overloaded variants for when  generating code
+<OperationDefinition.overload> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:parameterName @<OneOrMore_string>?;  # Name of parameter to include in 
+                                            # overload 
+    fhir:comment @<string>?;                # Comments to go on overload
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+<OneOrMore_OperationDefinition.parameter> CLOSED {
+    rdf:first @<OperationDefinition.parameter>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_OperationDefinition.parameter> 
+}
+
+<OneOrMore_OperationDefinition.overload> CLOSED {
+    rdf:first @<OperationDefinition.overload>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_OperationDefinition.overload> 
+}
+
+
+
+<OneOrMore_OperationDefinition.parameter.referencedFrom> CLOSED {
+    rdf:first @<OperationDefinition.parameter.referencedFrom>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_OperationDefinition.parameter.referencedFrom> 
+}
+
+
+
+#---------------------- Value Sets ------------------------
+
+
+
+
+
+
+
+
+

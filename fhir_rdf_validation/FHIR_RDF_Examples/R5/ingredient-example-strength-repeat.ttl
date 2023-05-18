@@ -1,0 +1,74 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Ingredient ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Ingredient</b><a name=\"example\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Ingredient &quot;example&quot; </p></div><p><b>status</b>: active</p><p><b>role</b>: ActiveBase <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (ingredientRole#ActiveBase)</span></p><h3>Manufacturers</h3><table class=\"grid\"><tr><td>-</td><td><b>Manufacturer</b></td></tr><tr><td>*</td><td><a href=\"broken-link.html\">Organization/example</a></td></tr></table><blockquote><p><b>substance</b></p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Wizzohaler <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (substance#Wizzohaler)</span></td></tr></table><blockquote><p><b>strength</b></p><p><b>presentation</b>: 730 mcg<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code ug = 'ug')</span>/1 delivered dose<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code {delivered dose} = '{delivered dose}')</span></p><p><b>measurementPoint</b>: 2cm</p></blockquote><blockquote><p><b>strength</b></p><p><b>presentation</b>: 460 mcg<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code ug = 'ug')</span>/1 delivered dose<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code {delivered dose} = '{delivered dose}')</span></p><p><b>measurementPoint</b>: 5cm</p></blockquote></blockquote></div>"
+  ] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:role [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://ema.europa.eu/example/ingredientRole"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "ActiveBase" ]
+     ] )
+  ] ; # 
+  fhir:manufacturer ( [
+     fhir:manufacturer [
+       fhir:reference [ fhir:v "Organization/example" ]
+     ]
+  ] ) ; # 
+  fhir:substance [
+     fhir:code [
+       fhir:concept [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://ema.europa.eu/example/substance"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Wizzohaler" ]
+         ] )
+       ]
+     ] ;
+     fhir:strength ( [
+       fhir:presentation [
+         a fhir:Ratio ;
+         fhir:numerator [
+           fhir:value [ fhir:v "730"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "mcg" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "ug" ]
+         ] ;
+         fhir:denominator [
+           fhir:value [ fhir:v "1"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "delivered dose" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "{delivered dose}" ]
+         ]
+       ] ;
+       fhir:measurementPoint [ fhir:v "2cm" ]
+     ] [
+       fhir:presentation [
+         a fhir:Ratio ;
+         fhir:numerator [
+           fhir:value [ fhir:v "460"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "mcg" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "ug" ]
+         ] ;
+         fhir:denominator [
+           fhir:value [ fhir:v "1"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "delivered dose" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "{delivered dose}" ]
+         ]
+       ] ;
+       fhir:measurementPoint [ fhir:v "5cm" ]
+     ] ) #    A single drug only has a single strength (amount of active ingredient).\n		     However it can be measured in different ways, giving rise to different values of what is basically the same underlying strength.\n		     In these cases the \"strength\" attribute can repeat.\n		     This is common with inhalers, where the strength is the amount of ingredient found in a spray or puff, but which differs at\n		     different distances from the nozzle. The effective strength is therefore different when the inhaler is used with a spacer device, \n		     which changes the distance. Different countries may also chose to measure at different standard distances.\n		     This is a separate concept to presentation vs. concentration strength (which are two ways of expressing the same numeric value).\n		     Concentration strength could be in the example below, in each \"strength\", but is omitted for clarity.\n		     All these are different from reference strength (a strength in terms of a different substance). \n		  
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

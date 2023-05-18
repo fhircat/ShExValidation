@@ -1,0 +1,197 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "genomicstudy-dataformat"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "cg" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/genomicstudy-dataformat"], [ fhir:v "http://hl7.org/fhir/genomicstudy-dataformat"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1978" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1978" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "GenomicStudyDataFormat"], [ fhir:v "GenomicStudyDataFormat"] ;
+  fhir:title [ fhir:v "Genomic Study Data Format"], [ fhir:v "Genomic Study Data Format"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "true"], [ fhir:v "true"] ;
+  fhir:date [ fhir:v "2022-08-17T14:49:24-05:00"], [ fhir:v "2022-08-17T14:49:24-05:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The data format relevant to genomics. These formats and relevant codes were pulled from [Integrative Genomics Viewer Documentation](https://software.broadinstitute.org/software/igv/FileFormats) by Broad Institute."], [ fhir:v "The data format relevant to genomics. These formats and relevant codes were pulled from [Integrative Genomics Viewer Documentation](https://software.broadinstitute.org/software/igv/FileFormats) by Broad Institute."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/genomicstudy-dataformat"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "bam" ] ;
+     fhir:display [ fhir:v "BAM" ]
+  ] [
+     fhir:code [ fhir:v "bed" ] ;
+     fhir:display [ fhir:v "BED" ]
+  ] [
+     fhir:code [ fhir:v "bedpe" ] ;
+     fhir:display [ fhir:v "BEDPE" ]
+  ] [
+     fhir:code [ fhir:v "bedgraph" ] ;
+     fhir:display [ fhir:v "BedGraph" ]
+  ] [
+     fhir:code [ fhir:v "bigbed" ] ;
+     fhir:display [ fhir:v "bigBed" ]
+  ] [
+     fhir:code [ fhir:v "bigWig" ] ;
+     fhir:display [ fhir:v "bigWig" ]
+  ] [
+     fhir:code [ fhir:v "birdsuite-files" ] ;
+     fhir:display [ fhir:v "Birdsuite-Files" ]
+  ] [
+     fhir:code [ fhir:v "broadpeak" ] ;
+     fhir:display [ fhir:v "broadPeak" ]
+  ] [
+     fhir:code [ fhir:v "cbs" ] ;
+     fhir:display [ fhir:v "CBS" ]
+  ] [
+     fhir:code [ fhir:v "chemical-reactivity-probing-profiles" ] ;
+     fhir:display [ fhir:v "Chemical-Reactivity-Probing-Profiles" ]
+  ] [
+     fhir:code [ fhir:v "chrom-sizes" ] ;
+     fhir:display [ fhir:v "chrom-sizes" ]
+  ] [
+     fhir:code [ fhir:v "cn" ] ;
+     fhir:display [ fhir:v "CN" ]
+  ] [
+     fhir:code [ fhir:v "custom-file-formats" ] ;
+     fhir:display [ fhir:v "Custom-File-Formats" ]
+  ] [
+     fhir:code [ fhir:v "cytoband" ] ;
+     fhir:display [ fhir:v "Cytoband" ]
+  ] [
+     fhir:code [ fhir:v "fasta" ] ;
+     fhir:display [ fhir:v "FASTA" ]
+  ] [
+     fhir:code [ fhir:v "gct" ] ;
+     fhir:display [ fhir:v "GCT" ]
+  ] [
+     fhir:code [ fhir:v "cram" ] ;
+     fhir:display [ fhir:v "CRAM" ]
+  ] [
+     fhir:code [ fhir:v "genepred" ] ;
+     fhir:display [ fhir:v "genePred" ]
+  ] [
+     fhir:code [ fhir:v "gff-gtf" ] ;
+     fhir:display [ fhir:v "GFF/GTF" ]
+  ] [
+     fhir:code [ fhir:v "gistic" ] ;
+     fhir:display [ fhir:v "GISTIC" ]
+  ] [
+     fhir:code [ fhir:v "goby" ] ;
+     fhir:display [ fhir:v "Goby" ]
+  ] [
+     fhir:code [ fhir:v "gwas" ] ;
+     fhir:display [ fhir:v "GWAS" ]
+  ] [
+     fhir:code [ fhir:v "igv" ] ;
+     fhir:display [ fhir:v "IGV" ]
+  ] [
+     fhir:code [ fhir:v "loh" ] ;
+     fhir:display [ fhir:v "LOH" ]
+  ] [
+     fhir:code [ fhir:v "maf-multiple-alignment-format" ] ;
+     fhir:display [ fhir:v "MAF-Multiple Alignment Format" ]
+  ] [
+     fhir:code [ fhir:v "maf-mutation-annotation-format" ] ;
+     fhir:display [ fhir:v "MAF-Mutation-Annotation-Format" ]
+  ] [
+     fhir:code [ fhir:v "merged-bam-file" ] ;
+     fhir:display [ fhir:v "Merged BAM File" ]
+  ] [
+     fhir:code [ fhir:v "mut" ] ;
+     fhir:display [ fhir:v "MUT" ]
+  ] [
+     fhir:code [ fhir:v "narrowpeak" ] ;
+     fhir:display [ fhir:v "narrowPeak" ]
+  ] [
+     fhir:code [ fhir:v "psl" ] ;
+     fhir:display [ fhir:v "PSL" ]
+  ] [
+     fhir:code [ fhir:v "res" ] ;
+     fhir:display [ fhir:v "RES" ]
+  ] [
+     fhir:code [ fhir:v "rna-secondary-structure-formats" ] ;
+     fhir:display [ fhir:v "RNA-Secondary-Structure-Formats" ]
+  ] [
+     fhir:code [ fhir:v "sam" ] ;
+     fhir:display [ fhir:v "SAM" ]
+  ] [
+     fhir:code [ fhir:v "sample-info-attributes-file" ] ;
+     fhir:display [ fhir:v "Sample-Info-Attributes-file" ]
+  ] [
+     fhir:code [ fhir:v "seg" ] ;
+     fhir:display [ fhir:v "SEG" ]
+  ] [
+     fhir:code [ fhir:v "tdf" ] ;
+     fhir:display [ fhir:v "TDF" ]
+  ] [
+     fhir:code [ fhir:v "track-line" ] ;
+     fhir:display [ fhir:v "Track Line" ]
+  ] [
+     fhir:code [ fhir:v "type-line" ] ;
+     fhir:display [ fhir:v "Type Line" ]
+  ] [
+     fhir:code [ fhir:v "vcf" ] ;
+     fhir:display [ fhir:v "VCF" ]
+  ] [
+     fhir:code [ fhir:v "wig" ] ;
+     fhir:display [ fhir:v "WIG" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

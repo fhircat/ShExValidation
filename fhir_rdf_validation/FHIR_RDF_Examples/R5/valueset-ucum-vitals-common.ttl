@@ -1,0 +1,103 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ValueSet ;
+  fhir:id [ fhir:v "ucum-vitals-common"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablevalueset" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-extensible" ] ;
+     fhir:value [ fhir:v "true" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "oo" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/ucum-vitals-common"], [ fhir:v "http://hl7.org/fhir/ValueSet/ucum-vitals-common"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.955" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.870" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.955" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.870" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "VitalSignsUnits"], [ fhir:v "VitalSignsUnits"] ;
+  fhir:title [ fhir:v "Vital Signs Units"], [ fhir:v "Vital Signs Units"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:publisher [ fhir:v "FHIR Project"], [ fhir:v "FHIR Project"] ;
+  fhir:description [ fhir:v "Common UCUM units for recording Vital Signs"], [ fhir:v "Common UCUM units for recording Vital Signs"] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:copyright [ fhir:v "UCUM is Copyright © 1999-2013 Regenstrief Institute, Inc. and The UCUM Organization, Indianapolis, IN. All rights reserved. See http://unitsofmeasure.org/trac//wiki/TermsOfUse for details"], [ fhir:v "UCUM is Copyright © 1999-2013 Regenstrief Institute, Inc. and The UCUM Organization, Indianapolis, IN. All rights reserved. See http://unitsofmeasure.org/trac//wiki/TermsOfUse for details"] ;
+  fhir:compose [
+     fhir:include ( [
+       fhir:system [ fhir:v "http://unitsofmeasure.org" ] ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "%" ] ;
+         fhir:display [ fhir:v "percent" ]
+       ] [
+         fhir:code [ fhir:v "cm" ] ;
+         fhir:display [ fhir:v "centimeter" ]
+       ] [
+         fhir:code [ fhir:v "[in_i]" ] ;
+         fhir:display [ fhir:v "inch (international)" ]
+       ] [
+         fhir:code [ fhir:v "kg" ] ;
+         fhir:display [ fhir:v "kilogram" ]
+       ] [
+         fhir:code [ fhir:v "g" ] ;
+         fhir:display [ fhir:v "gram" ]
+       ] [
+         fhir:code [ fhir:v "[lb_av]" ] ;
+         fhir:display [ fhir:v "pound (US and British)" ]
+       ] [
+         fhir:code [ fhir:v "Cel" ] ;
+         fhir:display [ fhir:v "degree Celsius" ]
+       ] [
+         fhir:code [ fhir:v "[degF]" ] ;
+         fhir:display [ fhir:v "degree Fahrenheit" ]
+       ] [
+         fhir:code [ fhir:v "mm[Hg]" ] ;
+         fhir:display [ fhir:v "millimeter of mercury" ]
+       ] [
+         fhir:code [ fhir:v "/min" ] ;
+         fhir:display [ fhir:v "per minute" ]
+       ] [
+         fhir:code [ fhir:v "kg/m2" ] ;
+         fhir:display [ fhir:v "kilogram / (meter ^ 2)" ]
+       ] [
+         fhir:code [ fhir:v "m2" ] ;
+         fhir:display [ fhir:v "square meter" ]
+       ] )
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

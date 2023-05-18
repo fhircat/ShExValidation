@@ -1,0 +1,52 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Resource.shex>
+IMPORT <Extension.shex>
+IMPORT <canonical.shex>
+
+# References a resource that this resource replaces
+<replaces> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:replaces];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/replaces"]}; 
+    fhir:v ((@<canonical>  AND {fhir:link @<Resource> }) )  AND { rdf:type IRI } ; 
+    ^fhir:extension { a [fhir:ActivityDefinition] OR 
+          a [fhir:CapabilityStatement] OR 
+          a [fhir:CapabilityStatement2] OR 
+          a [fhir:ChargeItemDefinition] OR 
+          a [fhir:Citation] OR 
+          a [fhir:CodeSystem] OR 
+          a [fhir:CompartmentDefinition] OR 
+          a [fhir:ConceptMap] OR 
+          a [fhir:ConditionDefinition] OR 
+          a [fhir:EventDefinition] OR 
+          a [fhir:Evidence] OR 
+          a [fhir:EvidenceReport] OR 
+          a [fhir:EvidenceVariable] OR 
+          a [fhir:ExampleScenario] OR 
+          a [fhir:GraphDefinition] OR 
+          a [fhir:ImplementationGuide] OR 
+          a [fhir:Library] OR 
+          a [fhir:Measure] OR 
+          a [fhir:MessageDefinition] OR 
+          a [fhir:NamingSystem] OR 
+          a [fhir:ObservationDefinition] OR 
+          a [fhir:OperationDefinition] OR 
+          a [fhir:PlanDefinition] OR 
+          a [fhir:Questionnaire] OR 
+          a [fhir:SearchParameter] OR 
+          a [fhir:StructureDefinition] OR 
+          a [fhir:StructureMap] OR 
+          a [fhir:SubscriptionTopic] OR 
+          a [fhir:TerminologyCapabilities] OR 
+          a [fhir:TestScript] OR 
+          a [fhir:ValueSet]
+        }
+}  
+

@@ -1,0 +1,76 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+#    insert contents here   
+
+[a fhir:ServiceRequest ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "subrequest"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: ServiceRequest</b><a name=\"subrequest\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource ServiceRequest &quot;subrequest&quot; </p></div><p><b>basedOn</b>: <span title=\" 	&lt;extension url=&quot;http://hl7.org/fhir/StructureDefinition/bodysitecode&quot;&gt;\n		&lt;valueCodeableConcept&gt;\n			&lt;coding&gt;\n				&lt;system value=&quot;http://snomed.info/sct&quot;/&gt;\n				&lt;code value=&quot;51185008&quot;/&gt;\n				&lt;display value=&quot;Thoracic structure&quot;/&gt;\n			&lt;/coding&gt;\n		&lt;/valueCodeableConcept&gt;\n&lt;/extension&gt;\n	 \"><span>: Original Request</span></span></p><p><b>replaces</b>: <span>: Previous allergy test</span></p><p><b>requisition</b>: id: A13848392</p><p><b>status</b>: active</p><p><b>intent</b>: instance-order</p><p><b>priority</b>: routine</p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Peanut IgG <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#35542-0)</span></td></tr></table><p><b>subject</b>: <a href=\"patient-example-dicom.html\">Patient/dicom</a> &quot; MINT_TEST&quot;</p><p><b>occurrence</b>: 2013-05-08T09:33:27+07:00</p><p><b>requester</b>: <a href=\"practitioner-example.html\">Practitioner/example: Dr. Adam Careful</a> &quot;Adam CAREFUL&quot;</p><p><b>performerType</b>: Nurse <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated] &quot;Qualified nurse&quot;)</span></p><h3>Reasons</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Check for Peanut Allergy <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table><p><b>bodySite</b>: Right arm <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ([not stated])</span></p></div>"
+  ] ; #   	<extension url="http://hl7.org/fhir/StructureDefinition/bodysitecode">
+#		<valueCodeableConcept>
+#			<coding>
+#				<system value="http://snomed.info/sct"/>
+#				<code value="51185008"/>
+#				<display value="Thoracic structure"/>
+#			</coding>
+#		</valueCodeableConcept>
+#</extension>
+#	  
+  fhir:basedOn ( [
+     fhir:display [ fhir:v "Original Request" ]
+  ] ) ; # 
+  fhir:replaces ( [
+     fhir:display [ fhir:v "Previous allergy test" ]
+  ] ) ; # 
+  fhir:requisition [
+     fhir:value [ fhir:v "A13848392" ] #    from Element: extension   
+  ] ; #    0..1 The value that is unique   
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:intent [ fhir:v "instance-order"] ; # 
+  fhir:priority [ fhir:v "routine"] ; # 
+  fhir:code [
+     fhir:concept [
+       fhir:coding ( [
+         a loinc:35542-0 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "35542-0" ]
+       ] ) ;
+       fhir:text [ fhir:v "Peanut IgG" ]
+     ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/dicom" ]
+  ] ; # 
+  fhir:occurrence [ fhir:v "2013-05-08T09:33:27+07:00"^^xsd:dateTime] ; # 
+  fhir:requester [
+     fhir:reference [ fhir:v "Practitioner/example" ] ;
+     fhir:display [ fhir:v "Dr. Adam Careful" ]
+  ] ; # 
+  fhir:performerType [
+     fhir:coding ( [
+       fhir:display [ fhir:v "Qualified nurse" ]
+     ] ) ;
+     fhir:text [ fhir:v "Nurse" ]
+  ] ; # 
+  fhir:reason ( [
+     fhir:concept [
+       fhir:text [ fhir:v "Check for Peanut Allergy" ]
+     ]
+  ] ) ; # 
+  fhir:bodySite ( [
+     fhir:coding ( [
+       fhir:display [ fhir:v "Right arm" ]
+     ] ) ;
+     fhir:text [ fhir:v "Right arm" ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

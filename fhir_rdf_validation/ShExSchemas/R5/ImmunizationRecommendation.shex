@@ -1,0 +1,111 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <string.shex>
+IMPORT <Patient.shex>
+IMPORT <dateTime.shex>
+IMPORT <Resource.shex>
+IMPORT <Reference.shex>
+IMPORT <Organization.shex>
+IMPORT <Immunization.shex>
+IMPORT <DomainResource.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <ImmunizationEvaluation.shex>
+
+
+start=@<ImmunizationRecommendation> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Guidance or advice relating to an immunization
+<ImmunizationRecommendation> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:ImmunizationRecommendation];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business identifier
+    fhir:instantiatesCanonical @<OneOrMore_canonical>?;  # Instantiates FHIR protocol or 
+                                            # definition for the immunization 
+                                            # recommendation 
+    fhir:instantiatesUri @<OneOrMore_uri>?;  # Instantiates external protocol or 
+                                            # definition for the immunization 
+                                            # recommendation 
+    fhir:patient @<Reference> AND {fhir:link 
+    			@<Patient> };  # Who this profile is for
+    fhir:date @<dateTime>;                  # Date recommendation(s) created
+    fhir:authority @<Reference> AND {fhir:link 
+    			@<Organization> }?;  # Who is responsible for protocol
+    fhir:recommendation @<OneOrMore_BackboneElement>;  # Vaccine administration 
+                                            # recommendations 
+}  
+
+# Vaccine administration recommendations
+<ImmunizationRecommendation.recommendation> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:vaccineCode @<OneOrMore_CodeableConcept>?;  # Vaccine  or vaccine group 
+                                            # recommendation applies to 
+    fhir:targetDisease @<OneOrMore_CodeableConcept>?;  # Disease to be immunized against
+    fhir:contraindicatedVaccineCode @<OneOrMore_CodeableConcept>?;  # Vaccine which is contraindicated 
+                                            # to fulfill the recommendation 
+    fhir:forecastStatus @<CodeableConcept>;  # Vaccine recommendation status
+    fhir:forecastReason @<OneOrMore_CodeableConcept>?;  # Vaccine administration status 
+                                            # reason 
+    fhir:dateCriterion @<OneOrMore_BackboneElement>?;  # Dates governing proposed 
+                                            # immunization 
+    fhir:description @<string>?;            # Protocol details
+    fhir:series @<string>?;                 # Name of vaccination series
+    fhir:doseNumber @<string>?;             # Recommended dose number within 
+                                            # series 
+    fhir:seriesDoses @<string>?;            # Recommended number of doses for 
+                                            # immunity 
+    fhir:supportingImmunization @<OneOrMore_Reference_Immunization_OR_ImmunizationEvaluation>?;  # Past immunizations supporting 
+                                            # recommendation 
+    fhir:supportingPatientInformation @<OneOrMore_Reference_Resource>?;  # Patient observations supporting 
+                                            # recommendation 
+}  
+
+# Dates governing proposed immunization
+<ImmunizationRecommendation.recommendation.dateCriterion> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>;           # Type of date
+    fhir:v @<dateTime>;                 # Recommended date
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_canonical> CLOSED {
+    rdf:first @<canonical>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_canonical> 
+}
+
+<OneOrMore_uri> CLOSED {
+    rdf:first @<uri>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_uri> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_Immunization_OR_ImmunizationEvaluation> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Immunization> OR 
+			@<ImmunizationEvaluation> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Immunization_OR_ImmunizationEvaluation> 
+}
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+

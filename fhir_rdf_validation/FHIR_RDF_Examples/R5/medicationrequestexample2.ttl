@@ -1,0 +1,58 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:MedicationRequest ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "medrx002"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicationRequest</b><a name=\"medrx002\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicationRequest &quot;medrx002&quot; </p></div><p><b>identifier</b>: id: 12345 (use: OFFICIAL)</p><p><b>status</b>: active</p><p><b>intent</b>: order</p><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><span title=\"  Linked to a RESOURCE Medication  \"><a href=\"medicationexample0316.html\">Medication/med0316: prescribed medication</a></span></td></tr></table><p><b>subject</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><p><b>encounter</b>: <a href=\"encounter-example-f001-heart.html\">Encounter/f001: encounter that leads to this prescription</a></p><p><b>authoredOn</b>: 2015-03-01</p><p><b>requester</b>: <a href=\"practitioner-example-f007-sh.html\">Practitioner/f007: Patrick Pump</a> &quot;Simone HEPS&quot;</p><h3>Reasons</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Essential hypertension (disorder) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#59621000)</span></td></tr></table><h3>DosageInstructions</h3><table class=\"grid\"><tr><td>-</td><td><b>Sequence</b></td><td><b>Text</b></td></tr><tr><td>*</td><td>1</td><td>Take one tablet daily as directed</td></tr></table></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "official" ] ;
+     fhir:system [ fhir:v "http://www.bmc.nl/portal/prescriptions"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "12345" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:intent [ fhir:v "order"] ; # 
+  fhir:medication [
+     fhir:reference [
+       fhir:reference [ fhir:v "Medication/med0316" ] ;
+       fhir:display [ fhir:v "prescribed medication" ]
+     ] #    Linked to a RESOURCE Medication   
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat1" ] ; #    Linked to the resource patient who needs the medication   
+     fhir:display [ fhir:v "Donald Duck" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/f001" ] ; #    Linked to a resource Encounter between patient and practitioner  
+     fhir:display [ fhir:v "encounter that leads to this prescription" ]
+  ] ; # 
+  fhir:authoredOn [ fhir:v "2015-03-01"^^xsd:date] ; # 
+  fhir:requester [
+     fhir:reference [ fhir:v "Practitioner/f007" ] ;
+     fhir:display [ fhir:v "Patrick Pump" ]
+  ] ; # 
+  fhir:reason ( [
+     fhir:concept [
+       fhir:coding ( [
+         a sct:59621000 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "59621000" ] ;
+         fhir:display [ fhir:v "Essential hypertension (disorder)" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:dosageInstruction ( [
+     fhir:sequence [ fhir:v "1"^^xsd:integer ] ;
+     fhir:text [ fhir:v "Take one tablet daily as directed" ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

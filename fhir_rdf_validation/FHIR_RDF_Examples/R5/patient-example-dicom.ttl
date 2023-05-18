@@ -1,0 +1,61 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Patient ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "dicom"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"> Patient MINT_TEST, ID = MINT1234. Age = 56y, Size =\n      1.83m, Weight = 72.58kg </div>"
+  ] ; # 
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://nema.org/fhir/extensions#0010:1010"^^xsd:anyURI ] ;
+     fhir:value [
+       a fhir:Quantity ;
+       fhir:value [ fhir:v "56"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "Y" ]
+     ]
+  ] [
+     fhir:url [ fhir:v "http://nema.org/fhir/extensions#0010:1020"^^xsd:anyURI ] ;
+     fhir:value [
+       a fhir:Quantity ;
+       fhir:value [ fhir:v "1.83"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "m" ]
+     ]
+  ] [
+     fhir:url [ fhir:v "http://nema.org/fhir/extensions#0010:1030"^^xsd:anyURI ] ;
+     fhir:value [
+       a fhir:Quantity ;
+       fhir:value [ fhir:v "72.58"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "kg" ]
+     ]
+  ] ) ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://nema.org/examples/patients"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "MINT1234" ]
+  ] ) ; # 
+  fhir:active [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:name ( [
+     fhir:family [ fhir:v "MINT_TEST" ]
+  ] ) ; # 
+  fhir:gender [
+     fhir:v "male" ;
+     fhir:extension ( [
+       fhir:url [ fhir:v "http://nema.org/examples/extensions#gender"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:Coding ;
+         fhir:system [ fhir:v "http://nema.org/examples/gender"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "M" ]
+       ]
+     ] )
+  ] ; # 
+  fhir:managingOrganization [
+     fhir:reference [ fhir:v "Organization/1" ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,79 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Medication ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "medexample015"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Medication</b><a name=\"medexample015\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Medication &quot;medexample015&quot; </p></div><p><b>code</b>: Capecitabine 500mg oral tablet (Xeloda) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-rxNorm.html\">RxNorm</a>#213293)</span></p><p><b>marketingAuthorizationHolder</b>: <a name=\"mmanu\"> </a></p><blockquote><p/><p><a name=\"mmanu\"> </a></p><p><b>name</b>: Medication Manufacturer</p></blockquote><p><b>doseForm</b>: Tablet dose form (qualifier value) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#385055001)</span></p><blockquote><p><b>ingredient</b></p><h3>Items</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a name=\"sub04\"> </a><blockquote><p/><p><a name=\"sub04\"> </a></p><p><b>instance</b>: false</p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Capecitabine (substance) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#386906001)</span></td></tr></table></blockquote></td></tr></table><p><b>strength</b>: 500 mg<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mg = 'mg')</span>/1(unit TAB from http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm)<span style=\"background: LightGoldenRodYellow\"> (Details: http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm code TAB = 'Tablet')</span></p></blockquote><h3>Batches</h3><table class=\"grid\"><tr><td>-</td><td><b>LotNumber</b></td><td><b>ExpirationDate</b></td></tr><tr><td>*</td><td>9494788</td><td>2017-05-22</td></tr></table></div>"
+  ] ; # 
+  fhir:contained ( [
+     a fhir:Organization ;
+     fhir:id [ fhir:v "mmanu" ] ;
+     fhir:name [ fhir:v "Medication Manufacturer" ]
+  ] [
+     a fhir:Substance ;
+     fhir:id [ fhir:v "sub04" ] ;
+     fhir:instance [ fhir:v "false"^^xsd:boolean ] ;
+     fhir:code [
+       fhir:concept [
+         fhir:coding ( [
+           a sct:386906001 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "386906001" ] ;
+           fhir:display [ fhir:v "Capecitabine (substance)" ]
+         ] )
+       ]
+     ]
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://www.nlm.nih.gov/research/umls/rxnorm"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "213293" ] ;
+       fhir:display [ fhir:v "Capecitabine 500mg oral tablet (Xeloda)" ]
+     ] )
+  ] ; # 
+  fhir:marketingAuthorizationHolder [
+     fhir:reference [ fhir:v "#mmanu" ]
+  ] ; # 
+  fhir:doseForm [
+     fhir:coding ( [
+       a sct:385055001 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "385055001" ] ;
+       fhir:display [ fhir:v "Tablet dose form (qualifier value)" ]
+     ] )
+  ] ; # 
+  fhir:ingredient ( [
+     fhir:item [
+       fhir:reference [
+         fhir:reference [ fhir:v "#sub04" ]
+       ]
+     ] ;
+     fhir:strength [
+       a fhir:Ratio ;
+       fhir:numerator [
+         fhir:value [ fhir:v "500"^^xsd:decimal ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "mg" ]
+       ] ;
+       fhir:denominator [
+         fhir:value [ fhir:v "1"^^xsd:decimal ] ;
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "TAB" ]
+       ]
+     ]
+  ] ) ; # 
+  fhir:batch [
+     fhir:lotNumber [ fhir:v "9494788" ] ;
+     fhir:expirationDate [ fhir:v "2017-05-22"^^xsd:date ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,102 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:CarePlan ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "additional" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <p> A simple care plan to indicate a patient taking their weight once a day because of obesity.</p>\n    </div>"
+  ] ; # 
+  fhir:contained ( [
+     a fhir:Condition ;
+     fhir:id [ fhir:v "p1" ] ;
+     fhir:clinicalStatus [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/condition-clinical"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "active" ]
+       ] )
+     ] ;
+     fhir:verificationStatus [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/condition-ver-status"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "confirmed" ]
+       ] )
+     ] ;
+     fhir:code [
+       fhir:text [ fhir:v "Obesity" ]
+     ] ;
+     fhir:subject [
+       fhir:reference [ fhir:v "Patient/example" ] ;
+       fhir:display [ fhir:v "Peter James Chalmers" ]
+     ]
+  ] ) ; # 
+  fhir:identifier ( [
+     fhir:value [ fhir:v "12345" ]
+  ] ) ; # 
+  fhir:instantiatesUri ( [ fhir:v "http://example.org/protocol-for-obesity"^^xsd:anyURI] ) ; # 
+  fhir:basedOn ( [
+     fhir:display [ fhir:v "Management of Type 2 Diabetes" ]
+  ] ) ; # 
+  fhir:replaces ( [
+     fhir:display [ fhir:v "Plan from urgent care clinic" ]
+  ] ) ; # 
+  fhir:partOf ( [
+     fhir:display [ fhir:v "Overall wellness plan" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:intent [ fhir:v "plan"] ; # 
+  fhir:category ( [
+     fhir:text [ fhir:v "Weight management plan" ]
+  ] ) ; # 
+  fhir:description [ fhir:v "Manage obesity and weight loss"] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "Peter James Chalmers" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/home" ]
+  ] ; # 
+  fhir:period [
+     fhir:end [ fhir:v "2017-06-01"^^xsd:date ]
+  ] ; # 
+  fhir:created [ fhir:v "2016-01-01"^^xsd:date] ; # 
+  fhir:custodian [
+     fhir:reference [ fhir:v "Practitioner/example" ] ;
+     fhir:display [ fhir:v "Dr Adam Careful" ]
+  ] ; # 
+  fhir:careTeam ( [
+     fhir:reference [ fhir:v "CareTeam/example" ]
+  ] ) ; # 
+  fhir:addresses ( [
+     fhir:reference [
+       fhir:reference [ fhir:v "#p1" ] ;
+       fhir:display [ fhir:v "obesity" ]
+     ]
+  ] ) ; # 
+  fhir:goal ( [
+     fhir:reference [ fhir:v "Goal/example" ]
+  ] ) ; #   weight loss goal where the goal's outcome is the body weight observation 
+  fhir:activity ( [
+     fhir:performedActivity ( [
+       fhir:concept [
+         fhir:coding ( [
+           a sct:6397004 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "6397004" ] ;
+           fhir:display [ fhir:v "Muscular strength development exercise" ]
+         ] )
+       ]
+     ] ) ; #   exercise activity completed  
+     fhir:plannedActivityReference [
+       fhir:reference [ fhir:v "ServiceRequest/benchpress" ]
+     ] #   planned exercise plan  
+  ] )] . #   exercise activity  
+
+# -------------------------------------------------------------------------------------
+

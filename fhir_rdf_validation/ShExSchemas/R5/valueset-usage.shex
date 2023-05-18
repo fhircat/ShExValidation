@@ -1,0 +1,21 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Extension.shex>
+
+# Who has used and how?
+<valueset-usage> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:valueset-usage];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:user @<Extension>; 
+    fhir:use @<Extension>; 
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/valueset-usage"]}; 
+    ^fhir:extension { a [fhir:ValueSet]
+        }
+}  
+

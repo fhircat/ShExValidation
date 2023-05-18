@@ -1,0 +1,55 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Permission ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-saner"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <p>\n    Read-Only access to SANER report is authorized for PurposeOfUse of Public-Health compliance, from the Organizations.\n    Access requests authorized shall be recorded.  \n    </p>\n      <p> \n    TODO: expression help. No access is granted to previous historic revisions (only current report).\n    </p>\n      <p> \n    TODO: authorize a Group/P1. \n    </p>\n    </div>"
+  ] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:asserter [
+     fhir:reference [ fhir:v "Organization/f203" ]
+  ] ; # 
+  fhir:date ( [ fhir:v "2018-12-24"^^xsd:date] ) ; # 
+  fhir:combining [ fhir:v "deny-overrides"] ; # 
+  fhir:rule ( [
+     fhir:type [ fhir:v "permit" ] ;
+     fhir:data ( [
+       fhir:expression [
+         fhir:language [ fhir:v "text/fhirpath" ] ;
+         fhir:expression [ fhir:v "http://hl7.org/fhir/uv/saner/Measure/CDCHealthcareSupplyPathway" ]
+       ]
+     ] ) ;
+     fhir:activity ( [
+       fhir:actor ( [
+         fhir:reference [ fhir:v "Organization/f203" ]
+       ] ) ;
+       fhir:action ( [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/consentaction"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "access" ]
+         ] )
+       ] ) ;
+       fhir:purpose ( [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActReason"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "HCOMPL" ]
+         ] )
+       ] )
+     ] ) ;
+     fhir:limit ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActCode"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "AUDIT" ]
+       ] )
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

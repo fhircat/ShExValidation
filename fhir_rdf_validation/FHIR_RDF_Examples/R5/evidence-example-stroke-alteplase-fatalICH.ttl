@@ -1,0 +1,121 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Evidence ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-stroke-alteplase-fatalICH"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      \n      <p>\n        &quot;Risk of fatal ICH with alteplase for stroke&quot; is a univariate risk estimate.\n      </p>\n	\n    </div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/Evidence/example-stroke-alteplase-fatalICH"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.10.1" ]
+  ] ) ; # 
+  fhir:name [ fhir:v "RiskOfFatalICHWithAlteplaseForStroke"] ; # 
+  fhir:title [ fhir:v "Risk of fatal ICH with alteplase for stroke"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:relatedArtifact ( [
+     fhir:type [ fhir:v "citation" ] ;
+     fhir:label [ fhir:v "Emberson 2014" ] ;
+     fhir:display [ fhir:v "Effect of treatment delay, age, and stroke severity on the effects of intravenous thrombolysis with alteplase for acute ischaemic stroke: a meta-analysis of individual patient data from randomised trials." ] ;
+     fhir:citation [ fhir:v "Emberson J, Lees KR, Lyden P, Blackwell L, Albers G, Bluhmki E, et al;Stroke Thrombolysis Trialists' Collaborative Group. Effect of treatment delay, age, and stroke severity on the effects of intravenous thrombolysis with alteplase for acute ischaemic stroke: a meta-analysis of individual patient data from randomised trials. Lancet 2014 Nov 29;384(9958):1929-35 PMID 25106063" ] ;
+     fhir:document [
+       fhir:url [ fhir:v "https://doi.org/10.1016/S0140-6736(14)60584-5"^^xsd:anyURI ]
+     ]
+  ] ) ; # 
+  fhir:description [ fhir:v "2.7% incidence of fatal intracranial hemorrhage within 7 days with alteplase in patients with acute ischemic stroke"] ; # 
+  fhir:variableDefinition ( [
+     fhir:variableRole [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/variable-role"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "population" ] ;
+         fhir:display [ fhir:v "population" ]
+       ] )
+     ] ;
+     fhir:observed [
+       fhir:reference [ fhir:v "Group/AcuteIschemicStroke" ] ;
+       fhir:type [ fhir:v "Group"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "adults with acute ischemic stroke" ]
+     ] ;
+     fhir:intended [
+       fhir:reference [ fhir:v "Group/AcuteIschemicStroke" ] ;
+       fhir:type [ fhir:v "Group"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "adults with acute ischemic stroke" ]
+     ]
+  ] [
+     fhir:variableRole [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/variable-role"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "population" ] ;
+         fhir:display [ fhir:v "population" ]
+       ] )
+     ] ;
+     fhir:observed [
+       fhir:reference [ fhir:v "Group/Emberson-2014-IPD-MA-Alteplase-Cohort" ] ;
+       fhir:type [ fhir:v "Group"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "Emberson 2014 IPD-MA Alteplase Cohort" ]
+     ] ;
+     fhir:intended [
+       fhir:reference [ fhir:v "Group/AcuteIschemicStrokeTreatedWithAlteplase" ] ;
+       fhir:type [ fhir:v "Group"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "adults with acute ischemic stroke treated with alteplase" ]
+     ]
+  ] [
+     fhir:variableRole [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/variable-role"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "measuredVariable" ] ;
+         fhir:display [ fhir:v "measured variable" ]
+       ] )
+     ] ;
+     fhir:observed [
+       fhir:reference [ fhir:v "EvidenceVariable/example-fatal-ICH-in-7-days" ] ;
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "fatal ICH" ]
+     ] ;
+     fhir:intended [
+       fhir:reference [ fhir:v "EvidenceVariable/example-fatal-ICH-in-7-days" ] ;
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "fatal ICH" ]
+     ]
+  ] ) ; # 
+  fhir:synthesisType [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/synthesis-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "IPD-MA" ] ;
+       fhir:display [ fhir:v "individual patient data meta-analysis" ]
+     ] )
+  ] ; # 
+  fhir:studyDesign ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/study-design"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "SEVCO:01003" ] ;
+       fhir:display [ fhir:v "randomized assignment" ]
+     ] )
+  ] ) ; # 
+  fhir:statistic ( [
+     fhir:statisticType [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/statistic-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "C44256" ] ;
+         fhir:display [ fhir:v "Proportion" ]
+       ] )
+     ] ;
+     fhir:quantity [
+       fhir:value [ fhir:v "0.026835741669"^^xsd:decimal ]
+     ] ;
+     fhir:numberOfEvents [ fhir:v "91"^^xsd:nonNegativeInteger ] ;
+     fhir:sampleSize [
+       fhir:numberOfStudies [ fhir:v "9"^^xsd:nonNegativeInteger ] ;
+       fhir:numberOfParticipants [ fhir:v "3391"^^xsd:nonNegativeInteger ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

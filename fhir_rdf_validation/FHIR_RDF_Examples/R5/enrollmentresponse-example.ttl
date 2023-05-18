@@ -1,0 +1,35 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:EnrollmentResponse ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "ER2500"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the EnrollmentResponse</div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://www.BenefitsInc.com/fhir/enrollmentresponse"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "781234" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:request [
+     fhir:link <http://www.BenefitsInc.com/fhir/eligibility/225476332402> ;
+     fhir:reference [ fhir:v "http://www.BenefitsInc.com/fhir/eligibility/225476332402" ]
+  ] ; # 
+  fhir:outcome [ fhir:v "complete"] ; # 
+  fhir:disposition [ fhir:v "Dependant added to policy."] ; # 
+  fhir:created [ fhir:v "2014-08-16"^^xsd:date] ; # 
+  fhir:organization [
+     fhir:reference [ fhir:v "Organization/2" ]
+  ] ; # 
+  fhir:requestProvider [
+     fhir:reference [ fhir:v "Organization/1" ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

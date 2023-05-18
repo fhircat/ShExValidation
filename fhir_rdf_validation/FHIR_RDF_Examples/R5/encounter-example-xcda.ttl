@@ -1,0 +1,49 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Encounter ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "xcda"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Encounter</b><a name=\"xcda\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Encounter &quot;xcda&quot; </p></div><p><b>identifier</b>: id: 1234213.52345873 (use: OFFICIAL)</p><p><b>status</b>: completed</p><p><b>class</b>: ambulatory <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ActCode.html\">ActCode</a>#AMB)</span></p><p><b>subject</b>: <a href=\"patient-example-xcda.html\">Patient/xcda</a> &quot;Henry LEVIN&quot;</p><h3>Participants</h3><table class=\"grid\"><tr><td>-</td><td><b>Actor</b></td></tr><tr><td>*</td><td><a href=\"practitioner-example-xcda1.html\">Practitioner/xcda1</a> &quot;Sherry DOPPLEMEYER&quot;</td></tr></table><blockquote><p><b>reason</b></p><h3>Values</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Arm <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (eventCodes#T-D8200)</span></td></tr></table></blockquote></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "official" ] ;
+     fhir:system [ fhir:v "http://healthcare.example.org/identifiers/enocunter"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "1234213.52345873" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:class ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActCode"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "AMB" ] ;
+       fhir:display [ fhir:v "ambulatory" ] #    outpatient   
+     ] )
+  ] ) ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/xcda" ]
+  ] ; # 
+  fhir:participant ( [
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/xcda1" ]
+     ]
+  ] ) ; # 
+  fhir:reason ( [
+     fhir:value ( [
+       fhir:concept [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://ihe.net/xds/connectathon/eventCodes"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "T-D8200" ] ;
+           fhir:display [ fhir:v "Arm" ]
+         ] )
+       ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

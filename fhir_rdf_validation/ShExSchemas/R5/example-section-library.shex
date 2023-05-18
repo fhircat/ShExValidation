@@ -1,0 +1,42 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <Composition.shex>
+IMPORT <BackboneElement.shex>
+
+
+start=@<example-section-library> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A set of resources composed into a single coherent clinical statement with clinical attestation
+<example-section-library> EXTENDS @<Composition> CLOSED {   
+
+    a [fhir:example-section-library];
+    fhir:nodeRole [fhir:treeRoot]?;
+}  
+
+# Attests to accuracy of composition
+<Composition.attester> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Composition is broken into sections
+<Composition.section> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Composition is broken into sections
+<Composition.section> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Composition is broken into sections
+<Composition.section> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# The clinical service(s) being documented
+<Composition.event> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Composition is broken into sections
+<Composition.section> EXTENDS @<BackboneElement> CLOSED {   
+}  
+

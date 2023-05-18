@@ -1,0 +1,185 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "citation-status-type"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "cds" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "0" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/citation-status-type"], [ fhir:v "http://hl7.org/fhir/citation-status-type"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1878" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1878" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "CitationStatusType"], [ fhir:v "CitationStatusType"] ;
+  fhir:title [ fhir:v "Citation Status Type"], [ fhir:v "Citation Status Type"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2021-03-11T10:55:11.085+11:00"], [ fhir:v "2021-03-11T10:55:11.085+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Citation status type"], [ fhir:v "Citation status type"] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/citation-status-type"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "pubmed-pubstatus-received" ] ;
+     fhir:display [ fhir:v "PubMed Pubstatus of Received" ] ;
+     fhir:definition [ fhir:v "PubMed Pubstatus of Received" ]
+  ] [
+     fhir:code [ fhir:v "pubmed-pubstatus-accepted" ] ;
+     fhir:display [ fhir:v "PubMed Pubstatus of Accepted" ] ;
+     fhir:definition [ fhir:v "PubMed Pubstatus of Accepted" ]
+  ] [
+     fhir:code [ fhir:v "pubmed-pubstatus-epublish" ] ;
+     fhir:display [ fhir:v "PubMed Pubstatus of Epublish" ] ;
+     fhir:definition [ fhir:v "PubMed Pubstatus of Epublish" ]
+  ] [
+     fhir:code [ fhir:v "pubmed-pubstatus-ppublish" ] ;
+     fhir:display [ fhir:v "PubMed Pubstatus of Ppublish" ] ;
+     fhir:definition [ fhir:v "PubMed Pubstatus of Ppublish" ]
+  ] [
+     fhir:code [ fhir:v "pubmed-pubstatus-revised" ] ;
+     fhir:display [ fhir:v "PubMed Pubstatus of Revised" ] ;
+     fhir:definition [ fhir:v "PubMed Pubstatus of Revised" ]
+  ] [
+     fhir:code [ fhir:v "pubmed-pubstatus-aheadofprint" ] ;
+     fhir:display [ fhir:v "PubMed Pubstatus of aheadofprint" ] ;
+     fhir:definition [ fhir:v "PubMed Pubstatus of aheadofprint" ]
+  ] [
+     fhir:code [ fhir:v "pubmed-pubstatus-retracted" ] ;
+     fhir:display [ fhir:v "PubMed Pubstatus of Retracted" ] ;
+     fhir:definition [ fhir:v "PubMed Pubstatus of Retracted" ]
+  ] [
+     fhir:code [ fhir:v "pubmed-pubstatus-ecollection" ] ;
+     fhir:display [ fhir:v "PubMed Pubstatus of Ecollection" ] ;
+     fhir:definition [ fhir:v "PubMed Pubstatus of Ecollection" ]
+  ] [
+     fhir:code [ fhir:v "pubmed-pubstatus-pmc" ] ;
+     fhir:display [ fhir:v "PubMed Pubstatus of PMC" ] ;
+     fhir:definition [ fhir:v "PubMed Pubstatus of PMC" ]
+  ] [
+     fhir:code [ fhir:v "pubmed-pubstatus-pmcr" ] ;
+     fhir:display [ fhir:v "PubMed Pubstatus of PMCr" ] ;
+     fhir:definition [ fhir:v "PubMed Pubstatus of PMCr" ]
+  ] [
+     fhir:code [ fhir:v "pubmed-pubstatus-pubmed" ] ;
+     fhir:display [ fhir:v "PubMed Pubstatus of PubMed" ] ;
+     fhir:definition [ fhir:v "PubMed Pubstatus of PubMed" ]
+  ] [
+     fhir:code [ fhir:v "pubmed-pubstatus-pubmedr" ] ;
+     fhir:display [ fhir:v "PubMed Pubstatus of PubMedr" ] ;
+     fhir:definition [ fhir:v "PubMed Pubstatus of PubMedr" ]
+  ] [
+     fhir:code [ fhir:v "pubmed-pubstatus-premedline" ] ;
+     fhir:display [ fhir:v "PubMed Pubstatus of Premedline" ] ;
+     fhir:definition [ fhir:v "PubMed Pubstatus of Premedline" ]
+  ] [
+     fhir:code [ fhir:v "pubmed-pubstatus-medline" ] ;
+     fhir:display [ fhir:v "PubMed Pubstatus of Medline" ] ;
+     fhir:definition [ fhir:v "PubMed Pubstatus of Medline" ]
+  ] [
+     fhir:code [ fhir:v "pubmed-pubstatus-medliner" ] ;
+     fhir:display [ fhir:v "PubMed Pubstatus of Medliner" ] ;
+     fhir:definition [ fhir:v "PubMed Pubstatus of Medliner" ]
+  ] [
+     fhir:code [ fhir:v "pubmed-pubstatus-entrez" ] ;
+     fhir:display [ fhir:v "PubMed Pubstatus of Entrez" ] ;
+     fhir:definition [ fhir:v "PubMed Pubstatus of Entrez" ]
+  ] [
+     fhir:code [ fhir:v "pubmed-pubstatus-pmc-release" ] ;
+     fhir:display [ fhir:v "PubMed Pubstatus of PMC release" ] ;
+     fhir:definition [ fhir:v "PubMed Pubstatus of PMC release" ]
+  ] [
+     fhir:code [ fhir:v "medline-completed" ] ;
+     fhir:display [ fhir:v "Medline Citation Status of Completed" ] ;
+     fhir:definition [ fhir:v "Medline Citation Status of Completed" ]
+  ] [
+     fhir:code [ fhir:v "medline-in-process" ] ;
+     fhir:display [ fhir:v "Medline Citation Status of In-Process" ] ;
+     fhir:definition [ fhir:v "Medline Citation Status of In-Process" ]
+  ] [
+     fhir:code [ fhir:v "medline-pubmed-not-medline" ] ;
+     fhir:display [ fhir:v "Medline Citation Status of PubMed-not-MEDLINE" ] ;
+     fhir:definition [ fhir:v "Medline Citation Status of PubMed-not-MEDLINE" ]
+  ] [
+     fhir:code [ fhir:v "medline-in-data-review" ] ;
+     fhir:display [ fhir:v "Medline Citation Status of In-Data-Review" ] ;
+     fhir:definition [ fhir:v "Medline Citation Status of In-Data-Review" ]
+  ] [
+     fhir:code [ fhir:v "medline-publisher" ] ;
+     fhir:display [ fhir:v "Medline Citation Status of Publisher" ] ;
+     fhir:definition [ fhir:v "Medline Citation Status of Publisher" ]
+  ] [
+     fhir:code [ fhir:v "medline-medline" ] ;
+     fhir:display [ fhir:v "Medline Citation Status of MEDLINE" ] ;
+     fhir:definition [ fhir:v "Medline Citation Status of MEDLINE" ]
+  ] [
+     fhir:code [ fhir:v "medline-oldmedline" ] ;
+     fhir:display [ fhir:v "Medline Citation Status of OLDMEDLINE" ] ;
+     fhir:definition [ fhir:v "Medline Citation Status of OLDMEDLINE" ]
+  ] [
+     fhir:code [ fhir:v "pubmed-publication-status-ppublish" ] ;
+     fhir:display [ fhir:v "PubMed PublicationStatus of ppublish" ] ;
+     fhir:definition [ fhir:v "published in print" ]
+  ] [
+     fhir:code [ fhir:v "pubmed-publication-status-epublish" ] ;
+     fhir:display [ fhir:v "PubMed PublicationStatus of epublish" ] ;
+     fhir:definition [ fhir:v "electronically published only, never published in print" ]
+  ] [
+     fhir:code [ fhir:v "pubmed-publication-status-aheadofprint" ] ;
+     fhir:display [ fhir:v "PubMed PublicationStatus of aheadofprint" ] ;
+     fhir:definition [ fhir:v "electronically published, but followed by print" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

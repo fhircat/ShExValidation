@@ -1,0 +1,23 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Organization ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "2"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      \n      <p>XYZ Insurance</p>\n    \n    </div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.3.19.2.3"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "666666" ]
+  ] ) ; # 
+  fhir:name [ fhir:v "XYZ Insurance"] ; # 
+  fhir:alias ( [ fhir:v "ABC Insurance"] )] . # 
+
+# -------------------------------------------------------------------------------------
+

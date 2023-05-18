@@ -1,0 +1,117 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "therapy-relationship-type"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "brr" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/therapy-relationship-type"], [ fhir:v "http://hl7.org/fhir/therapy-relationship-type"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1994" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1994" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "TherapyRelationshipType"], [ fhir:v "TherapyRelationshipType"] ;
+  fhir:title [ fhir:v "Therapy Relationship Type"], [ fhir:v "Therapy Relationship Type"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2021-08-15T16:55:11+11:00"], [ fhir:v "2021-08-15T16:55:11+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Classification of relationship between a therapy and a contraindication or an indication."], [ fhir:v "Classification of relationship between a therapy and a contraindication or an indication."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/therapy-relationship-type"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "contraindicated-only-with" ] ;
+     fhir:display [ fhir:v "Only contraindicated if the other therapy is given" ] ;
+     fhir:definition [ fhir:v "Only contraindicated if the other therapy is given" ]
+  ] [
+     fhir:code [ fhir:v "contraindicated-except-with" ] ;
+     fhir:display [ fhir:v "Contraindicated unless the other therapy is given" ] ;
+     fhir:definition [ fhir:v "Contraindicated unless the other therapy is given" ]
+  ] [
+     fhir:code [ fhir:v "indicated-only-with" ] ;
+     fhir:display [ fhir:v "Indicated only when the other therapy is given (co-occurrent)" ] ;
+     fhir:definition [ fhir:v "Indicated only when the other therapy is given (co-occurrent)" ]
+  ] [
+     fhir:code [ fhir:v "indicated-except-with" ] ;
+     fhir:display [ fhir:v "Indicated except when the other therapy is given" ] ;
+     fhir:definition [ fhir:v "Indicated except when the other therapy is given" ]
+  ] [
+     fhir:code [ fhir:v "indicated-only-after" ] ;
+     fhir:display [ fhir:v "Indicated only if the other therapy is planned to be given afterwards (prep)" ] ;
+     fhir:definition [ fhir:v "Indicated only if the other therapy is planned to be given afterwards (prep)" ]
+  ] [
+     fhir:code [ fhir:v "indicated-only-before" ] ;
+     fhir:display [ fhir:v "Indicated only if the other therapy was given before (follow-up)" ] ;
+     fhir:definition [ fhir:v "Indicated only if the other therapy was given before (follow-up)" ]
+  ] [
+     fhir:code [ fhir:v "replace-other-therapy" ] ;
+     fhir:display [ fhir:v "Indicated to replace the other therapy" ] ;
+     fhir:definition [ fhir:v "Indicated to replace the other therapy" ]
+  ] [
+     fhir:code [ fhir:v "replace-other-therapy-contraindicated" ] ;
+     fhir:display [ fhir:v "Indicated to replace the other contraindicated therapy" ] ;
+     fhir:definition [ fhir:v "Indicated to replace the other contraindicated therapy." ]
+  ] [
+     fhir:code [ fhir:v "replace-other-therapy-not-tolerated" ] ;
+     fhir:display [ fhir:v "Indicated to replace the other therapy not well tolerated by patient" ] ;
+     fhir:definition [ fhir:v "Indicated to replace the other therapy not well tolerated by patient" ]
+  ] [
+     fhir:code [ fhir:v "replace-other-therapy-not-effective" ] ;
+     fhir:display [ fhir:v "Indicated to replace the other therapy not effective on patient" ] ;
+     fhir:definition [ fhir:v "Indicated to replace the other therapy not effective on patient" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

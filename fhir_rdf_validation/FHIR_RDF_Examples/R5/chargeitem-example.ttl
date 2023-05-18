@@ -1,0 +1,119 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ChargeItem ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">Example of ChargeItem Usage in Context of the German EBM Billing code system</div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://myHospital.org/ChargeItems"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "654321" ]
+  ] ) ; # 
+  fhir:definitionUri ( [ fhir:v "http://www.kbv.de/tools/ebm/html/01520_2904360860826220813632.html"^^xsd:anyURI] ) ; # 
+  fhir:status [ fhir:v "billable"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:code [ fhir:v "01510" ] ;
+       fhir:display [ fhir:v "Zusatzpauschale für Beobachtung nach diagnostischer Koronarangiografie" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/example" ]
+  ] ; # 
+  fhir:occurrence [
+     a fhir:Period ;
+     fhir:start [ fhir:v "2017-01-25T08:00:00+01:00"^^xsd:dateTime ] ;
+     fhir:end [ fhir:v "2017-01-25T12:35:00+01:00"^^xsd:dateTime ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:function [
+       fhir:coding ( [
+         a sct:17561000 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "17561000" ] ;
+         fhir:display [ fhir:v "Cardiologist" ]
+       ] )
+     ] ;
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/example" ]
+     ]
+  ] [
+     fhir:function [
+       fhir:coding ( [
+         a sct:224542009 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "224542009" ] ;
+         fhir:display [ fhir:v "Coronary Care Nurse" ]
+       ] )
+     ] ;
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/example" ]
+     ]
+  ] ) ; # 
+  fhir:performingOrganization [
+     fhir:identifier [
+       fhir:system [ fhir:v "http://myhospital/NamingSystem/departments"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "CARD_INTERMEDIATE_CARE" ]
+     ]
+  ] ; # 
+  fhir:requestingOrganization [
+     fhir:identifier [
+       fhir:system [ fhir:v "http://myhospital/NamingSystem/departments"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "CARD_U1" ]
+     ]
+  ] ; # 
+  fhir:quantity [
+     fhir:value [ fhir:v "1"^^xsd:decimal ]
+  ] ; # 
+  fhir:totalPriceComponent [
+     fhir:type [ fhir:v "base" ] ;
+     fhir:factor [ fhir:v "0.8"^^xsd:decimal ] ;
+     fhir:amount [
+       fhir:value [ fhir:v "40"^^xsd:decimal ] ;
+       fhir:currency [ fhir:v "EUR" ]
+     ]
+  ] ; # 
+  fhir:overrideReason [
+     fhir:text [ fhir:v "Patient is Cardiologist's golf buddy, so he gets a 20% discount!" ]
+  ] ; # 
+  fhir:enterer [
+     fhir:reference [ fhir:v "Practitioner/example" ]
+  ] ; # 
+  fhir:enteredDate [ fhir:v "2017-01-25T23:55:04+01:00"^^xsd:dateTime] ; # 
+  fhir:reason ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/sid/icd-10"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "I51.6" ] ; #  \n				<code value= \"123456\"\/>\n				<display value=\"DIAG-1\"\/>\n				 
+       fhir:display [ fhir:v "Cardiovascular disease, unspecified" ]
+     ] )
+  ] ) ; # 
+  fhir:service ( [
+     fhir:reference [
+       fhir:reference [ fhir:v "Procedure/example" ]
+     ]
+  ] ) ; # 
+  fhir:account ( [
+     fhir:reference [ fhir:v "Account/example" ]
+  ] ) ; # 
+  fhir:note ( [
+     fhir:author [
+       a fhir:Reference ;
+       fhir:reference [ fhir:v "Practitioner/example" ]
+     ] ;
+     fhir:time [ fhir:v "2017-01-25T23:55:04+01:00"^^xsd:dateTime ] ;
+     fhir:text [ fhir:v "The code is only applicable for periods longer than 4h" ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

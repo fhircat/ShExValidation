@@ -1,0 +1,21 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Quantity.shex>
+IMPORT <Extension.shex>
+
+# Same quantity with different units
+<iso21090-PQ-translation> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:iso21090-PQ-translation];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/iso21090-PQ-translation"]}; 
+    fhir:v (@<Quantity> )  AND { rdf:type IRI } ; 
+    ^fhir:extension { a [fhir:Quantity]
+        }
+}  
+

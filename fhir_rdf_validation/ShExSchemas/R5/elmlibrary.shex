@@ -1,0 +1,35 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <Attachment.shex>
+IMPORT <logiclibrary.shex>
+IMPORT <RelatedArtifact.shex>
+
+
+start=@<elmlibrary> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Represents a library of quality improvement components
+<elmlibrary> EXTENDS @<logiclibrary> CLOSED {   
+
+    a [fhir:elmlibrary];
+    fhir:nodeRole [fhir:treeRoot]?;
+}  
+
+# ELM XML Content
+<Library.content> EXTENDS @<Attachment> CLOSED {   
+}  
+
+# Contents of the library, either embedded or referenced
+<Library.content> EXTENDS @<Attachment> CLOSED {   
+}  
+
+# ELM JSON Content
+<Library.content> EXTENDS @<Attachment> CLOSED {   
+}  
+
+# Additional documentation, citations, etc.
+<Library.relatedArtifact> EXTENDS @<RelatedArtifact> CLOSED {   
+}  
+

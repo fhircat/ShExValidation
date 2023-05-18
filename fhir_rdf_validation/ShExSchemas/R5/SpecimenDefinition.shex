@@ -1,0 +1,177 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <date.shex>
+IMPORT <Group.shex>
+IMPORT <Range.shex>
+IMPORT <string.shex>
+IMPORT <Period.shex>
+IMPORT <boolean.shex>
+IMPORT <dateTime.shex>
+IMPORT <markdown.shex>
+IMPORT <Quantity.shex>
+IMPORT <Duration.shex>
+IMPORT <Reference.shex>
+IMPORT <Identifier.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <DomainResource.shex>
+IMPORT <SimpleQuantity.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <SubstanceDefinition.shex>
+
+
+start=@<SpecimenDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Kind of specimen
+<SpecimenDefinition> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:SpecimenDefinition];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:url @<uri>?;                       # Logical canonical URL to reference 
+                                            # this SpecimenDefinition (globally 
+                                            # unique) 
+    fhir:identifier @<Identifier>?;         # Business identifier
+    fhir:version @<string>?;                # Business version of the 
+                                            # SpecimenDefinition 
+    fhir:title @<string>?;                  # Name for this SpecimenDefinition 
+                                            # (Human friendly) 
+    fhir:derivedFromCanonical @<OneOrMore_canonical>?;  # Based on FHIR definition of 
+                                            # another SpecimenDefinition 
+    fhir:derivedFromUri @<OneOrMore_uri>?;  # Based on external definition
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # If this SpecimenDefinition is not 
+                                            # for real usage 
+    fhir:subject (@<CodeableConcept>  OR 
+    			(@<Reference>  AND {fhir:link @<Group> }) )  AND { rdf:type IRI } ?;  # Type of subject for specimen 
+                                            # collection 
+    fhir:date @<dateTime>?;                 # Date status first applied
+    fhir:publisher @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> }?;  # The name of the individual or 
+                                            # organization that published the 
+                                            # SpecimenDefinition 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the SpecimenDefinition 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # Content intends to support these 
+                                            # contexts 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for this 
+                                            # SpecimenDefinition (if applicable) 
+    fhir:purpose @<markdown>?;              # Why this SpecimenDefinition is 
+                                            # defined 
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:approvalDate @<date>?;             # When SpecimenDefinition was 
+                                            # approved by publisher 
+    fhir:lastReviewDate @<date>?;           # The date on which the asset 
+                                            # content was last reviewed 
+    fhir:effectivePeriod @<Period>?;        # The effective date range for the 
+                                            # SpecimenDefinition 
+    fhir:typeCollected @<CodeableConcept>?;  # Kind of material to collect
+    fhir:patientPreparation @<OneOrMore_CodeableConcept>?;  # Patient preparation for collection
+    fhir:timeAspect @<string>?;             # Time aspect for collection
+    fhir:collection @<OneOrMore_CodeableConcept>?;  # Specimen collection procedure
+    fhir:typeTested @<OneOrMore_BackboneElement>?;  # Specimen in container intended for 
+                                            # testing by lab 
+}  
+
+# The specimen's container
+<SpecimenDefinition.typeTested.container> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:material @<CodeableConcept>?;      # The material type used for the 
+                                            # container 
+    fhir:type @<CodeableConcept>?;          # Kind of container associated with 
+                                            # the kind of specimen 
+    fhir:cap @<CodeableConcept>?;           # Color of container cap
+    fhir:description @<string>?;            # The description of the kind of 
+                                            # container 
+    fhir:capacity @<Quantity>?;             # The capacity of this kind of 
+                                            # container 
+    fhir:minimumVolume (@<SimpleQuantity>  OR 
+    			@<string> )  AND { rdf:type IRI } ?;  # Minimum volume
+    fhir:additive @<OneOrMore_BackboneElement>?;  # Additive associated with container
+    fhir:preparation @<string>?;            # Special processing applied to the 
+                                            # container for this specimen type 
+}  
+
+# Additive associated with container
+<SpecimenDefinition.typeTested.container.additive> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:additive (@<CodeableConcept>  OR 
+    			(@<Reference>  AND {fhir:link @<SubstanceDefinition> }) )  AND { rdf:type IRI } ;  # Additive associated with container
+}  
+
+# Specimen handling before testing
+<SpecimenDefinition.typeTested.handling> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:temperatureQualifier @<CodeableConcept>?;  # Qualifies the interval of 
+                                            # temperature 
+    fhir:temperatureRange @<Range>?;        # Temperature range for these 
+                                            # handling instructions 
+    fhir:maxDuration @<Duration>?;          # Maximum preservation time
+    fhir:instruction @<string>?;            # Preservation instruction
+}  
+
+# Specimen in container intended for testing by lab
+<SpecimenDefinition.typeTested> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:isDerived @<boolean>?;             # Primary or secondary specimen
+    fhir:type @<CodeableConcept>?;          # Type of intended specimen
+    fhir:preference @<code> AND
+    	{fhir:v @fhirvs:specimen-contained-preference};  # preferred | alternate
+    fhir:container @<BackboneElement>?;     # The specimen's container
+    fhir:requirement @<string>?;            # Requirements for specimen delivery 
+                                            # and special handling 
+    fhir:retentionTime @<Duration>?;        # The usual time for retaining this 
+                                            # kind of specimen 
+    fhir:singleUse @<boolean>?;             # Specimen for single use only
+    fhir:rejectionCriterion @<OneOrMore_CodeableConcept>?;  # Criterion specified for specimen 
+                                            # rejection 
+    fhir:handling @<OneOrMore_BackboneElement>?;  # Specimen handling before testing
+    fhir:testingDestination @<OneOrMore_CodeableConcept>?;  # Where the specimen will be tested
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_canonical> CLOSED {
+    rdf:first @<canonical>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_canonical> 
+}
+
+<OneOrMore_uri> CLOSED {
+    rdf:first @<uri>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_uri> 
+}
+
+<OneOrMore_ContactDetail> CLOSED {
+    rdf:first @<ContactDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactDetail> 
+}
+
+<OneOrMore_UsageContext> CLOSED {
+    rdf:first @<UsageContext>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_UsageContext> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Degree of preference of a type of conditioned specimen.
+fhirvs:specimen-contained-preference ["preferred" "alternate"]
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+

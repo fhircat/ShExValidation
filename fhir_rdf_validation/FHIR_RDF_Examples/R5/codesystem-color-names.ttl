@@ -1,0 +1,1105 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "color-names"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "fhir" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/color-names"], [ fhir:v "http://hl7.org/fhir/color-names"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.2120" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.2120" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "ColorCodes"], [ fhir:v "ColorCodes"] ;
+  fhir:title [ fhir:v "Codes for Colors"], [ fhir:v "Codes for Colors"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:publisher [ fhir:v "FHIR Infrastructure"], [ fhir:v "FHIR Infrastructure"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "This code system represents that named RGB colors found in the [CSS4 specification](https://www.w3.org/TR/css-color-4/). The names are not case sensitive and different cases are encountered in common use (e.g. AliceBlue vs aliceblue."], [ fhir:v "This code system represents that named RGB colors found in the [CSS4 specification](https://www.w3.org/TR/css-color-4/). The names are not case sensitive and different cases are encountered in common use (e.g. AliceBlue vs aliceblue."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:copyright [ fhir:v "[Copyright](https://www.w3.org/Consortium/Legal/ipr-notice) ©2022 World Wide Web Consortium. All Rights Reserved. This work is distributed under the [W3C® Software and Document License](https://www.w3.org/Consortium/Legal/copyright-software) in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."], [ fhir:v "[Copyright](https://www.w3.org/Consortium/Legal/ipr-notice) ©2022 World Wide Web Consortium. All Rights Reserved. This work is distributed under the [W3C® Software and Document License](https://www.w3.org/Consortium/Legal/copyright-software) in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE."] ;
+  fhir:caseSensitive [ fhir:v "false"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:property ( [
+     fhir:code [ fhir:v "rgb" ] ;
+     fhir:description [ fhir:v "The RGB color that matches the named color (as defined in CSS4 specification)" ] ;
+     fhir:type [ fhir:v "string" ]
+  ] ) ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "aliceblue" ] ;
+     fhir:display [ fhir:v "aliceblue" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#F0F8FF" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "antiquewhite" ] ;
+     fhir:display [ fhir:v "antiquewhite" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FAEBD7" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "aqua" ] ;
+     fhir:display [ fhir:v "aqua" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#00FFFF" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "aquamarine" ] ;
+     fhir:display [ fhir:v "aquamarine" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#7FFFD4" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "azure" ] ;
+     fhir:display [ fhir:v "azure" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#F0FFFF" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "beige" ] ;
+     fhir:display [ fhir:v "beige" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#F5F5DC" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "bisque" ] ;
+     fhir:display [ fhir:v "bisque" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FFE4C4" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "black" ] ;
+     fhir:display [ fhir:v "black" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#000000" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "blanchedalmond" ] ;
+     fhir:display [ fhir:v "blanchedalmond" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FFEBCD" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "blue" ] ;
+     fhir:display [ fhir:v "blue" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#0000FF" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "blueviolet" ] ;
+     fhir:display [ fhir:v "blueviolet" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#8A2BE2" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "brown" ] ;
+     fhir:display [ fhir:v "brown" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#A52A2A" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "burlywood" ] ;
+     fhir:display [ fhir:v "burlywood" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#DEB887" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "cadetblue" ] ;
+     fhir:display [ fhir:v "cadetblue" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#5F9EA0" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "chartreuse" ] ;
+     fhir:display [ fhir:v "chartreuse" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#7FFF00" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "chocolate" ] ;
+     fhir:display [ fhir:v "chocolate" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#D2691E" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "coral" ] ;
+     fhir:display [ fhir:v "coral" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FF7F50" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "cornflowerblue" ] ;
+     fhir:display [ fhir:v "cornflowerblue" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#6495ED" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "cornsilk" ] ;
+     fhir:display [ fhir:v "cornsilk" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FFF8DC" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "crimson" ] ;
+     fhir:display [ fhir:v "crimson" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#DC143C" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "cyan" ] ;
+     fhir:display [ fhir:v "cyan" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#00FFFF" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "darkblue" ] ;
+     fhir:display [ fhir:v "darkblue" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#00008B" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "darkcyan" ] ;
+     fhir:display [ fhir:v "darkcyan" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#008B8B" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "darkgoldenrod" ] ;
+     fhir:display [ fhir:v "darkgoldenrod" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#B8860B" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "darkgray" ] ;
+     fhir:display [ fhir:v "darkgray" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#A9A9A9" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "darkgreen" ] ;
+     fhir:display [ fhir:v "darkgreen" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#006400" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "darkgrey" ] ;
+     fhir:display [ fhir:v "darkgrey" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#A9A9A9" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "darkkhaki" ] ;
+     fhir:display [ fhir:v "darkkhaki" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#BDB76B" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "darkmagenta" ] ;
+     fhir:display [ fhir:v "darkmagenta" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#8B008B" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "darkolivegreen" ] ;
+     fhir:display [ fhir:v "darkolivegreen" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#556B2F" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "darkorange" ] ;
+     fhir:display [ fhir:v "darkorange" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FF8C00" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "darkorchid" ] ;
+     fhir:display [ fhir:v "darkorchid" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#9932CC" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "darkred" ] ;
+     fhir:display [ fhir:v "darkred" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#8B0000" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "darksalmon" ] ;
+     fhir:display [ fhir:v "darksalmon" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#E9967A" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "darkseagreen" ] ;
+     fhir:display [ fhir:v "darkseagreen" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#8FBC8F" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "darkslateblue" ] ;
+     fhir:display [ fhir:v "darkslateblue" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#483D8B" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "darkslategray" ] ;
+     fhir:display [ fhir:v "darkslategray" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#2F4F4F" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "darkslategrey" ] ;
+     fhir:display [ fhir:v "darkslategrey" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#2F4F4F" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "darkturquoise" ] ;
+     fhir:display [ fhir:v "darkturquoise" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#00CED1" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "darkviolet" ] ;
+     fhir:display [ fhir:v "darkviolet" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#9400D3" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "deeppink" ] ;
+     fhir:display [ fhir:v "deeppink" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FF1493" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "deepskyblue" ] ;
+     fhir:display [ fhir:v "deepskyblue" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#00BFFF" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "dimgray" ] ;
+     fhir:display [ fhir:v "dimgray" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#696969" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "dimgrey" ] ;
+     fhir:display [ fhir:v "dimgrey" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#696969" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "dodgerblue" ] ;
+     fhir:display [ fhir:v "dodgerblue" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#1E90FF" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "firebrick" ] ;
+     fhir:display [ fhir:v "firebrick" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#B22222" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "floralwhite" ] ;
+     fhir:display [ fhir:v "floralwhite" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FFFAF0" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "forestgreen" ] ;
+     fhir:display [ fhir:v "forestgreen" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#228B22" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "fuchsia" ] ;
+     fhir:display [ fhir:v "fuchsia" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FF00FF" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "gainsboro" ] ;
+     fhir:display [ fhir:v "gainsboro" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#DCDCDC" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "ghostwhite" ] ;
+     fhir:display [ fhir:v "ghostwhite" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#F8F8FF" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "gold" ] ;
+     fhir:display [ fhir:v "gold" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FFD700" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "goldenrod" ] ;
+     fhir:display [ fhir:v "goldenrod" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#DAA520" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "gray" ] ;
+     fhir:display [ fhir:v "gray" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#808080" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "green" ] ;
+     fhir:display [ fhir:v "green" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#008000" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "greenyellow" ] ;
+     fhir:display [ fhir:v "greenyellow" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#ADFF2F" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "grey" ] ;
+     fhir:display [ fhir:v "grey" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#808080" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "honeydew" ] ;
+     fhir:display [ fhir:v "honeydew" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#F0FFF0" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "hotpink" ] ;
+     fhir:display [ fhir:v "hotpink" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FF69B4" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "indianred" ] ;
+     fhir:display [ fhir:v "indianred" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#CD5C5C" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "indigo" ] ;
+     fhir:display [ fhir:v "indigo" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#4B0082" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "ivory" ] ;
+     fhir:display [ fhir:v "ivory" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FFFFF0" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "khaki" ] ;
+     fhir:display [ fhir:v "khaki" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#F0E68C" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "lavender" ] ;
+     fhir:display [ fhir:v "lavender" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#E6E6FA" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "lavenderblush" ] ;
+     fhir:display [ fhir:v "lavenderblush" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FFF0F5" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "lawngreen" ] ;
+     fhir:display [ fhir:v "lawngreen" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#7CFC00" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "lemonchiffon" ] ;
+     fhir:display [ fhir:v "lemonchiffon" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FFFACD" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "lightblue" ] ;
+     fhir:display [ fhir:v "lightblue" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#ADD8E6" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "lightcoral" ] ;
+     fhir:display [ fhir:v "lightcoral" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#F08080" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "lightcyan" ] ;
+     fhir:display [ fhir:v "lightcyan" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#E0FFFF" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "lightgoldenrodyellow" ] ;
+     fhir:display [ fhir:v "lightgoldenrodyellow" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FAFAD2" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "lightgray" ] ;
+     fhir:display [ fhir:v "lightgray" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#D3D3D3" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "lightgreen" ] ;
+     fhir:display [ fhir:v "lightgreen" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#90EE90" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "lightgrey" ] ;
+     fhir:display [ fhir:v "lightgrey" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#D3D3D3" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "lightpink" ] ;
+     fhir:display [ fhir:v "lightpink" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FFB6C1" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "lightsalmon" ] ;
+     fhir:display [ fhir:v "lightsalmon" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FFA07A" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "lightseagreen" ] ;
+     fhir:display [ fhir:v "lightseagreen" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#20B2AA" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "lightskyblue" ] ;
+     fhir:display [ fhir:v "lightskyblue" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#87CEFA" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "lightslategray" ] ;
+     fhir:display [ fhir:v "lightslategray" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#778899" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "lightslategrey" ] ;
+     fhir:display [ fhir:v "lightslategrey" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#778899" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "lightsteelblue" ] ;
+     fhir:display [ fhir:v "lightsteelblue" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#B0C4DE" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "lightyellow" ] ;
+     fhir:display [ fhir:v "lightyellow" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FFFFE0" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "lime" ] ;
+     fhir:display [ fhir:v "lime" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#00FF00" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "limegreen" ] ;
+     fhir:display [ fhir:v "limegreen" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#32CD32" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "linen" ] ;
+     fhir:display [ fhir:v "linen" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FAF0E6" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "magenta" ] ;
+     fhir:display [ fhir:v "magenta" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FF00FF" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "maroon" ] ;
+     fhir:display [ fhir:v "maroon" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#800000" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "mediumaquamarine" ] ;
+     fhir:display [ fhir:v "mediumaquamarine" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#66CDAA" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "mediumblue" ] ;
+     fhir:display [ fhir:v "mediumblue" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#0000CD" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "mediumorchid" ] ;
+     fhir:display [ fhir:v "mediumorchid" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#BA55D3" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "mediumpurple" ] ;
+     fhir:display [ fhir:v "mediumpurple" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#9370DB" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "mediumseagreen" ] ;
+     fhir:display [ fhir:v "mediumseagreen" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#3CB371" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "mediumslateblue" ] ;
+     fhir:display [ fhir:v "mediumslateblue" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#7B68EE" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "mediumspringgreen" ] ;
+     fhir:display [ fhir:v "mediumspringgreen" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#00FA9A" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "mediumturquoise" ] ;
+     fhir:display [ fhir:v "mediumturquoise" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#48D1CC" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "mediumvioletred" ] ;
+     fhir:display [ fhir:v "mediumvioletred" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#C71585" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "midnightblue" ] ;
+     fhir:display [ fhir:v "midnightblue" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#191970" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "mintcream" ] ;
+     fhir:display [ fhir:v "mintcream" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#F5FFFA" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "mistyrose" ] ;
+     fhir:display [ fhir:v "mistyrose" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FFE4E1" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "moccasin" ] ;
+     fhir:display [ fhir:v "moccasin" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FFE4B5" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "navajowhite" ] ;
+     fhir:display [ fhir:v "navajowhite" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FFDEAD" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "navy" ] ;
+     fhir:display [ fhir:v "navy" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#000080" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "oldlace" ] ;
+     fhir:display [ fhir:v "oldlace" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FDF5E6" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "olive" ] ;
+     fhir:display [ fhir:v "olive" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#808000" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "olivedrab" ] ;
+     fhir:display [ fhir:v "olivedrab" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#6B8E23" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "orange" ] ;
+     fhir:display [ fhir:v "orange" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FFA500" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "orangered" ] ;
+     fhir:display [ fhir:v "orangered" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FF4500" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "orchid" ] ;
+     fhir:display [ fhir:v "orchid" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#DA70D6" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "palegoldenrod" ] ;
+     fhir:display [ fhir:v "palegoldenrod" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#EEE8AA" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "palegreen" ] ;
+     fhir:display [ fhir:v "palegreen" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#98FB98" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "paleturquoise" ] ;
+     fhir:display [ fhir:v "paleturquoise" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#AFEEEE" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "palevioletred" ] ;
+     fhir:display [ fhir:v "palevioletred" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#DB7093" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "papayawhip" ] ;
+     fhir:display [ fhir:v "papayawhip" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FFEFD5" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "peachpuff" ] ;
+     fhir:display [ fhir:v "peachpuff" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FFDAB9" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "peru" ] ;
+     fhir:display [ fhir:v "peru" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#CD853F" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "pink" ] ;
+     fhir:display [ fhir:v "pink" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FFC0CB" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "plum" ] ;
+     fhir:display [ fhir:v "plum" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#DDA0DD" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "powderblue" ] ;
+     fhir:display [ fhir:v "powderblue" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#B0E0E6" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "purple" ] ;
+     fhir:display [ fhir:v "purple" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#800080" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "rebeccapurple" ] ;
+     fhir:display [ fhir:v "rebeccapurple" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#663399" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "red" ] ;
+     fhir:display [ fhir:v "red" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FF0000" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "rosybrown" ] ;
+     fhir:display [ fhir:v "rosybrown" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#BC8F8F" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "royalblue" ] ;
+     fhir:display [ fhir:v "royalblue" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#4169E1" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "saddlebrown" ] ;
+     fhir:display [ fhir:v "saddlebrown" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#8B4513" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "salmon" ] ;
+     fhir:display [ fhir:v "salmon" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FA8072" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "sandybrown" ] ;
+     fhir:display [ fhir:v "sandybrown" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#F4A460" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "seagreen" ] ;
+     fhir:display [ fhir:v "seagreen" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#2E8B57" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "seashell" ] ;
+     fhir:display [ fhir:v "seashell" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FFF5EE" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "sienna" ] ;
+     fhir:display [ fhir:v "sienna" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#A0522D" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "silver" ] ;
+     fhir:display [ fhir:v "silver" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#C0C0C0" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "skyblue" ] ;
+     fhir:display [ fhir:v "skyblue" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#87CEEB" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "slateblue" ] ;
+     fhir:display [ fhir:v "slateblue" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#6A5ACD" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "slategray" ] ;
+     fhir:display [ fhir:v "slategray" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#708090" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "slategrey" ] ;
+     fhir:display [ fhir:v "slategrey" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#708090" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "snow" ] ;
+     fhir:display [ fhir:v "snow" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FFFAFA" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "springgreen" ] ;
+     fhir:display [ fhir:v "springgreen" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#00FF7F" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "steelblue" ] ;
+     fhir:display [ fhir:v "steelblue" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#4682B4" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "tan" ] ;
+     fhir:display [ fhir:v "tan" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#D2B48C" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "teal" ] ;
+     fhir:display [ fhir:v "teal" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#008080" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "thistle" ] ;
+     fhir:display [ fhir:v "thistle" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#D8BFD8" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "tomato" ] ;
+     fhir:display [ fhir:v "tomato" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FF6347" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "turquoise" ] ;
+     fhir:display [ fhir:v "turquoise" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#40E0D0" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "violet" ] ;
+     fhir:display [ fhir:v "violet" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#EE82EE" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "wheat" ] ;
+     fhir:display [ fhir:v "wheat" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#F5DEB3" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "white" ] ;
+     fhir:display [ fhir:v "white" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FFFFFF" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "whitesmoke" ] ;
+     fhir:display [ fhir:v "whitesmoke" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#F5F5F5" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "yellow" ] ;
+     fhir:display [ fhir:v "yellow" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#FFFF00" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "yellowgreen" ] ;
+     fhir:display [ fhir:v "yellowgreen" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "rgb" ] ;
+       fhir:value [ fhir:v "#9ACD32" ]
+     ] )
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

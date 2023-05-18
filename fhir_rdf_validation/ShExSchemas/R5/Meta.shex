@@ -1,0 +1,39 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <id.shex>
+IMPORT <uri.shex>
+IMPORT <instant.shex>
+IMPORT <DataType.shex>
+
+# Metadata about a resource
+<Meta> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:Meta];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:versionId @<id>?;                  # Version specific identifier
+    fhir:lastUpdated @<instant>?;           # When the resource version last 
+                                            # changed 
+    fhir:source @<uri>?;                    # Identifies where the resource 
+                                            # comes from 
+    fhir:profile @<OneOrMore_canonical>?;   # Profiles this resource claims to 
+                                            # conform to 
+    fhir:security @<OneOrMore_Coding>?;     # Security Labels applied to this 
+                                            # resource 
+    fhir:tag @<OneOrMore_Coding>?;          # Tags applied to this resource
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_canonical> CLOSED {
+    rdf:first @<canonical>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_canonical> 
+}
+
+<OneOrMore_Coding> CLOSED {
+    rdf:first @<Coding>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Coding> 
+}
+

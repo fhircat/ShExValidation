@@ -1,0 +1,218 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:GenomicStudy ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-lungMass"] ; #   from Resource: id, meta, implicitRules, and language  ,   from DomainResource: text, contained, extension, and modifierExtension  
+  fhir:text [
+     fhir:status [ fhir:v "additional" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">Whole exome sequencing of lung biopsy. 300 genes are examined for simple variants (SNV, MNV, InDel), and 170 genes are also examined for CNVs. For technical reasons, PIK3CB was deemed uncallable.</div>"
+  ] ; #   from DomainResource: text, contained, extension, and modifierExtension  
+  fhir:identifier ( [
+     fhir:use [ fhir:v "temp" ] ;
+     fhir:system [ fhir:v "http://www.somesystemabc.net/identifiers/genomicstudies"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:uuid:1111-1111-1111-1112" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "registered"] ; # 
+  fhir:type ( [
+     fhir:coding ( [
+       a sct:443968007 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "443968007" ] ;
+       fhir:display [ fhir:v "Whole Exome Sequencing - Sequencing of entire coding region of gene (procedure)" ]
+     ] )
+  ] ) ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/genomicPatient" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/genomicEncounter" ]
+  ] ; # 
+  fhir:startDate [ fhir:v "2019-03-01"^^xsd:date] ; # 
+  fhir:basedOn ( [
+     fhir:reference [ fhir:v "ServiceRequest/genomicServiceRequest2" ]
+  ] ) ; # 
+  fhir:referrer [
+     fhir:reference [ fhir:v "Practitioner/practitioner01" ]
+  ] ; # 
+  fhir:interpreter ( [
+     fhir:reference [ fhir:v "Practitioner/practitioner02" ]
+  ] ) ; # 
+  fhir:reason ( [
+     fhir:concept [
+       fhir:coding ( [
+         a sct:309529002 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "309529002" ] ;
+         fhir:display [ fhir:v "Lung mass (finding) " ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:note ( [
+     fhir:text [ fhir:v "For technical reasons, PIK3CB was deemed uncallable." ]
+  ] ) ; # 
+  fhir:description [ fhir:v "Whole exome sequencing of lung biopsy. 300 genes are examined for simple variants (SNV, MNV, InDel), and 170 genes are also examined for CNVs. For technical reasons, PIK3CB was deemed uncallable."] ; # 
+  fhir:analysis ( [
+     fhir:identifier ( [
+       fhir:use [ fhir:v "official" ] ;
+       fhir:system [ fhir:v "http://www.somesystemabc.net/identifiers/genomicAnalyses"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "urn:uuid:1111-1111-1111-1112" ]
+     ] ) ;
+     fhir:methodType ( [
+       fhir:coding ( [
+         a sct:117040002 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "117040002" ] ;
+         fhir:display [ fhir:v "Nucleic acid sequencing (procedure)" ]
+       ] )
+     ] ) ;
+     fhir:changeType ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://sequenceontology.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "SO:0001483" ] ;
+         fhir:display [ fhir:v "SNV" ]
+       ] )
+     ] [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://sequenceontology.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "SO:0002007" ] ;
+         fhir:display [ fhir:v "MNV" ]
+       ] )
+     ] [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://sequenceontology.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "SO:1000032" ] ;
+         fhir:display [ fhir:v "delins" ]
+       ] )
+     ] ) ;
+     fhir:genomeBuild [
+       fhir:coding ( [
+         a loinc:LA26806-2 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "LA26806-2" ] ;
+         fhir:display [ fhir:v "GRCh38" ]
+       ] )
+     ] ;
+     fhir:title [ fhir:v "Simple variant analysis" ] ;
+     fhir:specimen ( [
+       fhir:reference [ fhir:v "Specimen/genomicSpecimen" ]
+     ] ) ; #   0..1 Name of the analysis event (human friendly)  
+     fhir:date [ fhir:v "2019-03-01T01:01:10-06:00"^^xsd:dateTime ] ;
+     fhir:note ( [
+       fhir:text [ fhir:v "For technical reasons, PIK3CB was deemed uncallable using this method." ]
+     ] ) ; #   0..1 The date of the analysis event  
+     fhir:regionsStudied ( [
+       fhir:reference [ fhir:v "DocumentReference/WES_FullSequencedRegion_GRCh38" ]
+     ] ) ;
+     fhir:regionsCalled ( [
+       fhir:reference [ fhir:v "DocumentReference/SimpleVariantAnalysis_called" ]
+     ] ) ;
+     fhir:output ( [
+       fhir:file [
+         fhir:reference [ fhir:v "DocumentReference/genomicVCFfile_simple" ]
+       ] ; #   0..* outputs for the analysis event  
+       fhir:type [
+         fhir:coding ( [
+           fhir:code [ fhir:v "vcf" ] ;
+           fhir:display [ fhir:v "VCF" ]
+         ] )
+       ]
+     ] ) ;
+     fhir:performer ( [
+       fhir:actor [
+         fhir:reference [ fhir:v "Practitioner/practitioner02" ]
+       ] ; #   0..* Performer for the analysis event  
+       fhir:role [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/3.1.0/CodeSystem-v3-ParticipationType.html"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "PRF" ] ;
+           fhir:display [ fhir:v "Performer" ]
+         ] )
+       ]
+     ] ) ;
+     fhir:device ( [
+       fhir:device [
+         fhir:reference [ fhir:v "Device/NGS-device" ]
+       ] ; #   0..* Devices used for the analysis (e.g., instruments, software), with settings and parameters  
+       fhir:function [
+         fhir:coding ( [
+           fhir:display [ fhir:v "Next Generation Sequencing" ]
+         ] )
+       ]
+     ] )
+  ] [
+     fhir:identifier ( [
+       fhir:use [ fhir:v "official" ] ;
+       fhir:system [ fhir:v "http://www.somesystemabc.net/identifiers/genomicAnalyses"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "urn:uuid:1111-1111-1111-1115" ]
+     ] ) ;
+     fhir:methodType ( [
+       fhir:coding ( [
+         a sct:117040002 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "117040002" ] ;
+         fhir:display [ fhir:v "Nucleic acid sequencing (procedure)" ]
+       ] )
+     ] ) ;
+     fhir:changeType ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://sequenceontology.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "SO:0001019" ] ;
+         fhir:display [ fhir:v "CNV" ]
+       ] )
+     ] ) ;
+     fhir:genomeBuild [
+       fhir:coding ( [
+         a loinc:LA26806-2 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "LA26806-2" ] ;
+         fhir:display [ fhir:v "GRCh38" ]
+       ] )
+     ] ;
+     fhir:title [ fhir:v "CNV analysis" ] ;
+     fhir:specimen ( [
+       fhir:reference [ fhir:v "Specimen/genomicSpecimen" ]
+     ] ) ; #   0..1 Name of the analysis event (human friendly)  
+     fhir:date [ fhir:v "2019-03-01T01:01:10-06:00"^^xsd:dateTime ] ;
+     fhir:note ( [
+       fhir:text [ fhir:v "For technical reasons, PIK3CB was deemed uncallable using this method." ]
+     ] ) ; #   0..1 The date of the analysis event  
+     fhir:regionsStudied ( [
+       fhir:reference [ fhir:v "DocumentReference/WES_FullSequencedRegion_GRCh38" ]
+     ] ) ;
+     fhir:regionsCalled ( [
+       fhir:reference [ fhir:v "DocumentReference/CNVAnalysis_called" ]
+     ] ) ;
+     fhir:output ( [
+       fhir:file [
+         fhir:reference [ fhir:v "DocumentReference/genomicVCFfile_cnv" ]
+       ] ; #   0..* Inputs for the analysis event  
+       fhir:type [
+         fhir:coding ( [
+           fhir:code [ fhir:v "vcf" ] ;
+           fhir:display [ fhir:v "VCF" ]
+         ] )
+       ]
+     ] ) ;
+     fhir:performer ( [
+       fhir:actor [
+         fhir:reference [ fhir:v "Practitioner/practitioner02" ]
+       ] ; #   0..* Performer for the analysis event  
+       fhir:role [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/3.1.0/CodeSystem-v3-ParticipationType.html"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "PRF" ] ;
+           fhir:display [ fhir:v "Performer" ]
+         ] )
+       ]
+     ] )
+  ] )] . #   0..1 Description of the genomic study  
+
+# -------------------------------------------------------------------------------------
+

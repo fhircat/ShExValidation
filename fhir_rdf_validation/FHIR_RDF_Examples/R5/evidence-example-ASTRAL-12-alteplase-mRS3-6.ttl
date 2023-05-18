@@ -1,0 +1,226 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Evidence ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-ASTRAL-12-alteplase-mRS3-6"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      \n      <p>\n        &quot;Risk of mRS3-6 at 90 days after Alteplase for Stroke if ASTRAL score 12&quot; is a univariate risk estimate.\n      </p>\n	\n    </div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/Evidence/example-ASTRAL-12-alteplase-mRS3-6"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.10.2" ]
+  ] ) ; # 
+  fhir:name [ fhir:v "RiskOfMRS36At90DaysAfterAlteplaseForStrokeIfASTRALScore12"] ; # 
+  fhir:title [ fhir:v "Risk of mRS3-6 at 90 days after Alteplase for Stroke if ASTRAL score 12"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:relatedArtifact ( [
+     fhir:type [ fhir:v "citation" ] ;
+     fhir:label [ fhir:v "Cooray 2016 Validation Study" ] ;
+     fhir:display [ fhir:v "External Validation of the ASTRAL and DRAGON Scores for Prediction of Functional Outcome in Stroke." ] ;
+     fhir:citation [ fhir:v "Cooray C, Mazya M, Bottai M, Dorado L, Skoda O, Toni D, Ford GA, Wahlgren N, Ahmed N. External Validation of the ASTRAL and DRAGON Scores for Prediction of Functional Outcome in Stroke. Stroke. 2016 Jun;47(6):1493-9. Epub 2016 May 12. PMID 27174528" ] ;
+     fhir:document [
+       fhir:url [ fhir:v "https://doi.org/10.1161/STROKEAHA.116.012802"^^xsd:anyURI ]
+     ]
+  ] ) ; # 
+  fhir:description [ fhir:v "5.3% risk of mRS 3-6 at 90 days"] ; # 
+  fhir:variableDefinition ( [
+     fhir:variableRole [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/variable-role"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "population" ] ;
+         fhir:display [ fhir:v "population" ]
+       ] )
+     ] ;
+     fhir:observed [
+       fhir:reference [ fhir:v "Group/ASTRAL-Cooray-validation-cohort" ] ;
+       fhir:type [ fhir:v "Group"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "ASTRAL validation cohort" ]
+     ] ;
+     fhir:intended [
+       fhir:reference [ fhir:v "Group/ASTRAL-12" ] ;
+       fhir:type [ fhir:v "Group"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "patients 0-4.5 hours after acute ischemic stroke onset with ASTRAL score = 12" ]
+     ]
+  ] [
+     fhir:description [ fhir:v "functionally dependent or dead at 3 months" ] ;
+     fhir:variableRole [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/variable-role"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "measuredVariable" ] ;
+         fhir:display [ fhir:v "measured variable" ]
+       ] )
+     ] ;
+     fhir:observed [
+       fhir:reference [ fhir:v "EvidenceVariable/example-mRS3-6-at-90days" ] ;
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "mRS 3-6 at 90 days" ]
+     ] ;
+     fhir:intended [
+       fhir:reference [ fhir:v "EvidenceVariable/example-dead-or-dependent-90day" ] ;
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "Dead or functionally dependent at 90 days" ]
+     ] ;
+     fhir:directnessMatch [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/directness"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "high" ] ;
+         fhir:display [ fhir:v "High quality match" ]
+       ] )
+     ]
+  ] [
+     fhir:variableRole [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/variable-role"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "exposure" ] ;
+         fhir:display [ fhir:v "exposure" ]
+       ] )
+     ] ;
+     fhir:observed [
+       fhir:reference [ fhir:v "EvidenceVariable/example-alteplase-for-stroke" ] ;
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "Alteplase for Stroke" ]
+     ] ;
+     fhir:intended [
+       fhir:reference [ fhir:v "EvidenceVariable/example-alteplase-for-stroke" ] ;
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "Alteplase for Stroke" ]
+     ] ;
+     fhir:directnessMatch [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/directness"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "exact" ] ;
+         fhir:display [ fhir:v "Exact match" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:studyDesign ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/study-design"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "SEVCO:01016" ] ;
+       fhir:display [ fhir:v "Uncontrolled cohort design" ]
+     ] )
+  ] ) ; # 
+  fhir:statistic ( [
+     fhir:description [ fhir:v "5.3% risk" ] ;
+     fhir:statisticType [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/statistic-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "C44256" ] ;
+         fhir:display [ fhir:v "Proportion" ]
+       ] ) ;
+       fhir:text [ fhir:v "derived proportion" ]
+     ] ;
+     fhir:quantity [
+       fhir:value [ fhir:v "0.0525"^^xsd:decimal ]
+     ] ;
+     fhir:sampleSize [
+       fhir:note ( [
+         fhir:text [ fhir:v "number of participants describes number in the total study sample, known data count describes number in study sample with ASTRALscore = 12, total number of events describes number of participants with ASTRAL score = 12 and outcome of mRS 3-6 at 90 days" ]
+       ] ) ;
+       fhir:numberOfParticipants [ fhir:v "36131"^^xsd:nonNegativeInteger ]
+     ]
+  ] ) ; # 
+  fhir:certainty ( [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/certainty-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "Overall" ] ;
+         fhir:display [ fhir:v "Overall quality" ]
+       ] )
+     ] ;
+     fhir:rating [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/certainty-rating"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "high" ] ;
+         fhir:display [ fhir:v "High quality" ]
+       ] )
+     ] ;
+     fhir:subcomponent ( [
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "RiskOfBias" ] ;
+           fhir:display [ fhir:v "Risk of bias" ]
+         ] )
+       ] ;
+       fhir:rating [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-rating"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "no-concern" ] ;
+           fhir:display [ fhir:v "no serious concern" ]
+         ] )
+       ]
+     ] [
+       fhir:description [ fhir:v "Estimated risk from validation calibration plot consistent with predicted risk; observed risk in subgroup with ASTRAL score = 12 consistent with validation calibration plot" ] ;
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Inconsistency" ] ;
+           fhir:display [ fhir:v "Inconsistency" ]
+         ] )
+       ] ;
+       fhir:rating [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-rating"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "no-concern" ] ;
+           fhir:display [ fhir:v "no serious concern" ]
+         ] )
+       ]
+     ] [
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Indirectness" ] ;
+           fhir:display [ fhir:v "Indirectness" ]
+         ] )
+       ] ;
+       fhir:rating [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-rating"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "no-concern" ] ;
+           fhir:display [ fhir:v "no serious concern" ]
+         ] )
+       ]
+     ] [
+       fhir:description [ fhir:v "Narrow confidence interval" ] ;
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Imprecision" ] ;
+           fhir:display [ fhir:v "Imprecision" ]
+         ] )
+       ] ;
+       fhir:rating [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-rating"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "no-concern" ] ;
+           fhir:display [ fhir:v "no serious concern" ]
+         ] )
+       ]
+     ] [
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "PublicationBias" ] ;
+           fhir:display [ fhir:v "Publication bias" ]
+         ] )
+       ] ;
+       fhir:rating [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-rating"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "no-concern" ] ;
+           fhir:display [ fhir:v "no serious concern" ]
+         ] )
+       ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

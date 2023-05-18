@@ -1,0 +1,66 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+
+start=@<OperationOutcome> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Information about the success/failure of an action
+<OperationOutcome> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:OperationOutcome]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:issue @<OneOrMore_OperationOutcome.issue>;  # A single issue associated with the 
+                                            # action 
+}  
+
+# A single issue associated with the action
+<OperationOutcome.issue> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:severity @<code> AND
+    	{fhir:v @fhirvs:issue-severity};  # fatal | error | warning | 
+                                            # information 
+    fhir:code @<code> AND
+    	{fhir:v @fhirvs:issue-type};  # Error or warning code
+    fhir:details @<CodeableConcept>?;       # Additional details about the error
+    fhir:diagnostics @<string>?;            # Additional diagnostic information 
+                                            # about the issue 
+    fhir:location @<OneOrMore_string>?;     # Deprecated: Path of element(s) 
+                                            # related to issue 
+    fhir:expression @<OneOrMore_string>?;   # FHIRPath of element(s) related to 
+                                            # issue 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_OperationOutcome.issue> CLOSED {
+    rdf:first @<OperationOutcome.issue>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_OperationOutcome.issue> 
+}
+
+
+
+#---------------------- Value Sets ------------------------
+
+
+

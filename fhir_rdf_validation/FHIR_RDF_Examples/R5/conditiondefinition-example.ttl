@@ -1,0 +1,107 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ConditionDefinition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: ConditionDefinition</b><a name=\"example\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource ConditionDefinition &quot;example&quot; </p></div><p><b>url</b>: <code>http://hl7.org/fhir/ConditionDefinition/example</code></p><p><b>identifier</b>: id: urn:oid:2.16.840.1.113883.4.642.25.1</p><p><b>name</b>: Hyperlipidemia</p><p><b>title</b>: Hyperlipidemia Status</p><p><b>status</b>: draft</p><p><b>date</b>: 2019-05-26T10:44:00+10:00</p><p><b>description</b>: Hyperlipidemia Status</p><p><b>code</b>: Hyperlipidemia (disorder) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#55822004)</span></p><p><b>hasSeverity</b>: false</p><p><b>hasBodySite</b>: false</p><p><b>hasStage</b>: false</p><p><b>definition</b>: <a href=\"https://med.stanford.edu/content/dam/sm/cerc/documents/Hyperlipidemia%20Management%20Protocol.pdf\">https://med.stanford.edu/content/dam/sm/cerc/documents/Hyperlipidemia%20Management%20Protocol.pdf</a></p><blockquote><p><b>observation</b></p><p><b>code</b>: Lipid Panel <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#24331-1 &quot;Lipid 1996 panel - Serum or Plasma&quot;)</span></p></blockquote><blockquote><p><b>observation</b></p><p><b>code</b>: Cholesterol <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#35200-5 &quot;Cholesterol [Moles/​volume] in Serum or Plasma&quot;)</span></p></blockquote><blockquote><p><b>observation</b></p><p><b>code</b>: Triglyceride <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#35217-9 &quot;Triglyceride [Moles/​volume] in Serum or Plasma&quot;)</span></p></blockquote><blockquote><p><b>observation</b></p><p><b>code</b>: Cholesterol in HDL <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2085-9 &quot;HDL Cholesterol&quot;)</span></p></blockquote><blockquote><p><b>observation</b></p><p><b>code</b>: LDL Chol. (Calc) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#13457-7 &quot;Cholesterol in LDL [Mass/volume] in Serum or Plasma by calculation&quot;)</span></p></blockquote><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Code</b></td></tr><tr><td>*</td><td>Gemfibrozil <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-rxNorm.html\">RxNorm</a>#203151)</span></td></tr></table><h3>Plans</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a href=\"broken-link.html\">http://acme.com/fhir/PlanDefinition/fd0e32d8-2ebd-4211-9e50-8983efddc2c6</a></td></tr></table></div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/ConditionDefinition/example"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.25.1" ]
+  ] ) ; # 
+  fhir:name [ fhir:v "Hyperlipidemia"] ; # 
+  fhir:title [ fhir:v "Hyperlipidemia Status"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:date [ fhir:v "2019-05-26T10:44:00+10:00"^^xsd:dateTime] ; # 
+  fhir:description [ fhir:v "Hyperlipidemia Status"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a sct:55822004 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "55822004" ] ;
+       fhir:display [ fhir:v "Hyperlipidemia (disorder)" ]
+     ] )
+  ] ; # 
+  fhir:hasSeverity [ fhir:v "false"^^xsd:boolean] ; # 
+  fhir:hasBodySite [ fhir:v "false"^^xsd:boolean] ; # 
+  fhir:hasStage [ fhir:v "false"^^xsd:boolean] ; # 
+  fhir:definition ( [ fhir:v "https://med.stanford.edu/content/dam/sm/cerc/documents/Hyperlipidemia%20Management%20Protocol.pdf"^^xsd:anyURI] ) ; # 
+  fhir:observation ( [
+     fhir:code [
+       fhir:coding ( [
+         a loinc:24331-1 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "24331-1" ] ;
+         fhir:display [ fhir:v "Lipid 1996 panel - Serum or Plasma" ]
+       ] ) ;
+       fhir:text [ fhir:v "Lipid Panel" ]
+     ]
+  ] [
+     fhir:code [
+       fhir:coding ( [
+         a loinc:35200-5 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "35200-5" ] ;
+         fhir:display [ fhir:v "Cholesterol [Moles/​volume] in Serum or Plasma" ]
+       ] ) ;
+       fhir:text [ fhir:v "Cholesterol" ]
+     ]
+  ] [
+     fhir:code [
+       fhir:coding ( [
+         a loinc:35217-9 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "35217-9" ] ;
+         fhir:display [ fhir:v "Triglyceride [Moles/​volume] in Serum or Plasma" ]
+       ] ) ;
+       fhir:text [ fhir:v "Triglyceride" ]
+     ]
+  ] [
+     fhir:code [
+       fhir:coding ( [
+         a loinc:2085-9 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "2085-9" ] ;
+         fhir:display [ fhir:v "HDL Cholesterol" ]
+       ] ) ;
+       fhir:text [ fhir:v "Cholesterol in HDL" ]
+     ]
+  ] [
+     fhir:code [
+       fhir:coding ( [
+         a loinc:13457-7 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "13457-7" ] ;
+         fhir:display [ fhir:v "Cholesterol in LDL [Mass/volume] in Serum or Plasma by calculation" ]
+       ] ) ;
+       fhir:text [ fhir:v "LDL Chol. (Calc)" ]
+     ]
+  ] ) ; # 
+  fhir:medication ( [
+     fhir:code [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://www.nlm.nih.gov/research/umls/rxnorm"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "203151" ] ;
+         fhir:display [ fhir:v "Gemfibrozil" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:plan ( [
+     fhir:reference [
+       fhir:link <http://acme.com/fhir/PlanDefinition/fd0e32d8-2ebd-4211-9e50-8983efddc2c6> ;
+       fhir:reference [ fhir:v "http://acme.com/fhir/PlanDefinition/fd0e32d8-2ebd-4211-9e50-8983efddc2c6" ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

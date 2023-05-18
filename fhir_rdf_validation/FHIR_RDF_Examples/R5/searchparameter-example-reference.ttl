@@ -1,0 +1,41 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:SearchParameter ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-reference"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: SearchParameter</b><a name=\"example-reference\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource SearchParameter &quot;example-reference&quot; </p></div><p><b>url</b>: <code>http://hl7.org/fhir/SearchParameter/example-reference</code></p><p><b>name</b>: ExampleSearchParameter</p><p><b>title</b>: Example Search Parameter</p><p><b>status</b>: draft</p><p><b>experimental</b>: true</p><p><b>date</b>: 2013-10-23</p><p><b>publisher</b>: Health Level Seven International (FHIR Infrastructure)</p><p><b>contact</b>: [string]: <a href=\"http://hl7.org/fhir\">http://hl7.org/fhir</a></p><p><b>description</b>: Search by condition subject</p><p><b>purpose</b>: Need to search Condition by subject</p><p><b>code</b>: subject</p><p><b>base</b>: Condition</p><p><b>type</b>: reference</p><p><b>expression</b>: Condition.subject</p><p><b>processingMode</b>: normal</p><p><b>target</b>: Organization</p><p><b>modifier</b>: missing</p><p><b>chain</b>: name, identifier</p></div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/SearchParameter/example-reference"^^xsd:anyURI] ; # 
+  fhir:name [ fhir:v "ExampleSearchParameter"] ; # 
+  fhir:title [ fhir:v "Example Search Parameter"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:experimental [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:date [ fhir:v "2013-10-23"^^xsd:date] ; # 
+  fhir:publisher [ fhir:v "Health Level Seven International (FHIR Infrastructure)"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "[string]" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Search by condition subject"] ; # 
+  fhir:purpose [ fhir:v "Need to search Condition by subject"] ; # 
+  fhir:code [ fhir:v "subject"] ; # 
+  fhir:base ( [ fhir:v "Condition"] ) ; # 
+  fhir:type [ fhir:v "reference"] ; # 
+  fhir:expression [ fhir:v "Condition.subject"] ; # 
+  fhir:processingMode [ fhir:v "normal"] ; # 
+  fhir:target ( [ fhir:v "Organization"] ) ; # 
+  fhir:modifier ( [ fhir:v "missing"] ) ; # 
+  fhir:chain ( [ fhir:v "name"] [ fhir:v "identifier"] )] . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,88 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:EvidenceVariable ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-Stroke-Thrombolysis-Trialists-2014-2016-IPD-MA-Cohort"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n		  \n      <p>\n			Stroke Thrombolysis Trialists’ Collaborators Group collection used for individual patient data meta-analysis\n		  </p>\n		\n    </div>"
+  ] ; # 
+  fhir:name [ fhir:v "StrokeThrombolysisTrialists20142016IPDMACohort"] ; # 
+  fhir:title [ fhir:v "Stroke Thrombolysis Trialists’ Collaborators Group collection used for individual patient data meta-analysis"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:description [ fhir:v "Stroke Thrombolysis Trialists’ Collaborators Group collection used for individual patient data meta-analysis"] ; # 
+  fhir:relatedArtifact ( [
+     fhir:type [ fhir:v "citation" ] ;
+     fhir:label [ fhir:v "Emberson 2014" ] ;
+     fhir:display [ fhir:v "Effect of treatment delay, age, and stroke severity on the effects of intravenous thrombolysis with alteplase for acute ischaemic stroke: a meta-analysis of individual patient data from randomised trials." ] ;
+     fhir:citation [ fhir:v "Emberson J, Lees KR, Lyden P, Blackwell L, Albers G, Bluhmki E, et al;Stroke Thrombolysis Trialists' Collaborative Group. Effect of treatment delay, age, and stroke severity on the effects of intravenous thrombolysis with alteplase for acute ischaemic stroke: a meta-analysis of individual patient data from randomised trials. Lancet 2014 Nov 29;384(9958):1929-35 PMID 25106063" ] ;
+     fhir:document [
+       fhir:url [ fhir:v "https://doi.org/10.1016/S0140-6736(14)60584-5"^^xsd:anyURI ]
+     ]
+  ] [
+     fhir:type [ fhir:v "citation" ] ;
+     fhir:label [ fhir:v "Lees 2016" ] ;
+     fhir:display [ fhir:v "Figure 2 Lees 2016" ] ;
+     fhir:citation [ fhir:v "Lees KR, Emberson J, Blackwell L, Bluhmki E, Davis SM, Donnan GA, et al; Stroke Thrombolysis Trialists’ Collaborators Group. Effects of alteplase for acute stroke on the distribution of functional outcomes: a pooled analysis of 9 trials. Stroke. 2016;47:2373-2379. PMID 27507856" ] ;
+     fhir:document [
+       fhir:url [ fhir:v "https://doi.org/10.1161/STROKEAHA.116.013644"^^xsd:anyURI ]
+     ]
+  ] ) ; # 
+  fhir:actual [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:characteristic ( [
+     fhir:description [ fhir:v "Stroke Thrombolysis Trialists’ Collaborators Group collection used for individual patient data meta-analysis" ] ;
+     fhir:definitionByCombination [
+       fhir:code [ fhir:v "any-of" ] ;
+       fhir:characteristic ( [
+         fhir:definitionReference [
+           fhir:reference [ fhir:v "Group/ECASSIII-Trial-Cohort" ] ;
+           fhir:type [ fhir:v "Group"^^xsd:anyURI ] ;
+           fhir:display [ fhir:v "ECASS III Trial Cohort" ]
+         ]
+       ] [
+         fhir:definitionReference [
+           fhir:reference [ fhir:v "Group/IST3-Trial-Cohort" ] ;
+           fhir:type [ fhir:v "Group"^^xsd:anyURI ] ;
+           fhir:display [ fhir:v "IST3 Trial Cohort" ]
+         ]
+       ] [
+         fhir:definitionReference [
+           fhir:reference [ fhir:v "Group/ECASS-Trial-Cohort" ] ;
+           fhir:type [ fhir:v "Group"^^xsd:anyURI ] ;
+           fhir:display [ fhir:v "ECASS Trial Cohort" ]
+         ]
+       ] [
+         fhir:definitionReference [
+           fhir:reference [ fhir:v "Group/ECASSII-Trial-Cohort" ] ;
+           fhir:type [ fhir:v "Group"^^xsd:anyURI ] ;
+           fhir:display [ fhir:v "ECASSII Trial Cohort" ]
+         ]
+       ] [
+         fhir:definitionReference [
+           fhir:reference [ fhir:v "Group/EPITHET-Trial-Cohort" ] ;
+           fhir:type [ fhir:v "Group"^^xsd:anyURI ] ;
+           fhir:display [ fhir:v "EPITHET Trial Cohort" ]
+         ]
+       ] [
+         fhir:definitionReference [
+           fhir:reference [ fhir:v "Group/ATLANTIS-Trial-Cohort" ] ;
+           fhir:type [ fhir:v "Group"^^xsd:anyURI ] ;
+           fhir:display [ fhir:v "ATLANTIS Trial Cohort" ]
+         ]
+       ] [
+         fhir:definitionReference [
+           fhir:reference [ fhir:v "Group/NINDS-Trial-Cohort" ] ;
+           fhir:type [ fhir:v "Group"^^xsd:anyURI ] ;
+           fhir:display [ fhir:v "NINDS Trial Cohort" ]
+         ]
+       ] )
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

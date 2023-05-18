@@ -1,0 +1,50 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:BodyStructure ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "tumor"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: BodyStructure</b><a name=\"tumor\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource BodyStructure &quot;tumor&quot; </p></div><p><b>identifier</b>: id: 12345</p><p><b>morphology</b>: Splenic mass <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#4147007 &quot;Mass (morphologic abnormality)&quot;)</span></p><h3>IncludedStructures</h3><table class=\"grid\"><tr><td>-</td><td><b>Structure</b></td></tr><tr><td>*</td><td>Spleen <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#78961009 &quot;Splenic structure (body structure)&quot;)</span></td></tr></table><p><b>description</b>: 7 cm maximum diameter</p><h3>Images</h3><table class=\"grid\"><tr><td>-</td><td><b>ContentType</b></td><td><b>Url</b></td></tr><tr><td>*</td><td><span title=\"    The actual image could be anywhere. This is a WADO example using a ficitious url   \">application/dicom</span></td><td><a href=\"http://imaging.acme.com/wado/server?requestType=WADO&amp;amp;wado_details\">http://imaging.acme.com/wado/server?requestType=WADO&amp;amp;wado_details</a></td></tr></table><p><b>patient</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://goodhealth.org/bodystructure/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "12345" ]
+  ] ) ; # 
+  fhir:morphology [
+     fhir:coding ( [
+       a sct:4147007 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "4147007" ] ;
+       fhir:display [ fhir:v "Mass (morphologic abnormality)" ]
+     ] ) ;
+     fhir:text [ fhir:v "Splenic mass" ]
+  ] ; # 
+  fhir:includedStructure ( [
+     fhir:structure [
+       fhir:coding ( [
+         a sct:78961009 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "78961009" ] ;
+         fhir:display [ fhir:v "Splenic structure (body structure)" ]
+       ] ) ;
+       fhir:text [ fhir:v "Spleen" ]
+     ]
+  ] ) ; # 
+  fhir:description [ fhir:v "7 cm maximum diameter"] ; # 
+  fhir:image ( [
+     fhir:contentType [ fhir:v "application/dicom" ] ; #      The actual image could be anywhere. This is a WADO example using a ficitious url    
+     fhir:url [ fhir:v "http://imaging.acme.com/wado/server?requestType=WADO&amp;wado_details"^^xsd:anyURI ]
+  ] ) ; # 
+  fhir:patient [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

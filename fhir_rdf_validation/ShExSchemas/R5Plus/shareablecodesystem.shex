@@ -1,0 +1,20 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <CodeSystem.shex>
+#imported_end
+
+start=@<shareablecodesystem> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Declares the existence of and describes a code system or code system supplement
+<shareablecodesystem> EXTENDS @<CodeSystem> CLOSED {   
+
+    a [fhir:shareablecodesystem]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+}  
+

@@ -1,0 +1,20 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <Observation.shex>
+#imported_end
+
+start=@<cholesterol> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Measurements and simple assertions
+<cholesterol> EXTENDS @<Observation> CLOSED {   
+
+    a [fhir:cholesterol]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+}  
+

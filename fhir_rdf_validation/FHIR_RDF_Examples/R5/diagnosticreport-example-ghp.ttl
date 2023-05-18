@@ -1,0 +1,2487 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Bundle ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "ghp"] ; # 
+  fhir:type [ fhir:v "collection"] ; # 
+  fhir:entry ( [
+     fhir:fullUrl [ fhir:v "https://example.com/base/DiagnosticReport/ghp"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/DiagnosticReport/ghp> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Specimen/rtt"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Specimen/rtt> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Specimen/ltt"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Specimen/ltt> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Specimen/urine"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Specimen/urine> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/p2"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/p2> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/r1"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/r1> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/r2"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/r2> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/r3"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/r3> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/r4"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/r4> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/r5"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/r5> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/r6"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/r6> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/r7"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/r7> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/r8"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/r8> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/r9"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/r9> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/r10"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/r10> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/r11"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/r11> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/r12"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/r12> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/r13"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/r13> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/r14"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/r14> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/r15"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/r15> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/r16"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/r16> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/r17"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/r17> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/p1"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/p1> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/o1"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/o1> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/o2"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/o2> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/o3"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/o3> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/o4"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/o4> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/o5"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/o5> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/o6"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/o6> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/o7"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/o7> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/o8"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/o8> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/o9"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/o9> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/o10"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/o10> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/o11"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/o11> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/o12"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/o12> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/o13"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/o13> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/o14"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/o14> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/o15"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/o15> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/o16"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/o16> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/o17"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/o17> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/o18"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/o18> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/o19"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/o19> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/o20"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/o20> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/o21"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/o21> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/o22"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/o22> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/p3"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/p3> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/u1"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/u1> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/u2"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/u2> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/u3"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/u3> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/u4"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/u4> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/u5"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/u5> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/u6"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/u6> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/u7"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/u7> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/u8"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/u8> )
+  ] [
+     fhir:fullUrl [ fhir:v "https://example.com/base/Observation/u9"^^xsd:anyURI ] ;
+     fhir:resource ( <https://example.com/base/Observation/u9> )
+  ] )] . # 
+
+<https://example.com/base/DiagnosticReport/ghp> a fhir:DiagnosticReport ;
+  fhir:id [ fhir:v "ghp"] ; # 
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2015-08-16T10:35:23Z"^^xsd:dateTime ]
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2><span title=\"Codes: {http://acme.com/labs/reports GHP}\">General Health Profile</span> </h2><table class=\"grid\"><tr><td>Subject</td><td><b>Duck D Donald (OFFICIAL)</b> other, DoB Unknown ( Medical record number: 123456 (use: USUAL))</td></tr><tr><td>When For</td><td>2015-08-16T06:40:17Z</td></tr><tr><td>Reported</td><td>2015-08-17T06:40:17Z</td></tr><tr><td>Identifier:</td><td> id: ghp-example</td></tr></table><p><b>Report Details</b></p><table class=\"grid\"><tr><td><b>Code</b></td><td><b>Value</b></td></tr><tr><td colspan=\"2\"><i>Observation</i></td></tr><tr><td colspan=\"2\"><i>Observation</i></td></tr><tr><td colspan=\"2\"><i>Observation</i></td></tr></table></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://acme.com/lab/reports"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "ghp-example" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.com/labs/reports"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "GHP" ] ;
+       fhir:display [ fhir:v "General Health Profile" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2015-08-16T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:issued [ fhir:v "2015-08-17T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:specimen ( [
+     fhir:reference [ fhir:v "Specimen/rtt" ] ;
+     fhir:display [ fhir:v "Red Top Tube" ]
+  ] [
+     fhir:reference [ fhir:v "Specimen/ltt" ] ;
+     fhir:display [ fhir:v "Lavender Top Tube" ]
+  ] [
+     fhir:reference [ fhir:v "Specimen/urine" ] ;
+     fhir:display [ fhir:v "Urine Sample" ]
+  ] ) ; # 
+  fhir:result ( [
+     fhir:reference [ fhir:v "Observation/p1" ] ;
+     fhir:display [ fhir:v "Chemistry Panel" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/p2" ] ;
+     fhir:display [ fhir:v "CBC" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/p3" ] ;
+     fhir:display [ fhir:v "Urinalysis" ]
+  ] ) . # 
+
+<https://example.com/base/Specimen/rtt> a fhir:Specimen ;
+  fhir:id [ fhir:v "rtt"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Specimen</b><a name=\"rtt\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Specimen &quot;rtt&quot; </p></div><p><b>accessionIdentifier</b>: id: 20150816-00124</p><p><b>type</b>: Serum sample <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#119364003)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><h3>Collections</h3><table class=\"grid\"><tr><td>-</td><td><b>Collector</b></td><td><b>Collected[x]</b></td></tr><tr><td>*</td><td><a href=\"practitioner-example-f202-lm.html\">Practitioner/f202</a> &quot;Luigi Maas&quot;</td><td>2015-08-16T06:40:17Z</td></tr></table><h3>Containers</h3><table class=\"grid\"><tr><td>-</td><td><b>Device</b></td></tr><tr><td>*</td><td><a href=\"device-example-specimen-container-example-sst-vacutainer.html\">Device/device-example-specimen-container-example-sst-vacutainer</a></td></tr></table></div>"
+  ] ; # 
+  fhir:accessionIdentifier [
+     fhir:system [ fhir:v "http://acme.com/labs/accession-ids"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "20150816-00124" ]
+  ] ; # 
+  fhir:type [
+     fhir:coding ( [
+       a sct:119364003 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "119364003" ] ;
+       fhir:display [ fhir:v "Serum sample" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:collection [
+     fhir:collector [
+       fhir:reference [ fhir:v "Practitioner/f202" ]
+     ] ;
+     fhir:collected [ fhir:v "2015-08-16T06:40:17Z"^^xsd:dateTime ]
+  ] ; # 
+  fhir:container ( [
+     fhir:device [
+       fhir:reference [ fhir:v "Device/device-example-specimen-container-example-sst-vacutainer" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Specimen/ltt> a fhir:Specimen ;
+  fhir:id [ fhir:v "ltt"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Specimen</b><a name=\"ltt\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Specimen &quot;ltt&quot; </p></div><p><b>accessionIdentifier</b>: id: 20150816-00124</p><p><b>type</b>: Blood specimen with EDTA <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#445295009)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><h3>Collections</h3><table class=\"grid\"><tr><td>-</td><td><b>Collector</b></td><td><b>Collected[x]</b></td></tr><tr><td>*</td><td><a href=\"practitioner-example-f202-lm.html\">Practitioner/f202</a> &quot;Luigi Maas&quot;</td><td>2015-08-16T06:40:17Z</td></tr></table><h3>Containers</h3><table class=\"grid\"><tr><td>-</td><td><b>Device</b></td></tr><tr><td>*</td><td><a href=\"device-example-specimen-container-lavender-vacutainer.html\">Device/device-example-specimen-container-lavender-vacutainer</a></td></tr></table></div>"
+  ] ; # 
+  fhir:accessionIdentifier [
+     fhir:system [ fhir:v "http://acme.com/labs/accession-ids"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "20150816-00124" ]
+  ] ; # 
+  fhir:type [
+     fhir:coding ( [
+       a sct:445295009 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "445295009" ] ;
+       fhir:display [ fhir:v "Blood specimen with EDTA" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:collection [
+     fhir:collector [
+       fhir:reference [ fhir:v "Practitioner/f202" ]
+     ] ;
+     fhir:collected [ fhir:v "2015-08-16T06:40:17Z"^^xsd:dateTime ]
+  ] ; # 
+  fhir:container ( [
+     fhir:device [
+       fhir:reference [ fhir:v "Device/device-example-specimen-container-lavender-vacutainer" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Specimen/urine> a fhir:Specimen ;
+  fhir:id [ fhir:v "urine"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Specimen</b><a name=\"urine\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Specimen &quot;urine&quot; </p></div><p><b>accessionIdentifier</b>: id: 20150816-00124</p><p><b>type</b>: Urine specimen <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#122575003)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><h3>Collections</h3><table class=\"grid\"><tr><td>-</td><td><b>Collector</b></td><td><b>Collected[x]</b></td></tr><tr><td>*</td><td><a href=\"practitioner-example-f202-lm.html\">Practitioner/f202</a> &quot;Luigi Maas&quot;</td><td>2015-08-16T06:40:17Z</td></tr></table><h3>Containers</h3><table class=\"grid\"><tr><td>-</td><td><b>Device</b></td></tr><tr><td>*</td><td><a href=\"device-example-specimen-container-polycup.html\">Device/device-example-specimen-container-polycup</a></td></tr></table></div>"
+  ] ; # 
+  fhir:accessionIdentifier [
+     fhir:system [ fhir:v "http://acme.com/labs/accession-ids"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "20150816-00124" ]
+  ] ; # 
+  fhir:type [
+     fhir:coding ( [
+       a sct:122575003 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "122575003" ] ;
+       fhir:display [ fhir:v "Urine specimen" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:collection [
+     fhir:collector [
+       fhir:reference [ fhir:v "Practitioner/f202" ]
+     ] ;
+     fhir:collected [ fhir:v "2015-08-16T06:40:17Z"^^xsd:dateTime ]
+  ] ; # 
+  fhir:container ( [
+     fhir:device [
+       fhir:reference [ fhir:v "Device/device-example-specimen-container-polycup" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/p2> a fhir:Observation ;
+  fhir:id [ fhir:v "p2"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"p2\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;p2&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Complete blood count (hemogram) panel - Blood by Automated count <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#58410-2)</span></p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/ltt: Lavender Top Tube</a></p><p><b>hasMember</b>: </p><ul><li><a href=\"broken-link.html\">Observation/r1</a></li><li><a href=\"broken-link.html\">Observation/r2</a></li><li><a href=\"broken-link.html\">Observation/r3</a></li><li><a href=\"broken-link.html\">Observation/r4</a></li><li><a href=\"broken-link.html\">Observation/r5</a></li><li><a href=\"broken-link.html\">Observation/r6</a></li><li><a href=\"broken-link.html\">Observation/r7</a></li><li><a href=\"broken-link.html\">Observation/r8</a></li><li><a href=\"broken-link.html\">Observation/r9</a></li><li><a href=\"broken-link.html\">Observation/r10</a></li><li><a href=\"broken-link.html\">Observation/r11</a></li><li><a href=\"broken-link.html\">Observation/r12</a></li><li><a href=\"broken-link.html\">Observation/r13</a></li><li><a href=\"broken-link.html\">Observation/r14</a></li><li><a href=\"broken-link.html\">Observation/r15</a></li><li><a href=\"broken-link.html\">Observation/r16</a></li><li><a href=\"broken-link.html\">Observation/r17</a></li></ul></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:58410-2 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "58410-2" ] ;
+       fhir:display [ fhir:v "Complete blood count (hemogram) panel - Blood by Automated count" ]
+     ] )
+  ] ; # 
+  fhir:effective [ fhir:v "2015-08-16T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:issued [ fhir:v "2015-08-17T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:specimen [
+     fhir:reference [ fhir:v "Specimen/ltt" ] ;
+     fhir:display [ fhir:v "Lavender Top Tube" ]
+  ] ; # 
+  fhir:hasMember ( [
+     fhir:reference [ fhir:v "Observation/r1" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/r2" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/r3" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/r4" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/r5" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/r6" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/r7" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/r8" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/r9" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/r10" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/r11" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/r12" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/r13" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/r14" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/r15" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/r16" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/r17" ]
+  ] ) . # 
+
+<https://example.com/base/Observation/r1> a fhir:Observation ;
+  fhir:id [ fhir:v "r1"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r1\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r1&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Haemoglobin <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#718-7 &quot;Hemoglobin [Mass/volume] in Blood&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 176 g/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code g/L = 'g/L')</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>135 g/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code g/L = 'g/L')</span></td><td>180 g/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code g/L = 'g/L')</span></td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:718-7 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "718-7" ] ;
+       fhir:display [ fhir:v "Hemoglobin [Mass/volume] in Blood" ]
+     ] ) ;
+     fhir:text [ fhir:v "Haemoglobin" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "176"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "g/L" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "g/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "135"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "g/L" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "g/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "180"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "g/L" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "g/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/r2> a fhir:Observation ;
+  fhir:id [ fhir:v "r2"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r2\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r2&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Red Cell Count <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#789-8 &quot;Erythrocytes [#/volume] in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 5.9 x10*12/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*12/L = '10*12/L')</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>4.2 x10*12/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*12/L = '10*12/L')</span></td><td>6.0 x10*12/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*12/L = '10*12/L')</span></td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:789-8 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "789-8" ] ;
+       fhir:display [ fhir:v "Erythrocytes [#/volume] in Blood by Automated count" ]
+     ] ) ;
+     fhir:text [ fhir:v "Red Cell Count" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "5.9"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "x10*12/L" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "10*12/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "4.2"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "x10*12/L" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "10*12/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "6.0"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "x10*12/L" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "10*12/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/r3> a fhir:Observation ;
+  fhir:id [ fhir:v "r3"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r3\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r3&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Haematocrit <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#4544-3 &quot;Hematocrit [Volume Fraction] of Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 55 %</p><p><b>interpretation</b>: High <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#H)</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>38 %</td><td>52 %</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:4544-3 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "4544-3" ] ;
+       fhir:display [ fhir:v "Hematocrit [Volume Fraction] of Blood by Automated count" ]
+     ] ) ;
+     fhir:text [ fhir:v "Haematocrit" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "55"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "%" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "H" ]
+     ] )
+  ] ) ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "38"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "%" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "52"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "%" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/r4> a fhir:Observation ;
+  fhir:id [ fhir:v "r4"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r4\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r4&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Mean Cell Volume <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#787-2 &quot;Erythrocyte mean corpuscular volume [Entitic volume] by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 99 fL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code fL = 'fL')</span></p><p><b>interpretation</b>: High <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#H)</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>80 fL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code fL = 'fL')</span></td><td>98 fL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code fL = 'fL')</span></td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:787-2 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "787-2" ] ;
+       fhir:display [ fhir:v "Erythrocyte mean corpuscular volume [Entitic volume] by Automated count" ]
+     ] ) ;
+     fhir:text [ fhir:v "Mean Cell Volume" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "99"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "fL" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "fL" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "H" ]
+     ] )
+  ] ) ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "80"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "fL" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "fL" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "98"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "fL" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "fL" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/r5> a fhir:Observation ;
+  fhir:id [ fhir:v "r5"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r5\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r5&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Mean Cell Haemoglobin <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#785-6 &quot;Erythrocyte mean corpuscular hemoglobin [Entitic mass] by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 36 pg<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code pg = 'pg')</span></p><p><b>interpretation</b>: High <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#H)</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>27 pg<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code pg = 'pg')</span></td><td>35 pg<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code pg = 'pg')</span></td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:785-6 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "785-6" ] ;
+       fhir:display [ fhir:v "Erythrocyte mean corpuscular hemoglobin [Entitic mass] by Automated count" ]
+     ] ) ;
+     fhir:text [ fhir:v "Mean Cell Haemoglobin" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "36"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "pg" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "pg" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "H" ]
+     ] )
+  ] ) ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "27"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "pg" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "pg" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "35"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "pg" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "pg" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/r6> a fhir:Observation ;
+  fhir:id [ fhir:v "r6"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r6\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r6&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Platelet Count <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#777-3 &quot;Platelets [#/volume] in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 444 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>150 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td><td>450 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:777-3 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "777-3" ] ;
+       fhir:display [ fhir:v "Platelets [#/volume] in Blood by Automated count" ]
+     ] ) ;
+     fhir:text [ fhir:v "Platelet Count" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "444"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "x10*9/L" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "10*9/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "150"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "x10*9/L" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "10*9/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "450"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "x10*9/L" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "10*9/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/r7> a fhir:Observation ;
+  fhir:id [ fhir:v "r7"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r7\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r7&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: White Cell Count <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#6690-2 &quot;Leukocytes [#/volume] in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 4.6 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>4.0 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td><td>11.0 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:6690-2 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "6690-2" ] ;
+       fhir:display [ fhir:v "Leukocytes [#/volume] in Blood by Automated count" ]
+     ] ) ;
+     fhir:text [ fhir:v "White Cell Count" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "4.6"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "x10*9/L" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "10*9/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "4.0"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "x10*9/L" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "10*9/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "11.0"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "x10*9/L" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "10*9/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/r8> a fhir:Observation ;
+  fhir:id [ fhir:v "r8"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r8\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r8&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Neutrophils <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#770-8 &quot;Neutrophils/100 leukocytes in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 20 %<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code % = '%')</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:770-8 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "770-8" ] ;
+       fhir:display [ fhir:v "Neutrophils/100 leukocytes in Blood by Automated count" ]
+     ] ) ;
+     fhir:text [ fhir:v "Neutrophils" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "20"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "%" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "%" ]
+  ] . # 
+
+<https://example.com/base/Observation/r9> a fhir:Observation ;
+  fhir:id [ fhir:v "r9"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r9\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r9&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Neutrophils <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#751-8 &quot;Neutrophils [#/volume] in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 0.9 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></p><p><b>interpretation</b>: Critical low <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#LL)</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>2.0 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td><td>7.5 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:751-8 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "751-8" ] ;
+       fhir:display [ fhir:v "Neutrophils [#/volume] in Blood by Automated count" ]
+     ] ) ;
+     fhir:text [ fhir:v "Neutrophils" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.9"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "x10*9/L" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "10*9/L" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "LL" ]
+     ] )
+  ] ) ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "2.0"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "x10*9/L" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "10*9/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "7.5"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "x10*9/L" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "10*9/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/r10> a fhir:Observation ;
+  fhir:id [ fhir:v "r10"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r10\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r10&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Lymphocytes <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#736-9 &quot;Lymphocytes/100 leukocytes in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 20 %<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code % = '%')</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:736-9 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "736-9" ] ;
+       fhir:display [ fhir:v "Lymphocytes/100 leukocytes in Blood by Automated count" ]
+     ] ) ;
+     fhir:text [ fhir:v "Lymphocytes" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "20"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "%" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "%" ]
+  ] . # 
+
+<https://example.com/base/Observation/r11> a fhir:Observation ;
+  fhir:id [ fhir:v "r11"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r11\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r11&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Lymphocytes <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#731-0 &quot;Lymphocytes [#/volume] in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 0.9 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></p><p><b>interpretation</b>: Low <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#L)</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>1.1 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td><td>4.0 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:731-0 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "731-0" ] ;
+       fhir:display [ fhir:v "Lymphocytes [#/volume] in Blood by Automated count" ]
+     ] ) ;
+     fhir:text [ fhir:v "Lymphocytes" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.9"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "x10*9/L" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "10*9/L" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "L" ]
+     ] )
+  ] ) ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "1.1"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "x10*9/L" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "10*9/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "4.0"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "x10*9/L" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "10*9/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/r12> a fhir:Observation ;
+  fhir:id [ fhir:v "r12"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r12\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r12&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Monocytes <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#5905-5 &quot;Monocytes/100 leukocytes in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 20 %<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code % = '%')</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:5905-5 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "5905-5" ] ;
+       fhir:display [ fhir:v "Monocytes/100 leukocytes in Blood by Automated count" ]
+     ] ) ;
+     fhir:text [ fhir:v "Monocytes" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "20"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "%" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "%" ]
+  ] . # 
+
+<https://example.com/base/Observation/r13> a fhir:Observation ;
+  fhir:id [ fhir:v "r13"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r13\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r13&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Monocytes <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#742-7 &quot;Monocytes [#/volume] in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 0.9 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>0.2 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td><td>1.0 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:742-7 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "742-7" ] ;
+       fhir:display [ fhir:v "Monocytes [#/volume] in Blood by Automated count" ]
+     ] ) ;
+     fhir:text [ fhir:v "Monocytes" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.9"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "x10*9/L" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "10*9/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "0.2"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "x10*9/L" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "10*9/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "1.0"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "x10*9/L" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "10*9/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/r14> a fhir:Observation ;
+  fhir:id [ fhir:v "r14"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r14\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r14&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Eosinophils <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#713-8 &quot;Eosinophils/100 leukocytes in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 20 %<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code % = '%')</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:713-8 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "713-8" ] ;
+       fhir:display [ fhir:v "Eosinophils/100 leukocytes in Blood by Automated count" ]
+     ] ) ;
+     fhir:text [ fhir:v "Eosinophils" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "20"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "%" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "%" ]
+  ] . # 
+
+<https://example.com/base/Observation/r15> a fhir:Observation ;
+  fhir:id [ fhir:v "r15"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r15\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r15&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Eosinophils <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#711-2 &quot;Eosinophils [#/volume] in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 0.92 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></p><p><b>interpretation</b>: Critical high <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#HH)</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>0.04 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td><td>0.40 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:711-2 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "711-2" ] ;
+       fhir:display [ fhir:v "Eosinophils [#/volume] in Blood by Automated count" ]
+     ] ) ;
+     fhir:text [ fhir:v "Eosinophils" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.92"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "x10*9/L" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "10*9/L" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "HH" ]
+     ] )
+  ] ) ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "0.04"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "x10*9/L" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "10*9/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "0.40"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "x10*9/L" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "10*9/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/r16> a fhir:Observation ;
+  fhir:id [ fhir:v "r16"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r16\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r16&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Basophils <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#706-2 &quot;Basophils/100 leukocytes in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 20 %<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code % = '%')</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:706-2 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "706-2" ] ;
+       fhir:display [ fhir:v "Basophils/100 leukocytes in Blood by Automated count" ]
+     ] ) ;
+     fhir:text [ fhir:v "Basophils" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "20"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "%" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "%" ]
+  ] . # 
+
+<https://example.com/base/Observation/r17> a fhir:Observation ;
+  fhir:id [ fhir:v "r17"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"r17\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;r17&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Basophils <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#704-7 &quot;Basophils [#/volume] in Blood by Automated count&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 0.92 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>High</b></td></tr><tr><td>*</td><td>0.21 x10*9/L<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code 10*9/L = '10*9/L')</span></td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:704-7 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "704-7" ] ;
+       fhir:display [ fhir:v "Basophils [#/volume] in Blood by Automated count" ]
+     ] ) ;
+     fhir:text [ fhir:v "Basophils" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.92"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "x10*9/L" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "10*9/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:high [
+       fhir:value [ fhir:v "0.21"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "x10*9/L" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "10*9/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/p1> a fhir:Observation ;
+  fhir:id [ fhir:v "p1"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"p1\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;p1&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Comprehensive metabolic 2000 panel - Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#24323-8)</span></p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/rtt: Red Top Tube</a></p><p><b>hasMember</b>: </p><ul><li><a href=\"broken-link.html\">Observation/o1</a></li><li><a href=\"broken-link.html\">Observation/o2</a></li><li><a href=\"broken-link.html\">Observation/o3</a></li><li><a href=\"broken-link.html\">Observation/o4</a></li><li><a href=\"broken-link.html\">Observation/o5</a></li><li><a href=\"broken-link.html\">Observation/o6</a></li><li><a href=\"broken-link.html\">Observation/o7</a></li><li><a href=\"broken-link.html\">Observation/o8</a></li><li><a href=\"broken-link.html\">Observation/o9</a></li><li><a href=\"broken-link.html\">Observation/o10</a></li><li><a href=\"broken-link.html\">Observation/o11</a></li><li><a href=\"broken-link.html\">Observation/o12</a></li><li><a href=\"broken-link.html\">Observation/o13</a></li><li><a href=\"broken-link.html\">Observation/o14</a></li><li><a href=\"broken-link.html\">Observation/o15</a></li><li><a href=\"broken-link.html\">Observation/o16</a></li><li><a href=\"broken-link.html\">Observation/o17</a></li><li><a href=\"broken-link.html\">Observation/o18</a></li><li><a href=\"broken-link.html\">Observation/o19</a></li><li><a href=\"broken-link.html\">Observation/o20</a></li><li><a href=\"broken-link.html\">Observation/o21</a></li><li><a href=\"broken-link.html\">Observation/o22</a></li></ul></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:24323-8 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "24323-8" ] ;
+       fhir:display [ fhir:v "Comprehensive metabolic 2000 panel - Serum or Plasma" ]
+     ] )
+  ] ; # 
+  fhir:effective [ fhir:v "2015-08-16T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:issued [ fhir:v "2015-08-17T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:specimen [
+     fhir:reference [ fhir:v "Specimen/rtt" ] ;
+     fhir:display [ fhir:v "Red Top Tube" ]
+  ] ; # 
+  fhir:hasMember ( [
+     fhir:reference [ fhir:v "Observation/o1" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/o2" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/o3" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/o4" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/o5" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/o6" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/o7" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/o8" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/o9" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/o10" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/o11" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/o12" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/o13" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/o14" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/o15" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/o16" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/o17" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/o18" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/o19" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/o20" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/o21" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/o22" ]
+  ] ) . # 
+
+<https://example.com/base/Observation/o1> a fhir:Observation ;
+  fhir:id [ fhir:v "o1"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o1\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o1&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Sodium [Moles/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2951-2; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#104934005)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 140 mmol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>137 mmol/L</td><td>147 mmol/L</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:2951-2 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "2951-2" ] ;
+       fhir:display [ fhir:v "Sodium [Moles/volume] in Serum or Plasma" ]
+     ] [
+       a sct:104934005 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "104934005" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "140"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "mmol/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "137"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "147"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/o2> a fhir:Observation ;
+  fhir:id [ fhir:v "o2"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o2\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o2&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Potassium [Moles/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2823-3; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#59573005)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 4.2 mmol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>3.5 mmol/L</td><td>5.0 mmol/L</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:2823-3 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "2823-3" ] ;
+       fhir:display [ fhir:v "Potassium [Moles/volume] in Serum or Plasma" ]
+     ] [
+       a sct:59573005 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "59573005" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "4.2"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "mmol/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "3.5"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "5.0"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/o3> a fhir:Observation ;
+  fhir:id [ fhir:v "o3"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o3\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o3&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Chloride [Moles/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2075-0; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#46511006)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 105 mmol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>96 mmol/L</td><td>109 mmol/L</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:2075-0 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "2075-0" ] ;
+       fhir:display [ fhir:v "Chloride [Moles/volume] in Serum or Plasma" ]
+     ] [
+       a sct:46511006 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "46511006" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "105"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "mmol/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "96"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "109"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/o4> a fhir:Observation ;
+  fhir:id [ fhir:v "o4"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o4\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o4&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Bicarbonate [Moles/volume] in Serum <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#1963-8; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#88645003)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 26 mmol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>25 mmol/L</td><td>33 mmol/L</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:1963-8 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "1963-8" ] ;
+       fhir:display [ fhir:v "Bicarbonate [Moles/volume] in Serum" ]
+     ] [
+       a sct:88645003 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "88645003" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "26"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "mmol/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "25"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "33"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/o5> a fhir:Observation ;
+  fhir:id [ fhir:v "o5"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o5\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o5&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Anion gap 4 in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#1863-0; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#271057005)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 13 mmol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>4 mmol/L</td><td>17 mmol/L</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:1863-0 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "1863-0" ] ;
+       fhir:display [ fhir:v "Anion gap 4 in Serum or Plasma" ]
+     ] [
+       a sct:271057005 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "271057005" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "13"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "mmol/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "4"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "17"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/o6> a fhir:Observation ;
+  fhir:id [ fhir:v "o6"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o6\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o6&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Glucose [Moles/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#14749-6; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#36048009)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 7.4 mmol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>3.0 mmol/L</td><td>7.7 mmol/L</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:14749-6 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "14749-6" ] ;
+       fhir:display [ fhir:v "Glucose [Moles/volume] in Serum or Plasma" ]
+     ] [
+       a sct:36048009 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "36048009" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "7.4"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "mmol/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "3.0"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "7.7"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/o7> a fhir:Observation ;
+  fhir:id [ fhir:v "o7"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o7\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o7&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Urea nitrogen [Moles/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#14937-7; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#273967009)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 4.7 mmol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>2.0 mmol/L</td><td>7.0 mmol/L</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:14937-7 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "14937-7" ] ;
+       fhir:display [ fhir:v "Urea nitrogen [Moles/volume] in Serum or Plasma" ]
+     ] [
+       a sct:273967009 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "273967009" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "4.7"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "mmol/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "2.0"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "7.0"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/o8> a fhir:Observation ;
+  fhir:id [ fhir:v "o8"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o8\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o8&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Creatinine [Moles/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#14682-9; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#70901006)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 0.09 mmol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>0.04 mmol/L</td><td>0.11 mmol/L</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:14682-9 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "14682-9" ] ;
+       fhir:display [ fhir:v "Creatinine [Moles/volume] in Serum or Plasma" ]
+     ] [
+       a sct:70901006 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "70901006" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.09"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "mmol/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "0.04"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "0.11"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/o9> a fhir:Observation ;
+  fhir:id [ fhir:v "o9"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o9\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o9&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Urate [Moles/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#14933-6; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#86228006)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 0.39 mmol/L</p><p><b>interpretation</b>: High <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#H)</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>0.14 mmol/L</td><td>0.35 mmol/L</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:14933-6 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "14933-6" ] ;
+       fhir:display [ fhir:v "Urate [Moles/volume] in Serum or Plasma" ]
+     ] [
+       a sct:86228006 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "86228006" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.39"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "mmol/L" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "H" ]
+     ] )
+  ] ) ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "0.14"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "0.35"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/o10> a fhir:Observation ;
+  fhir:id [ fhir:v "o10"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o10\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o10&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Bilirubin.total [Moles/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#14631-6; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#27171005)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 7 umol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>2 umol/L</td><td>20 umol/L</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:14631-6 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "14631-6" ] ;
+       fhir:display [ fhir:v "Bilirubin.total [Moles/volume] in Serum or Plasma" ]
+     ] [
+       a sct:27171005 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "27171005" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "7"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "umol/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "2"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "umol/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "20"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "umol/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/o11> a fhir:Observation ;
+  fhir:id [ fhir:v "o11"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o11\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o11&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Bilirubin.direct [Moles/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#14629-0; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#39748002)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 3 umol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>0 umol/L</td><td>8 umol/L</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:14629-0 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "14629-0" ] ;
+       fhir:display [ fhir:v "Bilirubin.direct [Moles/volume] in Serum or Plasma" ]
+     ] [
+       a sct:39748002 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "39748002" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "3"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "umol/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "0"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "umol/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "8"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "umol/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/o12> a fhir:Observation ;
+  fhir:id [ fhir:v "o12"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o12\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o12&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Alkaline phosphatase [Enzymatic activity/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#6768-6; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#88810008)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 108 U/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>30 U/L</td><td>115 U/L</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:6768-6 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "6768-6" ] ;
+       fhir:display [ fhir:v "Alkaline phosphatase [Enzymatic activity/volume] in Serum or Plasma" ]
+     ] [
+       a sct:88810008 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "88810008" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "108"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "U/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "30"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "U/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "115"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "U/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/o13> a fhir:Observation ;
+  fhir:id [ fhir:v "o13"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o13\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o13&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Gamma glutamyl transferase [Enzymatic activity/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2324-2; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#69480007)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 35 U/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>0 U/L</td><td>45 U/L</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:2324-2 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "2324-2" ] ;
+       fhir:display [ fhir:v "Gamma glutamyl transferase [Enzymatic activity/volume] in Serum or Plasma" ]
+     ] [
+       a sct:69480007 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "69480007" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "35"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "U/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "0"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "U/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "45"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "U/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/o14> a fhir:Observation ;
+  fhir:id [ fhir:v "o14"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o14\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o14&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#1742-6; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#34608000)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 54 U/L</p><p><b>interpretation</b>: High <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#H)</span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>0 U/L</td><td>45 U/L</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:1742-6 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "1742-6" ] ;
+       fhir:display [ fhir:v "Alanine aminotransferase [Enzymatic activity/volume] in Serum or Plasma" ]
+     ] [
+       a sct:34608000 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "34608000" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "54"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "U/L" ]
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "H" ]
+     ] )
+  ] ) ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "0"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "U/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "45"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "U/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/o15> a fhir:Observation ;
+  fhir:id [ fhir:v "o15"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o15\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o15&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#1920-8; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#45896001)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 30 U/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>0 U/L</td><td>41 U/L</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:1920-8 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "1920-8" ] ;
+       fhir:display [ fhir:v "Aspartate aminotransferase [Enzymatic activity/volume] in Serum or Plasma" ]
+     ] [
+       a sct:45896001 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "45896001" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "30"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "U/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "0"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "U/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "41"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "U/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/o16> a fhir:Observation ;
+  fhir:id [ fhir:v "o16"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o16\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o16&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Lactate dehydrogenase [Enzymatic activity/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2532-0; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#11274001)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 131 U/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>80 U/L</td><td>250 U/L</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:2532-0 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "2532-0" ] ;
+       fhir:display [ fhir:v "Lactate dehydrogenase [Enzymatic activity/volume] in Serum or Plasma" ]
+     ] [
+       a sct:11274001 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "11274001" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "131"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "U/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "80"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "U/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "250"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "U/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/o17> a fhir:Observation ;
+  fhir:id [ fhir:v "o17"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o17\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o17&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Calcium [Moles/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2000-8; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#71878006)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 2.38 mmol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>2.25 mmol/L</td><td>2.65 mmol/L</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:2000-8 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "2000-8" ] ;
+       fhir:display [ fhir:v "Calcium [Moles/volume] in Serum or Plasma" ]
+     ] [
+       a sct:71878006 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "71878006" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "2.38"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "mmol/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "2.25"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "2.65"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/o18> a fhir:Observation ;
+  fhir:id [ fhir:v "o18"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o18\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o18&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Calcium.ionized [Moles/volume] in Serum or Plasma by calculation <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#13959-2; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#166708003)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 2.39 mmol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>2.25 mmol/L</td><td>2.65 mmol/L</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:13959-2 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "13959-2" ] ;
+       fhir:display [ fhir:v "Calcium.ionized [Moles/volume] in Serum or Plasma by calculation" ]
+     ] [
+       a sct:166708003 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "166708003" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "2.39"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "mmol/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "2.25"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "2.65"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/o19> a fhir:Observation ;
+  fhir:id [ fhir:v "o19"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o19\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o19&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Phosphate [Moles/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#14879-1; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#104866001)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 1.5 mmol/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>0.8 mmol/L</td><td>1.5 mmol/L</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:14879-1 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "14879-1" ] ;
+       fhir:display [ fhir:v "Phosphate [Moles/volume] in Serum or Plasma" ]
+     ] [
+       a sct:104866001 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "104866001" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "1.5"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "mmol/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "0.8"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "1.5"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mmol/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/o20> a fhir:Observation ;
+  fhir:id [ fhir:v "o20"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o20\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o20&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Protein [Mass/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2885-2; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#74040009)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 67 g/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>60 g/L</td><td>82 g/L</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:2885-2 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "2885-2" ] ;
+       fhir:display [ fhir:v "Protein [Mass/volume] in Serum or Plasma" ]
+     ] [
+       a sct:74040009 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "74040009" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "67"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "g/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "60"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "g/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "82"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "g/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/o21> a fhir:Observation ;
+  fhir:id [ fhir:v "o21"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o21\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o21&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Albumin [Mass/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#1751-7; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#104485008)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 42 g/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>35 g/L</td><td>50 g/L</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:1751-7 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "1751-7" ] ;
+       fhir:display [ fhir:v "Albumin [Mass/volume] in Serum or Plasma" ]
+     ] [
+       a sct:104485008 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "104485008" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "42"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "g/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "35"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "g/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "50"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "g/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/o22> a fhir:Observation ;
+  fhir:id [ fhir:v "o22"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"o22\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;o22&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Globulin [Mass/volume] in Serum by calculation <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#10834-0; <a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#104979009)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 25 g/L</p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Low</b></td><td><b>High</b></td></tr><tr><td>*</td><td>20 g/L</td><td>40 g/L</td></tr></table></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:10834-0 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "10834-0" ] ;
+       fhir:display [ fhir:v "Globulin [Mass/volume] in Serum by calculation" ]
+     ] [
+       a sct:104979009 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "104979009" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "25"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "g/L" ]
+  ] ; # 
+  fhir:referenceRange ( [
+     fhir:low [
+       fhir:value [ fhir:v "20"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "g/L" ]
+     ] ;
+     fhir:high [
+       fhir:value [ fhir:v "40"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "g/L" ]
+     ]
+  ] ) . # 
+
+<https://example.com/base/Observation/p3> a fhir:Observation ;
+  fhir:id [ fhir:v "p3"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"p3\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;p3&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Urinalysis macro (dipstick) panel - Urine <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#24357-6)</span></p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/urine: Urine Sample</a></p><p><b>hasMember</b>: </p><ul><li><a href=\"broken-link.html\">Observation/u1</a></li><li><a href=\"broken-link.html\">Observation/u2</a></li><li><a href=\"broken-link.html\">Observation/u3</a></li><li><a href=\"broken-link.html\">Observation/u4</a></li><li><a href=\"broken-link.html\">Observation/u5</a></li><li><a href=\"broken-link.html\">Observation/u6</a></li><li><a href=\"broken-link.html\">Observation/u7</a></li><li><a href=\"broken-link.html\">Observation/u8</a></li><li><a href=\"broken-link.html\">Observation/u9</a></li></ul></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:24357-6 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "24357-6" ] ;
+       fhir:display [ fhir:v "Urinalysis macro (dipstick) panel - Urine" ]
+     ] )
+  ] ; # 
+  fhir:effective [ fhir:v "2015-08-16T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:issued [ fhir:v "2015-08-17T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:specimen [
+     fhir:reference [ fhir:v "Specimen/urine" ] ;
+     fhir:display [ fhir:v "Urine Sample" ]
+  ] ; # 
+  fhir:hasMember ( [
+     fhir:reference [ fhir:v "Observation/u1" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/u2" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/u3" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/u4" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/u5" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/u6" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/u7" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/u8" ]
+  ] [
+     fhir:reference [ fhir:v "Observation/u9" ]
+  ] ) . # 
+
+<https://example.com/base/Observation/u1> a fhir:Observation ;
+  fhir:id [ fhir:v "u1"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"u1\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;u1&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: pH of Urine <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2756-5)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 5.0 pH</p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/urine: Urine Sample</a></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:2756-5 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "2756-5" ] ;
+       fhir:display [ fhir:v "pH of Urine" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2015-08-16T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:issued [ fhir:v "2015-08-17T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "5.0"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "pH" ]
+  ] ; # 
+  fhir:specimen [
+     fhir:reference [ fhir:v "Specimen/urine" ] ;
+     fhir:display [ fhir:v "Urine Sample" ]
+  ] . # 
+
+<https://example.com/base/Observation/u2> a fhir:Observation ;
+  fhir:id [ fhir:v "u2"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"u2\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;u2&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Protein [Presence] in Urine <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2887-8)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: Negative <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#260385009)</span></p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/urine: Urine Sample</a></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:2887-8 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "2887-8" ] ;
+       fhir:display [ fhir:v "Protein [Presence] in Urine" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2015-08-16T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:issued [ fhir:v "2015-08-17T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:CodeableConcept ;
+     fhir:coding ( [
+       a sct:260385009 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "260385009" ] ;
+       fhir:display [ fhir:v "Negative" ]
+     ] )
+  ] ; # 
+  fhir:specimen [
+     fhir:reference [ fhir:v "Specimen/urine" ] ;
+     fhir:display [ fhir:v "Urine Sample" ]
+  ] . # 
+
+<https://example.com/base/Observation/u3> a fhir:Observation ;
+  fhir:id [ fhir:v "u3"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"u3\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;u3&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Specific gravity of Urine <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2965-2)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 1.009</p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/urine: Urine Sample</a></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:2965-2 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "2965-2" ] ;
+       fhir:display [ fhir:v "Specific gravity of Urine" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2015-08-16T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:issued [ fhir:v "2015-08-17T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "1.009"^^xsd:decimal ]
+  ] ; # 
+  fhir:specimen [
+     fhir:reference [ fhir:v "Specimen/urine" ] ;
+     fhir:display [ fhir:v "Urine Sample" ]
+  ] . # 
+
+<https://example.com/base/Observation/u4> a fhir:Observation ;
+  fhir:id [ fhir:v "u4"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"u4\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;u4&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Erythrocytes [Presence] in Urine <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#33051-4)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: Negative <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#260385009)</span></p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/urine: Urine Sample</a></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:33051-4 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "33051-4" ] ;
+       fhir:display [ fhir:v "Erythrocytes [Presence] in Urine" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2015-08-16T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:issued [ fhir:v "2015-08-17T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:CodeableConcept ;
+     fhir:coding ( [
+       a sct:260385009 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "260385009" ] ;
+       fhir:display [ fhir:v "Negative" ]
+     ] )
+  ] ; # 
+  fhir:specimen [
+     fhir:reference [ fhir:v "Specimen/urine" ] ;
+     fhir:display [ fhir:v "Urine Sample" ]
+  ] . # 
+
+<https://example.com/base/Observation/u5> a fhir:Observation ;
+  fhir:id [ fhir:v "u5"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"u5\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;u5&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Glucose [Presence] in Urine <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2349-9)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: Negative <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#260385009)</span></p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/urine: Urine Sample</a></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:2349-9 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "2349-9" ] ;
+       fhir:display [ fhir:v "Glucose [Presence] in Urine" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2015-08-16T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:issued [ fhir:v "2015-08-17T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:CodeableConcept ;
+     fhir:coding ( [
+       a sct:260385009 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "260385009" ] ;
+       fhir:display [ fhir:v "Negative" ]
+     ] )
+  ] ; # 
+  fhir:specimen [
+     fhir:reference [ fhir:v "Specimen/urine" ] ;
+     fhir:display [ fhir:v "Urine Sample" ]
+  ] . # 
+
+<https://example.com/base/Observation/u6> a fhir:Observation ;
+  fhir:id [ fhir:v "u6"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"u6\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;u6&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Leukocytes [Presence] in Urine <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#33052-2)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: Negative <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#260385009)</span></p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/urine: Urine Sample</a></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:33052-2 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "33052-2" ] ;
+       fhir:display [ fhir:v "Leukocytes [Presence] in Urine" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2015-08-16T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:issued [ fhir:v "2015-08-17T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:CodeableConcept ;
+     fhir:coding ( [
+       a sct:260385009 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "260385009" ] ;
+       fhir:display [ fhir:v "Negative" ]
+     ] )
+  ] ; # 
+  fhir:specimen [
+     fhir:reference [ fhir:v "Specimen/urine" ] ;
+     fhir:display [ fhir:v "Urine Sample" ]
+  ] . # 
+
+<https://example.com/base/Observation/u7> a fhir:Observation ;
+  fhir:id [ fhir:v "u7"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"u7\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;u7&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Leukocytes [#/volume] in Urine <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#30405-5)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: 1 /uL</p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/urine: Urine Sample</a></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:30405-5 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "30405-5" ] ;
+       fhir:display [ fhir:v "Leukocytes [#/volume] in Urine" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2015-08-16T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:issued [ fhir:v "2015-08-17T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "1"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "/uL" ]
+  ] ; # 
+  fhir:specimen [
+     fhir:reference [ fhir:v "Specimen/urine" ] ;
+     fhir:display [ fhir:v "Urine Sample" ]
+  ] . # 
+
+<https://example.com/base/Observation/u8> a fhir:Observation ;
+  fhir:id [ fhir:v "u8"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"u8\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;u8&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Erythocytes [#/volume] in Urine <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#30391-7)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: &lt;1 /uL</p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/urine: Urine Sample</a></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:30391-7 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "30391-7" ] ;
+       fhir:display [ fhir:v "Erythocytes [#/volume] in Urine" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2015-08-16T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:issued [ fhir:v "2015-08-17T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "1"^^xsd:decimal ] ;
+     fhir:comparator [ fhir:v "<" ] ;
+     fhir:unit [ fhir:v "/uL" ]
+  ] ; # 
+  fhir:specimen [
+     fhir:reference [ fhir:v "Specimen/urine" ] ;
+     fhir:display [ fhir:v "Urine Sample" ]
+  ] . # 
+
+<https://example.com/base/Observation/u9> a fhir:Observation ;
+  fhir:id [ fhir:v "u9"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"u9\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;u9&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Epithelial cells.squamous [#/volume] in Urine sediment <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#13654-9)</span></p><p><b>subject</b>: <a href=\"patient-example-b.html\">Patient/pat2</a> &quot;Duck DONALD&quot;</p><p><b>effective</b>: 2015-08-16T06:40:17Z</p><p><b>issued</b>: 17 Aug 2015, 4:40:17 pm</p><p><b>performer</b>: <a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Acme Laboratory, Inc</a> &quot;Clinical Lab&quot;</p><p><b>value</b>: &lt;1 /mL</p><p><b>specimen</b>: <a href=\"broken-link.html\">Specimen/urine: Urine Sample</a></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a loinc:13654-9 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "13654-9" ] ;
+       fhir:display [ fhir:v "Epithelial cells.squamous [#/volume] in Urine sediment" ]
+     ] )
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat2" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2015-08-16T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:issued [ fhir:v "2015-08-17T06:40:17Z"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Acme Laboratory, Inc" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "1"^^xsd:decimal ] ;
+     fhir:comparator [ fhir:v "<" ] ;
+     fhir:unit [ fhir:v "/mL" ]
+  ] ; # 
+  fhir:specimen [
+     fhir:reference [ fhir:v "Specimen/urine" ] ;
+     fhir:display [ fhir:v "Urine Sample" ]
+  ] . # 
+
+# -------------------------------------------------------------------------------------
+

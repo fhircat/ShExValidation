@@ -1,0 +1,81 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <Coding.shex>
+IMPORT <Quantity.shex>
+IMPORT <vitalsigns.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+
+
+start=@<bp> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# FHIR Blood Pressure Profile
+<bp> EXTENDS @<vitalsigns> CLOSED {   
+
+    a [fhir:bp];
+    fhir:nodeRole [fhir:treeRoot]?;
+}  
+
+# Type of component observation (code / type)
+<Observation.component.code> EXTENDS @<CodeableConcept> CLOSED {   
+}  
+
+# Provides guide for interpretation
+<Observation.referenceRange> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Vital Sign Value recorded with UCUM
+<Observation.component.value[x]> EXTENDS @<Quantity> CLOSED {   
+}  
+
+# Used when reporting systolic and diastolic blood pressure.
+<Observation.component> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Vital Sign Value recorded with UCUM
+<Observation.component.value[x]> EXTENDS @<Quantity> CLOSED {   
+}  
+
+# Triggering observation(s)
+<Observation.triggeredBy> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Code defined by a terminology system
+<CodeableConcept.coding> EXTENDS @<Coding> CLOSED {   
+}  
+
+# Blood Pressure
+<Observation.code> EXTENDS @<CodeableConcept> CLOSED {   
+}  
+
+# Used when reporting systolic and diastolic blood pressure.
+<Observation.component> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Used when reporting systolic and diastolic blood pressure.
+<Observation.component> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Diastolic Blood Pressure
+<CodeableConcept.coding> EXTENDS @<Coding> CLOSED {   
+}  
+
+# Classification of  type of observation
+<Observation.category> EXTENDS @<CodeableConcept> CLOSED {   
+}  
+
+# Code defined by a terminology system
+<CodeableConcept.coding> EXTENDS @<Coding> CLOSED {   
+}  
+
+# Type of component observation (code / type)
+<Observation.component.code> EXTENDS @<CodeableConcept> CLOSED {   
+}  
+
+# Systolic Blood Pressure
+<CodeableConcept.coding> EXTENDS @<Coding> CLOSED {   
+}  
+

@@ -1,0 +1,86 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "research-study-reason-stopped"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "brr" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "0" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/research-study-reason-stopped"], [ fhir:v "http://hl7.org/fhir/research-study-reason-stopped"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "ResearchStudyReasonStopped"], [ fhir:v "ResearchStudyReasonStopped"] ;
+  fhir:title [ fhir:v "ResearchStudy Reason Stopped Code System"], [ fhir:v "ResearchStudy Reason Stopped Code System"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2022-05-15T16:55:11.085+11:00"], [ fhir:v "2022-05-15T16:55:11.085+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Codes for why the study ended prematurely."], [ fhir:v "Codes for why the study ended prematurely."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/research-study-reason-stopped"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "accrual-goal-met" ] ;
+     fhir:display [ fhir:v "Accrual Goal Met" ] ;
+     fhir:definition [ fhir:v "The study prematurely ended because the accrual goal was met." ]
+  ] [
+     fhir:code [ fhir:v "closed-due-to-toxicity" ] ;
+     fhir:display [ fhir:v "Closed due to toxicity" ] ;
+     fhir:definition [ fhir:v "The study prematurely ended due to toxicity." ]
+  ] [
+     fhir:code [ fhir:v "closed-due-to-lack-of-study-progress" ] ;
+     fhir:display [ fhir:v "Closed due to lack of study progress" ] ;
+     fhir:definition [ fhir:v "The study prematurely ended due to lack of study progress." ]
+  ] [
+     fhir:code [ fhir:v "temporarily-closed-per-study-design" ] ;
+     fhir:display [ fhir:v "Temporarily closed per study design" ] ;
+     fhir:definition [ fhir:v "The study prematurely ended temporarily per study design." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

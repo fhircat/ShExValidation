@@ -1,0 +1,160 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ValueSet ;
+  fhir:id [ fhir:v "units-of-time"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablevalueset" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "fhir" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "normative" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version" ] ;
+     fhir:value [ fhir:v "4.0.0" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "5" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/units-of-time"], [ fhir:v "http://hl7.org/fhir/ValueSet/units-of-time"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.77" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.77" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "UnitsOfTime"], [ fhir:v "UnitsOfTime"] ;
+  fhir:title [ fhir:v "UnitsOfTime"], [ fhir:v "UnitsOfTime"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "A unit of time (units from UCUM)."], [ fhir:v "A unit of time (units from UCUM)."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:copyright [ fhir:v "These codes are excerpted from UCUM (THE UNIFIED CODE FOR UNITS OF MEASURE). UCUM is Copyright © 1989-2013 Regenstrief Institute, Inc. and The UCUM Organization, Indianapolis, IN. All rights reserved. See http://unitsofmeasure.org/trac//wiki/TermsOfUse for details."], [ fhir:v "These codes are excerpted from UCUM (THE UNIFIED CODE FOR UNITS OF MEASURE). UCUM is Copyright © 1989-2013 Regenstrief Institute, Inc. and The UCUM Organization, Indianapolis, IN. All rights reserved. See http://unitsofmeasure.org/trac//wiki/TermsOfUse for details."] ;
+  fhir:compose [
+     fhir:include ( [
+       fhir:system [ fhir:v "http://unitsofmeasure.org" ] ;
+       fhir:concept ( [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "second" ]
+         ] ) ;
+         fhir:code [ fhir:v "s" ] ;
+         fhir:display [ fhir:v "second" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:value [ fhir:v "秒" ]
+         ] )
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "minute" ]
+         ] ) ;
+         fhir:code [ fhir:v "min" ] ;
+         fhir:display [ fhir:v "minute" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:value [ fhir:v "分钟" ]
+         ] )
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "hour" ]
+         ] ) ;
+         fhir:code [ fhir:v "h" ] ;
+         fhir:display [ fhir:v "hour" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:value [ fhir:v "小时" ]
+         ] )
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "day" ]
+         ] ) ;
+         fhir:code [ fhir:v "d" ] ;
+         fhir:display [ fhir:v "day" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:value [ fhir:v "天" ]
+         ] )
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "week" ]
+         ] ) ;
+         fhir:code [ fhir:v "wk" ] ;
+         fhir:display [ fhir:v "week" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:value [ fhir:v "星期" ]
+         ] )
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "month - Normal practice is to use the 'mo' code as a calendar month when calculating the next occurrence." ]
+         ] ) ;
+         fhir:code [ fhir:v "mo" ] ;
+         fhir:display [ fhir:v "month" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:value [ fhir:v "月" ]
+         ] )
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "year" ]
+         ] ) ;
+         fhir:code [ fhir:v "a" ] ;
+         fhir:display [ fhir:v "year" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:value [ fhir:v "年" ]
+         ] )
+       ] )
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

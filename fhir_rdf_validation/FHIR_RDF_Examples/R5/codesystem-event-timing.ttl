@@ -1,0 +1,130 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "event-timing"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ]
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "fhir" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "normative" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version" ] ;
+     fhir:value [ fhir:v "4.0.0" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "5" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/event-timing"], [ fhir:v "http://hl7.org/fhir/event-timing"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.1.76" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.1.76" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "EventTiming"], [ fhir:v "EventTiming"] ;
+  fhir:title [ fhir:v "EventTiming"], [ fhir:v "EventTiming"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Real-world event relating to the schedule."], [ fhir:v "Real-world event relating to the schedule."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "MORN" ] ;
+     fhir:display [ fhir:v "Morning" ] ;
+     fhir:definition [ fhir:v "Event occurs during the morning. The exact time is unspecified and established by institution convention or patient interpretation." ]
+  ] [
+     fhir:code [ fhir:v "MORN.early" ] ;
+     fhir:display [ fhir:v "Early Morning" ] ;
+     fhir:definition [ fhir:v "Event occurs during the early morning. The exact time is unspecified and established by institution convention or patient interpretation." ]
+  ] [
+     fhir:code [ fhir:v "MORN.late" ] ;
+     fhir:display [ fhir:v "Late Morning" ] ;
+     fhir:definition [ fhir:v "Event occurs during the late morning. The exact time is unspecified and established by institution convention or patient interpretation." ]
+  ] [
+     fhir:code [ fhir:v "NOON" ] ;
+     fhir:display [ fhir:v "Noon" ] ;
+     fhir:definition [ fhir:v "Event occurs around 12:00pm. The exact time is unspecified and established by institution convention or patient interpretation." ]
+  ] [
+     fhir:code [ fhir:v "AFT" ] ;
+     fhir:display [ fhir:v "Afternoon" ] ;
+     fhir:definition [ fhir:v "Event occurs during the afternoon. The exact time is unspecified and established by institution convention or patient interpretation." ]
+  ] [
+     fhir:code [ fhir:v "AFT.early" ] ;
+     fhir:display [ fhir:v "Early Afternoon" ] ;
+     fhir:definition [ fhir:v "Event occurs during the early afternoon. The exact time is unspecified and established by institution convention or patient interpretation." ]
+  ] [
+     fhir:code [ fhir:v "AFT.late" ] ;
+     fhir:display [ fhir:v "Late Afternoon" ] ;
+     fhir:definition [ fhir:v "Event occurs during the late afternoon. The exact time is unspecified and established by institution convention or patient interpretation." ]
+  ] [
+     fhir:code [ fhir:v "EVE" ] ;
+     fhir:display [ fhir:v "Evening" ] ;
+     fhir:definition [ fhir:v "Event occurs during the evening. The exact time is unspecified and established by institution convention or patient interpretation." ]
+  ] [
+     fhir:code [ fhir:v "EVE.early" ] ;
+     fhir:display [ fhir:v "Early Evening" ] ;
+     fhir:definition [ fhir:v "Event occurs during the early evening. The exact time is unspecified and established by institution convention or patient interpretation." ]
+  ] [
+     fhir:code [ fhir:v "EVE.late" ] ;
+     fhir:display [ fhir:v "Late Evening" ] ;
+     fhir:definition [ fhir:v "Event occurs during the late evening. The exact time is unspecified and established by institution convention or patient interpretation." ]
+  ] [
+     fhir:code [ fhir:v "NIGHT" ] ;
+     fhir:display [ fhir:v "Night" ] ;
+     fhir:definition [ fhir:v "Event occurs during the night. The exact time is unspecified and established by institution convention or patient interpretation." ]
+  ] [
+     fhir:code [ fhir:v "PHS" ] ;
+     fhir:display [ fhir:v "After Sleep" ] ;
+     fhir:definition [ fhir:v "Event occurs [offset] after subject goes to sleep. The exact time is unspecified and established by institution convention or patient interpretation." ]
+  ] [
+     fhir:code [ fhir:v "IMD" ] ;
+     fhir:display [ fhir:v "Immediate" ] ;
+     fhir:definition [ fhir:v "Event occurs a single time (with no repetitions) as soon as possible after the scheduled or actual start of the overall event." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

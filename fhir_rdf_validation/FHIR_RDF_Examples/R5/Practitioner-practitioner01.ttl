@@ -1,0 +1,41 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Practitioner ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "practitioner01"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource &quot;practitioner01&quot; </p></div><p><b>identifier</b>: Provider number: 11115 (TEMP)</p><p><b>active</b>: true</p><p><b>name</b>: John Doel </p></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "temp" ] ;
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0203"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "PRN" ] ;
+         fhir:display [ fhir:v "Provider number" ]
+       ] )
+     ] ;
+     fhir:system [ fhir:v "http://www.somesystemabc.net/identifiers/persons"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "11115" ] ;
+     fhir:period [
+       fhir:start [ fhir:v "2021-01-01"^^xsd:date ]
+     ] ;
+     fhir:assigner [
+       fhir:display [ fhir:v "Child Hospital" ]
+     ]
+  ] ) ; # 
+  fhir:active [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:name ( [
+     fhir:family [ fhir:v "Doel" ] ;
+     fhir:given ( [ fhir:v "John" ] ) ;
+     fhir:prefix ( [ fhir:v "Dr" ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,76 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Device ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "device-example-specimen-container-green-gel-vacutainer"] ; #   text>
+#    <status value="generated"/>
+#    <div xmlns="http://www.w3.org/1999/xhtml">
+#      <p>example</p>
+#    </div>
+#  </text  
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Device</b><a name=\"device-example-specimen-container-green-gel-vacutainer\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Device &quot;device-example-specimen-container-green-gel-vacutainer&quot; </p></div><p><b>identifier</b>: id: 345675</p><p><b>displayName</b>: device-example-specimen-container-green-gel-vacutainer</p><blockquote><p><b>property</b></p><p><b>type</b>: Tube Type <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (codes#tube-type)</span></p><p><b>value</b>: Green Gel <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (types#green-gel)</span></p></blockquote><blockquote><p><b>property</b></p><p><b>type</b>: Amount <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (codes#amount)</span></p><p><b>value</b>: 4.5 mL <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (capacities#4.5mL)</span></p></blockquote><blockquote><p><b>property</b></p><p><b>type</b>: Additive <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (codes#additive)</span></p><p><b>value</b>: lithium heparin <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (additive#lihep)</span></p></blockquote></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://acme.com/containers/id"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "345675" ]
+  ] ) ; # 
+  fhir:displayName [ fhir:v "device-example-specimen-container-green-gel-vacutainer"] ; # 
+  fhir:property ( [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://acme.com/containers/codes"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "tube-type" ] ;
+         fhir:display [ fhir:v "Tube Type" ]
+       ] )
+     ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://acme.com/containers/types"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "green-gel" ] ;
+         fhir:display [ fhir:v "Green Gel" ]
+       ] )
+     ]
+  ] [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://acme.com/containers/codes"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "amount" ] ;
+         fhir:display [ fhir:v "Amount" ]
+       ] )
+     ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://acme.com/containers/capacities"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "4.5mL" ] ;
+         fhir:display [ fhir:v "4.5 mL" ]
+       ] )
+     ]
+  ] [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://acme.com/containers/codes"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "additive" ] ;
+         fhir:display [ fhir:v "Additive" ]
+       ] )
+     ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://acme.com/containers/additive"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "lihep" ] ;
+         fhir:display [ fhir:v "lithium heparin" ]
+       ] )
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

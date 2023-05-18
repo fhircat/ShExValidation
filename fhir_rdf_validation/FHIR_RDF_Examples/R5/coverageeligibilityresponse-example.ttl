@@ -1,0 +1,42 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:CoverageEligibilityResponse ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "E2500"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the CoverageEligibilityResponse.</div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://www.BenefitsInc.com/fhir/coverageeligibilityresponse"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "881234" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:purpose ( [ fhir:v "validation"] ) ; # 
+  fhir:patient [
+     fhir:reference [ fhir:v "Patient/pat1" ]
+  ] ; # 
+  fhir:created [ fhir:v "2014-08-16"^^xsd:date] ; # 
+  fhir:request [
+     fhir:link <http://www.BenefitsInc.com/fhir/coverageeligibilityrequest/225476332402> ;
+     fhir:reference [ fhir:v "http://www.BenefitsInc.com/fhir/coverageeligibilityrequest/225476332402" ]
+  ] ; # 
+  fhir:outcome [ fhir:v "complete"] ; # 
+  fhir:disposition [ fhir:v "Policy is currently in-force."] ; # 
+  fhir:insurer [
+     fhir:reference [ fhir:v "Organization/2" ]
+  ] ; # 
+  fhir:insurance ( [
+     fhir:coverage [
+       fhir:reference [ fhir:v "Coverage/9876B1" ]
+     ] ;
+     fhir:inforce [ fhir:v "true"^^xsd:boolean ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,58 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Group ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "herd1"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Group</b><a name=\"herd1\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Group &quot;herd1&quot; </p></div><p><b>identifier</b>: <span title=\"  diagnostic lab's identifier  \">id: 20171120-1234</span></p><p><b>active</b>: true</p><p><b>type</b>: animal</p><p><b>membership</b>: enumerated</p><p><b>code</b>: <span title=\"  describes a bunch of female breeding sows  added a translation from US APHIS codes to SNOMED CT \">Porcine <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#388393002 &quot;Genus Sus (organism)&quot;; www.aphis.usda.gov#POR &quot;porcine&quot;)</span></span></p><p><b>name</b>: Breeding herd</p><p><b>quantity</b>: 2500</p><h3>Characteristics</h3><table class=\"grid\"><tr><td>-</td><td><b>Code</b></td><td><b>Value[x]</b></td><td><b>Exclude</b></td></tr><tr><td>*</td><td>gender <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td><td>female <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td><td><span title=\"  required element - false means they are all sows  \">false</span></td></tr></table></div>"
+  ] ; #    added this extension to reference the owner (client) of the herd   
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://example.org/fhir/StructureDefinition/owner"^^xsd:anyURI ] ;
+     fhir:value [
+       a fhir:Reference ;
+       fhir:reference [ fhir:v "RelatedPerson/peter" ] ;
+       fhir:display [ fhir:v "Peter Chalmers" ]
+     ]
+  ] ) ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "https://vetmed.iastate.edu/vdl"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "20171120-1234" ]
+  ] ) ; #    diagnostic lab's identifier   
+  fhir:active [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:type [ fhir:v "animal"] ; # 
+  fhir:membership [ fhir:v "enumerated"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a sct:388393002 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "388393002" ] ;
+       fhir:display [ fhir:v "Genus Sus (organism)" ]
+     ] [
+       fhir:system [ fhir:v "https://www.aphis.usda.gov"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "POR" ] ;
+       fhir:display [ fhir:v "porcine" ]
+     ] ) ;
+     fhir:text [ fhir:v "Porcine" ]
+  ] ; #    describes a bunch of female breeding sows  added a translation from US APHIS codes to SNOMED CT  
+  fhir:name [ fhir:v "Breeding herd"] ; # 
+  fhir:quantity [ fhir:v "2500"^^xsd:nonNegativeInteger] ; # 
+  fhir:characteristic ( [
+     fhir:code [
+       fhir:text [ fhir:v "gender" ]
+     ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:text [ fhir:v "female" ]
+     ] ;
+     fhir:exclude [ fhir:v "false"^^xsd:boolean ] #    required element - false means they are all sows   
+  ] )] . #    the share the common charasteristic of being sows   
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,130 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Device.shex>
+IMPORT <Period.shex>
+IMPORT <Patient.shex>
+IMPORT <Consent.shex>
+IMPORT <CareTeam.shex>
+IMPORT <Reference.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+
+
+start=@<Permission> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Permission
+<Permission> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Permission];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:permission-status};  # active | entered-in-error | draft 
+                                            # | rejected 
+    fhir:intent @<CodeableConcept>?;        # grant|refuse
+    fhir:asserter @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # The person or entity that asserts 
+                                            # the permission 
+    fhir:assertionDate @<OneOrMore_dateTime>?;  # The date that permission was 
+                                            # asserted 
+    fhir:validity @<Period>?;               # The period in which the permission 
+                                            # is active 
+    fhir:purpose @<OneOrMore_CodeableConcept>?;  # The purpose for which the 
+                                            # permission is given 
+    fhir:dataScope @<OneOrMore_Expression>?;  # This can be 1) the definition of 
+                                            # data elements, or 2) a category or 
+                                            # label) e.g. “sensitive”. It could 
+                                            # also be a c) graph-like definition 
+                                            # of a set of data elements 
+    fhir:processingActivity @<OneOrMore_BackboneElement>?;  # A description or definition of 
+                                            # which activities are allowed to be 
+                                            # done on the data 
+    fhir:justification @<BackboneElement>?;  # The asserted justification for 
+                                            # using the data 
+    fhir:usageLimitations @<OneOrMore_CodeableConcept>?;  # What limits apply to the use of 
+                                            # the data 
+}  
+
+# The asserted justification for using the data
+<Permission.justification> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:evidence @<OneOrMore_Reference_Consent>?;  # Evidence – reference to consent, 
+                                            # or a contract, or a policy, or a 
+                                            # regulation, or an attachment that 
+                                            # contains a screenshot 
+    fhir:grounds @<OneOrMore_CodeableConcept>?;  # This would be a codeableconcept, 
+                                            # or a coding, which can be 
+                                            # constrained to , for example, the 
+                                            # 6 grounds for processing in GDPR 
+}  
+
+# A description or definition of which activities are allowed to be done on the data
+<Permission.processingActivity> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:partyReference @<OneOrMore_Reference_Organization>?;  # If the processing is a transfer, 
+                                            # we must capture where it the data 
+                                            # allowed or expected to be shared - 
+                                            # with a party or person 
+    fhir:partyCodeableConcept @<OneOrMore_CodeableConcept>?;  # If the processing is a transfer, 
+                                            # or involves another party, we must 
+                                            # capture where it the data allowed 
+                                            # or expected to be shared - with a 
+                                            # party or person. This can be a 
+                                            # party instance or party type § 
+                                            # Purpose – a specific purpose of 
+                                            # the data 
+    fhir:purpose @<OneOrMore_CodeableConcept>?;  # The purpose for which the 
+                                            # permission is given 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_dateTime> CLOSED {
+    rdf:first @<dateTime>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_dateTime> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Expression> CLOSED {
+    rdf:first @<Expression>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Expression> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Reference_Consent> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Consent> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Consent> 
+}
+
+<OneOrMore_Reference_Organization> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Organization> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Organization> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Codes identifying the lifecycle stage of a product.
+fhirvs:permission-status ["active" "entered-in-error" "draft" "rejected"]
+

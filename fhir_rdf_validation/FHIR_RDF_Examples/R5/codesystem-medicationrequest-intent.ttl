@@ -1,0 +1,88 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "medicationrequest-intent"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "phx" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/CodeSystem/medicationrequest-intent"], [ fhir:v "http://hl7.org/fhir/CodeSystem/medicationrequest-intent"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1378" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1378" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "MedicationRequestIntentCodes"], [ fhir:v "MedicationRequestIntentCodes"] ;
+  fhir:title [ fhir:v "MedicationRequest Intent Codes"], [ fhir:v "MedicationRequest Intent Codes"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:publisher [ fhir:v "HL7 International"], [ fhir:v "HL7 International"] ;
+  fhir:description [ fhir:v "MedicationRequest Intent Codes"], [ fhir:v "MedicationRequest Intent Codes"] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/medicationrequest-intent"] ;
+  fhir:hierarchyMeaning [ fhir:v "is-a"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "proposal" ] ;
+     fhir:display [ fhir:v "Proposal" ] ;
+     fhir:definition [ fhir:v "The request is a suggestion made by someone/something that doesn't have an intention to ensure it occurs and without providing an authorization to act" ]
+  ] [
+     fhir:code [ fhir:v "plan" ] ;
+     fhir:display [ fhir:v "Plan" ] ;
+     fhir:definition [ fhir:v "The request represents an intention to ensure something occurs without providing an authorization for others to act." ]
+  ] [
+     fhir:code [ fhir:v "order" ] ;
+     fhir:display [ fhir:v "Order" ] ;
+     fhir:definition [ fhir:v "The request represents a request/demand and authorization for action" ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "original-order" ] ;
+       fhir:display [ fhir:v "Original Order" ] ;
+       fhir:definition [ fhir:v "The request represents the original authorization for the medication request." ]
+     ] [
+       fhir:code [ fhir:v "reflex-order" ] ;
+       fhir:display [ fhir:v "Reflex Order" ] ;
+       fhir:definition [ fhir:v "The request represents an automatically generated supplemental authorization for action based on a parent authorization together with initial results of the action taken against that parent authorization.." ]
+     ] [
+       fhir:code [ fhir:v "filler-order" ] ;
+       fhir:display [ fhir:v "Filler Order" ] ;
+       fhir:definition [ fhir:v "The request represents the view of an authorization instantiated by a fulfilling system representing the details of the fulfiller's intention to act upon a submitted order." ] ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "instance-order" ] ;
+         fhir:display [ fhir:v "Instance Order" ] ;
+         fhir:definition [ fhir:v "The request represents an instance for the particular order and is used to generate a schedule of requests on a medication administration record (MAR)." ]
+       ] )
+     ] )
+  ] [
+     fhir:code [ fhir:v "option" ] ;
+     fhir:display [ fhir:v "Option" ] ;
+     fhir:definition [ fhir:v "The request represents a component or option for a RequestOrchestration that establishes timing, conditionality and/or  other constraints among a set of requests." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

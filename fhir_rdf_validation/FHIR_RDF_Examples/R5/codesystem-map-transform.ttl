@@ -1,0 +1,232 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "map-transform"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "fhir" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "2" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/map-transform"], [ fhir:v "http://hl7.org/fhir/map-transform"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.682" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.1.668" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.682" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.1.668" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "StructureMapTransform"], [ fhir:v "StructureMapTransform"] ;
+  fhir:title [ fhir:v "Structure Map Transform"], [ fhir:v "Structure Map Transform"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2021-01-05T10:01:24+11:00"], [ fhir:v "2021-01-05T10:01:24+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "How data is copied/created."], [ fhir:v "How data is copied/created."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/map-transform"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:property ( [
+     fhir:code [
+       fhir:v "fhirpath" ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/rendered-value" ] ;
+         fhir:value [ fhir:v "FHIRPath Equivalent" ]
+       ] )
+     ] ;
+     fhir:description [ fhir:v "FHIRPath equivalent for transform function" ] ;
+     fhir:type [ fhir:v "string" ]
+  ] ) ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "create" ] ;
+     fhir:display [ fhir:v "create" ] ;
+     fhir:definition [ fhir:v "create(type : string) - type is passed through to the application on the standard API, and must be known by it." ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "fhirpath" ] ;
+       fhir:value [ fhir:v "n/a" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "copy" ] ;
+     fhir:display [ fhir:v "copy" ] ;
+     fhir:definition [ fhir:v "copy(source)." ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "fhirpath" ] ;
+       fhir:value [ fhir:v "n/a" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "truncate" ] ;
+     fhir:display [ fhir:v "truncate" ] ;
+     fhir:definition [ fhir:v "truncate(source, length) - source must be stringy type." ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "fhirpath" ] ;
+       fhir:value [ fhir:v "substring" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "escape" ] ;
+     fhir:display [ fhir:v "escape" ] ;
+     fhir:definition [ fhir:v "escape(source, fmt1, fmt2) - change source from one kind of escaping to another (plain, java, xml, json). note that this is for when the string itself is escaped." ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "fhirpath" ] ;
+       fhir:value [ fhir:v "n/a" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "cast" ] ;
+     fhir:display [ fhir:v "cast" ] ;
+     fhir:definition [ fhir:v "cast(source, type?) - cast (convert) source from one type to another. Target type can be left as implicit if there is one and only one target type known. The default namespace for the type is 'FHIR' (see [FHIRPath type specifiers](http://hl7.org/fhirpath/N1/#is-type-specifier))" ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "fhirpath" ] ;
+       fhir:value [ fhir:v "n/a" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "append" ] ;
+     fhir:display [ fhir:v "append" ] ;
+     fhir:definition [ fhir:v "append(source...) - source is element or string." ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "fhirpath" ] ;
+       fhir:value [ fhir:v "& (String concatenation)" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "translate" ] ;
+     fhir:display [ fhir:v "translate" ] ;
+     fhir:definition [ fhir:v "translate(source, uri_of_map) - use the translate operation." ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "fhirpath" ] ;
+       fhir:value [ fhir:v "%terminologies.translate()" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "reference" ] ;
+     fhir:display [ fhir:v "reference" ] ;
+     fhir:definition [ fhir:v "reference(source : object) - return a string that references the provided tree properly." ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "fhirpath" ] ;
+       fhir:value [ fhir:v "related to resolve() but returns the string pointer" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "dateOp" ] ;
+     fhir:display [ fhir:v "dateOp" ] ;
+     fhir:definition [ fhir:v "Perform a date operation. *Parameters to be documented*." ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "fhirpath" ] ;
+       fhir:value [ fhir:v "n/a" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "uuid" ] ;
+     fhir:display [ fhir:v "uuid" ] ;
+     fhir:definition [ fhir:v "Generate a random UUID (in lowercase). No Parameters." ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "fhirpath" ] ;
+       fhir:value [ fhir:v "n/a" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "pointer" ] ;
+     fhir:display [ fhir:v "pointer" ] ;
+     fhir:definition [ fhir:v "Return the appropriate string to put in a reference that refers to the resource provided as a parameter." ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "fhirpath" ] ;
+       fhir:value [ fhir:v "n/a" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "evaluate" ] ;
+     fhir:display [ fhir:v "evaluate" ] ;
+     fhir:definition [ fhir:v "Execute the supplied FHIRPath expression and use the value returned by that." ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "fhirpath" ] ;
+       fhir:value [ fhir:v "n/a" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "cc" ] ;
+     fhir:display [ fhir:v "cc" ] ;
+     fhir:definition [ fhir:v "Create a CodeableConcept. Parameters = (text) or (system. Code[, display])." ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "fhirpath" ] ;
+       fhir:value [ fhir:v "n/a" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "c" ] ;
+     fhir:display [ fhir:v "c" ] ;
+     fhir:definition [ fhir:v "Create a Coding. Parameters = (system. Code[, display])." ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "fhirpath" ] ;
+       fhir:value [ fhir:v "n/a" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "qty" ] ;
+     fhir:display [ fhir:v "qty" ] ;
+     fhir:definition [ fhir:v "Create a quantity. Parameters = (text) or (value, unit, [system, code]) where text is the natural representation e.g. [comparator]value[space]unit." ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "fhirpath" ] ;
+       fhir:value [ fhir:v "n/a" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "id" ] ;
+     fhir:display [ fhir:v "id" ] ;
+     fhir:definition [ fhir:v "Create an identifier. Parameters = (system, value[, type]) where type is a code from the identifier type value set." ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "fhirpath" ] ;
+       fhir:value [ fhir:v "n/a" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "cp" ] ;
+     fhir:display [ fhir:v "cp" ] ;
+     fhir:definition [ fhir:v "Create a contact details. Parameters = (value) or (system, value). If no system is provided, the system should be inferred from the content of the value." ] ;
+     fhir:property ( [
+       fhir:code [ fhir:v "fhirpath" ] ;
+       fhir:value [ fhir:v "n/a" ]
+     ] )
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

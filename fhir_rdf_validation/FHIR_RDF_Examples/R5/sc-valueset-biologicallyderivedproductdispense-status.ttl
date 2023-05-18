@@ -1,0 +1,100 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ConceptMap ;
+  fhir:id [ fhir:v "sc-biologicallyderivedproductdispense-status"] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ConceptMap/sc-biologicallyderivedproductdispense-status"], [ fhir:v "http://hl7.org/fhir/ConceptMap/sc-biologicallyderivedproductdispense-status"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "BiologicallyDerivedProductDispenseCodesCanonicalMap"], [ fhir:v "BiologicallyDerivedProductDispenseCodesCanonicalMap"] ;
+  fhir:title [ fhir:v "Canonical Mapping for \"BiologicallyDerivedProductDispense Status Codes\""], [ fhir:v "Canonical Mapping for \"BiologicallyDerivedProductDispense Status Codes\""] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:publisher [ fhir:v "FHIR Project team"], [ fhir:v "FHIR Project team"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Canonical Mapping for \"BiologicallyDerivedProductDispense Status Codes\""], [ fhir:v "Canonical Mapping for \"BiologicallyDerivedProductDispense Status Codes\""] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:sourceScope [ fhir:v "http://hl7.org/fhir/ValueSet/biologicallyderivedproductdispense-status"] ;
+  fhir:targetScope [ fhir:v "http://hl7.org/fhir/ValueSet/resource-status"] ;
+  fhir:group ( [
+     fhir:source [ fhir:v "http://hl7.org/fhir/biologicallyderivedproductdispense-status" ] ;
+     fhir:target [ fhir:v "http://hl7.org/fhir/resource-status" ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "entered-in-error" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "error" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "preparation" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "planned" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "in-progress" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "active" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "unfulfilled" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "failed" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "issued" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "complete" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "returned" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "abandoned" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "unknown" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "unknown" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "allocated" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "confirmed" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] )
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

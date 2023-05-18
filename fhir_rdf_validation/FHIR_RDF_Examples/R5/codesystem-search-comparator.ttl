@@ -1,0 +1,121 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "search-comparator"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "fhir" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "3" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/search-comparator"], [ fhir:v "http://hl7.org/fhir/search-comparator"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.638" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.1.623" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.638" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.1.623" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "SearchComparator"], [ fhir:v "SearchComparator"] ;
+  fhir:title [ fhir:v "Search Comparator"], [ fhir:v "Search Comparator"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2021-01-05T10:01:24+11:00"], [ fhir:v "2021-01-05T10:01:24+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "What Search Comparator Codes are supported in search."], [ fhir:v "What Search Comparator Codes are supported in search."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/search-comparator"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "eq" ] ;
+     fhir:display [ fhir:v "Equals" ] ;
+     fhir:definition [ fhir:v "the value for the parameter in the resource is equal to the provided value." ]
+  ] [
+     fhir:code [ fhir:v "ne" ] ;
+     fhir:display [ fhir:v "Not Equals" ] ;
+     fhir:definition [ fhir:v "the value for the parameter in the resource is not equal to the provided value." ]
+  ] [
+     fhir:code [ fhir:v "gt" ] ;
+     fhir:display [ fhir:v "Greater Than" ] ;
+     fhir:definition [ fhir:v "the value for the parameter in the resource is greater than the provided value." ]
+  ] [
+     fhir:code [ fhir:v "lt" ] ;
+     fhir:display [ fhir:v "Less Than" ] ;
+     fhir:definition [ fhir:v "the value for the parameter in the resource is less than the provided value." ]
+  ] [
+     fhir:code [ fhir:v "ge" ] ;
+     fhir:display [ fhir:v "Greater or Equals" ] ;
+     fhir:definition [ fhir:v "the value for the parameter in the resource is greater or equal to the provided value." ]
+  ] [
+     fhir:code [ fhir:v "le" ] ;
+     fhir:display [ fhir:v "Less of Equal" ] ;
+     fhir:definition [ fhir:v "the value for the parameter in the resource is less or equal to the provided value." ]
+  ] [
+     fhir:code [ fhir:v "sa" ] ;
+     fhir:display [ fhir:v "Starts After" ] ;
+     fhir:definition [ fhir:v "the value for the parameter in the resource starts after the provided value." ]
+  ] [
+     fhir:code [ fhir:v "eb" ] ;
+     fhir:display [ fhir:v "Ends Before" ] ;
+     fhir:definition [ fhir:v "the value for the parameter in the resource ends before the provided value." ]
+  ] [
+     fhir:code [ fhir:v "ap" ] ;
+     fhir:display [ fhir:v "Approximately" ] ;
+     fhir:definition [ fhir:v "the value for the parameter in the resource is approximately the same to the provided value." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

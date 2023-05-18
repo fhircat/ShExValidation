@@ -1,0 +1,99 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Observation ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "alcohol-type"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"alcohol-type\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;alcohol-type&quot; </p></div><p><b>status</b>: <span title=\"   the mandatory quality flags:   \">final</span></p><p><b>category</b>: <span title=\"  \n    Observations are often coded in multiple code systems.\n      - LOINC\n		- or SNOMED\n      -and/or the source system may provides its own &quot;local&quot; code, which may be less or more granular than LOINC.\n	In this example there is only local codes\n    \">Social History <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-observation-category.html\">Observation Category Codes</a>#social-history)</span></span></p><p><b>code</b>: Type of alcohol consumed <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (acme-rehab.org#alcohol-type)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example: Peter James Chalmers</a> &quot;Peter CHALMERS&quot;</p><p><b>effective</b>: 2014-12-11T04:44:16Z</p><blockquote><p><b>component</b></p><p><b>code</b>: <span title=\"  component.code is same as code  \">alcohol-type <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (acme-rehab.org#alcohol-type)</span></span></p><p><b>value</b>: <span title=\"  coded value using SNONED-CT, could also use a local code here or only text  \">Wine <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#35748005 &quot;Wine (substance)&quot;)</span></span></p></blockquote><blockquote><p><b>component</b></p><p><b>code</b>: <span title=\"  component.code is same as code  \">alcohol-type <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (acme-rehab.org#alcohol-type)</span></span></p><p><b>value</b>: <span title=\"  coded value using SNONED-CT, could also use a local code here or only text  \">Beer <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#53410008 &quot;Beer (substance)&quot;)</span></span></p></blockquote><blockquote><p><b>component</b></p><p><b>code</b>: <span title=\"  component.code is same as code  \">alcohol-type <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (acme-rehab.org#alcohol-type)</span></span></p><p><b>value</b>: <span title=\"  coded value using SNONED-CT, could also use a local code here or only text  \">Liquor <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#6524003 &quot;Distilled spirits (substance)&quot;)</span></span></p></blockquote></div>"
+  ] ; #     the mandatory quality flags:    
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "social-history" ] ;
+       fhir:display [ fhir:v "Social History" ]
+     ] ) ;
+     fhir:text [ fhir:v "Social History" ]
+  ] ) ; #    
+#    Observations are often coded in multiple code systems.
+#      - LOINC
+#		- or SNOMED
+#      -and/or the source system may provides its own "local" code, which may be less or more granular than LOINC.
+#	In this example there is only local codes
+#     
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme-rehab.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "alcohol-type" ] ;
+       fhir:display [ fhir:v "Type of alcohol consumed" ]
+     ] ) ; #     Local - unable to identify a proper LOINC code    
+     fhir:text [ fhir:v "Type of alcohol consumed" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "Peter James Chalmers" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2014-12-11T04:44:16Z"^^xsd:dateTime] ; # 
+  fhir:component ( [
+     fhir:code [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://acme-rehab.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "alcohol-type" ]
+       ] ) #     Local - unable to identify a proper LOINC code    
+     ] ; #    component.code is same as code   
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         a sct:35748005 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "35748005" ] ;
+         fhir:display [ fhir:v "Wine (substance)" ]
+       ] ) ;
+       fhir:text [ fhir:v "Wine" ]
+     ] #    coded value using SNONED-CT, could also use a local code here or only text   
+  ] [
+     fhir:code [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://acme-rehab.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "alcohol-type" ]
+       ] ) #     Local - unable to identify a proper LOINC code    
+     ] ; #    component.code is same as code   
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         a sct:53410008 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "53410008" ] ;
+         fhir:display [ fhir:v "Beer (substance)" ]
+       ] ) ;
+       fhir:text [ fhir:v "Beer" ]
+     ] #    coded value using SNONED-CT, could also use a local code here or only text   
+  ] [
+     fhir:code [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://acme-rehab.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "alcohol-type" ]
+       ] ) #     Local - unable to identify a proper LOINC code    
+     ] ; #    component.code is same as code   
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         a sct:6524003 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "6524003" ] ;
+         fhir:display [ fhir:v "Distilled spirits (substance)" ]
+       ] ) ;
+       fhir:text [ fhir:v "Liquor" ]
+     ] #    coded value using SNONED-CT, could also use a local code here or only text   
+  ] )] . #     When the code is the same as component.code the value element must be empty per invariant obs-7
+#      ,    Using components since multi-select values/answers share the same attributes (such as id, performer, effective date, status, comment..   ,    answer 1   
+
+# -------------------------------------------------------------------------------------
+

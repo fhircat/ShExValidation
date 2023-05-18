@@ -1,0 +1,114 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "request-intent"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ]
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "cds" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "4" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/request-intent"], [ fhir:v "http://hl7.org/fhir/request-intent"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.114" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.114" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "RequestIntent"], [ fhir:v "RequestIntent"] ;
+  fhir:title [ fhir:v "RequestIntent"], [ fhir:v "RequestIntent"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "true"], [ fhir:v "true"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Codes indicating the degree of authority/intentionality associated with a request."], [ fhir:v "Codes indicating the degree of authority/intentionality associated with a request."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/request-intent"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "proposal" ] ;
+     fhir:display [ fhir:v "Proposal" ] ;
+     fhir:definition [ fhir:v "The request is a suggestion made by someone/something that does not have an intention to ensure it occurs and without providing an authorization to act." ]
+  ] [
+     fhir:code [ fhir:v "plan" ] ;
+     fhir:display [ fhir:v "Plan" ] ;
+     fhir:definition [ fhir:v "The request represents an intention to ensure something occurs without providing an authorization for others to act." ]
+  ] [
+     fhir:code [ fhir:v "directive" ] ;
+     fhir:display [ fhir:v "Directive" ] ;
+     fhir:definition [ fhir:v "The request represents a legally binding instruction authored by a Patient or RelatedPerson." ]
+  ] [
+     fhir:code [ fhir:v "order" ] ;
+     fhir:display [ fhir:v "Order" ] ;
+     fhir:definition [ fhir:v "The request represents a request/demand and authorization for action by the requestor." ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "original-order" ] ;
+       fhir:display [ fhir:v "Original Order" ] ;
+       fhir:definition [ fhir:v "The request represents an original authorization for action." ]
+     ] [
+       fhir:code [ fhir:v "reflex-order" ] ;
+       fhir:display [ fhir:v "Reflex Order" ] ;
+       fhir:definition [ fhir:v "The request represents an automatically generated supplemental authorization for action based on a parent authorization together with initial results of the action taken against that parent authorization." ]
+     ] [
+       fhir:code [ fhir:v "filler-order" ] ;
+       fhir:display [ fhir:v "Filler Order" ] ;
+       fhir:definition [ fhir:v "The request represents the view of an authorization instantiated by a fulfilling system representing the details of the fulfiller's intention to act upon a submitted order." ] ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "instance-order" ] ;
+         fhir:display [ fhir:v "Instance Order" ] ;
+         fhir:definition [ fhir:v "An order created in fulfillment of a broader order that represents the authorization for a single activity occurrence.  E.g. The administration of a single dose of a drug." ]
+       ] )
+     ] )
+  ] [
+     fhir:code [ fhir:v "option" ] ;
+     fhir:display [ fhir:v "Option" ] ;
+     fhir:definition [ fhir:v "The request represents a component or option for a RequestOrchestration that establishes timing, conditionality and/or other constraints among a set of requests.  Refer to [[[RequestOrchestration]]] for additional information on how this status is used." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

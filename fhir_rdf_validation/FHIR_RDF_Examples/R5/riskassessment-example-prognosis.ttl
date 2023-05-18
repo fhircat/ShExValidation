@@ -1,0 +1,43 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:RiskAssessment ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "prognosis"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "additional" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <p>Moderate risk of permanent weakness of the left arm, but otherwise no permanent disability</p>\n    </div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:occurrence [ fhir:v "2010-11-22"^^xsd:date] ; # 
+  fhir:condition [
+     fhir:reference [ fhir:v "Condition/stroke" ] ;
+     fhir:display [ fhir:v "Ischemic Stroke" ]
+  ] ; # 
+  fhir:prediction ( [
+     fhir:outcome [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "249943000:363698007=72098002,260868000=6934004" ]
+       ] ) ;
+       fhir:text [ fhir:v "permanent weakness of the left arm" ]
+     ] ;
+     fhir:qualitativeRisk [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/risk-probability"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "moderate" ] ;
+         fhir:display [ fhir:v "moderate likelihood" ]
+       ] )
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

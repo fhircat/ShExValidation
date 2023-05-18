@@ -1,0 +1,20 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <PlanDefinition.shex>
+#imported_end
+
+start=@<cdshooksserviceplandefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# The definition of a plan for a series of actions, independent of any specific patient or context
+<cdshooksserviceplandefinition> EXTENDS @<PlanDefinition> CLOSED {   
+
+    a [fhir:cdshooksserviceplandefinition]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+}  
+

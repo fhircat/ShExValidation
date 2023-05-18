@@ -1,0 +1,186 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <id.shex>
+IMPORT <code.shex>
+IMPORT <Task.shex>
+IMPORT <Group.shex>
+IMPORT <Device.shex>
+IMPORT <Coding.shex>
+IMPORT <Patient.shex>
+IMPORT <instant.shex>
+IMPORT <Location.shex>
+IMPORT <Specimen.shex>
+IMPORT <CareTeam.shex>
+IMPORT <CarePlan.shex>
+IMPORT <Endpoint.shex>
+IMPORT <Reference.shex>
+IMPORT <Procedure.shex>
+IMPORT <Substance.shex>
+IMPORT <Medication.shex>
+IMPORT <Appointment.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <ImagingStudy.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <ServiceRequest.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <CodeableReference.shex>
+IMPORT <HealthcareService.shex>
+IMPORT <AppointmentResponse.shex>
+
+
+start=@<ImagingSelection> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A selection of DICOM SOP instances and/or frames
+<ImagingSelection> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:ImagingSelection];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business Identifier for Imaging 
+                                            # Selection 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:imagingselection-status};  # available | entered-in-error | 
+                                            # unknown 
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<Location> OR 
+    			@<Medication> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<Procedure> OR 
+    			@<Specimen> OR 
+    			@<Substance> }?;  # Subject of the selected instances
+    fhir:issued @<instant>?;                # Date / Time when this imaging 
+                                            # selection was created 
+    fhir:performer @<OneOrMore_BackboneElement>?;  # Selector of the instances (human 
+                                            # or machine) 
+    fhir:basedOn @<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_ServiceRequest_OR_Task>?;  # Associated request
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Classifies the imaging selection
+    fhir:code @<CodeableConcept>;           # Imaging Selection purpose text or 
+                                            # code 
+    fhir:studyUid @<id>?;                   # DICOM Study Instance UID
+    fhir:derivedFrom @<OneOrMore_Reference_ImagingStudy>?;  # The imaging study from which the 
+                                            # imaging selection is derived 
+    fhir:endpoint @<OneOrMore_Reference_Endpoint>?;  # The network service providing 
+                                            # retrieval for the images 
+                                            # referenced in the imaging 
+                                            # selection 
+    fhir:seriesUid @<id>?;                  # DICOM Series Instance UID
+    fhir:frameOfReferenceUid @<id>?;        # The Frame of Reference UID for the 
+                                            # selected images 
+    fhir:bodySite @<CodeableReference>?;    # Body part examined
+    fhir:instance @<OneOrMore_BackboneElement>?;  # The selected instances
+    fhir:imageRegion @<OneOrMore_BackboneElement>?;  # A specific 3D region in a DICOM 
+                                            # frame of reference 
+}  
+
+# Selector of the instances (human or machine)
+<ImagingSelection.performer> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:function @<CodeableConcept>?;      # Type of performer
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<HealthcareService> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Author (human or machine)
+}  
+
+# A specific 3D region in a DICOM frame of reference
+<ImagingSelection.imageRegion> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:regionType @<code> AND
+    	{fhir:v @fhirvs:imagingselection-3dgraphictype};  # POINT | MULTIPOINT | POLYLINE | 
+                                            # POLYGON | ELLIPSE | ELLIPSOID 
+    fhir:coordinate @<OneOrMore_decimal>;   # Specifies the coordinates that 
+                                            # define the image region 
+}  
+
+# The selected instances
+<ImagingSelection.instance> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:uid @<id>;                         # DICOM SOP Instance UID
+    fhir:sopClass @<Coding>?;               # DICOM SOP Class UID
+    fhir:subset @<OneOrMore_string>?;       # The selected subset of the SOP 
+                                            # Instance 
+    fhir:imageRegion @<OneOrMore_BackboneElement>?;  # A specific 2D region in a DICOM 
+                                            # image / frame 
+}  
+
+# A specific 2D region in a DICOM image / frame
+<ImagingSelection.instance.imageRegion> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:regionType @<code> AND
+    	{fhir:v @fhirvs:imagingselection-2dgraphictype};  # POINT | POLYLINE | INTERPOLATED | 
+                                            # CIRCLE | ELLIPSE 
+    fhir:coordinate @<OneOrMore_decimal>;   # Specifies the coordinates that 
+                                            # define the image region 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_ServiceRequest_OR_Task> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Appointment> OR 
+			@<AppointmentResponse> OR 
+			@<CarePlan> OR 
+			@<ServiceRequest> OR 
+			@<Task> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_ServiceRequest_OR_Task> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_ImagingStudy> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ImagingStudy> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ImagingStudy> 
+}
+
+<OneOrMore_Reference_Endpoint> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Endpoint> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Endpoint> 
+}
+
+<OneOrMore_decimal> CLOSED {
+    rdf:first @<decimal>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_decimal> 
+}
+
+<OneOrMore_string> CLOSED {
+    rdf:first @<string>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_string> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The type of 2D coordinates describing a 2D image region.
+fhirvs:imagingselection-2dgraphictype ["POINT" "POLYLINE" "INTERPOLATED" "CIRCLE" "ELLIPSE"]
+
+# The status of the ImagingSelection.
+fhirvs:imagingselection-status ["available" "entered-in-error" "unknown"]
+
+# The type of coordinates describing a 3D image region.
+fhirvs:imagingselection-3dgraphictype ["POINT" "MULTIPOINT" "POLYLINE" "POLYGON" "ELLIPSE" "ELLIPSOID"]
+

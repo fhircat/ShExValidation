@@ -1,0 +1,2350 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "operation-outcome"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ]
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "vocab" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "draft" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/operation-outcome"], [ fhir:v "http://hl7.org/fhir/operation-outcome"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "OperationOutcomeCodes"], [ fhir:v "OperationOutcomeCodes"] ;
+  fhir:title [ fhir:v "Operation Outcome Codes"], [ fhir:v "Operation Outcome Codes"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "true"], [ fhir:v "true"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Operation Outcome codes for translatable phrases used by FHIR test servers (see Implementation file translations.xml)"], [ fhir:v "Operation Outcome codes for translatable phrases used by FHIR test servers (see Implementation file translations.xml)"] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:hierarchyMeaning [ fhir:v "is-a"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "DELETE_MULTIPLE_MATCHES" ] ;
+     fhir:display [ fhir:v "Error: Multiple matches exist for the conditional delete" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Fout: er is meer dan één resultaat voor de conditionele delete" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_AUTH_REQUIRED" ] ;
+     fhir:display [ fhir:v "You must authenticate before you can use this service" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Autenticazione richiesta prima di usare questo servizio" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Wymagana autentykacja przed użyciem tego serwisu" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Vous devez être authentifié avant de pouvoir utiliser ce service" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "U moet zich authenticeren voor gebruik van deze service" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "使用此服务前需认证" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Debe autenticarse antes de poder usar este servicio" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_BAD_FORMAT" ] ;
+     fhir:display [ fhir:v "Bad Syntax: \"%s\" must be a %s'" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Неверный синтакс: \"%s\" должен быть %s" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Sintassi Errata: \"%s\" deve essere un %s'" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Błąd składni: \"%s\" powinno być %s'" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Erreur de Syntaxe : \"%s\" doit être un %s" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Verkeerde syntax: \"%s\" moet een %s zijn" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "句法错误: \"%s\" 必须是一个 %s'" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Sintaxis Incorrecta: \"%s\" debe de ser un %s'" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_BAD_SYNTAX" ] ;
+     fhir:display [ fhir:v "Bad Syntax in %s" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Неверный синтакс: %s" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Sintassi errata in %s" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Błąd składni w %s" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Erreur de Syntaxe dans %s" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Verkeerde syntax in %s" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "%s 中句法错误" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Sintaxis Incorrecta en %s" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_CANT_PARSE_CONTENT" ] ;
+     fhir:display [ fhir:v "Unable to parse feed (entry content type = \"%s\")" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Impossibile effettuare il parsing del feed (tipo del contenuto della entry = \"%s\")" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Błąd parsowania (typ zawartości wejściowej = \"%s\")" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Impossible d'analyser le flux (type de contenu de l'entrée = \"%s\")" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Kan feed niet verwerken (contenttype inhoud = \"%s\")" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "无法解析feed (条目的内容类型 = \"%s\")" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "No se pudo parsear el feed (el tipo de contenido de la entry = \"%s\")" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_CANT_PARSE_ROOT" ] ;
+     fhir:display [ fhir:v "Unable to parse feed (root element name = \"%s\")" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Не удалось разобрать данные (корневой элемент = \"%s\")" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Impossibile effettuare il parsing del feed (nome elemento root = \"%s\")" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Błąd parsowania (nazwa elementu root = \"%s\")" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Impossible d'analyser le flux (nom de l'élément racine = \"%s\")" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Kan feed niet verwerken (rootelementnaam = \"%s\")" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "无法解析feed (根元素名 = \"%s\")" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "No se pudo parsear el feed (nombre del elemento raiz = \"%s\")" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_CREATED" ] ;
+     fhir:display [ fhir:v "New resource created" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Nieuwe resource gemaakt" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_DATE_FORMAT" ] ;
+     fhir:display [ fhir:v "The Date value %s is not in the correct format (Xml Date Format required)" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Значение Date %s в неверном формате (требуется Xml Date формат)" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Il valore %s per la data non è nel formato corretto (richiesto il Formato Data Xml)" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Niepoprawny format wartości daty %s (wymagany format XML)" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Le format de la date %s est incorrect (format Date Xml attendu)" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "De Datum-waarde %s heeft niet de juiste structuur (Xml Date vereist)" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "日期的值 %s 格式不正确 (要求是Xml Date格式)" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "El valor de la fecha %s no está en el formato correcto (se requiere un formato de fecha Xml)" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_DELETED" ] ;
+     fhir:display [ fhir:v "This resource has been deleted" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Данный ресурс был удалён" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Questa risorsa è stata cancellata" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Ten zasób został usunięty" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "La ressource a été supprimée" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Deze resource is verwijderd" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "该资源已删除" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Este recurso ha sido borrado" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_DELETED_DONE" ] ;
+     fhir:display [ fhir:v "Resource deleted" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Ресурс удалён" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Risorsa cancellata" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Zasób usunięto" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Ressource supprimée" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Resource verwijderd" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "资源已删除" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Recurso borrado" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_DELETED_ID" ] ;
+     fhir:display [ fhir:v "The resource \"%s\" has been deleted" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Ресурс \"%s\" был удалён" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "La risorsa \"%s\" è stata eliminata" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Zasób \"%s\" został usunięty" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "La ressource \"%s\" a été supprimée" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "De resource \"%s\" is verwijderd" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "资源 \"%s\" 已被删除" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "El recurso \"%s\" ha sido borrado" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_DUPLICATE_ID" ] ;
+     fhir:display [ fhir:v "Duplicate Id %s for resource type %s" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Дублирующий Id %s для типа ресурса %s" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Id %s duplicato per il tipo di risorsa %s" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Zdublowany identyfikator %s dla zasobu typu %s" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Id %s en double pour le type de ressource %s" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Duplicaat-id %s voor resourcetype %s" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "ID %s 重复（资源类型 %s）" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Id %s duplicada para el recurso de tipo %s" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_ERROR_PARSING" ] ;
+     fhir:display [ fhir:v "Error parsing resource Xml (%s)" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Ошибка синтаксического разбора ресурса Xml (%s)" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Errore nel parsing della risorsa Xml (%s)" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Błąd w trakcie parsowania zasobu XML (%s)" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Erreur d'analyse de la ressource Xml (%s)" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Fout in verwerking resource Xml (%s)" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "解析资源Xml时出错 (%s)" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Error parseando el recurso Xml (%s)" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_ID_INVALID" ] ;
+     fhir:display [ fhir:v "Id \"%s\" has an invalid character \"%s\"" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Id \"%s\" содержит недопустимые символы \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "L''Id \"%s\" ha un carattere non valido: \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Identyfikator \"%s\" zawiera niepoprawny znak \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Id \"%s\" possède un caractère invalide \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Id \"%s\" heeft een ongeldig teken \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "ID \"%s\" 带有非法字符: \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "El Id \"%s\" contiene el caracter inválido \"%s\"" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_ID_TOO_LONG" ] ;
+     fhir:display [ fhir:v "Id \"%s\" too long (length limit 36)" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Недопустимая длина Id \"%s\" (ограничение 36)" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Id \"%s\" troppo lunga (limite di lunghezza: 36)" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Identyfikator \"%s\" jest zbyt długi (limit długości 36)" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Id \"%s\" trop long (la longueur limite est 36)" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Id \"%s\" te lang (max lengte 36)" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Id \"%s\" 过长 (长度限制: 36)" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "El Id \"%s\" es demasiado largo (limite de longitud: 36)" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_INVALID_ID" ] ;
+     fhir:display [ fhir:v "Id not accepted" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Id не принято" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Id non accettato" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Identyfikator nie zaakceptowany" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Id non accepté" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Id niet geaccepteerd" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Id不被接受" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Id no aceptada" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_JSON_OBJECT" ] ;
+     fhir:display [ fhir:v "Json Source for a resource should start with an object" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Json Source для ресурса должен начинаться с объекта" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Il sorgente Json di una risorsa dovrebbe iniziare con un oggetto" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Źródło json dla zasobu powinno rozpoczynać się od obiektu" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "La source Json pour une ressource doit commencer par un objet" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Json Source van een resource moeten beginnen met een object" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "资源的Json源应以一个object开始" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "La fuente Json para un recurso debería empezar con un objeto" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_LOCAL_FAIL" ] ;
+     fhir:display [ fhir:v "Unable to resolve local reference to resource %s" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Невозможно определить локальную ссылку на ресурс %s" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Impossibile risolvere il riferimento locale alla risorsa %s" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Zasób wskazywany przez loklaną referencję %s nie został odnaleziony" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Impossible de résourdre la référence locale à la ressource %s" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "De resource met lokale referentie %s is niet gevonden" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "无法解析对资源 %s 的本地引用" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Imposible resolver la referencia al recurso %s" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_NO_EXIST" ] ;
+     fhir:display [ fhir:v "Resource Id \"%s\" does not exist" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Ресурс Id \"%s\" не существует" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "La risorsa con Id \"%s\" non esiste" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Zasób o identyfikatorze \"%s\" nie istnieje" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "La ressource avec l'Id \"%s\" n'existe pas" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Resource-id \"%s\" bestaat niet" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "资源Id \"%s\"不存在" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "El recurso con Id \"%s\" no existe" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_NO_MATCH" ] ;
+     fhir:display [ fhir:v "No Resource found matching the query \"%s\"" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Nessuna Risorsa soddisfa la query \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Geen resource gevonden met query \"%s\"" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_NO_MODULE" ] ;
+     fhir:display [ fhir:v "No module could be found to handle the request \"%s\"" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Модуль для обработки запроса \"%s\" не найден" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Impossibile trovare un modulo per gestire la richiesta \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Nie można odnaleźć modułu, aby obsłużyć żądanie \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Aucun module disponible pour traiter la requête \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Er kon geen module worden gevonden om verzoek \"%s\" te verwerken" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "无法找到处理请求\"%s\"的模块" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "No se encontró un modulo que gestione la petición \"%s\"" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_NO_SUMMARY" ] ;
+     fhir:display [ fhir:v "No Summary for this resource" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Отсутствует Summary для данного ресурса" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Nessun riepilogo per questa risorsa" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Brak podsumowania (Summary) dla tego zasobu" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Aucun résumé disponible pour cette ressource" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Geen samenvatting voor deze resource" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "该资源无summary" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "No existe un resumen para este recurso" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_OP_NOT_ALLOWED" ] ;
+     fhir:display [ fhir:v "Operation %s not allowed for resource %s (due to local configuration)" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Операция %s недопустима для ресурса %s (по причине локальной конфигурации)" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Operazione %s non consentita per la risorsa %s (a causa di configurazioni locali)" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Niedozwolona operacja %s dla zasobu %s (ze względu na lokalną konfigurację)" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "L'opération %s n'est pas permise pour la ressource %s (à cause de la configuration locale)" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Bewerking %s niet toegestaan voor resource %s (vanwege lokale configuratie)" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "操作 %s 不允许，对于资源 %s (由于本地配置)" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Operación %s no permitida para el recurso %s (debido a la configuración local)" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_PARAM_CHAINED" ] ;
+     fhir:display [ fhir:v "Unknown chained parameter name \"%s\"" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Неизвестое вложенное наименование параметра \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Nome di parametro concatenato sconosciuto: \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Nieznana nazwa parametru powiązanego \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Nom du paramètre chainé inconnu : \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Onbekende geschakelde parameternaam \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "未知的链式参数名: \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Nombre de parametro encadenado desconocido: \"%s\"" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_PARAM_INVALID" ] ;
+     fhir:display [ fhir:v "Parameter \"%s\" content is invalid" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Il contenuto del Parametro \"%s\" non è valido" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Waarde van parameter \"%s\" is ongeldig" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_PARAM_MODIFIER_INVALID" ] ;
+     fhir:display [ fhir:v "Parameter \"%s\" modifier is invalid" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Modifier van parameter \"%s\" is ongeldig" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_PARAM_NO_REPEAT" ] ;
+     fhir:display [ fhir:v "Parameter \"%s\" is not allowed to repeat" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Параметр \"%s\" не может быть повторён" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Non � consentito ripetere il parametro \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Parametr \"%s\" nie może zostać powtórzony" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Le paramètre \"%s\" ne peut pas être répété" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Parameter \"%s\" mag niet herhalen" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "参数\"%s\"不可重复" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "No se permite la repetición del parámetro \"%s\"" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_PARAM_UNKNOWN" ] ;
+     fhir:display [ fhir:v "Parameter \"%s\" not understood" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Параметр \"%s\" не понят" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Parametro \"%s\" non riconosciuto" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Niezrozumiały parametr \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Paramètre \"%s\" non reconnu" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Parameter \"%s\" onbekend" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "无法理解参数\"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Parámetro \"%s\" no reconocido" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_REMOTE_FAIL" ] ;
+     fhir:display [ fhir:v "Unable to resolve local reference to resource %s" ]
+  ] [
+     fhir:code [ fhir:v "MSG_RESOURCE_EXAMPLE_PROTECTED" ] ;
+     fhir:display [ fhir:v "Resources with identity \"example\" cannot be deleted (for testing/training purposes)" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Ресурс с идентификатором \"example\" не может быть удалён (для случаев тестирования/обучения)" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Le Risorse aventi l'identità \"example\" non possono essere cancellate (per finalità di test/formazione)" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Zasoby oznaczone jako \"example\" nie mogą zostać usunięte (dla celów testów/szkoleń)" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Les ressources ayant l'identité \"example\" ne peuvent pas être supprimées (utilisées pour les tests/formations)" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Resources met identiteit \"voorbeeld\" kunnen niet worden verwijderd (ten behoeve van testen/training)" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "以\"example\" 为ID的资源不能被删除 (用于测试/培训)" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Recursos con la identidad \"example\" no pueden ser borrados (son usados para pruebas/entrenamiento)" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_RESOURCE_ID_FAIL" ] ;
+     fhir:display [ fhir:v "unable to allocate resource id" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "невозможно выделить идентификатор ресурса" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "impossibile allocare l''id della risorsa" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "nie można nadać identyfikatora zasobu" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "impossible d'allouer l'id de la ressource" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "kan geen resource-id reserveren" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "无法分配资源ID" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "imposible encontrar el id del recurso" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_RESOURCE_ID_MISMATCH" ] ;
+     fhir:display [ fhir:v "Resource Id Mismatch" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Problème de correspondance d'Id de la Ressource" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Resource ID's komen niet overeen" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_RESOURCE_ID_MISSING" ] ;
+     fhir:display [ fhir:v "Resource Id Missing" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Id della Risorsa mancante" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Id de la Ressource manquante" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Resource ID ontbreekt" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_RESOURCE_NOT_ALLOWED" ] ;
+     fhir:display [ fhir:v "Not allowed to submit a resource for this operation" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Для данной операции отправка ресурса недопустима" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Non è consentito sottomettere una risorsa per questa operazione" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Nie można zgłosić zasobu dla tej operacji" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Non autorisé à soumettre une ressource pour cette opération" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Niet toegestaan om een resource in te dienen voor deze bewerking" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "该操作不允许提交资源" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "No se permite el envío de un recurso para esta operación" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_RESOURCE_REQUIRED" ] ;
+     fhir:display [ fhir:v "A resource is required" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Требуется ресурс" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "E'' richiesta una risorsa" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Zasób jest wymagany" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Une ressource est requise" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Een resource is verplicht" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "必须提供一个资源" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Se requiere un recurso" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_RESOURCE_TYPE_MISMATCH" ] ;
+     fhir:display [ fhir:v "Resource Type Mismatch" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Несоответствие типа ресурса" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Tipo Risorsa non corrispondente" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Niepoprawny typ zasobu" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Type de ressource incorrect" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Verkeerd resourcetype" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "资源类型不匹配" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Los Tipos de los recursos no coinciden" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_SORT_UNKNOWN" ] ;
+     fhir:display [ fhir:v "Unknown sort parameter name \"%s\"" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Неизвестное имя параметра сортировки \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Nome del parametro di ordinamento \"%s\" non riconosciuto" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Nieznany parametr sortowania \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Nom du paramètre de tri inconnu \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Onbekende parameternaam \"%s\" voor sortering" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "未知的排序参数名称\"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Nombre del parámetro de ordenación \"%s\" desconocido" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_TRANSACTION_DUPLICATE_ID" ] ;
+     fhir:display [ fhir:v "Duplicate Identifier in transaction: %s" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Дублирующий идентификатор в транзакции: %s" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Zdublowany identyfikator w transakcji: %s" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Identifiant en double dans la transaction : %s" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Dubbele identificatie in transactie: %s" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "事务中存在重复Id: %s" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Identificador duplicado en la transacción: %s" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_TRANSACTION_MISSING_ID" ] ;
+     fhir:display [ fhir:v "Missing Identifier in transaction - an entry.id must be provided" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Отсутствует идентификатор в транзакции - требуется entry.id" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Brak identyfikatora w transakcji - należy podać entry.id" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Identifiant manquant dans la transaction - un élément entry.id doit être fourni" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Ontbrekende identificatie in transactie - entry.id is verplicht" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "事务中缺少Id - 必须提供一个entry.id" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Identificador de la transacción no encontrado - se debe proporcionar un entry.id" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_UNHANDLED_NODE_TYPE" ] ;
+     fhir:display [ fhir:v "Unhandled xml node type \"%s\"" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Не обработанный xml узел \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Tipo di nodo Xml non gestito \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Nieobsługiwany typ węzła XML \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Type de noeud xml \"%s\" non traité" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Kan xml nodetype \"%s\" niet verwerken" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "未处理的XML节点类型\"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Tipo de nodo Xml no soportado \"%s\"" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_UNKNOWN_CONTENT" ] ;
+     fhir:display [ fhir:v "Unknown Content (%s) at %s" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Неизвестный контент (%s) в %s" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Contenuto Sconosciuto (%s) at %s" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Nieznana zawartość (%s) dla %s" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Contenu inconnu (%s) à %s" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Onbekende content (%s) at %s" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "未知内容 (%s) 位于 %s" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Contenido desconocido (%s) en %s" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_UNKNOWN_OPERATION" ] ;
+     fhir:display [ fhir:v "unknown FHIR http operation" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "неизвестная операция FHIR http" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "operazione http FHIR sconosciuta" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "nieznana operacja FHIR http" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "operation http FHIR inconnue" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "onbekende FHIR http operation" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "未知的FHIR HTTP操作" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Operación http FHIR desconocida" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_UNKNOWN_TYPE" ] ;
+     fhir:display [ fhir:v "Resource Type \"%s\" not recognised" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Тип ресурса \"%s\" не распознан" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Tipo di Risorsa \"%s\" non riconosciuto" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Nie rozpoznany typ zasobu: \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Type de ressource \"%s\" non reconnu" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Resourcetype \"%s\" niet herkend" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "资源类型\"%s\"未识别" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Tipo de Recurso \"%s\" no reconocido" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_UPDATED" ] ;
+     fhir:display [ fhir:v "existing resource updated" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "существующий ресурс обновлён" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "risorsa esistente aggiornata" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "uaktualniono istniejący zasób" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "ressource existante mise à jour" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "bestaande resource updated" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "已有资源被更新" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Recurso existente actualizado" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_VERSION_AWARE" ] ;
+     fhir:display [ fhir:v "Version aware updates are required for this resource" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Для данного ресурса необходимы обновления с учётом версии" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Questa risorsa richiede aggiornamenti per versione" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Uaktualnienia zakładające wersjonowanie są wymagane dla tego zasobu" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Des mises à jour en relation avec la version sont requises pour cette ressource" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Versie-bewuste updates zijn vereist voor deze resource" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "该资源的更新必须针对版本" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Este recurso requiere actualizaciones en base a versiones" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_VERSION_AWARE_CONFLICT" ] ;
+     fhir:display [ fhir:v "Update Conflict (server current version = \"%s\", client version referenced = \"%s\")" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Конфликт обновления (текущая версия сервера = \"%s\", указанная версия клиента = \"%s\")" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Conflitto nell''aggiornamento (attuale = \"%s\", quotato = \"%s\")" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Konflikt podczas uaktualnienia (obecna wersja na serwerze = \"%s\", wersja wskazana przez klienta = \"%s\")" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Conflit de mise à jour (version courante du serveur = \"%s\", version référencée du client = \"%s\")" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Updateconflict (huidige serverversie = \"%s\", opgegeven clientversie = \"%s\")" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "更新冲突 (服务器当前版本 = \"%s\", 客户端引用的版本 = \"%s\")" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Conflicto de actualizaciones (versión actual del servidor = \"%s\", versión del cliente referenciada = \"%s\")" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_VERSION_AWARE_URL" ] ;
+     fhir:display [ fhir:v "Version specific URL not recognised" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "URL для указанной версии не распознан" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "URL specifico alla versione non riconosciuto" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Nie rozpoznany URL specyficzny dla wersji" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "URL spécifique à une version non reconnue" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Versie-specifieke URL niet herkend" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "未识别特定版本的URL" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "URL especifica de la versión no reconocida" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "MSG_WRONG_NS" ] ;
+     fhir:display [ fhir:v "This does not appear to be a FHIR element or resource (wrong namespace \"%s\")" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Dit lijkt geen FHIR element of resource te zijn (verkeerde namespace \"%s\")" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "SEARCH_MULTIPLE" ] ;
+     fhir:display [ fhir:v "Error: Multiple matches exist for %s search parameters \"%s\"" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Ошибка: множественные совпадения для %s с параметрами поиска \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Errore: Trovate corrispondenze multiple per %s parametri di ricerca \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Błąd: Istnieją wielokrotne dopasowania dla %s parametrów wyszukiwania \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Erreur : Plusieurs correspondances existent pour ce paramètre de recherche %s" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Fout: er is meer dan één resultaat voor %s zoekparameters \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "错误: 对于 %s 搜索的参数 \"%s\"存在多个匹配" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Error: Multiples ocurrencias existen para %s parametros de búsqueda \"%s\"" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "SEARCH_NONE" ] ;
+     fhir:display [ fhir:v "Error: no processable search found for %s search parameters \"%s\"" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "ru" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Ошибка: обрабатываемых результатов поиска для %s с параметрами поиска \"%s\" не найдено" ]
+     ] [
+       fhir:language [ fhir:v "it" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Errore: non è stato trovato alcun parametro di ricerca processabile per %s parametri di ricerca \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "pl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Błąd: Niewykonalne wyszukiwanie dla %s parametrów wyszukiwania \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "fr" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Erreur : aucune recherche trouvée pour les paramètres %s \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Fout: geen verwerkbare zoekactie gevonden voor %s zoekparameters \"%s\"" ]
+     ] [
+       fhir:language [ fhir:v "zh" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "错误: 对%s搜索参数\"%s\"未找到可处理的搜索" ]
+     ] [
+       fhir:language [ fhir:v "es" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Error: no se encontro una búsqueda apropiada para %s parametros de búsqueda \"%s\"" ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "UPDATE_MULTIPLE_MATCHES" ] ;
+     fhir:display [ fhir:v "Error: Multiple matches exist for the conditional update" ] ;
+     fhir:designation ( [
+       fhir:language [ fhir:v "nl" ] ;
+       fhir:use [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+         fhir:code [ fhir:v "display" ]
+       ] ;
+       fhir:value [ fhir:v "Fout: er is meer dan één resultaat voor de conditionele update" ]
+     ] )
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

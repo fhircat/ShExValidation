@@ -1,0 +1,426 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <id.shex>
+#imported_end
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <url.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <integer.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
+IMPORT <Resource.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <UsageContext.shex>
+#imported_end
+#imported_begin 
+IMPORT <ContactDetail.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+
+start=@<TestScript> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Describes a set of tests
+<TestScript> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:TestScript]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri>?;                       # Canonical identifier for this test 
+                                            # script, represented as a URI 
+                                            # (globally unique) 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the test 
+                                            # script 
+    fhir:version @<string>?;                # Business version of the test script
+    fhir:versionAlgorithm @<string>  OR 
+    			@<Coding>  ?;  # How to compare versions
+    fhir:name @<string>;                    # Name for this test script 
+                                            # (computer friendly) 
+    fhir:title @<string>?;                  # Name for this test script (human 
+                                            # friendly) 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:date @<dateTime>?;                 # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher/steward 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the test script 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for test 
+                                            # script (if applicable) 
+    fhir:purpose @<markdown>?;              # Why this test script is defined
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:copyrightLabel @<string>?;         # Copyright holder and year(s)
+    fhir:origin @<OneOrMore_TestScript.origin>?;  # An abstract server representing a 
+                                            # client or sender in a message 
+                                            # exchange 
+    fhir:destination @<OneOrMore_TestScript.destination>?;  # An abstract server representing a 
+                                            # destination or receiver in a 
+                                            # message exchange 
+    fhir:metadata @<TestScript.metadata>?;  # Required capability that is 
+                                            # assumed to function correctly on 
+                                            # the FHIR server being tested 
+    fhir:scope @<OneOrMore_TestScript.scope>?;  # Indication of the artifact(s) that 
+                                            # are tested by this test case 
+    fhir:fixture @<OneOrMore_TestScript.fixture>?;  # Fixture in the test script - by 
+                                            # reference (uri) 
+    fhir:profile @<OneOrMore_canonical>?;   # Reference of the validation profile
+    fhir:variable @<OneOrMore_TestScript.variable>?;  # Placeholder for evaluated elements
+    fhir:setup @<TestScript.setup>?;        # A series of required setup 
+                                            # operations before tests are 
+                                            # executed 
+    fhir:test @<OneOrMore_TestScript.test>?;  # A test in this script
+    fhir:teardown @<TestScript.teardown>?;  # A series of required clean up steps
+}  
+
+# Capabilities  that are assumed to function correctly on the FHIR server being tested
+<TestScript.metadata.capability> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:required @<boolean>;               # Are the capabilities required?
+    fhir:validated @<boolean>;              # Are the capabilities validated?
+    fhir:description @<string>?;            # The expected capabilities of the 
+                                            # server 
+    fhir:origin @<OneOrMore_integer>?;      # Which origin server these 
+                                            # requirements apply to 
+    fhir:destination @<integer>?;           # Which server these requirements 
+                                            # apply to 
+    fhir:link @<OneOrMore_uri>?;            # Links to the FHIR specification
+    fhir:capabilities @<canonical>;         # Required Capability Statement
+}  
+
+# The setup operation to perform
+<TestScript.setup.action.operation> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<Coding>?;                   # The operation code type that will 
+                                            # be executed 
+    fhir:resource @<uri>?;                  # Resource type
+    fhir:label @<string>?;                  # Tracking/logging operation label
+    fhir:description @<string>?;            # Tracking/reporting operation 
+                                            # description 
+    fhir:accept @<code> AND
+    	{fhir:v @fhirvs:mimetypes}?;  # Mime type to accept in the payload 
+                                            # of the response, with charset etc. 
+    fhir:contentType @<code> AND
+    	{fhir:v @fhirvs:mimetypes}?;  # Mime type of the request payload 
+                                            # contents, with charset etc. 
+    fhir:destination @<integer>?;           # Server responding to the request
+    fhir:encodeRequestUrl @<boolean>;       # Whether or not to send the request 
+                                            # url in encoded format 
+    fhir:method @<code> AND
+    	{fhir:v @fhirvs:http-operations}?;  # delete | get | options | patch | 
+                                            # post | put | head 
+    fhir:origin @<integer>?;                # Server initiating the request
+    fhir:params @<string>?;                 # Explicitly defined path parameters
+    fhir:requestHeader @<OneOrMore_TestScript.setup.action.operation.requestHeader>?;  # Each operation can have one or 
+                                            # more header elements 
+    fhir:requestId @<id>?;                  # Fixture Id of mapped request
+    fhir:responseId @<id>?;                 # Fixture Id of mapped response
+    fhir:sourceId @<id>?;                   # Fixture Id of body for PUT and 
+                                            # POST requests 
+    fhir:targetId @<id>?;                   # Id of fixture used for extracting 
+                                            # the [id],  [type], and [vid] for 
+                                            # GET requests 
+    fhir:url @<string>?;                    # Request URL
+}  
+
+# A test operation or assert to perform
+<TestScript.test.action> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:operation @<TestScript.setup.action.operation>?;  # The setup operation to perform
+    fhir:assert @<TestScript.setup.action.assert>?;  # The setup assertion to perform
+}  
+
+# An abstract server representing a client or sender in a message exchange
+<TestScript.origin> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:index @<integer>;                  # The index of the abstract origin 
+                                            # server starting at 1 
+    fhir:profile @<Coding>;                 # FHIR-Client | FHIR-SDC-FormFiller
+    fhir:url @<url>?;                       # The url path of the origin server
+}  
+
+# Links to the FHIR specification
+<TestScript.metadata.link> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:url @<uri>;                        # URL to the specification
+    fhir:description @<string>?;            # Short description
+}  
+
+# An abstract server representing a destination or receiver in a message exchange
+<TestScript.destination> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:index @<integer>;                  # The index of the abstract 
+                                            # destination server starting at 1 
+    fhir:profile @<Coding>;                 # FHIR-Server | FHIR-SDC-FormManager 
+                                            # | FHIR-SDC-FormReceiver | 
+                                            # FHIR-SDC-FormProcessor 
+    fhir:url @<url>?;                       # The url path of the destination 
+                                            # server 
+}  
+
+# One or more teardown operations to perform
+<TestScript.teardown.action> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:operation @<TestScript.setup.action.operation>;  # The teardown operation to perform
+}  
+
+# Each operation can have one or more header elements
+<TestScript.setup.action.operation.requestHeader> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:field @<string>;                   # HTTP header field name
+    fhir:value @<string>;                   # HTTP headerfield value
+}  
+
+# A test in this script
+<TestScript.test> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>?;                   # Tracking/logging name of this test
+    fhir:description @<string>?;            # Tracking/reporting short 
+                                            # description of the test 
+    fhir:action @<OneOrMore_TestScript.test.action>;  # A test operation or assert to 
+                                            # perform 
+}  
+
+# Required capability that is assumed to function correctly on the FHIR server being tested
+<TestScript.metadata> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:link @<OneOrMore_TestScript.metadata.link>?;  # Links to the FHIR specification
+    fhir:capability @<OneOrMore_TestScript.metadata.capability>;  # Capabilities  that are assumed to 
+                                            # function correctly on the FHIR 
+                                            # server being tested 
+}  
+
+# Fixture in the test script - by reference (uri)
+<TestScript.fixture> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:autocreate @<boolean>;             # Whether or not to implicitly 
+                                            # create the fixture during setup 
+    fhir:autodelete @<boolean>;             # Whether or not to implicitly 
+                                            # delete the fixture during teardown 
+    fhir:resource @<Reference> AND {fhir:link 
+    			@<Resource> ? }?;  # Reference of the resource
+}  
+
+# Placeholder for evaluated elements
+<TestScript.variable> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>;                    # Descriptive name for this variable
+    fhir:defaultValue @<string>?;           # Default, hard-coded, or 
+                                            # user-defined value for this 
+                                            # variable 
+    fhir:description @<string>?;            # Natural language description of 
+                                            # the variable 
+    fhir:expression @<string>?;             # The FHIRPath expression against 
+                                            # the fixture body 
+    fhir:headerField @<string>?;            # HTTP header field name for source
+    fhir:hint @<string>?;                   # Hint help text for default value 
+                                            # to enter 
+    fhir:path @<string>?;                   # XPath or JSONPath against the 
+                                            # fixture body 
+    fhir:sourceId @<id>?;                   # Fixture Id of source expression or 
+                                            # headerField within this variable 
+}  
+
+# A series of required clean up steps
+<TestScript.teardown> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:action @<OneOrMore_TestScript.teardown.action>;  # One or more teardown operations to 
+                                            # perform 
+}  
+
+# Indication of the artifact(s) that are tested by this test case
+<TestScript.scope> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:artifact @<canonical>;             # The specific conformance artifact 
+                                            # being tested 
+    fhir:conformance @<CodeableConcept>?;   # required | optional | strict
+    fhir:phase @<CodeableConcept>?;         # unit | integration | production
+}  
+
+# A setup operation or assert to perform
+<TestScript.setup.action> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:operation @<TestScript.setup.action.operation>?;  # The setup operation to perform
+    fhir:assert @<TestScript.setup.action.assert>?;  # The assertion to perform
+}  
+
+# The assertion to perform
+<TestScript.setup.action.assert> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:label @<string>?;                  # Tracking/logging assertion label
+    fhir:description @<string>?;            # Tracking/reporting assertion 
+                                            # description 
+    fhir:direction @<code> AND
+    	{fhir:v @fhirvs:assert-direction-codes}?;  # response | request
+    fhir:compareToSourceId @<string>?;      # Id of the source fixture to be 
+                                            # evaluated 
+    fhir:compareToSourceExpression @<string>?;  # The FHIRPath expression to 
+                                            # evaluate against the source 
+                                            # fixture 
+    fhir:compareToSourcePath @<string>?;    # XPath or JSONPath expression to 
+                                            # evaluate against the source 
+                                            # fixture 
+    fhir:contentType @<code> AND
+    	{fhir:v @fhirvs:mimetypes}?;  # Mime type to compare against the 
+                                            # 'Content-Type' header 
+    fhir:expression @<string>?;             # The FHIRPath expression to be 
+                                            # evaluated 
+    fhir:headerField @<string>?;            # HTTP header field name
+    fhir:minimumId @<string>?;              # Fixture Id of minimum content 
+                                            # resource 
+    fhir:navigationLinks @<boolean>?;       # Perform validation on navigation 
+                                            # links? 
+    fhir:operator @<code> AND
+    	{fhir:v @fhirvs:assert-operator-codes}?;  # equals | notEquals | in | notIn | 
+                                            # greaterThan | lessThan | empty | 
+                                            # notEmpty | contains | notContains 
+                                            # | eval 
+    fhir:path @<string>?;                   # XPath or JSONPath expression
+    fhir:requestMethod @<code> AND
+    	{fhir:v @fhirvs:http-operations}?;  # delete | get | options | patch | 
+                                            # post | put | head 
+    fhir:requestURL @<string>?;             # Request URL comparison value
+    fhir:resource @<uri>?;                  # Resource type
+    fhir:response @<code> AND
+    	{fhir:v @fhirvs:assert-response-code-types}?;  # okay | created | noContent | 
+                                            # notModified | bad | forbidden | 
+                                            # notFound | methodNotAllowed | 
+                                            # conflict | gone | 
+                                            # preconditionFailed | unprocessable 
+    fhir:responseCode @<string>?;           # HTTP response code to test
+    fhir:sourceId @<id>?;                   # Fixture Id of source expression or 
+                                            # headerField 
+    fhir:stopTestOnFail @<boolean>;         # If this assert fails, will the 
+                                            # current test execution stop? 
+    fhir:validateProfileId @<id>?;          # Profile Id of validation profile 
+                                            # reference 
+    fhir:value @<string>?;                  # The value to compare to
+    fhir:warningOnly @<boolean>;            # Will this assert produce a warning 
+                                            # only on error? 
+}  
+
+# A series of required setup operations before tests are executed
+<TestScript.setup> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:action @<OneOrMore_TestScript.setup.action>;  # A setup operation or assert to 
+                                            # perform 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+<OneOrMore_TestScript.origin> CLOSED {
+    rdf:first @<TestScript.origin>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_TestScript.origin> 
+}
+
+<OneOrMore_TestScript.destination> CLOSED {
+    rdf:first @<TestScript.destination>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_TestScript.destination> 
+}
+
+<OneOrMore_TestScript.scope> CLOSED {
+    rdf:first @<TestScript.scope>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_TestScript.scope> 
+}
+
+<OneOrMore_TestScript.fixture> CLOSED {
+    rdf:first @<TestScript.fixture>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_TestScript.fixture> 
+}
+
+
+
+<OneOrMore_TestScript.variable> CLOSED {
+    rdf:first @<TestScript.variable>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_TestScript.variable> 
+}
+
+<OneOrMore_TestScript.test> CLOSED {
+    rdf:first @<TestScript.test>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_TestScript.test> 
+}
+
+
+
+
+
+<OneOrMore_TestScript.setup.action.operation.requestHeader> CLOSED {
+    rdf:first @<TestScript.setup.action.operation.requestHeader>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_TestScript.setup.action.operation.requestHeader> 
+}
+
+<OneOrMore_TestScript.test.action> CLOSED {
+    rdf:first @<TestScript.test.action>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_TestScript.test.action> 
+}
+
+<OneOrMore_TestScript.metadata.link> CLOSED {
+    rdf:first @<TestScript.metadata.link>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_TestScript.metadata.link> 
+}
+
+<OneOrMore_TestScript.metadata.capability> CLOSED {
+    rdf:first @<TestScript.metadata.capability>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_TestScript.metadata.capability> 
+}
+
+<OneOrMore_TestScript.teardown.action> CLOSED {
+    rdf:first @<TestScript.teardown.action>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_TestScript.teardown.action> 
+}
+
+<OneOrMore_TestScript.setup.action> CLOSED {
+    rdf:first @<TestScript.setup.action>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_TestScript.setup.action> 
+}
+
+#---------------------- Value Sets ------------------------
+
+
+
+
+
+
+

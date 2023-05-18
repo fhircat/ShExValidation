@@ -1,0 +1,25 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Extension.shex>
+
+# The pronouns to use when communicating about an individual.
+<individual-pronouns> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:individual-pronouns];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<Extension>; 
+    fhir:period @<Extension>?; 
+    fhir:comment @<Extension>?; 
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/individual-pronouns"]}; 
+    ^fhir:extension { a [fhir:Patient] OR 
+          a [fhir:RelatedPerson] OR 
+          a [fhir:Person] OR 
+          a [fhir:Practitioner]
+        }
+}  
+

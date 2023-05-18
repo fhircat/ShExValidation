@@ -1,0 +1,104 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ActivityDefinition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "heart-valve-replacement"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: ActivityDefinition</b><a name=\"heart-valve-replacement\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource ActivityDefinition &quot;heart-valve-replacement&quot; </p></div><p><b>status</b>: draft</p><p><b>description</b>: Heart valve replacement</p><h3>UseContexts</h3><table class=\"grid\"><tr><td>-</td><td><b>Code</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Age Range (Details: http://terminology.hl7.org/CodeSystem/usage-context-type code age = 'Age Range', stated as 'null')</td><td>Adult <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (meshb.nlm.nih.gov#D000328)</span></td></tr><tr><td>*</td><td>User Type (Details: http://terminology.hl7.org/CodeSystem/usage-context-type code user = 'User Type', stated as 'null')</td><td>Physician <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#309343006)</span></td></tr></table><p><b>purpose</b>: Describes the proposal to perform a Heart Valve replacement.</p><p><b>usage</b>: This activity definition is used as the definition of a service request to perform a heart valve replacement. Elements that apply universally are defined here, while elements that apply to the specific setting of a referral within a particular order set are defined in the order set.</p><p><b>topic</b>: Heart valve replacement <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#34068001)</span></p><p><b>kind</b>: ServiceRequest</p><p><b>code</b>: Heart valve replacement <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#34068001)</span></p><p><b>timing</b>: Events: Now()</p><h3>Locations</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a href=\"location-example.html\">Location/1</a> &quot;South Wing, second floor&quot;</td></tr></table><h3>Participants</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Role</b></td></tr><tr><td>*</td><td>practitioner</td><td>Interventional Cardiology <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (provider-taxonomy#207RI0011X)</span></td></tr></table><p><b>bodySite</b>: Heart valve structure <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#17401000)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:description [ fhir:v "Heart valve replacement"] ; # 
+  fhir:useContext ( [
+     fhir:code [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/usage-context-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "age" ]
+     ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         fhir:system [ fhir:v "https://meshb.nlm.nih.gov"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "D000328" ] ;
+         fhir:display [ fhir:v "Adult" ]
+       ] )
+     ]
+  ] [
+     fhir:code [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/usage-context-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "user" ]
+     ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         a sct:309343006 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "309343006" ] ;
+         fhir:display [ fhir:v "Physician" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:purpose [ fhir:v "Describes the proposal to perform a Heart Valve replacement."] ; # 
+  fhir:usage [ fhir:v "This activity definition is used as the definition of a service request to perform a heart valve replacement. Elements that apply universally are defined here, while elements that apply to the specific setting of a referral within a particular order set are defined in the order set."] ; # 
+  fhir:topic ( [
+     fhir:coding ( [
+       a sct:34068001 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "34068001" ] ;
+       fhir:display [ fhir:v "Heart valve replacement" ]
+     ] )
+  ] ) ; # 
+  fhir:kind [ fhir:v "ServiceRequest"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a sct:34068001 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "34068001" ] ;
+       fhir:display [ fhir:v "Heart valve replacement" ]
+     ] )
+  ] ; # 
+  fhir:timing [
+     a fhir:Timing ;
+     fhir:event ( [
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/cqf-expression"^^xsd:anyURI ] ;
+         fhir:value [
+           a fhir:Expression ;
+           fhir:language [ fhir:v "text/cql" ] ;
+           fhir:expression [ fhir:v "Now()" ]
+         ]
+       ] )
+     ] )
+  ] ; # 
+  fhir:location [
+     fhir:reference [
+       fhir:reference [ fhir:v "Location/1" ]
+     ]
+  ] ; # 
+  fhir:participant ( [
+     fhir:type [ fhir:v "practitioner" ] ;
+     fhir:role [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://nucc.org/provider-taxonomy"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "207RI0011X" ] ;
+         fhir:display [ fhir:v "Interventional Cardiology" ]
+       ] ) ;
+       fhir:text [ fhir:v "Interventional Cardiology" ]
+     ]
+  ] ) ; # 
+  fhir:bodySite ( [
+     fhir:coding ( [
+       a sct:17401000 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "17401000" ] ;
+       fhir:display [ fhir:v "Heart valve structure" ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

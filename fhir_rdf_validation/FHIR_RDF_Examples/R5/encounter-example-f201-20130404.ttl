@@ -1,0 +1,68 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+#   No indication, because no referral took place  
+#   No admission was deemed necessary  
+
+[a fhir:Encounter ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "f201"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Encounter</b><a name=\"f201\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Encounter &quot;f201&quot; </p></div><p><b>identifier</b>: id: Encounter_Roel_20130404 (use: TEMP)</p><p><b>status</b>: completed</p><p><b>class</b>: <span title=\" Encounter has finished \">ambulatory <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ActCode.html\">ActCode</a>#AMB)</span></span></p><p><b>priority</b>: Normal <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#17621005)</span></p><p><b>type</b>: Consultation <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#11429006)</span></p><p><b>subject</b>: <a href=\"patient-example-f201-roel.html\">Patient/f201: Roel</a> &quot;Roel&quot;</p><p><b>serviceProvider</b>: <a href=\"organization-example-f201-aumc.html\">Organization/f201</a> &quot;Artis University Medical Center (AUMC)&quot;</p><h3>Participants</h3><table class=\"grid\"><tr><td>-</td><td><b>Actor</b></td></tr><tr><td>*</td><td><a href=\"practitioner-example-f201-ab.html\">Practitioner/f201</a> &quot;Dokter Bronsig&quot;</td></tr></table><blockquote><p><b>reason</b></p><h3>Values</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>The patient had fever peaks over the last couple of days. He is worried about these peaks. <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table></blockquote></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "temp" ] ;
+     fhir:value [ fhir:v "Encounter_Roel_20130404" ] #    0..1 The use of this identifier   
+  ] ) ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:class ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActCode"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "AMB" ] ;
+       fhir:display [ fhir:v "ambulatory" ] #    outpatient   
+     ] )
+  ] ) ; #   Encounter has finished  
+  fhir:priority [
+     fhir:coding ( [
+       a sct:17621005 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "17621005" ] ;
+       fhir:display [ fhir:v "Normal" ]
+     ] ) #   Normal priority  
+  ] ; # 
+  fhir:type ( [
+     fhir:coding ( [
+       a sct:11429006 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "11429006" ] ;
+       fhir:display [ fhir:v "Consultation" ]
+     ] ) #   TODO Why is this merely a CodeableConcept and not Resource (any)?  
+  ] ) ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/f201" ] ;
+     fhir:display [ fhir:v "Roel" ]
+  ] ; # 
+  fhir:serviceProvider [
+     fhir:reference [ fhir:v "Organization/f201" ]
+  ] ; # 
+  fhir:participant ( [
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/f201" ]
+     ]
+  ] ) ; # 
+  fhir:reason ( [
+     fhir:value ( [
+       fhir:concept [
+         fhir:text [ fhir:v "The patient had fever peaks over the last couple of days. He is worried about these peaks." ]
+       ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

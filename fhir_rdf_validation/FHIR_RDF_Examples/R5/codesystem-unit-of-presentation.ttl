@@ -1,0 +1,245 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "unit-of-presentation"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "brr" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/unit-of-presentation"], [ fhir:v "http://hl7.org/fhir/unit-of-presentation"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.2031" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.2031" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "UnitOfPresentation"], [ fhir:v "UnitOfPresentation"] ;
+  fhir:title [ fhir:v "Unit Of Presentation"], [ fhir:v "Unit Of Presentation"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2021-01-05T10:01:24+11:00"], [ fhir:v "2021-01-05T10:01:24+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The presentation type in which an administrable medicinal product is given to a patient."], [ fhir:v "The presentation type in which an administrable medicinal product is given to a patient."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/unit-of-presentation"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "200000002108" ] ;
+     fhir:display [ fhir:v "Barrel" ]
+  ] [
+     fhir:code [ fhir:v "200000002109" ] ;
+     fhir:display [ fhir:v "Blister" ]
+  ] [
+     fhir:code [ fhir:v "200000002110" ] ;
+     fhir:display [ fhir:v "Block" ]
+  ] [
+     fhir:code [ fhir:v "200000002111" ] ;
+     fhir:display [ fhir:v "Bottle" ]
+  ] [
+     fhir:code [ fhir:v "200000002112" ] ;
+     fhir:display [ fhir:v "Cachet" ]
+  ] [
+     fhir:code [ fhir:v "200000002113" ] ;
+     fhir:display [ fhir:v "Capsule" ]
+  ] [
+     fhir:code [ fhir:v "200000002114" ] ;
+     fhir:display [ fhir:v "Cartridge" ]
+  ] [
+     fhir:code [ fhir:v "200000002115" ] ;
+     fhir:display [ fhir:v "Collar" ]
+  ] [
+     fhir:code [ fhir:v "200000002116" ] ;
+     fhir:display [ fhir:v "Container" ]
+  ] [
+     fhir:code [ fhir:v "200000002117" ] ;
+     fhir:display [ fhir:v "Cup" ]
+  ] [
+     fhir:code [ fhir:v "200000002118" ] ;
+     fhir:display [ fhir:v "Cylinder" ]
+  ] [
+     fhir:code [ fhir:v "200000002119" ] ;
+     fhir:display [ fhir:v "Dart" ]
+  ] [
+     fhir:code [ fhir:v "200000002120" ] ;
+     fhir:display [ fhir:v "Dressing" ]
+  ] [
+     fhir:code [ fhir:v "200000002121" ] ;
+     fhir:display [ fhir:v "Drop" ]
+  ] [
+     fhir:code [ fhir:v "200000002122" ] ;
+     fhir:display [ fhir:v "Film" ]
+  ] [
+     fhir:code [ fhir:v "200000002123" ] ;
+     fhir:display [ fhir:v "Chewing gum" ]
+  ] [
+     fhir:code [ fhir:v "200000002124" ] ;
+     fhir:display [ fhir:v "Implant" ]
+  ] [
+     fhir:code [ fhir:v "200000002125" ] ;
+     fhir:display [ fhir:v "Inhaler" ]
+  ] [
+     fhir:code [ fhir:v "200000002126" ] ;
+     fhir:display [ fhir:v "Insert" ]
+  ] [
+     fhir:code [ fhir:v "200000002127" ] ;
+     fhir:display [ fhir:v "Jar" ]
+  ] [
+     fhir:code [ fhir:v "200000002128" ] ;
+     fhir:display [ fhir:v "Lozenge" ]
+  ] [
+     fhir:code [ fhir:v "200000002129" ] ;
+     fhir:display [ fhir:v "Lyophilisate" ]
+  ] [
+     fhir:code [ fhir:v "200000002130" ] ;
+     fhir:display [ fhir:v "Matrix" ]
+  ] [
+     fhir:code [ fhir:v "200000002131" ] ;
+     fhir:display [ fhir:v "Pad" ]
+  ] [
+     fhir:code [ fhir:v "200000002132" ] ;
+     fhir:display [ fhir:v "Paper" ]
+  ] [
+     fhir:code [ fhir:v "200000002133" ] ;
+     fhir:display [ fhir:v "Pastille" ]
+  ] [
+     fhir:code [ fhir:v "200000002134" ] ;
+     fhir:display [ fhir:v "Patch" ]
+  ] [
+     fhir:code [ fhir:v "200000002135" ] ;
+     fhir:display [ fhir:v "Pen" ]
+  ] [
+     fhir:code [ fhir:v "200000002136" ] ;
+     fhir:display [ fhir:v "Pendant" ]
+  ] [
+     fhir:code [ fhir:v "200000002137" ] ;
+     fhir:display [ fhir:v "Pessary" ]
+  ] [
+     fhir:code [ fhir:v "200000002138" ] ;
+     fhir:display [ fhir:v "Pillule" ]
+  ] [
+     fhir:code [ fhir:v "200000002139" ] ;
+     fhir:display [ fhir:v "Pipette" ]
+  ] [
+     fhir:code [ fhir:v "200000002140" ] ;
+     fhir:display [ fhir:v "Plaster" ]
+  ] [
+     fhir:code [ fhir:v "200000002141" ] ;
+     fhir:display [ fhir:v "Plug" ]
+  ] [
+     fhir:code [ fhir:v "200000002142" ] ;
+     fhir:display [ fhir:v "Pouch" ]
+  ] [
+     fhir:code [ fhir:v "200000002143" ] ;
+     fhir:display [ fhir:v "Sachet" ]
+  ] [
+     fhir:code [ fhir:v "200000002144" ] ;
+     fhir:display [ fhir:v "Sponge" ]
+  ] [
+     fhir:code [ fhir:v "200000002145" ] ;
+     fhir:display [ fhir:v "Spoonful" ]
+  ] [
+     fhir:code [ fhir:v "200000002146" ] ;
+     fhir:display [ fhir:v "Stick" ]
+  ] [
+     fhir:code [ fhir:v "200000002147" ] ;
+     fhir:display [ fhir:v "Straw" ]
+  ] [
+     fhir:code [ fhir:v "200000002148" ] ;
+     fhir:display [ fhir:v "Strip" ]
+  ] [
+     fhir:code [ fhir:v "200000002149" ] ;
+     fhir:display [ fhir:v "Suppository" ]
+  ] [
+     fhir:code [ fhir:v "200000002150" ] ;
+     fhir:display [ fhir:v "Syringe" ]
+  ] [
+     fhir:code [ fhir:v "200000002151" ] ;
+     fhir:display [ fhir:v "System" ]
+  ] [
+     fhir:code [ fhir:v "200000002152" ] ;
+     fhir:display [ fhir:v "Tablet" ]
+  ] [
+     fhir:code [ fhir:v "200000002153" ] ;
+     fhir:display [ fhir:v "Tag" ]
+  ] [
+     fhir:code [ fhir:v "200000002154" ] ;
+     fhir:display [ fhir:v "Tampon" ]
+  ] [
+     fhir:code [ fhir:v "200000002155" ] ;
+     fhir:display [ fhir:v "Thread" ]
+  ] [
+     fhir:code [ fhir:v "200000002156" ] ;
+     fhir:display [ fhir:v "Tube" ]
+  ] [
+     fhir:code [ fhir:v "200000002157" ] ;
+     fhir:display [ fhir:v "Vessel" ]
+  ] [
+     fhir:code [ fhir:v "200000002158" ] ;
+     fhir:display [ fhir:v "Vial" ]
+  ] [
+     fhir:code [ fhir:v "200000002159" ] ;
+     fhir:display [ fhir:v "Puff" ]
+  ] [
+     fhir:code [ fhir:v "200000002163" ] ;
+     fhir:display [ fhir:v "Actuation" ]
+  ] [
+     fhir:code [ fhir:v "200000002164" ] ;
+     fhir:display [ fhir:v "Ampoule" ]
+  ] [
+     fhir:code [ fhir:v "200000002165" ] ;
+     fhir:display [ fhir:v "Applicator" ]
+  ] [
+     fhir:code [ fhir:v "200000002166" ] ;
+     fhir:display [ fhir:v "Bag" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,92 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <url.shex>
+IMPORT <code.shex>
+IMPORT <string.shex>
+IMPORT <Period.shex>
+IMPORT <Reference.shex>
+IMPORT <Organization.shex>
+IMPORT <DomainResource.shex>
+
+
+start=@<Endpoint> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# The technical details of an endpoint that can be used for electronic services
+<Endpoint> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Endpoint];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Identifies this endpoint across 
+                                            # multiple systems 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:endpoint-status};  # active | suspended | error | off | 
+                                            # entered-in-error | test 
+    fhir:connectionType @<OneOrMore_Coding>;  # Protocol/Profile/Standard to be 
+                                            # used with this endpoint connection 
+    fhir:name @<string>?;                   # A name that this endpoint can be 
+                                            # identified by 
+    fhir:managingOrganization @<Reference> AND {fhir:link 
+    			@<Organization> }?;  # Organization that manages this 
+                                            # endpoint (might not be the 
+                                            # organization that exposes the 
+                                            # endpoint) 
+    fhir:contact @<OneOrMore_ContactPoint>?;  # Contact details for source (e.g. 
+                                            # troubleshooting) 
+    fhir:period @<Period>?;                 # Interval the endpoint is expected 
+                                            # to be operational 
+    fhir:payloadType @<OneOrMore_CodeableConcept>?;  # The type of content that may be 
+                                            # used at this endpoint (e.g. XDS 
+                                            # Discharge summaries) 
+    fhir:payloadMimeType @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:mimetypes}?;  # Mimetype to send. If not 
+                                            # specified, the content could be 
+                                            # anything (including no payload, if 
+                                            # the connectionType defined this) 
+    fhir:address @<url>;                    # The technical base address for 
+                                            # connecting to this endpoint 
+    fhir:header @<OneOrMore_string>?;       # Usage depends on the channel type
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_Coding> CLOSED {
+    rdf:first @<Coding>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Coding> 
+}
+
+<OneOrMore_ContactPoint> CLOSED {
+    rdf:first @<ContactPoint>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactPoint> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_code> CLOSED {
+    rdf:first @<code>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_code> 
+}
+
+<OneOrMore_string> CLOSED {
+    rdf:first @<string>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_string> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The status of the endpoint.
+fhirvs:endpoint-status ["active" "suspended" "error" "off" "entered-in-error" "test"]
+
+# This value set includes all possible codes from BCP-13 (http://tools.ietf.org/html/bcp13)
+fhirvs:mimetypes xsd:string # EXTERNAL
+

@@ -1,0 +1,263 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:CapabilityStatement ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-terminology-server"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <h2>ACMETerminologyServiceCapabilityStatement</h2>\n      <div>\n        <p>Example capability statement for a Terminology Server. A server can support more fucntionality than defined here, but this is the minimum amount</p>\n\n      </div>\n      <table>\n        <tr>\n          <td>Mode</td>\n          <td>SERVER</td>\n        </tr>\n        <tr>\n          <td>Description</td>\n          <td/>\n        </tr>\n        <tr>\n          <td>Transaction</td>\n          <td/>\n        </tr>\n        <tr>\n          <td>System History</td>\n          <td/>\n        </tr>\n        <tr>\n          <td>System Search</td>\n          <td/>\n        </tr>\n      </table>\n      <table>\n        <tr>\n          <th>\n            <b>Resource Type</b>\n          </th>\n          <th>\n            <b>Profile</b>\n          </th>\n          <th>\n            <b title=\"GET a resource (read interaction)\">Read</b>\n          </th>\n          <th>\n            <b title=\"GET all set of resources of the type (search interaction)\">Search</b>\n          </th>\n          <th>\n            <b title=\"PUT a new resource version (update interaction)\">Update</b>\n          </th>\n          <th>\n            <b title=\"POST a new resource (create interaction)\">Create</b>\n          </th>\n        </tr>\n        <tr>\n          <td>CodeSystem</td>\n          <td>\n            <a href=\"http://hl7.org/fhir/StructureDefinition/CodeSystem\">http://hl7.org/fhir/StructureDefinition/CodeSystem</a>\n          </td>\n          <td>y</td>\n          <td>y</td>\n          <td/>\n          <td/>\n        </tr>\n        <tr>\n          <td>ValueSet</td>\n          <td>\n            <a href=\"http://hl7.org/fhir/StructureDefinition/ValueSet\">http://hl7.org/fhir/StructureDefinition/ValueSet</a>\n          </td>\n          <td>y</td>\n          <td>y</td>\n          <td/>\n          <td/>\n        </tr>\n        <tr>\n          <td>ConceptMap</td>\n          <td>\n            <a href=\"http://hl7.org/fhir/StructureDefinition/ConceptMap\">http://hl7.org/fhir/StructureDefinition/ConceptMap</a>\n          </td>\n          <td>y</td>\n          <td>y</td>\n          <td/>\n          <td/>\n        </tr>\n      </table>\n    </div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/CapabilityStatement/terminology-server"^^xsd:anyURI] ; # 
+  fhir:version [ fhir:v "5.0.0"] ; # 
+  fhir:name [ fhir:v "ACMETerminologyServiceCapabilityStatement"] ; # 
+  fhir:title [ fhir:v "ACME Terminology Service — Capability Statement"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:experimental [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:date [ fhir:v "2022-09-01"^^xsd:date] ; # 
+  fhir:description [ fhir:v "Example capability statement for a Terminology Server. A server can support more fucntionality than defined here, but this is the minimum amount"] ; # 
+  fhir:kind [ fhir:v "instance"] ; # 
+  fhir:implementation [
+     fhir:description [ fhir:v "The ACME FHIR Terminology Server" ]
+  ] ; # 
+  fhir:fhirVersion [ fhir:v "5.0.0"] ; # 
+  fhir:format ( [ fhir:v "json"] [ fhir:v "xml"] ) ; # 
+  fhir:rest ( [
+     fhir:mode [ fhir:v "server" ] ;
+     fhir:resource ( [
+       fhir:type [ fhir:v "CodeSystem" ] ;
+       fhir:profile [
+         fhir:v "http://hl7.org/fhir/StructureDefinition/CodeSystem"^^xsd:anyURI ;
+         fhir:link <http://hl7.org/fhir/StructureDefinition/CodeSystem>
+       ] ;
+       fhir:interaction ( [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+           fhir:value [ fhir:v "SHALL" ]
+         ] ) ;
+         fhir:code [ fhir:v "read" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+           fhir:value [ fhir:v "SHALL" ]
+         ] ) ;
+         fhir:code [ fhir:v "search-type" ]
+       ] ) ;
+       fhir:searchParam ( [
+         fhir:name [ fhir:v "url" ] ;
+         fhir:definition [
+           fhir:v "http://hl7.org/fhir/SearchParameter/CodeSystem-url"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/SearchParameter/CodeSystem-url>
+         ] ;
+         fhir:type [ fhir:v "uri" ]
+       ] [
+         fhir:name [ fhir:v "version" ] ;
+         fhir:definition [
+           fhir:v "http://hl7.org/fhir/SearchParameter/CodeSystem-version"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/SearchParameter/CodeSystem-version>
+         ] ;
+         fhir:type [ fhir:v "token" ]
+       ] [
+         fhir:name [ fhir:v "name" ] ;
+         fhir:definition [
+           fhir:v "http://hl7.org/fhir/SearchParameter/CodeSystem-name"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/SearchParameter/CodeSystem-name>
+         ] ;
+         fhir:type [ fhir:v "string" ]
+       ] [
+         fhir:name [ fhir:v "title" ] ;
+         fhir:definition [
+           fhir:v "http://hl7.org/fhir/SearchParameter/CodeSystem-title"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/SearchParameter/CodeSystem-title>
+         ] ;
+         fhir:type [ fhir:v "string" ]
+       ] [
+         fhir:name [ fhir:v "status" ] ;
+         fhir:definition [
+           fhir:v "http://hl7.org/fhir/SearchParameter/CodeSystem-status"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/SearchParameter/CodeSystem-status>
+         ] ;
+         fhir:type [ fhir:v "token" ]
+       ] ) ;
+       fhir:operation ( [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+           fhir:value [ fhir:v "SHALL" ]
+         ] ) ;
+         fhir:name [ fhir:v "expand" ] ;
+         fhir:definition [
+           fhir:v "http://hl7.org/fhir/OperationDefinition/CodeSystem-lookup"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/OperationDefinition/CodeSystem-lookup>
+         ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+           fhir:value [ fhir:v "SHALL" ]
+         ] ) ;
+         fhir:name [ fhir:v "expand" ] ;
+         fhir:definition [
+           fhir:v "http://hl7.org/fhir/OperationDefinition/CodeSystem-validate-code"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/OperationDefinition/CodeSystem-validate-code>
+         ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+           fhir:value [ fhir:v "SHALL" ]
+         ] ) ;
+         fhir:name [ fhir:v "expand" ] ;
+         fhir:definition [
+           fhir:v "http://hl7.org/fhir/OperationDefinition/CodeSystem-subsumes"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/OperationDefinition/CodeSystem-subsumes>
+         ]
+       ] )
+     ] [
+       fhir:type [ fhir:v "ValueSet" ] ;
+       fhir:profile [
+         fhir:v "http://hl7.org/fhir/StructureDefinition/ValueSet"^^xsd:anyURI ;
+         fhir:link <http://hl7.org/fhir/StructureDefinition/ValueSet>
+       ] ;
+       fhir:interaction ( [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+           fhir:value [ fhir:v "SHALL" ]
+         ] ) ;
+         fhir:code [ fhir:v "read" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+           fhir:value [ fhir:v "SHALL" ]
+         ] ) ;
+         fhir:code [ fhir:v "search-type" ]
+       ] ) ;
+       fhir:searchParam ( [
+         fhir:name [ fhir:v "url" ] ;
+         fhir:definition [
+           fhir:v "http://hl7.org/fhir/SearchParameter/ValueSet-url"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/SearchParameter/ValueSet-url>
+         ] ;
+         fhir:type [ fhir:v "uri" ]
+       ] [
+         fhir:name [ fhir:v "version" ] ;
+         fhir:definition [
+           fhir:v "http://hl7.org/fhir/SearchParameter/ValueSet-version"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/SearchParameter/ValueSet-version>
+         ] ;
+         fhir:type [ fhir:v "token" ]
+       ] [
+         fhir:name [ fhir:v "name" ] ;
+         fhir:definition [
+           fhir:v "http://hl7.org/fhir/SearchParameter/ValueSet-name"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/SearchParameter/ValueSet-name>
+         ] ;
+         fhir:type [ fhir:v "string" ]
+       ] [
+         fhir:name [ fhir:v "title" ] ;
+         fhir:definition [
+           fhir:v "http://hl7.org/fhir/SearchParameter/ValueSet-title"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/SearchParameter/ValueSet-title>
+         ] ;
+         fhir:type [ fhir:v "string" ]
+       ] [
+         fhir:name [ fhir:v "status" ] ;
+         fhir:definition [
+           fhir:v "http://hl7.org/fhir/SearchParameter/ValueSet-status"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/SearchParameter/ValueSet-status>
+         ] ;
+         fhir:type [ fhir:v "token" ]
+       ] ) ;
+       fhir:operation ( [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+           fhir:value [ fhir:v "SHALL" ]
+         ] ) ;
+         fhir:name [ fhir:v "expand" ] ;
+         fhir:definition [
+           fhir:v "http://hl7.org/fhir/OperationDefinition/ValueSet-expand"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/OperationDefinition/ValueSet-expand>
+         ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+           fhir:value [ fhir:v "SHALL" ]
+         ] ) ;
+         fhir:name [ fhir:v "expand" ] ;
+         fhir:definition [
+           fhir:v "http://hl7.org/fhir/OperationDefinition/ValueSet-validate-code"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/OperationDefinition/ValueSet-validate-code>
+         ]
+       ] )
+     ] [
+       fhir:type [ fhir:v "ConceptMap" ] ;
+       fhir:profile [
+         fhir:v "http://hl7.org/fhir/StructureDefinition/ConceptMap"^^xsd:anyURI ;
+         fhir:link <http://hl7.org/fhir/StructureDefinition/ConceptMap>
+       ] ;
+       fhir:interaction ( [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+           fhir:value [ fhir:v "SHALL" ]
+         ] ) ;
+         fhir:code [ fhir:v "read" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+           fhir:value [ fhir:v "SHALL" ]
+         ] ) ;
+         fhir:code [ fhir:v "search-type" ]
+       ] ) ;
+       fhir:searchParam ( [
+         fhir:name [ fhir:v "url" ] ;
+         fhir:definition [
+           fhir:v "http://hl7.org/fhir/SearchParameter/ConceptMap-url"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/SearchParameter/ConceptMap-url>
+         ] ;
+         fhir:type [ fhir:v "uri" ]
+       ] [
+         fhir:name [ fhir:v "version" ] ;
+         fhir:definition [
+           fhir:v "http://hl7.org/fhir/SearchParameter/ConceptMap-version"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/SearchParameter/ConceptMap-version>
+         ] ;
+         fhir:type [ fhir:v "token" ]
+       ] [
+         fhir:name [ fhir:v "name" ] ;
+         fhir:definition [
+           fhir:v "http://hl7.org/fhir/SearchParameter/ConceptMap-name"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/SearchParameter/ConceptMap-name>
+         ] ;
+         fhir:type [ fhir:v "string" ]
+       ] [
+         fhir:name [ fhir:v "title" ] ;
+         fhir:definition [
+           fhir:v "http://hl7.org/fhir/SearchParameter/ConceptMap-title"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/SearchParameter/ConceptMap-title>
+         ] ;
+         fhir:type [ fhir:v "string" ]
+       ] [
+         fhir:name [ fhir:v "status" ] ;
+         fhir:definition [
+           fhir:v "http://hl7.org/fhir/SearchParameter/ConceptMap-status"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/SearchParameter/ConceptMap-status>
+         ] ;
+         fhir:type [ fhir:v "token" ]
+       ] ) ;
+       fhir:operation ( [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/capabilitystatement-expectation"^^xsd:anyURI ] ;
+           fhir:value [ fhir:v "SHALL" ]
+         ] ) ;
+         fhir:name [ fhir:v "expand" ] ;
+         fhir:definition [
+           fhir:v "http://hl7.org/fhir/OperationDefinition/ConceptMap-translate"^^xsd:anyURI ;
+           fhir:link <http://hl7.org/fhir/OperationDefinition/ConceptMap-translate>
+         ]
+       ] )
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,62 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:PlanDefinition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "options-example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>"
+  ] ; # 
+  fhir:contained ( [
+     a fhir:ActivityDefinition ;
+     fhir:id [ fhir:v "activitydefinition-medicationrequest-1" ] ;
+     fhir:status [ fhir:v "draft" ] ;
+     fhir:kind [ fhir:v "MedicationRequest" ] ;
+     fhir:product [
+       a fhir:CodeableConcept ;
+       fhir:text [ fhir:v "Medication 1" ]
+     ]
+  ] [
+     a fhir:ActivityDefinition ;
+     fhir:id [ fhir:v "activitydefinition-medicationrequest-2" ] ;
+     fhir:status [ fhir:v "draft" ] ;
+     fhir:kind [ fhir:v "MedicationRequest" ] ;
+     fhir:product [
+       a fhir:CodeableConcept ;
+       fhir:text [ fhir:v "Medication 2" ]
+     ]
+  ] ) ; # 
+  fhir:name [ fhir:v "ThisExampleIllustratesRelationshipsBetweenActions"] ; # 
+  fhir:title [ fhir:v "This example illustrates relationships between actions."] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:description [ fhir:v "This example illustrates relationships between actions."] ; # 
+  fhir:action ( [
+     fhir:groupingBehavior [ fhir:v "logical-group" ] ;
+     fhir:selectionBehavior [ fhir:v "all" ] ;
+     fhir:action ( [
+       fhir:id [ fhir:v "medication-action-1" ] ;
+       fhir:title [ fhir:v "Administer Medication 1" ] ;
+       fhir:definition [ fhir:v "#activitydefinition-medicationrequest-1"^^xsd:anyURI ]
+     ] [
+       fhir:id [ fhir:v "medication-action-2" ] ;
+       fhir:title [ fhir:v "Administer Medication 2" ] ;
+       fhir:relatedAction ( [
+         fhir:targetId [ fhir:v "medication-action-1" ] ;
+         fhir:relationship [ fhir:v "after-end" ] ;
+         fhir:offset [
+           a fhir:Duration ;
+           fhir:value [ fhir:v "1"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "h" ]
+         ]
+       ] ) ;
+       fhir:definition [ fhir:v "#activitydefinition-medicationrequest-2"^^xsd:anyURI ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

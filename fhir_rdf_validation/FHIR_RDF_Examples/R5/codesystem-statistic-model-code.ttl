@@ -1,0 +1,393 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "statistic-model-code"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "cds" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/statistic-model-code"], [ fhir:v "http://hl7.org/fhir/statistic-model-code"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1938" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1938" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "StatisticModelCode"], [ fhir:v "StatisticModelCode"] ;
+  fhir:title [ fhir:v "Statistic Model Code"], [ fhir:v "Statistic Model Code"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2021-08-05T12:00:00+11:00"], [ fhir:v "2021-08-05T12:00:00+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The role that the assertion variable plays."], [ fhir:v "The role that the assertion variable plays."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/statistic-model-code"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "oneTailedTest" ] ;
+     fhir:display [ fhir:v "one-tailed test (1 threshold)" ] ;
+     fhir:definition [ fhir:v "Used for one-tailed test (1 threshold), no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "twoTailedTest" ] ;
+     fhir:display [ fhir:v "two-tailed test (2 thresholds)" ] ;
+     fhir:definition [ fhir:v "Used for two-tailed test (2 threshold), no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "zTest" ] ;
+     fhir:display [ fhir:v "z-test" ] ;
+     fhir:definition [ fhir:v "Used for z-test, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "oneSampleTTest" ] ;
+     fhir:display [ fhir:v "1-sample t-test" ] ;
+     fhir:definition [ fhir:v "Used for 1-sample t-test, may be paired with \"value\" to express degrees of freedom" ]
+  ] [
+     fhir:code [ fhir:v "twoSampleTTest" ] ;
+     fhir:display [ fhir:v "2-sample t-test" ] ;
+     fhir:definition [ fhir:v "Used for 2-sample t-test, may be paired with \"value\" to express degrees of freedom" ]
+  ] [
+     fhir:code [ fhir:v "pairedTTest" ] ;
+     fhir:display [ fhir:v "paired t-test" ] ;
+     fhir:definition [ fhir:v "Used for paired t-test, may be paired with \"value\" to express degrees of freedom" ]
+  ] [
+     fhir:code [ fhir:v "chiSquareTest" ] ;
+     fhir:display [ fhir:v "Chi-square test" ] ;
+     fhir:definition [ fhir:v "Used for Chi-square test, may be paired with \"value\" to express degrees of freedom" ]
+  ] [
+     fhir:code [ fhir:v "chiSquareTestTrend" ] ;
+     fhir:display [ fhir:v "Chi-square test for trend" ] ;
+     fhir:definition [ fhir:v "Used for Chi-square test for trend, may be paired with \"value\" to express degrees of freedom" ]
+  ] [
+     fhir:code [ fhir:v "pearsonCorrelation" ] ;
+     fhir:display [ fhir:v "Pearson correlation" ] ;
+     fhir:definition [ fhir:v "Used for Pearson correlation, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "anova" ] ;
+     fhir:display [ fhir:v "ANOVA (ANalysis Of VAriance)" ] ;
+     fhir:definition [ fhir:v "Used for ANOVA method of analysis, may be paired with \"value\" to express degrees of freedom" ]
+  ] [
+     fhir:code [ fhir:v "anovaOneWay" ] ;
+     fhir:display [ fhir:v "one-way ANOVA" ] ;
+     fhir:definition [ fhir:v "Used for one-way ANOVA method of analysis, may be paired with \"value\" to express degrees of freedom" ]
+  ] [
+     fhir:code [ fhir:v "anovaTwoWay" ] ;
+     fhir:display [ fhir:v "2-way ANOVA without replication" ] ;
+     fhir:definition [ fhir:v "Used for 2-way ANOVA without replication method of analysis, may be paired with \"value\" to express degrees of freedom" ]
+  ] [
+     fhir:code [ fhir:v "anovaTwoWayReplication" ] ;
+     fhir:display [ fhir:v "2-way ANOVA with replication" ] ;
+     fhir:definition [ fhir:v "Used for 2-way ANOVA with replication method of analysis, may be paired with \"value\" to express degrees of freedom" ]
+  ] [
+     fhir:code [ fhir:v "manova" ] ;
+     fhir:display [ fhir:v "multivariate ANOVA (MANOVA)" ] ;
+     fhir:definition [ fhir:v "Used for multivariate ANOVA (MANOVA) method of analysis, may be paired with \"value\" to express degrees of freedom" ]
+  ] [
+     fhir:code [ fhir:v "anovaThreeWay" ] ;
+     fhir:display [ fhir:v "3-way ANOVA" ] ;
+     fhir:definition [ fhir:v "Used for 3-way ANOVA method of analysis, may be paired with \"value\" to express degrees of freedom" ]
+  ] [
+     fhir:code [ fhir:v "signTest" ] ;
+     fhir:display [ fhir:v "sign test" ] ;
+     fhir:definition [ fhir:v "Used for sign test, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "wilcoxonSignedRankTest" ] ;
+     fhir:display [ fhir:v "Wilcoxon signed-rank test" ] ;
+     fhir:definition [ fhir:v "Used for Wilcoxon signed-rank test, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "wilcoxonRankSumTest" ] ;
+     fhir:display [ fhir:v "Wilcoxon rank-sum test" ] ;
+     fhir:definition [ fhir:v "Used for Wilcoxon rank-sum test, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "mannWhitneyUTest" ] ;
+     fhir:display [ fhir:v "Mann-Whitney U test" ] ;
+     fhir:definition [ fhir:v "Used for Mann-Whitney U test, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "fishersExactTest" ] ;
+     fhir:display [ fhir:v "Fisher’s exact test" ] ;
+     fhir:definition [ fhir:v "Used for Fisher's exact test, may be paired with \"value\" to express degrees of freedom" ]
+  ] [
+     fhir:code [ fhir:v "mcnemarsTest" ] ;
+     fhir:display [ fhir:v "McNemar’s test" ] ;
+     fhir:definition [ fhir:v "Used for McNemar's test, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "kruskalWallisTest" ] ;
+     fhir:display [ fhir:v "Kruskal Wallis test" ] ;
+     fhir:definition [ fhir:v "Used for Kruskal Wallis test, may be paired with \"value\" to express degrees of freedom" ]
+  ] [
+     fhir:code [ fhir:v "spearmanCorrelation" ] ;
+     fhir:display [ fhir:v "Spearman correlation" ] ;
+     fhir:definition [ fhir:v "Used for Spearman correlation, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "kendallCorrelation" ] ;
+     fhir:display [ fhir:v "Kendall correlation" ] ;
+     fhir:definition [ fhir:v "Used for Kendall correlation, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "friedmanTest" ] ;
+     fhir:display [ fhir:v "Friedman test" ] ;
+     fhir:definition [ fhir:v "Used for Friedman test, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "goodmanKruskasGamma" ] ;
+     fhir:display [ fhir:v "Goodman Kruska’s Gamma" ] ;
+     fhir:definition [ fhir:v "Used for Goodman Kruska’s Gamma, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "glm" ] ;
+     fhir:display [ fhir:v "GLM (Generalized Linear Model)" ] ;
+     fhir:definition [ fhir:v "Used for GLM (Generalized Linear Model), no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "glmProbit" ] ;
+     fhir:display [ fhir:v "GLM with probit link" ] ;
+     fhir:definition [ fhir:v "Used for GLM with probit link, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "glmLogit" ] ;
+     fhir:display [ fhir:v "GLM with logit link" ] ;
+     fhir:definition [ fhir:v "Used for GLM with logit link, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "glmIdentity" ] ;
+     fhir:display [ fhir:v "GLM with identity link" ] ;
+     fhir:definition [ fhir:v "Used for GLM with identity link, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "glmLog" ] ;
+     fhir:display [ fhir:v "GLM with log link" ] ;
+     fhir:definition [ fhir:v "Used for GLM with log link, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "glmGeneralizedLogit" ] ;
+     fhir:display [ fhir:v "GLM with generalized logit link" ] ;
+     fhir:definition [ fhir:v "Used for GLM with generalized logit link, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "glmm" ] ;
+     fhir:display [ fhir:v "Generalized linear mixed model (GLMM)" ] ;
+     fhir:definition [ fhir:v "Used for Generalized linear mixed model (GLMM), no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "glmmProbit" ] ;
+     fhir:display [ fhir:v "GLMM with probit link" ] ;
+     fhir:definition [ fhir:v "Used for GLMM with probit link, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "glmmLogit" ] ;
+     fhir:display [ fhir:v "GLMM with logit link" ] ;
+     fhir:definition [ fhir:v "Used for GLMM with logit link, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "glmmIdentity" ] ;
+     fhir:display [ fhir:v "GLMM with identity link" ] ;
+     fhir:definition [ fhir:v "Used for GLMM with identity link, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "glmmLog" ] ;
+     fhir:display [ fhir:v "GLMM with log link" ] ;
+     fhir:definition [ fhir:v "Used for GLMM with log link, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "glmmGeneralizedLogit" ] ;
+     fhir:display [ fhir:v "GLMM with generalized logit link" ] ;
+     fhir:definition [ fhir:v "Used for GLMM with generalized logit link, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "linearRegression" ] ;
+     fhir:display [ fhir:v "Linear Regression" ] ;
+     fhir:definition [ fhir:v "Used for linear regression method of analysis, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "logisticRegression" ] ;
+     fhir:display [ fhir:v "Logistic Regression" ] ;
+     fhir:definition [ fhir:v "Used for logistic regression method of analysis, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "polynomialRegression" ] ;
+     fhir:display [ fhir:v "Polynomial Regression" ] ;
+     fhir:definition [ fhir:v "Used for Polynomial regression method of analysis, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "coxProportionalHazards" ] ;
+     fhir:display [ fhir:v "Cox Proportional Hazards" ] ;
+     fhir:definition [ fhir:v "Used for Cox proportional hazards method of analysis, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "binomialDistributionRegression" ] ;
+     fhir:display [ fhir:v "Binomial Distribution for Regression" ] ;
+     fhir:definition [ fhir:v "Used for Binomial Distribution for Regression, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "multinomialDistributionRegression" ] ;
+     fhir:display [ fhir:v "Multinomial Distribution for Regression" ] ;
+     fhir:definition [ fhir:v "Used for Multinomial Distribution for Regression, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "poissonRegression" ] ;
+     fhir:display [ fhir:v "Poisson Regression" ] ;
+     fhir:definition [ fhir:v "Used for Poisson Regression, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "negativeBinomialRegression" ] ;
+     fhir:display [ fhir:v "Negative Binomial Regression" ] ;
+     fhir:definition [ fhir:v "Used for Negative Binomial Regression, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "zeroCellConstant" ] ;
+     fhir:display [ fhir:v "Zero-cell adjustment with constant" ] ;
+     fhir:definition [ fhir:v "Zero-cell adjustment done by adding a constant to all cells of affected studies, paired with \"value\" to define the constant" ]
+  ] [
+     fhir:code [ fhir:v "zeroCellContinuityCorrection" ] ;
+     fhir:display [ fhir:v "Zero-cell adjustment with continuity correction" ] ;
+     fhir:definition [ fhir:v "Zero-cell adjustment done by treatment arm continuity correction, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "adjusted" ] ;
+     fhir:display [ fhir:v "Adjusted analysis" ] ;
+     fhir:definition [ fhir:v "Used for adjusted analysis, paired with variable element(s)" ]
+  ] [
+     fhir:code [ fhir:v "interactionTerm" ] ;
+     fhir:display [ fhir:v "Interaction term" ] ;
+     fhir:definition [ fhir:v "Used for interaction term, paired with \"value\" and two or more variable elements" ]
+  ] [
+     fhir:code [ fhir:v "manteHaenszelMethod" ] ;
+     fhir:display [ fhir:v "Mantel-Haenszel method" ] ;
+     fhir:definition [ fhir:v "Used for Mantel-Haenszel method, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "metaAnalysis" ] ;
+     fhir:display [ fhir:v "Meta-analysis" ] ;
+     fhir:definition [ fhir:v "Used for meta-analysis, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "inverseVariance" ] ;
+     fhir:display [ fhir:v "Inverse variance method" ] ;
+     fhir:definition [ fhir:v "Used for inverse variance method of meta-analysis, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "petoMethod" ] ;
+     fhir:display [ fhir:v "Peto method" ] ;
+     fhir:definition [ fhir:v "Used for Peto method of meta-analysis, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "hartungKnapp" ] ;
+     fhir:display [ fhir:v "Hartung-Knapp adjustment" ] ;
+     fhir:definition [ fhir:v "Hartung-Knapp/Hartung-Knapp-Sidik-Jonkman adjustment used in meta-analysis, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "modifiedHartungKnapp" ] ;
+     fhir:display [ fhir:v "Modified Hartung-Knapp adjustment" ] ;
+     fhir:definition [ fhir:v "Modified Hartung-Knapp/Hartung-Knapp-Sidik-Jonkman adjustment used in meta-analysis, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "effectsFixed" ] ;
+     fhir:display [ fhir:v "Fixed-effects" ] ;
+     fhir:definition [ fhir:v "From a fixed-effects analysis, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "effectsRandom" ] ;
+     fhir:display [ fhir:v "Random-effects" ] ;
+     fhir:definition [ fhir:v "From a random-effects analysis, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "chiSquareTestHomogeneity" ] ;
+     fhir:display [ fhir:v "Chi-square test for homogeneity" ] ;
+     fhir:definition [ fhir:v "Used for Chi-square test for homogeneity, may be paired with \"value\" to express degrees of freedom" ]
+  ] [
+     fhir:code [ fhir:v "dersimonianLairdMethod" ] ;
+     fhir:display [ fhir:v "Dersimonian-Laird method" ] ;
+     fhir:definition [ fhir:v "Used for Dersimonian-Laird method of tau estimation, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "pauleMandelMethod" ] ;
+     fhir:display [ fhir:v "Paule-Mandel method" ] ;
+     fhir:definition [ fhir:v "Used for Paule-Mandel method of tau estimation, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "restrictedLikelihood" ] ;
+     fhir:display [ fhir:v "Restricted Maximum Likelihood method" ] ;
+     fhir:definition [ fhir:v "Used for Restricted Maximum Likelihood method of tau estimation, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "maximumLikelihood" ] ;
+     fhir:display [ fhir:v "Maximum Likelihood method" ] ;
+     fhir:definition [ fhir:v "Used for Maximum Likelihood method of tau estimation, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "empiricalBayes" ] ;
+     fhir:display [ fhir:v "Empirical Bayes method" ] ;
+     fhir:definition [ fhir:v "Used for Empirical Bayes method of tau estimation, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "hunterSchmidt" ] ;
+     fhir:display [ fhir:v "Hunter-Schmidt method" ] ;
+     fhir:definition [ fhir:v "Used for Hunter-Schmidt method of tau estimation, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "sidikJonkman" ] ;
+     fhir:display [ fhir:v "Sidik-Jonkman method" ] ;
+     fhir:definition [ fhir:v "Used for Sidik-Jonkman method of tau estimation, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "hedgesMethod" ] ;
+     fhir:display [ fhir:v "Hedges method" ] ;
+     fhir:definition [ fhir:v "Used for Hedges method of tau estimation, no additional elements needed" ]
+  ] [
+     fhir:code [ fhir:v "tauDersimonianLaird" ] ;
+     fhir:display [ fhir:v "Dersimonian-Laird method" ] ;
+     fhir:definition [ fhir:v "Dersimonian-Laird method for tau squared" ]
+  ] [
+     fhir:code [ fhir:v "tauPauleMandel" ] ;
+     fhir:display [ fhir:v "Paule-Mandel method" ] ;
+     fhir:definition [ fhir:v "Paule-Mandel method for tau squared" ]
+  ] [
+     fhir:code [ fhir:v "tauRestrictedMaximumLikelihood" ] ;
+     fhir:display [ fhir:v "Restricted Maximum Likelihood method" ] ;
+     fhir:definition [ fhir:v "Restricted Maximum Likelihood method for tau squared" ]
+  ] [
+     fhir:code [ fhir:v "tauMaximumLikelihood" ] ;
+     fhir:display [ fhir:v "Maximum Likelihood method" ] ;
+     fhir:definition [ fhir:v "Maximum Likelihood method for tau squared" ]
+  ] [
+     fhir:code [ fhir:v "tauEmpiricalBayes" ] ;
+     fhir:display [ fhir:v "Empirical Bayes method" ] ;
+     fhir:definition [ fhir:v "Empirical Bayes method for tau squared" ]
+  ] [
+     fhir:code [ fhir:v "tauHunterSchmidt" ] ;
+     fhir:display [ fhir:v "Hunter-Schmidt method" ] ;
+     fhir:definition [ fhir:v "Hunter-Schmidt method for tau squared" ]
+  ] [
+     fhir:code [ fhir:v "tauSidikJonkman" ] ;
+     fhir:display [ fhir:v "Sidik-Jonkman method" ] ;
+     fhir:definition [ fhir:v "Sidik-Jonkman method for tau squared" ]
+  ] [
+     fhir:code [ fhir:v "tauHedges" ] ;
+     fhir:display [ fhir:v "Hedges method" ] ;
+     fhir:definition [ fhir:v "Hedges method for tau squared" ]
+  ] [
+     fhir:code [ fhir:v "poolMantelHaenzsel" ] ;
+     fhir:display [ fhir:v "Mantel-Haenszel method" ] ;
+     fhir:definition [ fhir:v "Mantel-Haenszel method for pooling in meta-analysis" ]
+  ] [
+     fhir:code [ fhir:v "poolInverseVariance" ] ;
+     fhir:display [ fhir:v "Inverse variance method" ] ;
+     fhir:definition [ fhir:v "Inverse variance method for pooling in meta-analysis" ]
+  ] [
+     fhir:code [ fhir:v "poolPeto" ] ;
+     fhir:display [ fhir:v "Peto method" ] ;
+     fhir:definition [ fhir:v "Peto method for pooling in meta-analysis" ]
+  ] [
+     fhir:code [ fhir:v "poolGeneralizedLinearMixedModel" ] ;
+     fhir:display [ fhir:v "Generalized linear mixed model (GLMM)" ] ;
+     fhir:definition [ fhir:v "Generalized linear mixed model (GLMM) method for pooling in meta-analysis" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

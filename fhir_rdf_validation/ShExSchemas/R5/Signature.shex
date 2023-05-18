@@ -1,0 +1,61 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Device.shex>
+IMPORT <instant.shex>
+IMPORT <Patient.shex>
+IMPORT <DataType.shex>
+IMPORT <Reference.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <base64Binary.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <PractitionerRole.shex>
+
+# A Signature - XML DigSig, JWS, Graphical image of signature, etc.
+<Signature> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:Signature];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:type @<OneOrMore_Coding>?;         # Indication of the reason the 
+                                            # entity signed the object(s) 
+    fhir:when @<instant>?;                  # When the signature was created
+    fhir:who @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Who signed
+    fhir:onBehalfOf @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # The party represented
+    fhir:targetFormat @<code> AND
+    	{fhir:v @fhirvs:mimetypes}?;  # The technical format of the signed 
+                                            # resources 
+    fhir:sigFormat @<code> AND
+    	{fhir:v @fhirvs:mimetypes}?;  # The technical format of the 
+                                            # signature 
+    fhir:data @<base64Binary>?;             # The actual signature content (XML 
+                                            # DigSig. JWS, picture, etc.) 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Coding> CLOSED {
+    rdf:first @<Coding>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Coding> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# This value set includes all possible codes from BCP-13 (http://tools.ietf.org/html/bcp13)
+fhirvs:mimetypes xsd:string # EXTERNAL
+

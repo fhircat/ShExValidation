@@ -1,0 +1,119 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
+IMPORT <UsageContext.shex>
+#imported_end
+#imported_begin 
+IMPORT <ContactDetail.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+
+start=@<CompartmentDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Compartment Definition for a resource
+<CompartmentDefinition> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:CompartmentDefinition]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri>;                        # Canonical identifier for this 
+                                            # compartment definition, 
+                                            # represented as a URI (globally 
+                                            # unique) 
+    fhir:version @<string>?;                # Business version of the 
+                                            # compartment definition 
+    fhir:versionAlgorithm @<string>  OR 
+    			@<Coding>  ?;  # How to compare versions
+    fhir:name @<string>;                    # Name for this compartment 
+                                            # definition (computer friendly) 
+    fhir:title @<string>?;                  # Name for this compartment 
+                                            # definition (human friendly) 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:date @<dateTime>?;                 # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher/steward 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the compartment definition 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:purpose @<markdown>?;              # Why this compartment definition is 
+                                            # defined 
+    fhir:code @<code> AND
+    	{fhir:v @fhirvs:compartment-type};  # Patient | Encounter | 
+                                            # RelatedPerson | Practitioner | 
+                                            # Device 
+    fhir:search @<boolean>;                 # Whether the search syntax is 
+                                            # supported 
+    fhir:resource @<OneOrMore_CompartmentDefinition.resource>?;  # How a resource is related to the 
+                                            # compartment 
+}  
+
+# How a resource is related to the compartment
+<CompartmentDefinition.resource> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code> AND
+    	{fhir:v @fhirvs:resource-types};  # Name of resource type
+    fhir:param @<OneOrMore_string>?;        # Search Parameter Name, or chained 
+                                            # parameters 
+    fhir:documentation @<string>?;          # Additional documentation about the 
+                                            # resource and compartment 
+    fhir:startParam @<uri>?;                # Search Param for interpreting 
+                                            # $everything.start 
+    fhir:endParam @<uri>?;                  # Search Param for interpreting 
+                                            # $everything.end 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+<OneOrMore_CompartmentDefinition.resource> CLOSED {
+    rdf:first @<CompartmentDefinition.resource>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CompartmentDefinition.resource> 
+}
+
+
+
+#---------------------- Value Sets ------------------------
+
+
+
+

@@ -1,0 +1,156 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <unsignedInt.shex>
+#imported_end
+#imported_begin 
+IMPORT <UsageContext.shex>
+#imported_end
+#imported_begin 
+IMPORT <ContactDetail.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+
+start=@<MessageDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A resource that defines a type of message that can be exchanged between systems
+<MessageDefinition> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:MessageDefinition]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri>?;                       # Business Identifier for a given 
+                                            # MessageDefinition 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Primary key for the message 
+                                            # definition on a given server 
+    fhir:version @<string>?;                # Business version of the message 
+                                            # definition 
+    fhir:name @<string>?;                   # Name for this message definition 
+                                            # (computer friendly) 
+    fhir:title @<string>?;                  # Name for this message definition 
+                                            # (human friendly) 
+    fhir:replaces @<OneOrMore_canonical>?;  # Takes the place of
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:date @<dateTime>;                  # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher/steward 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the message definition 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for message 
+                                            # definition (if applicable) 
+    fhir:purpose @<markdown>?;              # Why this message definition is 
+                                            # defined 
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:base @<canonical>?;                # Definition this one is based on
+    fhir:parent @<OneOrMore_canonical>?;    # Protocol/workflow this is part of
+    fhir:event @<Coding>  OR 
+    			@<uri>  ;  # Event code  or link to the 
+                                            # EventDefinition 
+    fhir:category @<code> AND
+    	{fhir:v @fhirvs:message-significance-category}?;  # consequence | currency | 
+                                            # notification 
+    fhir:focus @<OneOrMore_MessageDefinition.focus>?;  # Resource(s) that are the subject 
+                                            # of the event 
+    fhir:responseRequired @<code> AND
+    	{fhir:v @fhirvs:messageheader-response-request}?;  # always | on-error | never | 
+                                            # on-success 
+    fhir:allowedResponse @<OneOrMore_MessageDefinition.allowedResponse>?;  # Responses to this message
+    fhir:graph @<canonical>?;               # Canonical reference to a 
+                                            # GraphDefinition 
+}  
+
+# Responses to this message
+<MessageDefinition.allowedResponse> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:message @<canonical>;              # Reference to allowed message 
+                                            # definition response 
+    fhir:situation @<markdown>?;            # When should this response be used
+}  
+
+# Resource(s) that are the subject of the event
+<MessageDefinition.focus> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code> AND
+    	{fhir:v @fhirvs:resource-types};  # Type of resource
+    fhir:profile @<canonical>?;             # Profile that must be adhered to by 
+                                            # focus 
+    fhir:min @<unsignedInt>;                # Minimum number of focuses of this 
+                                            # type 
+    fhir:max @<string>?;                    # Maximum number of focuses of this 
+                                            # type 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_MessageDefinition.focus> CLOSED {
+    rdf:first @<MessageDefinition.focus>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_MessageDefinition.focus> 
+}
+
+<OneOrMore_MessageDefinition.allowedResponse> CLOSED {
+    rdf:first @<MessageDefinition.allowedResponse>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_MessageDefinition.allowedResponse> 
+}
+
+#---------------------- Value Sets ------------------------
+
+
+
+
+

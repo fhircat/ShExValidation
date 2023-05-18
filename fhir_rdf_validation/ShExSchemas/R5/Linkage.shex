@@ -1,0 +1,52 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <boolean.shex>
+IMPORT <Resource.shex>
+IMPORT <Reference.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <DomainResource.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+
+
+start=@<Linkage> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Links records for 'same' item
+<Linkage> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Linkage];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:active @<boolean>?;                # Whether this linkage assertion is 
+                                            # active or not 
+    fhir:author @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> }?;  # Who is responsible for linkages
+    fhir:item @<OneOrMore_BackboneElement>;  # Item to be linked
+}  
+
+# Item to be linked
+<Linkage.item> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:linkage-type};  # source | alternate | historical
+    fhir:resource @<Reference> AND {fhir:link 
+    			@<Resource> };  # Resource being linked
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Used to distinguish different roles a resource can play within a set of linked resources.
+fhirvs:linkage-type ["source" "alternate" "historical"]
+

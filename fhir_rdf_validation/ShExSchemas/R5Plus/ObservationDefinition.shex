@@ -1,0 +1,263 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <date.shex>
+#imported_end
+#imported_begin 
+IMPORT <Range.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <decimal.shex>
+#imported_end
+#imported_begin 
+IMPORT <integer.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <UsageContext.shex>
+#imported_end
+#imported_begin 
+IMPORT <ContactDetail.shex>
+#imported_end
+#imported_begin 
+IMPORT <Questionnaire.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <DeviceDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <SpecimenDefinition.shex>
+#imported_end
+
+start=@<ObservationDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Definition of an observation
+<ObservationDefinition> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:ObservationDefinition]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri>?;                       # Logical canonical URL to reference 
+                                            # this ObservationDefinition 
+                                            # (globally unique) 
+    fhir:identifier @<Identifier>?;         # Business identifier of the 
+                                            # ObservationDefinition 
+    fhir:version @<string>?;                # Business version of the 
+                                            # ObservationDefinition 
+    fhir:name @<string>?;                   # Name for this 
+                                            # ObservationDefinition (computer 
+                                            # friendly) 
+    fhir:title @<string>?;                  # Name for this 
+                                            # ObservationDefinition (human 
+                                            # friendly) 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # If for testing purposes, not real 
+                                            # usage 
+    fhir:date @<dateTime>?;                 # Date last changed
+    fhir:publisher @<string>?;              # The name of the individual or 
+                                            # organization that published the 
+                                            # ObservationDefinition 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the ObservationDefinition 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # Content intends to support these 
+                                            # contexts 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for this 
+                                            # ObservationDefinition (if 
+                                            # applicable) 
+    fhir:purpose @<markdown>?;              # Why this ObservationDefinition is 
+                                            # defined 
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:approvalDate @<date>?;             # When ObservationDefinition was 
+                                            # approved by publisher 
+    fhir:lastReviewDate @<date>?;           # Date on which the asset content 
+                                            # was last reviewed 
+    fhir:effectivePeriod @<Period>?;        # The effective date range for the 
+                                            # ObservationDefinition 
+    fhir:derivedFromCanonical @<OneOrMore_canonical>?;  # Based on FHIR definition of 
+                                            # another observation 
+    fhir:derivedFromUri @<OneOrMore_uri>?;  # Based on external definition
+    fhir:subject @<OneOrMore_CodeableConcept>?;  # Type of subject for the defined 
+                                            # observation 
+    fhir:performerType @<CodeableConcept>?;  # Desired kind of performer for such 
+                                            # kind of observation 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # General type of observation
+    fhir:code @<CodeableConcept>;           # Type of observation
+    fhir:permittedDataType @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:permitted-data-type}?;  # Quantity | CodeableConcept | 
+                                            # string | boolean | integer | Range 
+                                            # | Ratio | SampledData | time | 
+                                            # dateTime | Period 
+    fhir:multipleResultsAllowed @<boolean>?;  # Multiple results allowed for 
+                                            # conforming observations 
+    fhir:bodySite @<CodeableConcept>?;      # Body part to be observed
+    fhir:method @<CodeableConcept>?;        # Method used to produce the 
+                                            # observation 
+    fhir:specimen @<OneOrMore_Reference_SpecimenDefinition>?;  # Kind of specimen used by this type 
+                                            # of observation 
+    fhir:device @<OneOrMore_Reference_Device_OR_DeviceDefinition>?;  # Measurement device or model of 
+                                            # device 
+    fhir:preferredReportName @<string>?;    # The preferred name to be used when 
+                                            # reporting the observation results 
+    fhir:quantitativeDetails @<ObservationDefinition.quantitativeDetails>?;  # Characteristics of quantitative 
+                                            # results 
+    fhir:qualifiedValue @<OneOrMore_ObservationDefinition.qualifiedValue>?;  # Set of qualified values for 
+                                            # observation results 
+    fhir:hasMember @<OneOrMore_Reference_ObservationDefinition_OR_Questionnaire>?;  # Definitions of related resources 
+                                            # belonging to this kind of 
+                                            # observation group 
+    fhir:component @<OneOrMore_ObservationDefinition.component>?;  # Component results
+}  
+
+# Set of qualified values for observation results
+<ObservationDefinition.qualifiedValue> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:context @<CodeableConcept>?;       # Context qualifier for the set of 
+                                            # qualified values 
+    fhir:appliesTo @<OneOrMore_CodeableConcept>?;  # Targetted population for the set 
+                                            # of qualified values 
+    fhir:gender @<code> AND
+    	{fhir:v @fhirvs:administrative-gender}?;  # male | female | other | unknown
+    fhir:age @<Range>?;                     # Applicable age range for the set 
+                                            # of qualified values 
+    fhir:gestationalAge @<Range>?;          # Applicable gestational age range 
+                                            # for the set of qualified values 
+    fhir:condition @<string>?;              # Condition associated with the set 
+                                            # of qualified values 
+    fhir:rangeCategory @<code> AND
+    	{fhir:v @fhirvs:observation-range-category}?;  # reference | critical | absolute
+    fhir:range @<Range>?;                   # The range for continuous or 
+                                            # ordinal observations 
+    fhir:validCodedValueSet @<canonical>?;  # Value set of valid coded values as 
+                                            # part of this set of qualified 
+                                            # values 
+    fhir:normalCodedValueSet @<canonical>?;  # Value set of normal coded values 
+                                            # as part of this set of qualified 
+                                            # values 
+    fhir:abnormalCodedValueSet @<canonical>?;  # Value set of abnormal coded values 
+                                            # as part of this set of qualified 
+                                            # values 
+    fhir:criticalCodedValueSet @<canonical>?;  # Value set of critical coded values 
+                                            # as part of this set of qualified 
+                                            # values 
+}  
+
+# Characteristics of quantitative results
+<ObservationDefinition.quantitativeDetails> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:unit @<CodeableConcept>?;          # Primary unit for quantitative 
+                                            # results 
+    fhir:customaryUnit @<CodeableConcept>?;  # Customary (secondary) unit for 
+                                            # quantitative results 
+    fhir:conversionFactor @<decimal>?;      # Primary to secondary unit 
+                                            # conversion factor 
+    fhir:decimalPrecision @<integer>?;      # Decimal precision of observation 
+                                            # quantitative results 
+}  
+
+# Component results
+<ObservationDefinition.component> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>;           # Type of observation
+    fhir:permittedDataType @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:permitted-data-type}?;  # Quantity | CodeableConcept | 
+                                            # string | boolean | integer | Range 
+                                            # | Ratio | SampledData | time | 
+                                            # dateTime | Period 
+    fhir:quantitativeDetails @<ObservationDefinition.quantitativeDetails>?;  # Characteristics of quantitative 
+                                            # results 
+    fhir:qualifiedValue @<OneOrMore_ObservationDefinition.qualifiedValue>?;  # Set of qualified values for 
+                                            # observation results 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_ObservationDefinition.qualifiedValue> CLOSED {
+    rdf:first @<ObservationDefinition.qualifiedValue>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ObservationDefinition.qualifiedValue> 
+}
+
+
+
+
+
+
+
+<OneOrMore_ObservationDefinition.component> CLOSED {
+    rdf:first @<ObservationDefinition.component>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ObservationDefinition.component> 
+}
+
+#---------------------- Value Sets ------------------------
+
+
+
+
+

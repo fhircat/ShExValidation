@@ -1,0 +1,100 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+#   No admission was deemed necessary  
+
+[a fhir:Encounter ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "f202"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Encounter</b><a name=\"f202\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Encounter &quot;f202&quot; </p></div><p><b>identifier</b>: id: Encounter_Roel_20130128 (use: TEMP)</p><p><b>status</b>: completed</p><p><b>class</b>: <span title=\" Encounter has finished \">ambulatory <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ActCode.html\">ActCode</a>#AMB)</span></span></p><p><b>priority</b>: Urgent <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#103391001)</span></p><p><b>type</b>: Chemotherapy <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#367336001)</span></p><p><b>subject</b>: <a href=\"patient-example-f201-roel.html\">Patient/f201: Roel</a> &quot;Roel&quot;</p><p><b>serviceProvider</b>: <a href=\"organization-example-f201-aumc.html\">Organization/f201</a> &quot;Artis University Medical Center (AUMC)&quot;</p><h3>Participants</h3><table class=\"grid\"><tr><td>-</td><td><b>Actor</b></td></tr><tr><td>*</td><td><a href=\"practitioner-example-f201-ab.html\">Practitioner/f201</a> &quot;Dokter Bronsig&quot;</td></tr></table><h3>Lengths</h3><table class=\"grid\"><tr><td>-</td><td><b>Value</b></td><td><b>Unit</b></td><td><b>System</b></td><td><b>Code</b></td></tr><tr><td>*</td><td>56</td><td>minutes</td><td><a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ucum.html\">Unified Code for Units of Measure (UCUM)</a></td><td>min</td></tr></table><blockquote><p><b>reason</b></p><h3>Values</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>The patient is treated for a tumor. <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table></blockquote><blockquote><p><b>diagnosis</b></p><h3>Conditions</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Complications from Roel's TPF chemotherapy on January 28th, 2013 <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table><p><b>use</b>: Admission diagnosis <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-diagnosis-role.html\">Diagnosis Role</a>#AD)</span></p></blockquote><blockquote><p><b>diagnosis</b></p><h3>Conditions</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>The patient is treated for a tumor <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table><p><b>use</b>: Chief complaint <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-diagnosis-role.html\">Diagnosis Role</a>#CC)</span></p></blockquote></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "temp" ] ;
+     fhir:value [ fhir:v "Encounter_Roel_20130128" ] #    0..1 The use of this identifier   
+  ] ) ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:class ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActCode"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "AMB" ] ;
+       fhir:display [ fhir:v "ambulatory" ] #    outpatient encounter for chemotherapy   
+     ] )
+  ] ) ; #   Encounter has finished  
+  fhir:priority [
+     fhir:coding ( [
+       a sct:103391001 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "103391001" ] ;
+       fhir:display [ fhir:v "Urgent" ]
+     ] ) #   Urgent priority, because of complications  
+  ] ; # 
+  fhir:type ( [
+     fhir:coding ( [
+       a sct:367336001 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "367336001" ] ;
+       fhir:display [ fhir:v "Chemotherapy" ]
+     ] )
+  ] ) ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/f201" ] ;
+     fhir:display [ fhir:v "Roel" ]
+  ] ; # 
+  fhir:serviceProvider [
+     fhir:reference [ fhir:v "Organization/f201" ]
+  ] ; # 
+  fhir:participant ( [
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/f201" ]
+     ]
+  ] ) ; # 
+  fhir:length [
+     fhir:value [ fhir:v "56"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "minutes" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "min" ]
+  ] ; # 
+  fhir:reason ( [
+     fhir:value ( [
+       fhir:concept [
+         fhir:text [ fhir:v "The patient is treated for a tumor." ]
+       ]
+     ] )
+  ] ) ; # 
+  fhir:diagnosis ( [
+     fhir:condition ( [
+       fhir:concept [
+         fhir:text [ fhir:v "Complications from Roel's TPF chemotherapy on January 28th, 2013" ]
+       ]
+     ] ) ;
+     fhir:use ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/diagnosis-role"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "AD" ] ;
+         fhir:display [ fhir:v "Admission diagnosis" ]
+       ] )
+     ] )
+  ] [
+     fhir:condition ( [
+       fhir:concept [
+         fhir:text [ fhir:v "The patient is treated for a tumor" ]
+       ]
+     ] ) ;
+     fhir:use ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/diagnosis-role"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "CC" ] ;
+         fhir:display [ fhir:v "Chief complaint" ]
+       ] )
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

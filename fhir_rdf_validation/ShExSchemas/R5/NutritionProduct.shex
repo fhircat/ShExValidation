@@ -1,0 +1,149 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <string.shex>
+IMPORT <boolean.shex>
+IMPORT <Quantity.shex>
+IMPORT <dateTime.shex>
+IMPORT <Identifier.shex>
+IMPORT <Attachment.shex>
+IMPORT <base64Binary.shex>
+IMPORT <Organization.shex>
+IMPORT <DomainResource.shex>
+IMPORT <SimpleQuantity.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CodeableReference.shex>
+
+
+start=@<NutritionProduct> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A product used for nutritional purposes (i.e. food or supplement)
+<NutritionProduct> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:NutritionProduct];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:code @<CodeableConcept>?;          # A code that can identify the 
+                                            # detailed nutrients and ingredients 
+                                            # in a specific food product 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:nutritionproduct-status};  # active | inactive | 
+                                            # entered-in-error 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Broad product groups or categories 
+                                            # used to classify the product, such 
+                                            # as Legume and Legume Products, 
+                                            # Beverages, or Beef Products 
+    fhir:manufacturer @<OneOrMore_Reference_Organization>?;  # Manufacturer, representative or 
+                                            # officially responsible for the 
+                                            # product 
+    fhir:nutrient @<OneOrMore_BackboneElement>?;  # The product's nutritional 
+                                            # information expressed by the 
+                                            # nutrients 
+    fhir:ingredient @<OneOrMore_BackboneElement>?;  # Ingredients contained in this 
+                                            # product 
+    fhir:knownAllergen @<OneOrMore_CodeableReference>?;  # Known or suspected allergens that 
+                                            # are a part of this product 
+    fhir:characteristic @<OneOrMore_BackboneElement>?;  # Specifies descriptive properties 
+                                            # of the nutrition product 
+    fhir:instance @<OneOrMore_BackboneElement>?;  # One or several physical instances 
+                                            # or occurrences of the nutrition 
+                                            # product 
+    fhir:note @<OneOrMore_Annotation>?;     # Comments made about the product
+}  
+
+# The product's nutritional information expressed by the nutrients
+<NutritionProduct.nutrient> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:item @<CodeableReference>?;        # The (relevant) nutrients in the 
+                                            # product 
+    fhir:amount @<OneOrMore_Ratio>?;        # The amount of nutrient expressed 
+                                            # in one or more units: X per pack / 
+                                            # per serving / per dose 
+}  
+
+# One or several physical instances or occurrences of the nutrition product
+<NutritionProduct.instance> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:quantity @<Quantity>?;             # The amount of items or instances
+    fhir:identifier @<OneOrMore_Identifier>?;  # The identifier for the physical 
+                                            # instance, typically a serial 
+                                            # number or manufacturer number 
+    fhir:name @<string>?;                   # The name for the specific product
+    fhir:lotNumber @<string>?;              # The identification of the batch or 
+                                            # lot of the product 
+    fhir:expiry @<dateTime>?;               # The expiry date or date and time 
+                                            # for the product 
+    fhir:useBy @<dateTime>?;                # The date until which the product 
+                                            # is expected to be good for 
+                                            # consumption 
+    fhir:biologicalSourceEvent @<Identifier>?;  # An identifier that supports 
+                                            # traceability to the event during 
+                                            # which material in this product 
+                                            # from one or more biological 
+                                            # entities was obtained or pooled 
+}  
+
+# Ingredients contained in this product
+<NutritionProduct.ingredient> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:item @<CodeableReference>;         # The ingredient contained in the 
+                                            # product 
+    fhir:amount @<OneOrMore_Ratio>?;        # The amount of ingredient that is 
+                                            # in the product 
+}  
+
+# Specifies descriptive properties of the nutrition product
+<NutritionProduct.characteristic> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # Code specifying the type of 
+                                            # characteristic 
+    fhir:v (@<CodeableConcept>  OR 
+    			@<string>  OR 
+    			@<SimpleQuantity>  OR 
+    			@<base64Binary>  OR 
+    			@<Attachment>  OR 
+    			@<boolean> )  AND { rdf:type IRI } ;  # The value of the characteristic
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_Organization> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Organization> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Organization> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_CodeableReference> CLOSED {
+    rdf:first @<CodeableReference>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableReference> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_Ratio> CLOSED {
+    rdf:first @<Ratio>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Ratio> 
+}
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Codes identifying the lifecycle stage of a product.
+fhirvs:nutritionproduct-status ["active" "inactive" "entered-in-error"]
+

@@ -1,0 +1,43 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:AllergyIntolerance ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "nka"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <p>No Known Allergy</p>\n      <p>recordedDate:2015-08-06</p>\n    </div>"
+  ] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a sct:716186003 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "716186003" ] ;
+       fhir:display [ fhir:v "No Known Allergy (situation)" ]
+     ] ) ;
+     fhir:text [ fhir:v "NKA" ]
+  ] ; # 
+  fhir:patient [
+     fhir:reference [ fhir:v "Patient/mom" ]
+  ] ; # 
+  fhir:recordedDate [ fhir:v "2015-08-06T15:37:31-06:00"^^xsd:dateTime] ; #   the date that this entry was recorded  
+  fhir:participant ( [
+     fhir:function [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/provenance-participant-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "author" ] ;
+         fhir:display [ fhir:v "Author" ]
+       ] )
+     ] ;
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/example" ]
+     ]
+  ] )] . #   who made the record / last updated it  
+
+# -------------------------------------------------------------------------------------
+

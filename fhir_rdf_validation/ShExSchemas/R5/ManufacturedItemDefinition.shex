@@ -1,0 +1,83 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <date.shex>
+IMPORT <boolean.shex>
+IMPORT <Quantity.shex>
+IMPORT <Attachment.shex>
+IMPORT <Organization.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+
+
+start=@<ManufacturedItemDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# The definition and characteristics of a medicinal manufactured item, such as a tablet or capsule, as contained in a packaged medicinal product
+<ManufacturedItemDefinition> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:ManufacturedItemDefinition];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Unique identifier
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:manufacturedDoseForm @<CodeableConcept>;  # Dose form as manufactured (before 
+                                            # any necessary transformation) 
+    fhir:unitOfPresentation @<CodeableConcept>?;  # The “real world” units in which 
+                                            # the quantity of the item is 
+                                            # described 
+    fhir:manufacturer @<OneOrMore_Reference_Organization>?;  # Manufacturer of the item (Note 
+                                            # that this should be named 
+                                            # "manufacturer" but it currently 
+                                            # causes technical issues) 
+    fhir:ingredient @<OneOrMore_CodeableConcept>?;  # The ingredients of this 
+                                            # manufactured item. Only needed if 
+                                            # these are not specified by 
+                                            # incoming references from the 
+                                            # Ingredient resource 
+    fhir:property @<OneOrMore_BackboneElement>?;  # General characteristics of this 
+                                            # item 
+}  
+
+# General characteristics of this item
+<ManufacturedItemDefinition.property> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # A code expressing the type of 
+                                            # characteristic 
+    fhir:v (@<CodeableConcept>  OR 
+    			@<Quantity>  OR 
+    			@<date>  OR 
+    			@<boolean>  OR 
+    			@<Attachment> )  AND { rdf:type IRI } ?;  # A value for the characteristic
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_Reference_Organization> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Organization> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Organization> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+

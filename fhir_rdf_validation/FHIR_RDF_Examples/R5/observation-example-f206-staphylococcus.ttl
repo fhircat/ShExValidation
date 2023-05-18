@@ -1,0 +1,66 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+#    ReferenceRange and component are not applicable   
+
+[a fhir:Observation ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "f206"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"f206\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;f206&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Blood culture <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (acmelabs.org#104177; <a href=\"https://loinc.org/\">LOINC</a>#600-7 &quot;Bacteria identified in Blood by Culture&quot;)</span></p><p><b>subject</b>: <span title=\"  No identifier could be provided to this observation  \"><a href=\"patient-example-f201-roel.html\">Patient/f201: Roel</a> &quot;Roel&quot;</span></p><p><b>issued</b>: 11 Mar 2013, 8:28:00 pm</p><p><b>performer</b>: <a href=\"practitioner-example-f202-lm.html\">Practitioner/f202: Luigi Maas</a> &quot;Luigi Maas&quot;</p><p><b>value</b>: Staphylococcus aureus <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#3092008)</span></p><p><b>interpretation</b>: Positive <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#POS)</span></p><p><b>method</b>: <span title=\"  BodySite not relevant  \">Blood culture for bacteria, including anaerobic screen <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#104177005)</span></span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acmelabs.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "104177" ] ;
+       fhir:display [ fhir:v "Blood culture" ]
+     ] [
+       a loinc:600-7 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "600-7" ] ;
+       fhir:display [ fhir:v "Bacteria identified in Blood by Culture" ]
+     ] ) #    Kind of observation = Blood culture   
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/f201" ] ;
+     fhir:display [ fhir:v "Roel" ]
+  ] ; #    No identifier could be provided to this observation   
+  fhir:issued [ fhir:v "2013-03-11T10:28:00+01:00"^^xsd:dateTime] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Practitioner/f202" ] ;
+     fhir:display [ fhir:v "Luigi Maas" ]
+  ] ) ; # 
+  fhir:value [
+     a fhir:CodeableConcept ;
+     fhir:coding ( [
+       a sct:3092008 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "3092008" ] ;
+       fhir:display [ fhir:v "Staphylococcus aureus" ]
+     ] )
+  ] ; # 
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "POS" ]
+     ] )
+  ] ) ; # 
+  fhir:method [
+     fhir:coding ( [
+       a sct:104177005 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "104177005" ] ;
+       fhir:display [ fhir:v "Blood culture for bacteria, including anaerobic screen" ]
+     ] )
+  ]] . #    BodySite not relevant   
+
+# -------------------------------------------------------------------------------------
+

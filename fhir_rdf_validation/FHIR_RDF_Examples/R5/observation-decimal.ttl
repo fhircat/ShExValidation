@@ -1,0 +1,85 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Observation ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "decimal"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"decimal\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;decimal&quot; </p></div><p><b>status</b>: final</p><p><b>code</b>: Decimal Testing Observation <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><blockquote><p><b>component</b></p><p><b>code</b>: Component <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>value</b>: 1.0 g</p></blockquote><blockquote><p><b>component</b></p><p><b>code</b>: Component <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>value</b>: 1.00 g</p></blockquote><blockquote><p><b>component</b></p><p><b>code</b>: Component <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>value</b>: 1.0 g</p></blockquote><blockquote><p><b>component</b></p><p><b>code</b>: Component <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>value</b>: 1E-17 g</p></blockquote><blockquote><p><b>component</b></p><p><b>code</b>: Component <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>value</b>: 10000000000000000 g</p></blockquote><blockquote><p><b>component</b></p><p><b>code</b>: Component <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>value</b>: 1.00000000000000000E-24 g</p></blockquote><blockquote><p><b>component</b></p><p><b>code</b>: Component <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>value</b>: -1.00000000000000000E+245 g</p></blockquote></div>"
+  ] ; # 
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:code [
+     fhir:text [ fhir:v "Decimal Testing Observation" ]
+  ] ; # 
+  fhir:component ( [
+     fhir:code [
+       fhir:text [ fhir:v "Component" ]
+     ] ;
+     fhir:value [
+       a fhir:Quantity ;
+       fhir:value [ fhir:v "1.0"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "g" ]
+     ]
+  ] [
+     fhir:code [
+       fhir:text [ fhir:v "Component" ]
+     ] ;
+     fhir:value [
+       a fhir:Quantity ;
+       fhir:value [ fhir:v "1.00"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "g" ]
+     ]
+  ] [
+     fhir:code [
+       fhir:text [ fhir:v "Component" ]
+     ] ;
+     fhir:value [
+       a fhir:Quantity ;
+       fhir:value [ fhir:v "1.0e0"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "g" ]
+     ]
+  ] [
+     fhir:code [
+       fhir:text [ fhir:v "Component" ]
+     ] ;
+     fhir:value [
+       a fhir:Quantity ;
+       fhir:value [ fhir:v "0.00000000000000001"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "g" ]
+     ]
+  ] [
+     fhir:code [
+       fhir:text [ fhir:v "Component" ]
+     ] ;
+     fhir:value [
+       a fhir:Quantity ;
+       fhir:value [ fhir:v "10000000000000000"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "g" ]
+     ]
+  ] [
+     fhir:code [
+       fhir:text [ fhir:v "Component" ]
+     ] ;
+     fhir:value [
+       a fhir:Quantity ;
+       fhir:value [ fhir:v "1.00000000000000000e-24"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "g" ]
+     ]
+  ] [
+     fhir:code [
+       fhir:text [ fhir:v "Component" ]
+     ] ;
+     fhir:value [
+       a fhir:Quantity ;
+       fhir:value [ fhir:v "-1.00000000000000000e245"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "g" ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

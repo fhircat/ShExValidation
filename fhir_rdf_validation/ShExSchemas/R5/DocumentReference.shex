@@ -1,0 +1,202 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <Claim.shex>
+IMPORT <Period.shex>
+IMPORT <Coding.shex>
+IMPORT <Device.shex>
+IMPORT <instant.shex>
+IMPORT <Patient.shex>
+IMPORT <Resource.shex>
+IMPORT <markdown.shex>
+IMPORT <dateTime.shex>
+IMPORT <CarePlan.shex>
+IMPORT <Contract.shex>
+IMPORT <CareTeam.shex>
+IMPORT <Reference.shex>
+IMPORT <canonical.shex>
+IMPORT <Encounter.shex>
+IMPORT <Attachment.shex>
+IMPORT <Appointment.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RequestGroup.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DeviceRequest.shex>
+IMPORT <EpisodeOfCare.shex>
+IMPORT <SupplyRequest.shex>
+IMPORT <DomainResource.shex>
+IMPORT <NutritionOrder.shex>
+IMPORT <ServiceRequest.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <DocumentReference.shex>
+IMPORT <EnrollmentRequest.shex>
+IMPORT <MedicationRequest.shex>
+IMPORT <VisionPrescription.shex>
+IMPORT <AppointmentResponse.shex>
+IMPORT <CommunicationRequest.shex>
+IMPORT <CoverageEligibilityRequest.shex>
+IMPORT <ImmunizationRecommendation.shex>
+
+
+start=@<DocumentReference> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A reference to a document
+<DocumentReference> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:DocumentReference];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business identifiers for the 
+                                            # document 
+    fhir:basedOn @<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_Claim_OR_CommunicationRequest_OR_Contract_OR_CoverageEligibilityRequest_OR_DeviceRequest_OR_EnrollmentRequest_OR_EpisodeOfCare_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_RequestGroup_OR_ServiceRequest_OR_SupplyRequest_OR_VisionPrescription>?;  # Procedure that caused this media 
+                                            # to be created 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:document-reference-status};  # current | superseded | 
+                                            # entered-in-error 
+    fhir:docStatus @<code> AND
+    	{fhir:v @fhirvs:composition-status}?;  # preliminary | final | amended | 
+                                            # entered-in-error | deprecated 
+    fhir:type @<CodeableConcept>?;          # Kind of document (LOINC if 
+                                            # possible) 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Categorization of document
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Resource> }?;  # Who/what is the subject of the 
+                                            # document 
+    fhir:context @<OneOrMore_Reference_Appointment_OR_Encounter_OR_EpisodeOfCare>?;  # Context of the document content
+    fhir:event @<OneOrMore_CodeableReference>?;  # Main clinical acts documented
+    fhir:facilityType @<CodeableConcept>?;  # Kind of facility where patient was 
+                                            # seen 
+    fhir:practiceSetting @<CodeableConcept>?;  # Additional details about where the 
+                                            # content was created (e.g. clinical 
+                                            # specialty) 
+    fhir:period @<Period>?;                 # Time of service that is being 
+                                            # documented 
+    fhir:date @<instant>?;                  # When this document reference was 
+                                            # created 
+    fhir:author @<OneOrMore_Reference_CareTeam_OR_Device_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Who and/or what authored the 
+                                            # document 
+    fhir:attester @<OneOrMore_BackboneElement>?;  # Attests to accuracy of the document
+    fhir:custodian @<Reference> AND {fhir:link 
+    			@<Organization> }?;  # Organization which maintains the 
+                                            # document 
+    fhir:relatesTo @<OneOrMore_BackboneElement>?;  # Relationships to other documents
+    fhir:description @<markdown>?;          # Human-readable description
+    fhir:securityLabel @<OneOrMore_CodeableConcept>?;  # Document security-tags
+    fhir:content @<OneOrMore_BackboneElement>;  # Document referenced
+    fhir:sourcePatientInfo @<Reference> AND {fhir:link 
+    			@<Patient> }?;  # Patient demographics from source
+}  
+
+# Relationships to other documents
+<DocumentReference.relatesTo> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>;           # The relationship type with another 
+                                            # document 
+    fhir:target @<Reference> AND {fhir:link 
+    			@<DocumentReference> };  # Target of the relationship
+}  
+
+# Attests to accuracy of the document
+<DocumentReference.attester> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:mode @<CodeableConcept>;           # personal | professional | legal | 
+                                            # official 
+    fhir:time @<dateTime>?;                 # When the document was attested
+    fhir:party @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Who attested the document
+}  
+
+# Document referenced
+<DocumentReference.content> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:attachment @<Attachment>;          # Where to access the document
+    fhir:profile @<OneOrMore_BackboneElement>?;  # Content profile rules for the 
+                                            # document 
+}  
+
+# Content profile rules for the document
+<DocumentReference.content.profile> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:v (@<Coding>  OR 
+    			@<uri>  OR 
+    			@<canonical> )  AND { rdf:type IRI } ;  # Code|uri|canonical
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_Claim_OR_CommunicationRequest_OR_Contract_OR_CoverageEligibilityRequest_OR_DeviceRequest_OR_EnrollmentRequest_OR_EpisodeOfCare_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_RequestGroup_OR_ServiceRequest_OR_SupplyRequest_OR_VisionPrescription> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Appointment> OR 
+			@<AppointmentResponse> OR 
+			@<CarePlan> OR 
+			@<Claim> OR 
+			@<CommunicationRequest> OR 
+			@<Contract> OR 
+			@<CoverageEligibilityRequest> OR 
+			@<DeviceRequest> OR 
+			@<EnrollmentRequest> OR 
+			@<EpisodeOfCare> OR 
+			@<ImmunizationRecommendation> OR 
+			@<MedicationRequest> OR 
+			@<NutritionOrder> OR 
+			@<RequestGroup> OR 
+			@<ServiceRequest> OR 
+			@<SupplyRequest> OR 
+			@<VisionPrescription> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_Claim_OR_CommunicationRequest_OR_Contract_OR_CoverageEligibilityRequest_OR_DeviceRequest_OR_EnrollmentRequest_OR_EpisodeOfCare_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_RequestGroup_OR_ServiceRequest_OR_SupplyRequest_OR_VisionPrescription> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_Appointment_OR_Encounter_OR_EpisodeOfCare> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Appointment> OR 
+			@<Encounter> OR 
+			@<EpisodeOfCare> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Appointment_OR_Encounter_OR_EpisodeOfCare> 
+}
+
+<OneOrMore_CodeableReference> CLOSED {
+    rdf:first @<CodeableReference>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableReference> 
+}
+
+<OneOrMore_Reference_CareTeam_OR_Device_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> OR 
+			@<Device> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam_OR_Device_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The workflow/clinical status of the composition.
+fhirvs:composition-status ["preliminary" "final" "amended" "entered-in-error" "deprecated"]
+
+# The status of the document reference.
+fhirvs:document-reference-status ["current" "superseded" "entered-in-error"]
+

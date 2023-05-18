@@ -1,0 +1,34 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <Location.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+# Where event occurred
+<event-location> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:event-location]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri> AND
+    	{fhir:value ["http://hl7.org/fhir/StructureDefinition/event-location"]}; 
+    fhir:value (@<Reference>  AND {fhir:link @<Location> })  ; 
+    ^fhir:extension { a [fhir:Observation]} OR 
+          {a [fhir:DiagnosticReport]} OR 
+          {a [fhir:DocumentReference]} OR 
+          {a [fhir:SupplyDelivery]}
+
+}  
+

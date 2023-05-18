@@ -1,0 +1,46 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Permission ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-vhdir"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <p>\n        VhDir has identified a need to identify specific entries in the Directory and indicate some restrictions upon use of that entry. \n        This example is the example from VhDir with some additional details added.\n      </p>\n      <p> \n    womens-shelter : All entries related to Women's Shelter can only be read by members of a CareTeam \n    defined for councellors for womens abuse. \n    Uses the existing example CareTeam that is not actually about women abuse councellors, used as example only.\n    Presumes that directory entries related to womens shelter are marked with .meta.security of WSHELTER \n    sensitivity code, a code that is not standard so would exist in a domain using this example Permission.\n    </p>\n    <p>\n      Thus the dataScope is for all data with .meta.security of WSHELTER.\n    </p>\n    <p>\n      Activities by those in the CareTeam. \n      Explicit action and purpose are given, but they are likely not critical to the usecase.\n    </p>\n    </div>"
+  ] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:date ( [ fhir:v "2022-08-04"^^xsd:date] ) ; # 
+  fhir:combining [ fhir:v "deny-overrides"] ; # 
+  fhir:rule ( [
+     fhir:type [ fhir:v "permit" ] ;
+     fhir:data ( [
+       fhir:security ( [
+         fhir:system [ fhir:v "https://example.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "WSHELTER" ]
+       ] )
+     ] ) ;
+     fhir:activity ( [
+       fhir:actor ( [
+         fhir:reference [ fhir:v "CareTeam/example" ]
+       ] ) ;
+       fhir:action ( [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/consentaction"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "access" ]
+         ] )
+       ] ) ;
+       fhir:purpose ( [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActReason"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "HOPERAT" ]
+         ] )
+       ] )
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

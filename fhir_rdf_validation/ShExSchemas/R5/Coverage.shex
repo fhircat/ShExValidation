@@ -1,0 +1,117 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Money.shex>
+IMPORT <string.shex>
+IMPORT <Period.shex>
+IMPORT <Patient.shex>
+IMPORT <boolean.shex>
+IMPORT <Contract.shex>
+IMPORT <Reference.shex>
+IMPORT <Identifier.shex>
+IMPORT <positiveInt.shex>
+IMPORT <Organization.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <SimpleQuantity.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+
+
+start=@<Coverage> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Insurance or medical plan or a payment agreement
+<Coverage> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Coverage];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business Identifier for the 
+                                            # coverage 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:fm-status};  # active | cancelled | draft | 
+                                            # entered-in-error 
+    fhir:type @<CodeableConcept>?;          # Coverage category such as medical 
+                                            # or accident 
+    fhir:policyHolder @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<RelatedPerson> }?;  # Owner of the policy
+    fhir:subscriber @<Reference> AND {fhir:link 
+    			@<Patient> OR 
+    			@<RelatedPerson> }?;  # Subscriber to the policy
+    fhir:subscriberId @<Identifier>?;       # ID assigned to the subscriber
+    fhir:beneficiary @<Reference> AND {fhir:link 
+    			@<Patient> };  # Plan beneficiary
+    fhir:dependent @<string>?;              # Dependent number
+    fhir:relationship @<CodeableConcept>?;  # Beneficiary relationship to the 
+                                            # subscriber 
+    fhir:period @<Period>?;                 # Coverage start and end dates
+    fhir:payor @<OneOrMore_Reference_Organization_OR_Patient_OR_RelatedPerson>;  # Issuer of the policy
+    fhir:class @<OneOrMore_BackboneElement>?;  # Additional coverage classifications
+    fhir:order @<positiveInt>?;             # Relative order of the coverage
+    fhir:network @<string>?;                # Insurer network
+    fhir:costToBeneficiary @<OneOrMore_BackboneElement>?;  # Patient payments for 
+                                            # services/products 
+    fhir:subrogation @<boolean>?;           # Reimbursement to insurer
+    fhir:contract @<OneOrMore_Reference_Contract>?;  # Contract details
+}  
+
+# Patient payments for services/products
+<Coverage.costToBeneficiary> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>?;          # Cost category
+    fhir:v (@<SimpleQuantity>  OR 
+    			@<Money> )  AND { rdf:type IRI } ;  # The amount or percentage due from 
+                                            # the beneficiary 
+    fhir:exception @<OneOrMore_BackboneElement>?;  # Exceptions for patient payments
+}  
+
+# Additional coverage classifications
+<Coverage.class> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # Type of class such as 'group' or 
+                                            # 'plan' 
+    fhir:v @<string>;                   # Value associated with the type
+    fhir:name @<string>?;                   # Human readable description of the 
+                                            # type and value 
+}  
+
+# Exceptions for patient payments
+<Coverage.costToBeneficiary.exception> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # Exception category
+    fhir:period @<Period>?;                 # The effective period of the 
+                                            # exception 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_Reference_Organization_OR_Patient_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Organization_OR_Patient_OR_RelatedPerson> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Reference_Contract> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Contract> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Contract> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# This value set includes Status codes.
+fhirvs:fm-status ["active" "cancelled" "draft" "entered-in-error"]
+

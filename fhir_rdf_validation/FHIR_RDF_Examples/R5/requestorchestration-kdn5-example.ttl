@@ -1,0 +1,184 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:RequestOrchestration ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "kdn5-example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">Administer gemcitabine and carboplatin.</div>"
+  ] ; # 
+  fhir:contained ( [
+     a fhir:MedicationRequest ;
+     fhir:id [ fhir:v "1111" ] ;
+     fhir:status [ fhir:v "unknown" ] ;
+     fhir:intent [ fhir:v "proposal" ] ;
+     fhir:medication [
+       fhir:concept [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://www.nlm.nih.gov/research/umls/rxnorm"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "12574" ] ;
+           fhir:display [ fhir:v "gemcitabine" ]
+         ] ) ;
+         fhir:text [ fhir:v "gemcitabine" ]
+       ]
+     ] ;
+     fhir:subject [
+       fhir:reference [ fhir:v "Patient/example" ]
+     ] ;
+     fhir:dosageInstruction ( [
+       fhir:text [ fhir:v "1250 mg/m² IV over 30 minutes" ] ;
+       fhir:timing [
+         fhir:repeat [
+           fhir:duration [ fhir:v "30"^^xsd:decimal ] ;
+           fhir:durationUnit [ fhir:v "min" ]
+         ]
+       ] ;
+       fhir:route [
+         fhir:text [ fhir:v "IV" ]
+       ] ;
+       fhir:doseAndRate ( [
+         fhir:type [
+           fhir:coding ( [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/dose-rate-type"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "ordered" ] ;
+             fhir:display [ fhir:v "Ordered" ]
+           ] )
+         ] ;
+         fhir:dose [
+           a fhir:Quantity ;
+           fhir:value [ fhir:v "1250"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "mg/m²" ]
+         ]
+       ] )
+     ] )
+  ] [
+     a fhir:MedicationRequest ;
+     fhir:id [ fhir:v "2222" ] ;
+     fhir:status [ fhir:v "unknown" ] ;
+     fhir:intent [ fhir:v "proposal" ] ;
+     fhir:medication [
+       fhir:concept [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://www.nlm.nih.gov/research/umls/rxnorm"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "40048" ] ;
+           fhir:display [ fhir:v "Carboplatin" ]
+         ] ) ;
+         fhir:text [ fhir:v "CARBOplatin" ]
+       ]
+     ] ;
+     fhir:subject [
+       fhir:reference [ fhir:v "Patient/example" ]
+     ] ;
+     fhir:dosageInstruction ( [
+       fhir:text [ fhir:v "AUC 5 IV over 30 minutes" ] ;
+       fhir:timing [
+         fhir:repeat [
+           fhir:duration [ fhir:v "30"^^xsd:decimal ] ;
+           fhir:durationUnit [ fhir:v "min" ]
+         ]
+       ] ;
+       fhir:route [
+         fhir:text [ fhir:v "IV" ]
+       ] ;
+       fhir:doseAndRate ( [
+         fhir:type [
+           fhir:coding ( [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/dose-rate-type"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "ordered" ] ;
+             fhir:display [ fhir:v "Ordered" ]
+           ] )
+         ] ;
+         fhir:dose [
+           a fhir:Quantity ;
+           fhir:extension ( [
+             fhir:url [ fhir:v "http://example.org/fhir/AUC-dose"^^xsd:anyURI ] ;
+             fhir:value [ fhir:v "5"^^xsd:integer ]
+           ] ) #   AUC as dose unit or as an extension?  
+         ] #   <value value=\"5\" \/>\n          <unit value=\"AUC\" \/>\n          <system value=\"http:\/\/snomed.info\/sct\" \/>\n          <code value=\"413573002\" \/>  
+       ] )
+     ] )
+  ] ) ; # 
+  fhir:identifier ( [
+     fhir:value [ fhir:v "requestorchestration-kdn5" ]
+  ] ) ; # 
+  fhir:instantiatesCanonical ( [
+     fhir:v "http://example.org/fhir/PlanDefinition/KDN5"^^xsd:anyURI ;
+     fhir:link <http://example.org/fhir/PlanDefinition/KDN5>
+  ] ) ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:intent [ fhir:v "plan"] ; # 
+  fhir:priority [ fhir:v "routine"] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/example" ]
+  ] ; # 
+  fhir:authoredOn [ fhir:v "2017-03-06T17:31:00Z"^^xsd:dateTime] ; # 
+  fhir:author [
+     fhir:reference [ fhir:v "Practitioner/1" ]
+  ] ; # 
+  fhir:action ( [
+     fhir:selectionBehavior [ fhir:v "exactly-one" ] ; #   list of regimen options. in this case only one  
+     fhir:action ( [
+       fhir:selectionBehavior [ fhir:v "all" ] ; #   list of regimen parts. in this case only one  
+       fhir:action ( [
+         fhir:groupingBehavior [ fhir:v "sentence-group" ] ; #   list of cycle definitions. in this case only one  
+         fhir:selectionBehavior [ fhir:v "exactly-one" ] ;
+         fhir:action ( [
+           fhir:id [ fhir:v "cycle-definition-1" ] ;
+           fhir:textEquivalent [ fhir:v "21-day cycle for 6 cycles" ] ;
+           fhir:timing [
+             a fhir:Timing ;
+             fhir:repeat [
+               fhir:count [ fhir:v "6"^^xsd:positiveInteger ] ;
+               fhir:duration [ fhir:v "21"^^xsd:decimal ] ;
+               fhir:durationUnit [ fhir:v "d" ]
+             ]
+           ] ;
+           fhir:action ( [
+             fhir:id [ fhir:v "action-1" ] ;
+             fhir:extension ( [
+               fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/timing-daysOfCycle"^^xsd:anyURI ] ;
+               fhir:extension ( [
+                 fhir:url [ fhir:v "day"^^xsd:anyURI ] ;
+                 fhir:value [ fhir:v "1"^^xsd:integer ]
+               ] [
+                 fhir:url [ fhir:v "day"^^xsd:anyURI ] ;
+                 fhir:value [ fhir:v "8"^^xsd:integer ]
+               ] )
+             ] ) ;
+             fhir:textEquivalent [ fhir:v "Gemcitabine 1250 mg/m² IV over 30 minutes on days 1 and 8" ] ;
+             fhir:resource [
+               fhir:reference [ fhir:v "#1111" ]
+             ]
+           ] [
+             fhir:id [ fhir:v "action-2" ] ;
+             fhir:extension ( [
+               fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/timing-daysOfCycle"^^xsd:anyURI ] ;
+               fhir:extension ( [
+                 fhir:url [ fhir:v "day"^^xsd:anyURI ] ;
+                 fhir:value [ fhir:v "1"^^xsd:integer ]
+               ] )
+             ] ) ;
+             fhir:textEquivalent [ fhir:v "CARBOplatin AUC 5 IV over 30 minutes on Day 1" ] ;
+             fhir:relatedAction ( [
+               fhir:targetId [ fhir:v "action-1" ] ;
+               fhir:relationship [ fhir:v "concurrent-with-start" ]
+             ] ) ;
+             fhir:resource [
+               fhir:reference [ fhir:v "#2222" ]
+             ]
+           ] ) #   list of regimen entry references for this regimen part  ,   references would duplicated in each cycle definition option\n          (see codesystem-action-grouping-behavior.html#sentence-group) 
+         ] ) #   end of regimen entries  
+       ] ) #   end of cycle definitions  
+     ] ) #   end of regimen parts  
+  ] )] . #   end of regimen options  
+
+# -------------------------------------------------------------------------------------
+

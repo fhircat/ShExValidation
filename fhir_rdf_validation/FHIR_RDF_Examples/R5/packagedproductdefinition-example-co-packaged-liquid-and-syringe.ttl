@@ -1,0 +1,64 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:PackagedProductDefinition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "package-with-liquid-and-syringe"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: PackagedProductDefinition</b><a name=\"package-with-liquid-and-syringe\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource PackagedProductDefinition &quot;package-with-liquid-and-syringe&quot; </p></div><p><b>packageFor</b>: <span title=\"  the product for which this is one available package type (possibly one package type of several for this product)  \"><a href=\"broken-link.html\">MedicinalProductDefinition/ProductThatHasThisPackType</a></span></p><blockquote><p><b>packaging</b></p><blockquote><p><b>containedItem</b></p><h3>Items</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a name=\"liquidItem\"> </a><blockquote><p/><p><a name=\"liquidItem\"> </a></p><p><b>status</b>: active</p><p><b>manufacturedDoseForm</b>: solution for injection <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (doseform#solution for injection)</span></p></blockquote></td></tr></table><p><b>amount</b>: 20 ml<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mL = 'mL')</span></p></blockquote><blockquote><p><b>containedItem</b></p><h3>Items</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a name=\"syringeDevice\"> </a><blockquote><p/><p><a name=\"syringeDevice\"> </a></p><h3>Classifications</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td></tr><tr><td>*</td><td>syringe <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table></blockquote></td></tr></table></blockquote></blockquote></div>"
+  ] ; #    Note that contained here is a completely different meaning to "containedItem" below
+#	     This refers to data contained in the resource, not physically in the package.   
+  fhir:contained ( [
+     a fhir:DeviceDefinition ;
+     fhir:id [ fhir:v "syringeDevice" ] ;
+     fhir:classification ( [
+       fhir:type [
+         fhir:text [ fhir:v "syringe" ]
+       ]
+     ] )
+  ] [
+     a fhir:ManufacturedItemDefinition ;
+     fhir:id [ fhir:v "liquidItem" ] ;
+     fhir:status [ fhir:v "active" ] ;
+     fhir:manufacturedDoseForm [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://example.org.uk/fhir/doseform"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "solution for injection" ]
+       ] )
+     ]
+  ] ) ; #    Schema appears to be broken, deviceName is not present in XSD   ,   deviceName>
+#				<name value="WonderSyringe"/>
+#				<type value="manufacturer-name"/>
+#			</deviceName  
+  fhir:packageFor ( [
+     fhir:reference [ fhir:v "MedicinalProductDefinition/ProductThatHasThisPackType" ]
+  ] ) ; #    the product for which this is one available package type (possibly one package type of several for this product)   
+  fhir:packaging [
+     fhir:containedItem ( [
+       fhir:item [
+         fhir:reference [
+           fhir:reference [ fhir:v "#liquidItem" ] #    reference an item defined above   
+         ]
+       ] ;
+       fhir:amount [
+         fhir:value [ fhir:v "20"^^xsd:decimal ] ;
+         fhir:unit [ fhir:v "ml" ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "mL" ]
+       ]
+     ] [
+       fhir:item [
+         fhir:reference [
+           fhir:reference [ fhir:v "#syringeDevice" ] #    reference an item defined above   
+         ]
+       ]
+     ] ) #    here we can describe the packaging, but in this case we just want to talk about the contents   ,    Note that containedItem here is a completely different meaning to \"contained\" above\n	         This refers to items physically contained in the package.   
+  ]] . #    package contents start here, consists of a liquid and a syringe   
+
+# -------------------------------------------------------------------------------------
+

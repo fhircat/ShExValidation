@@ -1,0 +1,249 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+
+start=@<SubstanceSourceMaterial> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Source material shall capture information on the taxonomic and anatomical origins as well as the fraction of a material that can result in or can be modified to form a substance. This set of data elements shall be used to define polymer substances isolated from biological matrices. Taxonomic and anatomical origins shall be described using a controlled vocabulary as required. This information is captured for naturally derived polymers ( . starch) and structurally diverse substances. For Organisms belonging to the Kingdom Plantae the Substance level defines the fresh material of a single species or infraspecies, the Herbal Drug and the Herbal preparation. For Herbal preparations, the fraction information will be captured at the Substance information level and additional information for herbal extracts will be captured at the Specified Substance Group 1 information level. See for further explanation the Substance Class: Structurally Diverse and the herbal annex
+<SubstanceSourceMaterial> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:SubstanceSourceMaterial]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:sourceMaterialClass @<CodeableConcept>?;  # General high level classification 
+                                            # of the source material specific to 
+                                            # the origin of the material 
+    fhir:sourceMaterialType @<CodeableConcept>?;  # The type of the source material 
+                                            # shall be specified based on a 
+                                            # controlled vocabulary. For 
+                                            # vaccines, this subclause refers to 
+                                            # the class of infectious agent 
+    fhir:sourceMaterialState @<CodeableConcept>?;  # The state of the source material 
+                                            # when extracted 
+    fhir:organismId @<Identifier>?;         # The unique identifier associated 
+                                            # with the source material parent 
+                                            # organism shall be specified 
+    fhir:organismName @<string>?;           # The organism accepted Scientific 
+                                            # name shall be provided based on 
+                                            # the organism taxonomy 
+    fhir:parentSubstanceId @<OneOrMore_Identifier>?;  # The parent of the herbal drug 
+                                            # Ginkgo biloba, Leaf is the 
+                                            # substance ID of the substance 
+                                            # (fresh) of Ginkgo biloba L. or 
+                                            # Ginkgo biloba L. (Whole plant) 
+    fhir:parentSubstanceName @<OneOrMore_string>?;  # The parent substance of the Herbal 
+                                            # Drug, or Herbal preparation 
+    fhir:countryOfOrigin @<OneOrMore_CodeableConcept>?;  # The country where the plant 
+                                            # material is harvested or the 
+                                            # countries where the plasma is 
+                                            # sourced from as laid down in 
+                                            # accordance with the Plasma Master 
+                                            # File. For “Plasma-derived 
+                                            # substances” the attribute country 
+                                            # of origin provides information 
+                                            # about the countries used for the 
+                                            # manufacturing of the Cryopoor 
+                                            # plama or Crioprecipitate 
+    fhir:geographicalLocation @<OneOrMore_string>?;  # The place/region where the plant 
+                                            # is harvested or the places/regions 
+                                            # where the animal source material 
+                                            # has its habitat 
+    fhir:developmentStage @<CodeableConcept>?;  # Stage of life for animals, plants, 
+                                            # insects and microorganisms. This 
+                                            # information shall be provided only 
+                                            # when the substance is 
+                                            # significantly different in these 
+                                            # stages (e.g. foetal bovine serum) 
+    fhir:fractionDescription @<OneOrMore_SubstanceSourceMaterial.fractionDescription>?;  # Many complex materials are 
+                                            # fractions of parts of plants, 
+                                            # animals, or minerals. Fraction 
+                                            # elements are often necessary to 
+                                            # define both Substances and 
+                                            # Specified Group 1 Substances. For 
+                                            # substances derived from Plants, 
+                                            # fraction information will be 
+                                            # captured at the Substance 
+                                            # information level ( . Oils, Juices 
+                                            # and Exudates). Additional 
+                                            # information for Extracts, such as 
+                                            # extraction solvent composition, 
+                                            # will be captured at the Specified 
+                                            # Substance Group 1 information 
+                                            # level. For plasma-derived products 
+                                            # fraction information will be 
+                                            # captured at the Substance and the 
+                                            # Specified Substance Group 1 levels 
+    fhir:organism @<SubstanceSourceMaterial.organism>?;  # This subclause describes the 
+                                            # organism which the substance is 
+                                            # derived from. For vaccines, the 
+                                            # parent organism shall be specified 
+                                            # based on these subclause elements. 
+                                            # As an example, full taxonomy will 
+                                            # be described for the Substance 
+                                            # Name: ., Leaf 
+    fhir:partDescription @<OneOrMore_SubstanceSourceMaterial.partDescription>?;  # To do
+}  
+
+# This subclause describes the organism which the substance is derived from. For vaccines, the parent organism shall be specified based on these subclause elements. As an example, full taxonomy will be described for the Substance Name: ., Leaf
+<SubstanceSourceMaterial.organism> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:family @<CodeableConcept>?;        # The family of an organism shall be 
+                                            # specified 
+    fhir:genus @<CodeableConcept>?;         # The genus of an organism shall be 
+                                            # specified; refers to the Latin 
+                                            # epithet of the genus element of 
+                                            # the plant/animal scientific name; 
+                                            # it is present in names for genera, 
+                                            # species and infraspecies 
+    fhir:species @<CodeableConcept>?;       # The species of an organism shall 
+                                            # be specified; refers to the Latin 
+                                            # epithet of the species of the 
+                                            # plant/animal; it is present in 
+                                            # names for species and infraspecies 
+    fhir:intraspecificType @<CodeableConcept>?;  # The Intraspecific type of an 
+                                            # organism shall be specified 
+    fhir:intraspecificDescription @<string>?;  # The intraspecific description of 
+                                            # an organism shall be specified 
+                                            # based on a controlled vocabulary. 
+                                            # For Influenza Vaccine, the 
+                                            # intraspecific description shall 
+                                            # contain the syntax of the antigen 
+                                            # in line with the WHO convention 
+    fhir:author @<OneOrMore_SubstanceSourceMaterial.organism.author>?;  # 4.9.13.6.1 Author type 
+                                            # (Conditional) 
+    fhir:hybrid @<SubstanceSourceMaterial.organism.hybrid>?;  # 4.9.13.8.1 Hybrid species maternal 
+                                            # organism ID (Optional) 
+    fhir:organismGeneral @<SubstanceSourceMaterial.organism.organismGeneral>?;  # 4.9.13.7.1 Kingdom (Conditional)
+}  
+
+# 4.9.13.6.1 Author type (Conditional)
+<SubstanceSourceMaterial.organism.author> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:authorType @<CodeableConcept>?;    # The type of author of an organism 
+                                            # species shall be specified. The 
+                                            # parenthetical author of an 
+                                            # organism species refers to the 
+                                            # first author who published the 
+                                            # plant/animal name (of any rank). 
+                                            # The primary author of an organism 
+                                            # species refers to the first 
+                                            # author(s), who validly published 
+                                            # the plant/animal name 
+    fhir:authorDescription @<string>?;      # The author of an organism species 
+                                            # shall be specified. The author 
+                                            # year of an organism shall also be 
+                                            # specified when applicable; refers 
+                                            # to the year in which the first 
+                                            # author(s) published the 
+                                            # infraspecific plant/animal name 
+                                            # (of any rank) 
+}  
+
+# 4.9.13.7.1 Kingdom (Conditional)
+<SubstanceSourceMaterial.organism.organismGeneral> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:kingdom @<CodeableConcept>?;       # The kingdom of an organism shall 
+                                            # be specified 
+    fhir:phylum @<CodeableConcept>?;        # The phylum of an organism shall be 
+                                            # specified 
+    fhir:class @<CodeableConcept>?;         # The class of an organism shall be 
+                                            # specified 
+    fhir:order @<CodeableConcept>?;         # The order of an organism shall be 
+                                            # specified, 
+}  
+
+# Many complex materials are fractions of parts of plants, animals, or minerals. Fraction elements are often necessary to define both Substances and Specified Group 1 Substances. For substances derived from Plants, fraction information will be captured at the Substance information level ( . Oils, Juices and Exudates). Additional information for Extracts, such as extraction solvent composition, will be captured at the Specified Substance Group 1 information level. For plasma-derived products fraction information will be captured at the Substance and the Specified Substance Group 1 levels
+<SubstanceSourceMaterial.fractionDescription> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:fraction @<string>?;               # This element is capturing 
+                                            # information about the fraction of 
+                                            # a plant part, or human plasma for 
+                                            # fractionation 
+    fhir:materialType @<CodeableConcept>?;  # The specific type of the material 
+                                            # constituting the component. For 
+                                            # Herbal preparations the 
+                                            # particulars of the extracts 
+                                            # (liquid/dry) is described in 
+                                            # Specified Substance Group 1 
+}  
+
+# To do
+<SubstanceSourceMaterial.partDescription> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:part @<CodeableConcept>?;          # Entity of anatomical origin of 
+                                            # source material within an organism 
+    fhir:partLocation @<CodeableConcept>?;  # The detailed anatomic location 
+                                            # when the part can be extracted 
+                                            # from different anatomical 
+                                            # locations of the organism. 
+                                            # Multiple alternative locations may 
+                                            # apply 
+}  
+
+# 4.9.13.8.1 Hybrid species maternal organism ID (Optional)
+<SubstanceSourceMaterial.organism.hybrid> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:maternalOrganismId @<string>?;     # The identifier of the maternal 
+                                            # species constituting the hybrid 
+                                            # organism shall be specified based 
+                                            # on a controlled vocabulary. For 
+                                            # plants, the parents aren’t always 
+                                            # known, and it is unlikely that it 
+                                            # will be known which is maternal 
+                                            # and which is paternal 
+    fhir:maternalOrganismName @<string>?;   # The name of the maternal species 
+                                            # constituting the hybrid organism 
+                                            # shall be specified. For plants, 
+                                            # the parents aren’t always known, 
+                                            # and it is unlikely that it will be 
+                                            # known which is maternal and which 
+                                            # is paternal 
+    fhir:paternalOrganismId @<string>?;     # The identifier of the paternal 
+                                            # species constituting the hybrid 
+                                            # organism shall be specified based 
+                                            # on a controlled vocabulary 
+    fhir:paternalOrganismName @<string>?;   # The name of the paternal species 
+                                            # constituting the hybrid organism 
+                                            # shall be specified 
+    fhir:hybridType @<CodeableConcept>?;    # The hybrid type of an organism 
+                                            # shall be specified 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+<OneOrMore_SubstanceSourceMaterial.fractionDescription> CLOSED {
+    rdf:first @<SubstanceSourceMaterial.fractionDescription>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_SubstanceSourceMaterial.fractionDescription> 
+}
+
+<OneOrMore_SubstanceSourceMaterial.partDescription> CLOSED {
+    rdf:first @<SubstanceSourceMaterial.partDescription>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_SubstanceSourceMaterial.partDescription> 
+}
+
+<OneOrMore_SubstanceSourceMaterial.organism.author> CLOSED {
+    rdf:first @<SubstanceSourceMaterial.organism.author>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_SubstanceSourceMaterial.organism.author> 
+}
+

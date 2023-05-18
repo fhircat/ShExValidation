@@ -1,0 +1,63 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Endpoint ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n			Health Intersections CarePlan Hub<br/>\n			CarePlans can be uploaded to/from this loccation\n		</div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://example.org/enpoint-identifier"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "epcp12" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:connectionType ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/endpoint-connection-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "hl7-fhir-rest" ]
+     ] )
+  ] ) ; # 
+  fhir:name [ fhir:v "Health Intersections CarePlan Hub"] ; # 
+  fhir:description [ fhir:v "The CarePlan hub provides a test/dev environment for testing submissions"] ; # 
+  fhir:environmentType ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/endpoint-environment"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "test" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/endpoint-environment"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "dev" ]
+     ] )
+  ] ) ; # 
+  fhir:managingOrganization [
+     fhir:reference [ fhir:v "Organization/hl7" ]
+  ] ; # 
+  fhir:contact ( [
+     fhir:system [ fhir:v "email" ] ;
+     fhir:value [ fhir:v "endpointmanager@example.org" ] ;
+     fhir:use [ fhir:v "work" ]
+  ] ) ; # 
+  fhir:period [
+     fhir:start [ fhir:v "2014-09-01"^^xsd:date ]
+  ] ; # 
+  fhir:payload ( [
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/fhir-types"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "CarePlan" ]
+       ] )
+     ] ) ;
+     fhir:mimeType ( [ fhir:v "application/fhir+xml" ] )
+  ] ) ; # 
+  fhir:address [ fhir:v "http://fhir3.healthintersections.com.au/open/CarePlan"^^xsd:anyURI] ; # 
+  fhir:header ( [ fhir:v "bearer-code BASGS534s4"] )] . #   Not a valid bearer token, but is here for demonstration purposes  
+
+# -------------------------------------------------------------------------------------
+

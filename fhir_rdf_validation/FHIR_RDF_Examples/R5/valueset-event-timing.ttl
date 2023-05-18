@@ -1,0 +1,169 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ValueSet ;
+  fhir:id [ fhir:v "event-timing"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablevalueset" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "fhir" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "normative" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version" ] ;
+     fhir:value [ fhir:v "4.0.0" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "5" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/event-timing"], [ fhir:v "http://hl7.org/fhir/ValueSet/event-timing"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.75" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.75" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "EventTiming"], [ fhir:v "EventTiming"] ;
+  fhir:title [ fhir:v "EventTiming"], [ fhir:v "EventTiming"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Real-world event relating to the schedule."], [ fhir:v "Real-world event relating to the schedule."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:immutable [ fhir:v "true"] ;
+  fhir:compose [
+     fhir:include ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/event-timing" ]
+     ] [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-TimingEvent" ] ;
+       fhir:concept ( [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "event occurs [offset] before the hour of sleep (or trying to)" ]
+         ] ) ;
+         fhir:code [ fhir:v "HS" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "event occurs [offset] after waking" ]
+         ] ) ;
+         fhir:code [ fhir:v "WAKE" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "event occurs at a meal (from the Latin cibus)" ]
+         ] ) ;
+         fhir:code [ fhir:v "C" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "event occurs at breakfast (from the Latin cibus matutinus)" ]
+         ] ) ;
+         fhir:code [ fhir:v "CM" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "event occurs at lunch (from the Latin cibus diurnus)" ]
+         ] ) ;
+         fhir:code [ fhir:v "CD" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "event occurs at dinner (from the Latin ante cibus vespertinus)" ]
+         ] ) ;
+         fhir:code [ fhir:v "CV" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "event occurs [offset] before a meal (from the Latin ante cibus)" ]
+         ] ) ;
+         fhir:code [ fhir:v "AC" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "event occurs [offset] before breakfast (from the Latin ante cibus matutinus)" ]
+         ] ) ;
+         fhir:code [ fhir:v "ACM" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "event occurs [offset] before lunch (from the Latin ante cibus diurnus)" ]
+         ] ) ;
+         fhir:code [ fhir:v "ACD" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "event occurs [offset] before dinner (from the Latin ante cibus vespertinus)" ]
+         ] ) ;
+         fhir:code [ fhir:v "ACV" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "event occurs [offset] after a meal (from the Latin post cibus)" ]
+         ] ) ;
+         fhir:code [ fhir:v "PC" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "event occurs [offset] after breakfast (from the Latin post cibus matutinus)" ]
+         ] ) ;
+         fhir:code [ fhir:v "PCM" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "event occurs [offset] after lunch (from the Latin post cibus diurnus)" ]
+         ] ) ;
+         fhir:code [ fhir:v "PCD" ]
+       ] [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-concept-definition" ] ;
+           fhir:value [ fhir:v "event occurs [offset] after dinner (from the Latin post cibus vespertinus)" ]
+         ] ) ;
+         fhir:code [ fhir:v "PCV" ]
+       ] )
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,48 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+#       <photo>    
+#        <reference value="Media/CE-204.bmp"/>
+#        <display value="Picture_Carla_Espinosa"/>
+#    </photo>  
+
+[a fhir:Practitioner ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "f204"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Practitioner</b><a name=\"f204\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Practitioner &quot;f204&quot; </p></div><p><b>identifier</b>: <span title=\" Practitioner's personal demographics \">UZI-nummer: 12345678904 (use: OFFICIAL)</span></p><p><b>name</b>: Carla Espinosa</p><p><b>telecom</b>: <a href=\"tel:+31715262169\">+31715262169</a></p><p><b>gender</b>: female</p><p><b>birthDate</b>: 1967-11-05</p><p><b>address</b>: Walvisbaai 3 Den helder 2333ZA NLD (WORK)</p></div>"
+  ] ; #   Practitioner's personal demographics  
+  fhir:identifier ( [
+     fhir:use [ fhir:v "official" ] ; #   The (fictive) identifier for this individual  
+     fhir:type [
+       fhir:text [ fhir:v "UZI-nummer" ]
+     ] ;
+     fhir:system [ fhir:v "urn:oid:2.16.528.1.1007.3.1"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "12345678904" ]
+  ] ) ; # 
+  fhir:name ( [
+     fhir:use [ fhir:v "usual" ] ;
+     fhir:text [ fhir:v "Carla Espinosa" ]
+  ] ) ; # 
+  fhir:telecom ( [
+     fhir:system [ fhir:v "phone" ] ;
+     fhir:value [ fhir:v "+31715262169" ] ;
+     fhir:use [ fhir:v "work" ]
+  ] ) ; # 
+  fhir:gender [ fhir:v "female"] ; # 
+  fhir:birthDate [ fhir:v "1967-11-05"^^xsd:date] ; # 
+  fhir:address ( [
+     fhir:use [ fhir:v "work" ] ;
+     fhir:line ( [ fhir:v "Walvisbaai 3" ] ) ;
+     fhir:city [ fhir:v "Den helder" ] ;
+     fhir:postalCode [ fhir:v "2333ZA" ] ;
+     fhir:country [ fhir:v "NLD" ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

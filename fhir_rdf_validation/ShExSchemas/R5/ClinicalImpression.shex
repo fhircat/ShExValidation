@@ -1,0 +1,129 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Group.shex>
+IMPORT <string.shex>
+IMPORT <Period.shex>
+IMPORT <Patient.shex>
+IMPORT <dateTime.shex>
+IMPORT <Resource.shex>
+IMPORT <Reference.shex>
+IMPORT <Encounter.shex>
+IMPORT <Condition.shex>
+IMPORT <Practitioner.shex>
+IMPORT <DomainResource.shex>
+IMPORT <RiskAssessment.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <CodeableReference.shex>
+IMPORT <AllergyIntolerance.shex>
+
+
+start=@<ClinicalImpression> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A clinical assessment performed when planning treatments and management strategies for a patient
+<ClinicalImpression> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:ClinicalImpression];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business identifier
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:event-status};  # preparation | in-progress | 
+                                            # not-done | on-hold | stopped | 
+                                            # completed | entered-in-error | 
+                                            # unknown 
+    fhir:statusReason @<CodeableConcept>?;  # Reason for current status
+    fhir:description @<string>?;            # Why/how the assessment was 
+                                            # performed 
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Patient> };  # Patient or group assessed
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # The Encounter during which this 
+                                            # ClinicalImpression was created 
+    fhir:effective (@<dateTime>  OR 
+    			@<Period> )  AND { rdf:type IRI } ?;  # Time of assessment
+    fhir:date @<dateTime>?;                 # When the assessment was documented
+    fhir:performer @<Reference> AND {fhir:link 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> }?;  # The clinician performing the 
+                                            # assessment 
+    fhir:previous @<Reference> AND {fhir:link 
+    			@<ClinicalImpression> }?;  # Reference to last assessment
+    fhir:problem @<OneOrMore_Reference_AllergyIntolerance_OR_Condition>?;  # Relevant impressions of patient 
+                                            # state 
+    fhir:protocol @<OneOrMore_uri>?;        # Clinical Protocol followed
+    fhir:summary @<string>?;                # Summary of the assessment
+    fhir:finding @<OneOrMore_BackboneElement>?;  # Possible or likely findings and 
+                                            # diagnoses 
+    fhir:prognosisCodeableConcept @<OneOrMore_CodeableConcept>?;  # Estimate of likely outcome
+    fhir:prognosisReference @<OneOrMore_Reference_RiskAssessment>?;  # RiskAssessment expressing likely 
+                                            # outcome 
+    fhir:supportingInfo @<OneOrMore_Reference_Resource>?;  # Information supporting the 
+                                            # clinical impression 
+    fhir:note @<OneOrMore_Annotation>?;     # Comments made about the 
+                                            # ClinicalImpression 
+}  
+
+# Possible or likely findings and diagnoses
+<ClinicalImpression.finding> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:item @<CodeableReference>?;        # What was found
+    fhir:basis @<string>?;                  # Which investigations support 
+                                            # finding 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_Reference_AllergyIntolerance_OR_Condition> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<AllergyIntolerance> OR 
+			@<Condition> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_AllergyIntolerance_OR_Condition> 
+}
+
+<OneOrMore_uri> CLOSED {
+    rdf:first @<uri>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_uri> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_RiskAssessment> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<RiskAssessment> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_RiskAssessment> 
+}
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Codes identifying the lifecycle stage of an event.
+fhirvs:event-status ["preparation" "in-progress" "not-done" "on-hold" "stopped" "completed" "entered-in-error" "unknown"]
+

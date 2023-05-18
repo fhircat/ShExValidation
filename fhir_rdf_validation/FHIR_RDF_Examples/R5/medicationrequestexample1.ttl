@@ -1,0 +1,154 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:MedicationRequest ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "medrx0311"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicationRequest</b><a name=\"medrx0311\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicationRequest &quot;medrx0311&quot; </p></div><p><b>identifier</b>: id: 12345689 (use: OFFICIAL)</p><p><b>status</b>: active</p><p><b>intent</b>: order</p><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><span title=\"  Linked to a RESOURCE Medication  \"><a name=\"med0316\"> </a></span><blockquote><p/><p><a name=\"med0316\"> </a></p><p><b>code</b>: Chlorthalidone 50mg tablet (product) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#317935006)</span></p><p><b>doseForm</b>: Tablet dose form (qualifier value) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#385055001)</span></p></blockquote></td></tr></table><p><b>subject</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><p><b>encounter</b>: <a href=\"encounter-example-f001-heart.html\">Encounter/f001: encounter who leads to this prescription</a></p><p><b>authoredOn</b>: 2015-01-15</p><p><b>requester</b>: <a href=\"practitioner-example-f007-sh.html\">Practitioner/f007: Patrick Pump</a> &quot;Simone HEPS&quot;</p><h3>Reasons</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a href=\"condition-example-f201-fever.html\">Condition/f201: condition for prescribing this medication</a></td></tr></table><p><b>note</b>: Chlorthalidone increases urniation so take it in the morning</p><blockquote><p><b>dosageInstruction</b></p><p><b>sequence</b>: 1</p><p><b>text</b>: One tablet daily</p><p><b>additionalInstruction</b>: With or after food <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#311504000)</span></p><p><b>timing</b>: Code: QD</p><p><b>route</b>: Oral Route <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#26643006)</span></p><p><b>method</b>: Swallow - dosing instruction imperative (qualifier value) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#421521009)</span></p><blockquote><p><b>doseAndRate</b></p></blockquote></blockquote><blockquote><p><b>dispenseRequest</b></p><p><b>validityPeriod</b>: 2015-01-15 --&gt; 2016-01-15</p><p><b>numberOfRepeatsAllowed</b>: 1</p><p><b>quantity</b>: 30 TAB<span style=\"background: LightGoldenRodYellow\"> (Details: http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm code TAB = 'Tablet')</span></p><h3>ExpectedSupplyDurations</h3><table class=\"grid\"><tr><td>-</td><td><b>Value</b></td><td><b>Unit</b></td><td><b>System</b></td><td><b>Code</b></td></tr><tr><td>*</td><td>30</td><td>days</td><td><a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ucum.html\">Unified Code for Units of Measure (UCUM)</a></td><td>d</td></tr></table></blockquote><h3>Substitutions</h3><table class=\"grid\"><tr><td>-</td><td><b>Allowed[x]</b></td><td><b>Reason</b></td></tr><tr><td>*</td><td>true</td><td>continuing therapy <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ActReason.html\">ActReason</a>#CT)</span></td></tr></table></div>"
+  ] ; # 
+  fhir:contained ( [
+     a fhir:Medication ;
+     fhir:id [ fhir:v "med0316" ] ;
+     fhir:code [
+       fhir:coding ( [
+         a sct:317935006 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "317935006" ] ;
+         fhir:display [ fhir:v "Chlorthalidone 50mg tablet (product)" ]
+       ] )
+     ] ;
+     fhir:doseForm [
+       fhir:coding ( [
+         a sct:385055001 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "385055001" ] ;
+         fhir:display [ fhir:v "Tablet dose form (qualifier value)" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "official" ] ;
+     fhir:system [ fhir:v "http://www.bmc.nl/portal/prescriptions"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "12345689" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:intent [ fhir:v "order"] ; # 
+  fhir:medication [
+     fhir:reference [
+       fhir:reference [ fhir:v "#med0316" ]
+     ] #    Linked to a RESOURCE Medication   
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat1" ] ; #    Linked to the resource patient who needs the medication   
+     fhir:display [ fhir:v "Donald Duck" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/f001" ] ; #    Linked to a resource Encounter between patient and practitioner  
+     fhir:display [ fhir:v "encounter who leads to this prescription" ]
+  ] ; # 
+  fhir:authoredOn [ fhir:v "2015-01-15"^^xsd:date] ; # 
+  fhir:requester [
+     fhir:reference [ fhir:v "Practitioner/f007" ] ;
+     fhir:display [ fhir:v "Patrick Pump" ]
+  ] ; # 
+  fhir:reason ( [
+     fhir:reference [
+       fhir:reference [ fhir:v "Condition/f201" ] ;
+       fhir:display [ fhir:v "condition for prescribing this medication" ]
+     ]
+  ] ) ; # 
+  fhir:note ( [
+     fhir:text [ fhir:v "Chlorthalidone increases urniation so take it in the morning" ]
+  ] ) ; # 
+  fhir:dosageInstruction ( [
+     fhir:sequence [ fhir:v "1"^^xsd:integer ] ;
+     fhir:text [ fhir:v "One tablet daily" ] ;
+     fhir:additionalInstruction ( [
+       fhir:coding ( [
+         a sct:311504000 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "311504000" ] ;
+         fhir:display [ fhir:v "With or after food" ]
+       ] )
+     ] ) ;
+     fhir:timing [
+       fhir:code [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-GTSAbbreviation"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "QD" ] ;
+           fhir:display [ fhir:v "QD" ]
+         ] )
+       ]
+     ] ;
+     fhir:route [
+       fhir:coding ( [
+         a sct:26643006 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "26643006" ] ;
+         fhir:display [ fhir:v "Oral Route" ]
+       ] )
+     ] ;
+     fhir:method [
+       fhir:coding ( [
+         a sct:421521009 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "421521009" ] ;
+         fhir:display [ fhir:v "Swallow - dosing instruction imperative (qualifier value)" ]
+       ] )
+     ] ;
+     fhir:doseAndRate ( [
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/dose-rate-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "ordered" ] ;
+           fhir:display [ fhir:v "Ordered" ]
+         ] )
+       ] ;
+       fhir:dose [
+         a fhir:Quantity ;
+         fhir:value [ fhir:v "1"^^xsd:decimal ] ;
+         fhir:unit [ fhir:v "TAB" ] ;
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "TAB" ]
+       ]
+     ] )
+  ] ) ; # 
+  fhir:dispenseRequest [
+     fhir:validityPeriod [
+       fhir:start [ fhir:v "2015-01-15"^^xsd:date ] ;
+       fhir:end [ fhir:v "2016-01-15"^^xsd:date ]
+     ] ;
+     fhir:numberOfRepeatsAllowed [ fhir:v "1"^^xsd:nonNegativeInteger ] ;
+     fhir:quantity [
+       fhir:value [ fhir:v "30"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "TAB" ] ;
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "TAB" ]
+     ] ;
+     fhir:expectedSupplyDuration [
+       fhir:value [ fhir:v "30"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "days" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "d" ]
+     ]
+  ] ; # 
+  fhir:substitution [
+     fhir:allowed [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:reason [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActReason"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "CT" ] ;
+         fhir:display [ fhir:v "continuing therapy" ]
+       ] )
+     ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,128 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:MedicationDispense ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "meddisp0303"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicationDispense</b><a name=\"meddisp0303\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicationDispense &quot;meddisp0303&quot; </p></div><p><b>partOf</b>: <a href=\"procedure-example-biopsy.html\">Procedure/biopsy</a></p><p><b>status</b>: on-hold</p><h3>NotPerformedReasons</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a href=\"detectedissue-example-allergy.html\">DetectedIssue/allergy</a></td></tr></table><p><b>category</b>: Outpatient <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (medicationdispense-category#outpatient)</span></p><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><span title=\"  Linked to a RESOURCE Medication  \"><a name=\"med0310\"> </a></span><blockquote><p/><p><a name=\"med0310\"> </a></p><p><b>code</b>: Oxycodone Hydrochloride 5mg oral tablet (Roxicodone <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-rxNorm.html\">RxNorm</a>#1049623)</span></p></blockquote></td></tr></table><p><b>subject</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><p><b>encounter</b>: <a href=\"encounter-example-f001-heart.html\">Encounter/f001</a></p><h3>Performers</h3><table class=\"grid\"><tr><td>-</td><td><b>Actor</b></td></tr><tr><td>*</td><td><a href=\"practitioner-example-f006-rvdb.html\">Practitioner/f006</a> &quot;Rob VAN DEN BERK&quot;</td></tr></table><p><b>authorizingPrescription</b>: <a href=\"medicationrequest0310.html\">MedicationRequest/medrx0310</a></p><p><b>type</b>: Emergency Supply <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ActCode.html\">ActCode</a>#EM)</span></p><p><b>quantity</b>: 30(unit TAB from http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm)<span style=\"background: LightGoldenRodYellow\"> (Details: http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm code TAB = 'Tablet')</span></p><p><b>daysSupply</b>: 10 Day<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code d = 'd')</span></p><p><b>whenPrepared</b>: 2016-04-15T07:14:00+05:00</p><h3>DosageInstructions</h3><table class=\"grid\"><tr><td>-</td><td><b>Sequence</b></td><td><b>Text</b></td><td><b>AdditionalInstruction</b></td><td><b>Timing</b></td><td><b>AsNeededFor</b></td><td><b>Route</b></td><td><b>Method</b></td></tr><tr><td>*</td><td>1</td><td>one to two tablets every 4-6 hours as needed for rib pain</td><td>Warning. May cause drowsiness. If affected do not drive or operate machinery. Avoid alcoholic drink (qualifier value) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#418914006)</span></td><td>Once per 4-6 hours</td><td>Rib Pain (finding) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#297217002)</span></td><td>Oral Route <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#26643006)</span></td><td>Swallow - dosing instruction imperative (qualifier value) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#421521009)</span></td></tr></table></div>"
+  ] ; # 
+  fhir:contained ( [
+     a fhir:Medication ;
+     fhir:id [ fhir:v "med0310" ] ;
+     fhir:code [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://www.nlm.nih.gov/research/umls/rxnorm"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "1049623" ] ;
+         fhir:display [ fhir:v "Oxycodone Hydrochloride 5mg oral tablet (Roxicodone" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:partOf ( [
+     fhir:reference [ fhir:v "Procedure/biopsy" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "on-hold"] ; # 
+  fhir:notPerformedReason [
+     fhir:reference [
+       fhir:reference [ fhir:v "DetectedIssue/allergy" ]
+     ]
+  ] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/fhir/CodeSystem/medicationdispense-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "outpatient" ] ;
+       fhir:display [ fhir:v "Outpatient" ]
+     ] )
+  ] ) ; # 
+  fhir:medication [
+     fhir:reference [
+       fhir:reference [ fhir:v "#med0310" ]
+     ] #    Linked to a RESOURCE Medication   
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat1" ] ;
+     fhir:display [ fhir:v "Donald Duck" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/f001" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/f006" ]
+     ]
+  ] ) ; # 
+  fhir:authorizingPrescription ( [
+     fhir:reference [ fhir:v "MedicationRequest/medrx0310" ]
+  ] ) ; # 
+  fhir:type [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActCode"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "EM" ] ;
+       fhir:display [ fhir:v "Emergency Supply" ]
+     ] )
+  ] ; # 
+  fhir:quantity [
+     fhir:value [ fhir:v "30"^^xsd:decimal ] ;
+     fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "TAB" ]
+  ] ; # 
+  fhir:daysSupply [
+     fhir:value [ fhir:v "10"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "Day" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "d" ]
+  ] ; # 
+  fhir:whenPrepared [ fhir:v "2016-04-15T07:14:00+05:00"^^xsd:dateTime] ; # 
+  fhir:dosageInstruction ( [
+     fhir:sequence [ fhir:v "1"^^xsd:integer ] ;
+     fhir:text [ fhir:v "one to two tablets every 4-6 hours as needed for rib pain" ] ;
+     fhir:additionalInstruction ( [
+       fhir:coding ( [
+         a sct:418914006 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "418914006" ] ;
+         fhir:display [ fhir:v "Warning. May cause drowsiness. If affected do not drive or operate machinery. Avoid alcoholic drink (qualifier value)" ]
+       ] )
+     ] ) ;
+     fhir:timing [
+       fhir:repeat [
+         fhir:frequency [ fhir:v "1"^^xsd:positiveInteger ] ;
+         fhir:period [ fhir:v "4"^^xsd:decimal ] ;
+         fhir:periodMax [ fhir:v "6"^^xsd:decimal ] ;
+         fhir:periodUnit [ fhir:v "h" ]
+       ]
+     ] ;
+     fhir:asNeededFor ( [
+       fhir:coding ( [
+         a sct:297217002 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "297217002" ] ;
+         fhir:display [ fhir:v "Rib Pain (finding)" ]
+       ] )
+     ] ) ;
+     fhir:route [
+       fhir:coding ( [
+         a sct:26643006 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "26643006" ] ;
+         fhir:display [ fhir:v "Oral Route" ]
+       ] )
+     ] ;
+     fhir:method [
+       fhir:coding ( [
+         a sct:421521009 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "421521009" ] ;
+         fhir:display [ fhir:v "Swallow - dosing instruction imperative (qualifier value)" ]
+       ] )
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

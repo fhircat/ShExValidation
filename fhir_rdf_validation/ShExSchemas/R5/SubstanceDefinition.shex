@@ -1,0 +1,306 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <date.shex>
+IMPORT <Ratio.shex>
+IMPORT <string.shex>
+IMPORT <boolean.shex>
+IMPORT <markdown.shex>
+IMPORT <Quantity.shex>
+IMPORT <dateTime.shex>
+IMPORT <Citation.shex>
+IMPORT <Reference.shex>
+IMPORT <Identifier.shex>
+IMPORT <Attachment.shex>
+IMPORT <Organization.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <SubstancePolymer.shex>
+IMPORT <SubstanceProtein.shex>
+IMPORT <DocumentReference.shex>
+IMPORT <SubstanceDefinition.shex>
+IMPORT <SubstanceNucleicAcid.shex>
+IMPORT <SubstanceReferenceInformation.shex>
+
+
+start=@<SubstanceDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# The detailed description of a substance, typically at a level beyond what is used for prescribing
+<SubstanceDefinition> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:SubstanceDefinition];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Identifier by which this substance 
+                                            # is known 
+    fhir:version @<string>?;                # A business level version 
+                                            # identifier of the substance 
+    fhir:status @<CodeableConcept>?;        # Status of substance within the 
+                                            # catalogue e.g. active, retired 
+    fhir:classification @<OneOrMore_CodeableConcept>?;  # A categorization, high level e.g. 
+                                            # polymer or nucleic acid, or food, 
+                                            # chemical, biological, or lower 
+                                            # e.g. polymer linear or branch 
+                                            # chain, or type of impurity 
+    fhir:domain @<CodeableConcept>?;        # If the substance applies to human 
+                                            # or veterinary use 
+    fhir:grade @<OneOrMore_CodeableConcept>?;  # The quality standard, established 
+                                            # benchmark, to which substance 
+                                            # complies (e.g. USP/NF, BP) 
+    fhir:description @<markdown>?;          # Textual description of the 
+                                            # substance 
+    fhir:informationSource @<OneOrMore_Reference_Citation>?;  # Supporting literature
+    fhir:note @<OneOrMore_Annotation>?;     # Textual comment about the 
+                                            # substance's catalogue or registry 
+                                            # record 
+    fhir:manufacturer @<OneOrMore_Reference_Organization>?;  # The entity that creates, makes, 
+                                            # produces or fabricates the 
+                                            # substance 
+    fhir:supplier @<OneOrMore_Reference_Organization>?;  # An entity that is the source for 
+                                            # the substance. It may be different 
+                                            # from the manufacturer 
+    fhir:moiety @<OneOrMore_BackboneElement>?;  # Moiety, for structural 
+                                            # modifications 
+    fhir:property @<OneOrMore_BackboneElement>?;  # General specifications for this 
+                                            # substance 
+    fhir:referenceInformation @<Reference> AND {fhir:link 
+    			@<SubstanceReferenceInformation> }?;  # General information detailing this 
+                                            # substance 
+    fhir:molecularWeight @<OneOrMore_BackboneElement>?;  # The molecular weight or weight 
+                                            # range 
+    fhir:structure @<BackboneElement>?;     # Structural information
+    fhir:code @<OneOrMore_BackboneElement>?;  # Codes associated with the substance
+    fhir:name @<OneOrMore_BackboneElement>?;  # Names applicable to this substance
+    fhir:relationship @<OneOrMore_BackboneElement>?;  # A link between this substance and 
+                                            # another 
+    fhir:nucleicAcid @<Reference> AND {fhir:link 
+    			@<SubstanceNucleicAcid> }?;  # Data items specific to nucleic 
+                                            # acids 
+    fhir:polymer @<Reference> AND {fhir:link 
+    			@<SubstancePolymer> }?;  # Data items specific to polymers
+    fhir:protein @<Reference> AND {fhir:link 
+    			@<SubstanceProtein> }?;  # Data items specific to proteins
+    fhir:sourceMaterial @<BackboneElement>?;  # Material or taxonomic/anatomical 
+                                            # source 
+}  
+
+# Moiety, for structural modifications
+<SubstanceDefinition.moiety> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:role @<CodeableConcept>?;          # Role that the moiety is playing
+    fhir:identifier @<Identifier>?;         # Identifier by which this moiety 
+                                            # substance is known 
+    fhir:name @<string>?;                   # Textual name for this moiety 
+                                            # substance 
+    fhir:stereochemistry @<CodeableConcept>?;  # Stereochemistry type
+    fhir:opticalActivity @<CodeableConcept>?;  # Optical activity type
+    fhir:molecularFormula @<string>?;       # Molecular formula for this moiety 
+                                            # (e.g. with the Hill system) 
+    fhir:amount (@<Quantity>  OR 
+    			@<string> )  AND { rdf:type IRI } ?;  # Quantitative value for this moiety
+    fhir:measurementType @<CodeableConcept>?;  # The measurement type of the 
+                                            # quantitative value 
+}  
+
+# A link between this substance and another
+<SubstanceDefinition.relationship> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:substanceDefinition ((@<Reference>  AND {fhir:link @<SubstanceDefinition> })  OR 
+    			@<CodeableConcept> )  AND { rdf:type IRI } ?;  # A pointer to another substance, as 
+                                            # a resource or a representational 
+                                            # code 
+    fhir:type @<CodeableConcept>;           # For example "salt to parent", 
+                                            # "active moiety" 
+    fhir:isDefining @<boolean>?;            # For example where an enzyme 
+                                            # strongly bonds with a particular 
+                                            # substance, this is a defining 
+                                            # relationship for that enzyme, out 
+                                            # of several possible relationships 
+    fhir:amount (@<Quantity>  OR 
+    			@<Ratio>  OR 
+    			@<string> )  AND { rdf:type IRI } ?;  # A numeric factor for the 
+                                            # relationship, e.g. that a 
+                                            # substance salt has some percentage 
+                                            # of active substance in relation to 
+                                            # some other 
+    fhir:ratioHighLimitAmount @<Ratio>?;    # For use when the numeric has an 
+                                            # uncertain range 
+    fhir:comparator @<CodeableConcept>?;    # An operator for the amount, for 
+                                            # example "average", 
+                                            # "approximately", "less than" 
+    fhir:source @<OneOrMore_Reference_DocumentReference>?;  # Supporting literature
+}  
+
+# Codes associated with the substance
+<SubstanceDefinition.code> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>?;          # The specific code
+    fhir:status @<CodeableConcept>?;        # Status of the code assignment, for 
+                                            # example 'provisional', 'approved' 
+    fhir:statusDate @<dateTime>?;           # The date at which the code status 
+                                            # was changed 
+    fhir:note @<OneOrMore_Annotation>?;     # Any comment can be provided in 
+                                            # this field 
+    fhir:source @<OneOrMore_Reference_DocumentReference>?;  # Supporting literature
+}  
+
+# Structural information
+<SubstanceDefinition.structure> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:stereochemistry @<CodeableConcept>?;  # Stereochemistry type
+    fhir:opticalActivity @<CodeableConcept>?;  # Optical activity type
+    fhir:molecularFormula @<string>?;       # Molecular formula (e.g. using the 
+                                            # Hill system) 
+    fhir:molecularFormulaByMoiety @<string>?;  # Specified per moiety according to 
+                                            # the Hill system 
+    fhir:molecularWeight @<SubstanceDefinition.molecularWeight>?;  # The molecular weight or weight 
+                                            # range 
+    fhir:technique @<OneOrMore_CodeableConcept>?;  # The method used to find the 
+                                            # structure e.g. X-ray, NMR 
+    fhir:sourceDocument @<OneOrMore_Reference_DocumentReference>?;  # Source of information for the 
+                                            # structure 
+    fhir:representation @<OneOrMore_BackboneElement>?;  # A depiction of the structure or 
+                                            # characterization of the substance 
+}  
+
+# A depiction of the structure or characterization of the substance
+<SubstanceDefinition.structure.representation> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>?;          # The kind of structural 
+                                            # representation (e.g. full, 
+                                            # partial) 
+    fhir:representation @<string>?;         # The structural representation or 
+                                            # characterization as a text string 
+                                            # in a standard format 
+    fhir:format @<CodeableConcept>?;        # The format of the representation 
+                                            # e.g. InChI, SMILES, MOLFILE (note: 
+                                            # not the physical file format) 
+    fhir:document @<Reference> AND {fhir:link 
+    			@<DocumentReference> }?;  # An attachment with the structural 
+                                            # representation e.g. a structure 
+                                            # graphic or AnIML file 
+}  
+
+# Names applicable to this substance
+<SubstanceDefinition.name> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>;                    # The actual name
+    fhir:type @<CodeableConcept>?;          # Name type e.g. 'systematic',  
+                                            # 'scientific, 'brand' 
+    fhir:status @<CodeableConcept>?;        # The status of the name e.g. 
+                                            # 'current', 'proposed' 
+    fhir:preferred @<boolean>?;             # If this is the preferred name for 
+                                            # this substance 
+    fhir:language @<OneOrMore_CodeableConcept>?;  # Human language that the name is 
+                                            # written in 
+    fhir:domain @<OneOrMore_CodeableConcept>?;  # The use context of this name e.g. 
+                                            # as an active ingredient or as a 
+                                            # food colour additive 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # The jurisdiction where this name 
+                                            # applies 
+    fhir:synonym @<OneOrMore_SubstanceDefinition.name>?;  # A synonym of this particular name, 
+                                            # by which the substance is also 
+                                            # known 
+    fhir:translation @<OneOrMore_SubstanceDefinition.name>?;  # A translation for this name into 
+                                            # another human language 
+    fhir:official @<OneOrMore_BackboneElement>?;  # Details of the official nature of 
+                                            # this name 
+    fhir:source @<OneOrMore_Reference_DocumentReference>?;  # Supporting literature
+}  
+
+# A translation for this name into another human language
+<SubstanceDefinition.name.translation> CLOSED {   
+}  
+
+# General specifications for this substance
+<SubstanceDefinition.property> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # A code expressing the type of 
+                                            # property 
+    fhir:v (@<CodeableConcept>  OR 
+    			@<Quantity>  OR 
+    			@<date>  OR 
+    			@<boolean>  OR 
+    			@<Attachment> )  AND { rdf:type IRI } ?;  # A value for the property
+}  
+
+# Material or taxonomic/anatomical source
+<SubstanceDefinition.sourceMaterial> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>?;          # Classification of the origin of 
+                                            # the raw material. e.g. cat hair is 
+                                            # an Animal source type 
+    fhir:genus @<CodeableConcept>?;         # The genus of an organism e.g. the 
+                                            # Latin epithet of the plant/animal 
+                                            # scientific name 
+    fhir:species @<CodeableConcept>?;       # The species of an organism e.g. 
+                                            # the Latin epithet of the species 
+                                            # of the plant/animal 
+    fhir:part @<CodeableConcept>?;          # An anatomical origin of the source 
+                                            # material within an organism 
+    fhir:countryOfOrigin @<OneOrMore_CodeableConcept>?;  # The country or countries where the 
+                                            # material is harvested 
+}  
+
+# Details of the official nature of this name
+<SubstanceDefinition.name.official> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:authority @<CodeableConcept>?;     # Which authority uses this official 
+                                            # name 
+    fhir:status @<CodeableConcept>?;        # The status of the official name, 
+                                            # for example 'draft', 'active' 
+    fhir:date @<dateTime>?;                 # Date of official name change
+}  
+
+# The molecular weight or weight range
+<SubstanceDefinition.molecularWeight> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:method @<CodeableConcept>?;        # The method by which the weight was 
+                                            # determined 
+    fhir:type @<CodeableConcept>?;          # Type of molecular weight e.g. 
+                                            # exact, average, weight average 
+    fhir:amount @<Quantity>;                # Used to capture quantitative 
+                                            # values for a variety of elements 
+}  
+
+# A synonym of this particular name, by which the substance is also known
+<SubstanceDefinition.name.synonym> CLOSED {   
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_Citation> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Citation> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Citation> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_Reference_Organization> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Organization> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Organization> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Reference_DocumentReference> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<DocumentReference> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_DocumentReference> 
+}
+
+<OneOrMore_SubstanceDefinition.name> CLOSED {
+    rdf:first @<SubstanceDefinition.name>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_SubstanceDefinition.name> 
+}
+

@@ -1,0 +1,1141 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ValueSet ;
+  fhir:id [ fhir:v "written-languages"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T04:21:02.749+00:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablevalueset" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/written-languages"], [ fhir:v "http://hl7.org/fhir/ValueSet/written-languages"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.3010" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.3010" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "CommonLanguagesWritten"], [ fhir:v "CommonLanguagesWritten"] ;
+  fhir:title [ fhir:v "Common Languages (Written)"], [ fhir:v "Common Languages (Written)"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2016-08-22T09:53:05+00:00"], [ fhir:v "2016-08-22T09:53:05+00:00"] ;
+  fhir:publisher [ fhir:v "HL7 International - FHIR-Infrastructure"], [ fhir:v "HL7 International - FHIR-Infrastructure"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "This value set includes common codes from BCP-47 (see http://tools.ietf.org/html/bcp47) for the purpose of writing; this value set (unlike the common languages value set) doesn't include dialects except where they are relevant for written languages"], [ fhir:v "This value set includes common codes from BCP-47 (see http://tools.ietf.org/html/bcp47) for the purpose of writing; this value set (unlike the common languages value set) doesn't include dialects except where they are relevant for written languages"] ;
+  fhir:compose [
+     fhir:include ( [
+       fhir:system [ fhir:v "urn:ietf:bcp:47" ] ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "ar" ] ;
+         fhir:display [ fhir:v "Arabic" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Arabisk" ]
+         ] [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Arabic" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Arabisch" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "bn" ] ;
+         fhir:display [ fhir:v "Bengali" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Bengali" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Bengaals" ]
+         ] [
+           fhir:language [ fhir:v "ru" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Бенгальский" ]
+         ] [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "孟加拉语" ]
+         ] [
+           fhir:language [ fhir:v "de" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Bengalisch" ]
+         ] [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Bengalsk" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "cs" ] ;
+         fhir:display [ fhir:v "Czech" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Czech" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Tsjechisch" ]
+         ] [
+           fhir:language [ fhir:v "ru" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Чешский" ]
+         ] [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "捷克语" ]
+         ] [
+           fhir:language [ fhir:v "de" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Tschechisch" ]
+         ] [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Tjekkisk" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "da" ] ;
+         fhir:display [ fhir:v "Danish" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Danish" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Deens" ]
+         ] [
+           fhir:language [ fhir:v "ru" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Датский" ]
+         ] [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "丹麦语" ]
+         ] [
+           fhir:language [ fhir:v "de" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Dänisch" ]
+         ] [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Dansk" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "de" ] ;
+         fhir:display [ fhir:v "German" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "German" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Duits" ]
+         ] [
+           fhir:language [ fhir:v "ru" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Немецкий" ]
+         ] [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "德语" ]
+         ] [
+           fhir:language [ fhir:v "de" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Deutsch" ]
+         ] [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Tysk" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "el" ] ;
+         fhir:display [ fhir:v "Greek" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Greek" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Grieks" ]
+         ] [
+           fhir:language [ fhir:v "ru" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Греческий" ]
+         ] [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "希腊语" ]
+         ] [
+           fhir:language [ fhir:v "de" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Griechisch" ]
+         ] [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Græsk" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "en" ] ;
+         fhir:display [ fhir:v "English" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "English" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Engels" ]
+         ] [
+           fhir:language [ fhir:v "ru" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Английский" ]
+         ] [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "英语" ]
+         ] [
+           fhir:language [ fhir:v "de" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Englisch" ]
+         ] [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Engelsk" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "es" ] ;
+         fhir:display [ fhir:v "Spanish" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Spanish" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Spaans" ]
+         ] [
+           fhir:language [ fhir:v "ru" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Испанский" ]
+         ] [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "西班牙语" ]
+         ] [
+           fhir:language [ fhir:v "de" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Spanisch" ]
+         ] [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Spansk" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "fi" ] ;
+         fhir:display [ fhir:v "Finnish" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Finnish" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Fins" ]
+         ] [
+           fhir:language [ fhir:v "ru" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Финский" ]
+         ] [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "芬兰语" ]
+         ] [
+           fhir:language [ fhir:v "de" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Finnisch" ]
+         ] [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Finsk" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "fr" ] ;
+         fhir:display [ fhir:v "French" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "French" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Frans" ]
+         ] [
+           fhir:language [ fhir:v "ru" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Французский" ]
+         ] [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "法语" ]
+         ] [
+           fhir:language [ fhir:v "de" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Französisch" ]
+         ] [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Fransk" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "fy" ] ;
+         fhir:display [ fhir:v "Frisian" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Frisian" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Fries" ]
+         ] [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "弗里士兰语" ]
+         ] [
+           fhir:language [ fhir:v "de" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Friesisch" ]
+         ] [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Frisisk" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "hi" ] ;
+         fhir:display [ fhir:v "Hindi" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Hindi" ]
+         ] [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Hindi" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Hindi" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "hr" ] ;
+         fhir:display [ fhir:v "Croatian" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Croatian" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Kroatisch" ]
+         ] [
+           fhir:language [ fhir:v "ru" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Хорватский" ]
+         ] [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "克罗地亚语" ]
+         ] [
+           fhir:language [ fhir:v "de" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Kroatisch" ]
+         ] [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Kroatisk" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "it" ] ;
+         fhir:display [ fhir:v "Italian" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Italian" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Italiaans" ]
+         ] [
+           fhir:language [ fhir:v "ru" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Итальянский" ]
+         ] [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "意大利语" ]
+         ] [
+           fhir:language [ fhir:v "de" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Italienisch" ]
+         ] [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Italiensk" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "ja" ] ;
+         fhir:display [ fhir:v "Japanese" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Japanese" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Japans" ]
+         ] [
+           fhir:language [ fhir:v "ru" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Японский" ]
+         ] [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "日语" ]
+         ] [
+           fhir:language [ fhir:v "de" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Japanisch" ]
+         ] [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Japansk" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "ko" ] ;
+         fhir:display [ fhir:v "Korean" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Korean" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Koreaans" ]
+         ] [
+           fhir:language [ fhir:v "ru" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Корейский" ]
+         ] [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "朝鲜语" ]
+         ] [
+           fhir:language [ fhir:v "de" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Koreanisch" ]
+         ] [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Koreansk" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "nl" ] ;
+         fhir:display [ fhir:v "Dutch" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Dutch" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Nederlands" ]
+         ] [
+           fhir:language [ fhir:v "ru" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Нидерландский" ]
+         ] [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "荷兰语" ]
+         ] [
+           fhir:language [ fhir:v "de" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Niederländisch" ]
+         ] [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Hollandsk" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "no" ] ;
+         fhir:display [ fhir:v "Norwegian" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Norwegian" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Noors" ]
+         ] [
+           fhir:language [ fhir:v "ru" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Норвежский" ]
+         ] [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "挪威语" ]
+         ] [
+           fhir:language [ fhir:v "de" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Norwegisch" ]
+         ] [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Norsk" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "pa" ] ;
+         fhir:display [ fhir:v "Punjabi" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Punjabi" ]
+         ] [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Punjabi" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Punjabi" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "pl" ] ;
+         fhir:display [ fhir:v "Polish" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "pl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Polskie" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "pt" ] ;
+         fhir:display [ fhir:v "Portuguese" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Portuguese" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Portugees" ]
+         ] [
+           fhir:language [ fhir:v "ru" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Португальский" ]
+         ] [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "葡萄牙语" ]
+         ] [
+           fhir:language [ fhir:v "de" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Portugiesisch" ]
+         ] [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Portugisisk" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "ru" ] ;
+         fhir:display [ fhir:v "Russian" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Russian" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Russisch" ]
+         ] [
+           fhir:language [ fhir:v "ru" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Русский" ]
+         ] [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "俄语" ]
+         ] [
+           fhir:language [ fhir:v "de" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Russisch" ]
+         ] [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Russisk" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "sr" ] ;
+         fhir:display [ fhir:v "Serbian" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Serbian" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Servisch" ]
+         ] [
+           fhir:language [ fhir:v "ru" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Сербский" ]
+         ] [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "塞尔维亚语" ]
+         ] [
+           fhir:language [ fhir:v "de" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Serbisch" ]
+         ] [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Serbisk" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "sv" ] ;
+         fhir:display [ fhir:v "Swedish" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Swedish" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Zweeds" ]
+         ] [
+           fhir:language [ fhir:v "ru" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Шведский" ]
+         ] [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "瑞典语" ]
+         ] [
+           fhir:language [ fhir:v "de" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Schwedisch" ]
+         ] [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Svensk" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "te" ] ;
+         fhir:display [ fhir:v "Telugu" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Telugu" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Teloegoe" ]
+         ] [
+           fhir:language [ fhir:v "ru" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Телугу" ]
+         ] [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "泰卢固语" ]
+         ] [
+           fhir:language [ fhir:v "de" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Telugu" ]
+         ] [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Telugu" ]
+         ] )
+       ] [
+         fhir:code [ fhir:v "zh" ] ;
+         fhir:display [ fhir:v "Chinese" ] ;
+         fhir:designation ( [
+           fhir:language [ fhir:v "en" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Chinese" ]
+         ] [
+           fhir:language [ fhir:v "nl" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Chinees" ]
+         ] [
+           fhir:language [ fhir:v "ru" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Kитайский" ]
+         ] [
+           fhir:language [ fhir:v "zh" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "中文" ]
+         ] [
+           fhir:language [ fhir:v "de" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Chinesisch" ]
+         ] [
+           fhir:language [ fhir:v "da" ] ;
+           fhir:use [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/designation-usage" ] ;
+             fhir:code [ fhir:v "display" ]
+           ] ;
+           fhir:value [ fhir:v "Kinesisk" ]
+         ] )
+       ] )
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

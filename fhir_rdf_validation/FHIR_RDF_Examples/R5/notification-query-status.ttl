@@ -1,0 +1,37 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Bundle ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "40464b74-fad0-4f45-ab60-e67f949c5e92"] ; # 
+  fhir:type [ fhir:v "subscription-notification"] ; # 
+  fhir:timestamp [ fhir:v "2020-04-17T10:24:13.1882432-05:00"^^xsd:dateTime] ; # 
+  fhir:entry ( [
+     fhir:fullUrl [ fhir:v "urn:uuid:c2d70315-c34c-4f44-981b-6f16775477f3"^^xsd:anyURI ] ;
+     fhir:resource ( <urn:uuid:c2d70315-c34c-4f44-981b-6f16775477f3> )
+  ] )] . # 
+
+<urn:uuid:c2d70315-c34c-4f44-981b-6f16775477f3> a fhir:SubscriptionStatus ;
+  fhir:id [ fhir:v "c2d70315-c34c-4f44-981b-6f16775477f3"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: SubscriptionStatus</b><a name=\"c2d70315-c34c-4f44-981b-6f16775477f3\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource SubscriptionStatus &quot;c2d70315-c34c-4f44-981b-6f16775477f3&quot; </p></div><p><b>status</b>: active</p><p><b>type</b>: query-status</p><p><b>eventsSinceSubscriptionStart</b>: 310</p><p><b>subscription</b>: <a href=\"broken-link.html\">http://example.org/FHIR/R5/Subscription/123</a></p><p><b>topic</b>: <a href=\"http://example.org/FHIR/R5/SubscriptionTopic/admission\">http://example.org/FHIR/R5/SubscriptionTopic/admission</a></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:type [ fhir:v "query-status"] ; # 
+  fhir:eventsSinceSubscriptionStart [ fhir:v "310"^^xsd:long] ; # 
+  fhir:subscription [
+     fhir:link <http://example.org/FHIR/R5/Subscription/123> ;
+     fhir:reference [ fhir:v "http://example.org/FHIR/R5/Subscription/123" ]
+  ] ; # 
+  fhir:topic [
+     fhir:v "http://example.org/FHIR/R5/SubscriptionTopic/admission"^^xsd:anyURI ;
+     fhir:link <http://example.org/FHIR/R5/SubscriptionTopic/admission>
+  ] . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,93 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:MedicinalProductDefinition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "Acetamin-500-20-generic"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicinalProductDefinition</b><a name=\"Acetamin-500-20-generic\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicinalProductDefinition &quot;Acetamin-500-20-generic&quot; </p></div><p><b>identifier</b>: <span title=\" contained&gt;\n		&lt;Ingredient&gt;\n			&lt;id value=&quot;Acetamin-ing-500&quot;/&gt;\n			&lt;status value=&quot;active&quot;/&gt;\n			&lt;for&gt;\n				&lt;reference value=&quot;ManufacturedItemDefinition/Acetamin-tab-500&quot;/&gt;\n			&lt;/for&gt;\n			&lt;role&gt;\n				&lt;coding&gt;\n					&lt;code value=&quot;active&quot;/&gt;\n				&lt;/coding&gt;\n			&lt;/role&gt;\n			&lt;substance&gt;\n				&lt;code&gt;\n					&lt;concept&gt;\n					&lt;coding&gt;\n						&lt;system value=&quot;http://snomed.info/sct&quot;/&gt;\n						&lt;code value=&quot;387517004&quot;/&gt;\n						&lt;display value=&quot;Acetaminophen&quot;/&gt;\n					&lt;/coding&gt;\n					&lt;/concept&gt;\n				&lt;/code&gt;\n				&lt;strength&gt;\n					&lt;presentationRatio&gt;\n						&lt;numerator&gt;\n							&lt;value value=&quot;500&quot;/&gt;\n							&lt;unit value=&quot;mg&quot;/&gt;\n						&lt;/numerator&gt;\n						&lt;denominator&gt;\n							&lt;value value=&quot;1&quot;/&gt;\n							&lt;unit value=&quot;tablet&quot;/&gt;\n						&lt;/denominator&gt;\n					&lt;/presentationRatio&gt;\n				&lt;/strength&gt;\n			&lt;/substance&gt;\n		&lt;/Ingredient&gt;\n	&lt;/contained \">id: 12345</span></p><h3>Names</h3><table class=\"grid\"><tr><td>-</td><td><b>ProductName</b></td></tr><tr><td>*</td><td>Acetaminophen 500 mg tablets [generic]</td></tr></table></div>"
+  ] ; # 
+  fhir:contained ( [
+     a fhir:PackagedProductDefinition ;
+     fhir:id [ fhir:v "Acetamin-pack-20" ] ;
+     fhir:packageFor ( [
+       fhir:reference [ fhir:v "#" ]
+     ] ) ;
+     fhir:packaging [
+       fhir:type [
+         fhir:coding ( [
+           fhir:code [ fhir:v "cardboard box" ]
+         ] )
+       ] ;
+       fhir:containedItem ( [
+         fhir:item [
+           fhir:reference [
+             fhir:reference [ fhir:v "#Acetamin-tab-500" ]
+           ]
+         ] ;
+         fhir:amount [
+           fhir:value [ fhir:v "20"^^xsd:decimal ]
+         ]
+       ] ) #    the item contained in the pack (note this is a different concept to a \"contained\" resource, above)   
+     ]
+  ] [
+     a fhir:ManufacturedItemDefinition ;
+     fhir:id [ fhir:v "Acetamin-tab-500" ] ;
+     fhir:status [ fhir:v "active" ] ;
+     fhir:manufacturedDoseForm [
+       fhir:coding ( [
+         fhir:code [ fhir:v "tablet" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://example.nation.org/drugs"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "12345" ]
+  ] ) ; #   contained>
+#		<Ingredient>
+#			<id value="Acetamin-ing-500"/>
+#			<status value="active"/>
+#			<for>
+#				<reference value="ManufacturedItemDefinition/Acetamin-tab-500"/>
+#			</for>
+#			<role>
+#				<coding>
+#					<code value="active"/>
+#				</coding>
+#			</role>
+#			<substance>
+#				<code>
+#					<concept>
+#					<coding>
+#						<system value="http://snomed.info/sct"/>
+#						<code value="387517004"/>
+#						<display value="Acetaminophen"/>
+#					</coding>
+#					</concept>
+#				</code>
+#				<strength>
+#					<presentationRatio>
+#						<numerator>
+#							<value value="500"/>
+#							<unit value="mg"/>
+#						</numerator>
+#						<denominator>
+#							<value value="1"/>
+#							<unit value="tablet"/>
+#						</denominator>
+#					</presentationRatio>
+#				</strength>
+#			</substance>
+#		</Ingredient>
+#	</contained  
+  fhir:name ( [
+     fhir:productName [ fhir:v "Acetaminophen 500 mg tablets [generic]" ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

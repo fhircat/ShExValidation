@@ -1,0 +1,48 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <string.shex>
+IMPORT <Period.shex>
+IMPORT <DataType.shex>
+
+# An address expressed using postal conventions (as opposed to GPS or other location definition formats)
+<Address> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:Address]?;
+    fhir:use @<code> AND
+    	{fhir:v @fhirvs:address-use}?;  # home | work | temp | old | billing 
+                                            # - purpose of this address 
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:address-type}?;  # postal | physical | both
+    fhir:text @<string>?;                   # Text representation of the address
+    fhir:line @<OneOrMore_string>?;         # Street name, number, direction & 
+                                            # P.O. Box etc. 
+    fhir:city @<string>?;                   # Name of city, town etc.
+    fhir:district @<string>?;               # District name (aka county)
+    fhir:state @<string>?;                  # Sub-unit of country (abbreviations 
+                                            # ok) 
+    fhir:postalCode @<string>?;             # Postal code for area
+    fhir:country @<string>?;                # Country (e.g. may be ISO 3166 2 or 
+                                            # 3 letter code) 
+    fhir:period @<Period>?;                 # Time period when address was/is in 
+                                            # use 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_string> CLOSED {
+    rdf:first @<string>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_string> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The type of an address (physical / postal).
+fhirvs:address-type ["postal" "physical" "both"]
+
+# The use of an address.
+fhirvs:address-use ["home" "work" "temp" "old" "billing"]
+

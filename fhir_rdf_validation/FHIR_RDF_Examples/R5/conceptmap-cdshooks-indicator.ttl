@@ -1,0 +1,57 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ConceptMap ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "cdshooks-indicator"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <h2>IndicatorToRequestPriority (http://cds-hooks.hl7.org/ConceptMap/indicator-to-request-priority)</h2>\n      <p>Mapping from http://cds-hooks.hl7.org/ValueSet/indicator to \n        <a href=\"valueset-request-priority.html\">RequestPriority</a>\n      </p>\n      <p>DRAFT. Published on ?ngen-10? by null. </p>\n      <div>\n        <p>This concept map defines a mapping from CDS Hooks indicator to request priority.</p>\n\n      </div>\n      <br/>\n      <p>\n        <b>Group 1</b>Mapping from \n        <code>unspecified code system</code> to \n        <code>unspecified code system</code>\n      </p>\n      <table class=\"grid\">\n        <tr>\n          <td>\n            <b>Source Code</b>\n          </td>\n          <td>\n            <b>Relationship</b>\n          </td>\n          <td>\n            <b>Target Code</b>\n          </td>\n        </tr>\n        <tr>\n          <td>info</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>routine</td>\n        </tr>\n        <tr>\n          <td>warning</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>urgent</td>\n        </tr>\n        <tr>\n          <td>critical</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>stat</td>\n        </tr>\n      </table>\n    </div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://cds-hooks.hl7.org/ConceptMap/indicator-to-request-priority"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.14.6" ]
+  ] ) ; # 
+  fhir:version [ fhir:v "5.0.0"] ; # 
+  fhir:name [ fhir:v "IndicatorToRequestPriority"] ; # 
+  fhir:title [ fhir:v "Indicator To Request Priority"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:experimental [ fhir:v "false"^^xsd:boolean] ; # 
+  fhir:description [ fhir:v "This concept map defines a mapping from CDS Hooks indicator to request priority."] ; # 
+  fhir:sourceScope [
+     fhir:v "http://cds-hooks.hl7.org/ValueSet/indicator"^^xsd:anyURI ;
+     fhir:link <http://cds-hooks.hl7.org/ValueSet/indicator>
+  ] ; # 
+  fhir:targetScope [
+     fhir:v "http://hl7.org/fhir/ValueSet/request-priority"^^xsd:anyURI ;
+     fhir:link <http://hl7.org/fhir/ValueSet/request-priority>
+  ] ; # 
+  fhir:group ( [
+     fhir:element ( [
+       fhir:code [ fhir:v "info" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "routine" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "warning" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "urgent" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "critical" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "stat" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,239 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:MedicationRequest ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "medrx0301"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicationRequest</b><a name=\"medrx0301\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicationRequest &quot;medrx0301&quot; </p></div><p><b>identifier</b>: id: 12345689 (use: OFFICIAL)</p><p><b>status</b>: completed</p><p><b>statusReason</b>: Try another treatment first <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-medicationrequest-status-reason.html\">MedicationRequest Status Reason Codes</a>#altchoice)</span></p><p><b>intent</b>: order</p><p><b>category</b>: Inpatient <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-medicationrequest-admin-location.html\">Medication request  administration  location  codes</a>#inpatient)</span></p><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><span title=\"  Linked to a RESOURCE Medication  \"><a name=\"med0310\"> </a></span><blockquote><p/><p><a name=\"med0310\"> </a></p><p><b>code</b>: Oral Form Oxycodone (product) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#430127000)</span></p></blockquote></td></tr></table><p><b>subject</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><p><b>encounter</b>: <a href=\"encounter-example-f201-20130404.html\">Encounter/f201: encounter who leads to this prescription</a></p><p><b>supportingInformation</b>: <a href=\"procedure-example-biopsy.html\">Procedure/biopsy</a></p><p><b>authoredOn</b>: 2015-01-15</p><p><b>requester</b>: <a href=\"practitioner-example-f007-sh.html\">Practitioner/f007: Patrick Pump</a> &quot;Simone HEPS&quot;</p><p><b>performerType</b>: Public Health Nurse <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#26369006)</span></p><p><b>performer</b>: <a href=\"practitioner-example-f204-ce.html\">Practitioner/f204: Carla Espinosa</a> &quot;Carla Espinosa&quot;</p><h3>Reasons</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Rib Pain (finding) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#297217002)</span></td></tr></table><p><b>insurance</b>: <a href=\"coverage-example.html\">Coverage/9876B1</a></p><p><b>note</b>: Patient told to take with food</p><blockquote><p><b>dosageInstruction</b></p><p><b>sequence</b>: 1</p><p><b>text</b>: one to two tablets every 4-6 hours as needed for rib pain</p><p><b>additionalInstruction</b>: Warning. May cause drowsiness. If affected do not drive or operate machinery. Avoid alcoholic drink (qualifier value) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#418914006)</span></p><p><b>patientInstruction</b>: Take one to two tablets every four to six hours as needed for rib pain</p><p><b>timing</b>: Once per 4-6 hours</p><p><b>asNeededFor</b>: Rib Pain (finding) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#297217002)</span></p><p><b>route</b>: Oral Route <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#26643006)</span></p><p><b>method</b>: Swallow - dosing instruction imperative (qualifier value) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#421521009)</span></p><blockquote><p><b>doseAndRate</b></p></blockquote></blockquote><blockquote><p><b>dispenseRequest</b></p><p><b>validityPeriod</b>: 2015-01-15 --&gt; 2016-01-15</p><p><b>numberOfRepeatsAllowed</b>: 0</p><p><b>quantity</b>: 30 TAB<span style=\"background: LightGoldenRodYellow\"> (Details: http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm code TAB = 'Tablet')</span></p><h3>ExpectedSupplyDurations</h3><table class=\"grid\"><tr><td>-</td><td><b>Value</b></td><td><b>Unit</b></td><td><b>System</b></td><td><b>Code</b></td></tr><tr><td>*</td><td>10</td><td>days</td><td><a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ucum.html\">Unified Code for Units of Measure (UCUM)</a></td><td>d</td></tr></table><p><b>dispenser</b>: <a href=\"organization-example-good-health-care.html\">Organization/2.16.840.1.113883.19.5</a> &quot;Good Health Clinic&quot;</p></blockquote><h3>Substitutions</h3><table class=\"grid\"><tr><td>-</td><td><b>Allowed[x]</b></td><td><b>Reason</b></td></tr><tr><td>*</td><td>true</td><td>formulary policy <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ActReason.html\">ActReason</a>#FP)</span></td></tr></table><p><b>eventHistory</b>: <a name=\"signature\"> </a></p><blockquote><p/><p><a name=\"signature\"> </a></p><p><b>target</b>: <a href=\"servicerequest-example2.html\">ServiceRequest/physiotherapy</a></p><p><b>recorded</b>: 2 Feb 2017, 4:23:07 am</p><h3>Agents</h3><table class=\"grid\"><tr><td>-</td><td><b>Role</b></td><td><b>Who</b></td></tr><tr><td>*</td><td>author (originator) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ParticipationType.html\">ParticipationType</a>#AUT)</span></td><td><a href=\"practitioner-example.html\">Practitioner/example: Dr Adam Careful</a> &quot;Adam CAREFUL&quot;</td></tr></table><h3>Signatures</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>When</b></td><td><b>Who</b></td><td><b>TargetFormat</b></td><td><b>SigFormat</b></td><td><b>Data</b></td></tr><tr><td>*</td><td>Author's Signature (Details: urn:iso-astm:E1762-95:2013 code 1.2.840.10065.1.12.1.1 = 'Author's Signature', stated as 'Author's Signature')</td><td>2 Feb 2017, 4:23:07 am</td><td><a href=\"practitioner-example.html\">Practitioner/example: Dr Adam Careful</a> &quot;Adam CAREFUL&quot;</td><td>application/fhir+xml</td><td>application/signature+xml</td><td>dGhpcyBibG9iIGlzIHNuaXBwZWQ=</td></tr></table></blockquote></div>"
+  ] ; # 
+  fhir:contained ( [
+     a fhir:Medication ;
+     fhir:id [ fhir:v "med0310" ] ;
+     fhir:code [
+       fhir:coding ( [
+         a sct:430127000 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "430127000" ] ;
+         fhir:display [ fhir:v "Oral Form Oxycodone (product)" ]
+       ] )
+     ]
+  ] [
+     a fhir:Provenance ;
+     fhir:id [ fhir:v "signature" ] ;
+     fhir:target ( [
+       fhir:reference [ fhir:v "ServiceRequest/physiotherapy" ]
+     ] ) ;
+     fhir:recorded [ fhir:v "2017-02-01T17:23:07Z"^^xsd:dateTime ] ;
+     fhir:agent ( [
+       fhir:role ( [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ParticipationType"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "AUT" ]
+         ] )
+       ] ) ;
+       fhir:who [
+         fhir:reference [ fhir:v "Practitioner/example" ] ;
+         fhir:display [ fhir:v "Dr Adam Careful" ]
+       ]
+     ] ) ;
+     fhir:signature ( [
+       fhir:type ( [
+         fhir:system [ fhir:v "urn:iso-astm:E1762-95:2013"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "1.2.840.10065.1.12.1.1" ] ;
+         fhir:display [ fhir:v "Author's Signature" ]
+       ] ) ;
+       fhir:when [ fhir:v "2017-02-01T17:23:07Z"^^xsd:dateTime ] ;
+       fhir:who [
+         fhir:reference [ fhir:v "Practitioner/example" ] ;
+         fhir:display [ fhir:v "Dr Adam Careful" ]
+       ] ;
+       fhir:targetFormat [ fhir:v "application/fhir+xml" ] ;
+       fhir:sigFormat [ fhir:v "application/signature+xml" ] ;
+       fhir:data [ fhir:v "dGhpcyBibG9iIGlzIHNuaXBwZWQ="^^xsd:base64Binary ]
+     ] )
+  ] ) ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "official" ] ;
+     fhir:system [ fhir:v "http://www.bmc.nl/portal/prescriptions"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "12345689" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:statusReason [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/medicationrequest-status-reason"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "altchoice" ] ;
+       fhir:display [ fhir:v "Try another treatment first" ]
+     ] )
+  ] ; # 
+  fhir:intent [ fhir:v "order"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/medicationrequest-admin-location"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "inpatient" ] ;
+       fhir:display [ fhir:v "Inpatient" ]
+     ] )
+  ] ) ; # 
+  fhir:medication [
+     fhir:reference [
+       fhir:reference [ fhir:v "#med0310" ]
+     ] #    Linked to a RESOURCE Medication   
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat1" ] ; #    Linked to the resource patient who needs the medication   
+     fhir:display [ fhir:v "Donald Duck" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/f201" ] ; #    Linked to a resource Encounter between patient and practitioner  
+     fhir:display [ fhir:v "encounter who leads to this prescription" ]
+  ] ; # 
+  fhir:supportingInformation ( [
+     fhir:reference [ fhir:v "Procedure/biopsy" ]
+  ] ) ; # 
+  fhir:authoredOn [ fhir:v "2015-01-15"^^xsd:date] ; # 
+  fhir:requester [
+     fhir:reference [ fhir:v "Practitioner/f007" ] ;
+     fhir:display [ fhir:v "Patrick Pump" ]
+  ] ; # 
+  fhir:performerType [
+     fhir:coding ( [
+       a sct:26369006 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "26369006" ] ;
+       fhir:display [ fhir:v "Public Health Nurse" ]
+     ] )
+  ] ; # 
+  fhir:performer ( [
+     fhir:reference [ fhir:v "Practitioner/f204" ] ;
+     fhir:display [ fhir:v "Carla Espinosa" ]
+  ] ) ; # 
+  fhir:reason ( [
+     fhir:concept [
+       fhir:coding ( [
+         a sct:297217002 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "297217002" ] ;
+         fhir:display [ fhir:v "Rib Pain (finding)" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:insurance ( [
+     fhir:reference [ fhir:v "Coverage/9876B1" ]
+  ] ) ; # 
+  fhir:note ( [
+     fhir:text [ fhir:v "Patient told to take with food" ]
+  ] ) ; # 
+  fhir:dosageInstruction ( [
+     fhir:sequence [ fhir:v "1"^^xsd:integer ] ;
+     fhir:text [ fhir:v "one to two tablets every 4-6 hours as needed for rib pain" ] ;
+     fhir:additionalInstruction ( [
+       fhir:coding ( [
+         a sct:418914006 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "418914006" ] ;
+         fhir:display [ fhir:v "Warning. May cause drowsiness. If affected do not drive or operate machinery. Avoid alcoholic drink (qualifier value)" ]
+       ] )
+     ] ) ;
+     fhir:patientInstruction [ fhir:v "Take one to two tablets every four to six hours as needed for rib pain" ] ;
+     fhir:timing [
+       fhir:repeat [
+         fhir:frequency [ fhir:v "1"^^xsd:positiveInteger ] ;
+         fhir:period [ fhir:v "4"^^xsd:decimal ] ;
+         fhir:periodMax [ fhir:v "6"^^xsd:decimal ] ;
+         fhir:periodUnit [ fhir:v "h" ]
+       ]
+     ] ;
+     fhir:asNeededFor ( [
+       fhir:coding ( [
+         a sct:297217002 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "297217002" ] ;
+         fhir:display [ fhir:v "Rib Pain (finding)" ]
+       ] )
+     ] ) ;
+     fhir:route [
+       fhir:coding ( [
+         a sct:26643006 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "26643006" ] ;
+         fhir:display [ fhir:v "Oral Route" ]
+       ] )
+     ] ;
+     fhir:method [
+       fhir:coding ( [
+         a sct:421521009 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "421521009" ] ;
+         fhir:display [ fhir:v "Swallow - dosing instruction imperative (qualifier value)" ]
+       ] )
+     ] ;
+     fhir:doseAndRate ( [
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/dose-rate-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "ordered" ] ;
+           fhir:display [ fhir:v "Ordered" ]
+         ] )
+       ] ;
+       fhir:dose [
+         a fhir:Range ;
+         fhir:low [
+           fhir:value [ fhir:v "1"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "TAB" ] ;
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "TAB" ]
+         ] ;
+         fhir:high [
+           fhir:value [ fhir:v "2"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "TAB" ] ;
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "TAB" ]
+         ]
+       ]
+     ] )
+  ] ) ; # 
+  fhir:dispenseRequest [
+     fhir:validityPeriod [
+       fhir:start [ fhir:v "2015-01-15"^^xsd:date ] ;
+       fhir:end [ fhir:v "2016-01-15"^^xsd:date ]
+     ] ;
+     fhir:numberOfRepeatsAllowed [ fhir:v "0"^^xsd:nonNegativeInteger ] ;
+     fhir:quantity [
+       fhir:value [ fhir:v "30"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "TAB" ] ;
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-orderableDrugForm"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "TAB" ]
+     ] ;
+     fhir:expectedSupplyDuration [
+       fhir:value [ fhir:v "10"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "days" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "d" ]
+     ] ;
+     fhir:dispenser [
+       fhir:reference [ fhir:v "Organization/2.16.840.1.113883.19.5" ]
+     ]
+  ] ; # 
+  fhir:substitution [
+     fhir:allowed [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:reason [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActReason"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "FP" ] ;
+         fhir:display [ fhir:v "formulary policy" ]
+       ] )
+     ]
+  ] ; # 
+  fhir:eventHistory ( [
+     fhir:reference [ fhir:v "#signature" ] ;
+     fhir:display [ fhir:v "Author's Signature" ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,101 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <date.shex>
+IMPORT <Group.shex>
+IMPORT <string.shex>
+IMPORT <Period.shex>
+IMPORT <boolean.shex>
+IMPORT <dateTime.shex>
+IMPORT <markdown.shex>
+IMPORT <Reference.shex>
+IMPORT <Identifier.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <PractitionerRole.shex>
+
+# Definition Pattern
+<Definition> CLOSED {   
+
+    a [fhir:Definition];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:url @<uri>?;                       # Logical canonical URL to reference 
+                                            # this {{title}} (globally unique) 
+    fhir:identifier @<Identifier>?;         # Business Identifier for {{title}}
+    fhir:version @<string>?;                # Business version of the {{title}}
+    fhir:title @<string>?;                  # Name for this {{title}} (Human 
+                                            # friendly) 
+    fhir:derivedFromCanonical @<OneOrMore_canonical>?;  # Based on FHIR protocol or 
+                                            # definition 
+    fhir:derivedFromUri @<OneOrMore_uri>?;  # Based on external protocol or 
+                                            # definition 
+    fhir:partOf @<OneOrMore_canonical>?;    # Part of referenced definition
+    fhir:replaces @<OneOrMore_canonical>?;  # Request(s) replaced by this request
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # If for testing purposes, not real 
+                                            # usage 
+    fhir:subject (@<CodeableConcept>  OR 
+    			(@<Reference>  AND {fhir:link @<Group> }) )  AND { rdf:type IRI } ?;  # Type of individual the defined 
+                                            # service is for 
+    fhir:date @<dateTime>?;                 # Date status first applied
+    fhir:publisher @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> }?;  # The name of the individual or 
+                                            # organization that published the 
+                                            # {{title}} 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the {{title}} 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # Content intends to support these 
+                                            # contexts 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for 
+                                            # {{title}} (if applicable) 
+    fhir:purpose @<markdown>?;              # Why this {{title}} is defined
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:approvalDate @<date>?;             # When {{title}} approved by 
+                                            # publisher 
+    fhir:lastReviewDate @<date>?;           # Last review date for the {{title}}
+    fhir:effectivePeriod @<Period>?;        # The effective date range for the 
+                                            # {{title}} 
+    fhir:performerType @<CodeableConcept>?;  # Desired kind of service performer
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_canonical> CLOSED {
+    rdf:first @<canonical>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_canonical> 
+}
+
+<OneOrMore_uri> CLOSED {
+    rdf:first @<uri>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_uri> 
+}
+
+<OneOrMore_ContactDetail> CLOSED {
+    rdf:first @<ContactDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactDetail> 
+}
+
+<OneOrMore_UsageContext> CLOSED {
+    rdf:first @<UsageContext>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_UsageContext> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+

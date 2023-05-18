@@ -1,0 +1,27 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <Extension.shex>
+
+# ABC | IDE | SYL
+<iso21090-EN-representation> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:iso21090-EN-representation];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/iso21090-EN-representation"]}; 
+    fhir:v (@<code> AND
+    	{fhir:v @fhirvs:name-v3-representation} )  AND { rdf:type IRI } ; 
+    ^fhir:extension { a [fhir:HumanName]
+        }
+}  
+
+#---------------------- Value Sets ------------------------
+
+# A set of codes for each different representation of a name.
+fhirvs:name-v3-representation ["ABC" "IDE" "SYL"]
+

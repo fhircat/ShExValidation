@@ -1,0 +1,123 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <Range.shex>
+IMPORT <Ratio.shex>
+IMPORT <Coding.shex>
+IMPORT <string.shex>
+IMPORT <Period.shex>
+IMPORT <Patient.shex>
+IMPORT <boolean.shex>
+IMPORT <integer.shex>
+IMPORT <dateTime.shex>
+IMPORT <Quantity.shex>
+IMPORT <Reference.shex>
+IMPORT <Identifier.shex>
+IMPORT <Attachment.shex>
+IMPORT <Practitioner.shex>
+IMPORT <Organization.shex>
+IMPORT <DomainResource.shex>
+IMPORT <ServiceRequest.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <BiologicallyDerivedProduct.shex>
+
+
+start=@<BiologicallyDerivedProduct> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# This resource reflects an instance of a biologically derived product
+<BiologicallyDerivedProduct> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:BiologicallyDerivedProduct];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:productCategory @<Coding>?;        # organ | tissue | fluid | cells | 
+                                            # biologicalAgent 
+    fhir:productCode @<Coding>?;            # A code that identifies the kind of 
+                                            # this biologically derived product 
+    fhir:parent @<OneOrMore_Reference_BiologicallyDerivedProduct>?;  # The parent biologically-derived 
+                                            # product 
+    fhir:request @<OneOrMore_Reference_ServiceRequest>?;  # Request to obtain and/or infuse 
+                                            # this product 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Instance identifier
+    fhir:biologicalSourceEvent @<Identifier>?;  # An identifier that supports 
+                                            # traceability to the event during 
+                                            # which material in this product 
+                                            # from one or more biological 
+                                            # entities was obtained or pooled 
+    fhir:processingFacility @<OneOrMore_Reference_Organization>?;  # Processing facilities responsible 
+                                            # for the labeling and distribution 
+                                            # of this biologically derived 
+                                            # product 
+    fhir:division @<string>?;               # A unique identifier for an aliquot 
+                                            # of a product 
+    fhir:productStatus @<Coding>?;          # available | unavailable
+    fhir:expirationDate @<dateTime>?;       # Date, and where relevant time, of 
+                                            # expiration 
+    fhir:collection @<BackboneElement>?;    # How this product was collected
+    fhir:storageTempRequirements @<Range>?;  # Product storage temperature 
+                                            # requirements 
+    fhir:property @<OneOrMore_BackboneElement>?;  # A property that is specific to 
+                                            # this BiologicallyDerviedProduct 
+                                            # instance 
+}  
+
+# How this product was collected
+<BiologicallyDerivedProduct.collection> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:collector @<Reference> AND {fhir:link 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> }?;  # Individual performing collection
+    fhir:source @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Patient> }?;  # The patient or entity providing 
+                                            # the product 
+    fhir:collected (@<dateTime>  OR 
+    			@<Period> )  AND { rdf:type IRI } ?;  # Time of product collection
+}  
+
+# A property that is specific to this BiologicallyDerviedProduct instance
+<BiologicallyDerivedProduct.property> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<Coding>;                    # Code that specifies the property
+    fhir:v (@<boolean>  OR 
+    			@<integer>  OR 
+    			@<CodeableConcept>  OR 
+    			@<Period>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<Ratio>  OR 
+    			@<string>  OR 
+    			@<Attachment> )  AND { rdf:type IRI } ;  # Property values
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Reference_BiologicallyDerivedProduct> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<BiologicallyDerivedProduct> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_BiologicallyDerivedProduct> 
+}
+
+<OneOrMore_Reference_ServiceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ServiceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ServiceRequest> 
+}
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_Reference_Organization> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Organization> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Organization> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+

@@ -1,0 +1,102 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "research-study-phase"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "brr" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "0" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/research-study-phase"], [ fhir:v "http://hl7.org/fhir/research-study-phase"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "ResearchStudyPhase"], [ fhir:v "ResearchStudyPhase"] ;
+  fhir:title [ fhir:v "ResearchStudy Phase Code System"], [ fhir:v "ResearchStudy Phase Code System"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2022-05-15T16:55:11.085+11:00"], [ fhir:v "2022-05-15T16:55:11.085+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Codes for the stage in the progression of a therapy from initial experimental use in humans in clinical trials to post-market evaluation."], [ fhir:v "Codes for the stage in the progression of a therapy from initial experimental use in humans in clinical trials to post-market evaluation."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/research-study-phase"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "n-a" ] ;
+     fhir:display [ fhir:v "N/A" ] ;
+     fhir:definition [ fhir:v "Trials without phases (for example, studies of devices or behavioral interventions)." ]
+  ] [
+     fhir:code [ fhir:v "early-phase-1" ] ;
+     fhir:display [ fhir:v "Early Phase 1" ] ;
+     fhir:definition [ fhir:v "Designation for optional exploratory trials conducted in accordance with the United States Food and Drug Administration's (FDA) 2006 Guidance on Exploratory Investigational New Drug (IND) Studies. Formerly called Phase 0." ]
+  ] [
+     fhir:code [ fhir:v "phase-1" ] ;
+     fhir:display [ fhir:v "Phase 1" ] ;
+     fhir:definition [ fhir:v "Includes initial studies to determine the metabolism and pharmacologic actions of drugs in humans, the side effects associated with increasing doses, and to gain early evidence of effectiveness; may include healthy participants and/or patients." ]
+  ] [
+     fhir:code [ fhir:v "phase-1-phase-2" ] ;
+     fhir:display [ fhir:v "Phase 1/Phase 2" ] ;
+     fhir:definition [ fhir:v "Trials that are a combination of phases 1 and 2." ]
+  ] [
+     fhir:code [ fhir:v "phase-2" ] ;
+     fhir:display [ fhir:v "Phase 2" ] ;
+     fhir:definition [ fhir:v "Includes controlled clinical studies conducted to evaluate the effectiveness of the drug for a particular indication or indications in participants with the disease or condition under study and to determine the common short-term side effects and risks." ]
+  ] [
+     fhir:code [ fhir:v "phase-2-phase-3" ] ;
+     fhir:display [ fhir:v "Phase 2/Phase 3" ] ;
+     fhir:definition [ fhir:v "Trials that are a combination of phases 2 and 3." ]
+  ] [
+     fhir:code [ fhir:v "phase-3" ] ;
+     fhir:display [ fhir:v "Phase 3" ] ;
+     fhir:definition [ fhir:v "Includes trials conducted after preliminary evidence suggesting effectiveness of the drug has been obtained, and are intended to gather additional information to evaluate the overall benefit-risk relationship of the drug." ]
+  ] [
+     fhir:code [ fhir:v "phase-4" ] ;
+     fhir:display [ fhir:v "Phase 4" ] ;
+     fhir:definition [ fhir:v "Studies of FDA-approved drugs to delineate additional information including the drug's risks, benefits, and optimal use." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

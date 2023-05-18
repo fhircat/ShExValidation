@@ -1,0 +1,179 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Group.shex>
+IMPORT <Range.shex>
+IMPORT <Device.shex>
+IMPORT <Period.shex>
+IMPORT <Timing.shex>
+IMPORT <boolean.shex>
+IMPORT <integer.shex>
+IMPORT <Patient.shex>
+IMPORT <Location.shex>
+IMPORT <dateTime.shex>
+IMPORT <CareTeam.shex>
+IMPORT <Quantity.shex>
+IMPORT <Resource.shex>
+IMPORT <Coverage.shex>
+IMPORT <Reference.shex>
+IMPORT <Encounter.shex>
+IMPORT <Identifier.shex>
+IMPORT <Provenance.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DeviceRequest.shex>
+IMPORT <ClaimResponse.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <CodeableReference.shex>
+IMPORT <HealthcareService.shex>
+
+
+start=@<DeviceRequest> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Medical device request
+<DeviceRequest> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:DeviceRequest];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # External Request identifier
+    fhir:instantiatesCanonical @<OneOrMore_canonical>?;  # Instantiates FHIR protocol or 
+                                            # definition 
+    fhir:instantiatesUri @<OneOrMore_uri>?;  # Instantiates external protocol or 
+                                            # definition 
+    fhir:basedOn @<OneOrMore_Reference_Resource>?;  # What request fulfills
+    fhir:replaces @<OneOrMore_Reference_DeviceRequest>?;  # What request replaces
+    fhir:groupIdentifier @<Identifier>?;    # Identifier of composite request
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:request-status}?;  # draft | active | on-hold | revoked 
+                                            # | completed | entered-in-error | 
+                                            # unknown 
+    fhir:intent @<code> AND
+    	{fhir:v @fhirvs:request-intent};  # proposal | plan | directive | 
+                                            # order | original-order | 
+                                            # reflex-order | filler-order | 
+                                            # instance-order | option 
+    fhir:priority @<code> AND
+    	{fhir:v @fhirvs:request-priority}?;  # routine | urgent | asap | stat
+    fhir:doNotPerform @<boolean>?;          # True if the request is to stop or 
+                                            # not to start using the device 
+    fhir:code @<CodeableReference>;         # Device requested
+    fhir:quantity @<integer>?;              # Quantity of devices to supply
+    fhir:parameter @<OneOrMore_BackboneElement>?;  # Device details
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<Location> OR 
+    			@<Patient> };  # Focus of request
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # Encounter motivating request
+    fhir:occurrence (@<dateTime>  OR 
+    			@<Period>  OR 
+    			@<Timing> )  AND { rdf:type IRI } ?;  # Desired time or schedule for use
+    fhir:authoredOn @<dateTime>?;           # When recorded
+    fhir:requester @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> }?;  # Who/what submitted the device 
+                                            # request 
+    fhir:performerType @<CodeableConcept>?;  # Filler role
+    fhir:performer @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<HealthcareService> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Requested Filler
+    fhir:reason @<OneOrMore_CodeableReference>?;  # Coded/Linked Reason for request
+    fhir:insurance @<OneOrMore_Reference_ClaimResponse_OR_Coverage>?;  # Associated insurance coverage
+    fhir:supportingInfo @<OneOrMore_Reference_Resource>?;  # Additional clinical information
+    fhir:note @<OneOrMore_Annotation>?;     # Notes or comments
+    fhir:relevantHistory @<OneOrMore_Reference_Provenance>?;  # Request provenance
+}  
+
+# Device details
+<DeviceRequest.parameter> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>?;          # Device detail
+    fhir:v (@<CodeableConcept>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<boolean> )  AND { rdf:type IRI } ?;  # Value of detail
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_canonical> CLOSED {
+    rdf:first @<canonical>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_canonical> 
+}
+
+<OneOrMore_uri> CLOSED {
+    rdf:first @<uri>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_uri> 
+}
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+
+<OneOrMore_Reference_DeviceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<DeviceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_DeviceRequest> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_CodeableReference> CLOSED {
+    rdf:first @<CodeableReference>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableReference> 
+}
+
+<OneOrMore_Reference_ClaimResponse_OR_Coverage> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ClaimResponse> OR 
+			@<Coverage> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ClaimResponse_OR_Coverage> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_Reference_Provenance> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Provenance> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Provenance> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Codes identifying the lifecycle stage of a request.
+fhirvs:request-status ["draft" "active" "on-hold" "revoked" "completed" "entered-in-error" "unknown"]
+
+# Codes indicating the degree of authority/intentionality associated with a request.
+fhirvs:request-intent ["proposal" "plan" "directive" "order" "original-order" "reflex-order" "filler-order" "instance-order" "option"]
+
+# Identifies the level of importance to be assigned to actioning the request.
+fhirvs:request-priority ["routine" "urgent" "asap" "stat"]
+

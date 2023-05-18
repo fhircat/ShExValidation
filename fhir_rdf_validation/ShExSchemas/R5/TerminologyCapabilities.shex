@@ -1,0 +1,202 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <url.shex>
+IMPORT <code.shex>
+IMPORT <string.shex>
+IMPORT <boolean.shex>
+IMPORT <dateTime.shex>
+IMPORT <markdown.shex>
+IMPORT <canonical.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CanonicalResource.shex>
+
+
+start=@<TerminologyCapabilities> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A statement of system capabilities
+<TerminologyCapabilities> EXTENDS @<CanonicalResource> CLOSED {   
+
+    a [fhir:TerminologyCapabilities];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:url @<uri>?;                       # Canonical identifier for this 
+                                            # terminology capabilities, 
+                                            # represented as a URI (globally 
+                                            # unique) 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
+                                            # terminology capabilities 
+    fhir:version @<string>?;                # Business version of the 
+                                            # terminology capabilities 
+    fhir:name @<string>?;                   # Name for this terminology 
+                                            # capabilities (computer friendly) 
+    fhir:title @<string>?;                  # Name for this terminology 
+                                            # capabilities (human friendly) 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:date @<dateTime>;                  # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the terminology capabilities 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for 
+                                            # terminology capabilities (if 
+                                            # applicable) 
+    fhir:purpose @<markdown>?;              # Why this terminology capabilities 
+                                            # is defined 
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:kind @<code> AND
+    	{fhir:v @fhirvs:capability-statement-kind};  # instance | capability | 
+                                            # requirements 
+    fhir:software @<BackboneElement>?;      # Software that is covered by this 
+                                            # terminology capability statement 
+    fhir:implementation @<BackboneElement>?;  # If this describes a specific 
+                                            # instance 
+    fhir:lockedDate @<boolean>?;            # Whether lockedDate is supported
+    fhir:codeSystem @<OneOrMore_BackboneElement>?;  # A code system supported by the 
+                                            # server 
+    fhir:expansion @<BackboneElement>?;     # Information about the 
+                                            # [ValueSet/$expand](valueset-oper-
+                                            # ation-expand.html) operation 
+    fhir:codeSearch @<code> AND
+    	{fhir:v @fhirvs:code-search-support}?;  # explicit | all
+    fhir:validateCode @<BackboneElement>?;  # Information about the 
+                                            # [ValueSet/$validate-code](values-
+                                            # et-operation-validate-code.html) 
+                                            # operation 
+    fhir:translation @<BackboneElement>?;   # Information about the 
+                                            # [ConceptMap/$translate](conceptm-
+                                            # ap-operation-translate.html) 
+                                            # operation 
+    fhir:closure @<BackboneElement>?;       # Information about the 
+                                            # [ConceptMap/$closure](conceptmap-
+                                            # -operation-closure.html) operation 
+}  
+
+# A code system supported by the server
+<TerminologyCapabilities.codeSystem> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:uri @<canonical>?;                 # Canonical identifier for the code 
+                                            # system, represented as a URI 
+    fhir:version @<OneOrMore_BackboneElement>?;  # Version of Code System supported
+    fhir:subsumption @<boolean>?;           # Whether subsumption is supported
+}  
+
+# Version of Code System supported
+<TerminologyCapabilities.codeSystem.version> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<string>?;                   # Version identifier for this version
+    fhir:isDefault @<boolean>?;             # If this is the default version for 
+                                            # this code system 
+    fhir:compositional @<boolean>?;         # If compositional grammar is 
+                                            # supported 
+    fhir:language @<OneOrMore_code>?;       # Language Displays supported
+    fhir:filter @<OneOrMore_BackboneElement>?;  # Filter Properties supported
+    fhir:property @<OneOrMore_code>?;       # Properties supported for $lookup
+}  
+
+# Supported expansion parameter
+<TerminologyCapabilities.expansion.parameter> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<code>;                      # Name of the supported expansion 
+                                            # parameter 
+    fhir:documentation @<string>?;          # Description of support for 
+                                            # parameter 
+}  
+
+# Information about the [ValueSet/$validate-code](valueset-operation-validate-code.html) operation
+<TerminologyCapabilities.validateCode> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:translations @<boolean>;           # Whether translations are validated
+}  
+
+# Information about the [ConceptMap/$translate](conceptmap-operation-translate.html) operation
+<TerminologyCapabilities.translation> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:needsMap @<boolean>;               # Whether the client must identify 
+                                            # the map 
+}  
+
+# If this describes a specific instance
+<TerminologyCapabilities.implementation> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:description @<string>;             # Describes this specific instance
+    fhir:url @<url>?;                       # Base URL for the implementation
+}  
+
+# Filter Properties supported
+<TerminologyCapabilities.codeSystem.version.filter> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code>;                      # Code of the property supported
+    fhir:op @<OneOrMore_code>;              # Operations supported for the 
+                                            # property 
+}  
+
+# Information about the [ConceptMap/$closure](conceptmap-operation-closure.html) operation
+<TerminologyCapabilities.closure> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:translation @<boolean>?;           # If cross-system closure is 
+                                            # supported 
+}  
+
+# Software that is covered by this terminology capability statement
+<TerminologyCapabilities.software> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>;                    # A name the software is known by
+    fhir:version @<string>?;                # Version covered by this statement
+}  
+
+# Information about the [ValueSet/$expand](valueset-operation-expand.html) operation
+<TerminologyCapabilities.expansion> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:hierarchical @<boolean>?;          # Whether the server can return 
+                                            # nested value sets 
+    fhir:paging @<boolean>?;                # Whether the server supports paging 
+                                            # on expansion 
+    fhir:incomplete @<boolean>?;            # Allow request for incomplete 
+                                            # expansions? 
+    fhir:parameter @<OneOrMore_BackboneElement>?;  # Supported expansion parameter
+    fhir:textFilter @<markdown>?;           # Documentation about text searching 
+                                            # works 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_ContactDetail> CLOSED {
+    rdf:first @<ContactDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactDetail> 
+}
+
+<OneOrMore_UsageContext> CLOSED {
+    rdf:first @<UsageContext>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_UsageContext> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_code> CLOSED {
+    rdf:first @<code>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_code> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The degree to which the server supports the code search parameter on ValueSet, if it is supported.
+fhirvs:code-search-support ["explicit" "all"]
+
+# How a capability statement is intended to be used.
+fhirvs:capability-statement-kind ["instance" "capability" "requirements"]
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+

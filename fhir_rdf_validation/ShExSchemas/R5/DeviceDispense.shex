@@ -1,0 +1,142 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <string.shex>
+IMPORT <Device.shex>
+IMPORT <Patient.shex>
+IMPORT <Location.shex>
+IMPORT <Quantity.shex>
+IMPORT <dateTime.shex>
+IMPORT <CareTeam.shex>
+IMPORT <CarePlan.shex>
+IMPORT <Resource.shex>
+IMPORT <Reference.shex>
+IMPORT <Encounter.shex>
+IMPORT <Procedure.shex>
+IMPORT <Provenance.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DeviceRequest.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <CodeableReference.shex>
+
+
+start=@<DeviceDispense> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Device Dispense
+<DeviceDispense> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:DeviceDispense];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business identifier for this 
+                                            # dispensation 
+    fhir:basedOn @<OneOrMore_Reference_CarePlan_OR_DeviceRequest>?;  # The order or request that this 
+                                            # dispense is fulfilling 
+    fhir:partOf @<OneOrMore_Reference_Procedure>?;  # The bigger event that this 
+                                            # dispense is a part of 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:devicedispense-status};  # preparation | in-progress | 
+                                            # cancelled | on-hold | completed | 
+                                            # entered-in-error | stopped | 
+                                            # declined | unknown 
+    fhir:statusReason @<CodeableReference>?;  # Why a dispense was or was not 
+                                            # performed 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Type of device dispense
+    fhir:device @<CodeableReference>;       # What device was supplied
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Patient> };  # Who the dispense is for
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # Encounter associated with event
+    fhir:supportingInformation @<OneOrMore_Reference_Resource>?;  # Information that supports the 
+                                            # dispensing of the device 
+    fhir:performer @<OneOrMore_BackboneElement>?;  # Who performed event
+    fhir:location @<Reference> AND {fhir:link 
+    			@<Location> }?;  # Where the dispense occurred
+    fhir:type @<CodeableConcept>?;          # Trial fill, partial fill, 
+                                            # emergency fill, etc. 
+    fhir:quantity @<Quantity>?;             # Amount dispensed
+    fhir:preparedDate @<dateTime>?;         # When product was packaged and 
+                                            # reviewed 
+    fhir:whenHandedOver @<dateTime>?;       # When product was given out
+    fhir:destination @<Reference> AND {fhir:link 
+    			@<Location> }?;  # Where the device was sent or 
+                                            # should be sent 
+    fhir:note @<OneOrMore_Annotation>?;     # Information about the dispense
+    fhir:usageInstruction @<string>?;       # Full representation of the usage 
+                                            # instructions 
+    fhir:eventHistory @<OneOrMore_Reference_Provenance>?;  # A list of relevant lifecycle events
+}  
+
+# Who performed event
+<DeviceDispense.performer> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:function @<CodeableConcept>?;      # Who performed the dispense and 
+                                            # what they did 
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> };  # Individual who was performing
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_Reference_CarePlan_OR_DeviceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CarePlan> OR 
+			@<DeviceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CarePlan_OR_DeviceRequest> 
+}
+
+<OneOrMore_Reference_Procedure> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Procedure> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Procedure> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_Reference_Provenance> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Provenance> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Provenance> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# DeviceDispense Status Codes
+fhirvs:devicedispense-status ["preparation" "in-progress" "cancelled" "on-hold" "completed" "entered-in-error" "stopped" "declined" "unknown"]
+

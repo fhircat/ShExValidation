@@ -1,0 +1,269 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "assert-response-code-types"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "fhir" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "2" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/assert-response-code-types"], [ fhir:v "http://hl7.org/fhir/assert-response-code-types"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.711" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.1.699" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.2.361" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.711" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.1.699" ]
+  ] [
+     fhir:use [ fhir:v "old" ] ;
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.2.361" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "AssertionResponseTypes"], [ fhir:v "AssertionResponseTypes"] ;
+  fhir:title [ fhir:v "Assertion Response Types"], [ fhir:v "Assertion Response Types"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2021-01-05T10:01:24+11:00"], [ fhir:v "2021-01-05T10:01:24+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The type of response code to use for assertion."], [ fhir:v "The type of response code to use for assertion."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/assert-response-code-types"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "continue" ] ;
+     fhir:display [ fhir:v "Continue" ] ;
+     fhir:definition [ fhir:v "Response code is 100." ]
+  ] [
+     fhir:code [ fhir:v "switchingProtocols" ] ;
+     fhir:display [ fhir:v "Switching Protocols" ] ;
+     fhir:definition [ fhir:v "Response code is 101." ]
+  ] [
+     fhir:code [ fhir:v "okay" ] ;
+     fhir:display [ fhir:v "OK" ] ;
+     fhir:definition [ fhir:v "Response code is 200." ]
+  ] [
+     fhir:code [ fhir:v "created" ] ;
+     fhir:display [ fhir:v "Created" ] ;
+     fhir:definition [ fhir:v "Response code is 201." ]
+  ] [
+     fhir:code [ fhir:v "accepted" ] ;
+     fhir:display [ fhir:v "Accepted" ] ;
+     fhir:definition [ fhir:v "Response code is 202." ]
+  ] [
+     fhir:code [ fhir:v "nonAuthoritativeInformation" ] ;
+     fhir:display [ fhir:v "Non-Authoritative Information" ] ;
+     fhir:definition [ fhir:v "Response code is 203." ]
+  ] [
+     fhir:code [ fhir:v "noContent" ] ;
+     fhir:display [ fhir:v "No Content" ] ;
+     fhir:definition [ fhir:v "Response code is 204." ]
+  ] [
+     fhir:code [ fhir:v "resetContent" ] ;
+     fhir:display [ fhir:v "Reset Content" ] ;
+     fhir:definition [ fhir:v "Response code is 205." ]
+  ] [
+     fhir:code [ fhir:v "partialContent" ] ;
+     fhir:display [ fhir:v "Partial Content" ] ;
+     fhir:definition [ fhir:v "Response code is 206." ]
+  ] [
+     fhir:code [ fhir:v "multipleChoices" ] ;
+     fhir:display [ fhir:v "Multiple Choices" ] ;
+     fhir:definition [ fhir:v "Response code is 300." ]
+  ] [
+     fhir:code [ fhir:v "movedPermanently" ] ;
+     fhir:display [ fhir:v "Moved Permanently" ] ;
+     fhir:definition [ fhir:v "Response code is 301." ]
+  ] [
+     fhir:code [ fhir:v "found" ] ;
+     fhir:display [ fhir:v "Found" ] ;
+     fhir:definition [ fhir:v "Response code is 302." ]
+  ] [
+     fhir:code [ fhir:v "seeOther" ] ;
+     fhir:display [ fhir:v "See Other" ] ;
+     fhir:definition [ fhir:v "Response code is 303." ]
+  ] [
+     fhir:code [ fhir:v "notModified" ] ;
+     fhir:display [ fhir:v "Not Modified" ] ;
+     fhir:definition [ fhir:v "Response code is 304." ]
+  ] [
+     fhir:code [ fhir:v "useProxy" ] ;
+     fhir:display [ fhir:v "Use Proxy" ] ;
+     fhir:definition [ fhir:v "Response code is 305." ]
+  ] [
+     fhir:code [ fhir:v "temporaryRedirect" ] ;
+     fhir:display [ fhir:v "Temporary Redirect" ] ;
+     fhir:definition [ fhir:v "Response code is 307." ]
+  ] [
+     fhir:code [ fhir:v "permanentRedirect" ] ;
+     fhir:display [ fhir:v "Permanent Redirect" ] ;
+     fhir:definition [ fhir:v "Response code is 308." ]
+  ] [
+     fhir:code [ fhir:v "badRequest" ] ;
+     fhir:display [ fhir:v "Bad Request" ] ;
+     fhir:definition [ fhir:v "Response code is 400." ]
+  ] [
+     fhir:code [ fhir:v "unauthorized" ] ;
+     fhir:display [ fhir:v "Unauthorized" ] ;
+     fhir:definition [ fhir:v "Response code is 401." ]
+  ] [
+     fhir:code [ fhir:v "paymentRequired" ] ;
+     fhir:display [ fhir:v "Payment Required" ] ;
+     fhir:definition [ fhir:v "Response code is 402." ]
+  ] [
+     fhir:code [ fhir:v "forbidden" ] ;
+     fhir:display [ fhir:v "Forbidden" ] ;
+     fhir:definition [ fhir:v "Response code is 403." ]
+  ] [
+     fhir:code [ fhir:v "notFound" ] ;
+     fhir:display [ fhir:v "Not Found" ] ;
+     fhir:definition [ fhir:v "Response code is 404." ]
+  ] [
+     fhir:code [ fhir:v "methodNotAllowed" ] ;
+     fhir:display [ fhir:v "Method Not Allowed" ] ;
+     fhir:definition [ fhir:v "Response code is 405." ]
+  ] [
+     fhir:code [ fhir:v "notAcceptable" ] ;
+     fhir:display [ fhir:v "Not Acceptable" ] ;
+     fhir:definition [ fhir:v "Response code is 406." ]
+  ] [
+     fhir:code [ fhir:v "proxyAuthenticationRequired" ] ;
+     fhir:display [ fhir:v "Proxy Authentication Required" ] ;
+     fhir:definition [ fhir:v "Response code is 407." ]
+  ] [
+     fhir:code [ fhir:v "requestTimeout" ] ;
+     fhir:display [ fhir:v "Request Timeout" ] ;
+     fhir:definition [ fhir:v "Response code is 408." ]
+  ] [
+     fhir:code [ fhir:v "conflict" ] ;
+     fhir:display [ fhir:v "Conflict" ] ;
+     fhir:definition [ fhir:v "Response code is 409." ]
+  ] [
+     fhir:code [ fhir:v "gone" ] ;
+     fhir:display [ fhir:v "Gone" ] ;
+     fhir:definition [ fhir:v "Response code is 410." ]
+  ] [
+     fhir:code [ fhir:v "lengthRequired" ] ;
+     fhir:display [ fhir:v "Length Required" ] ;
+     fhir:definition [ fhir:v "Response code is 411." ]
+  ] [
+     fhir:code [ fhir:v "preconditionFailed" ] ;
+     fhir:display [ fhir:v "Precondition Failed" ] ;
+     fhir:definition [ fhir:v "Response code is 412." ]
+  ] [
+     fhir:code [ fhir:v "contentTooLarge" ] ;
+     fhir:display [ fhir:v "Content Too Large" ] ;
+     fhir:definition [ fhir:v "Response code is 413." ]
+  ] [
+     fhir:code [ fhir:v "uriTooLong" ] ;
+     fhir:display [ fhir:v "URI Too Long" ] ;
+     fhir:definition [ fhir:v "Response code is 414." ]
+  ] [
+     fhir:code [ fhir:v "unsupportedMediaType" ] ;
+     fhir:display [ fhir:v "Unsupported Media Type" ] ;
+     fhir:definition [ fhir:v "Response code is 415." ]
+  ] [
+     fhir:code [ fhir:v "rangeNotSatisfiable" ] ;
+     fhir:display [ fhir:v "Range Not Satisfiable" ] ;
+     fhir:definition [ fhir:v "Response code is 416." ]
+  ] [
+     fhir:code [ fhir:v "expectationFailed" ] ;
+     fhir:display [ fhir:v "Expectation Failed" ] ;
+     fhir:definition [ fhir:v "Response code is 417." ]
+  ] [
+     fhir:code [ fhir:v "misdirectedRequest" ] ;
+     fhir:display [ fhir:v "Misdirected Request" ] ;
+     fhir:definition [ fhir:v "Response code is 421." ]
+  ] [
+     fhir:code [ fhir:v "unprocessableContent" ] ;
+     fhir:display [ fhir:v "Unprocessable Content" ] ;
+     fhir:definition [ fhir:v "Response code is 422." ]
+  ] [
+     fhir:code [ fhir:v "upgradeRequired" ] ;
+     fhir:display [ fhir:v "Upgrade Required" ] ;
+     fhir:definition [ fhir:v "Response code is 426." ]
+  ] [
+     fhir:code [ fhir:v "internalServerError" ] ;
+     fhir:display [ fhir:v "Internal Server Error" ] ;
+     fhir:definition [ fhir:v "Response code is 500." ]
+  ] [
+     fhir:code [ fhir:v "notImplemented" ] ;
+     fhir:display [ fhir:v "Not Implemented" ] ;
+     fhir:definition [ fhir:v "Response code is 501." ]
+  ] [
+     fhir:code [ fhir:v "badGateway" ] ;
+     fhir:display [ fhir:v "Bad Gateway" ] ;
+     fhir:definition [ fhir:v "Response code is 502." ]
+  ] [
+     fhir:code [ fhir:v "serviceUnavailable" ] ;
+     fhir:display [ fhir:v "Service Unavailable" ] ;
+     fhir:definition [ fhir:v "Response code is 503." ]
+  ] [
+     fhir:code [ fhir:v "gatewayTimeout" ] ;
+     fhir:display [ fhir:v "Gateway Timeout" ] ;
+     fhir:definition [ fhir:v "Response code is 504." ]
+  ] [
+     fhir:code [ fhir:v "httpVersionNotSupported" ] ;
+     fhir:display [ fhir:v "HTTP Version Not Supported" ] ;
+     fhir:definition [ fhir:v "Response code is 505." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

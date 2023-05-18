@@ -1,0 +1,49 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <date.shex>
+IMPORT <string.shex>
+IMPORT <Timing.shex>
+IMPORT <DataType.shex>
+IMPORT <dateTime.shex>
+IMPORT <Schedule.shex>
+IMPORT <Reference.shex>
+IMPORT <Expression.shex>
+
+# Defines an expected trigger for a module
+<TriggerDefinition> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:TriggerDefinition];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:trigger-type};  # named-event | periodic | 
+                                            # data-changed | data-added | 
+                                            # data-modified | data-removed | 
+                                            # data-accessed | data-access-ended 
+    fhir:name @<string>?;                   # Name or URI that identifies the 
+                                            # event 
+    fhir:timing (@<Timing>  OR 
+    			(@<Reference>  AND {fhir:link @<Schedule> })  OR 
+    			@<date>  OR 
+    			@<dateTime> )  AND { rdf:type IRI } ?;  # Timing of the event
+    fhir:data @<OneOrMore_DataRequirement>?;  # Triggering data of the event 
+                                            # (multiple = 'and') 
+    fhir:condition @<Expression>?;          # Whether the event triggers 
+                                            # (boolean expression) 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_DataRequirement> CLOSED {
+    rdf:first @<DataRequirement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_DataRequirement> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The type of trigger.
+fhirvs:trigger-type ["named-event" "periodic" "data-changed" "data-added" "data-modified" "data-removed" "data-accessed" "data-access-ended"]
+

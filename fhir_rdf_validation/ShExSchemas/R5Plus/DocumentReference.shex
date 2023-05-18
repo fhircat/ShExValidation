@@ -1,0 +1,308 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Claim.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <instant.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <Resource.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <CarePlan.shex>
+#imported_end
+#imported_begin 
+IMPORT <Contract.shex>
+#imported_end
+#imported_begin 
+IMPORT <CareTeam.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
+IMPORT <Encounter.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Attachment.shex>
+#imported_end
+#imported_begin 
+IMPORT <Appointment.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <DeviceRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <EpisodeOfCare.shex>
+#imported_end
+#imported_begin 
+IMPORT <SupplyRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <NutritionOrder.shex>
+#imported_end
+#imported_begin 
+IMPORT <ServiceRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableReference.shex>
+#imported_end
+#imported_begin 
+IMPORT <EnrollmentRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <MedicationRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <VisionPrescription.shex>
+#imported_end
+#imported_begin 
+IMPORT <AppointmentResponse.shex>
+#imported_end
+#imported_begin 
+IMPORT <CommunicationRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <RequestOrchestration.shex>
+#imported_end
+#imported_begin 
+IMPORT <CoverageEligibilityRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <ImmunizationRecommendation.shex>
+#imported_end
+
+start=@<DocumentReference> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A reference to a document
+<DocumentReference> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:DocumentReference]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business identifiers for the 
+                                            # document 
+    fhir:basedOn @<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_Claim_OR_CommunicationRequest_OR_Contract_OR_CoverageEligibilityRequest_OR_DeviceRequest_OR_EnrollmentRequest_OR_EpisodeOfCare_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_RequestOrchestration_OR_ServiceRequest_OR_SupplyRequest_OR_VisionPrescription>?;  # Procedure that caused this media 
+                                            # to be created 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:document-reference-status};  # current | superseded | 
+                                            # entered-in-error 
+    fhir:docStatus @<code> AND
+    	{fhir:v @fhirvs:composition-status}?;  # registered | partial | preliminary 
+                                            # | final | amended | corrected | 
+                                            # appended | cancelled | 
+                                            # entered-in-error | deprecated | 
+                                            # unknown 
+    fhir:type @<CodeableConcept>?;          # Kind of document (LOINC if 
+                                            # possible) 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Categorization of document
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Resource> ? }?;  # Who/what is the subject of the 
+                                            # document 
+    fhir:context @<OneOrMore_Reference_Appointment_OR_Encounter_OR_EpisodeOfCare>?;  # Context of the document content
+    fhir:event @<OneOrMore_CodeableReference>?;  # Main clinical acts documented
+    fhir:facilityType @<CodeableConcept>?;  # Kind of facility where patient was 
+                                            # seen 
+    fhir:practiceSetting @<CodeableConcept>?;  # Additional details about where the 
+                                            # content was created (e.g. clinical 
+                                            # specialty) 
+    fhir:period @<Period>?;                 # Time of service that is being 
+                                            # documented 
+    fhir:date @<instant>?;                  # When this document reference was 
+                                            # created 
+    fhir:author @<OneOrMore_Reference_CareTeam_OR_Device_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Who and/or what authored the 
+                                            # document 
+    fhir:attester @<OneOrMore_DocumentReference.attester>?;  # Attests to accuracy of the document
+    fhir:custodian @<Reference> AND {fhir:link 
+    			@<Organization> ? }?;  # Organization which maintains the 
+                                            # document 
+    fhir:relatesTo @<OneOrMore_DocumentReference.relatesTo>?;  # Relationships to other documents
+    fhir:description @<markdown>?;          # Human-readable description
+    fhir:securityLabel @<OneOrMore_CodeableConcept>?;  # Document security-tags
+    fhir:content @<OneOrMore_DocumentReference.content>;  # Document referenced
+}  
+
+# Attests to accuracy of the document
+<DocumentReference.attester> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:mode @<CodeableConcept>;           # personal | professional | legal | 
+                                            # official 
+    fhir:time @<dateTime>?;                 # When the document was attested
+    fhir:party @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ? }?;  # Who attested the document
+}  
+
+# Content profile rules for the document
+<DocumentReference.content.profile> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:value @<Coding>  OR 
+    			@<uri>  OR 
+    			@<canonical>  ;  # Code|uri|canonical
+}  
+
+# Relationships to other documents
+<DocumentReference.relatesTo> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>;           # The relationship type with another 
+                                            # document 
+    fhir:target @<Reference> AND {fhir:link 
+    			@<DocumentReference> ? };  # Target of the relationship
+}  
+
+# Document referenced
+<DocumentReference.content> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:attachment @<Attachment>;          # Where to access the document
+    fhir:profile @<OneOrMore_DocumentReference.content.profile>?;  # Content profile rules for the 
+                                            # document 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_DocumentReference.attester> CLOSED {
+    rdf:first @<DocumentReference.attester>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_DocumentReference.attester> 
+}
+
+<OneOrMore_DocumentReference.relatesTo> CLOSED {
+    rdf:first @<DocumentReference.relatesTo>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_DocumentReference.relatesTo> 
+}
+
+<OneOrMore_DocumentReference.content> CLOSED {
+    rdf:first @<DocumentReference.content>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_DocumentReference.content> 
+}
+
+<OneOrMore_DocumentReference.content.profile> CLOSED {
+    rdf:first @<DocumentReference.content.profile>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_DocumentReference.content.profile> 
+}
+
+#---------------------- Value Sets ------------------------
+
+
+

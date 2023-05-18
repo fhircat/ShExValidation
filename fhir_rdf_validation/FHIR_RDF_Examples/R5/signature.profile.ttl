@@ -1,0 +1,527 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:StructureDefinition ;
+  fhir:id [ fhir:v "Signature"] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/Signature"], [ fhir:v "http://hl7.org/fhir/StructureDefinition/Signature"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "Signature"], [ fhir:v "Signature"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 FHIR Standard"], [ fhir:v "HL7 FHIR Standard"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Signature Type: A signature along with supporting context. The signature may be a digital signature that is cryptographic in nature, or some other signature acceptable to the domain. This other signature may be as simple as a graphical image representing a hand-written signature, or a signature ceremony Different signature approaches have different utilities."], [ fhir:v "Signature Type: A signature along with supporting context. The signature may be a digital signature that is cryptographic in nature, or some other signature acceptable to the domain. This other signature may be as simple as a graphical image representing a hand-written signature, or a signature ceremony Different signature approaches have different utilities."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:purpose [ fhir:v "There are a number of places where content must be signed in healthcare."], [ fhir:v "There are a number of places where content must be signed in healthcare."] ;
+  fhir:fhirVersion [ fhir:v "5.0.0"] ;
+  fhir:mapping ( [
+     fhir:identity [ fhir:v "rim" ] ;
+     fhir:uri [ fhir:v "http://hl7.org/v3" ] ;
+     fhir:name [ fhir:v "RIM Mapping" ]
+  ] ) ;
+  fhir:kind [ fhir:v "complex-type"] ;
+  fhir:abstract [ fhir:v "false"] ;
+  fhir:type [ fhir:v "Signature"] ;
+  fhir:baseDefinition [ fhir:v "http://hl7.org/fhir/StructureDefinition/DataType"] ;
+  fhir:derivation [ fhir:v "specialization"] ;
+  fhir:snapshot [
+     fhir:element ( [
+       fhir:id [ fhir:v "Signature" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+         fhir:value [ fhir:v "trial-use" ]
+       ] ) ;
+       fhir:path [ fhir:v "Signature" ] ;
+       fhir:short [ fhir:v "A Signature - XML DigSig, JWS, Graphical image of signature, etc." ] ;
+       fhir:definition [ fhir:v "A signature along with supporting context. The signature may be a digital signature that is cryptographic in nature, or some other signature acceptable to the domain. This other signature may be as simple as a graphical image representing a hand-written signature, or a signature ceremony Different signature approaches have different utilities." ] ;
+       fhir:comment [ fhir:v "The elements of the Signature Resource are for ease of access of these elements. For digital signatures (Xml DigSig, JWS), the non-repudiation proof comes from the Signature  validation, which includes validation of the referenced objects (e.g. Resources) (a.k.a., Content) in the XML-Signature Detached form." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "*" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "Signature" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "*" ]
+       ] ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "n/a,N/A" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "Signature.id" ] ;
+       fhir:path [ fhir:v "Signature.id" ] ;
+       fhir:representation ( [ fhir:v "xmlAttr" ] ) ;
+       fhir:short [ fhir:v "Unique id for inter-element referencing" ] ;
+       fhir:definition [ fhir:v "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "Element.id" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fhir-type" ] ;
+           fhir:value [ fhir:v "id" ]
+         ] ) ;
+         fhir:code [ fhir:v "http://hl7.org/fhirpath/System.String" ]
+       ] ) ;
+       fhir:condition ( [ fhir:v "ele-1" ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "false" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "n/a" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "Signature.extension" ] ;
+       fhir:path [ fhir:v "Signature.extension" ] ;
+       fhir:slicing [
+         fhir:discriminator ( [
+           fhir:type [ fhir:v "value" ] ;
+           fhir:path [ fhir:v "url" ]
+         ] ) ;
+         fhir:description [ fhir:v "Extensions are always sliced by (at least) url" ] ;
+         fhir:rules [ fhir:v "open" ]
+       ] ;
+       fhir:short [ fhir:v "Additional content defined by implementations" ] ;
+       fhir:definition [ fhir:v "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and managable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." ] ;
+       fhir:comment [ fhir:v "There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." ] ;
+       fhir:alias ( [ fhir:v "extensions" ] [ fhir:v "user content" ] ) ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "*" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "Element.extension" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "*" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "Extension" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] [
+         fhir:key [ fhir:v "ext-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "Must have either extensions or value[x], not both" ] ;
+         fhir:expression [ fhir:v "extension.exists() != value.exists()" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Extension" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "false" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "n/a" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "Signature.type" ] ;
+       fhir:path [ fhir:v "Signature.type" ] ;
+       fhir:short [ fhir:v "Indication of the reason the entity signed the object(s)" ] ;
+       fhir:definition [ fhir:v "An indication of the reason that the entity signed this document. This may be explicitly included as part of the signature information and can be used when determining accountability for various actions concerning the document." ] ;
+       fhir:comment [ fhir:v "Examples include attesting to: authorship, correct transcription, and witness of specific event. Also known as a &quot;Commitment Type Indication&quot;." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "*" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "Signature.type" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "*" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "Coding" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:binding [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/binding-definition" ] ;
+           fhir:value [ fhir:v "An indication of the reason that an entity signed the object." ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName" ] ;
+           fhir:value [ fhir:v "SignatureType" ]
+         ] ) ;
+         fhir:strength [ fhir:v "preferred" ] ;
+         fhir:description [ fhir:v "An indication of the reason that an entity signed the object." ] ;
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/signature-type" ]
+       ]
+     ] [
+       fhir:id [ fhir:v "Signature.when" ] ;
+       fhir:path [ fhir:v "Signature.when" ] ;
+       fhir:short [ fhir:v "When the signature was created" ] ;
+       fhir:definition [ fhir:v "When the digital signature was signed." ] ;
+       fhir:comment [ fhir:v "This should agree with the information in the signature." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "Signature.when" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "instant" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "Signature.who" ] ;
+       fhir:path [ fhir:v "Signature.who" ] ;
+       fhir:short [ fhir:v "Who signed" ] ;
+       fhir:definition [ fhir:v "A reference to an application-usable description of the identity that signed  (e.g. the signature used their private key)." ] ;
+       fhir:comment [ fhir:v "This should agree with the information in the signature." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "Signature.who" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "Reference" ] ;
+         fhir:targetProfile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/Practitioner" ] [ fhir:v "http://hl7.org/fhir/StructureDefinition/PractitionerRole" ] [ fhir:v "http://hl7.org/fhir/StructureDefinition/RelatedPerson" ] [ fhir:v "http://hl7.org/fhir/StructureDefinition/Patient" ] [ fhir:v "http://hl7.org/fhir/StructureDefinition/Device" ] [ fhir:v "http://hl7.org/fhir/StructureDefinition/Organization" ] )
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "Signature.onBehalfOf" ] ;
+       fhir:path [ fhir:v "Signature.onBehalfOf" ] ;
+       fhir:short [ fhir:v "The party represented" ] ;
+       fhir:definition [ fhir:v "A reference to an application-usable description of the identity that is represented by the signature." ] ;
+       fhir:comment [ fhir:v "The party that can't sign. For example a child." ] ;
+       fhir:requirements [ fhir:v "used when the signature is on behalf of a non-signer." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "Signature.onBehalfOf" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "Reference" ] ;
+         fhir:targetProfile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/Practitioner" ] [ fhir:v "http://hl7.org/fhir/StructureDefinition/PractitionerRole" ] [ fhir:v "http://hl7.org/fhir/StructureDefinition/RelatedPerson" ] [ fhir:v "http://hl7.org/fhir/StructureDefinition/Patient" ] [ fhir:v "http://hl7.org/fhir/StructureDefinition/Device" ] [ fhir:v "http://hl7.org/fhir/StructureDefinition/Organization" ] )
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "Signature.targetFormat" ] ;
+       fhir:path [ fhir:v "Signature.targetFormat" ] ;
+       fhir:short [ fhir:v "The technical format of the signed resources" ] ;
+       fhir:definition [ fhir:v "A mime type that indicates the technical format of the target resources signed by the signature." ] ;
+       fhir:comment [ fhir:v "\"xml\", \"json\" and \"ttl\" are allowed, which describe the simple encodings described in the specification (and imply appropriate bundle support). Otherwise, mime types are legal here." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "Signature.targetFormat" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "code" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "false" ] ;
+       fhir:binding [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/binding-definition" ] ;
+           fhir:value [ fhir:v "The mime type of an attachment. Any valid mime type is allowed." ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName" ] ;
+           fhir:value [ fhir:v "MimeType" ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding" ] ;
+           fhir:value [ fhir:v "true" ]
+         ] ) ;
+         fhir:strength [ fhir:v "required" ] ;
+         fhir:description [ fhir:v "BCP 13 (RFCs 2045, 2046, 2047, 4288, 4289 and 2049)" ] ;
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/mimetypes|5.0.0" ]
+       ]
+     ] [
+       fhir:id [ fhir:v "Signature.sigFormat" ] ;
+       fhir:path [ fhir:v "Signature.sigFormat" ] ;
+       fhir:short [ fhir:v "The technical format of the signature" ] ;
+       fhir:definition [ fhir:v "A mime type that indicates the technical format of the signature. Important mime types are application/signature+xml for X ML DigSig, application/jose for JWS, and image/* for a graphical image of a signature, etc." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "Signature.sigFormat" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "code" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "false" ] ;
+       fhir:binding [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/binding-definition" ] ;
+           fhir:value [ fhir:v "The mime type of an attachment. Any valid mime type is allowed." ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName" ] ;
+           fhir:value [ fhir:v "MimeType" ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding" ] ;
+           fhir:value [ fhir:v "true" ]
+         ] ) ;
+         fhir:strength [ fhir:v "required" ] ;
+         fhir:description [ fhir:v "BCP 13 (RFCs 2045, 2046, 2047, 4288, 4289 and 2049)" ] ;
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/mimetypes|5.0.0" ]
+       ]
+     ] [
+       fhir:id [ fhir:v "Signature.data" ] ;
+       fhir:path [ fhir:v "Signature.data" ] ;
+       fhir:short [ fhir:v "The actual signature content (XML DigSig. JWS, picture, etc.)" ] ;
+       fhir:definition [ fhir:v "The base64 encoding of the Signature content. When signature is not recorded electronically this element would be empty." ] ;
+       fhir:comment [ fhir:v "Where the signature type is an XML DigSig, the signed content is a FHIR Resource(s), the signature is of the XML form of the Resource(s) using  XML-Signature (XMLDIG) \"Detached Signature\" form." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:base [
+         fhir:path [ fhir:v "Signature.data" ] ;
+         fhir:min [ fhir:v "0" ] ;
+         fhir:max [ fhir:v "1" ]
+       ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "base64Binary" ]
+       ] ) ;
+       fhir:constraint ( [
+         fhir:key [ fhir:v "ele-1" ] ;
+         fhir:severity [ fhir:v "error" ] ;
+         fhir:human [ fhir:v "All FHIR elements must have a @value or children" ] ;
+         fhir:expression [ fhir:v "hasValue() or (children().count() > id.count())" ] ;
+         fhir:source [ fhir:v "http://hl7.org/fhir/StructureDefinition/Element" ]
+       ] ) ;
+       fhir:isModifier [ fhir:v "false" ] ;
+       fhir:isSummary [ fhir:v "false" ]
+     ] )
+  ] ;
+  fhir:differential [
+     fhir:element ( [
+       fhir:id [ fhir:v "Signature" ] ;
+       fhir:extension ( [
+         fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+         fhir:value [ fhir:v "trial-use" ]
+       ] ) ;
+       fhir:path [ fhir:v "Signature" ] ;
+       fhir:short [ fhir:v "A Signature - XML DigSig, JWS, Graphical image of signature, etc." ] ;
+       fhir:definition [ fhir:v "A signature along with supporting context. The signature may be a digital signature that is cryptographic in nature, or some other signature acceptable to the domain. This other signature may be as simple as a graphical image representing a hand-written signature, or a signature ceremony Different signature approaches have different utilities." ] ;
+       fhir:comment [ fhir:v "The elements of the Signature Resource are for ease of access of these elements. For digital signatures (Xml DigSig, JWS), the non-repudiation proof comes from the Signature  validation, which includes validation of the referenced objects (e.g. Resources) (a.k.a., Content) in the XML-Signature Detached form." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "*" ] ;
+       fhir:mapping ( [
+         fhir:identity [ fhir:v "rim" ] ;
+         fhir:map [ fhir:v "N/A" ]
+       ] )
+     ] [
+       fhir:id [ fhir:v "Signature.type" ] ;
+       fhir:path [ fhir:v "Signature.type" ] ;
+       fhir:short [ fhir:v "Indication of the reason the entity signed the object(s)" ] ;
+       fhir:definition [ fhir:v "An indication of the reason that the entity signed this document. This may be explicitly included as part of the signature information and can be used when determining accountability for various actions concerning the document." ] ;
+       fhir:comment [ fhir:v "Examples include attesting to: authorship, correct transcription, and witness of specific event. Also known as a &quot;Commitment Type Indication&quot;." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "*" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "Coding" ]
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ] ;
+       fhir:binding [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/binding-definition" ] ;
+           fhir:value [ fhir:v "An indication of the reason that an entity signed the object." ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName" ] ;
+           fhir:value [ fhir:v "SignatureType" ]
+         ] ) ;
+         fhir:strength [ fhir:v "preferred" ] ;
+         fhir:description [ fhir:v "An indication of the reason that an entity signed the object." ] ;
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/signature-type" ]
+       ]
+     ] [
+       fhir:id [ fhir:v "Signature.when" ] ;
+       fhir:path [ fhir:v "Signature.when" ] ;
+       fhir:short [ fhir:v "When the signature was created" ] ;
+       fhir:definition [ fhir:v "When the digital signature was signed." ] ;
+       fhir:comment [ fhir:v "This should agree with the information in the signature." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "instant" ]
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "Signature.who" ] ;
+       fhir:path [ fhir:v "Signature.who" ] ;
+       fhir:short [ fhir:v "Who signed" ] ;
+       fhir:definition [ fhir:v "A reference to an application-usable description of the identity that signed  (e.g. the signature used their private key)." ] ;
+       fhir:comment [ fhir:v "This should agree with the information in the signature." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "Reference" ] ;
+         fhir:targetProfile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/Practitioner" ] [ fhir:v "http://hl7.org/fhir/StructureDefinition/PractitionerRole" ] [ fhir:v "http://hl7.org/fhir/StructureDefinition/RelatedPerson" ] [ fhir:v "http://hl7.org/fhir/StructureDefinition/Patient" ] [ fhir:v "http://hl7.org/fhir/StructureDefinition/Device" ] [ fhir:v "http://hl7.org/fhir/StructureDefinition/Organization" ] )
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "Signature.onBehalfOf" ] ;
+       fhir:path [ fhir:v "Signature.onBehalfOf" ] ;
+       fhir:short [ fhir:v "The party represented" ] ;
+       fhir:definition [ fhir:v "A reference to an application-usable description of the identity that is represented by the signature." ] ;
+       fhir:comment [ fhir:v "The party that can't sign. For example a child." ] ;
+       fhir:requirements [ fhir:v "used when the signature is on behalf of a non-signer." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "Reference" ] ;
+         fhir:targetProfile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/Practitioner" ] [ fhir:v "http://hl7.org/fhir/StructureDefinition/PractitionerRole" ] [ fhir:v "http://hl7.org/fhir/StructureDefinition/RelatedPerson" ] [ fhir:v "http://hl7.org/fhir/StructureDefinition/Patient" ] [ fhir:v "http://hl7.org/fhir/StructureDefinition/Device" ] [ fhir:v "http://hl7.org/fhir/StructureDefinition/Organization" ] )
+       ] ) ;
+       fhir:isSummary [ fhir:v "true" ]
+     ] [
+       fhir:id [ fhir:v "Signature.targetFormat" ] ;
+       fhir:path [ fhir:v "Signature.targetFormat" ] ;
+       fhir:short [ fhir:v "The technical format of the signed resources" ] ;
+       fhir:definition [ fhir:v "A mime type that indicates the technical format of the target resources signed by the signature." ] ;
+       fhir:comment [ fhir:v "\"xml\", \"json\" and \"ttl\" are allowed, which describe the simple encodings described in the specification (and imply appropriate bundle support). Otherwise, mime types are legal here." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "code" ]
+       ] ) ;
+       fhir:binding [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/binding-definition" ] ;
+           fhir:value [ fhir:v "The mime type of an attachment. Any valid mime type is allowed." ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName" ] ;
+           fhir:value [ fhir:v "MimeType" ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding" ] ;
+           fhir:value [ fhir:v "true" ]
+         ] ) ;
+         fhir:strength [ fhir:v "required" ] ;
+         fhir:description [ fhir:v "BCP 13 (RFCs 2045, 2046, 2047, 4288, 4289 and 2049)" ] ;
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/mimetypes|5.0.0" ]
+       ]
+     ] [
+       fhir:id [ fhir:v "Signature.sigFormat" ] ;
+       fhir:path [ fhir:v "Signature.sigFormat" ] ;
+       fhir:short [ fhir:v "The technical format of the signature" ] ;
+       fhir:definition [ fhir:v "A mime type that indicates the technical format of the signature. Important mime types are application/signature+xml for X ML DigSig, application/jose for JWS, and image/* for a graphical image of a signature, etc." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "code" ]
+       ] ) ;
+       fhir:binding [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/tools/StructureDefinition/binding-definition" ] ;
+           fhir:value [ fhir:v "The mime type of an attachment. Any valid mime type is allowed." ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName" ] ;
+           fhir:value [ fhir:v "MimeType" ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding" ] ;
+           fhir:value [ fhir:v "true" ]
+         ] ) ;
+         fhir:strength [ fhir:v "required" ] ;
+         fhir:description [ fhir:v "BCP 13 (RFCs 2045, 2046, 2047, 4288, 4289 and 2049)" ] ;
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/mimetypes|5.0.0" ]
+       ]
+     ] [
+       fhir:id [ fhir:v "Signature.data" ] ;
+       fhir:path [ fhir:v "Signature.data" ] ;
+       fhir:short [ fhir:v "The actual signature content (XML DigSig. JWS, picture, etc.)" ] ;
+       fhir:definition [ fhir:v "The base64 encoding of the Signature content. When signature is not recorded electronically this element would be empty." ] ;
+       fhir:comment [ fhir:v "Where the signature type is an XML DigSig, the signed content is a FHIR Resource(s), the signature is of the XML form of the Resource(s) using  XML-Signature (XMLDIG) \"Detached Signature\" form." ] ;
+       fhir:min [ fhir:v "0" ] ;
+       fhir:max [ fhir:v "1" ] ;
+       fhir:type ( [
+         fhir:code [ fhir:v "base64Binary" ]
+       ] )
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

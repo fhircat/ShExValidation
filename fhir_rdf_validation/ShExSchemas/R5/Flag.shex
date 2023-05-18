@@ -1,0 +1,75 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Group.shex>
+IMPORT <Period.shex>
+IMPORT <Device.shex>
+IMPORT <Patient.shex>
+IMPORT <Location.shex>
+IMPORT <Reference.shex>
+IMPORT <Procedure.shex>
+IMPORT <Encounter.shex>
+IMPORT <Medication.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <DomainResource.shex>
+IMPORT <PlanDefinition.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <PractitionerRole.shex>
+
+
+start=@<Flag> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Key information to flag to healthcare providers
+<Flag> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Flag];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business identifier
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:flag-status};  # active | inactive | 
+                                            # entered-in-error 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Clinical, administrative, etc.
+    fhir:code @<CodeableConcept>;           # Coded or textual message to 
+                                            # display to user 
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Location> OR 
+    			@<Medication> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<PlanDefinition> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<Procedure> };  # Who/What is flag about?
+    fhir:period @<Period>?;                 # Time period when flag is active
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # Alert relevant during encounter
+    fhir:author @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> }?;  # Flag creator
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Indicates whether this flag is active and needs to be displayed to a user, or whether it is no longer needed or was entered in error.
+fhirvs:flag-status ["active" "inactive" "entered-in-error"]
+

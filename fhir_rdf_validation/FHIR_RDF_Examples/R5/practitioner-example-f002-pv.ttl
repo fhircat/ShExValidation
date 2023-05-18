@@ -1,0 +1,54 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Practitioner ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "f002"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Practitioner</b><a name=\"f002\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Practitioner &quot;f002&quot; </p></div><p><b>identifier</b>: id: 730291637 (use: OFFICIAL), id: 174BIP3JH438 (use: USUAL)</p><p><b>name</b>: Pieter Voigt (OFFICIAL)</p><p><b>telecom</b>: ph: 0205569336(WORK), <a href=\"mailto:p.voigt@bmc.nl\">p.voigt@bmc.nl</a>, fax: 0205669382(WORK)</p><p><b>gender</b>: male</p><p><b>birthDate</b>: 1979-04-29</p><p><b>address</b>: Galapagosweg 91 Den Burg 9105 PZ NLD (WORK)</p></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "official" ] ;
+     fhir:system [ fhir:v "urn:oid:2.16.528.1.1007.3.1"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "730291637" ] #    Identificatiesysteem Zorgverlener UZI   
+  ] [
+     fhir:use [ fhir:v "usual" ] ;
+     fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.2.4.6.3"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "174BIP3JH438" ] #    BSN identification system   
+  ] ) ; # 
+  fhir:name ( [
+     fhir:use [ fhir:v "official" ] ;
+     fhir:family [ fhir:v "Voigt" ] ;
+     fhir:given ( [ fhir:v "Pieter" ] ) ;
+     fhir:suffix ( [ fhir:v "MD" ] )
+  ] ) ; # 
+  fhir:telecom ( [
+     fhir:system [ fhir:v "phone" ] ;
+     fhir:value [ fhir:v "0205569336" ] ;
+     fhir:use [ fhir:v "work" ]
+  ] [
+     fhir:system [ fhir:v "email" ] ;
+     fhir:value [ fhir:v "p.voigt@bmc.nl" ] ;
+     fhir:use [ fhir:v "work" ]
+  ] [
+     fhir:system [ fhir:v "fax" ] ;
+     fhir:value [ fhir:v "0205669382" ] ;
+     fhir:use [ fhir:v "work" ]
+  ] ) ; # 
+  fhir:gender [ fhir:v "male"] ; # 
+  fhir:birthDate [ fhir:v "1979-04-29"^^xsd:date] ; # 
+  fhir:address ( [
+     fhir:use [ fhir:v "work" ] ;
+     fhir:line ( [ fhir:v "Galapagosweg 91" ] ) ;
+     fhir:city [ fhir:v "Den Burg" ] ;
+     fhir:postalCode [ fhir:v "9105 PZ" ] ;
+     fhir:country [ fhir:v "NLD" ]
+  ] )] . #    ISO 3166 Codes (Countries)   
+
+# -------------------------------------------------------------------------------------
+

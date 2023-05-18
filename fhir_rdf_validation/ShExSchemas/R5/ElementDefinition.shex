@@ -1,0 +1,498 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <id.shex>
+IMPORT <uri.shex>
+IMPORT <oid.shex>
+IMPORT <url.shex>
+IMPORT <Age.shex>
+IMPORT <code.shex>
+IMPORT <date.shex>
+IMPORT <time.shex>
+IMPORT <uuid.shex>
+IMPORT <Meta.shex>
+IMPORT <Count.shex>
+IMPORT <Money.shex>
+IMPORT <Range.shex>
+IMPORT <Ratio.shex>
+IMPORT <string.shex>
+IMPORT <Coding.shex>
+IMPORT <Period.shex>
+IMPORT <Timing.shex>
+IMPORT <Dosage.shex>
+IMPORT <boolean.shex>
+IMPORT <Element.shex>
+IMPORT <decimal.shex>
+IMPORT <instant.shex>
+IMPORT <integer.shex>
+IMPORT <Address.shex>
+IMPORT <markdown.shex>
+IMPORT <dateTime.shex>
+IMPORT <Distance.shex>
+IMPORT <Duration.shex>
+IMPORT <Quantity.shex>
+IMPORT <canonical.shex>
+IMPORT <integer64.shex>
+IMPORT <HumanName.shex>
+IMPORT <Reference.shex>
+IMPORT <Signature.shex>
+IMPORT <Annotation.shex>
+IMPORT <Attachment.shex>
+IMPORT <Identifier.shex>
+IMPORT <RatioRange.shex>
+IMPORT <Expression.shex>
+IMPORT <unsignedInt.shex>
+IMPORT <positiveInt.shex>
+IMPORT <SampledData.shex>
+IMPORT <Contributor.shex>
+IMPORT <BackboneType.shex>
+IMPORT <base64Binary.shex>
+IMPORT <ContactPoint.shex>
+IMPORT <UsageContext.shex>
+IMPORT <ContactDetail.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <DataRequirement.shex>
+IMPORT <RelatedArtifact.shex>
+IMPORT <CodeableReference.shex>
+IMPORT <TriggerDefinition.shex>
+IMPORT <ParameterDefinition.shex>
+
+# Definition of an element in a resource or extension
+<ElementDefinition> EXTENDS @<BackboneType> CLOSED {   
+
+    a [fhir:ElementDefinition];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:path @<string>;                    # Path of the element in the 
+                                            # hierarchy of elements 
+    fhir:representation @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:property-representation}?;  # xmlAttr | xmlText | typeAttr | 
+                                            # cdaText | xhtml 
+    fhir:sliceName @<string>?;              # Name for this particular element 
+                                            # (in a set of slices) 
+    fhir:sliceIsConstraining @<boolean>?;   # If this slice definition 
+                                            # constrains an inherited slice 
+                                            # definition (or not) 
+    fhir:label @<string>?;                  # Name for element to display with 
+                                            # or prompt for element 
+    fhir:code @<OneOrMore_Coding>?;         # Corresponding codes in 
+                                            # terminologies 
+    fhir:slicing @<Element>?;               # This element is sliced - slices 
+                                            # follow 
+    fhir:short @<string>?;                  # Concise definition for 
+                                            # space-constrained presentation 
+    fhir:definition @<markdown>?;           # Full formal definition as 
+                                            # narrative text 
+    fhir:comment @<markdown>?;              # Comments about the use of this 
+                                            # element 
+    fhir:requirements @<markdown>?;         # Why this resource has been created
+    fhir:alias @<OneOrMore_string>?;        # Other names
+    fhir:min @<unsignedInt>?;               # Minimum Cardinality
+    fhir:max @<string>?;                    # Maximum Cardinality (a number or *)
+    fhir:base @<Element>?;                  # Base definition information for 
+                                            # tools 
+    fhir:contentReference @<uri>?;          # Reference to definition of content 
+                                            # for the element 
+    fhir:type @<OneOrMore_Element>?;        # Data type and Profile for this 
+                                            # element 
+    fhir:defaultValue (@<base64Binary>  OR 
+    			@<boolean>  OR 
+    			@<canonical>  OR 
+    			@<code>  OR 
+    			@<date>  OR 
+    			@<dateTime>  OR 
+    			@<decimal>  OR 
+    			@<id>  OR 
+    			@<instant>  OR 
+    			@<integer>  OR 
+    			@<integer64>  OR 
+    			@<markdown>  OR 
+    			@<oid>  OR 
+    			@<positiveInt>  OR 
+    			@<string>  OR 
+    			@<time>  OR 
+    			@<unsignedInt>  OR 
+    			@<uri>  OR 
+    			@<url>  OR 
+    			@<uuid>  OR 
+    			@<Address>  OR 
+    			@<Age>  OR 
+    			@<Annotation>  OR 
+    			@<Attachment>  OR 
+    			@<CodeableConcept>  OR 
+    			@<CodeableReference>  OR 
+    			@<Coding>  OR 
+    			@<ContactPoint>  OR 
+    			@<Count>  OR 
+    			@<Distance>  OR 
+    			@<Duration>  OR 
+    			@<HumanName>  OR 
+    			@<Identifier>  OR 
+    			@<Money>  OR 
+    			@<Period>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<Ratio>  OR 
+    			@<RatioRange>  OR 
+    			@<Reference>  OR 
+    			@<SampledData>  OR 
+    			@<Signature>  OR 
+    			@<Timing>  OR 
+    			@<ContactDetail>  OR 
+    			@<Contributor>  OR 
+    			@<DataRequirement>  OR 
+    			@<Expression>  OR 
+    			@<ParameterDefinition>  OR 
+    			@<RelatedArtifact>  OR 
+    			@<TriggerDefinition>  OR 
+    			@<UsageContext>  OR 
+    			@<Dosage>  OR 
+    			@<Meta> )  AND { rdf:type IRI } ?;  # Specified value if missing from 
+                                            # instance 
+    fhir:meaningWhenMissing @<markdown>?;   # Implicit meaning when this element 
+                                            # is missing 
+    fhir:orderMeaning @<string>?;           # What the order of the elements 
+                                            # means 
+    fhir:fixed (@<base64Binary>  OR 
+    			@<boolean>  OR 
+    			@<canonical>  OR 
+    			@<code>  OR 
+    			@<date>  OR 
+    			@<dateTime>  OR 
+    			@<decimal>  OR 
+    			@<id>  OR 
+    			@<instant>  OR 
+    			@<integer>  OR 
+    			@<integer64>  OR 
+    			@<markdown>  OR 
+    			@<oid>  OR 
+    			@<positiveInt>  OR 
+    			@<string>  OR 
+    			@<time>  OR 
+    			@<unsignedInt>  OR 
+    			@<uri>  OR 
+    			@<url>  OR 
+    			@<uuid>  OR 
+    			@<Address>  OR 
+    			@<Age>  OR 
+    			@<Annotation>  OR 
+    			@<Attachment>  OR 
+    			@<CodeableConcept>  OR 
+    			@<CodeableReference>  OR 
+    			@<Coding>  OR 
+    			@<ContactPoint>  OR 
+    			@<Count>  OR 
+    			@<Distance>  OR 
+    			@<Duration>  OR 
+    			@<HumanName>  OR 
+    			@<Identifier>  OR 
+    			@<Money>  OR 
+    			@<Period>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<Ratio>  OR 
+    			@<RatioRange>  OR 
+    			@<Reference>  OR 
+    			@<SampledData>  OR 
+    			@<Signature>  OR 
+    			@<Timing>  OR 
+    			@<ContactDetail>  OR 
+    			@<Contributor>  OR 
+    			@<DataRequirement>  OR 
+    			@<Expression>  OR 
+    			@<ParameterDefinition>  OR 
+    			@<RelatedArtifact>  OR 
+    			@<TriggerDefinition>  OR 
+    			@<UsageContext>  OR 
+    			@<Dosage>  OR 
+    			@<Meta> )  AND { rdf:type IRI } ?;  # Value must be exactly this
+    fhir:pattern (@<base64Binary>  OR 
+    			@<boolean>  OR 
+    			@<canonical>  OR 
+    			@<code>  OR 
+    			@<date>  OR 
+    			@<dateTime>  OR 
+    			@<decimal>  OR 
+    			@<id>  OR 
+    			@<instant>  OR 
+    			@<integer>  OR 
+    			@<integer64>  OR 
+    			@<markdown>  OR 
+    			@<oid>  OR 
+    			@<positiveInt>  OR 
+    			@<string>  OR 
+    			@<time>  OR 
+    			@<unsignedInt>  OR 
+    			@<uri>  OR 
+    			@<url>  OR 
+    			@<uuid>  OR 
+    			@<Address>  OR 
+    			@<Age>  OR 
+    			@<Annotation>  OR 
+    			@<Attachment>  OR 
+    			@<CodeableConcept>  OR 
+    			@<CodeableReference>  OR 
+    			@<Coding>  OR 
+    			@<ContactPoint>  OR 
+    			@<Count>  OR 
+    			@<Distance>  OR 
+    			@<Duration>  OR 
+    			@<HumanName>  OR 
+    			@<Identifier>  OR 
+    			@<Money>  OR 
+    			@<Period>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<Ratio>  OR 
+    			@<RatioRange>  OR 
+    			@<Reference>  OR 
+    			@<SampledData>  OR 
+    			@<Signature>  OR 
+    			@<Timing>  OR 
+    			@<ContactDetail>  OR 
+    			@<Contributor>  OR 
+    			@<DataRequirement>  OR 
+    			@<Expression>  OR 
+    			@<ParameterDefinition>  OR 
+    			@<RelatedArtifact>  OR 
+    			@<TriggerDefinition>  OR 
+    			@<UsageContext>  OR 
+    			@<Dosage>  OR 
+    			@<Meta> )  AND { rdf:type IRI } ?;  # Value must have at least these 
+                                            # property values 
+    fhir:example @<OneOrMore_Element>?;     # Example value (as defined for type)
+    fhir:minValue (@<date>  OR 
+    			@<dateTime>  OR 
+    			@<instant>  OR 
+    			@<time>  OR 
+    			@<decimal>  OR 
+    			@<integer>  OR 
+    			@<integer64>  OR 
+    			@<positiveInt>  OR 
+    			@<unsignedInt>  OR 
+    			@<Quantity> )  AND { rdf:type IRI } ?;  # Minimum Allowed Value (for some 
+                                            # types) 
+    fhir:maxValue (@<date>  OR 
+    			@<dateTime>  OR 
+    			@<instant>  OR 
+    			@<time>  OR 
+    			@<decimal>  OR 
+    			@<integer>  OR 
+    			@<integer64>  OR 
+    			@<positiveInt>  OR 
+    			@<unsignedInt>  OR 
+    			@<Quantity> )  AND { rdf:type IRI } ?;  # Maximum Allowed Value (for some 
+                                            # types) 
+    fhir:maxLength @<integer>?;             # Max length for strings
+    fhir:condition @<OneOrMore_id>?;        # Reference to invariant about 
+                                            # presence 
+    fhir:constraint @<OneOrMore_Element>?;  # Condition that must evaluate to 
+                                            # true 
+    fhir:mustSupport @<boolean>?;           # If the element must be supported
+    fhir:isModifier @<boolean>?;            # If this modifies the meaning of 
+                                            # other elements 
+    fhir:isModifierReason @<string>?;       # Reason that this element is marked 
+                                            # as a modifier 
+    fhir:isSummary @<boolean>?;             # Include when _summary = true?
+    fhir:binding @<Element>?;               # ValueSet details if this is coded
+    fhir:mapping @<OneOrMore_Element>?;     # Map element to another set of 
+                                            # definitions 
+}  
+
+# Map element to another set of definitions
+<ElementDefinition.mapping> EXTENDS @<Element> CLOSED {   
+    fhir:identity @<id>;                    # Reference to mapping declaration
+    fhir:language @<code> AND
+    	{fhir:v @fhirvs:mimetypes}?;  # Computable language of mapping
+    fhir:map @<string>;                     # Details of the mapping
+    fhir:comment @<string>?;                # Comments about the mapping or its 
+                                            # use 
+}  
+
+# This element is sliced - slices follow
+<ElementDefinition.slicing> EXTENDS @<Element> CLOSED {   
+    fhir:discriminator @<OneOrMore_Element>?;  # Element values that are used to 
+                                            # distinguish the slices 
+    fhir:description @<string>?;            # Text description of how slicing 
+                                            # works (or not) 
+    fhir:ordered @<boolean>?;               # If elements must be in same order 
+                                            # as slices 
+    fhir:rules @<code> AND
+    	{fhir:v @fhirvs:resource-slicing-rules};  # closed | open | openAtEnd
+}  
+
+# Element values that are used to distinguish the slices
+<ElementDefinition.slicing.discriminator> EXTENDS @<Element> CLOSED {   
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:discriminator-type};  # value | exists | pattern | type | 
+                                            # profile 
+    fhir:path @<string>;                    # Path to element value
+}  
+
+# ValueSet details if this is coded
+<ElementDefinition.binding> EXTENDS @<Element> CLOSED {   
+    fhir:strength @<code> AND
+    	{fhir:v @fhirvs:binding-strength};  # required | extensible | preferred 
+                                            # | example 
+    fhir:description @<string>?;            # Human explanation of the value set
+    fhir:valueSet @<canonical>?;            # Source of value set
+}  
+
+# Data type and Profile for this element
+<ElementDefinition.type> EXTENDS @<Element> CLOSED {   
+    fhir:code @<uri>;                       # Data type or Resource (reference 
+                                            # to definition) 
+    fhir:profile @<OneOrMore_canonical>?;   # Profiles (StructureDefinition or 
+                                            # IG) - one must apply 
+    fhir:targetProfile @<OneOrMore_canonical>?;  # Profile (StructureDefinition or 
+                                            # IG) on the Reference/canonical 
+                                            # target - one must apply 
+    fhir:aggregation @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:resource-aggregation-mode}?;  # contained | referenced | bundled - 
+                                            # how aggregated 
+    fhir:versioning @<code> AND
+    	{fhir:v @fhirvs:reference-version-rules}?;  # either | independent | specific
+}  
+
+# Example value (as defined for type)
+<ElementDefinition.example> EXTENDS @<Element> CLOSED {   
+    fhir:label @<string>;                   # Describes the purpose of this 
+                                            # example 
+    fhir:v (@<base64Binary>  OR 
+    			@<boolean>  OR 
+    			@<canonical>  OR 
+    			@<code>  OR 
+    			@<date>  OR 
+    			@<dateTime>  OR 
+    			@<decimal>  OR 
+    			@<id>  OR 
+    			@<instant>  OR 
+    			@<integer>  OR 
+    			@<integer64>  OR 
+    			@<markdown>  OR 
+    			@<oid>  OR 
+    			@<positiveInt>  OR 
+    			@<string>  OR 
+    			@<time>  OR 
+    			@<unsignedInt>  OR 
+    			@<uri>  OR 
+    			@<url>  OR 
+    			@<uuid>  OR 
+    			@<Address>  OR 
+    			@<Age>  OR 
+    			@<Annotation>  OR 
+    			@<Attachment>  OR 
+    			@<CodeableConcept>  OR 
+    			@<CodeableReference>  OR 
+    			@<Coding>  OR 
+    			@<ContactPoint>  OR 
+    			@<Count>  OR 
+    			@<Distance>  OR 
+    			@<Duration>  OR 
+    			@<HumanName>  OR 
+    			@<Identifier>  OR 
+    			@<Money>  OR 
+    			@<Period>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<Ratio>  OR 
+    			@<RatioRange>  OR 
+    			@<Reference>  OR 
+    			@<SampledData>  OR 
+    			@<Signature>  OR 
+    			@<Timing>  OR 
+    			@<ContactDetail>  OR 
+    			@<Contributor>  OR 
+    			@<DataRequirement>  OR 
+    			@<Expression>  OR 
+    			@<ParameterDefinition>  OR 
+    			@<RelatedArtifact>  OR 
+    			@<TriggerDefinition>  OR 
+    			@<UsageContext>  OR 
+    			@<Dosage>  OR 
+    			@<Meta> )  AND { rdf:type IRI } ;  # Value of Example (one of allowed 
+                                            # types) 
+}  
+
+# Condition that must evaluate to true
+<ElementDefinition.constraint> EXTENDS @<Element> CLOSED {   
+    fhir:key @<id>;                         # Target of 'condition' reference 
+                                            # above 
+    fhir:requirements @<string>?;           # Why this constraint is necessary 
+                                            # or appropriate 
+    fhir:severity @<code> AND
+    	{fhir:v @fhirvs:constraint-severity};  # error | warning
+    fhir:human @<string>;                   # Human description of constraint
+    fhir:expression @<string>?;             # FHIRPath expression of constraint
+    fhir:xpath @<string>?;                  # XPath expression of constraint
+    fhir:source @<canonical>?;              # Reference to original source of 
+                                            # constraint 
+}  
+
+# Base definition information for tools
+<ElementDefinition.base> EXTENDS @<Element> CLOSED {   
+    fhir:path @<string>;                    # Path that identifies the base 
+                                            # element 
+    fhir:min @<unsignedInt>;                # Min cardinality of the base element
+    fhir:max @<string>;                     # Max cardinality of the base element
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_code> CLOSED {
+    rdf:first @<code>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_code> 
+}
+
+<OneOrMore_Coding> CLOSED {
+    rdf:first @<Coding>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Coding> 
+}
+
+<OneOrMore_string> CLOSED {
+    rdf:first @<string>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_string> 
+}
+
+<OneOrMore_Element> CLOSED {
+    rdf:first @<Element>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Element> 
+}
+
+<OneOrMore_id> CLOSED {
+    rdf:first @<id>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_id> 
+}
+
+<OneOrMore_canonical> CLOSED {
+    rdf:first @<canonical>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_canonical> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# How a property is represented when serialized.
+fhirvs:property-representation ["xmlAttr" "xmlText" "typeAttr" "cdaText" "xhtml"]
+
+# How slices are interpreted when evaluating an instance.
+fhirvs:resource-slicing-rules ["closed" "open" "openAtEnd"]
+
+# Indication of the degree of conformance expectations associated with a binding.
+fhirvs:binding-strength ["required" "extensible" "preferred" "example"]
+
+# How resource references can be aggregated.
+fhirvs:resource-aggregation-mode ["contained" "referenced" "bundled"]
+
+# Whether a reference needs to be version specific or version independent, or whether either can be used.
+fhirvs:reference-version-rules ["either" "independent" "specific"]
+
+# SHALL applications comply with this constraint?
+fhirvs:constraint-severity ["error" "warning"]
+
+# How an element value is interpreted when discrimination is evaluated.
+fhirvs:discriminator-type ["value" "exists" "pattern" "type" "profile"]
+
+# This value set includes all possible codes from BCP-13 (http://tools.ietf.org/html/bcp13)
+fhirvs:mimetypes xsd:string # EXTERNAL
+

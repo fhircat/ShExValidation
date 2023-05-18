@@ -1,0 +1,37 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:SearchParameter ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "filter"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: SearchParameter</b><a name=\"filter\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource SearchParameter &quot;filter&quot; </p></div><p><b>url</b>: <code>http://hl7.org/fhir/SearchParameter/filter</code></p><p><b>version</b>: 1</p><p><b>name</b>: FilterSearchParameter</p><p><b>title</b>: Filter Search Parameter</p><p><b>status</b>: draft</p><p><b>experimental</b>: false</p><p><b>date</b>: 2018-07-26</p><p><b>publisher</b>: Health Level Seven International (FHIR Infrastructure)</p><p><b>contact</b>: FHIR Project: <a href=\"http://hl7.org/fhir\">http://hl7.org/fhir</a></p><p><b>description</b>: This is the formal declaration for the _filter parameter, documented at [http://hl7.org/fhir/search_filter.html](http://hl7.org/fhir/search_filter.html)</p><p><b>purpose</b>: Support combination searches when the simple name=value basis of search cannot express what is required</p><p><b>code</b>: _filter</p><p><b>base</b>: Resource</p><p><b>type</b>: special</p></div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/SearchParameter/filter"^^xsd:anyURI] ; # 
+  fhir:version [ fhir:v "1"] ; # 
+  fhir:name [ fhir:v "FilterSearchParameter"] ; # 
+  fhir:title [ fhir:v "Filter Search Parameter"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:experimental [ fhir:v "false"^^xsd:boolean] ; # 
+  fhir:date [ fhir:v "2018-07-26"^^xsd:date] ; # 
+  fhir:publisher [ fhir:v "Health Level Seven International (FHIR Infrastructure)"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "FHIR Project" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "This is the formal declaration for the _filter parameter, documented at [http://hl7.org/fhir/search_filter.html](http://hl7.org/fhir/search_filter.html)"] ; # 
+  fhir:purpose [ fhir:v "Support combination searches when the simple name=value basis of search cannot express what is required"] ; # 
+  fhir:code [ fhir:v "_filter"] ; # 
+  fhir:base ( [ fhir:v "Resource"] ) ; # 
+  fhir:type [ fhir:v "special"]] . # 
+
+# -------------------------------------------------------------------------------------
+

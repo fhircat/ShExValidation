@@ -1,0 +1,492 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ConceptMap ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "message-adt-a04-to-bundle"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <h2>MessageADT_A04toBundle (http://hl7.org/fhir/uv/v2mappings/message-adt-a04-to-bundle)</h2>\n      <p>Mapping from (not specified) to (not specified)</p>\n      <p>ACTIVE (not intended for production usage). Published on 2020-08-12 by HL7 International (HL7 Orders and Observations Workgroup: \n        <a href=\"http://hl7.org/Special/committees/orders/index.cfm\">http://hl7.org/Special/committ...</a>, Keith W. Boone: \n        <a href=\"mailto:kboone@ainq.com\">kboone@ainq.com</a>). Copyright (c) 2020, HL7 International, Inc., All Rights Reserved.\n      </p>\n      <div>\n        <p>This ConceptMap represents a mapping from the HL7 V2 Message ADT_A04 to the FHIR Message Bundle.</p>\n\n      </div>\n      <br/>\n      <p>\n        <b>Group 1</b>Mapping from \n        <code>unspecified code system</code> to \n        <code>unspecified code system</code>\n      </p>\n      <table class=\"grid\">\n        <tr>\n          <td>\n            <b>Source Code</b>\n          </td>\n          <td>\n            <b>Relationship</b>\n          </td>\n          <td>\n            <b>Target Code</b>\n          </td>\n        </tr>\n        <tr>\n          <td>ADT_A04.MSH (Message Header)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>Bundle</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.MSH (Message Header)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>MessageHeader[1]</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.MSH (Message Header)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>Provenance[1]</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.SFT (Software Segment)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>MessageHeader[1]</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.EVN (Event Type)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>Provenance[3]</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.PID (Patient Identification)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>Patient[1]</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.PD1 (Additional Demographics)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>Patient[1]</td>\n        </tr>\n        <tr>\n          <td>ADT_A04:follow:PID.ARV (Access Restrictions)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>Patient[1]</td>\n        </tr>\n        <tr>\n          <td>ADT_A04:follow:PID.ROL (Role)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>Patient[1]</td>\n        </tr>\n        <tr>\n          <td>ADT_A04:follow:PID.ROL (Role)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>RelatedPerson[1]</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.NEXT_OF_KIN.NK1 (Next of Kin / Associated Parties)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>RelatedPerson[2]</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.NEXT_OF_KIN.NK1 (Next of Kin / Associated Parties)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>Patient[1]</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.PV1 (Patient Visit)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>Encounter[1]</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.PV1 (Patient Visit)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>Patient[1]</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.PV2 (Patient Visit - Additional Info.)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>Encounter[1]</td>\n        </tr>\n        <tr>\n          <td>ADT_A04:follow:PV1.ARV (Access Restrictions)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>Encounter[1]</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.ROL (Role)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>Encounter[1]</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.OBSERVATIONADT_A04.OBX (Observation/Result)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>Observation</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.OBSERVATIONADT_A04.OBX (Observation/Result)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>Observation</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.AL1 (Allergy Information)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>AllergyIntolerance</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.DG1 (Diagnosis Information)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>Condition</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.DG1 (Diagnosis Information)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>Encounter[1]</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.DG1 (Diagnosis Information)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>Encounter[1]</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.DG1 (Diagnosis Information)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>EpisodeOfCare[1]</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.PROCEDUREADT_A04.PR1 (Procedures)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>Procedure</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.INSURANCEADT_A04.IN1 (Insurance)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>Coverage[1]</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.INSURANCEADT_A04.IN2 (Insurance Additional Info.)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>Coverage[1]</td>\n        </tr>\n        <tr>\n          <td>ADT_A04.INSURANCEADT_A04.IN3 (Insurance Additional Info - Cert.)</td>\n          <td>\n            <a href=\"codesystem-concept-map-relationship.html#equivalent\" title=\"equivalent\">is equivalent to</a>\n          </td>\n          <td>Coverage[1]</td>\n        </tr>\n      </table>\n    </div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/uv/v2mappings/message-adt-a04-to-bundle"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.14.2" ]
+  ] ) ; # 
+  fhir:version [ fhir:v "5.0.0"] ; # 
+  fhir:name [ fhir:v "MessageADT_A04toBundle"] ; # 
+  fhir:title [ fhir:v "Message A D T_ A04to Bundle"] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:experimental [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:date [ fhir:v "2020-08-12"^^xsd:date] ; # 
+  fhir:publisher [ fhir:v "HL7 International"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "HL7 Orders and Observations Workgroup" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/Special/committees/orders/index.cfm" ]
+     ] )
+  ] [
+     fhir:name [ fhir:v "Keith W. Boone" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "kboone@ainq.com" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "This ConceptMap represents a mapping from the HL7 V2 Message ADT_A04 to the FHIR Message Bundle."] ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "001" ]
+     ] )
+  ] ) ; # 
+  fhir:copyright [ fhir:v "Copyright (c) 2020, HL7 International, Inc., All Rights Reserved."] ; # 
+  fhir:property ( [
+     fhir:code [ fhir:v "segment-map" ] ;
+     fhir:type [ fhir:v "string" ]
+  ] [
+     fhir:code [ fhir:v "references" ] ;
+     fhir:type [ fhir:v "string" ]
+  ] [
+     fhir:code [ fhir:v "antlr" ] ;
+     fhir:type [ fhir:v "string" ]
+  ] [
+     fhir:code [ fhir:v "fhirpath" ] ;
+     fhir:type [ fhir:v "string" ]
+  ] [
+     fhir:code [ fhir:v "narrative" ] ;
+     fhir:type [ fhir:v "string" ]
+  ] ) ; # 
+  fhir:group ( [
+     fhir:element ( [
+       fhir:code [ fhir:v "ADT_A04.MSH" ] ;
+       fhir:display [ fhir:v "Message Header" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Bundle" ] ;
+         fhir:display [ fhir:v "Bundle" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "MSH[Bundle]" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.MSH" ] ;
+       fhir:display [ fhir:v "Message Header" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "MessageHeader[1]" ] ;
+         fhir:display [ fhir:v "MessageHeader[1]" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "MSH[MessageHeader]" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.MSH" ] ;
+       fhir:display [ fhir:v "Message Header" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Provenance[1]" ] ;
+         fhir:display [ fhir:v "Provenance[1]" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "MSH[Provenance]" ]
+         ] [
+           fhir:code [ fhir:v "references" ] ;
+           fhir:value [ fhir:v "Provenance.target=Bundle; Provenance.target=MessageHeader[MSH]" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.SFT" ] ;
+       fhir:display [ fhir:v "Software Segment" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "MessageHeader[1]" ] ;
+         fhir:display [ fhir:v "MessageHeader[1]" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "SFT[MessageHeader]" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.EVN" ] ;
+       fhir:display [ fhir:v "Event Type" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Provenance[3]" ] ;
+         fhir:display [ fhir:v "Provenance[3]" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "EVN[Provenance]" ]
+         ] [
+           fhir:code [ fhir:v "references" ] ;
+           fhir:value [ fhir:v "Provenance.target=Bundle; Provenance.target=MessageHeader[MSH]" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.PID" ] ;
+       fhir:display [ fhir:v "Patient Identification" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Patient[1]" ] ;
+         fhir:display [ fhir:v "Patient[1]" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "PID[Patient]" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.PD1" ] ;
+       fhir:display [ fhir:v "Additional Demographics" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Patient[1]" ] ;
+         fhir:display [ fhir:v "Patient[1]" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "PD1[Patient]" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04:follow:PID.ARV" ] ;
+       fhir:display [ fhir:v "Access Restrictions" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Patient[1]" ] ;
+         fhir:display [ fhir:v "Patient[1]" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "ARV[Patient]" ]
+         ] [
+           fhir:code [ fhir:v "references" ] ;
+           fhir:value [ fhir:v "Resource=Patient[1]" ]
+         ] [
+           fhir:code [ fhir:v "antlr" ] ;
+           fhir:value [ fhir:v "IF ARV-1 IN (\"PID\", \"PD1\") AND ARV-3 NOT VALUED" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04:follow:PID.ROL" ] ;
+       fhir:display [ fhir:v "Role" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Patient[1]" ] ;
+         fhir:display [ fhir:v "Patient[1]" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "ROL[Patient-PractitionerRole]" ]
+         ] [
+           fhir:code [ fhir:v "antlr" ] ;
+           fhir:value [ fhir:v "IF ROL-3.1 EQUALS \"PP\" AND ROL-3.3 EQUALS \"HL70443\"" ]
+         ] [
+           fhir:code [ fhir:v "fhirpath" ] ;
+           fhir:value [ fhir:v "(element(\"3.1\")=\"PP\")and(element(\"3.3\")=\"HL70443\")" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04:follow:PID.ROL" ] ;
+       fhir:display [ fhir:v "Role" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "RelatedPerson[1]" ] ;
+         fhir:display [ fhir:v "RelatedPerson[1]" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "ROL[RelatedPerson]" ]
+         ] [
+           fhir:code [ fhir:v "references" ] ;
+           fhir:value [ fhir:v "RelatedPerson[1].patient.reference=Patient[1].id" ]
+         ] [
+           fhir:code [ fhir:v "antlr" ] ;
+           fhir:value [ fhir:v "IF ROL-3.1 NOT EQUALS  \"PP\" OR ROL-3.3 NOT EQUALS \"HL70443\"" ]
+         ] [
+           fhir:code [ fhir:v "fhirpath" ] ;
+           fhir:value [ fhir:v "(element(\"3.1\")!=\"PP\")or(element(\"3.3\")!=\"HL70443\")" ]
+         ] [
+           fhir:code [ fhir:v "narrative" ] ;
+           fhir:value [ fhir:v "While most likely all other HL70443 values go to RelatedPerson, the implementation needs to determine whether that is fully accurate." ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.NEXT_OF_KIN.NK1" ] ;
+       fhir:display [ fhir:v "Next of Kin / Associated Parties" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "RelatedPerson[2]" ] ;
+         fhir:display [ fhir:v "RelatedPerson[2]" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "NK1[RelatedPerson]" ]
+         ] [
+           fhir:code [ fhir:v "references" ] ;
+           fhir:value [ fhir:v "RelatedPerson[2].patient.reference=Patient[1].id" ]
+         ] [
+           fhir:code [ fhir:v "narrative" ] ;
+           fhir:value [ fhir:v "The FHIR location will depend on the nature of the data being exchanged and how the systems use next of kin data" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.NEXT_OF_KIN.NK1" ] ;
+       fhir:display [ fhir:v "Next of Kin / Associated Parties" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Patient[1]" ] ;
+         fhir:display [ fhir:v "Patient[1]" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "NK1[Patient]" ]
+         ] [
+           fhir:code [ fhir:v "narrative" ] ;
+           fhir:value [ fhir:v "The FHIR location will depend on the nature of the data being exchanged and how the systems use next of kin data" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.PV1" ] ;
+       fhir:display [ fhir:v "Patient Visit" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Encounter[1]" ] ;
+         fhir:display [ fhir:v "Encounter[1]" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "PV1[Encounter]" ]
+         ] [
+           fhir:code [ fhir:v "references" ] ;
+           fhir:value [ fhir:v "Encounter[1].subject.reference=Patient[1].id" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.PV1" ] ;
+       fhir:display [ fhir:v "Patient Visit" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Patient[1]" ] ;
+         fhir:display [ fhir:v "Patient[1]" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "PV1[Patient]" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.PV2" ] ;
+       fhir:display [ fhir:v "Patient Visit - Additional Info." ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Encounter[1]" ] ;
+         fhir:display [ fhir:v "Encounter[1]" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "PV2[Encounter]" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04:follow:PV1.ARV" ] ;
+       fhir:display [ fhir:v "Access Restrictions" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Encounter[1]" ] ;
+         fhir:display [ fhir:v "Encounter[1]" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "ARV[Encounter]" ]
+         ] [
+           fhir:code [ fhir:v "references" ] ;
+           fhir:value [ fhir:v "Resource=Encounter[1]" ]
+         ] [
+           fhir:code [ fhir:v "antlr" ] ;
+           fhir:value [ fhir:v "IF ARV-1 IN (\"PV1\", \"PV2\") AND ARV-3 NOT VALUED" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.ROL" ] ;
+       fhir:display [ fhir:v "Role" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Encounter[1]" ] ;
+         fhir:display [ fhir:v "Encounter[1]" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "ROL[Encounter-PractitionerRole]" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.OBSERVATIONADT_A04.OBX" ] ;
+       fhir:display [ fhir:v "Observation/Result" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Observation" ] ;
+         fhir:display [ fhir:v "Observation" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "OBX[Observation]" ]
+         ] [
+           fhir:code [ fhir:v "references" ] ;
+           fhir:value [ fhir:v "Observation.subject.reference=Patient[1].id" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.OBSERVATIONADT_A04.OBX" ] ;
+       fhir:display [ fhir:v "Observation/Result" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Observation" ] ;
+         fhir:display [ fhir:v "Observation" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "OBX[Observation-Component]" ]
+         ] [
+           fhir:code [ fhir:v "references" ] ;
+           fhir:value [ fhir:v "Observation.subject.reference=Patient[1].id" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.AL1" ] ;
+       fhir:display [ fhir:v "Allergy Information" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "AllergyIntolerance" ] ;
+         fhir:display [ fhir:v "AllergyIntolerance" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "AL1[AllergyIntolerance]" ]
+         ] [
+           fhir:code [ fhir:v "references" ] ;
+           fhir:value [ fhir:v "AllergyIntolerance.patient.reference=Patient[1].id" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.DG1" ] ;
+       fhir:display [ fhir:v "Diagnosis Information" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Condition" ] ;
+         fhir:display [ fhir:v "Condition" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "DG1[Condition]" ]
+         ] [
+           fhir:code [ fhir:v "references" ] ;
+           fhir:value [ fhir:v "Condition.subject.reference=Patient[1].id" ]
+         ] [
+           fhir:code [ fhir:v "narrative" ] ;
+           fhir:value [ fhir:v "If in context of the patient" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.DG1" ] ;
+       fhir:display [ fhir:v "Diagnosis Information" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Encounter[1]" ] ;
+         fhir:display [ fhir:v "Encounter[1]" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "DG1[Encounter]" ]
+         ] [
+           fhir:code [ fhir:v "references" ] ;
+           fhir:value [ fhir:v "Encounter[1].diagnosis.reference=Condition[1].id" ]
+         ] [
+           fhir:code [ fhir:v "antlr" ] ;
+           fhir:value [ fhir:v "IF DG1-6 EQUALS \"admitting\"" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.DG1" ] ;
+       fhir:display [ fhir:v "Diagnosis Information" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Encounter[1]" ] ;
+         fhir:display [ fhir:v "Encounter[1]" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "DG1[Encounter]" ]
+         ] [
+           fhir:code [ fhir:v "references" ] ;
+           fhir:value [ fhir:v "Encounter[1].diagnosis.reference=Condition[1].id" ]
+         ] [
+           fhir:code [ fhir:v "narrative" ] ;
+           fhir:value [ fhir:v "If in context of an encounter" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.DG1" ] ;
+       fhir:display [ fhir:v "Diagnosis Information" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "EpisodeOfCare[1]" ] ;
+         fhir:display [ fhir:v "EpisodeOfCare[1]" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "DG1[EpisodeOfCare]" ]
+         ] [
+           fhir:code [ fhir:v "references" ] ;
+           fhir:value [ fhir:v "EpisodeOfCare.diagnosis.reference=Condition[1].id" ]
+         ] [
+           fhir:code [ fhir:v "narrative" ] ;
+           fhir:value [ fhir:v "If in context of an episode of care" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.PROCEDUREADT_A04.PR1" ] ;
+       fhir:display [ fhir:v "Procedures" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Procedure" ] ;
+         fhir:display [ fhir:v "Procedure" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "PR1[Procedure]" ]
+         ] [
+           fhir:code [ fhir:v "references" ] ;
+           fhir:value [ fhir:v "Procedure.subject.reference=Patient[1].id" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.INSURANCEADT_A04.IN1" ] ;
+       fhir:display [ fhir:v "Insurance" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Coverage[1]" ] ;
+         fhir:display [ fhir:v "Coverage[1]" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "IN1[Coverage]" ]
+         ] [
+           fhir:code [ fhir:v "references" ] ;
+           fhir:value [ fhir:v "Coverage.subscriber.reference=Patient[1].id" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.INSURANCEADT_A04.IN2" ] ;
+       fhir:display [ fhir:v "Insurance Additional Info." ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Coverage[1]" ] ;
+         fhir:display [ fhir:v "Coverage[1]" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "IN2[Coverage]" ]
+         ] )
+       ] )
+     ] [
+       fhir:code [ fhir:v "ADT_A04.INSURANCEADT_A04.IN3" ] ;
+       fhir:display [ fhir:v "Insurance Additional Info - Cert." ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Coverage[1]" ] ;
+         fhir:display [ fhir:v "Coverage[1]" ] ;
+         fhir:relationship [ fhir:v "equivalent" ] ;
+         fhir:property ( [
+           fhir:code [ fhir:v "segment-map" ] ;
+           fhir:value [ fhir:v "IN3[Coverage]" ]
+         ] )
+       ] )
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

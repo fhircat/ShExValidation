@@ -1,0 +1,54 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Procedure ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "colonoscopy"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">Colonoscopy with complication</div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:value [ fhir:v "12345" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a sct:73761001 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "73761001" ] ;
+       fhir:display [ fhir:v "Colonoscopy (procedure)" ]
+     ] ) ;
+     fhir:text [ fhir:v "Colonoscopy" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/example" ] ;
+       fhir:display [ fhir:v "Dr Adam Careful" ]
+     ]
+  ] ) ; # 
+  fhir:location [
+     fhir:reference [ fhir:v "Location/1" ] ;
+     fhir:display [ fhir:v "Burgers University Medical Center, South Wing, second floor" ]
+  ] ; # 
+  fhir:complication ( [
+     fhir:reference [
+       fhir:display [ fhir:v "Perforated intestine condition" ]
+     ]
+  ] ) ; # 
+  fhir:used ( [
+     fhir:reference [
+       fhir:display [ fhir:v "Colonoscope device" ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,278 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <time.shex>
+IMPORT <Group.shex>
+IMPORT <Range.shex>
+IMPORT <Ratio.shex>
+IMPORT <Device.shex>
+IMPORT <Period.shex>
+IMPORT <Timing.shex>
+IMPORT <string.shex>
+IMPORT <Patient.shex>
+IMPORT <instant.shex>
+IMPORT <boolean.shex>
+IMPORT <integer.shex>
+IMPORT <Location.shex>
+IMPORT <dateTime.shex>
+IMPORT <Quantity.shex>
+IMPORT <Specimen.shex>
+IMPORT <CarePlan.shex>
+IMPORT <Resource.shex>
+IMPORT <CareTeam.shex>
+IMPORT <canonical.shex>
+IMPORT <Reference.shex>
+IMPORT <Procedure.shex>
+IMPORT <Substance.shex>
+IMPORT <Encounter.shex>
+IMPORT <Medication.shex>
+IMPORT <Attachment.shex>
+IMPORT <SampledData.shex>
+IMPORT <Observation.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <DeviceMetric.shex>
+IMPORT <ImagingStudy.shex>
+IMPORT <Immunization.shex>
+IMPORT <BodyStructure.shex>
+IMPORT <DeviceRequest.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <NutritionOrder.shex>
+IMPORT <ServiceRequest.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <MedicationUsage.shex>
+IMPORT <NutritionProduct.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <ImagingSelection.shex>
+IMPORT <MedicationRequest.shex>
+IMPORT <MolecularSequence.shex>
+IMPORT <DocumentReference.shex>
+IMPORT <MedicationDispense.shex>
+IMPORT <QuestionnaireResponse.shex>
+IMPORT <MedicationAdministration.shex>
+IMPORT <BiologicallyDerivedProduct.shex>
+IMPORT <ImmunizationRecommendation.shex>
+
+
+start=@<Observation> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Measurements and simple assertions
+<Observation> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Observation];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business Identifier for observation
+    fhir:instantiates ((@<canonical>  AND {fhir:link @<ObservationDefinition> })  OR 
+    			(@<Reference>  AND {fhir:link @<ObservationDefinition> }) )  AND { rdf:type IRI } ?;  # Instantiates FHIR 
+                                            # ObservationDefinition 
+    fhir:basedOn @<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest>?;  # Fulfills plan, proposal or order
+    fhir:triggeredBy @<OneOrMore_BackboneElement>?;  # Triggering observation(s)
+    fhir:partOf @<OneOrMore_Reference_ImagingStudy_OR_Immunization_OR_MedicationAdministration_OR_MedicationDispense_OR_MedicationUsage_OR_Procedure>?;  # Part of referenced event
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:observation-status};  # registered | preliminary | final | 
+                                            # amended + 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Classification of  type of 
+                                            # observation 
+    fhir:code @<CodeableConcept>;           # Type of observation (code / type)
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<BiologicallyDerivedProduct> OR 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<Location> OR 
+    			@<Medication> OR 
+    			@<NutritionProduct> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<Procedure> OR 
+    			@<Substance> }?;  # Who and/or what the observation is 
+                                            # about 
+    fhir:focus @<OneOrMore_Reference_Resource>?;  # What the observation is about, 
+                                            # when it is not about the subject 
+                                            # of record 
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # Healthcare event during which this 
+                                            # observation is made 
+    fhir:effective (@<dateTime>  OR 
+    			@<Period>  OR 
+    			@<Timing>  OR 
+    			@<instant> )  AND { rdf:type IRI } ?;  # Clinically relevant 
+                                            # time/time-period for observation 
+    fhir:issued @<instant>?;                # Date/Time this version was made 
+                                            # available 
+    fhir:performer @<OneOrMore_Reference_CareTeam_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Who is responsible for the 
+                                            # observation 
+    fhir:v (@<Quantity>  OR 
+    			@<CodeableConcept>  OR 
+    			@<string>  OR 
+    			@<boolean>  OR 
+    			@<integer>  OR 
+    			@<Range>  OR 
+    			@<Ratio>  OR 
+    			@<SampledData>  OR 
+    			@<time>  OR 
+    			@<dateTime>  OR 
+    			@<Period>  OR 
+    			@<Attachment> )  AND { rdf:type IRI } ?;  # Actual result
+    fhir:dataAbsentReason @<CodeableConcept>?;  # Why the result is missing
+    fhir:interpretation @<OneOrMore_CodeableConcept>?;  # High, low, normal, etc.
+    fhir:note @<OneOrMore_Annotation>?;     # Comments about the observation
+    fhir:bodySite @<CodeableConcept>?;      # Observed body part
+    fhir:bodyStructure @<Reference> AND {fhir:link 
+    			@<BodyStructure> }?;  # Observed body structure
+    fhir:method @<CodeableConcept>?;        # How it was done
+    fhir:specimen @<Reference> AND {fhir:link 
+    			@<Specimen> }?;  # Specimen used for this observation
+    fhir:device @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<DeviceMetric> }?;  # (Measurement) Device
+    fhir:referenceRange @<OneOrMore_BackboneElement>?;  # Provides guide for interpretation
+    fhir:hasMember @<OneOrMore_Reference_MolecularSequence_OR_Observation_OR_QuestionnaireResponse>?;  # Related resource that belongs to 
+                                            # the Observation group 
+    fhir:derivedFrom @<OneOrMore_Reference_DocumentReference_OR_ImagingSelection_OR_ImagingStudy_OR_MolecularSequence_OR_Observation_OR_QuestionnaireResponse>?;  # Related resource from which the 
+                                            # observation is made 
+    fhir:component @<OneOrMore_BackboneElement>?;  # Component results
+}  
+
+# Triggering observation(s)
+<Observation.triggeredBy> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:observation @<Reference> AND {fhir:link 
+    			@<Observation> };  # Triggering observation
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:observation-triggeredbytype};  # reflex | repeat | re-run
+    fhir:reason @<string>?;                 # Reason that the observation was 
+                                            # triggered 
+}  
+
+# Provides guide for interpretation
+<Observation.referenceRange> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:low @<Quantity>?;                  # Low Range, if relevant
+    fhir:high @<Quantity>?;                 # High Range, if relevant
+    fhir:normalValue @<CodeableConcept>?;   # Normal value, if relevant
+    fhir:type @<CodeableConcept>?;          # Reference range qualifier
+    fhir:appliesTo @<OneOrMore_CodeableConcept>?;  # Reference range population
+    fhir:age @<Range>?;                     # Applicable age range, if relevant
+    fhir:text @<string>?;                   # Text based reference range in an 
+                                            # observation 
+}  
+
+# Component results
+<Observation.component> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>;           # Type of component observation 
+                                            # (code / type) 
+    fhir:v (@<Quantity>  OR 
+    			@<CodeableConcept>  OR 
+    			@<string>  OR 
+    			@<boolean>  OR 
+    			@<integer>  OR 
+    			@<Range>  OR 
+    			@<Ratio>  OR 
+    			@<SampledData>  OR 
+    			@<time>  OR 
+    			@<dateTime>  OR 
+    			@<Period>  OR 
+    			@<Attachment> )  AND { rdf:type IRI } ?;  # Actual component result
+    fhir:dataAbsentReason @<CodeableConcept>?;  # Why the component result is missing
+    fhir:interpretation @<OneOrMore_CodeableConcept>?;  # High, low, normal, etc.
+    fhir:referenceRange @<OneOrMore_Observation.referenceRange>?;  # Provides guide for interpretation 
+                                            # of component result 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CarePlan> OR 
+			@<DeviceRequest> OR 
+			@<ImmunizationRecommendation> OR 
+			@<MedicationRequest> OR 
+			@<NutritionOrder> OR 
+			@<ServiceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Reference_ImagingStudy_OR_Immunization_OR_MedicationAdministration_OR_MedicationDispense_OR_MedicationUsage_OR_Procedure> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ImagingStudy> OR 
+			@<Immunization> OR 
+			@<MedicationAdministration> OR 
+			@<MedicationDispense> OR 
+			@<MedicationUsage> OR 
+			@<Procedure> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ImagingStudy_OR_Immunization_OR_MedicationAdministration_OR_MedicationDispense_OR_MedicationUsage_OR_Procedure> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+
+<OneOrMore_Reference_CareTeam_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_Reference_MolecularSequence_OR_Observation_OR_QuestionnaireResponse> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<MolecularSequence> OR 
+			@<Observation> OR 
+			@<QuestionnaireResponse> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_MolecularSequence_OR_Observation_OR_QuestionnaireResponse> 
+}
+
+<OneOrMore_Reference_DocumentReference_OR_ImagingSelection_OR_ImagingStudy_OR_MolecularSequence_OR_Observation_OR_QuestionnaireResponse> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<DocumentReference> OR 
+			@<ImagingSelection> OR 
+			@<ImagingStudy> OR 
+			@<MolecularSequence> OR 
+			@<Observation> OR 
+			@<QuestionnaireResponse> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_DocumentReference_OR_ImagingSelection_OR_ImagingStudy_OR_MolecularSequence_OR_Observation_OR_QuestionnaireResponse> 
+}
+
+<OneOrMore_Observation.referenceRange> CLOSED {
+    rdf:first @<Observation.referenceRange>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Observation.referenceRange> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Codes providing the status of an observation.
+fhirvs:observation-status ["registered" "preliminary" "final" "amended" "corrected" "cancelled" "entered-in-error" "unknown"]
+
+# Codes providing the type of triggeredBy observation.
+fhirvs:observation-triggeredbytype ["reflex" "repeat" "re-run"]
+

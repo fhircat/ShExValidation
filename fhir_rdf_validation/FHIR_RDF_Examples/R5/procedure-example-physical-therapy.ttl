@@ -1,0 +1,67 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Procedure ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "physical-therapy"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">Assessment of passive range of motion for both knees on Sept 27, 2016 due to osteoarthritis</div>"
+  ] ; # 
+  fhir:basedOn ( [
+     fhir:reference [ fhir:v "ServiceRequest/physical-therapy" ] ;
+     fhir:display [ fhir:v "Order for the assessment of passive range of motion" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       a sct:386053000 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "386053000" ] ;
+       fhir:display [ fhir:v "Evaluation procedure (procedure)" ]
+     ] ) ;
+     fhir:text [ fhir:v "Evaluation" ]
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a sct:710830005 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "710830005" ] ;
+       fhir:display [ fhir:v "Assessment of passive range of motion (procedure)" ]
+     ] ) ;
+     fhir:text [ fhir:v "Assessment of passive range of motion" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:occurrence [ fhir:v "2016-09-27"^^xsd:date] ; # 
+  fhir:performer ( [
+     fhir:actor [
+       fhir:display [ fhir:v "Paul Therapist, PT" ]
+     ]
+  ] ) ; # 
+  fhir:location [
+     fhir:display [ fhir:v "Sawbones Orthopedic Clinic" ]
+  ] ; # 
+  fhir:reason ( [
+     fhir:concept [
+       fhir:text [ fhir:v "assessment of mobility limitations due to osteoarthritis" ]
+     ]
+  ] ) ; # 
+  fhir:bodySite ( [
+     fhir:coding ( [
+       a sct:36701003 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "36701003" ] ;
+       fhir:display [ fhir:v "Both knees (body structure)" ]
+     ] ) ;
+     fhir:text [ fhir:v "Both knees" ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

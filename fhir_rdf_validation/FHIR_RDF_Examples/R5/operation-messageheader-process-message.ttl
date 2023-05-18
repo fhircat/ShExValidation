@@ -1,0 +1,96 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:OperationDefinition ;
+  fhir:id [ fhir:v "MessageHeader-process-message"] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "4" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/OperationDefinition/MessageHeader-process-message"], [ fhir:v "http://hl7.org/fhir/OperationDefinition/MessageHeader-process-message"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "ProcessMessage"], [ fhir:v "ProcessMessage"] ;
+  fhir:title [ fhir:v "Process Message"], [ fhir:v "Process Message"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "This operation accepts a message, processes it according to the definition of the event in the message header, and returns one or more response messages.  \n\nIn addition to processing the message event, a server may choose to retain all or some the resources and make them available on a RESTful interface, but is not required to do so."], [ fhir:v "This operation accepts a message, processes it according to the definition of the event in the message header, and returns one or more response messages.  \n\nIn addition to processing the message event, a server may choose to retain all or some the resources and make them available on a RESTful interface, but is not required to do so."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:kind [ fhir:v "operation"] ;
+  fhir:affectsState [ fhir:v "true"] ;
+  fhir:code [ fhir:v "process-message"] ;
+  fhir:comment [ fhir:v "This operation does not use the parameters resource; the parameters \"async\" and \"response-url\" always go in the URL, if they are used, and the \"content\" parameter is always the body of the HTTP message.\n\nWhen processing messages, a server may return one of several status codes:\n* **200 OK**: Indicates that the message has been fully processed.  If an application-level response is expected for the submitted message, that response SHALL be returned as the body of the 200 response.\n* **202 Accepted**: Indicates that the receiving system has accepted custody of the message\n* **204 No Content**: Indicates that the message has been fully processed and would normally have had an application-level response, but because of instructions from the sender (e.g. the [http://hl7.org/fhir/StructureDefinition/messageheader-response-request](http://hl7.org/fhir/extensions/StructureDefinition-messageheader-response-request.html) extension), no response is being provided\n* **300+**: Indicates that the message was not successfully processed.  The server MAY return an [OperationOutcome](operationoutcome.html) with additional information, and SHOULD do so if the response code is 400 or greater. The client SHALL interpret a 4xx response to indicate that there is no point resubmitting the unaltered message, and a 5xx response to indicate an unexpected error occurred on the part of the server, with the implication that it may be appropriate to resubmit the original message. Doing so SHOULD NOT result in a duplicate message response. Repeated failures indicate either a fatal problem with the submission or a problem with the receiving application.\n\nThe following rules apply when using $process-message:\n\n* The operation only accepts POST transactions - any other HTTP method will result in an HTTP error\n* The request content type submitted is always [Bundle](bundle.html) with type \"message\" containing a [Message Header](messageheader.html) resource as the first resource\n* The response content type returned, if not empoty, is always [Bundle](bundle.html) with type \"message\" containing a [Message Header](messageheader.html) resource as the first resource, or an HTTP error\n* If the response is an error, the body SHOULD be an [OperationOutcome](operationoutcome.html) resource with full details of the Errors &mp; Warning\n* The mailbox may be authenticated using standard HTTP authentication methods, including OAuth\n\nThe $process-message operation can be used by any HTTP end-point that accepts FHIR messages, not just FHIR RESTful servers.\n\nIn order to ensure consistency of processing, the [logical rules regarding processing of Bundle.id and message id](messaging.html#reliable) SHALL be followed when messages are processed using this operation.\n\nThe $process-message operation may be used synchronously, or asynchronously.\n\nThe following rules apply when using the $process-message operation synchronously:\n\n* The URL (http://server/base/$process-message) has no parameters\n* It is an error if the sender POSTs a message that requires multiple response messages\n* Servers SHALL accept multiple concurrent message submissions and process them correctly (they are allowed to process them sequentially internally, but multiple concurrent submissions is not an error in its own right)\n\nThe following rules apply when using the $process-message operation asynchronously:\n\n* The URL has at least one parameter: http://server/base/$process-message?async=true\n* The server acknowledges the message with a 200 OK with no body, or returns an HTTP error if the message cannot be processed\n* Accepting the message means that the server has understood the message enough to know where to respond\n* An [OperationOutcome](operationoutcome.html) SHOULD be returned in either case\n* By default, the server responds by invoking the $process-message using the sender's stated end-point in the message: POST [MessageHeader.source.endpoint]/$process-message]\n* Since the source end-point may be manipulated by message transfer engines, an alternative response address may be specified using the parameter \"response-url\": http://server/base/$process-message?async=true&amp;response-url=http://server2.com/base/anything.  The endpoint at the specified URL SHALL implement the signature of the $process-message operation (parameter async=true, accept a Bundle, return a 200 OK or an error)\n* The server submits response messages to the appropriate end-point with the parameter async=true. There is no response message for the response messages"] ;
+  fhir:resource ( [ fhir:v "MessageHeader"] ) ;
+  fhir:system [ fhir:v "true"] ;
+  fhir:type [ fhir:v "false"] ;
+  fhir:instance [ fhir:v "false"] ;
+  fhir:parameter ( [
+     fhir:name [ fhir:v "content" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "1" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "The message to process (or, if using asynchronous messaging, it may be a response message to accept)" ] ;
+     fhir:type [ fhir:v "Bundle" ]
+  ] [
+     fhir:name [ fhir:v "async" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "If 'true' the message is processed using the asynchronous messaging pattern" ] ;
+     fhir:type [ fhir:v "boolean" ]
+  ] [
+     fhir:name [ fhir:v "response-url" ] ;
+     fhir:use [ fhir:v "in" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "A URL to submit response messages to, if asynchronous messaging is being used, and if the MessageHeader.source.endpoint is not the appropriate place to submit responses" ] ;
+     fhir:type [ fhir:v "url" ]
+  ] [
+     fhir:name [ fhir:v "return" ] ;
+     fhir:use [ fhir:v "out" ] ;
+     fhir:min [ fhir:v "0" ] ;
+     fhir:max [ fhir:v "1" ] ;
+     fhir:documentation [ fhir:v "A response message, if synchronous messaging is being used (mandatory in this case). For asynchronous messaging, there is no return value" ] ;
+     fhir:type [ fhir:v "Bundle" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

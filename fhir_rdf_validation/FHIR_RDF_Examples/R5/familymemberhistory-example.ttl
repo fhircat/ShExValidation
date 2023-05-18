@@ -1,0 +1,76 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:FamilyMemberHistory ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "father"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">Father died of a heart attack aged 74</div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:value [ fhir:v "12345" ]
+  ] ) ; # 
+  fhir:instantiatesUri ( [ fhir:v "http://example.org/family-member-history-questionnaire"^^xsd:anyURI] ) ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:patient [
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "Peter Patient" ]
+  ] ; # 
+  fhir:date [ fhir:v "2011-03-18"^^xsd:date] ; # 
+  fhir:participant ( [
+     fhir:function [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/provenance-participant-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "verifier" ] ;
+         fhir:display [ fhir:v "Verifier" ]
+       ] )
+     ] ;
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/f201" ]
+     ]
+  ] ) ; # 
+  fhir:relationship [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-RoleCode"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "FTH" ] ;
+       fhir:display [ fhir:v "father" ]
+     ] )
+  ] ; # 
+  fhir:sex [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/administrative-gender"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "male" ] ;
+       fhir:display [ fhir:v "Male" ]
+     ] )
+  ] ; # 
+  fhir:condition ( [
+     fhir:code [
+       fhir:coding ( [
+         a sct:315619001 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "315619001" ] ;
+         fhir:display [ fhir:v "Myocardial Infarction" ]
+       ] ) ;
+       fhir:text [ fhir:v "Heart Attack" ]
+     ] ;
+     fhir:contributedToDeath [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:onset [
+       a fhir:Age ;
+       fhir:value [ fhir:v "74"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "yr" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "a" ]
+     ] ;
+     fhir:note ( [
+       fhir:text [ fhir:v "Was fishing at the time. At least he went doing someting he loved." ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

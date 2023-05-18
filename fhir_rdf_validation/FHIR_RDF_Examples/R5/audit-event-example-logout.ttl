@@ -1,0 +1,98 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:AuditEvent ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-logout"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: AuditEvent</b><a name=\"example-logout\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource AuditEvent &quot;example-logout&quot; </p></div><p><b>category</b>: User Authentication <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://dicom.nema.org/resources/ontology/DCM\">DICOM</a>#110114)</span></p><p><b>code</b>: Logout <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://dicom.nema.org/resources/ontology/DCM\">DICOM</a>#110123)</span></p><p><b>action</b>: E</p><p><b>recorded</b>: 21 June 2013, 9:46:41 am</p><h3>Outcomes</h3><table class=\"grid\"><tr><td>-</td><td><b>Code</b></td></tr><tr><td>*</td><td>Success (Details: http://terminology.hl7.org/CodeSystem/audit-event-outcome code 0 = 'Success', stated as 'Success')</td></tr></table><blockquote><p><b>agent</b></p><p><b>type</b>: human user <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-extra-security-role-type.html\">Security Role Type</a>#humanuser)</span></p><p><b>who</b>: <span>: Grahame Grieve</span></p><p><b>requestor</b>: true</p><p><b>network</b>: 127.0.0.1</p></blockquote><blockquote><p><b>agent</b></p><p><b>AuditEvent Alternative User ID</b>: process ID: 6580</p><p><b>type</b>: Source Role ID <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://dicom.nema.org/resources/ontology/DCM\">DICOM</a>#110153)</span></p><p><b>who</b>: <span/></p><p><b>requestor</b>: false</p><p><b>network</b>: Workstation1.ehr.familyclinic.com</p></blockquote><h3>Sources</h3><table class=\"grid\"><tr><td>-</td><td><b>Observer</b></td><td><b>Type</b></td></tr><tr><td>*</td><td><span>: Cloud</span></td><td>Web Server <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-security-source-type.html\">Audit Event Source Type</a>#3)</span></td></tr></table></div>"
+  ] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://dicom.nema.org/resources/ontology/DCM"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "110114" ] ;
+       fhir:display [ fhir:v "User Authentication" ]
+     ] )
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://dicom.nema.org/resources/ontology/DCM"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "110123" ] ;
+       fhir:display [ fhir:v "Logout" ]
+     ] )
+  ] ; # 
+  fhir:action [ fhir:v "E"] ; # 
+  fhir:recorded [ fhir:v "2013-06-20T23:46:41Z"^^xsd:dateTime] ; # 
+  fhir:outcome [
+     fhir:code [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/audit-event-outcome"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "0" ] ;
+       fhir:display [ fhir:v "Success" ]
+     ]
+  ] ; # 
+  fhir:agent ( [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/extra-security-role-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "humanuser" ] ;
+         fhir:display [ fhir:v "human user" ]
+       ] )
+     ] ;
+     fhir:who [
+       fhir:identifier [
+         fhir:value [ fhir:v "95" ]
+       ] ;
+       fhir:display [ fhir:v "Grahame Grieve" ]
+     ] ;
+     fhir:requestor [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:network [ fhir:v "127.0.0.1" ]
+  ] [
+     fhir:extension ( [
+       fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/auditevent-AlternativeUserID"^^xsd:anyURI ] ;
+       fhir:value [
+         a fhir:Identifier ;
+         fhir:type [
+           fhir:text [ fhir:v "process ID" ]
+         ] ;
+         fhir:value [ fhir:v "6580" ]
+       ]
+     ] ) ; #    Source active participant, the software making the . AlternativeUserId - Process ID   
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://dicom.nema.org/resources/ontology/DCM"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "110153" ] ;
+         fhir:display [ fhir:v "Source Role ID" ]
+       ] )
+     ] ;
+     fhir:who [
+       fhir:identifier [
+         fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.4.2"^^xsd:anyURI ] ;
+         fhir:value [ fhir:v "2.16.840.1.113883.4.2" ]
+       ]
+     ] ;
+     fhir:requestor [ fhir:v "false"^^xsd:boolean ] ;
+     fhir:network [ fhir:v "Workstation1.ehr.familyclinic.com" ]
+  ] ) ; # 
+  fhir:source [
+     fhir:observer [
+       fhir:identifier [
+         fhir:value [ fhir:v "hl7connect.healthintersections.com.au" ]
+       ] ;
+       fhir:display [ fhir:v "Cloud" ]
+     ] ;
+     fhir:type ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/security-source-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "3" ] ;
+         fhir:display [ fhir:v "Web Server" ]
+       ] )
+     ] )
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

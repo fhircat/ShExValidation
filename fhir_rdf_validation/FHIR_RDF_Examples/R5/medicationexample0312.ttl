@@ -1,0 +1,69 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Medication ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "med0312"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Medication</b><a name=\"med0312\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Medication &quot;med0312&quot; </p></div><p><b>code</b>: Nystatin 100,000 units/ml oral suspension (product) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#324689003)</span></p><p><b>doseForm</b>: Oral suspension (qualifier value) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#387048002)</span></p><blockquote><p><b>ingredient</b></p><h3>Items</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a name=\"sub02\"> </a><blockquote><p/><p><a name=\"sub02\"> </a></p><p><b>instance</b>: false</p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Nystatin (substance) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#387048002)</span></td></tr></table></blockquote></td></tr></table><p><b>strength</b>: 100000 [IU]<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code [IU] = 'IU')</span>/1 mL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mL = 'mL')</span></p></blockquote></div>"
+  ] ; # 
+  fhir:contained ( [
+     a fhir:Substance ;
+     fhir:id [ fhir:v "sub02" ] ;
+     fhir:instance [ fhir:v "false"^^xsd:boolean ] ;
+     fhir:code [
+       fhir:concept [
+         fhir:coding ( [
+           a sct:387048002 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "387048002" ] ;
+           fhir:display [ fhir:v "Nystatin (substance)" ]
+         ] )
+       ]
+     ]
+  ] ) ; # 
+  fhir:code [
+     fhir:coding ( [
+       a sct:324689003 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "324689003" ] ;
+       fhir:display [ fhir:v "Nystatin 100,000 units/ml oral suspension (product)" ]
+     ] )
+  ] ; # 
+  fhir:doseForm [
+     fhir:coding ( [
+       a sct:387048002 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "387048002" ] ;
+       fhir:display [ fhir:v "Oral suspension (qualifier value)" ]
+     ] )
+  ] ; # 
+  fhir:ingredient ( [
+     fhir:item [
+       fhir:reference [
+         fhir:reference [ fhir:v "#sub02" ]
+       ]
+     ] ;
+     fhir:strength [
+       a fhir:Ratio ;
+       fhir:numerator [
+         fhir:value [ fhir:v "100000"^^xsd:decimal ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "[IU]" ]
+       ] ;
+       fhir:denominator [
+         fhir:value [ fhir:v "1"^^xsd:decimal ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "mL" ]
+       ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

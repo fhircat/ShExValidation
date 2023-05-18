@@ -1,0 +1,309 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "FHIR-version"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ]
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "vocab" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "normative" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-normative-version" ] ;
+     fhir:value [ fhir:v "4.0.0" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "5" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/FHIR-version"], [ fhir:v "http://hl7.org/fhir/FHIR-version"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1310" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1310" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "FHIRVersion"], [ fhir:v "FHIRVersion"] ;
+  fhir:title [ fhir:v "FHIRVersion"], [ fhir:v "FHIRVersion"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:description [ fhir:v "All published FHIR Versions."], [ fhir:v "All published FHIR Versions."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/FHIR-version"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "0.01" ] ;
+     fhir:display [ fhir:v "0.01" ] ;
+     fhir:definition [ fhir:v "Oldest archived version of FHIR." ]
+  ] [
+     fhir:code [ fhir:v "0.05" ] ;
+     fhir:display [ fhir:v "0.05" ] ;
+     fhir:definition [ fhir:v "1st Draft for Comment (Sept 2012 Ballot)." ]
+  ] [
+     fhir:code [ fhir:v "0.06" ] ;
+     fhir:display [ fhir:v "0.06" ] ;
+     fhir:definition [ fhir:v "2nd Draft for Comment (January 2013 Ballot)." ]
+  ] [
+     fhir:code [ fhir:v "0.11" ] ;
+     fhir:display [ fhir:v "0.11" ] ;
+     fhir:definition [ fhir:v "DSTU 1 Ballot version." ]
+  ] [
+     fhir:code [ fhir:v "0.0" ] ;
+     fhir:display [ fhir:v "0.0" ] ;
+     fhir:definition [ fhir:v "DSTU 1 version." ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "0.0.80" ] ;
+       fhir:display [ fhir:v "0.0.80" ] ;
+       fhir:definition [ fhir:v "DSTU 1 Official version." ]
+     ] [
+       fhir:code [ fhir:v "0.0.81" ] ;
+       fhir:display [ fhir:v "0.0.81" ] ;
+       fhir:definition [ fhir:v "DSTU 1 Official version Technical Errata #1." ]
+     ] [
+       fhir:code [ fhir:v "0.0.82" ] ;
+       fhir:display [ fhir:v "0.0.82" ] ;
+       fhir:definition [ fhir:v "DSTU 1 Official version Technical Errata #2." ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "0.4" ] ;
+     fhir:display [ fhir:v "0.4" ] ;
+     fhir:definition [ fhir:v "January 2015 Ballot." ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "0.4.0" ] ;
+       fhir:display [ fhir:v "0.4.0" ] ;
+       fhir:definition [ fhir:v "Draft For Comment (January 2015 Ballot)." ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "0.5" ] ;
+     fhir:display [ fhir:v "0.5" ] ;
+     fhir:definition [ fhir:v "May 2015 Ballot." ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "0.5.0" ] ;
+       fhir:display [ fhir:v "0.5.0" ] ;
+       fhir:definition [ fhir:v "DSTU 2 Ballot version (May 2015 Ballot)." ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "1.0" ] ;
+     fhir:display [ fhir:v "1.0" ] ;
+     fhir:definition [ fhir:v "DSTU 2 version." ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "1.0.0" ] ;
+       fhir:display [ fhir:v "1.0.0" ] ;
+       fhir:definition [ fhir:v "DSTU 2 QA Preview + CQIF Ballot (Sep 2015)." ]
+     ] [
+       fhir:code [ fhir:v "1.0.1" ] ;
+       fhir:display [ fhir:v "1.0.1" ] ;
+       fhir:definition [ fhir:v "DSTU 2 (Official version)." ]
+     ] [
+       fhir:code [ fhir:v "1.0.2" ] ;
+       fhir:display [ fhir:v "1.0.2" ] ;
+       fhir:definition [ fhir:v "DSTU 2 (Official version) with 1 technical errata." ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "1.1" ] ;
+     fhir:display [ fhir:v "1.1" ] ;
+     fhir:definition [ fhir:v "GAO Ballot version." ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "1.1.0" ] ;
+       fhir:display [ fhir:v "1.1.0" ] ;
+       fhir:definition [ fhir:v "GAO Ballot + draft changes to main FHIR standard." ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "1.4" ] ;
+     fhir:display [ fhir:v "1.4" ] ;
+     fhir:definition [ fhir:v "Connectathon 12 (Montreal) version." ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "1.4.0" ] ;
+       fhir:display [ fhir:v "1.4.0" ] ;
+       fhir:definition [ fhir:v "CQF on FHIR Ballot + Connectathon 12 (Montreal)." ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "1.6" ] ;
+     fhir:display [ fhir:v "1.6" ] ;
+     fhir:definition [ fhir:v "Connectathon 13 (Baltimore) version." ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "1.6.0" ] ;
+       fhir:display [ fhir:v "1.6.0" ] ;
+       fhir:definition [ fhir:v "FHIR STU3 Ballot + Connectathon 13 (Baltimore)." ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "1.8" ] ;
+     fhir:display [ fhir:v "1.8" ] ;
+     fhir:definition [ fhir:v "Connectathon 14 (San Antonio) version." ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "1.8.0" ] ;
+       fhir:display [ fhir:v "1.8.0" ] ;
+       fhir:definition [ fhir:v "FHIR STU3 Candidate + Connectathon 14 (San Antonio)." ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "3.0" ] ;
+     fhir:display [ fhir:v "3.0" ] ;
+     fhir:definition [ fhir:v "STU3 version." ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "3.0.0" ] ;
+       fhir:display [ fhir:v "3.0.0" ] ;
+       fhir:definition [ fhir:v "FHIR Release 3 (STU)." ]
+     ] [
+       fhir:code [ fhir:v "3.0.1" ] ;
+       fhir:display [ fhir:v "3.0.1" ] ;
+       fhir:definition [ fhir:v "FHIR Release 3 (STU) with 1 technical errata." ]
+     ] [
+       fhir:code [ fhir:v "3.0.2" ] ;
+       fhir:display [ fhir:v "3.0.2" ] ;
+       fhir:definition [ fhir:v "FHIR Release 3 (STU) with 2 technical errata." ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "3.3" ] ;
+     fhir:display [ fhir:v "3.3" ] ;
+     fhir:definition [ fhir:v "R4 Ballot #1 version." ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "3.3.0" ] ;
+       fhir:display [ fhir:v "3.3.0" ] ;
+       fhir:definition [ fhir:v "R4 Ballot #1 + Connectaton 18 (Cologne)." ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "3.5" ] ;
+     fhir:display [ fhir:v "3.5" ] ;
+     fhir:definition [ fhir:v "R4 Ballot #2 version." ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "3.5.0" ] ;
+       fhir:display [ fhir:v "3.5.0" ] ;
+       fhir:definition [ fhir:v "R4 Ballot #2 + Connectathon 19 (Baltimore)." ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "4.0" ] ;
+     fhir:display [ fhir:v "4.0" ] ;
+     fhir:definition [ fhir:v "R4 version." ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "4.0.0" ] ;
+       fhir:display [ fhir:v "4.0.0" ] ;
+       fhir:definition [ fhir:v "FHIR Release 4 (Normative + STU)." ]
+     ] [
+       fhir:code [ fhir:v "4.0.1" ] ;
+       fhir:display [ fhir:v "4.0.1" ] ;
+       fhir:definition [ fhir:v "FHIR Release 4 (Normative + STU) with 1 technical errata." ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "4.1" ] ;
+     fhir:display [ fhir:v "4.1" ] ;
+     fhir:definition [ fhir:v "R4B Ballot #1 version." ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "4.1.0" ] ;
+       fhir:display [ fhir:v "4.1.0" ] ;
+       fhir:definition [ fhir:v "R4B Ballot #1 + Connectathon 27 (Virtual)." ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "4.2" ] ;
+     fhir:display [ fhir:v "4.2" ] ;
+     fhir:definition [ fhir:v "R5 Preview #1 version." ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "4.2.0" ] ;
+       fhir:display [ fhir:v "4.2.0" ] ;
+       fhir:definition [ fhir:v "R5 Preview #1 + Connectathon 23 (Sydney)." ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "4.3" ] ;
+     fhir:display [ fhir:v "4.3" ] ;
+     fhir:definition [ fhir:v "R4B version." ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "4.3.0" ] ;
+       fhir:display [ fhir:v "4.3.0" ] ;
+       fhir:definition [ fhir:v "FHIR Release 4B (Normative + STU)." ]
+     ] [
+       fhir:code [ fhir:v "4.3.0-cibuild" ] ;
+       fhir:display [ fhir:v "4.3.0-cibuild" ] ;
+       fhir:definition [ fhir:v "FHIR Release 4B CI-Builld." ]
+     ] [
+       fhir:code [ fhir:v "4.3.0-snapshot1" ] ;
+       fhir:display [ fhir:v "4.3.0-snapshot1" ] ;
+       fhir:definition [ fhir:v "FHIR Release 4B Snapshot #1." ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "4.4" ] ;
+     fhir:display [ fhir:v "4.4" ] ;
+     fhir:definition [ fhir:v "R5 Preview #2 version." ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "4.4.0" ] ;
+       fhir:display [ fhir:v "4.4.0" ] ;
+       fhir:definition [ fhir:v "R5 Preview #2 + Connectathon 24 (Virtual)." ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "4.5" ] ;
+     fhir:display [ fhir:v "4.5" ] ;
+     fhir:definition [ fhir:v "R5 Preview #3 version." ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "4.5.0" ] ;
+       fhir:display [ fhir:v "4.5.0" ] ;
+       fhir:definition [ fhir:v "R5 Preview #3 + Connectathon 25 (Virtual)." ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "4.6" ] ;
+     fhir:display [ fhir:v "4.6" ] ;
+     fhir:definition [ fhir:v "R5 Draft Ballot version." ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "4.6.0" ] ;
+       fhir:display [ fhir:v "4.6.0" ] ;
+       fhir:definition [ fhir:v "R5 Draft Ballot + Connectathon 27 (Virtual)." ]
+     ] )
+  ] [
+     fhir:code [ fhir:v "5.0" ] ;
+     fhir:display [ fhir:v "5.0" ] ;
+     fhir:definition [ fhir:v "R5 Versions." ] ;
+     fhir:concept ( [
+       fhir:code [ fhir:v "5.0.0" ] ;
+       fhir:display [ fhir:v "5.0.0" ] ;
+       fhir:definition [ fhir:v "R5 Final Version." ] ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "5.0.0-cibuild" ] ;
+         fhir:display [ fhir:v "5.0.0-cibuild" ] ;
+         fhir:definition [ fhir:v "R5 Rolling ci-build." ]
+       ] [
+         fhir:code [ fhir:v "5.0.0-snapshot1" ] ;
+         fhir:display [ fhir:v "5.0.0-snapshot1" ] ;
+         fhir:definition [ fhir:v "R5 Preview #2." ]
+       ] [
+         fhir:code [ fhir:v "5.0.0-snapshot2" ] ;
+         fhir:display [ fhir:v "5.0.0-snapshot2" ] ;
+         fhir:definition [ fhir:v "R5 Interim tooling stage." ]
+       ] [
+         fhir:code [ fhir:v "5.0.0-ballot" ] ;
+         fhir:display [ fhir:v "5.0.0-ballot" ] ;
+         fhir:definition [ fhir:v "R5 Ballot." ]
+       ] [
+         fhir:code [ fhir:v "5.0.0-snapshot3" ] ;
+         fhir:display [ fhir:v "5.0.0-snapshot3" ] ;
+         fhir:definition [ fhir:v "R5 January 2023 Staging Release + Connectathon 32." ]
+       ] [
+         fhir:code [ fhir:v "5.0.0-draft-final" ] ;
+         fhir:display [ fhir:v "5.0.0-draft-final" ] ;
+         fhir:definition [ fhir:v "R5 Final QA." ]
+       ] )
+     ] )
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

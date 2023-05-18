@@ -1,0 +1,133 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <Age.shex>
+IMPORT <code.shex>
+IMPORT <date.shex>
+IMPORT <Range.shex>
+IMPORT <string.shex>
+IMPORT <Period.shex>
+IMPORT <Patient.shex>
+IMPORT <boolean.shex>
+IMPORT <dateTime.shex>
+IMPORT <Reference.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+
+
+start=@<FamilyMemberHistory> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Information about patient's relatives, relevant for patient
+<FamilyMemberHistory> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:FamilyMemberHistory];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # External Id(s) for this record
+    fhir:instantiatesCanonical @<OneOrMore_canonical>?;  # Instantiates FHIR protocol or 
+                                            # definition 
+    fhir:instantiatesUri @<OneOrMore_uri>?;  # Instantiates external protocol or 
+                                            # definition 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:history-status};  # partial | completed | 
+                                            # entered-in-error | health-unknown 
+    fhir:dataAbsentReason @<CodeableConcept>?;  # subject-unknown | withheld | 
+                                            # unable-to-obtain | deferred 
+    fhir:patient @<Reference> AND {fhir:link 
+    			@<Patient> };  # Patient history is about
+    fhir:date @<dateTime>?;                 # When history was recorded or last 
+                                            # updated 
+    fhir:name @<string>?;                   # The family member described
+    fhir:relationship @<CodeableConcept>;   # Relationship to the subject
+    fhir:sex @<CodeableConcept>?;           # male | female | other | unknown
+    fhir:born (@<Period>  OR 
+    			@<date>  OR 
+    			@<string> )  AND { rdf:type IRI } ?;  # (approximate) date of birth
+    fhir:age (@<Age>  OR 
+    			@<Range>  OR 
+    			@<string> )  AND { rdf:type IRI } ?;  # (approximate) age
+    fhir:estimatedAge @<boolean>?;          # Age is estimated?
+    fhir:deceased (@<boolean>  OR 
+    			@<Age>  OR 
+    			@<Range>  OR 
+    			@<date>  OR 
+    			@<string> )  AND { rdf:type IRI } ?;  # Dead? How old/when?
+    fhir:reason @<OneOrMore_CodeableReference>?;  # Why was family member history 
+                                            # performed? 
+    fhir:note @<OneOrMore_Annotation>?;     # General note about related person
+    fhir:condition @<OneOrMore_BackboneElement>?;  # Condition that the related person 
+                                            # had 
+    fhir:procedure @<OneOrMore_BackboneElement>?;  # Procedures that the related person 
+                                            # had 
+}  
+
+# Condition that the related person had
+<FamilyMemberHistory.condition> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>;           # Condition suffered by relation
+    fhir:outcome @<CodeableConcept>?;       # deceased | permanent disability | 
+                                            # etc. 
+    fhir:contributedToDeath @<boolean>?;    # Whether the condition contributed 
+                                            # to the cause of death 
+    fhir:onset (@<Age>  OR 
+    			@<Range>  OR 
+    			@<Period>  OR 
+    			@<string> )  AND { rdf:type IRI } ?;  # When condition first manifested
+    fhir:note @<OneOrMore_Annotation>?;     # Extra information about condition
+}  
+
+# Procedures that the related person had
+<FamilyMemberHistory.procedure> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>;           # Procedures performed on the 
+                                            # related person 
+    fhir:outcome @<CodeableConcept>?;       # What happened following the 
+                                            # procedure 
+    fhir:contributedToDeath @<boolean>?;    # Whether the procedure contributed 
+                                            # to the cause of death 
+    fhir:performed (@<Age>  OR 
+    			@<Range>  OR 
+    			@<Period>  OR 
+    			@<string>  OR 
+    			@<dateTime> )  AND { rdf:type IRI } ?;  # When the procedure was performed
+    fhir:note @<OneOrMore_Annotation>?;     # Extra information about the 
+                                            # procedure 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_canonical> CLOSED {
+    rdf:first @<canonical>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_canonical> 
+}
+
+<OneOrMore_uri> CLOSED {
+    rdf:first @<uri>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_uri> 
+}
+
+<OneOrMore_CodeableReference> CLOSED {
+    rdf:first @<CodeableReference>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableReference> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# A code that identifies the status of the family history record.
+fhirvs:history-status ["partial" "completed" "entered-in-error" "health-unknown"]
+

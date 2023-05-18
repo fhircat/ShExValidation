@@ -1,0 +1,200 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:MedicationDispense ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "meddisp0302"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MedicationDispense</b><a name=\"meddisp0302\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MedicationDispense &quot;meddisp0302&quot; </p></div><p><b>status</b>: in-progress</p><h3>Medications</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a name=\"med0360\"> </a><blockquote><p/><p><a name=\"med0360\"> </a></p><p><b>code</b>: Novolog 100u/ml <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ndc.html\">National drug codes</a>#0169-7501-11)</span></p><p><b>doseForm</b>: Injection solution (qualifier value) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#385219001)</span></p><blockquote><p><b>ingredient</b></p><h3>Items</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Insulin Aspart (substance) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#325072002)</span></td></tr></table><p><b>strength</b>: 100 U<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code U = 'U')</span>/1 mL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mL = 'mL')</span></p></blockquote><h3>Batches</h3><table class=\"grid\"><tr><td>-</td><td><b>LotNumber</b></td><td><b>ExpirationDate</b></td></tr><tr><td>*</td><td>12345</td><td>2019-10-31</td></tr></table></blockquote></td></tr></table><p><b>subject</b>: <a href=\"patient-example-a.html\">Patient/pat1: Donald Duck</a> &quot;Donald DUCK&quot;</p><h3>Performers</h3><table class=\"grid\"><tr><td>-</td><td><b>Function</b></td><td><b>Actor</b></td></tr><tr><td>*</td><td>Final Checker <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-medicationdispense-performer-function.html\">MedicationDispense Performer Function Codes</a>#finalchecker)</span></td><td><a href=\"practitioner-example-f006-rvdb.html\">Practitioner/f006</a> &quot;Rob VAN DEN BERK&quot;</td></tr></table><p><b>authorizingPrescription</b>: <a href=\"medicationrequest0321.html\">MedicationRequest/medrx0321</a></p><p><b>type</b>: Refill - Part Fill <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ActCode.html\">ActCode</a>#RFP)</span></p><p><b>quantity</b>: 10 ml<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code ml = 'ml')</span></p><p><b>daysSupply</b>: 30 Day<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code d = 'd')</span></p><p><b>whenPrepared</b>: 2015-01-15T10:20:00Z</p><p><b>whenHandedOver</b>: 2015-01-15T16:20:00Z</p><blockquote><p><b>dosageInstruction</b></p><p><b>sequence</b>: 1</p><p><b>text</b>: Before Breakfast</p><p><b>additionalInstruction</b>: Check sugar level before taking Novolog <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>timing</b>: Once per 1 days</p><blockquote><p><b>doseAndRate</b></p></blockquote></blockquote><blockquote><p><b>dosageInstruction</b></p><p><b>sequence</b>: 1</p><p><b>text</b>: 15 units before lunch</p><p><b>additionalInstruction</b>: Check sugar level before taking Novolog <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>timing</b>: Once per 1 days</p><blockquote><p><b>doseAndRate</b></p></blockquote></blockquote><blockquote><p><b>dosageInstruction</b></p><p><b>sequence</b>: 1</p><p><b>text</b>: 20 units before dinner</p><p><b>additionalInstruction</b>: Check sugar level before taking Novolog <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>timing</b>: Once per 1 days</p><blockquote><p><b>doseAndRate</b></p></blockquote></blockquote></div>"
+  ] ; # 
+  fhir:contained ( [
+     a fhir:Medication ;
+     fhir:id [ fhir:v "med0360" ] ;
+     fhir:code [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/sid/ndc"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "0169-7501-11" ] ;
+         fhir:display [ fhir:v "Novolog 100u/ml" ]
+       ] )
+     ] ;
+     fhir:doseForm [
+       fhir:coding ( [
+         a sct:385219001 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "385219001" ] ;
+         fhir:display [ fhir:v "Injection solution (qualifier value)" ]
+       ] )
+     ] ;
+     fhir:ingredient ( [
+       fhir:item [
+         fhir:concept [
+           fhir:coding ( [
+             a sct:325072002 ;
+             fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "325072002" ] ;
+             fhir:display [ fhir:v "Insulin Aspart (substance)" ]
+           ] )
+         ]
+       ] ;
+       fhir:strength [
+         a fhir:Ratio ;
+         fhir:numerator [
+           fhir:value [ fhir:v "100"^^xsd:decimal ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "U" ]
+         ] ;
+         fhir:denominator [
+           fhir:value [ fhir:v "1"^^xsd:decimal ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "mL" ]
+         ]
+       ]
+     ] ) ;
+     fhir:batch [
+       fhir:lotNumber [ fhir:v "12345" ] ;
+       fhir:expirationDate [ fhir:v "2019-10-31"^^xsd:date ]
+     ]
+  ] ) ; # 
+  fhir:status [ fhir:v "in-progress"] ; # 
+  fhir:medication [
+     fhir:reference [
+       fhir:reference [ fhir:v "#med0360" ] ;
+       fhir:display [ fhir:v "Novolog 100u/ml" ]
+     ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/pat1" ] ;
+     fhir:display [ fhir:v "Donald Duck" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:function [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/medicationdispense-performer-function"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "finalchecker" ] ;
+         fhir:display [ fhir:v "Final Checker" ]
+       ] )
+     ] ;
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/f006" ]
+     ]
+  ] ) ; # 
+  fhir:authorizingPrescription ( [
+     fhir:reference [ fhir:v "MedicationRequest/medrx0321" ]
+  ] ) ; # 
+  fhir:type [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActCode"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "RFP" ] ;
+       fhir:display [ fhir:v "Refill - Part Fill" ]
+     ] )
+  ] ; # 
+  fhir:quantity [
+     fhir:value [ fhir:v "10"^^xsd:decimal ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "ml" ]
+  ] ; # 
+  fhir:daysSupply [
+     fhir:value [ fhir:v "30"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "Day" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "d" ]
+  ] ; # 
+  fhir:whenPrepared [ fhir:v "2015-01-15T10:20:00Z"^^xsd:dateTime] ; # 
+  fhir:whenHandedOver [ fhir:v "2015-01-15T16:20:00Z"^^xsd:dateTime] ; # 
+  fhir:dosageInstruction ( [
+     fhir:sequence [ fhir:v "1"^^xsd:integer ] ;
+     fhir:text [ fhir:v "Before Breakfast" ] ;
+     fhir:additionalInstruction ( [
+       fhir:text [ fhir:v "Check sugar level before taking Novolog" ]
+     ] ) ;
+     fhir:timing [
+       fhir:repeat [
+         fhir:frequency [ fhir:v "1"^^xsd:positiveInteger ] ;
+         fhir:period [ fhir:v "1"^^xsd:decimal ] ;
+         fhir:periodUnit [ fhir:v "d" ]
+       ]
+     ] ;
+     fhir:doseAndRate ( [
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/dose-rate-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "ordered" ] ;
+           fhir:display [ fhir:v "Ordered" ]
+         ] )
+       ] ;
+       fhir:dose [
+         a fhir:Quantity ;
+         fhir:value [ fhir:v "10"^^xsd:decimal ] ;
+         fhir:unit [ fhir:v "U" ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "U" ]
+       ]
+     ] )
+  ] [
+     fhir:sequence [ fhir:v "1"^^xsd:integer ] ;
+     fhir:text [ fhir:v "15 units before lunch" ] ;
+     fhir:additionalInstruction ( [
+       fhir:text [ fhir:v "Check sugar level before taking Novolog" ]
+     ] ) ;
+     fhir:timing [
+       fhir:repeat [
+         fhir:frequency [ fhir:v "1"^^xsd:positiveInteger ] ;
+         fhir:period [ fhir:v "1"^^xsd:decimal ] ;
+         fhir:periodUnit [ fhir:v "d" ]
+       ]
+     ] ;
+     fhir:doseAndRate ( [
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/dose-rate-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "ordered" ] ;
+           fhir:display [ fhir:v "Ordered" ]
+         ] )
+       ] ;
+       fhir:dose [
+         a fhir:Quantity ;
+         fhir:value [ fhir:v "15"^^xsd:decimal ] ;
+         fhir:unit [ fhir:v "U" ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "U" ]
+       ]
+     ] )
+  ] [
+     fhir:sequence [ fhir:v "1"^^xsd:integer ] ;
+     fhir:text [ fhir:v "20 units before dinner" ] ;
+     fhir:additionalInstruction ( [
+       fhir:text [ fhir:v "Check sugar level before taking Novolog" ]
+     ] ) ;
+     fhir:timing [
+       fhir:repeat [
+         fhir:frequency [ fhir:v "1"^^xsd:positiveInteger ] ;
+         fhir:period [ fhir:v "1"^^xsd:decimal ] ;
+         fhir:periodUnit [ fhir:v "d" ]
+       ]
+     ] ;
+     fhir:doseAndRate ( [
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/dose-rate-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "ordered" ] ;
+           fhir:display [ fhir:v "Ordered" ]
+         ] )
+       ] ;
+       fhir:dose [
+         a fhir:Quantity ;
+         fhir:value [ fhir:v "20"^^xsd:decimal ] ;
+         fhir:unit [ fhir:v "U" ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "U" ]
+       ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

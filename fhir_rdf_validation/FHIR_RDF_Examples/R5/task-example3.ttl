@@ -1,0 +1,36 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Task ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example3"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Task</b><a name=\"example3\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Task &quot;example3&quot; </p></div><p><b>status</b>: draft</p><p><b>intent</b>: order</p><p><b>code</b>: Refill Request <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>focus</b>: <a href=\"medicationrequestexample2.html\">MedicationRequest/medrx002</a></p><p><b>for</b>: <a href=\"patient-example-f001-pieter.html\">Patient/f001</a> &quot;Pieter VAN DE HEUVEL&quot;</p><p><b>authoredOn</b>: 2016-03-10T22:39:32-04:00</p><p><b>lastModified</b>: 2016-03-10T22:39:32-04:00</p><p><b>requester</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>owner</b>: <a href=\"practitioner-example.html\">Practitioner/example</a> &quot;Adam CAREFUL&quot;</p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:intent [ fhir:v "order"] ; # 
+  fhir:code [
+     fhir:text [ fhir:v "Refill Request" ]
+  ] ; # 
+  fhir:focus [
+     fhir:reference [ fhir:v "MedicationRequest/medrx002" ]
+  ] ; # 
+  fhir:for [
+     fhir:reference [ fhir:v "Patient/f001" ]
+  ] ; # 
+  fhir:authoredOn [ fhir:v "2016-03-10T22:39:32-04:00"^^xsd:dateTime] ; # 
+  fhir:lastModified [ fhir:v "2016-03-10T22:39:32-04:00"^^xsd:dateTime] ; # 
+  fhir:requester [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:owner [
+     fhir:reference [ fhir:v "Practitioner/example" ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,95 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Task ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example4"] ; #   This example show an updated status and output - a generated task to collect a specimen
+#example1 action lipid panel -in progress =>. example2 specimen collection subtask -accepted => example4  specimen collection subtask - completed  with output Specimen=>example 5 action lipid panel -in progress specimen collected with output Specimen => example 6 action lipid panel - completed with output Specimen and DiagnosticReport   
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Task</b><a name=\"example4\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Task &quot;example4&quot; </p></div><p><b>identifier</b>: id: 20170201-002 (use: OFFICIAL)</p><p><b>groupIdentifier</b>: id: G20170201-001 (use: OFFICIAL)</p><p><b>partOf</b>: <span title=\" 	This Task is a child task of the submitted lipid panel requet\n \"><a href=\"task-example1.html\">Task/example1: Lipid Panel</a></span></p><p><b>status</b>: completed</p><p><b>intent</b>: <span title=\" fictive business status populated for this example \">filler-order</span></p><p><b>priority</b>: routine</p><p><b>code</b>: <span title=\" fictive code and description elements populated for this example  \">Fulfill the focal request <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-task-code.html\">Task Codes</a>#fulfill)</span></span></p><p><b>focus</b>: <span title=\" 	Filler generated order using a fictive  servicerequest to complete the loop \"><span>: BloodDraw ServiceRequest</span></span></p><p><b>for</b>: <span title=\" 	who the task is for\n \"><a href=\"patient-example.html\">Patient/example: Peter James Chalmers</a> &quot;Peter CHALMERS&quot;</span></p><p><b>encounter</b>: <a href=\"encounter-example.html\">Encounter/example: Example In-Patient Encounter</a></p><p><b>executionPeriod</b>: <span title=\" 	Lots of dates  \">2016-10-31T08:45:05+10:00 --&gt; 2016-10-31T14:45:05+10:00</span></p><p><b>authoredOn</b>: 2016-10-31T08:45:05+10:00</p><p><b>lastModified</b>: 2016-10-31T09:45:05+10:00</p><p><b>requester</b>: <span title=\" requester is filler \"><a href=\"organization-example-lab.html\">Organization/1832473e-2fe0-452d-abe9-3cdb9879522f: Clinical Laboratory @ Acme Hospital</a> &quot;Clinical Lab&quot;</span></p><h3>RequestedPerformers</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Performer <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#18850004 &quot;Laboratory hematologist&quot;)</span></td></tr></table><p><b>owner</b>: <span title=\" assume at draw station \"><a href=\"practitioner-example-f202-lm.html\">Practitioner/f202: Luigi Maas</a> &quot;Luigi Maas&quot;</span></p><h3>Restrictions</h3><table class=\"grid\"><tr><td>-</td><td><b>Repetitions</b></td><td><b>Period</b></td></tr><tr><td>*</td><td>1</td><td>?? --&gt; 2016-11-01T09:45:05+10:00</td></tr></table><h3>Outputs</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>collected specimen <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td><td><a href=\"specimen-example.html\">Specimen/101</a></td></tr></table></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "official" ] ;
+     fhir:system [ fhir:v "http:/goodhealth.org/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "20170201-002" ]
+  ] ) ; # 
+  fhir:groupIdentifier [
+     fhir:use [ fhir:v "official" ] ;
+     fhir:system [ fhir:v "http:/goodhealth.org/accession/identifiers"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "G20170201-001" ]
+  ] ; # 
+  fhir:partOf ( [
+     fhir:reference [ fhir:v "Task/example1" ] ;
+     fhir:display [ fhir:v "Lipid Panel" ]
+  ] ) ; #   	This Task is a child task of the submitted lipid panel requet
+#  
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:intent [ fhir:v "filler-order"] ; #   fictive business status populated for this example  
+  fhir:priority [ fhir:v "routine"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/CodeSystem/task-code"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "fulfill" ]
+     ] )
+  ] ; #   fictive code and description elements populated for this example   
+  fhir:focus [
+     fhir:display [ fhir:v "BloodDraw ServiceRequest" ]
+  ] ; #   	Filler generated order using a fictive  servicerequest to complete the loop  
+  fhir:for [
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "Peter James Chalmers" ]
+  ] ; #   	who the task is for
+#  
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/example" ] ;
+     fhir:display [ fhir:v "Example In-Patient Encounter" ]
+  ] ; # 
+  fhir:executionPeriod [
+     fhir:start [ fhir:v "2016-10-31T08:45:05+10:00"^^xsd:dateTime ] ;
+     fhir:end [ fhir:v "2016-10-31T14:45:05+10:00"^^xsd:dateTime ]
+  ] ; #   	Lots of dates   
+  fhir:authoredOn [ fhir:v "2016-10-31T08:45:05+10:00"^^xsd:dateTime] ; # 
+  fhir:lastModified [ fhir:v "2016-10-31T09:45:05+10:00"^^xsd:dateTime] ; # 
+  fhir:requester [
+     fhir:reference [ fhir:v "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f" ] ;
+     fhir:display [ fhir:v "Clinical Laboratory @ Acme Hospital" ]
+  ] ; #   requester is filler  
+  fhir:requestedPerformer ( [
+     fhir:concept [
+       fhir:coding ( [
+         a sct:18850004 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "18850004" ] ;
+         fhir:display [ fhir:v "Laboratory hematologist" ]
+       ] ) ;
+       fhir:text [ fhir:v "Performer" ]
+     ]
+  ] ) ; # 
+  fhir:owner [
+     fhir:reference [ fhir:v "Practitioner/f202" ] ;
+     fhir:display [ fhir:v "Luigi Maas" ]
+  ] ; #   assume at draw station  
+  fhir:restriction [
+     fhir:repetitions [ fhir:v "1"^^xsd:positiveInteger ] ;
+     fhir:period [
+       fhir:end [ fhir:v "2016-11-01T09:45:05+10:00"^^xsd:dateTime ]
+     ]
+  ] ; # 
+  fhir:output ( [
+     fhir:type [
+       fhir:text [ fhir:v "collected specimen" ]
+     ] ;
+     fhir:value [
+       a fhir:Reference ;
+       fhir:reference [ fhir:v "Specimen/101" ]
+     ]
+  ] )] . #   The expected output of this task is a Specimen and will generated once the task is completed   
+
+# -------------------------------------------------------------------------------------
+

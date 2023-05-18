@@ -1,0 +1,42 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Subscription ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "admission"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Subscription</b><a name=\"admission\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Subscription &quot;admission&quot; </p></div><p><b>name</b>: AdmissionExample</p><p><b>status</b>: active</p><p><b>topic</b>: <a href=\"http://example.org/R5/SubscriptionTopic/admission\">http://example.org/R5/SubscriptionTopic/admission</a></p><p><b>end</b>: 7 Aug 2019, 9:15:18 pm</p><p><b>reason</b>: subscription for beginning of a clinical encounter for patient 123</p><h3>FilterBies</h3><table class=\"grid\"><tr><td>-</td><td><b>FilterParameter</b></td><td><b>Value</b></td></tr><tr><td>*</td><td>patient</td><td>Patient/123</td></tr></table><p><b>channelType</b>: rest-hook (Details: [not stated] code rest-hook = 'rest-hook', stated as 'null')</p><p><b>endpoint</b>: <a href=\"https://example.org/Endpoints/P123\">https://example.org/Endpoints/P123</a></p><h3>Parameters</h3><table class=\"grid\"><tr><td>-</td><td><b>Name</b></td><td><b>Value</b></td></tr><tr><td>*</td><td>Authorization</td><td>Bearer secret-token-abc-123</td></tr></table><p><b>heartbeatPeriod</b>: 60</p><p><b>timeout</b>: 5</p><p><b>contentType</b>: application/fhir+json</p><p><b>content</b>: id-only</p><p><b>maxCount</b>: 100</p></div>"
+  ] ; # 
+  fhir:name [ fhir:v "AdmissionExample"] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:topic [
+     fhir:v "http://example.org/R5/SubscriptionTopic/admission"^^xsd:anyURI ;
+     fhir:link <http://example.org/R5/SubscriptionTopic/admission>
+  ] ; # 
+  fhir:end [ fhir:v "2019-08-07T11:15:18Z"^^xsd:dateTime] ; # 
+  fhir:reason [ fhir:v "subscription for beginning of a clinical encounter for patient 123"] ; # 
+  fhir:filterBy ( [
+     fhir:filterParameter [ fhir:v "patient" ] ;
+     fhir:value [ fhir:v "Patient/123" ]
+  ] ) ; # 
+  fhir:channelType [
+     fhir:code [ fhir:v "rest-hook" ]
+  ] ; # 
+  fhir:endpoint [ fhir:v "https://example.org/Endpoints/P123"^^xsd:anyURI] ; # 
+  fhir:parameter ( [
+     fhir:name [ fhir:v "Authorization" ] ;
+     fhir:value [ fhir:v "Bearer secret-token-abc-123" ]
+  ] ) ; # 
+  fhir:heartbeatPeriod [ fhir:v "60"^^xsd:nonNegativeInteger] ; # 
+  fhir:timeout [ fhir:v "5"^^xsd:nonNegativeInteger] ; # 
+  fhir:contentType [ fhir:v "application/fhir+json"] ; # 
+  fhir:content [ fhir:v "id-only"] ; # 
+  fhir:maxCount [ fhir:v "100"^^xsd:positiveInteger]] . # 
+
+# -------------------------------------------------------------------------------------
+

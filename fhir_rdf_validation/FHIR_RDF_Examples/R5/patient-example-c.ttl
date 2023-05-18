@@ -1,0 +1,49 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Patient ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "pat3"] ; # 
+  fhir:meta [
+     fhir:versionId [ fhir:v "1" ]
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p style=\"border: 1px #661aff solid; background-color: #e6e6ff; padding: 10px;\"><b>Simon Notsowell (OFFICIAL)</b> male, DoB: 1982-01-23 ( Medical record number: 123457 (use: USUAL))</p><hr/><table class=\"grid\"><tr><td style=\"background-color: #f3f5da\" title=\"Record is active\">Active:</td><td>true</td><td style=\"background-color: #f3f5da\" title=\"Known status of Patient\">Deceased:</td><td colspan=\"3\">2015-02-14T13:42:00+10:00</td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Alternate names (see the one above)\">Alt. Name:</td><td colspan=\"3\">Jock (NICKNAME)</td></tr><tr><td style=\"background-color: #f3f5da\" title=\"Patient Links\">Links:</td><td colspan=\"3\"><ul><li>Managing Organization: <a href=\"organization-example-gastro.html\">Organization/1: ACME Healthcare, Inc</a> &quot;Gastroenterology&quot;</li></ul></td></tr></table></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "usual" ] ;
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0203"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "MR" ]
+       ] )
+     ] ;
+     fhir:system [ fhir:v "urn:oid:0.1.2.3.4.5.6.7"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "123457" ]
+  ] ) ; # 
+  fhir:active [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:name ( [
+     fhir:id [ fhir:v "n1" ] ;
+     fhir:use [ fhir:v "official" ] ;
+     fhir:family [ fhir:v "Notsowell" ] ;
+     fhir:given ( [ fhir:v "Simon" ] )
+  ] [
+     fhir:id [ fhir:v "n2" ] ;
+     fhir:use [ fhir:v "nickname" ] ;
+     fhir:given ( [ fhir:v "Jock" ] )
+  ] ) ; # 
+  fhir:gender [ fhir:v "male"] ; # 
+  fhir:birthDate [ fhir:v "1982-01-23"^^xsd:date] ; # 
+  fhir:deceased [ fhir:v "2015-02-14T13:42:00+10:00"^^xsd:dateTime] ; # 
+  fhir:managingOrganization [
+     fhir:reference [ fhir:v "Organization/1" ] ;
+     fhir:display [ fhir:v "ACME Healthcare, Inc" ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

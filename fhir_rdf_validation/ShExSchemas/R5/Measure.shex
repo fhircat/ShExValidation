@@ -1,0 +1,222 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <date.shex>
+IMPORT <Group.shex>
+IMPORT <string.shex>
+IMPORT <Period.shex>
+IMPORT <boolean.shex>
+IMPORT <dateTime.shex>
+IMPORT <markdown.shex>
+IMPORT <Reference.shex>
+IMPORT <Expression.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <MetadataResource.shex>
+
+
+start=@<Measure> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A quality measure definition
+<Measure> EXTENDS @<MetadataResource> CLOSED {   
+
+    a [fhir:Measure];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:url @<uri>?;                       # Canonical identifier for this 
+                                            # measure, represented as a URI 
+                                            # (globally unique) 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
+                                            # measure 
+    fhir:version @<string>?;                # Business version of the measure
+    fhir:name @<string>?;                   # Name for this measure (computer 
+                                            # friendly) 
+    fhir:title @<string>?;                  # Name for this measure (human 
+                                            # friendly) 
+    fhir:subtitle @<string>?;               # Subordinate title of the measure
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:subject (@<CodeableConcept>  OR 
+    			(@<Reference>  AND {fhir:link @<Group> }) )  AND { rdf:type IRI } ?;  # E.g. Patient, Practitioner, 
+                                            # RelatedPerson, Organization, 
+                                            # Location, Device 
+    fhir:basis @<code> AND
+    	{fhir:v @fhirvs:all-types}?;  # Population basis
+    fhir:date @<dateTime>?;                 # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the measure 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for measure 
+                                            # (if applicable) 
+    fhir:purpose @<markdown>?;              # Why this measure is defined
+    fhir:usage @<string>?;                  # Describes the clinical usage of 
+                                            # the measure 
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:approvalDate @<date>?;             # When the measure was approved by 
+                                            # publisher 
+    fhir:lastReviewDate @<date>?;           # When the measure was last reviewed
+    fhir:effectivePeriod @<Period>?;        # When the measure is expected to be 
+                                            # used 
+    fhir:topic @<OneOrMore_CodeableConcept>?;  # The category of the measure, such 
+                                            # as Education, Treatment, 
+                                            # Assessment, etc. 
+    fhir:author @<OneOrMore_ContactDetail>?;  # Who authored the content
+    fhir:editor @<OneOrMore_ContactDetail>?;  # Who edited the content
+    fhir:reviewer @<OneOrMore_ContactDetail>?;  # Who reviewed the content
+    fhir:endorser @<OneOrMore_ContactDetail>?;  # Who endorsed the content
+    fhir:relatedArtifact @<OneOrMore_RelatedArtifact>?;  # Additional documentation, 
+                                            # citations, etc. 
+    fhir:library @<OneOrMore_canonical>?;   # Logic used by the measure
+    fhir:disclaimer @<markdown>?;           # Disclaimer for use of the measure 
+                                            # or its referenced content 
+    fhir:scoring @<CodeableConcept>?;       # proportion | ratio | 
+                                            # continuous-variable | cohort 
+    fhir:scoringUnit @<CodeableConcept>?;   # What units?
+    fhir:compositeScoring @<CodeableConcept>?;  # opportunity | all-or-nothing | 
+                                            # linear | weighted 
+    fhir:type @<OneOrMore_CodeableConcept>?;  # process | outcome | structure | 
+                                            # patient-reported-outcome | 
+                                            # composite 
+    fhir:riskAdjustment @<string>?;         # How risk adjustment is applied for 
+                                            # this measure 
+    fhir:rateAggregation @<string>?;        # How is rate aggregation performed 
+                                            # for this measure 
+    fhir:rationale @<markdown>?;            # Detailed description of why the 
+                                            # measure exists 
+    fhir:clinicalRecommendationStatement @<markdown>?;  # Summary of clinical guidelines
+    fhir:improvementNotation @<CodeableConcept>?;  # increase | decrease
+    fhir:definition @<OneOrMore_markdown>?;  # Defined terms used in the measure 
+                                            # documentation 
+    fhir:guidance @<markdown>?;             # Additional guidance for 
+                                            # implementers 
+    fhir:group @<OneOrMore_BackboneElement>?;  # Population criteria group
+    fhir:supplementalData @<OneOrMore_BackboneElement>?;  # What other data should be reported 
+                                            # with the measure 
+}  
+
+# Stratifier criteria component for the measure
+<Measure.group.stratifier.component> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>?;          # Meaning of the stratifier component
+    fhir:description @<string>?;            # The human readable description of 
+                                            # this stratifier component 
+    fhir:criteria @<Expression>;            # Component of how the measure 
+                                            # should be stratified 
+}  
+
+# What other data should be reported with the measure
+<Measure.supplementalData> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>?;          # Meaning of the supplemental data
+    fhir:usage @<OneOrMore_CodeableConcept>?;  # supplemental-data | 
+                                            # risk-adjustment-factor 
+    fhir:description @<string>?;            # The human readable description of 
+                                            # this supplemental data 
+    fhir:criteria @<Expression>;            # Expression describing additional 
+                                            # data to be reported 
+}  
+
+# Population criteria group
+<Measure.group> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>?;          # Meaning of the group
+    fhir:description @<string>?;            # Summary description
+    fhir:type @<OneOrMore_CodeableConcept>?;  # process | outcome | structure | 
+                                            # patient-reported-outcome | 
+                                            # composite 
+    fhir:basis @<code> AND
+    	{fhir:v @fhirvs:all-types}?;  # Population basis
+    fhir:scoring @<CodeableConcept>?;       # proportion | ratio | 
+                                            # continuous-variable | cohort 
+    fhir:scoringUnit @<CodeableConcept>?;   # What units?
+    fhir:improvementNotation @<CodeableConcept>?;  # increase | decrease
+    fhir:population @<OneOrMore_BackboneElement>?;  # Population criteria
+    fhir:stratifier @<OneOrMore_BackboneElement>?;  # Stratifier criteria for the measure
+}  
+
+# Population criteria
+<Measure.group.population> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>?;          # initial-population | numerator | 
+                                            # numerator-exclusion | denominator 
+                                            # | denominator-exclusion | 
+                                            # denominator-exception | 
+                                            # measure-population | 
+                                            # measure-population-exclusion | 
+                                            # measure-observation 
+    fhir:description @<string>?;            # The human readable description of 
+                                            # this population criteria 
+    fhir:criteria @<Expression>;            # The criteria that defines this 
+                                            # population 
+    fhir:inputPopulationId @<string>?;      # Which population
+    fhir:aggregateMethod @<CodeableConcept>?;  # Aggregation method for a measure 
+                                            # score (e.g. sum, average, median, 
+                                            # minimum, maximum, count) 
+}  
+
+# Stratifier criteria for the measure
+<Measure.group.stratifier> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>?;          # Meaning of the stratifier
+    fhir:description @<string>?;            # The human readable description of 
+                                            # this stratifier 
+    fhir:criteria @<Expression>?;           # How the measure should be 
+                                            # stratified 
+    fhir:component @<OneOrMore_BackboneElement>?;  # Stratifier criteria component for 
+                                            # the measure 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_ContactDetail> CLOSED {
+    rdf:first @<ContactDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactDetail> 
+}
+
+<OneOrMore_UsageContext> CLOSED {
+    rdf:first @<UsageContext>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_UsageContext> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_RelatedArtifact> CLOSED {
+    rdf:first @<RelatedArtifact>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_RelatedArtifact> 
+}
+
+<OneOrMore_canonical> CLOSED {
+    rdf:first @<canonical>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_canonical> 
+}
+
+<OneOrMore_markdown> CLOSED {
+    rdf:first @<markdown>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_markdown> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+
+# A list of all the concrete types defined in this version of the FHIR specification - Abstract Types, Data Types and Resource Types.
+fhirvs:all-types ["Address" "Age" "Annotation" "Attachment" "BackboneElement" "BackboneType" "Base" "CodeableConcept" "CodeableReference" "Coding" "ContactDetail" "ContactPoint" "Contributor" "Count" "DataRequirement" "DataType" "Distance" "Dosage" "Duration" "Element" "ElementDefinition" "Expression" "ExtendedContactDetail" "Extension" "HumanName" "Identifier" "MarketingStatus" "Meta" "Money" "MoneyQuantity" "Narrative" "ParameterDefinition" "Period" "Population" "PrimitiveType" "ProductShelfLife" "Quantity" "Range" "Ratio" "RatioRange" "Reference" "RelatedArtifact" "SampledData" "Signature" "SimpleQuantity" "Timing" "TriggerDefinition" "UsageContext" "base64Binary" "boolean" "canonical" "code" "date" "dateTime" "decimal" "id" "instant" "integer" "integer64" "markdown" "oid" "positiveInt" "string" "time" "unsignedInt" "uri" "url" "uuid" "xhtml" "Resource" "Binary" "Bundle" "DomainResource" "Account" "AdministrableProductDefinition" "AdverseEvent" "AllergyIntolerance" "Appointment" "AppointmentResponse" "ArtifactAssessment" "AuditEvent" "Basic" "BiologicallyDerivedProduct" "BodyStructure" "CanonicalResource" "CapabilityStatement" "CapabilityStatement2" "CodeSystem" "CompartmentDefinition" "ExampleScenario" "GraphDefinition" "ImplementationGuide" "MessageDefinition" "MetadataResource" "ActivityDefinition" "ChargeItemDefinition" "Citation" "ConceptMap" "ConditionDefinition" "EventDefinition" "Evidence" "EvidenceReport" "EvidenceVariable" "Library" "Measure" "NamingSystem" "PlanDefinition" "Questionnaire" "OperationDefinition" "SearchParameter" "StructureDefinition" "StructureMap" "SubscriptionTopic" "TerminologyCapabilities" "TestScript" "ValueSet" "CarePlan" "CareTeam" "ChargeItem" "Claim" "ClaimResponse" "ClinicalImpression" "ClinicalUseDefinition" "Communication" "CommunicationRequest" "Composition" "Condition" "Consent" "Contract" "Coverage" "CoverageEligibilityRequest" "CoverageEligibilityResponse" "DetectedIssue" "Device" "DeviceDefinition" "DeviceDispense" "DeviceMetric" "DeviceRequest" "DeviceUsage" "DiagnosticReport" "DocumentManifest" "DocumentReference" "Encounter" "Endpoint" "EnrollmentRequest" "EnrollmentResponse" "EpisodeOfCare" "ExplanationOfBenefit" "FamilyMemberHistory" "Flag" "FormularyItem" "Goal" "Group" "GuidanceResponse" "HealthcareService" "ImagingSelection" "ImagingStudy" "Immunization" "ImmunizationEvaluation" "ImmunizationRecommendation" "Ingredient" "InsurancePlan" "InventoryReport" "Invoice" "Linkage" "List" "Location" "ManufacturedItemDefinition" "MeasureReport" "Medication" "MedicationAdministration" "MedicationDispense" "MedicationKnowledge" "MedicationRequest" "MedicationUsage" "MedicinalProductDefinition" "MessageHeader" "MolecularSequence" "NutritionIntake" "NutritionOrder" "NutritionProduct" "Observation" "ObservationDefinition" "OperationOutcome" "Organization" "OrganizationAffiliation" "PackagedProductDefinition" "Patient" "PaymentNotice" "PaymentReconciliation" "Permission" "Person" "Practitioner" "PractitionerRole" "Procedure" "Provenance" "QuestionnaireResponse" "RegulatedAuthorization" "RelatedPerson" "RequestGroup" "ResearchStudy" "ResearchSubject" "RiskAssessment" "Schedule" "ServiceRequest" "Slot" "Specimen" "SpecimenDefinition" "Subscription" "SubscriptionStatus" "Substance" "SubstanceDefinition" "SubstanceNucleicAcid" "SubstancePolymer" "SubstanceProtein" "SubstanceReferenceInformation" "SubstanceSourceMaterial" "SupplyDelivery" "SupplyRequest" "Task" "TestReport" "Transport" "VerificationResult" "VisionPrescription" "Parameters" "Type" "Any"]
+

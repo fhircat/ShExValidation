@@ -1,0 +1,109 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Group.shex>
+IMPORT <string.shex>
+IMPORT <Period.shex>
+IMPORT <Timing.shex>
+IMPORT <Patient.shex>
+IMPORT <CareTeam.shex>
+IMPORT <Reference.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <PractitionerRole.shex>
+
+
+start=@<CareTeam> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Planned participants in the coordination and delivery of care
+<CareTeam> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:CareTeam];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # External Ids for this team
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:care-team-status}?;  # proposed | active | suspended | 
+                                            # inactive | entered-in-error 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Type of team
+    fhir:name @<string>?;                   # Name of the team, such as crisis 
+                                            # assessment team 
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Patient> }?;  # Who care team is for
+    fhir:period @<Period>?;                 # Time period team covers
+    fhir:participant @<OneOrMore_BackboneElement>?;  # Members of the team
+    fhir:reason @<OneOrMore_CodeableReference>?;  # Why the care team exists
+    fhir:managingOrganization @<OneOrMore_Reference_Organization>?;  # Organization responsible for the 
+                                            # care team 
+    fhir:telecom @<OneOrMore_ContactPoint>?;  # A contact detail for the care team 
+                                            # (that applies to all members) 
+    fhir:note @<OneOrMore_Annotation>?;     # Comments made about the CareTeam
+}  
+
+# Members of the team
+<CareTeam.participant> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:role @<CodeableConcept>?;          # Type of involvement
+    fhir:member @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Who is involved
+    fhir:onBehalfOf @<Reference> AND {fhir:link 
+    			@<Organization> }?;  # Organization of the practitioner
+    fhir:coverage (@<Period>  OR 
+    			@<Timing> )  AND { rdf:type IRI } ?;  # When the member is generally 
+                                            # available within this care team 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_CodeableReference> CLOSED {
+    rdf:first @<CodeableReference>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableReference> 
+}
+
+<OneOrMore_Reference_Organization> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Organization> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Organization> 
+}
+
+<OneOrMore_ContactPoint> CLOSED {
+    rdf:first @<ContactPoint>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactPoint> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Indicates the status of the care team.
+fhirvs:care-team-status ["proposed" "active" "suspended" "inactive" "entered-in-error"]
+

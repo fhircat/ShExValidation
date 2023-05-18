@@ -1,0 +1,120 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:CarePlan ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "f203"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: CarePlan</b><a name=\"f203\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource CarePlan &quot;f203&quot; </p></div><p><b>status</b>: completed</p><p><b>intent</b>: plan</p><p><b>subject</b>: <a href=\"patient-example-f201-roel.html\">Patient/f201: Roel</a> &quot;Roel&quot;</p><p><b>period</b>: 2013-04-14 --&gt; 2013-04-21</p><p><b>careTeam</b>: <a name=\"careteam\"> </a></p><blockquote><p/><p><a name=\"careteam\"> </a></p><blockquote><p><b>participant</b></p><p><b>role</b>: Review of care plan <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#425268008)</span></p><p><b>member</b>: <a href=\"practitioner-example-f201-ab.html\">Practitioner/f201: Dokter Bronsig</a> &quot;Dokter Bronsig&quot;</p></blockquote><blockquote><p><b>participant</b></p><p><b>role</b>: Radiographic imaging <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#278110001)</span></p><p><b>member</b>: <a href=\"practitioner-example-f202-lm.html\">Practitioner/f202: Luigi Maas</a> &quot;Luigi Maas&quot;</p></blockquote></blockquote><h3>Addresses</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a href=\"condition-example-f203-sepsis.html\">Condition/f203: Roel's sepsis</a></td></tr></table><p><b>goal</b>: <a name=\"goal\"> </a></p><blockquote><p/><p><a name=\"goal\"> </a></p><p><b>lifecycleStatus</b>: cancelled</p><p><b>description</b>: Check whether further treatment of sepsis/pulmonary abcess is required <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>subject</b>: <a href=\"patient-example-f201-roel.html\">Patient/f201: Roel</a> &quot;Roel&quot;</p></blockquote><h3>Activities</h3><table class=\"grid\"><tr><td>-</td><td><b>PlannedActivityReference</b></td></tr><tr><td>*</td><td><a name=\"activity\"> </a><blockquote><p/><p><a name=\"activity\"> </a></p><p><b>status</b>: active</p><p><b>intent</b>: order</p><p><b>doNotPerform</b>: false</p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>High resolution computed tomography of lungs <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#241541005)</span></td></tr></table><p><b>subject</b>: <a href=\"patient-example-f201-roel.html\">Patient/f201: Roel</a> &quot;Roel&quot;</p></blockquote></td></tr></table></div>"
+  ] ; # 
+  fhir:contained ( [
+     a fhir:CareTeam ;
+     fhir:id [ fhir:v "careteam" ] ;
+     fhir:participant ( [
+       fhir:role [
+         fhir:coding ( [
+           a sct:425268008 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "425268008" ] ;
+           fhir:display [ fhir:v "Review of care plan" ]
+         ] )
+       ] ;
+       fhir:member [
+         fhir:reference [ fhir:v "Practitioner/f201" ] ;
+         fhir:display [ fhir:v "Dokter Bronsig" ]
+       ]
+     ] [
+       fhir:role [
+         fhir:coding ( [
+           a sct:278110001 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "278110001" ] ;
+           fhir:display [ fhir:v "Radiographic imaging" ]
+         ] )
+       ] ;
+       fhir:member [
+         fhir:reference [ fhir:v "Practitioner/f202" ] ;
+         fhir:display [ fhir:v "Luigi Maas" ]
+       ]
+     ] )
+  ] [
+     a fhir:Goal ;
+     fhir:id [ fhir:v "goal" ] ;
+     fhir:lifecycleStatus [ fhir:v "cancelled" ] ;
+     fhir:description [
+       fhir:text [ fhir:v "Check whether further treatment of sepsis/pulmonary abcess is required" ]
+     ] ;
+     fhir:subject [
+       fhir:reference [ fhir:v "Patient/f201" ] ;
+       fhir:display [ fhir:v "Roel" ]
+     ]
+  ] [
+     a fhir:ServiceRequest ;
+     fhir:id [ fhir:v "activity" ] ;
+     fhir:status [ fhir:v "active" ] ;
+     fhir:intent [ fhir:v "order" ] ;
+     fhir:doNotPerform [ fhir:v "false"^^xsd:boolean ] ;
+     fhir:code [
+       fhir:concept [
+         fhir:coding ( [
+           a sct:241541005 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "241541005" ] ;
+           fhir:display [ fhir:v "High resolution computed tomography of lungs" ]
+         ] )
+       ]
+     ] ;
+     fhir:subject [
+       fhir:reference [ fhir:v "Patient/f201" ] ; #   It entails Roel's careplan  
+       fhir:display [ fhir:v "Roel" ]
+     ]
+  ] ) ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:intent [ fhir:v "plan"] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/f201" ] ; #   It entails Roel's careplan  
+     fhir:display [ fhir:v "Roel" ]
+  ] ; # 
+  fhir:period [
+     fhir:start [ fhir:v "2013-04-14"^^xsd:date ] ;
+     fhir:end [ fhir:v "2013-04-21"^^xsd:date ]
+  ] ; # 
+  fhir:careTeam ( [
+     fhir:reference [ fhir:v "#careteam" ]
+  ] ) ; # 
+  fhir:addresses ( [
+     fhir:reference [
+       fhir:reference [ fhir:v "Condition/f203" ] ;
+       fhir:display [ fhir:v "Roel's sepsis" ]
+     ]
+  ] ) ; # 
+  fhir:goal ( [
+     fhir:reference [ fhir:v "#goal" ]
+  ] ) ; # 
+  fhir:activity ( [
+     fhir:plannedActivityReference [
+       fhir:reference [ fhir:v "#activity" ]
+     ]
+  ] )] . #    moved to contained
+#    <plannedActivityDetail>
+#      <kind value="ServiceRequest"/>
+#      <code>
+#        <coding>
+#          <system value="http://snomed.info/sct"/>
+#          <code value="241541005"/>
+#          <display value="High resolution computed tomography of lungs"/>
+#        </coding>
+#      </code>
+#      <status value="not-started"/>
+#      <doNotPerform value="false"/>
+#    </plannedActivityDetail>
+#	  
+
+# -------------------------------------------------------------------------------------
+

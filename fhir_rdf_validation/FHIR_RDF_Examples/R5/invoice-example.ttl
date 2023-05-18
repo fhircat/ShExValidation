@@ -1,0 +1,58 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Invoice ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">Example of Invoice</div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://myHospital.org/Invoices"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "654321" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "issued"] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:creation [ fhir:v "2017-01-25T08:00:00+01:00"^^xsd:dateTime] ; # 
+  fhir:period [ fhir:v "2017-01-25"^^xsd:date] ; # 
+  fhir:participant ( [
+     fhir:role [
+       fhir:coding ( [
+         a sct:17561000 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "17561000" ] ;
+         fhir:display [ fhir:v "Cardiologist" ]
+       ] )
+     ] ;
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/example" ]
+     ]
+  ] ) ; # 
+  fhir:issuer [
+     fhir:identifier [
+       fhir:system [ fhir:v "http://myhospital/NamingSystem/departments"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "CARD_INTERMEDIATE_CARE" ]
+     ]
+  ] ; # 
+  fhir:account [
+     fhir:reference [ fhir:v "Account/example" ]
+  ] ; # 
+  fhir:totalNet [
+     fhir:value [ fhir:v "40"^^xsd:decimal ] ;
+     fhir:currency [ fhir:v "EUR" ]
+  ] ; # 
+  fhir:totalGross [
+     fhir:value [ fhir:v "48"^^xsd:decimal ] ;
+     fhir:currency [ fhir:v "EUR" ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

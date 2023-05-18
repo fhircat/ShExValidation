@@ -1,0 +1,27 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <Extension.shex>
+
+# unknown | asked | temp | notasked | masked | unsupported | astext | error
+<data-absent-reason> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:data-absent-reason];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/data-absent-reason"]}; 
+    fhir:v (@<code> AND
+    	{fhir:v @fhirvs:data-absent-reason} )  AND { rdf:type IRI } ; 
+    ^fhir:extension { a [fhir:Element]
+        }
+}  
+
+#---------------------- Value Sets ------------------------
+
+# Used to specify why the normally expected content of the data element is missing.
+fhirvs:data-absent-reason ["unknown" "asked-unknown" "temp-unknown" "not-asked" "asked-declined" "masked" "not-applicable" "unsupported" "as-text" "error" "not-a-number" "negative-infinity" "positive-infinity" "not-performed" "not-permitted"]
+

@@ -1,0 +1,599 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ValueSet ;
+  fhir:id [ fhir:v "concrete-fhir-types"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablevalueset" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "vocab" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "4" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/concrete-fhir-types"], [ fhir:v "http://hl7.org/fhir/ValueSet/concrete-fhir-types"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.3296" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.3296" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "ConcreteFHIRTypes"], [ fhir:v "ConcreteFHIRTypes"] ;
+  fhir:title [ fhir:v "Concrete FHIR Types"], [ fhir:v "Concrete FHIR Types"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "true"], [ fhir:v "true"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "FHIR Project team"], [ fhir:v "FHIR Project team"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "List of all non-abstract types, data types and resources"], [ fhir:v "List of all non-abstract types, data types and resources"] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:compose [
+     fhir:include ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/fhir-types" ] ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "Account" ]
+       ] [
+         fhir:code [ fhir:v "ActivityDefinition" ]
+       ] [
+         fhir:code [ fhir:v "ActorDefinition" ]
+       ] [
+         fhir:code [ fhir:v "Address" ]
+       ] [
+         fhir:code [ fhir:v "Address" ]
+       ] [
+         fhir:code [ fhir:v "AdministrableProductDefinition" ]
+       ] [
+         fhir:code [ fhir:v "AdverseEvent" ]
+       ] [
+         fhir:code [ fhir:v "Age" ]
+       ] [
+         fhir:code [ fhir:v "Age" ]
+       ] [
+         fhir:code [ fhir:v "AllergyIntolerance" ]
+       ] [
+         fhir:code [ fhir:v "Annotation" ]
+       ] [
+         fhir:code [ fhir:v "Annotation" ]
+       ] [
+         fhir:code [ fhir:v "Appointment" ]
+       ] [
+         fhir:code [ fhir:v "AppointmentResponse" ]
+       ] [
+         fhir:code [ fhir:v "ArtifactAssessment" ]
+       ] [
+         fhir:code [ fhir:v "Attachment" ]
+       ] [
+         fhir:code [ fhir:v "Attachment" ]
+       ] [
+         fhir:code [ fhir:v "AuditEvent" ]
+       ] [
+         fhir:code [ fhir:v "Availability" ]
+       ] [
+         fhir:code [ fhir:v "Availability" ]
+       ] [
+         fhir:code [ fhir:v "base64Binary" ]
+       ] [
+         fhir:code [ fhir:v "Basic" ]
+       ] [
+         fhir:code [ fhir:v "Binary" ]
+       ] [
+         fhir:code [ fhir:v "BiologicallyDerivedProduct" ]
+       ] [
+         fhir:code [ fhir:v "BiologicallyDerivedProductDispense" ]
+       ] [
+         fhir:code [ fhir:v "BodyStructure" ]
+       ] [
+         fhir:code [ fhir:v "boolean" ]
+       ] [
+         fhir:code [ fhir:v "Bundle" ]
+       ] [
+         fhir:code [ fhir:v "canonical" ]
+       ] [
+         fhir:code [ fhir:v "CapabilityStatement" ]
+       ] [
+         fhir:code [ fhir:v "CarePlan" ]
+       ] [
+         fhir:code [ fhir:v "CareTeam" ]
+       ] [
+         fhir:code [ fhir:v "ChargeItem" ]
+       ] [
+         fhir:code [ fhir:v "ChargeItemDefinition" ]
+       ] [
+         fhir:code [ fhir:v "Citation" ]
+       ] [
+         fhir:code [ fhir:v "Claim" ]
+       ] [
+         fhir:code [ fhir:v "ClaimResponse" ]
+       ] [
+         fhir:code [ fhir:v "ClinicalImpression" ]
+       ] [
+         fhir:code [ fhir:v "ClinicalUseDefinition" ]
+       ] [
+         fhir:code [ fhir:v "code" ]
+       ] [
+         fhir:code [ fhir:v "CodeableConcept" ]
+       ] [
+         fhir:code [ fhir:v "CodeableConcept" ]
+       ] [
+         fhir:code [ fhir:v "CodeableReference" ]
+       ] [
+         fhir:code [ fhir:v "CodeableReference" ]
+       ] [
+         fhir:code [ fhir:v "CodeSystem" ]
+       ] [
+         fhir:code [ fhir:v "Coding" ]
+       ] [
+         fhir:code [ fhir:v "Coding" ]
+       ] [
+         fhir:code [ fhir:v "Communication" ]
+       ] [
+         fhir:code [ fhir:v "CommunicationRequest" ]
+       ] [
+         fhir:code [ fhir:v "CompartmentDefinition" ]
+       ] [
+         fhir:code [ fhir:v "Composition" ]
+       ] [
+         fhir:code [ fhir:v "ConceptMap" ]
+       ] [
+         fhir:code [ fhir:v "Condition" ]
+       ] [
+         fhir:code [ fhir:v "ConditionDefinition" ]
+       ] [
+         fhir:code [ fhir:v "Consent" ]
+       ] [
+         fhir:code [ fhir:v "ContactDetail" ]
+       ] [
+         fhir:code [ fhir:v "ContactDetail" ]
+       ] [
+         fhir:code [ fhir:v "ContactPoint" ]
+       ] [
+         fhir:code [ fhir:v "ContactPoint" ]
+       ] [
+         fhir:code [ fhir:v "Contract" ]
+       ] [
+         fhir:code [ fhir:v "Contributor" ]
+       ] [
+         fhir:code [ fhir:v "Contributor" ]
+       ] [
+         fhir:code [ fhir:v "Count" ]
+       ] [
+         fhir:code [ fhir:v "Count" ]
+       ] [
+         fhir:code [ fhir:v "Coverage" ]
+       ] [
+         fhir:code [ fhir:v "CoverageEligibilityRequest" ]
+       ] [
+         fhir:code [ fhir:v "CoverageEligibilityResponse" ]
+       ] [
+         fhir:code [ fhir:v "DataRequirement" ]
+       ] [
+         fhir:code [ fhir:v "DataRequirement" ]
+       ] [
+         fhir:code [ fhir:v "date" ]
+       ] [
+         fhir:code [ fhir:v "dateTime" ]
+       ] [
+         fhir:code [ fhir:v "decimal" ]
+       ] [
+         fhir:code [ fhir:v "DetectedIssue" ]
+       ] [
+         fhir:code [ fhir:v "Device" ]
+       ] [
+         fhir:code [ fhir:v "DeviceAssociation" ]
+       ] [
+         fhir:code [ fhir:v "DeviceDefinition" ]
+       ] [
+         fhir:code [ fhir:v "DeviceDispense" ]
+       ] [
+         fhir:code [ fhir:v "DeviceMetric" ]
+       ] [
+         fhir:code [ fhir:v "DeviceRequest" ]
+       ] [
+         fhir:code [ fhir:v "DeviceUsage" ]
+       ] [
+         fhir:code [ fhir:v "DiagnosticReport" ]
+       ] [
+         fhir:code [ fhir:v "Distance" ]
+       ] [
+         fhir:code [ fhir:v "Distance" ]
+       ] [
+         fhir:code [ fhir:v "DocumentReference" ]
+       ] [
+         fhir:code [ fhir:v "Dosage" ]
+       ] [
+         fhir:code [ fhir:v "Dosage" ]
+       ] [
+         fhir:code [ fhir:v "Duration" ]
+       ] [
+         fhir:code [ fhir:v "Duration" ]
+       ] [
+         fhir:code [ fhir:v "ElementDefinition" ]
+       ] [
+         fhir:code [ fhir:v "ElementDefinition" ]
+       ] [
+         fhir:code [ fhir:v "Encounter" ]
+       ] [
+         fhir:code [ fhir:v "EncounterHistory" ]
+       ] [
+         fhir:code [ fhir:v "Endpoint" ]
+       ] [
+         fhir:code [ fhir:v "EnrollmentRequest" ]
+       ] [
+         fhir:code [ fhir:v "EnrollmentResponse" ]
+       ] [
+         fhir:code [ fhir:v "EpisodeOfCare" ]
+       ] [
+         fhir:code [ fhir:v "EventDefinition" ]
+       ] [
+         fhir:code [ fhir:v "Evidence" ]
+       ] [
+         fhir:code [ fhir:v "EvidenceReport" ]
+       ] [
+         fhir:code [ fhir:v "EvidenceVariable" ]
+       ] [
+         fhir:code [ fhir:v "ExampleScenario" ]
+       ] [
+         fhir:code [ fhir:v "ExplanationOfBenefit" ]
+       ] [
+         fhir:code [ fhir:v "Expression" ]
+       ] [
+         fhir:code [ fhir:v "Expression" ]
+       ] [
+         fhir:code [ fhir:v "ExtendedContactDetail" ]
+       ] [
+         fhir:code [ fhir:v "ExtendedContactDetail" ]
+       ] [
+         fhir:code [ fhir:v "Extension" ]
+       ] [
+         fhir:code [ fhir:v "Extension" ]
+       ] [
+         fhir:code [ fhir:v "FamilyMemberHistory" ]
+       ] [
+         fhir:code [ fhir:v "Flag" ]
+       ] [
+         fhir:code [ fhir:v "FormularyItem" ]
+       ] [
+         fhir:code [ fhir:v "GenomicStudy" ]
+       ] [
+         fhir:code [ fhir:v "Goal" ]
+       ] [
+         fhir:code [ fhir:v "GraphDefinition" ]
+       ] [
+         fhir:code [ fhir:v "Group" ]
+       ] [
+         fhir:code [ fhir:v "GuidanceResponse" ]
+       ] [
+         fhir:code [ fhir:v "HealthcareService" ]
+       ] [
+         fhir:code [ fhir:v "HumanName" ]
+       ] [
+         fhir:code [ fhir:v "HumanName" ]
+       ] [
+         fhir:code [ fhir:v "id" ]
+       ] [
+         fhir:code [ fhir:v "Identifier" ]
+       ] [
+         fhir:code [ fhir:v "Identifier" ]
+       ] [
+         fhir:code [ fhir:v "ImagingSelection" ]
+       ] [
+         fhir:code [ fhir:v "ImagingStudy" ]
+       ] [
+         fhir:code [ fhir:v "Immunization" ]
+       ] [
+         fhir:code [ fhir:v "ImmunizationEvaluation" ]
+       ] [
+         fhir:code [ fhir:v "ImmunizationRecommendation" ]
+       ] [
+         fhir:code [ fhir:v "ImplementationGuide" ]
+       ] [
+         fhir:code [ fhir:v "Ingredient" ]
+       ] [
+         fhir:code [ fhir:v "instant" ]
+       ] [
+         fhir:code [ fhir:v "InsurancePlan" ]
+       ] [
+         fhir:code [ fhir:v "integer" ]
+       ] [
+         fhir:code [ fhir:v "integer64" ]
+       ] [
+         fhir:code [ fhir:v "InventoryItem" ]
+       ] [
+         fhir:code [ fhir:v "InventoryReport" ]
+       ] [
+         fhir:code [ fhir:v "Invoice" ]
+       ] [
+         fhir:code [ fhir:v "Library" ]
+       ] [
+         fhir:code [ fhir:v "Linkage" ]
+       ] [
+         fhir:code [ fhir:v "List" ]
+       ] [
+         fhir:code [ fhir:v "Location" ]
+       ] [
+         fhir:code [ fhir:v "ManufacturedItemDefinition" ]
+       ] [
+         fhir:code [ fhir:v "markdown" ]
+       ] [
+         fhir:code [ fhir:v "MarketingStatus" ]
+       ] [
+         fhir:code [ fhir:v "MarketingStatus" ]
+       ] [
+         fhir:code [ fhir:v "Measure" ]
+       ] [
+         fhir:code [ fhir:v "MeasureReport" ]
+       ] [
+         fhir:code [ fhir:v "Medication" ]
+       ] [
+         fhir:code [ fhir:v "MedicationAdministration" ]
+       ] [
+         fhir:code [ fhir:v "MedicationDispense" ]
+       ] [
+         fhir:code [ fhir:v "MedicationKnowledge" ]
+       ] [
+         fhir:code [ fhir:v "MedicationRequest" ]
+       ] [
+         fhir:code [ fhir:v "MedicationStatement" ]
+       ] [
+         fhir:code [ fhir:v "MedicinalProductDefinition" ]
+       ] [
+         fhir:code [ fhir:v "MessageDefinition" ]
+       ] [
+         fhir:code [ fhir:v "MessageHeader" ]
+       ] [
+         fhir:code [ fhir:v "Meta" ]
+       ] [
+         fhir:code [ fhir:v "Meta" ]
+       ] [
+         fhir:code [ fhir:v "MolecularSequence" ]
+       ] [
+         fhir:code [ fhir:v "MonetaryComponent" ]
+       ] [
+         fhir:code [ fhir:v "MonetaryComponent" ]
+       ] [
+         fhir:code [ fhir:v "Money" ]
+       ] [
+         fhir:code [ fhir:v "Money" ]
+       ] [
+         fhir:code [ fhir:v "NamingSystem" ]
+       ] [
+         fhir:code [ fhir:v "Narrative" ]
+       ] [
+         fhir:code [ fhir:v "Narrative" ]
+       ] [
+         fhir:code [ fhir:v "NutritionIntake" ]
+       ] [
+         fhir:code [ fhir:v "NutritionOrder" ]
+       ] [
+         fhir:code [ fhir:v "NutritionProduct" ]
+       ] [
+         fhir:code [ fhir:v "Observation" ]
+       ] [
+         fhir:code [ fhir:v "ObservationDefinition" ]
+       ] [
+         fhir:code [ fhir:v "oid" ]
+       ] [
+         fhir:code [ fhir:v "OperationDefinition" ]
+       ] [
+         fhir:code [ fhir:v "OperationOutcome" ]
+       ] [
+         fhir:code [ fhir:v "Organization" ]
+       ] [
+         fhir:code [ fhir:v "OrganizationAffiliation" ]
+       ] [
+         fhir:code [ fhir:v "PackagedProductDefinition" ]
+       ] [
+         fhir:code [ fhir:v "ParameterDefinition" ]
+       ] [
+         fhir:code [ fhir:v "ParameterDefinition" ]
+       ] [
+         fhir:code [ fhir:v "Parameters" ]
+       ] [
+         fhir:code [ fhir:v "Patient" ]
+       ] [
+         fhir:code [ fhir:v "PaymentNotice" ]
+       ] [
+         fhir:code [ fhir:v "PaymentReconciliation" ]
+       ] [
+         fhir:code [ fhir:v "Period" ]
+       ] [
+         fhir:code [ fhir:v "Period" ]
+       ] [
+         fhir:code [ fhir:v "Permission" ]
+       ] [
+         fhir:code [ fhir:v "Person" ]
+       ] [
+         fhir:code [ fhir:v "PlanDefinition" ]
+       ] [
+         fhir:code [ fhir:v "positiveInt" ]
+       ] [
+         fhir:code [ fhir:v "Practitioner" ]
+       ] [
+         fhir:code [ fhir:v "PractitionerRole" ]
+       ] [
+         fhir:code [ fhir:v "Procedure" ]
+       ] [
+         fhir:code [ fhir:v "ProductShelfLife" ]
+       ] [
+         fhir:code [ fhir:v "ProductShelfLife" ]
+       ] [
+         fhir:code [ fhir:v "Provenance" ]
+       ] [
+         fhir:code [ fhir:v "Quantity" ]
+       ] [
+         fhir:code [ fhir:v "Quantity" ]
+       ] [
+         fhir:code [ fhir:v "Questionnaire" ]
+       ] [
+         fhir:code [ fhir:v "QuestionnaireResponse" ]
+       ] [
+         fhir:code [ fhir:v "Range" ]
+       ] [
+         fhir:code [ fhir:v "Range" ]
+       ] [
+         fhir:code [ fhir:v "Ratio" ]
+       ] [
+         fhir:code [ fhir:v "Ratio" ]
+       ] [
+         fhir:code [ fhir:v "RatioRange" ]
+       ] [
+         fhir:code [ fhir:v "RatioRange" ]
+       ] [
+         fhir:code [ fhir:v "Reference" ]
+       ] [
+         fhir:code [ fhir:v "Reference" ]
+       ] [
+         fhir:code [ fhir:v "RegulatedAuthorization" ]
+       ] [
+         fhir:code [ fhir:v "RelatedArtifact" ]
+       ] [
+         fhir:code [ fhir:v "RelatedArtifact" ]
+       ] [
+         fhir:code [ fhir:v "RelatedPerson" ]
+       ] [
+         fhir:code [ fhir:v "RequestOrchestration" ]
+       ] [
+         fhir:code [ fhir:v "Requirements" ]
+       ] [
+         fhir:code [ fhir:v "ResearchStudy" ]
+       ] [
+         fhir:code [ fhir:v "ResearchSubject" ]
+       ] [
+         fhir:code [ fhir:v "RiskAssessment" ]
+       ] [
+         fhir:code [ fhir:v "SampledData" ]
+       ] [
+         fhir:code [ fhir:v "SampledData" ]
+       ] [
+         fhir:code [ fhir:v "Schedule" ]
+       ] [
+         fhir:code [ fhir:v "SearchParameter" ]
+       ] [
+         fhir:code [ fhir:v "ServiceRequest" ]
+       ] [
+         fhir:code [ fhir:v "Signature" ]
+       ] [
+         fhir:code [ fhir:v "Signature" ]
+       ] [
+         fhir:code [ fhir:v "Slot" ]
+       ] [
+         fhir:code [ fhir:v "Specimen" ]
+       ] [
+         fhir:code [ fhir:v "SpecimenDefinition" ]
+       ] [
+         fhir:code [ fhir:v "string" ]
+       ] [
+         fhir:code [ fhir:v "StructureDefinition" ]
+       ] [
+         fhir:code [ fhir:v "StructureMap" ]
+       ] [
+         fhir:code [ fhir:v "Subscription" ]
+       ] [
+         fhir:code [ fhir:v "SubscriptionStatus" ]
+       ] [
+         fhir:code [ fhir:v "SubscriptionTopic" ]
+       ] [
+         fhir:code [ fhir:v "Substance" ]
+       ] [
+         fhir:code [ fhir:v "SubstanceDefinition" ]
+       ] [
+         fhir:code [ fhir:v "SubstanceNucleicAcid" ]
+       ] [
+         fhir:code [ fhir:v "SubstancePolymer" ]
+       ] [
+         fhir:code [ fhir:v "SubstanceProtein" ]
+       ] [
+         fhir:code [ fhir:v "SubstanceReferenceInformation" ]
+       ] [
+         fhir:code [ fhir:v "SubstanceSourceMaterial" ]
+       ] [
+         fhir:code [ fhir:v "SupplyDelivery" ]
+       ] [
+         fhir:code [ fhir:v "SupplyRequest" ]
+       ] [
+         fhir:code [ fhir:v "Task" ]
+       ] [
+         fhir:code [ fhir:v "TerminologyCapabilities" ]
+       ] [
+         fhir:code [ fhir:v "TestPlan" ]
+       ] [
+         fhir:code [ fhir:v "TestReport" ]
+       ] [
+         fhir:code [ fhir:v "TestScript" ]
+       ] [
+         fhir:code [ fhir:v "time" ]
+       ] [
+         fhir:code [ fhir:v "Timing" ]
+       ] [
+         fhir:code [ fhir:v "Timing" ]
+       ] [
+         fhir:code [ fhir:v "Transport" ]
+       ] [
+         fhir:code [ fhir:v "TriggerDefinition" ]
+       ] [
+         fhir:code [ fhir:v "TriggerDefinition" ]
+       ] [
+         fhir:code [ fhir:v "unsignedInt" ]
+       ] [
+         fhir:code [ fhir:v "uri" ]
+       ] [
+         fhir:code [ fhir:v "url" ]
+       ] [
+         fhir:code [ fhir:v "UsageContext" ]
+       ] [
+         fhir:code [ fhir:v "UsageContext" ]
+       ] [
+         fhir:code [ fhir:v "uuid" ]
+       ] [
+         fhir:code [ fhir:v "ValueSet" ]
+       ] [
+         fhir:code [ fhir:v "VerificationResult" ]
+       ] [
+         fhir:code [ fhir:v "VirtualServiceDetail" ]
+       ] [
+         fhir:code [ fhir:v "VirtualServiceDetail" ]
+       ] [
+         fhir:code [ fhir:v "VisionPrescription" ]
+       ] [
+         fhir:code [ fhir:v "xhtml" ]
+       ] )
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

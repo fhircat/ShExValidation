@@ -1,0 +1,42 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ServiceRequest ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">To be added</div>"
+  ] ; # 
+  fhir:status [ fhir:v "completed"] ; #   insert contents here  
+  fhir:intent [ fhir:v "order"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       a sct:103693007 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "103693007" ] ;
+       fhir:display [ fhir:v "Diagnostic procedure (procedure)" ]
+     ] ) ;
+     fhir:text [ fhir:v "Diagnostics Procedure" ]
+  ] ) ; # 
+  fhir:code [
+     fhir:concept [
+       fhir:coding ( [
+         a sct:303653007 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "303653007" ] ;
+         fhir:display [ fhir:v "Computed tomography of head" ]
+       ] )
+     ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

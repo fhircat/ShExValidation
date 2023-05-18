@@ -1,0 +1,381 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Claim ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "660152"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the Vision Claim for Glasses</div>"
+  ] ; # 
+  fhir:contained ( [
+     a fhir:Device ;
+     fhir:id [ fhir:v "device-frame" ]
+  ] [
+     a fhir:Device ;
+     fhir:id [ fhir:v "device-lens" ]
+  ] ) ; #   rest of the resource omitted for brevity  
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://happysight.com/claim"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "6612347" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:type [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/claim-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "vision" ]
+     ] )
+  ] ; # 
+  fhir:use [ fhir:v "claim"] ; # 
+  fhir:patient [
+     fhir:reference [ fhir:v "Patient/1" ]
+  ] ; # 
+  fhir:created [ fhir:v "2014-08-16"^^xsd:date] ; # 
+  fhir:insurer [
+     fhir:reference [ fhir:v "Organization/2" ]
+  ] ; # 
+  fhir:provider [
+     fhir:reference [ fhir:v "Organization/1" ]
+  ] ; # 
+  fhir:priority [
+     fhir:coding ( [
+       fhir:code [ fhir:v "normal" ]
+     ] )
+  ] ; # 
+  fhir:prescription [
+     fhir:link <http://www.optdocs.com/prescription/12345> ;
+     fhir:reference [ fhir:v "http://www.optdocs.com/prescription/12345" ]
+  ] ; # 
+  fhir:payee [
+     fhir:type [
+       fhir:coding ( [
+         fhir:code [ fhir:v "provider" ]
+       ] )
+     ]
+  ] ; # 
+  fhir:careTeam ( [
+     fhir:sequence [ fhir:v "1"^^xsd:positiveInteger ] ;
+     fhir:provider [
+       fhir:reference [ fhir:v "Practitioner/example" ]
+     ]
+  ] ) ; # 
+  fhir:diagnosis ( [
+     fhir:sequence [ fhir:v "1"^^xsd:positiveInteger ] ;
+     fhir:diagnosis [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         fhir:code [ fhir:v "654321" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:insurance ( [
+     fhir:sequence [ fhir:v "1"^^xsd:positiveInteger ] ; #   Patient's own coverage - primary  
+     fhir:focal [ fhir:v "false"^^xsd:boolean ] ;
+     fhir:coverage [
+       fhir:reference [ fhir:v "Coverage/9876B1" ]
+     ] ;
+     fhir:preAuthRef ( [ fhir:v "PR7652387237" ] ) ;
+     fhir:claimResponse [
+       fhir:reference [ fhir:v "ClaimResponse/R3500" ]
+     ]
+  ] [
+     fhir:sequence [ fhir:v "2"^^xsd:positiveInteger ] ; #   Spouses's own coverage - secondary  
+     fhir:focal [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:coverage [
+       fhir:reference [ fhir:v "Coverage/9876B1" ]
+     ] ;
+     fhir:preAuthRef ( [ fhir:v "AB543GTD7567" ] )
+  ] ) ; # 
+  fhir:item ( [
+     fhir:sequence [ fhir:v "1"^^xsd:positiveInteger ] ;
+     fhir:careTeamSequence ( [ fhir:v "1"^^xsd:positiveInteger ] ) ;
+     fhir:revenue [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/ex-revenue-center"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "0010" ] ;
+         fhir:display [ fhir:v "Vision Clinic" ]
+       ] )
+     ] ;
+     fhir:category [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://example.org/fhir/CodeSystem/benefit-subcategory"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "F6" ] ;
+         fhir:display [ fhir:v "Vision Coverage" ]
+       ] )
+     ] ;
+     fhir:productOrService [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://example.org/fhir/CodeSystem/ex-visionservice"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "glasses" ]
+       ] )
+     ] ;
+     fhir:modifier ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/modifiers"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "rooh" ]
+       ] )
+     ] ) ;
+     fhir:programCode ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/ex-programcode"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "none" ]
+       ] )
+     ] ) ;
+     fhir:serviced [ fhir:v "2014-08-16"^^xsd:date ] ;
+     fhir:unitPrice [
+       fhir:value [ fhir:v "235.40"^^xsd:decimal ] ;
+       fhir:currency [ fhir:v "USD" ]
+     ] ;
+     fhir:net [
+       fhir:value [ fhir:v "235.40"^^xsd:decimal ] ;
+       fhir:currency [ fhir:v "USD" ]
+     ] ;
+     fhir:detail ( [
+       fhir:sequence [ fhir:v "1"^^xsd:positiveInteger ] ;
+       fhir:revenue [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/ex-revenue-center"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "0010" ] ;
+           fhir:display [ fhir:v "Vision Clinic" ]
+         ] )
+       ] ;
+       fhir:category [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://example.org/fhir/CodeSystem/benefit-subcategory"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "F6" ] ;
+           fhir:display [ fhir:v "Vision Coverage" ]
+         ] )
+       ] ;
+       fhir:productOrService [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://example.org/fhir/CodeSystem/ex-visionservice"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "frame" ]
+         ] )
+       ] ;
+       fhir:modifier ( [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/modifiers"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "rooh" ]
+         ] )
+       ] ) ;
+       fhir:unitPrice [
+         fhir:value [ fhir:v "100.00"^^xsd:decimal ] ;
+         fhir:currency [ fhir:v "USD" ]
+       ] ;
+       fhir:factor [ fhir:v "1.1"^^xsd:decimal ] ;
+       fhir:net [
+         fhir:value [ fhir:v "110.00"^^xsd:decimal ] ;
+         fhir:currency [ fhir:v "USD" ]
+       ] ; #   10% surcharge for out of hours work  
+       fhir:udi ( [
+         fhir:reference [ fhir:v "#device-frame" ]
+       ] )
+     ] [
+       fhir:sequence [ fhir:v "2"^^xsd:positiveInteger ] ;
+       fhir:revenue [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/ex-revenue-center"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "0010" ] ;
+           fhir:display [ fhir:v "Vision Clinic" ]
+         ] )
+       ] ;
+       fhir:category [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://example.org/fhir/CodeSystem/benefit-subcategory"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "F6" ] ;
+           fhir:display [ fhir:v "Vision Coverage" ]
+         ] )
+       ] ;
+       fhir:productOrService [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://example.org/fhir/CodeSystem/ex-visionservice"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "lens" ]
+         ] )
+       ] ;
+       fhir:programCode ( [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/ex-programcode"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "none" ]
+         ] )
+       ] ) ;
+       fhir:quantity [
+         fhir:value [ fhir:v "2"^^xsd:decimal ]
+       ] ;
+       fhir:unitPrice [
+         fhir:value [ fhir:v "55.00"^^xsd:decimal ] ;
+         fhir:currency [ fhir:v "USD" ]
+       ] ;
+       fhir:net [
+         fhir:value [ fhir:v "110.00"^^xsd:decimal ] ;
+         fhir:currency [ fhir:v "USD" ]
+       ] ;
+       fhir:subDetail ( [
+         fhir:sequence [ fhir:v "1"^^xsd:positiveInteger ] ;
+         fhir:revenue [
+           fhir:coding ( [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/ex-revenue-center"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "0010" ] ;
+             fhir:display [ fhir:v "Vision Clinic" ]
+           ] )
+         ] ;
+         fhir:category [
+           fhir:coding ( [
+             fhir:system [ fhir:v "http://example.org/fhir/CodeSystem/benefit-subcategory"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "F6" ] ;
+             fhir:display [ fhir:v "Vision Coverage" ]
+           ] )
+         ] ;
+         fhir:productOrService [
+           fhir:coding ( [
+             fhir:system [ fhir:v "http://example.org/fhir/CodeSystem/ex-visionservice"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "lens" ]
+           ] )
+         ] ;
+         fhir:modifier ( [
+           fhir:coding ( [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/modifiers"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "rooh" ]
+           ] )
+         ] ) ;
+         fhir:programCode ( [
+           fhir:coding ( [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/ex-programcode"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "none" ]
+           ] )
+         ] ) ;
+         fhir:quantity [
+           fhir:value [ fhir:v "2"^^xsd:decimal ]
+         ] ;
+         fhir:unitPrice [
+           fhir:value [ fhir:v "30.00"^^xsd:decimal ] ;
+           fhir:currency [ fhir:v "USD" ]
+         ] ;
+         fhir:factor [ fhir:v "1.1"^^xsd:decimal ] ;
+         fhir:net [
+           fhir:value [ fhir:v "66.00"^^xsd:decimal ] ;
+           fhir:currency [ fhir:v "USD" ]
+         ] ; #   10% surchage for out of hours work  
+         fhir:udi ( [
+           fhir:reference [ fhir:v "#device-lens" ]
+         ] )
+       ] [
+         fhir:sequence [ fhir:v "2"^^xsd:positiveInteger ] ;
+         fhir:revenue [
+           fhir:coding ( [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/ex-revenue-center"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "0010" ] ;
+             fhir:display [ fhir:v "Vision Clinic" ]
+           ] )
+         ] ;
+         fhir:category [
+           fhir:coding ( [
+             fhir:system [ fhir:v "http://example.org/fhir/CodeSystem/benefit-subcategory"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "F6" ] ;
+             fhir:display [ fhir:v "Vision Coverage" ]
+           ] )
+         ] ;
+         fhir:productOrService [
+           fhir:coding ( [
+             fhir:system [ fhir:v "http://example.org/fhir/CodeSystem/ex-visionservice"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "hardening" ]
+           ] )
+         ] ;
+         fhir:modifier ( [
+           fhir:coding ( [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/modifiers"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "rooh" ]
+           ] )
+         ] ) ;
+         fhir:quantity [
+           fhir:value [ fhir:v "2"^^xsd:decimal ]
+         ] ;
+         fhir:unitPrice [
+           fhir:value [ fhir:v "15.00"^^xsd:decimal ] ;
+           fhir:currency [ fhir:v "USD" ]
+         ] ;
+         fhir:factor [ fhir:v "1.1"^^xsd:decimal ] ;
+         fhir:net [
+           fhir:value [ fhir:v "33.00"^^xsd:decimal ] ;
+           fhir:currency [ fhir:v "USD" ]
+         ] #   10% surchage for out of hours work  
+       ] [
+         fhir:sequence [ fhir:v "3"^^xsd:positiveInteger ] ;
+         fhir:revenue [
+           fhir:coding ( [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/ex-revenue-center"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "0010" ] ;
+             fhir:display [ fhir:v "Vision Clinic" ]
+           ] )
+         ] ;
+         fhir:category [
+           fhir:coding ( [
+             fhir:system [ fhir:v "http://example.org/fhir/CodeSystem/benefit-subcategory"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "F6" ] ;
+             fhir:display [ fhir:v "Vision Coverage" ]
+           ] )
+         ] ;
+         fhir:productOrService [
+           fhir:coding ( [
+             fhir:system [ fhir:v "http://example.org/fhir/CodeSystem/ex-visionservice"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "UV coating" ]
+           ] )
+         ] ;
+         fhir:modifier ( [
+           fhir:coding ( [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/modifiers"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "rooh" ]
+           ] )
+         ] ) ;
+         fhir:quantity [
+           fhir:value [ fhir:v "2"^^xsd:decimal ]
+         ] ;
+         fhir:unitPrice [
+           fhir:value [ fhir:v "5.00"^^xsd:decimal ] ;
+           fhir:currency [ fhir:v "USD" ]
+         ] ;
+         fhir:factor [ fhir:v "1.1"^^xsd:decimal ] ;
+         fhir:net [
+           fhir:value [ fhir:v "11.00"^^xsd:decimal ] ;
+           fhir:currency [ fhir:v "USD" ]
+         ] #   10% surchage for out of hours work  
+       ] )
+     ] [
+       fhir:sequence [ fhir:v "3"^^xsd:positiveInteger ] ;
+       fhir:revenue [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/ex-revenue-center"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "0010" ] ;
+           fhir:display [ fhir:v "Vision Clinic" ]
+         ] )
+       ] ;
+       fhir:category [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://example.org/fhir/CodeSystem/benefit-subcategory"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "F6" ] ;
+           fhir:display [ fhir:v "Vision Coverage" ]
+         ] )
+       ] ;
+       fhir:productOrService [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://example.org/fhir/CodeSystem/ex-visionservice"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "fst" ]
+         ] )
+       ] ;
+       fhir:unitPrice [
+         fhir:value [ fhir:v "220.00"^^xsd:decimal ] ;
+         fhir:currency [ fhir:v "USD" ]
+       ] ;
+       fhir:factor [ fhir:v "0.07"^^xsd:decimal ] ;
+       fhir:net [
+         fhir:value [ fhir:v "15.40"^^xsd:decimal ] ;
+         fhir:currency [ fhir:v "USD" ]
+       ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

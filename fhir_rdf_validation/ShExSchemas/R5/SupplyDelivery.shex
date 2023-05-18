@@ -1,0 +1,100 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Period.shex>
+IMPORT <Timing.shex>
+IMPORT <Device.shex>
+IMPORT <Patient.shex>
+IMPORT <dateTime.shex>
+IMPORT <Location.shex>
+IMPORT <Quantity.shex>
+IMPORT <Contract.shex>
+IMPORT <Reference.shex>
+IMPORT <Substance.shex>
+IMPORT <Medication.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <SupplyRequest.shex>
+IMPORT <DomainResource.shex>
+IMPORT <SupplyDelivery.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <PractitionerRole.shex>
+
+
+start=@<SupplyDelivery> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Delivery of bulk Supplies
+<SupplyDelivery> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:SupplyDelivery];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # External identifier
+    fhir:basedOn @<OneOrMore_Reference_SupplyRequest>?;  # Fulfills plan, proposal or order
+    fhir:partOf @<OneOrMore_Reference_Contract_OR_SupplyDelivery>?;  # Part of referenced event
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:supplydelivery-status}?;  # in-progress | completed | 
+                                            # abandoned | entered-in-error 
+    fhir:patient @<Reference> AND {fhir:link 
+    			@<Patient> }?;  # Patient for whom the item is 
+                                            # supplied 
+    fhir:type @<CodeableConcept>?;          # Category of dispense event
+    fhir:suppliedItem @<BackboneElement>?;  # The item that is delivered or 
+                                            # supplied 
+    fhir:occurrence (@<dateTime>  OR 
+    			@<Period>  OR 
+    			@<Timing> )  AND { rdf:type IRI } ?;  # When event occurred
+    fhir:supplier @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> }?;  # Dispenser
+    fhir:destination @<Reference> AND {fhir:link 
+    			@<Location> }?;  # Where the Supply was sent
+    fhir:receiver @<OneOrMore_Reference_Practitioner_OR_PractitionerRole>?;  # Who collected the Supply
+}  
+
+# The item that is delivered or supplied
+<SupplyDelivery.suppliedItem> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:quantity @<Quantity>?;             # Amount dispensed
+    fhir:item (@<CodeableConcept>  OR 
+    			(@<Reference>  AND {fhir:link @<Medication> OR 
+    			 @<Substance> OR 
+    			 @<Device> }) )  AND { rdf:type IRI } ?;  # Medication, Substance, or Device 
+                                            # supplied 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_Reference_SupplyRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<SupplyRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_SupplyRequest> 
+}
+
+<OneOrMore_Reference_Contract_OR_SupplyDelivery> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Contract> OR 
+			@<SupplyDelivery> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Contract_OR_SupplyDelivery> 
+}
+
+<OneOrMore_Reference_Practitioner_OR_PractitionerRole> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Practitioner> OR 
+			@<PractitionerRole> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Practitioner_OR_PractitionerRole> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Status of the supply delivery.
+fhirvs:supplydelivery-status ["in-progress" "completed" "abandoned" "entered-in-error"]
+

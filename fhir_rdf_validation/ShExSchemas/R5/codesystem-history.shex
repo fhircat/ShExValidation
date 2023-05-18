@@ -1,0 +1,44 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Extension.shex>
+
+# What has happened over time
+<codesystem-history> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:codesystem-history];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:name @<Extension>?; 
+    fhir:revision @<OneOrMore_Extension>?; 
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/codesystem-history"]}; 
+    ^fhir:extension { a [fhir:CodeSystem]
+        }
+}  
+
+# Version marker after the change was made
+<Element.extension> EXTENDS @<Extension> CLOSED {   
+}  
+
+# Who made the change
+<Element.extension> EXTENDS @<Extension> CLOSED {   
+}  
+
+# Information about the change
+<Element.extension> EXTENDS @<Extension> CLOSED {   
+}  
+
+# Date the change was made
+<Element.extension> EXTENDS @<Extension> CLOSED {   
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Extension> CLOSED {
+    rdf:first @<Extension>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Extension> 
+}
+

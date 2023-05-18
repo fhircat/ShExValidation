@@ -1,0 +1,2584 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ValueSet ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "ucum-common"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <ul>\n        <li>Include these codes as defined in \n          <a href=\"http://unitsofmeasure.org\">\n            <code>http://unitsofmeasure.org</code>\n          </a>\n          <table class=\"none\">\n            <tr>\n              <td style=\"white-space:nowrap\">\n                <b>Code</b>\n              </td>\n              <td>\n                <b>Display</b>\n              </td>\n            </tr>\n            <tr>\n              <td>%</td>\n              <td>percent</td>\n            </tr>\n            <tr>\n              <td>%/100</td>\n              <td>percent / 100</td>\n            </tr>\n            <tr>\n              <td>%[slope]</td>\n              <td>percent of slope</td>\n            </tr>\n            <tr>\n              <td>/(12.h)</td>\n              <td>per 12 * hour</td>\n            </tr>\n            <tr>\n              <td>/(2.h)</td>\n              <td>per 2 hour</td>\n            </tr>\n            <tr>\n              <td>/10*10</td>\n              <td>PerTenGiga</td>\n            </tr>\n            <tr>\n              <td>/10*12</td>\n              <td>PerTrillion</td>\n            </tr>\n            <tr>\n              <td>/10*3</td>\n              <td>per thousand</td>\n            </tr>\n            <tr>\n              <td>/10*4</td>\n              <td>per 10 thousand</td>\n            </tr>\n            <tr>\n              <td>/10*6</td>\n              <td>PerMillion</td>\n            </tr>\n            <tr>\n              <td>/10*9</td>\n              <td>PerBillion</td>\n            </tr>\n            <tr>\n              <td>/100</td>\n              <td>per 100</td>\n            </tr>\n            <tr>\n              <td>/100.g</td>\n              <td>per 100 gram</td>\n            </tr>\n            <tr>\n              <td>/L</td>\n              <td>per liter</td>\n            </tr>\n            <tr>\n              <td>/U</td>\n              <td>per enzyme unit</td>\n            </tr>\n            <tr>\n              <td>/[HPF]</td>\n              <td>per high power field</td>\n            </tr>\n            <tr>\n              <td>/[HPF]</td>\n              <td>per hpf</td>\n            </tr>\n            <tr>\n              <td>/[IU]</td>\n              <td>per international unit</td>\n            </tr>\n            <tr>\n              <td>/[LPF]</td>\n              <td>per low power field</td>\n            </tr>\n            <tr>\n              <td>/[LPF]</td>\n              <td>per LPF</td>\n            </tr>\n            <tr>\n              <td>/[arb'U]</td>\n              <td>per arbitrary unit</td>\n            </tr>\n            <tr>\n              <td>/[iU]</td>\n              <td>per international unit</td>\n            </tr>\n            <tr>\n              <td>/a</td>\n              <td>/ year</td>\n            </tr>\n            <tr>\n              <td>/cm[H2O]</td>\n              <td>per centimeter of water</td>\n            </tr>\n            <tr>\n              <td>/d</td>\n              <td>per day</td>\n            </tr>\n            <tr>\n              <td>/dL</td>\n              <td>per deciliter</td>\n            </tr>\n            <tr>\n              <td>/g</td>\n              <td>per gram</td>\n            </tr>\n            <tr>\n              <td>/h</td>\n              <td>per hour</td>\n            </tr>\n            <tr>\n              <td>/kg</td>\n              <td>per kilogram</td>\n            </tr>\n            <tr>\n              <td>/m2</td>\n              <td>per square meter</td>\n            </tr>\n            <tr>\n              <td>/m3</td>\n              <td>per cubic meter</td>\n            </tr>\n            <tr>\n              <td>/mL</td>\n              <td>per milliliter</td>\n            </tr>\n            <tr>\n              <td>/mg</td>\n              <td>per milligram</td>\n            </tr>\n            <tr>\n              <td>/min</td>\n              <td>per minute</td>\n            </tr>\n            <tr>\n              <td>/min/10*3</td>\n              <td>per minute per thousand</td>\n            </tr>\n            <tr>\n              <td>/mm</td>\n              <td>per millimeter</td>\n            </tr>\n            <tr>\n              <td>/mm3</td>\n              <td>per cubic millimeter</td>\n            </tr>\n            <tr>\n              <td>/mmol</td>\n              <td>per millimole</td>\n            </tr>\n            <tr>\n              <td>/mo</td>\n              <td>per month</td>\n            </tr>\n            <tr>\n              <td>/s</td>\n              <td>per second</td>\n            </tr>\n            <tr>\n              <td>/uL</td>\n              <td>per microliter</td>\n            </tr>\n            <tr>\n              <td>/ug</td>\n              <td>per microgram</td>\n            </tr>\n            <tr>\n              <td>/wk</td>\n              <td>per week</td>\n            </tr>\n            <tr>\n              <td>1</td>\n              <td>1*</td>\n            </tr>\n            <tr>\n              <td>1/d</td>\n              <td>one per day</td>\n            </tr>\n            <tr>\n              <td>1/min</td>\n              <td>one per minute</td>\n            </tr>\n            <tr>\n              <td>10*</td>\n              <td>the number ten for arbitrary powers</td>\n            </tr>\n            <tr>\n              <td>10*-3</td>\n              <td>(the number ten for arbitrary powers ^ -3)</td>\n            </tr>\n            <tr>\n              <td>10*-6</td>\n              <td>the number ten for arbitrary powers ^ -6</td>\n            </tr>\n            <tr>\n              <td>10*12/L</td>\n              <td>trillion per liter</td>\n            </tr>\n            <tr>\n              <td>10*3</td>\n              <td>Thousand</td>\n            </tr>\n            <tr>\n              <td>10*3.U</td>\n              <td>Thousand Per * Unit</td>\n            </tr>\n            <tr>\n              <td>10*3/L</td>\n              <td>Thousand Per Liter</td>\n            </tr>\n            <tr>\n              <td>10*3/mL</td>\n              <td>Thousand Per MilliLiter</td>\n            </tr>\n            <tr>\n              <td>10*3/uL</td>\n              <td>Thousands Per MicroLiter</td>\n            </tr>\n            <tr>\n              <td>10*4/uL</td>\n              <td>10 thousand per microliter</td>\n            </tr>\n            <tr>\n              <td>10*5</td>\n              <td>OneHundredThousand</td>\n            </tr>\n            <tr>\n              <td>10*6</td>\n              <td>Million</td>\n            </tr>\n            <tr>\n              <td>10*6.U</td>\n              <td>(the number ten for arbitrary powers ^ 6) * Unit</td>\n            </tr>\n            <tr>\n              <td>10*6.[CFU]/L</td>\n              <td>million colony forming unit per liter</td>\n            </tr>\n            <tr>\n              <td>10*6.[IU]</td>\n              <td>million international unit</td>\n            </tr>\n            <tr>\n              <td>10*6.[iU]</td>\n              <td>MillionInternationalUnit</td>\n            </tr>\n            <tr>\n              <td>10*6.eq/mL</td>\n              <td>MillionEquivalentsPerMilliLiter</td>\n            </tr>\n            <tr>\n              <td>10*6/(24.h)</td>\n              <td>million per 24 hour</td>\n            </tr>\n            <tr>\n              <td>10*6/L</td>\n              <td>million per liter</td>\n            </tr>\n            <tr>\n              <td>10*6/kg</td>\n              <td>million per kilogram</td>\n            </tr>\n            <tr>\n              <td>10*6/mL</td>\n              <td>million per milliliter</td>\n            </tr>\n            <tr>\n              <td>10*6/mm3</td>\n              <td>(the number ten for arbitrary powers ^ 6) / (millimeter ^ 3)</td>\n            </tr>\n            <tr>\n              <td>10*6/uL</td>\n              <td>million per microliter</td>\n            </tr>\n            <tr>\n              <td>10*8</td>\n              <td>TenToEighth</td>\n            </tr>\n            <tr>\n              <td>10*9/L</td>\n              <td>billion per liter</td>\n            </tr>\n            <tr>\n              <td>10*9/mL</td>\n              <td>billion per milliliter</td>\n            </tr>\n            <tr>\n              <td>10*9/uL</td>\n              <td>billion per microliter</td>\n            </tr>\n            <tr>\n              <td>10.L/(min.m2)</td>\n              <td>10 liter per minute per square meter</td>\n            </tr>\n            <tr>\n              <td>10.L/min</td>\n              <td>10 liter per minute</td>\n            </tr>\n            <tr>\n              <td>10.uN.s/(cm.m2)</td>\n              <td>10 * microNewton * second / centimeter * (meter ^ 2)</td>\n            </tr>\n            <tr>\n              <td>10.uN.s/(cm5.m2)</td>\n              <td>10 micronewton second per centimeter to the fifth power per square meter</td>\n            </tr>\n            <tr>\n              <td>10.uN.s/cm</td>\n              <td>10 * microNewton * second / centimeter</td>\n            </tr>\n            <tr>\n              <td>10.uN.s/cm2</td>\n              <td>10 * microNewton * second / (centimeter ^ 2)</td>\n            </tr>\n            <tr>\n              <td>10^</td>\n              <td>the number ten for arbitrary powers</td>\n            </tr>\n            <tr>\n              <td>24.h</td>\n              <td>24 hour</td>\n            </tr>\n            <tr>\n              <td>A</td>\n              <td>Ampère</td>\n            </tr>\n            <tr>\n              <td>A/m</td>\n              <td>Ampère / meter</td>\n            </tr>\n            <tr>\n              <td>AU</td>\n              <td>astronomic unit</td>\n            </tr>\n            <tr>\n              <td>Ao</td>\n              <td>Ångström</td>\n            </tr>\n            <tr>\n              <td>B</td>\n              <td>bel</td>\n            </tr>\n            <tr>\n              <td>B[SPL]</td>\n              <td>bel sound pressure</td>\n            </tr>\n            <tr>\n              <td>B[V]</td>\n              <td>bel volt</td>\n            </tr>\n            <tr>\n              <td>B[W]</td>\n              <td>bel watt</td>\n            </tr>\n            <tr>\n              <td>B[kW]</td>\n              <td>bel kilowatt</td>\n            </tr>\n            <tr>\n              <td>B[mV]</td>\n              <td>bel millivolt</td>\n            </tr>\n            <tr>\n              <td>B[uV]</td>\n              <td>bel microvolt</td>\n            </tr>\n            <tr>\n              <td>Bd</td>\n              <td>baud</td>\n            </tr>\n            <tr>\n              <td>Bi</td>\n              <td>Biot</td>\n            </tr>\n            <tr>\n              <td>Bq</td>\n              <td>Becquerel</td>\n            </tr>\n            <tr>\n              <td>By</td>\n              <td>byte</td>\n            </tr>\n            <tr>\n              <td>C</td>\n              <td>Coulomb</td>\n            </tr>\n            <tr>\n              <td>Cel</td>\n              <td>degree Celsius</td>\n            </tr>\n            <tr>\n              <td>Ci</td>\n              <td>CURIE</td>\n            </tr>\n            <tr>\n              <td>F</td>\n              <td>Farad</td>\n            </tr>\n            <tr>\n              <td>G</td>\n              <td>Gauss</td>\n            </tr>\n            <tr>\n              <td>GBq</td>\n              <td>gigaBecquerel</td>\n            </tr>\n            <tr>\n              <td>Gal</td>\n              <td>Gal</td>\n            </tr>\n            <tr>\n              <td>Gb</td>\n              <td>Gilbert</td>\n            </tr>\n            <tr>\n              <td>Gy</td>\n              <td>Gray</td>\n            </tr>\n            <tr>\n              <td>H</td>\n              <td>Henry</td>\n            </tr>\n            <tr>\n              <td>Hz</td>\n              <td>Hertz</td>\n            </tr>\n            <tr>\n              <td>J</td>\n              <td>joule</td>\n            </tr>\n            <tr>\n              <td>J/L</td>\n              <td>joule per liter</td>\n            </tr>\n            <tr>\n              <td>K</td>\n              <td>Kelvin</td>\n            </tr>\n            <tr>\n              <td>K/W</td>\n              <td>Kelvin / Watt</td>\n            </tr>\n            <tr>\n              <td>Ky</td>\n              <td>Kayser</td>\n            </tr>\n            <tr>\n              <td>L</td>\n              <td>liter</td>\n            </tr>\n            <tr>\n              <td>L.s2/s</td>\n              <td>liter * (second ^ 2) / second</td>\n            </tr>\n            <tr>\n              <td>L/(24.h)</td>\n              <td>liter per 24 hour</td>\n            </tr>\n            <tr>\n              <td>L/(8.h)</td>\n              <td>liter per 8 hour</td>\n            </tr>\n            <tr>\n              <td>L/(min.m2)</td>\n              <td>liter per minute per square meter</td>\n            </tr>\n            <tr>\n              <td>L/L</td>\n              <td>liter per liter</td>\n            </tr>\n            <tr>\n              <td>L/d</td>\n              <td>liter per day</td>\n            </tr>\n            <tr>\n              <td>L/h</td>\n              <td>liter per hour</td>\n            </tr>\n            <tr>\n              <td>L/kg</td>\n              <td>liter per kilogram</td>\n            </tr>\n            <tr>\n              <td>L/min</td>\n              <td>liter per minute</td>\n            </tr>\n            <tr>\n              <td>L/s</td>\n              <td>liter / second</td>\n            </tr>\n            <tr>\n              <td>L/s/s2</td>\n              <td>liter per second per square second</td>\n            </tr>\n            <tr>\n              <td>Lmb</td>\n              <td>Lambert</td>\n            </tr>\n            <tr>\n              <td>MBq</td>\n              <td>megaBecquerel</td>\n            </tr>\n            <tr>\n              <td>Ms</td>\n              <td>megasecond</td>\n            </tr>\n            <tr>\n              <td>Mx</td>\n              <td>Maxwell</td>\n            </tr>\n            <tr>\n              <td>N</td>\n              <td>Newton</td>\n            </tr>\n            <tr>\n              <td>N.cm</td>\n              <td>Newton centimeter</td>\n            </tr>\n            <tr>\n              <td>N.s</td>\n              <td>Newton second</td>\n            </tr>\n            <tr>\n              <td>Np</td>\n              <td>neper</td>\n            </tr>\n            <tr>\n              <td>Oe</td>\n              <td>Oersted</td>\n            </tr>\n            <tr>\n              <td>Ohm</td>\n              <td>Ohm</td>\n            </tr>\n            <tr>\n              <td>Ohm.m</td>\n              <td>Ohm meter</td>\n            </tr>\n            <tr>\n              <td>P</td>\n              <td>Poise</td>\n            </tr>\n            <tr>\n              <td>Pa</td>\n              <td>Pascal</td>\n            </tr>\n            <tr>\n              <td>R</td>\n              <td>Roentgen</td>\n            </tr>\n            <tr>\n              <td>RAD</td>\n              <td>radiation absorbed dose</td>\n            </tr>\n            <tr>\n              <td>REM</td>\n              <td>radiation equivalent man</td>\n            </tr>\n            <tr>\n              <td>S</td>\n              <td>Siemens</td>\n            </tr>\n            <tr>\n              <td>St</td>\n              <td>Stokes</td>\n            </tr>\n            <tr>\n              <td>Sv</td>\n              <td>Sievert</td>\n            </tr>\n            <tr>\n              <td>T</td>\n              <td>Tesla</td>\n            </tr>\n            <tr>\n              <td>U</td>\n              <td>enzyme Unit</td>\n            </tr>\n            <tr>\n              <td>U/(1.h)</td>\n              <td>enzyme Unit per 1 hour</td>\n            </tr>\n            <tr>\n              <td>U/(10.g)</td>\n              <td>enzyme unit per 10 gram</td>\n            </tr>\n            <tr>\n              <td>U/(12.h)</td>\n              <td>enzyme unit per 12 hour</td>\n            </tr>\n            <tr>\n              <td>U/(18.h)</td>\n              <td>enzyme Unit per 18 hour</td>\n            </tr>\n            <tr>\n              <td>U/(2.h)</td>\n              <td>enzyme unit per 2 hour</td>\n            </tr>\n            <tr>\n              <td>U/(24.h)</td>\n              <td>enzyme unit per 24 hour</td>\n            </tr>\n            <tr>\n              <td>U/10</td>\n              <td>enzyme unit per 10</td>\n            </tr>\n            <tr>\n              <td>U/10*10</td>\n              <td>enzyme unit per 10 billion</td>\n            </tr>\n            <tr>\n              <td>U/10*12</td>\n              <td>enzyme unit per trillion</td>\n            </tr>\n            <tr>\n              <td>U/10*12</td>\n              <td>enzyme unit per trillion</td>\n            </tr>\n            <tr>\n              <td>U/10*6</td>\n              <td>enzyme unit per million</td>\n            </tr>\n            <tr>\n              <td>U/10*9</td>\n              <td>enzyme unit per billion</td>\n            </tr>\n            <tr>\n              <td>U/L</td>\n              <td>enzyme unit per liter</td>\n            </tr>\n            <tr>\n              <td>U/d</td>\n              <td>enzyme unit per day</td>\n            </tr>\n            <tr>\n              <td>U/dL</td>\n              <td>enzyme unit per deciliter</td>\n            </tr>\n            <tr>\n              <td>U/g</td>\n              <td>enzyme unit per gram</td>\n            </tr>\n            <tr>\n              <td>U/h</td>\n              <td>enzyme unit per hour</td>\n            </tr>\n            <tr>\n              <td>U/kg</td>\n              <td>enzyme unit per kilogram</td>\n            </tr>\n            <tr>\n              <td>U/kg/h</td>\n              <td>Unit / kilogram / hour</td>\n            </tr>\n            <tr>\n              <td>U/mL</td>\n              <td>enzyme unit per milliliter</td>\n            </tr>\n            <tr>\n              <td>U/min</td>\n              <td>enzyme unit per minute</td>\n            </tr>\n            <tr>\n              <td>U/mmol</td>\n              <td>enzyme unit per millimole</td>\n            </tr>\n            <tr>\n              <td>U/mol</td>\n              <td>enzyme Unit per mole</td>\n            </tr>\n            <tr>\n              <td>U/s</td>\n              <td>enzyme unit per second</td>\n            </tr>\n            <tr>\n              <td>U/umol</td>\n              <td>enzyme Unit per micromole</td>\n            </tr>\n            <tr>\n              <td>V</td>\n              <td>volt</td>\n            </tr>\n            <tr>\n              <td>W</td>\n              <td>Watt</td>\n            </tr>\n            <tr>\n              <td>Wb</td>\n              <td>Weber</td>\n            </tr>\n            <tr>\n              <td>[APL'U]</td>\n              <td>IgA anticardiolipin unit</td>\n            </tr>\n            <tr>\n              <td>[APL'U]/mL</td>\n              <td>IgA anticardiolipin unit per milliliter</td>\n            </tr>\n            <tr>\n              <td>[AU]</td>\n              <td>allergy unit</td>\n            </tr>\n            <tr>\n              <td>[Amb'a'1'U]</td>\n              <td>Amb a 1 units</td>\n            </tr>\n            <tr>\n              <td>[BAU]</td>\n              <td>bioequivalent allergen unit</td>\n            </tr>\n            <tr>\n              <td>[Btu]</td>\n              <td>British thermal unit</td>\n            </tr>\n            <tr>\n              <td>[Btu_39]</td>\n              <td>British thermal unit at 39 °F</td>\n            </tr>\n            <tr>\n              <td>[Btu_59]</td>\n              <td>British thermal unit at 59 °F</td>\n            </tr>\n            <tr>\n              <td>[Btu_60]</td>\n              <td>British thermal unit at 60 °F</td>\n            </tr>\n            <tr>\n              <td>[Btu_IT]</td>\n              <td>international table British thermal unit</td>\n            </tr>\n            <tr>\n              <td>[Btu_m]</td>\n              <td>mean British thermal unit</td>\n            </tr>\n            <tr>\n              <td>[Btu_th]</td>\n              <td>thermochemical British thermal unit</td>\n            </tr>\n            <tr>\n              <td>[CCID_50]</td>\n              <td>CELL CULTURE INFECTIOUS DOSE 50%</td>\n            </tr>\n            <tr>\n              <td>[CFU]</td>\n              <td>colony forming unit</td>\n            </tr>\n            <tr>\n              <td>[CFU]/L</td>\n              <td>colony forming unit per liter</td>\n            </tr>\n            <tr>\n              <td>[CFU]/mL</td>\n              <td>colony forming unit per milliliter</td>\n            </tr>\n            <tr>\n              <td>[Cal]</td>\n              <td>nutrition label Calories</td>\n            </tr>\n            <tr>\n              <td>[Ch]</td>\n              <td>French (catheter gauge)</td>\n            </tr>\n            <tr>\n              <td>[D'ag'U]</td>\n              <td>D-ANTIGEN UNITS</td>\n            </tr>\n            <tr>\n              <td>[FFU]</td>\n              <td>FOCUS-FORMING UNITS</td>\n            </tr>\n            <tr>\n              <td>[GPL'U]</td>\n              <td>IgG anticardiolipin unit</td>\n            </tr>\n            <tr>\n              <td>[GPL'U]/mL</td>\n              <td>IgG anticardiolipin unit per milliliter**</td>\n            </tr>\n            <tr>\n              <td>[G]</td>\n              <td>Newtonian constant of gravitation</td>\n            </tr>\n            <tr>\n              <td>[HPF]</td>\n              <td>high power field</td>\n            </tr>\n            <tr>\n              <td>[HP]</td>\n              <td>horsepower</td>\n            </tr>\n            <tr>\n              <td>[IU]</td>\n              <td>international unit</td>\n            </tr>\n            <tr>\n              <td>[IU]/(2.h)</td>\n              <td>international unit per 2 hour</td>\n            </tr>\n            <tr>\n              <td>[IU]/(24.h)</td>\n              <td>international unit per 24 hour</td>\n            </tr>\n            <tr>\n              <td>[IU]/10*9</td>\n              <td>international unit per billion</td>\n            </tr>\n            <tr>\n              <td>[IU]/L</td>\n              <td>international unit per liter</td>\n            </tr>\n            <tr>\n              <td>[IU]/d</td>\n              <td>international unit per day</td>\n            </tr>\n            <tr>\n              <td>[IU]/dL</td>\n              <td>international unit per deciliter</td>\n            </tr>\n            <tr>\n              <td>[IU]/g</td>\n              <td>international unit per gram</td>\n            </tr>\n            <tr>\n              <td>[IU]/h</td>\n              <td>international unit per hour</td>\n            </tr>\n            <tr>\n              <td>[IU]/kg</td>\n              <td>international unit per kilogram</td>\n            </tr>\n            <tr>\n              <td>[IU]/kg/d</td>\n              <td>international unit per kilogram per day</td>\n            </tr>\n            <tr>\n              <td>[IU]/mL</td>\n              <td>international unit per milliliter</td>\n            </tr>\n            <tr>\n              <td>[IU]/min</td>\n              <td>international unit per minute</td>\n            </tr>\n            <tr>\n              <td>[LPF]</td>\n              <td>low power field</td>\n            </tr>\n            <tr>\n              <td>[Lf]</td>\n              <td>LIMIT OF FLOCCULATION</td>\n            </tr>\n            <tr>\n              <td>[MET]</td>\n              <td>metabolic equivalent</td>\n            </tr>\n            <tr>\n              <td>[MPL'U]</td>\n              <td>IgM anticardiolipin unit</td>\n            </tr>\n            <tr>\n              <td>[MPL'U]/mL</td>\n              <td>IgM anticardiolipin unit per milliliter**</td>\n            </tr>\n            <tr>\n              <td>[PFU]</td>\n              <td>PLAQUE-FORMING UNITS</td>\n            </tr>\n            <tr>\n              <td>[PNU]</td>\n              <td>PROTEIN NITROGEN UNITS</td>\n            </tr>\n            <tr>\n              <td>[PRU]</td>\n              <td>peripheral vascular resistance unit</td>\n            </tr>\n            <tr>\n              <td>[S]</td>\n              <td>Svedberg unit</td>\n            </tr>\n            <tr>\n              <td>[TCID_50]</td>\n              <td>TISSUE CULTURE INFECTIOUS DOSE 50%</td>\n            </tr>\n            <tr>\n              <td>[USP'U]</td>\n              <td>UNITED STATES PHARMACOPEIA UNIT</td>\n            </tr>\n            <tr>\n              <td>[acr_br]</td>\n              <td>acre</td>\n            </tr>\n            <tr>\n              <td>[acr_us]</td>\n              <td>acre</td>\n            </tr>\n            <tr>\n              <td>[arb'U]</td>\n              <td>arbitrary unit</td>\n            </tr>\n            <tr>\n              <td>[arb'U]/L</td>\n              <td>arbitary unit / liter</td>\n            </tr>\n            <tr>\n              <td>[arb'U]/mL</td>\n              <td>arbitrary unit per milliliter</td>\n            </tr>\n            <tr>\n              <td>[bbl_us]</td>\n              <td>barrel</td>\n            </tr>\n            <tr>\n              <td>[bdsk'U]</td>\n              <td>Bodansky unit</td>\n            </tr>\n            <tr>\n              <td>[beth'U]</td>\n              <td>Bethesda unit</td>\n            </tr>\n            <tr>\n              <td>[beth'U]</td>\n              <td>Bethesda unit</td>\n            </tr>\n            <tr>\n              <td>[bf_i]</td>\n              <td>board foot</td>\n            </tr>\n            <tr>\n              <td>[bu_br]</td>\n              <td>bushel</td>\n            </tr>\n            <tr>\n              <td>[bu_us]</td>\n              <td>bushel</td>\n            </tr>\n            <tr>\n              <td>[c]</td>\n              <td>velocity of light</td>\n            </tr>\n            <tr>\n              <td>[car_Au]</td>\n              <td>carat of gold alloys</td>\n            </tr>\n            <tr>\n              <td>[car_m]</td>\n              <td>metric carat</td>\n            </tr>\n            <tr>\n              <td>[cft_i]</td>\n              <td>cubic foot</td>\n            </tr>\n            <tr>\n              <td>[ch_br]</td>\n              <td>Gunter's chain</td>\n            </tr>\n            <tr>\n              <td>[ch_us]</td>\n              <td>Gunter's chain Surveyor's chain</td>\n            </tr>\n            <tr>\n              <td>[cicero]</td>\n              <td>cicero Didot's pica</td>\n            </tr>\n            <tr>\n              <td>[cin_i]</td>\n              <td>cubic inch</td>\n            </tr>\n            <tr>\n              <td>[cml_i]</td>\n              <td>circular mil</td>\n            </tr>\n            <tr>\n              <td>[cr_i]</td>\n              <td>cord</td>\n            </tr>\n            <tr>\n              <td>[crd_us]</td>\n              <td>cord</td>\n            </tr>\n            <tr>\n              <td>[cup_us]</td>\n              <td>cup</td>\n            </tr>\n            <tr>\n              <td>[cyd_i]</td>\n              <td>cubic yard</td>\n            </tr>\n            <tr>\n              <td>[degF]</td>\n              <td>degree Fahrenheit</td>\n            </tr>\n            <tr>\n              <td>[didot]</td>\n              <td>didot Didot's point</td>\n            </tr>\n            <tr>\n              <td>[diop]</td>\n              <td>diopter</td>\n            </tr>\n            <tr>\n              <td>[dpt_us]</td>\n              <td>dry pint</td>\n            </tr>\n            <tr>\n              <td>[dqt_us]</td>\n              <td>dry quart</td>\n            </tr>\n            <tr>\n              <td>[dr_ap]</td>\n              <td>dram drachm</td>\n            </tr>\n            <tr>\n              <td>[dr_av]</td>\n              <td>Dram (US and British)</td>\n            </tr>\n            <tr>\n              <td>[drp]</td>\n              <td>drop</td>\n            </tr>\n            <tr>\n              <td>[drp]/[HPF]</td>\n              <td>drop / HPF</td>\n            </tr>\n            <tr>\n              <td>[drp]/h</td>\n              <td>drop / hour</td>\n            </tr>\n            <tr>\n              <td>[drp]/mL</td>\n              <td>drop / milliliter</td>\n            </tr>\n            <tr>\n              <td>[drp]/min</td>\n              <td>drop / minute</td>\n            </tr>\n            <tr>\n              <td>[drp]/s</td>\n              <td>drop / second</td>\n            </tr>\n            <tr>\n              <td>[dye'U]</td>\n              <td>Dye unit</td>\n            </tr>\n            <tr>\n              <td>[e]</td>\n              <td>elementary charge</td>\n            </tr>\n            <tr>\n              <td>[eps_0]</td>\n              <td>permittivity of vacuum</td>\n            </tr>\n            <tr>\n              <td>[fdr_br]</td>\n              <td>fluid dram</td>\n            </tr>\n            <tr>\n              <td>[fdr_us]</td>\n              <td>fluid dram</td>\n            </tr>\n            <tr>\n              <td>[foz_br]</td>\n              <td>fluid ounce</td>\n            </tr>\n            <tr>\n              <td>[foz_us]</td>\n              <td>fluid ounce</td>\n            </tr>\n            <tr>\n              <td>[ft_br]</td>\n              <td>foot</td>\n            </tr>\n            <tr>\n              <td>[ft_i]</td>\n              <td>Feet</td>\n            </tr>\n            <tr>\n              <td>[ft_us]</td>\n              <td>foot</td>\n            </tr>\n            <tr>\n              <td>[fth_br]</td>\n              <td>fathom</td>\n            </tr>\n            <tr>\n              <td>[fth_i]</td>\n              <td>fathom</td>\n            </tr>\n            <tr>\n              <td>[fth_us]</td>\n              <td>fathom</td>\n            </tr>\n            <tr>\n              <td>[fur_us]</td>\n              <td>furlong</td>\n            </tr>\n            <tr>\n              <td>[gal_br]</td>\n              <td>gallon</td>\n            </tr>\n            <tr>\n              <td>[gal_us]</td>\n              <td>Queen Anne's wine gallon</td>\n            </tr>\n            <tr>\n              <td>[gal_wi]</td>\n              <td>historical winchester gallon</td>\n            </tr>\n            <tr>\n              <td>[gil_br]</td>\n              <td>gill</td>\n            </tr>\n            <tr>\n              <td>[gil_us]</td>\n              <td>gill</td>\n            </tr>\n            <tr>\n              <td>[gr]</td>\n              <td>grain</td>\n            </tr>\n            <tr>\n              <td>[h]</td>\n              <td>Planck constant</td>\n            </tr>\n            <tr>\n              <td>[hd_i]</td>\n              <td>hand</td>\n            </tr>\n            <tr>\n              <td>[hnsf'U]</td>\n              <td>Hounsfield unit</td>\n            </tr>\n            <tr>\n              <td>[hp_C]</td>\n              <td>HOMEOPATHIC POTENCY OF CENTESIMAL SERIES</td>\n            </tr>\n            <tr>\n              <td>[hp_M]</td>\n              <td>HOMEOPATHIC POTENCY OF MILLESIMAL SERIES</td>\n            </tr>\n            <tr>\n              <td>[hp_Q]</td>\n              <td>HOMEOPATHIC POTENCY OF QUINTAMILLESIMAL SERIES</td>\n            </tr>\n            <tr>\n              <td>[hp_X]</td>\n              <td>HOMEOPATHIC POTENCY OF DECIMAL SERIES</td>\n            </tr>\n            <tr>\n              <td>[iU]</td>\n              <td>international unit</td>\n            </tr>\n            <tr>\n              <td>[iU]</td>\n              <td>international unit</td>\n            </tr>\n            <tr>\n              <td>[iU]/L</td>\n              <td>InternationalUnitsPerLiter</td>\n            </tr>\n            <tr>\n              <td>[iU]/dL</td>\n              <td>InternationalUnitsPerDeciLiter</td>\n            </tr>\n            <tr>\n              <td>[iU]/g</td>\n              <td>InternationalUnitsPerGram</td>\n            </tr>\n            <tr>\n              <td>[iU]/kg</td>\n              <td>InternationalUnitsPerKilogram</td>\n            </tr>\n            <tr>\n              <td>[iU]/mL</td>\n              <td>InternationalUnitsPerMilliLiter</td>\n            </tr>\n            <tr>\n              <td>[in_br]</td>\n              <td>inch</td>\n            </tr>\n            <tr>\n              <td>[in_i'H2O]</td>\n              <td>inch (international) of water</td>\n            </tr>\n            <tr>\n              <td>[in_i'Hg]</td>\n              <td>inch of mercury column</td>\n            </tr>\n            <tr>\n              <td>[in_i]</td>\n              <td>inch (international)</td>\n            </tr>\n            <tr>\n              <td>[in_us]</td>\n              <td>inch</td>\n            </tr>\n            <tr>\n              <td>[k]</td>\n              <td>Boltzmann constant</td>\n            </tr>\n            <tr>\n              <td>[ka'U]</td>\n              <td>King Armstrong unit</td>\n            </tr>\n            <tr>\n              <td>[kn_br]</td>\n              <td>knot</td>\n            </tr>\n            <tr>\n              <td>[kn_i]</td>\n              <td>knot</td>\n            </tr>\n            <tr>\n              <td>[knk'U]</td>\n              <td>Kunkel unit</td>\n            </tr>\n            <tr>\n              <td>[kp_C]</td>\n              <td>HOMEOPATHIC POTENCY OF CENTESIMAL KORSAKOVIAN SERIES</td>\n            </tr>\n            <tr>\n              <td>[lb_ap]</td>\n              <td>pound</td>\n            </tr>\n            <tr>\n              <td>[lb_av]</td>\n              <td>pound (US and British)</td>\n            </tr>\n            <tr>\n              <td>[lb_tr]</td>\n              <td>pound</td>\n            </tr>\n            <tr>\n              <td>[lbf_av]</td>\n              <td>pound force</td>\n            </tr>\n            <tr>\n              <td>[lcwt_av]</td>\n              <td>long hunderdweight British hundredweight</td>\n            </tr>\n            <tr>\n              <td>[ligne]</td>\n              <td>ligne French line</td>\n            </tr>\n            <tr>\n              <td>[lk_br]</td>\n              <td>link for Gunter's chain</td>\n            </tr>\n            <tr>\n              <td>[lk_us]</td>\n              <td>link for Gunter's chain</td>\n            </tr>\n            <tr>\n              <td>[lne]</td>\n              <td>line</td>\n            </tr>\n            <tr>\n              <td>[lton_av]</td>\n              <td>long ton British ton</td>\n            </tr>\n            <tr>\n              <td>[ly]</td>\n              <td>light-year</td>\n            </tr>\n            <tr>\n              <td>[m_e]</td>\n              <td>electron mass</td>\n            </tr>\n            <tr>\n              <td>[m_p]</td>\n              <td>proton mass</td>\n            </tr>\n            <tr>\n              <td>[mclg'U]</td>\n              <td>Mac Lagan unit</td>\n            </tr>\n            <tr>\n              <td>[mesh_i]</td>\n              <td>mesh</td>\n            </tr>\n            <tr>\n              <td>[mi_br]</td>\n              <td>mile</td>\n            </tr>\n            <tr>\n              <td>[mi_i]</td>\n              <td>statute mile</td>\n            </tr>\n            <tr>\n              <td>[mi_us]</td>\n              <td>mile</td>\n            </tr>\n            <tr>\n              <td>[mil_i]</td>\n              <td>mil</td>\n            </tr>\n            <tr>\n              <td>[mil_us]</td>\n              <td>mil</td>\n            </tr>\n            <tr>\n              <td>[min_br]</td>\n              <td>minim</td>\n            </tr>\n            <tr>\n              <td>[min_us]</td>\n              <td>minim</td>\n            </tr>\n            <tr>\n              <td>[mu_0]</td>\n              <td>permeability of vacuum</td>\n            </tr>\n            <tr>\n              <td>[nmi_br]</td>\n              <td>nautical mile</td>\n            </tr>\n            <tr>\n              <td>[nmi_i]</td>\n              <td>nautical mile</td>\n            </tr>\n            <tr>\n              <td>[oz_ap]</td>\n              <td>ounce (US and British)</td>\n            </tr>\n            <tr>\n              <td>[oz_av]</td>\n              <td>ounce (US and British)</td>\n            </tr>\n            <tr>\n              <td>[oz_tr]</td>\n              <td>ounce</td>\n            </tr>\n            <tr>\n              <td>[p'diop]</td>\n              <td>prism diopter</td>\n            </tr>\n            <tr>\n              <td>[pH]</td>\n              <td>pH</td>\n            </tr>\n            <tr>\n              <td>[pc_br]</td>\n              <td>pace</td>\n            </tr>\n            <tr>\n              <td>[pca]</td>\n              <td>pica</td>\n            </tr>\n            <tr>\n              <td>[pca_pr]</td>\n              <td>Printer's pica</td>\n            </tr>\n            <tr>\n              <td>[pi]</td>\n              <td>the number pi</td>\n            </tr>\n            <tr>\n              <td>[pi].rad/min</td>\n              <td>the number pi * radian / minute</td>\n            </tr>\n            <tr>\n              <td>[pied]</td>\n              <td>pied French foot</td>\n            </tr>\n            <tr>\n              <td>[pk_br]</td>\n              <td>peck</td>\n            </tr>\n            <tr>\n              <td>[pk_us]</td>\n              <td>peck</td>\n            </tr>\n            <tr>\n              <td>[pnt]</td>\n              <td>point</td>\n            </tr>\n            <tr>\n              <td>[pnt_pr]</td>\n              <td>Printer's point</td>\n            </tr>\n            <tr>\n              <td>[pouce]</td>\n              <td>pouce French inch</td>\n            </tr>\n            <tr>\n              <td>[ppb]</td>\n              <td>part per billion</td>\n            </tr>\n            <tr>\n              <td>[ppm]</td>\n              <td>part per million</td>\n            </tr>\n            <tr>\n              <td>[ppth]</td>\n              <td>parts per thousand</td>\n            </tr>\n            <tr>\n              <td>[pptr]</td>\n              <td>part per trillion</td>\n            </tr>\n            <tr>\n              <td>[pptr]</td>\n              <td>parts per trillion</td>\n            </tr>\n            <tr>\n              <td>[psi]</td>\n              <td>pound per square inch</td>\n            </tr>\n            <tr>\n              <td>[pt_br]</td>\n              <td>pint</td>\n            </tr>\n            <tr>\n              <td>[pt_us]</td>\n              <td>pint</td>\n            </tr>\n            <tr>\n              <td>[pwt_tr]</td>\n              <td>pennyweight</td>\n            </tr>\n            <tr>\n              <td>[qt_br]</td>\n              <td>quart</td>\n            </tr>\n            <tr>\n              <td>[qt_us]</td>\n              <td>quart</td>\n            </tr>\n            <tr>\n              <td>[rch_us]</td>\n              <td>Ramden's chain Engineer's chain</td>\n            </tr>\n            <tr>\n              <td>[rd_br]</td>\n              <td>rod</td>\n            </tr>\n            <tr>\n              <td>[rd_us]</td>\n              <td>rod</td>\n            </tr>\n            <tr>\n              <td>[rlk_us]</td>\n              <td>link for Ramden's chain</td>\n            </tr>\n            <tr>\n              <td>[sc_ap]</td>\n              <td>scruple</td>\n            </tr>\n            <tr>\n              <td>[sct]</td>\n              <td>section</td>\n            </tr>\n            <tr>\n              <td>[scwt_av]</td>\n              <td>short hundredweight U.S. hundredweight</td>\n            </tr>\n            <tr>\n              <td>[sft_i]</td>\n              <td>square foot (international)</td>\n            </tr>\n            <tr>\n              <td>[sin_i]</td>\n              <td>square inch (international)</td>\n            </tr>\n            <tr>\n              <td>[smgy'U]</td>\n              <td>Somogyi unit</td>\n            </tr>\n            <tr>\n              <td>[smi_us]</td>\n              <td>square mile</td>\n            </tr>\n            <tr>\n              <td>[smoot]</td>\n              <td>Smoot</td>\n            </tr>\n            <tr>\n              <td>[srd_us]</td>\n              <td>square rod</td>\n            </tr>\n            <tr>\n              <td>[ston_av]</td>\n              <td>short ton U.S. ton</td>\n            </tr>\n            <tr>\n              <td>[stone_av]</td>\n              <td>stone British stone</td>\n            </tr>\n            <tr>\n              <td>[syd_i]</td>\n              <td>square yard</td>\n            </tr>\n            <tr>\n              <td>[tb'U]</td>\n              <td>tuberculin unit</td>\n            </tr>\n            <tr>\n              <td>[tbs_us]</td>\n              <td>tablespoon (US)</td>\n            </tr>\n            <tr>\n              <td>[todd'U]</td>\n              <td>Todd unit</td>\n            </tr>\n            <tr>\n              <td>[todd'U]</td>\n              <td>Todd unit</td>\n            </tr>\n            <tr>\n              <td>[tsp_us]</td>\n              <td>teaspoon</td>\n            </tr>\n            <tr>\n              <td>[twp]</td>\n              <td>township</td>\n            </tr>\n            <tr>\n              <td>[yd_br]</td>\n              <td>yard</td>\n            </tr>\n            <tr>\n              <td>[yd_i]</td>\n              <td>yard</td>\n            </tr>\n            <tr>\n              <td>[yd_us]</td>\n              <td>yard</td>\n            </tr>\n            <tr>\n              <td>a</td>\n              <td>year</td>\n            </tr>\n            <tr>\n              <td>a_g</td>\n              <td>mean Gregorian year</td>\n            </tr>\n            <tr>\n              <td>a_j</td>\n              <td>mean Julian year</td>\n            </tr>\n            <tr>\n              <td>a_t</td>\n              <td>tropical year</td>\n            </tr>\n            <tr>\n              <td>ag</td>\n              <td>attogram</td>\n            </tr>\n            <tr>\n              <td>ar</td>\n              <td>are</td>\n            </tr>\n            <tr>\n              <td>atm</td>\n              <td>standard atmosphere</td>\n            </tr>\n            <tr>\n              <td>att</td>\n              <td>technical atmosphere</td>\n            </tr>\n            <tr>\n              <td>b</td>\n              <td>barn</td>\n            </tr>\n            <tr>\n              <td>bar</td>\n              <td>bar</td>\n            </tr>\n            <tr>\n              <td>bit</td>\n              <td>bit</td>\n            </tr>\n            <tr>\n              <td>bit_s</td>\n              <td>bit</td>\n            </tr>\n            <tr>\n              <td>cL</td>\n              <td>centiliter</td>\n            </tr>\n            <tr>\n              <td>cP</td>\n              <td>centiPoise</td>\n            </tr>\n            <tr>\n              <td>cSt</td>\n              <td>centiStokes</td>\n            </tr>\n            <tr>\n              <td>cal</td>\n              <td>calorie</td>\n            </tr>\n            <tr>\n              <td>cal_IT</td>\n              <td>international table calorie</td>\n            </tr>\n            <tr>\n              <td>cal_[15]</td>\n              <td>calorie at 15 °C</td>\n            </tr>\n            <tr>\n              <td>cal_[20]</td>\n              <td>calorie at 20 °C</td>\n            </tr>\n            <tr>\n              <td>cal_m</td>\n              <td>mean calorie</td>\n            </tr>\n            <tr>\n              <td>cal_th</td>\n              <td>thermochemical calorie</td>\n            </tr>\n            <tr>\n              <td>cd</td>\n              <td>candela</td>\n            </tr>\n            <tr>\n              <td>cg</td>\n              <td>centigram</td>\n            </tr>\n            <tr>\n              <td>circ</td>\n              <td>circle</td>\n            </tr>\n            <tr>\n              <td>cm</td>\n              <td>centimeter</td>\n            </tr>\n            <tr>\n              <td>cm2</td>\n              <td>square centimeter</td>\n            </tr>\n            <tr>\n              <td>cm2/s</td>\n              <td>square centimeter per second</td>\n            </tr>\n            <tr>\n              <td>cm3</td>\n              <td>cubic centimeter</td>\n            </tr>\n            <tr>\n              <td>cm[H2O]</td>\n              <td>centimeter of water</td>\n            </tr>\n            <tr>\n              <td>cm[H2O]/(s.m)</td>\n              <td>centimeter of water column / second * meter</td>\n            </tr>\n            <tr>\n              <td>cm[H2O]/L/s</td>\n              <td>centimeter of water per liter per second</td>\n            </tr>\n            <tr>\n              <td>cm[H2O]/s/m</td>\n              <td>centimeter of water per second per meter</td>\n            </tr>\n            <tr>\n              <td>cm[Hg]</td>\n              <td>centimeter of mercury</td>\n            </tr>\n            <tr>\n              <td>d</td>\n              <td>day</td>\n            </tr>\n            <tr>\n              <td>dB</td>\n              <td>decibel</td>\n            </tr>\n            <tr>\n              <td>dL</td>\n              <td>deciliter</td>\n            </tr>\n            <tr>\n              <td>daL/min</td>\n              <td>dekaliter per minute</td>\n            </tr>\n            <tr>\n              <td>daL/min/m2</td>\n              <td>dekaliter per minute per square meter</td>\n            </tr>\n            <tr>\n              <td>deg</td>\n              <td>degree</td>\n            </tr>\n            <tr>\n              <td>deg/s</td>\n              <td>degree per second</td>\n            </tr>\n            <tr>\n              <td>dg</td>\n              <td>decigram</td>\n            </tr>\n            <tr>\n              <td>dm</td>\n              <td>decimeter</td>\n            </tr>\n            <tr>\n              <td>dm2/s2</td>\n              <td>square decimeter per square second</td>\n            </tr>\n            <tr>\n              <td>dyn</td>\n              <td>dyne</td>\n            </tr>\n            <tr>\n              <td>dyn.s/(cm.m2)</td>\n              <td>dyne second per centimeter per square meter</td>\n            </tr>\n            <tr>\n              <td>dyn.s/cm</td>\n              <td>dyne second per centimeter</td>\n            </tr>\n            <tr>\n              <td>eV</td>\n              <td>electronvolt</td>\n            </tr>\n            <tr>\n              <td>eq</td>\n              <td>equivalents</td>\n            </tr>\n            <tr>\n              <td>eq/L</td>\n              <td>equivalents / liter</td>\n            </tr>\n            <tr>\n              <td>eq/mL</td>\n              <td>equivalents / milliliter</td>\n            </tr>\n            <tr>\n              <td>eq/mmol</td>\n              <td>equivalents / millimole</td>\n            </tr>\n            <tr>\n              <td>eq/umol</td>\n              <td>equivalents / micromole</td>\n            </tr>\n            <tr>\n              <td>erg</td>\n              <td>erg</td>\n            </tr>\n            <tr>\n              <td>fL</td>\n              <td>femtoliter</td>\n            </tr>\n            <tr>\n              <td>fL/nL</td>\n              <td>femtoliter / nanoliter</td>\n            </tr>\n            <tr>\n              <td>fg</td>\n              <td>femtogram</td>\n            </tr>\n            <tr>\n              <td>fm</td>\n              <td>femtometer</td>\n            </tr>\n            <tr>\n              <td>fmol</td>\n              <td>femtomole</td>\n            </tr>\n            <tr>\n              <td>fmol/L</td>\n              <td>femtomole per liter</td>\n            </tr>\n            <tr>\n              <td>fmol/g</td>\n              <td>femtomole per gram</td>\n            </tr>\n            <tr>\n              <td>fmol/mL</td>\n              <td>femtomole / milliliter</td>\n            </tr>\n            <tr>\n              <td>fmol/mg</td>\n              <td>femtomole / milligram</td>\n            </tr>\n            <tr>\n              <td>fmol/mg</td>\n              <td>femtomole per milligram</td>\n            </tr>\n            <tr>\n              <td>g</td>\n              <td>gram</td>\n            </tr>\n            <tr>\n              <td>g%</td>\n              <td>gram percent</td>\n            </tr>\n            <tr>\n              <td>g.m</td>\n              <td>gram * meter</td>\n            </tr>\n            <tr>\n              <td>g/(100.g)</td>\n              <td>gram per 100 gram</td>\n            </tr>\n            <tr>\n              <td>g/(12.h)</td>\n              <td>gram per 12 hour</td>\n            </tr>\n            <tr>\n              <td>g/(24.h)</td>\n              <td>gram per 24 hour</td>\n            </tr>\n            <tr>\n              <td>g/(3.d)</td>\n              <td>gram per 3 days</td>\n            </tr>\n            <tr>\n              <td>g/(4.h)</td>\n              <td>gram per 4 hour</td>\n            </tr>\n            <tr>\n              <td>g/(48.h)</td>\n              <td>gram per 48 hour</td>\n            </tr>\n            <tr>\n              <td>g/(5.h)</td>\n              <td>gram per 5 hour</td>\n            </tr>\n            <tr>\n              <td>g/(6.h)</td>\n              <td>gram per 6 hour</td>\n            </tr>\n            <tr>\n              <td>g/(72.h)</td>\n              <td>gram per 72 hour</td>\n            </tr>\n            <tr>\n              <td>g/(8.h)</td>\n              <td>gram / 8 * hour</td>\n            </tr>\n            <tr>\n              <td>g/(8.kg.h)</td>\n              <td>gram / 8 * kilogram * hour</td>\n            </tr>\n            <tr>\n              <td>g/(kg.h)</td>\n              <td>gram / kilogram * hour</td>\n            </tr>\n            <tr>\n              <td>g/(kg.min)</td>\n              <td>gram / kilogram * minute</td>\n            </tr>\n            <tr>\n              <td>g/L</td>\n              <td>gram per liter</td>\n            </tr>\n            <tr>\n              <td>g/cm3</td>\n              <td>gram per cubic centimeter</td>\n            </tr>\n            <tr>\n              <td>g/d</td>\n              <td>gram per day</td>\n            </tr>\n            <tr>\n              <td>g/dL</td>\n              <td>gram per deciliter</td>\n            </tr>\n            <tr>\n              <td>g/g</td>\n              <td>gram per gram</td>\n            </tr>\n            <tr>\n              <td>g/h</td>\n              <td>gram per hour</td>\n            </tr>\n            <tr>\n              <td>g/h/m2</td>\n              <td>gram per hour per square meter</td>\n            </tr>\n            <tr>\n              <td>g/kg</td>\n              <td>gram per kilogram</td>\n            </tr>\n            <tr>\n              <td>g/kg/(8.h)</td>\n              <td>gram per  kilogram per 8 hour</td>\n            </tr>\n            <tr>\n              <td>g/kg/d</td>\n              <td>gram per kilogram per day</td>\n            </tr>\n            <tr>\n              <td>g/kg/h</td>\n              <td>gram per kilogram per hour</td>\n            </tr>\n            <tr>\n              <td>g/kg/min</td>\n              <td>gram per kilogram per minute</td>\n            </tr>\n            <tr>\n              <td>g/m2</td>\n              <td>grams Per Square Meter</td>\n            </tr>\n            <tr>\n              <td>g/mL</td>\n              <td>gram per milliliter</td>\n            </tr>\n            <tr>\n              <td>g/mg</td>\n              <td>gram per milligram</td>\n            </tr>\n            <tr>\n              <td>g/min</td>\n              <td>gram per minute</td>\n            </tr>\n            <tr>\n              <td>g/mmol</td>\n              <td>gram per millimole</td>\n            </tr>\n            <tr>\n              <td>g/mol</td>\n              <td>gram per mole</td>\n            </tr>\n            <tr>\n              <td>gf</td>\n              <td>gram-force</td>\n            </tr>\n            <tr>\n              <td>gon</td>\n              <td>gon grade</td>\n            </tr>\n            <tr>\n              <td>h</td>\n              <td>hour</td>\n            </tr>\n            <tr>\n              <td>hL</td>\n              <td>hectoliter</td>\n            </tr>\n            <tr>\n              <td>kBq</td>\n              <td>kiloBecquerel</td>\n            </tr>\n            <tr>\n              <td>kL</td>\n              <td>kiloliter</td>\n            </tr>\n            <tr>\n              <td>kPa</td>\n              <td>kiloPascal</td>\n            </tr>\n            <tr>\n              <td>kU</td>\n              <td>kilo enzyme unit</td>\n            </tr>\n            <tr>\n              <td>kU/L</td>\n              <td>kiloenzyme Unit per liter</td>\n            </tr>\n            <tr>\n              <td>kU/g</td>\n              <td>kiloenzyme Unit per gram</td>\n            </tr>\n            <tr>\n              <td>kU/h</td>\n              <td>kiloUnit / hour</td>\n            </tr>\n            <tr>\n              <td>kU/mL</td>\n              <td>kilo enzyme unit per milliliter</td>\n            </tr>\n            <tr>\n              <td>k[IU]/L</td>\n              <td>kilo international unit per liter</td>\n            </tr>\n            <tr>\n              <td>k[IU]/mL</td>\n              <td>kilo international unit per milliliter</td>\n            </tr>\n            <tr>\n              <td>k[iU]/mL</td>\n              <td>KiloInternationalUnitsPerMilliLiter</td>\n            </tr>\n            <tr>\n              <td>kat</td>\n              <td>katal</td>\n            </tr>\n            <tr>\n              <td>kat/L</td>\n              <td>katal / liter</td>\n            </tr>\n            <tr>\n              <td>kat/kg</td>\n              <td>katal / kilogram</td>\n            </tr>\n            <tr>\n              <td>kcal</td>\n              <td>kilocalorie</td>\n            </tr>\n            <tr>\n              <td>kcal/(8.h)</td>\n              <td>kilocalorie / 8 * hour</td>\n            </tr>\n            <tr>\n              <td>kcal/[oz_av]</td>\n              <td>kilocalorie per ounce (US &amp; British)</td>\n            </tr>\n            <tr>\n              <td>kcal/d</td>\n              <td>kilocalorie per day</td>\n            </tr>\n            <tr>\n              <td>kcal/h</td>\n              <td>kilocalorie per hour</td>\n            </tr>\n            <tr>\n              <td>kcal/kg/(24.h)</td>\n              <td>kilocalorie per kilogram per 24 hour</td>\n            </tr>\n            <tr>\n              <td>kg</td>\n              <td>kilogram</td>\n            </tr>\n            <tr>\n              <td>kg.m/s</td>\n              <td>kilogram meter per second</td>\n            </tr>\n            <tr>\n              <td>kg/(s.m2)</td>\n              <td>kilogram per second per square meter</td>\n            </tr>\n            <tr>\n              <td>kg/L</td>\n              <td>kilogram per liter</td>\n            </tr>\n            <tr>\n              <td>kg/h</td>\n              <td>kilogram per hour</td>\n            </tr>\n            <tr>\n              <td>kg/m2</td>\n              <td>kilogram / (meter ^ 2)</td>\n            </tr>\n            <tr>\n              <td>kg/m3</td>\n              <td>kilogram / (meter ^ 3)</td>\n            </tr>\n            <tr>\n              <td>kg/min</td>\n              <td>kilogram / minute</td>\n            </tr>\n            <tr>\n              <td>kg/mol</td>\n              <td>kilogram per mole</td>\n            </tr>\n            <tr>\n              <td>kg/s</td>\n              <td>kilogram / second</td>\n            </tr>\n            <tr>\n              <td>km</td>\n              <td>kilometer</td>\n            </tr>\n            <tr>\n              <td>ks</td>\n              <td>kilosecond</td>\n            </tr>\n            <tr>\n              <td>lm</td>\n              <td>lumen</td>\n            </tr>\n            <tr>\n              <td>lm.m2</td>\n              <td>lumen square meter</td>\n            </tr>\n            <tr>\n              <td>lm/m2</td>\n              <td>lumen / (meter ^ 2)</td>\n            </tr>\n            <tr>\n              <td>lx</td>\n              <td>lux</td>\n            </tr>\n            <tr>\n              <td>m</td>\n              <td>meter</td>\n            </tr>\n            <tr>\n              <td>m/s</td>\n              <td>meter per second</td>\n            </tr>\n            <tr>\n              <td>m/s2</td>\n              <td>meter per square second</td>\n            </tr>\n            <tr>\n              <td>m2</td>\n              <td>square meter</td>\n            </tr>\n            <tr>\n              <td>m2/s</td>\n              <td>square meter per second</td>\n            </tr>\n            <tr>\n              <td>m3/s</td>\n              <td>cubic meter per second</td>\n            </tr>\n            <tr>\n              <td>mA</td>\n              <td>milliAmpère</td>\n            </tr>\n            <tr>\n              <td>mCi</td>\n              <td>milliCurie</td>\n            </tr>\n            <tr>\n              <td>mL</td>\n              <td>milliliter</td>\n            </tr>\n            <tr>\n              <td>mL/(10.h)</td>\n              <td>milliliter per 10 hour</td>\n            </tr>\n            <tr>\n              <td>mL/(12.h)</td>\n              <td>milliliter per 12 hour</td>\n            </tr>\n            <tr>\n              <td>mL/(2.h)</td>\n              <td>milliliter per 2 hour</td>\n            </tr>\n            <tr>\n              <td>mL/(24.h)</td>\n              <td>milliliter per 24 hour</td>\n            </tr>\n            <tr>\n              <td>mL/(4.h)</td>\n              <td>milliliter per 4 hour</td>\n            </tr>\n            <tr>\n              <td>mL/(5.h)</td>\n              <td>milliliter per 5 hour</td>\n            </tr>\n            <tr>\n              <td>mL/(6.h)</td>\n              <td>milliliter per 6 hour</td>\n            </tr>\n            <tr>\n              <td>mL/(72.h)</td>\n              <td>milliliter per 72 hour</td>\n            </tr>\n            <tr>\n              <td>mL/(8.h)</td>\n              <td>milliliter per 8 hour</td>\n            </tr>\n            <tr>\n              <td>mL/(kg.min)</td>\n              <td>milliliter / kilogram * minute</td>\n            </tr>\n            <tr>\n              <td>mL/L</td>\n              <td>milliliter per liter</td>\n            </tr>\n            <tr>\n              <td>mL/[sin_i]</td>\n              <td>milliliter per square inch (international)</td>\n            </tr>\n            <tr>\n              <td>mL/cm[H2O]</td>\n              <td>milliliter / centimeter of water column</td>\n            </tr>\n            <tr>\n              <td>mL/d</td>\n              <td>milliliter per day</td>\n            </tr>\n            <tr>\n              <td>mL/dL</td>\n              <td>milliliter per deciliter</td>\n            </tr>\n            <tr>\n              <td>mL/h</td>\n              <td>milliliter per hour</td>\n            </tr>\n            <tr>\n              <td>mL/kg</td>\n              <td>milliliter per kilogram</td>\n            </tr>\n            <tr>\n              <td>mL/kg/(8.h)</td>\n              <td>milliliter per kilogram per 8 hour</td>\n            </tr>\n            <tr>\n              <td>mL/kg/d</td>\n              <td>milliliter per kilogram per day</td>\n            </tr>\n            <tr>\n              <td>mL/kg/h</td>\n              <td>milliliter per kilogram per hour</td>\n            </tr>\n            <tr>\n              <td>mL/kg/min</td>\n              <td>milliliter per kilogram per minute</td>\n            </tr>\n            <tr>\n              <td>mL/m2</td>\n              <td>milliliter per square meter</td>\n            </tr>\n            <tr>\n              <td>mL/mbar</td>\n              <td>milliliter per millibar</td>\n            </tr>\n            <tr>\n              <td>mL/min</td>\n              <td>milliliter per minute</td>\n            </tr>\n            <tr>\n              <td>mL/min/(173.10*-2.m2)</td>\n              <td>milliliter / minute / 173 * (the number ten for arbitrary powers ^ -2) * (meter ^ 2)</td>\n            </tr>\n            <tr>\n              <td>mL/min/1.73.m2</td>\n              <td>milliliter per minute per 1.73 square meter</td>\n            </tr>\n            <tr>\n              <td>mL/min/m2</td>\n              <td>milliliter per minute per square meter</td>\n            </tr>\n            <tr>\n              <td>mL/mm</td>\n              <td>milliliter per millimeter</td>\n            </tr>\n            <tr>\n              <td>mL/s</td>\n              <td>milliliter per second</td>\n            </tr>\n            <tr>\n              <td>mPa</td>\n              <td>millipascal</td>\n            </tr>\n            <tr>\n              <td>mPa.s</td>\n              <td>millipascal second</td>\n            </tr>\n            <tr>\n              <td>mU</td>\n              <td>millienzyme Unit</td>\n            </tr>\n            <tr>\n              <td>mU/L</td>\n              <td>millienzyme Unit per liter</td>\n            </tr>\n            <tr>\n              <td>mU/g</td>\n              <td>millienzyme Unit per gram</td>\n            </tr>\n            <tr>\n              <td>mU/mL</td>\n              <td>millienzyme Unit per milliliter</td>\n            </tr>\n            <tr>\n              <td>mU/mL/min</td>\n              <td>millienzyme Unit per milliliter per minute</td>\n            </tr>\n            <tr>\n              <td>mU/mg</td>\n              <td>milliUnit / milligram</td>\n            </tr>\n            <tr>\n              <td>mU/min</td>\n              <td>milliUnit / minute</td>\n            </tr>\n            <tr>\n              <td>mU/mmol</td>\n              <td>millienzyme Unit per millimole</td>\n            </tr>\n            <tr>\n              <td>mV</td>\n              <td>milliVolt</td>\n            </tr>\n            <tr>\n              <td>m[H2O]</td>\n              <td>meter of water column</td>\n            </tr>\n            <tr>\n              <td>m[Hg]</td>\n              <td>meter of mercury column</td>\n            </tr>\n            <tr>\n              <td>m[IU]/L</td>\n              <td>milli international unit per liter</td>\n            </tr>\n            <tr>\n              <td>m[IU]/mL</td>\n              <td>milli international unit per milliliter</td>\n            </tr>\n            <tr>\n              <td>m[iU]</td>\n              <td>milliinternational unit</td>\n            </tr>\n            <tr>\n              <td>mbar</td>\n              <td>millibar</td>\n            </tr>\n            <tr>\n              <td>mbar.s/L</td>\n              <td>millibar second per liter</td>\n            </tr>\n            <tr>\n              <td>mbar/L/s</td>\n              <td>millibar per liter per second</td>\n            </tr>\n            <tr>\n              <td>meq</td>\n              <td>milliequivalent</td>\n            </tr>\n            <tr>\n              <td>meq/(12.h)</td>\n              <td>milliequivalent per 12 hour</td>\n            </tr>\n            <tr>\n              <td>meq/(2.h)</td>\n              <td>milliequivalent per 2 hour</td>\n            </tr>\n            <tr>\n              <td>meq/(24.h)</td>\n              <td>milliequivalent per 24 hour</td>\n            </tr>\n            <tr>\n              <td>meq/(8.h)</td>\n              <td>milliequivalent per 8 hour</td>\n            </tr>\n            <tr>\n              <td>meq/(8.h.kg)</td>\n              <td>milliequivalents / 8 * hour * kilogram</td>\n            </tr>\n            <tr>\n              <td>meq/(kg.d)</td>\n              <td>milliequivalents / kilogram * day</td>\n            </tr>\n            <tr>\n              <td>meq/L</td>\n              <td>milliequivalent per liter</td>\n            </tr>\n            <tr>\n              <td>meq/d</td>\n              <td>milliequivalent per day</td>\n            </tr>\n            <tr>\n              <td>meq/dL</td>\n              <td>milliequivalent per deciliter</td>\n            </tr>\n            <tr>\n              <td>meq/g</td>\n              <td>milliequivalent per gram</td>\n            </tr>\n            <tr>\n              <td>meq/h</td>\n              <td>milliequivalent per hour</td>\n            </tr>\n            <tr>\n              <td>meq/kg</td>\n              <td>milliequivalent per kilogram</td>\n            </tr>\n            <tr>\n              <td>meq/kg/h</td>\n              <td>milliequivalent per kilogram per hour</td>\n            </tr>\n            <tr>\n              <td>meq/kg/min</td>\n              <td>milliequivalents / kilogram / minute</td>\n            </tr>\n            <tr>\n              <td>meq/m2</td>\n              <td>milliequivalent per square meter</td>\n            </tr>\n            <tr>\n              <td>meq/mL</td>\n              <td>milliequivalent per milliliter</td>\n            </tr>\n            <tr>\n              <td>meq/min</td>\n              <td>milliequivalent per minute</td>\n            </tr>\n            <tr>\n              <td>mg</td>\n              <td>milligram</td>\n            </tr>\n            <tr>\n              <td>mg/(10.h)</td>\n              <td>milligram per 10 hour</td>\n            </tr>\n            <tr>\n              <td>mg/(12.h)</td>\n              <td>milligram per 12 hour</td>\n            </tr>\n            <tr>\n              <td>mg/(18.h)</td>\n              <td>milligram per 18 hour</td>\n            </tr>\n            <tr>\n              <td>mg/(2.h)</td>\n              <td>milligram per 2 hour</td>\n            </tr>\n            <tr>\n              <td>mg/(24.h)</td>\n              <td>milligram per 24 hour</td>\n            </tr>\n            <tr>\n              <td>mg/(6.h)</td>\n              <td>milligram per 6 hour</td>\n            </tr>\n            <tr>\n              <td>mg/(72.h)</td>\n              <td>milligram per 72 hour</td>\n            </tr>\n            <tr>\n              <td>mg/(8.h)</td>\n              <td>milligram per 8 hour</td>\n            </tr>\n            <tr>\n              <td>mg/(8.h.kg)</td>\n              <td>milligram / 8 * hour * kilogram</td>\n            </tr>\n            <tr>\n              <td>mg/(kg.h)</td>\n              <td>milligram / kilogram * hour</td>\n            </tr>\n            <tr>\n              <td>mg/L</td>\n              <td>milligram per liter</td>\n            </tr>\n            <tr>\n              <td>mg/d</td>\n              <td>milligram per day</td>\n            </tr>\n            <tr>\n              <td>mg/d/(173.10*-2.m2)</td>\n              <td>milligram / day / 173 * (the number ten for arbitrary powers ^ -2) * (meter ^ 2)</td>\n            </tr>\n            <tr>\n              <td>mg/d/1.73.m2</td>\n              <td>milligram per day per 1.73 square meter</td>\n            </tr>\n            <tr>\n              <td>mg/dL</td>\n              <td>milligram per deciliter</td>\n            </tr>\n            <tr>\n              <td>mg/g</td>\n              <td>milligram per gram</td>\n            </tr>\n            <tr>\n              <td>mg/h</td>\n              <td>milligram per hour</td>\n            </tr>\n            <tr>\n              <td>mg/kg</td>\n              <td>milligram per kilogram</td>\n            </tr>\n            <tr>\n              <td>mg/kg/(24.h)</td>\n              <td>milligram / kilogram / 24 * hour</td>\n            </tr>\n            <tr>\n              <td>mg/kg/(8.h)</td>\n              <td>milligram per kilogram per 8 hour</td>\n            </tr>\n            <tr>\n              <td>mg/kg/d</td>\n              <td>milligram per kilogram per day</td>\n            </tr>\n            <tr>\n              <td>mg/kg/h</td>\n              <td>milligram per kilogram per hour</td>\n            </tr>\n            <tr>\n              <td>mg/kg/min</td>\n              <td>milligram per kilogram per minute</td>\n            </tr>\n            <tr>\n              <td>mg/m2</td>\n              <td>milligram per square meter</td>\n            </tr>\n            <tr>\n              <td>mg/m3</td>\n              <td>milligram per cubic meter</td>\n            </tr>\n            <tr>\n              <td>mg/mL</td>\n              <td>milligram per milliliter</td>\n            </tr>\n            <tr>\n              <td>mg/mg</td>\n              <td>milligram per milligram</td>\n            </tr>\n            <tr>\n              <td>mg/min</td>\n              <td>milligram per minute</td>\n            </tr>\n            <tr>\n              <td>mg/mmol</td>\n              <td>milligram per millimole</td>\n            </tr>\n            <tr>\n              <td>mg/wk</td>\n              <td>milligram per week</td>\n            </tr>\n            <tr>\n              <td>mho</td>\n              <td>mho</td>\n            </tr>\n            <tr>\n              <td>min</td>\n              <td>minute</td>\n            </tr>\n            <tr>\n              <td>mm</td>\n              <td>millimeter</td>\n            </tr>\n            <tr>\n              <td>mm/h</td>\n              <td>millimeter per hour</td>\n            </tr>\n            <tr>\n              <td>mm/min</td>\n              <td>millimeter per minute</td>\n            </tr>\n            <tr>\n              <td>mm2</td>\n              <td>square millimeter</td>\n            </tr>\n            <tr>\n              <td>mm3</td>\n              <td>cubic millimeter</td>\n            </tr>\n            <tr>\n              <td>mm[H2O]</td>\n              <td>millimeter of water</td>\n            </tr>\n            <tr>\n              <td>mm[Hg]</td>\n              <td>millimeter of mercury</td>\n            </tr>\n            <tr>\n              <td>mmol</td>\n              <td>millimole</td>\n            </tr>\n            <tr>\n              <td>mmol/(12.h)</td>\n              <td>millimole per 12 hour</td>\n            </tr>\n            <tr>\n              <td>mmol/(18.h)</td>\n              <td>millimole per 18 hour</td>\n            </tr>\n            <tr>\n              <td>mmol/(2.h)</td>\n              <td>millimole per 2 hour</td>\n            </tr>\n            <tr>\n              <td>mmol/(24.h)</td>\n              <td>millimole per 24 hour</td>\n            </tr>\n            <tr>\n              <td>mmol/(5.h)</td>\n              <td>millimole per 5 hour</td>\n            </tr>\n            <tr>\n              <td>mmol/(6.h)</td>\n              <td>millimole per 6 hour</td>\n            </tr>\n            <tr>\n              <td>mmol/(8.h)</td>\n              <td>millimole per 8 hour</td>\n            </tr>\n            <tr>\n              <td>mmol/(8.h.kg)</td>\n              <td>millimole / 8 * hour * kilogram</td>\n            </tr>\n            <tr>\n              <td>mmol/L</td>\n              <td>millimole per liter</td>\n            </tr>\n            <tr>\n              <td>mmol/L/s</td>\n              <td>millimole per liter per second</td>\n            </tr>\n            <tr>\n              <td>mmol/d</td>\n              <td>millimole per day</td>\n            </tr>\n            <tr>\n              <td>mmol/dL</td>\n              <td>millimole per deciliter</td>\n            </tr>\n            <tr>\n              <td>mmol/g</td>\n              <td>millimole per gram</td>\n            </tr>\n            <tr>\n              <td>mmol/h</td>\n              <td>millimole per hour</td>\n            </tr>\n            <tr>\n              <td>mmol/h/mg</td>\n              <td>millimole per hour per milligram</td>\n            </tr>\n            <tr>\n              <td>mmol/kg</td>\n              <td>millimole per kilogram</td>\n            </tr>\n            <tr>\n              <td>mmol/kg/(8.h)</td>\n              <td>millimole per kilogram per 8 hour</td>\n            </tr>\n            <tr>\n              <td>mmol/kg/d</td>\n              <td>millimole per kilogram per day</td>\n            </tr>\n            <tr>\n              <td>mmol/kg/h</td>\n              <td>millimole per kilogram per hour</td>\n            </tr>\n            <tr>\n              <td>mmol/kg/min</td>\n              <td>millimole per kilogram per minute</td>\n            </tr>\n            <tr>\n              <td>mmol/m</td>\n              <td>millimole / meter</td>\n            </tr>\n            <tr>\n              <td>mmol/m2</td>\n              <td>millimole per square meter</td>\n            </tr>\n            <tr>\n              <td>mmol/min</td>\n              <td>millimole per minute</td>\n            </tr>\n            <tr>\n              <td>mmol/mmol</td>\n              <td>millimole per millimole</td>\n            </tr>\n            <tr>\n              <td>mmol/mol</td>\n              <td>millimole per mole</td>\n            </tr>\n            <tr>\n              <td>mmol/s/L</td>\n              <td>millimole per second per liter</td>\n            </tr>\n            <tr>\n              <td>mo</td>\n              <td>month</td>\n            </tr>\n            <tr>\n              <td>mo_g</td>\n              <td>mean Gregorian month</td>\n            </tr>\n            <tr>\n              <td>mo_j</td>\n              <td>mean Julian month</td>\n            </tr>\n            <tr>\n              <td>mo_s</td>\n              <td>synodal month</td>\n            </tr>\n            <tr>\n              <td>mol</td>\n              <td>mole</td>\n            </tr>\n            <tr>\n              <td>mol/L</td>\n              <td>mole per liter</td>\n            </tr>\n            <tr>\n              <td>mol/d</td>\n              <td>mole per day</td>\n            </tr>\n            <tr>\n              <td>mol/kg</td>\n              <td>mole per kilogram</td>\n            </tr>\n            <tr>\n              <td>mol/kg/s</td>\n              <td>mole per kilogram per second</td>\n            </tr>\n            <tr>\n              <td>mol/m3</td>\n              <td>mole per cubic meter</td>\n            </tr>\n            <tr>\n              <td>mol/mL</td>\n              <td>mole per milliliter</td>\n            </tr>\n            <tr>\n              <td>mol/mol</td>\n              <td>mole per mole</td>\n            </tr>\n            <tr>\n              <td>mol/s</td>\n              <td>mole per second</td>\n            </tr>\n            <tr>\n              <td>mosm</td>\n              <td>milliosmole</td>\n            </tr>\n            <tr>\n              <td>mosm/L</td>\n              <td>milliosmole per liter</td>\n            </tr>\n            <tr>\n              <td>mosm/kg</td>\n              <td>milliosmole per kilogram</td>\n            </tr>\n            <tr>\n              <td>ms</td>\n              <td>millisecond</td>\n            </tr>\n            <tr>\n              <td>nCi</td>\n              <td>nanoCurie</td>\n            </tr>\n            <tr>\n              <td>nL</td>\n              <td>nanoliter</td>\n            </tr>\n            <tr>\n              <td>nU/mL</td>\n              <td>nanoenzyme unit per milliliter</td>\n            </tr>\n            <tr>\n              <td>nU</td>\n              <td>nanoenzyme unit</td>\n            </tr>\n            <tr>\n              <td>ng</td>\n              <td>nanogram</td>\n            </tr>\n            <tr>\n              <td>ng/(24.h)</td>\n              <td>nanogram per 24 hour</td>\n            </tr>\n            <tr>\n              <td>ng/(8.h)</td>\n              <td>nanogram per 8 hour</td>\n            </tr>\n            <tr>\n              <td>ng/(8.h.kg)</td>\n              <td>nanogram / 8 * hour * kilogram</td>\n            </tr>\n            <tr>\n              <td>ng/(kg.d)</td>\n              <td>nanogram / kilogram * day</td>\n            </tr>\n            <tr>\n              <td>ng/(kg.h)</td>\n              <td>nanogram / kilogram * hour</td>\n            </tr>\n            <tr>\n              <td>ng/(kg.min)</td>\n              <td>nanogram / kilogram * minute</td>\n            </tr>\n            <tr>\n              <td>ng/10*6</td>\n              <td>nanogram per million</td>\n            </tr>\n            <tr>\n              <td>ng/L</td>\n              <td>nanogram per liter</td>\n            </tr>\n            <tr>\n              <td>ng/U</td>\n              <td>nanogram per enzyme unit</td>\n            </tr>\n            <tr>\n              <td>ng/d</td>\n              <td>nanogram per day</td>\n            </tr>\n            <tr>\n              <td>ng/dL</td>\n              <td>nanogram per deciliter</td>\n            </tr>\n            <tr>\n              <td>ng/dL/h</td>\n              <td>nanogram / deciliter / hour</td>\n            </tr>\n            <tr>\n              <td>ng/g</td>\n              <td>nanogram per gram</td>\n            </tr>\n            <tr>\n              <td>ng/h</td>\n              <td>nanogram per hour</td>\n            </tr>\n            <tr>\n              <td>ng/kg</td>\n              <td>nanogram per kilogram</td>\n            </tr>\n            <tr>\n              <td>ng/kg/(8.h)</td>\n              <td>nanogram per kilogram per 8 hour</td>\n            </tr>\n            <tr>\n              <td>ng/kg/h</td>\n              <td>nanogram per kilogram per hour</td>\n            </tr>\n            <tr>\n              <td>ng/kg/min</td>\n              <td>nanogram per kilogram per minute</td>\n            </tr>\n            <tr>\n              <td>ng/m2</td>\n              <td>nanogram per square meter</td>\n            </tr>\n            <tr>\n              <td>ng/mL</td>\n              <td>nanogram per milliliter</td>\n            </tr>\n            <tr>\n              <td>ng/mL/h</td>\n              <td>nanogram per milliliter per hour</td>\n            </tr>\n            <tr>\n              <td>ng/mg</td>\n              <td>nanogram per milligram</td>\n            </tr>\n            <tr>\n              <td>ng/mg/h</td>\n              <td>nanogram per milligram per hour</td>\n            </tr>\n            <tr>\n              <td>ng/min</td>\n              <td>nanogram per minute</td>\n            </tr>\n            <tr>\n              <td>ng/s</td>\n              <td>nanogram per second</td>\n            </tr>\n            <tr>\n              <td>nkat</td>\n              <td>nanokatal</td>\n            </tr>\n            <tr>\n              <td>nm</td>\n              <td>nanometer</td>\n            </tr>\n            <tr>\n              <td>nm/s/L</td>\n              <td>nanometer per second per liter</td>\n            </tr>\n            <tr>\n              <td>nmol</td>\n              <td>nanomole</td>\n            </tr>\n            <tr>\n              <td>nmol/(24.h)</td>\n              <td>nanomole per 24 hour</td>\n            </tr>\n            <tr>\n              <td>nmol/L</td>\n              <td>nanomole per liter</td>\n            </tr>\n            <tr>\n              <td>nmol/L/mmol</td>\n              <td>nanomole per liter per millimole</td>\n            </tr>\n            <tr>\n              <td>nmol/L/s</td>\n              <td>nanomole per liter per second</td>\n            </tr>\n            <tr>\n              <td>nmol/d</td>\n              <td>nanomole per day</td>\n            </tr>\n            <tr>\n              <td>nmol/dL</td>\n              <td>nanomole per deciliter</td>\n            </tr>\n            <tr>\n              <td>nmol/g</td>\n              <td>nanomole per gram</td>\n            </tr>\n            <tr>\n              <td>nmol/h/L</td>\n              <td>nanomole per hour per liter</td>\n            </tr>\n            <tr>\n              <td>nmol/h/mL</td>\n              <td>nanomole per hour per milliliter</td>\n            </tr>\n            <tr>\n              <td>nmol/h/mg</td>\n              <td>nanomole per hour per milligram</td>\n            </tr>\n            <tr>\n              <td>nmol/m/mg</td>\n              <td>nanomole per meter per milligram</td>\n            </tr>\n            <tr>\n              <td>nmol/mL</td>\n              <td>nanomole per milliliter</td>\n            </tr>\n            <tr>\n              <td>nmol/mL/h</td>\n              <td>nanomole per milliliter per hour</td>\n            </tr>\n            <tr>\n              <td>nmol/mL/min</td>\n              <td>nanomole per milliliter per minute</td>\n            </tr>\n            <tr>\n              <td>nmol/mg</td>\n              <td>nanomole per milligram</td>\n            </tr>\n            <tr>\n              <td>nmol/mg/h</td>\n              <td>nanomole per milligram per hour</td>\n            </tr>\n            <tr>\n              <td>nmol/min</td>\n              <td>nanomole per minute</td>\n            </tr>\n            <tr>\n              <td>nmol/min/10*6</td>\n              <td>nanomole per minute per million</td>\n            </tr>\n            <tr>\n              <td>nmol/min/mL</td>\n              <td>nanomole per minute per milliliter</td>\n            </tr>\n            <tr>\n              <td>nmol/min/mg</td>\n              <td>nanomole per minute per milligram</td>\n            </tr>\n            <tr>\n              <td>nmol/mmol</td>\n              <td>nanomole per millimole</td>\n            </tr>\n            <tr>\n              <td>nmol/mol</td>\n              <td>nanomole per mole</td>\n            </tr>\n            <tr>\n              <td>nmol/nmol</td>\n              <td>nanomole per nanomole</td>\n            </tr>\n            <tr>\n              <td>nmol/s</td>\n              <td>nanomole per second</td>\n            </tr>\n            <tr>\n              <td>nmol/s/L</td>\n              <td>nanomole per second per liter</td>\n            </tr>\n            <tr>\n              <td>ns</td>\n              <td>nanosecond</td>\n            </tr>\n            <tr>\n              <td>osm</td>\n              <td>osmole</td>\n            </tr>\n            <tr>\n              <td>osm/L</td>\n              <td>osmole per liter</td>\n            </tr>\n            <tr>\n              <td>osm/kg</td>\n              <td>osmole per kilogram</td>\n            </tr>\n            <tr>\n              <td>pA</td>\n              <td>picoampere</td>\n            </tr>\n            <tr>\n              <td>pL</td>\n              <td>picoliter</td>\n            </tr>\n            <tr>\n              <td>pT</td>\n              <td>picotesla</td>\n            </tr>\n            <tr>\n              <td>pc</td>\n              <td>parsec</td>\n            </tr>\n            <tr>\n              <td>pg</td>\n              <td>picogram</td>\n            </tr>\n            <tr>\n              <td>pg/L</td>\n              <td>picogram per liter</td>\n            </tr>\n            <tr>\n              <td>pg/dL</td>\n              <td>picogram per deciliter</td>\n            </tr>\n            <tr>\n              <td>pg/mL</td>\n              <td>picogram per milliliter</td>\n            </tr>\n            <tr>\n              <td>pg/mg</td>\n              <td>picogram per milligram</td>\n            </tr>\n            <tr>\n              <td>pg/mm</td>\n              <td>picogram per millimeter</td>\n            </tr>\n            <tr>\n              <td>ph</td>\n              <td>phot</td>\n            </tr>\n            <tr>\n              <td>pkat</td>\n              <td>picokatal</td>\n            </tr>\n            <tr>\n              <td>pm</td>\n              <td>picometer</td>\n            </tr>\n            <tr>\n              <td>pmol</td>\n              <td>picomole</td>\n            </tr>\n            <tr>\n              <td>pmol/(24.h)</td>\n              <td>picomole per 24 hour</td>\n            </tr>\n            <tr>\n              <td>pmol/L</td>\n              <td>picomole per liter</td>\n            </tr>\n            <tr>\n              <td>pmol/d</td>\n              <td>picomole per day</td>\n            </tr>\n            <tr>\n              <td>pmol/dL</td>\n              <td>picomole per deciliter</td>\n            </tr>\n            <tr>\n              <td>pmol/g</td>\n              <td>picomole per gram</td>\n            </tr>\n            <tr>\n              <td>pmol/h/mL</td>\n              <td>picomole per hour per milliliter</td>\n            </tr>\n            <tr>\n              <td>pmol/h/mg</td>\n              <td>picomole per hour per milligram</td>\n            </tr>\n            <tr>\n              <td>pmol/mL</td>\n              <td>picomole per milliliter</td>\n            </tr>\n            <tr>\n              <td>pmol/mg</td>\n              <td>picomole per milligram</td>\n            </tr>\n            <tr>\n              <td>pmol/min</td>\n              <td>picomole per minute</td>\n            </tr>\n            <tr>\n              <td>pmol/min/mg</td>\n              <td>picomole per minute per milligram</td>\n            </tr>\n            <tr>\n              <td>pmol/mmol</td>\n              <td>picomole per millimole</td>\n            </tr>\n            <tr>\n              <td>pmol/mol</td>\n              <td>picomole per mole</td>\n            </tr>\n            <tr>\n              <td>pmol/umol</td>\n              <td>picomole per micromole</td>\n            </tr>\n            <tr>\n              <td>ps</td>\n              <td>picosecond</td>\n            </tr>\n            <tr>\n              <td>rad</td>\n              <td>radian</td>\n            </tr>\n            <tr>\n              <td>s</td>\n              <td>second</td>\n            </tr>\n            <tr>\n              <td>sb</td>\n              <td>stilb</td>\n            </tr>\n            <tr>\n              <td>sph</td>\n              <td>spere</td>\n            </tr>\n            <tr>\n              <td>sr</td>\n              <td>steradian</td>\n            </tr>\n            <tr>\n              <td>st</td>\n              <td>stere</td>\n            </tr>\n            <tr>\n              <td>t</td>\n              <td>tonne</td>\n            </tr>\n            <tr>\n              <td>u</td>\n              <td>unified atomic mass unit</td>\n            </tr>\n            <tr>\n              <td>uCi</td>\n              <td>MICROCURIE</td>\n            </tr>\n            <tr>\n              <td>uL</td>\n              <td>microliter</td>\n            </tr>\n            <tr>\n              <td>uL/(2.h)</td>\n              <td>microliter per 2 hour</td>\n            </tr>\n            <tr>\n              <td>uL/h</td>\n              <td>microliter per hour</td>\n            </tr>\n            <tr>\n              <td>uOhm</td>\n              <td>microOhm</td>\n            </tr>\n            <tr>\n              <td>uU</td>\n              <td>microUnit</td>\n            </tr>\n            <tr>\n              <td>uU/L</td>\n              <td>micro enzyme unit per liter</td>\n            </tr>\n            <tr>\n              <td>uU/g</td>\n              <td>micro enzyme unit per gram</td>\n            </tr>\n            <tr>\n              <td>uU/mL</td>\n              <td>micro enzyme unit per milliliter</td>\n            </tr>\n            <tr>\n              <td>uV</td>\n              <td>microvolt</td>\n            </tr>\n            <tr>\n              <td>u[IU]</td>\n              <td>micro international unit</td>\n            </tr>\n            <tr>\n              <td>u[IU]/L</td>\n              <td>microinternational unit per liter</td>\n            </tr>\n            <tr>\n              <td>u[IU]/mL</td>\n              <td>micro international unit per milliliter</td>\n            </tr>\n            <tr>\n              <td>ueq</td>\n              <td>microequivalents</td>\n            </tr>\n            <tr>\n              <td>ueq/L</td>\n              <td>microequivalent per liter</td>\n            </tr>\n            <tr>\n              <td>ueq/mL</td>\n              <td>microequivalent per milliliter</td>\n            </tr>\n            <tr>\n              <td>ug</td>\n              <td>microgram</td>\n            </tr>\n            <tr>\n              <td>ug/(100.g)</td>\n              <td>microgram per 100 gram</td>\n            </tr>\n            <tr>\n              <td>ug/(24.h)</td>\n              <td>microgram per 24 hour</td>\n            </tr>\n            <tr>\n              <td>ug/(8.h)</td>\n              <td>microgram per 8 hour</td>\n            </tr>\n            <tr>\n              <td>ug/(kg.d)</td>\n              <td>microgram / kilogram * day</td>\n            </tr>\n            <tr>\n              <td>ug/(kg.h)</td>\n              <td>microgram / kilogram * hour</td>\n            </tr>\n            <tr>\n              <td>ug/L</td>\n              <td>microgram per liter</td>\n            </tr>\n            <tr>\n              <td>ug/L/(24.h)</td>\n              <td>microgram per liter per 24 hour</td>\n            </tr>\n            <tr>\n              <td>ug/[sft_i]</td>\n              <td>microgram per square foot (international)</td>\n            </tr>\n            <tr>\n              <td>ug/d</td>\n              <td>microgram per day</td>\n            </tr>\n            <tr>\n              <td>ug/dL</td>\n              <td>microgram per deciliter</td>\n            </tr>\n            <tr>\n              <td>ug/g</td>\n              <td>microgram per gram</td>\n            </tr>\n            <tr>\n              <td>ug/h</td>\n              <td>microgram per hour</td>\n            </tr>\n            <tr>\n              <td>ug/kg</td>\n              <td>microgram per kilogram</td>\n            </tr>\n            <tr>\n              <td>ug/kg/(8.h)</td>\n              <td>microgram per kilogram per 8 hour</td>\n            </tr>\n            <tr>\n              <td>ug/kg/d</td>\n              <td>microgram per kilogram per day</td>\n            </tr>\n            <tr>\n              <td>ug/kg/h</td>\n              <td>microgram per kilogram per hour</td>\n            </tr>\n            <tr>\n              <td>ug/kg/min</td>\n              <td>microgram per kilogram per minute</td>\n            </tr>\n            <tr>\n              <td>ug/m2</td>\n              <td>microgram per square meter</td>\n            </tr>\n            <tr>\n              <td>ug/m3</td>\n              <td>microgram per cubic meter</td>\n            </tr>\n            <tr>\n              <td>ug/mL</td>\n              <td>microgram per milliliter</td>\n            </tr>\n            <tr>\n              <td>ug/mg</td>\n              <td>microgram per milligram</td>\n            </tr>\n            <tr>\n              <td>ug/min</td>\n              <td>microgram per minute</td>\n            </tr>\n            <tr>\n              <td>ug/mmol</td>\n              <td>microgram per millimole</td>\n            </tr>\n            <tr>\n              <td>ug/ng</td>\n              <td>microgram per nanogram</td>\n            </tr>\n            <tr>\n              <td>ukat</td>\n              <td>microkatal</td>\n            </tr>\n            <tr>\n              <td>um</td>\n              <td>micrometer</td>\n            </tr>\n            <tr>\n              <td>um/s</td>\n              <td>micrometer per second</td>\n            </tr>\n            <tr>\n              <td>umol</td>\n              <td>micromole</td>\n            </tr>\n            <tr>\n              <td>umol/(2.h)</td>\n              <td>micromole per 2 hour</td>\n            </tr>\n            <tr>\n              <td>umol/(24.h)</td>\n              <td>micromole per 24 hour</td>\n            </tr>\n            <tr>\n              <td>umol/(8.h)</td>\n              <td>micromole per 8 hour</td>\n            </tr>\n            <tr>\n              <td>umol/L</td>\n              <td>micromole per liter</td>\n            </tr>\n            <tr>\n              <td>umol/L/h</td>\n              <td>micromole per liter per hour</td>\n            </tr>\n            <tr>\n              <td>umol/d</td>\n              <td>micromole per day</td>\n            </tr>\n            <tr>\n              <td>umol/dL</td>\n              <td>micromole per deciliter</td>\n            </tr>\n            <tr>\n              <td>umol/g</td>\n              <td>micromole per gram</td>\n            </tr>\n            <tr>\n              <td>umol/h</td>\n              <td>micromole per hour</td>\n            </tr>\n            <tr>\n              <td>umol/h/L</td>\n              <td>micromole per hour per liter</td>\n            </tr>\n            <tr>\n              <td>umol/h/g</td>\n              <td>micromole / hour / gram</td>\n            </tr>\n            <tr>\n              <td>umol/h/mg</td>\n              <td>micromole per hour per milligram</td>\n            </tr>\n            <tr>\n              <td>umol/kg</td>\n              <td>micromole per kilogram</td>\n            </tr>\n            <tr>\n              <td>umol/m</td>\n              <td>micromole / meter</td>\n            </tr>\n            <tr>\n              <td>umol/mL</td>\n              <td>micromole per milliliter</td>\n            </tr>\n            <tr>\n              <td>umol/mL/min</td>\n              <td>micromole per milliliter per minute</td>\n            </tr>\n            <tr>\n              <td>umol/mg</td>\n              <td>micromole per milligram</td>\n            </tr>\n            <tr>\n              <td>umol/min</td>\n              <td>micromole per minute</td>\n            </tr>\n            <tr>\n              <td>umol/min/L</td>\n              <td>micromole per minute per liter</td>\n            </tr>\n            <tr>\n              <td>umol/min/g</td>\n              <td>micromole per minute per gram</td>\n            </tr>\n            <tr>\n              <td>umol/mmol</td>\n              <td>micromole per millimole</td>\n            </tr>\n            <tr>\n              <td>umol/mol</td>\n              <td>micromole per mole</td>\n            </tr>\n            <tr>\n              <td>umol/umol</td>\n              <td>micromole per micromole</td>\n            </tr>\n            <tr>\n              <td>us</td>\n              <td>microsecond</td>\n            </tr>\n            <tr>\n              <td>wk</td>\n              <td>week</td>\n            </tr>\n          </table>\n        </li>\n      </ul>\n    </div>"
+  ] ; # 
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/valueset-extensible"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "true"^^xsd:boolean ]
+  ] ) ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/ucum-common"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.3144" ]
+  ] ) ; # 
+  fhir:version [ fhir:v "5.0.0"] ; # 
+  fhir:name [ fhir:v "CommonUCUMUnits"] ; # 
+  fhir:title [ fhir:v "Common UCUM units"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:experimental [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:publisher [ fhir:v "FHIR Project"] ; # 
+  fhir:description [ fhir:v "Commonly encountered UCUM units (for purposes of helping populate look ups)."] ; # 
+  fhir:copyright [ fhir:v "UCUM is Copyright © 1999-2013 Regenstrief Institute, Inc. and The UCUM Organization, Indianapolis, IN. All rights reserved. See http://unitsofmeasure.org/trac//wiki/TermsOfUse for details."] ; # 
+  fhir:compose [
+     fhir:include ( [
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "%" ] ;
+         fhir:display [ fhir:v "percent" ]
+       ] [
+         fhir:code [ fhir:v "%/100" ] ;
+         fhir:display [ fhir:v "percent / 100" ]
+       ] [
+         fhir:code [ fhir:v "%[slope]" ] ;
+         fhir:display [ fhir:v "percent of slope" ]
+       ] [
+         fhir:code [ fhir:v "/(12.h)" ] ;
+         fhir:display [ fhir:v "per 12 * hour" ]
+       ] [
+         fhir:code [ fhir:v "/(2.h)" ] ;
+         fhir:display [ fhir:v "per 2 hour" ]
+       ] [
+         fhir:code [ fhir:v "/10*10" ] ;
+         fhir:display [ fhir:v "PerTenGiga" ]
+       ] [
+         fhir:code [ fhir:v "/10*12" ] ;
+         fhir:display [ fhir:v "PerTrillion" ]
+       ] [
+         fhir:code [ fhir:v "/10*3" ] ;
+         fhir:display [ fhir:v "per thousand" ]
+       ] [
+         fhir:code [ fhir:v "/10*4" ] ;
+         fhir:display [ fhir:v "per 10 thousand" ]
+       ] [
+         fhir:code [ fhir:v "/10*6" ] ;
+         fhir:display [ fhir:v "PerMillion" ]
+       ] [
+         fhir:code [ fhir:v "/10*9" ] ;
+         fhir:display [ fhir:v "PerBillion" ]
+       ] [
+         fhir:code [ fhir:v "/100" ] ;
+         fhir:display [ fhir:v "per 100" ]
+       ] [
+         fhir:code [ fhir:v "/100.g" ] ;
+         fhir:display [ fhir:v "per 100 gram" ]
+       ] [
+         fhir:code [ fhir:v "/L" ] ;
+         fhir:display [ fhir:v "per liter" ]
+       ] [
+         fhir:code [ fhir:v "/U" ] ;
+         fhir:display [ fhir:v "per enzyme unit" ]
+       ] [
+         fhir:code [ fhir:v "/[HPF]" ] ;
+         fhir:display [ fhir:v "per high power field" ]
+       ] [
+         fhir:code [ fhir:v "/[HPF]" ] ;
+         fhir:display [ fhir:v "per hpf" ]
+       ] [
+         fhir:code [ fhir:v "/[IU]" ] ;
+         fhir:display [ fhir:v "per international unit" ]
+       ] [
+         fhir:code [ fhir:v "/[LPF]" ] ;
+         fhir:display [ fhir:v "per low power field" ]
+       ] [
+         fhir:code [ fhir:v "/[LPF]" ] ;
+         fhir:display [ fhir:v "per LPF" ]
+       ] [
+         fhir:code [ fhir:v "/[arb'U]" ] ;
+         fhir:display [ fhir:v "per arbitrary unit" ]
+       ] [
+         fhir:code [ fhir:v "/[iU]" ] ;
+         fhir:display [ fhir:v "per international unit" ]
+       ] [
+         fhir:code [ fhir:v "/a" ] ;
+         fhir:display [ fhir:v "/ year" ]
+       ] [
+         fhir:code [ fhir:v "/cm[H2O]" ] ;
+         fhir:display [ fhir:v "per centimeter of water" ]
+       ] [
+         fhir:code [ fhir:v "/d" ] ;
+         fhir:display [ fhir:v "per day" ]
+       ] [
+         fhir:code [ fhir:v "/dL" ] ;
+         fhir:display [ fhir:v "per deciliter" ]
+       ] [
+         fhir:code [ fhir:v "/g" ] ;
+         fhir:display [ fhir:v "per gram" ]
+       ] [
+         fhir:code [ fhir:v "/h" ] ;
+         fhir:display [ fhir:v "per hour" ]
+       ] [
+         fhir:code [ fhir:v "/kg" ] ;
+         fhir:display [ fhir:v "per kilogram" ]
+       ] [
+         fhir:code [ fhir:v "/m2" ] ;
+         fhir:display [ fhir:v "per square meter" ]
+       ] [
+         fhir:code [ fhir:v "/m3" ] ;
+         fhir:display [ fhir:v "per cubic meter" ]
+       ] [
+         fhir:code [ fhir:v "/mL" ] ;
+         fhir:display [ fhir:v "per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "/mg" ] ;
+         fhir:display [ fhir:v "per milligram" ]
+       ] [
+         fhir:code [ fhir:v "/min" ] ;
+         fhir:display [ fhir:v "per minute" ]
+       ] [
+         fhir:code [ fhir:v "/min/10*3" ] ;
+         fhir:display [ fhir:v "per minute per thousand" ]
+       ] [
+         fhir:code [ fhir:v "/mm" ] ;
+         fhir:display [ fhir:v "per millimeter" ]
+       ] [
+         fhir:code [ fhir:v "/mm3" ] ;
+         fhir:display [ fhir:v "per cubic millimeter" ]
+       ] [
+         fhir:code [ fhir:v "/mmol" ] ;
+         fhir:display [ fhir:v "per millimole" ]
+       ] [
+         fhir:code [ fhir:v "/mo" ] ;
+         fhir:display [ fhir:v "per month" ]
+       ] [
+         fhir:code [ fhir:v "/s" ] ;
+         fhir:display [ fhir:v "per second" ]
+       ] [
+         fhir:code [ fhir:v "/uL" ] ;
+         fhir:display [ fhir:v "per microliter" ]
+       ] [
+         fhir:code [ fhir:v "/ug" ] ;
+         fhir:display [ fhir:v "per microgram" ]
+       ] [
+         fhir:code [ fhir:v "/wk" ] ;
+         fhir:display [ fhir:v "per week" ]
+       ] [
+         fhir:code [ fhir:v "1" ] ;
+         fhir:display [ fhir:v "1*" ]
+       ] [
+         fhir:code [ fhir:v "1/d" ] ;
+         fhir:display [ fhir:v "one per day" ]
+       ] [
+         fhir:code [ fhir:v "1/min" ] ;
+         fhir:display [ fhir:v "one per minute" ]
+       ] [
+         fhir:code [ fhir:v "10*" ] ;
+         fhir:display [ fhir:v "the number ten for arbitrary powers" ]
+       ] [
+         fhir:code [ fhir:v "10*-3" ] ;
+         fhir:display [ fhir:v "(the number ten for arbitrary powers ^ -3)" ]
+       ] [
+         fhir:code [ fhir:v "10*-6" ] ;
+         fhir:display [ fhir:v "the number ten for arbitrary powers ^ -6" ]
+       ] [
+         fhir:code [ fhir:v "10*12/L" ] ;
+         fhir:display [ fhir:v "trillion per liter" ]
+       ] [
+         fhir:code [ fhir:v "10*3" ] ;
+         fhir:display [ fhir:v "Thousand" ]
+       ] [
+         fhir:code [ fhir:v "10*3.U" ] ;
+         fhir:display [ fhir:v "Thousand Per * Unit" ]
+       ] [
+         fhir:code [ fhir:v "10*3/L" ] ;
+         fhir:display [ fhir:v "Thousand Per Liter" ]
+       ] [
+         fhir:code [ fhir:v "10*3/mL" ] ;
+         fhir:display [ fhir:v "Thousand Per MilliLiter" ]
+       ] [
+         fhir:code [ fhir:v "10*3/uL" ] ;
+         fhir:display [ fhir:v "Thousands Per MicroLiter" ]
+       ] [
+         fhir:code [ fhir:v "10*4/uL" ] ;
+         fhir:display [ fhir:v "10 thousand per microliter" ]
+       ] [
+         fhir:code [ fhir:v "10*5" ] ;
+         fhir:display [ fhir:v "OneHundredThousand" ]
+       ] [
+         fhir:code [ fhir:v "10*6" ] ;
+         fhir:display [ fhir:v "Million" ]
+       ] [
+         fhir:code [ fhir:v "10*6.U" ] ;
+         fhir:display [ fhir:v "(the number ten for arbitrary powers ^ 6) * Unit" ]
+       ] [
+         fhir:code [ fhir:v "10*6.[CFU]/L" ] ;
+         fhir:display [ fhir:v "million colony forming unit per liter" ]
+       ] [
+         fhir:code [ fhir:v "10*6.[IU]" ] ;
+         fhir:display [ fhir:v "million international unit" ]
+       ] [
+         fhir:code [ fhir:v "10*6.[iU]" ] ;
+         fhir:display [ fhir:v "MillionInternationalUnit" ]
+       ] [
+         fhir:code [ fhir:v "10*6.eq/mL" ] ;
+         fhir:display [ fhir:v "MillionEquivalentsPerMilliLiter" ]
+       ] [
+         fhir:code [ fhir:v "10*6/(24.h)" ] ;
+         fhir:display [ fhir:v "million per 24 hour" ]
+       ] [
+         fhir:code [ fhir:v "10*6/L" ] ;
+         fhir:display [ fhir:v "million per liter" ]
+       ] [
+         fhir:code [ fhir:v "10*6/kg" ] ;
+         fhir:display [ fhir:v "million per kilogram" ]
+       ] [
+         fhir:code [ fhir:v "10*6/mL" ] ;
+         fhir:display [ fhir:v "million per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "10*6/mm3" ] ;
+         fhir:display [ fhir:v "(the number ten for arbitrary powers ^ 6) / (millimeter ^ 3)" ]
+       ] [
+         fhir:code [ fhir:v "10*6/uL" ] ;
+         fhir:display [ fhir:v "million per microliter" ]
+       ] [
+         fhir:code [ fhir:v "10*8" ] ;
+         fhir:display [ fhir:v "TenToEighth" ]
+       ] [
+         fhir:code [ fhir:v "10*9/L" ] ;
+         fhir:display [ fhir:v "billion per liter" ]
+       ] [
+         fhir:code [ fhir:v "10*9/mL" ] ;
+         fhir:display [ fhir:v "billion per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "10*9/uL" ] ;
+         fhir:display [ fhir:v "billion per microliter" ]
+       ] [
+         fhir:code [ fhir:v "10.L/(min.m2)" ] ;
+         fhir:display [ fhir:v "10 liter per minute per square meter" ]
+       ] [
+         fhir:code [ fhir:v "10.L/min" ] ;
+         fhir:display [ fhir:v "10 liter per minute" ]
+       ] [
+         fhir:code [ fhir:v "10.uN.s/(cm.m2)" ] ;
+         fhir:display [ fhir:v "10 * microNewton * second / centimeter * (meter ^ 2)" ]
+       ] [
+         fhir:code [ fhir:v "10.uN.s/(cm5.m2)" ] ;
+         fhir:display [ fhir:v "10 micronewton second per centimeter to the fifth power per square meter" ]
+       ] [
+         fhir:code [ fhir:v "10.uN.s/cm" ] ;
+         fhir:display [ fhir:v "10 * microNewton * second / centimeter" ]
+       ] [
+         fhir:code [ fhir:v "10.uN.s/cm2" ] ;
+         fhir:display [ fhir:v "10 * microNewton * second / (centimeter ^ 2)" ]
+       ] [
+         fhir:code [ fhir:v "10^" ] ;
+         fhir:display [ fhir:v "the number ten for arbitrary powers" ]
+       ] [
+         fhir:code [ fhir:v "24.h" ] ;
+         fhir:display [ fhir:v "24 hour" ]
+       ] [
+         fhir:code [ fhir:v "A" ] ;
+         fhir:display [ fhir:v "Ampère" ]
+       ] [
+         fhir:code [ fhir:v "A/m" ] ;
+         fhir:display [ fhir:v "Ampère / meter" ]
+       ] [
+         fhir:code [ fhir:v "AU" ] ;
+         fhir:display [ fhir:v "astronomic unit" ]
+       ] [
+         fhir:code [ fhir:v "Ao" ] ;
+         fhir:display [ fhir:v "Ångström" ]
+       ] [
+         fhir:code [ fhir:v "B" ] ;
+         fhir:display [ fhir:v "bel" ]
+       ] [
+         fhir:code [ fhir:v "B[SPL]" ] ;
+         fhir:display [ fhir:v "bel sound pressure" ]
+       ] [
+         fhir:code [ fhir:v "B[V]" ] ;
+         fhir:display [ fhir:v "bel volt" ]
+       ] [
+         fhir:code [ fhir:v "B[W]" ] ;
+         fhir:display [ fhir:v "bel watt" ]
+       ] [
+         fhir:code [ fhir:v "B[kW]" ] ;
+         fhir:display [ fhir:v "bel kilowatt" ]
+       ] [
+         fhir:code [ fhir:v "B[mV]" ] ;
+         fhir:display [ fhir:v "bel millivolt" ]
+       ] [
+         fhir:code [ fhir:v "B[uV]" ] ;
+         fhir:display [ fhir:v "bel microvolt" ]
+       ] [
+         fhir:code [ fhir:v "Bd" ] ;
+         fhir:display [ fhir:v "baud" ]
+       ] [
+         fhir:code [ fhir:v "Bi" ] ;
+         fhir:display [ fhir:v "Biot" ]
+       ] [
+         fhir:code [ fhir:v "Bq" ] ;
+         fhir:display [ fhir:v "Becquerel" ]
+       ] [
+         fhir:code [ fhir:v "By" ] ;
+         fhir:display [ fhir:v "byte" ]
+       ] [
+         fhir:code [ fhir:v "C" ] ;
+         fhir:display [ fhir:v "Coulomb" ]
+       ] [
+         fhir:code [ fhir:v "Cel" ] ;
+         fhir:display [ fhir:v "degree Celsius" ]
+       ] [
+         fhir:code [ fhir:v "Ci" ] ;
+         fhir:display [ fhir:v "CURIE" ]
+       ] [
+         fhir:code [ fhir:v "F" ] ;
+         fhir:display [ fhir:v "Farad" ]
+       ] [
+         fhir:code [ fhir:v "G" ] ;
+         fhir:display [ fhir:v "Gauss" ]
+       ] [
+         fhir:code [ fhir:v "GBq" ] ;
+         fhir:display [ fhir:v "gigaBecquerel" ]
+       ] [
+         fhir:code [ fhir:v "Gal" ] ;
+         fhir:display [ fhir:v "Gal" ]
+       ] [
+         fhir:code [ fhir:v "Gb" ] ;
+         fhir:display [ fhir:v "Gilbert" ]
+       ] [
+         fhir:code [ fhir:v "Gy" ] ;
+         fhir:display [ fhir:v "Gray" ]
+       ] [
+         fhir:code [ fhir:v "H" ] ;
+         fhir:display [ fhir:v "Henry" ]
+       ] [
+         fhir:code [ fhir:v "Hz" ] ;
+         fhir:display [ fhir:v "Hertz" ]
+       ] [
+         fhir:code [ fhir:v "J" ] ;
+         fhir:display [ fhir:v "joule" ]
+       ] [
+         fhir:code [ fhir:v "J/L" ] ;
+         fhir:display [ fhir:v "joule per liter" ]
+       ] [
+         fhir:code [ fhir:v "K" ] ;
+         fhir:display [ fhir:v "Kelvin" ]
+       ] [
+         fhir:code [ fhir:v "K/W" ] ;
+         fhir:display [ fhir:v "Kelvin / Watt" ]
+       ] [
+         fhir:code [ fhir:v "Ky" ] ;
+         fhir:display [ fhir:v "Kayser" ]
+       ] [
+         fhir:code [ fhir:v "L" ] ;
+         fhir:display [ fhir:v "liter" ]
+       ] [
+         fhir:code [ fhir:v "L.s2/s" ] ;
+         fhir:display [ fhir:v "liter * (second ^ 2) / second" ]
+       ] [
+         fhir:code [ fhir:v "L/(24.h)" ] ;
+         fhir:display [ fhir:v "liter per 24 hour" ]
+       ] [
+         fhir:code [ fhir:v "L/(8.h)" ] ;
+         fhir:display [ fhir:v "liter per 8 hour" ]
+       ] [
+         fhir:code [ fhir:v "L/(min.m2)" ] ;
+         fhir:display [ fhir:v "liter per minute per square meter" ]
+       ] [
+         fhir:code [ fhir:v "L/L" ] ;
+         fhir:display [ fhir:v "liter per liter" ]
+       ] [
+         fhir:code [ fhir:v "L/d" ] ;
+         fhir:display [ fhir:v "liter per day" ]
+       ] [
+         fhir:code [ fhir:v "L/h" ] ;
+         fhir:display [ fhir:v "liter per hour" ]
+       ] [
+         fhir:code [ fhir:v "L/kg" ] ;
+         fhir:display [ fhir:v "liter per kilogram" ]
+       ] [
+         fhir:code [ fhir:v "L/min" ] ;
+         fhir:display [ fhir:v "liter per minute" ]
+       ] [
+         fhir:code [ fhir:v "L/s" ] ;
+         fhir:display [ fhir:v "liter / second" ]
+       ] [
+         fhir:code [ fhir:v "L/s/s2" ] ;
+         fhir:display [ fhir:v "liter per second per square second" ]
+       ] [
+         fhir:code [ fhir:v "Lmb" ] ;
+         fhir:display [ fhir:v "Lambert" ]
+       ] [
+         fhir:code [ fhir:v "MBq" ] ;
+         fhir:display [ fhir:v "megaBecquerel" ]
+       ] [
+         fhir:code [ fhir:v "Ms" ] ;
+         fhir:display [ fhir:v "megasecond" ]
+       ] [
+         fhir:code [ fhir:v "Mx" ] ;
+         fhir:display [ fhir:v "Maxwell" ]
+       ] [
+         fhir:code [ fhir:v "N" ] ;
+         fhir:display [ fhir:v "Newton" ]
+       ] [
+         fhir:code [ fhir:v "N.cm" ] ;
+         fhir:display [ fhir:v "Newton centimeter" ]
+       ] [
+         fhir:code [ fhir:v "N.s" ] ;
+         fhir:display [ fhir:v "Newton second" ]
+       ] [
+         fhir:code [ fhir:v "Np" ] ;
+         fhir:display [ fhir:v "neper" ]
+       ] [
+         fhir:code [ fhir:v "Oe" ] ;
+         fhir:display [ fhir:v "Oersted" ]
+       ] [
+         fhir:code [ fhir:v "Ohm" ] ;
+         fhir:display [ fhir:v "Ohm" ]
+       ] [
+         fhir:code [ fhir:v "Ohm.m" ] ;
+         fhir:display [ fhir:v "Ohm meter" ]
+       ] [
+         fhir:code [ fhir:v "P" ] ;
+         fhir:display [ fhir:v "Poise" ]
+       ] [
+         fhir:code [ fhir:v "Pa" ] ;
+         fhir:display [ fhir:v "Pascal" ]
+       ] [
+         fhir:code [ fhir:v "R" ] ;
+         fhir:display [ fhir:v "Roentgen" ]
+       ] [
+         fhir:code [ fhir:v "RAD" ] ;
+         fhir:display [ fhir:v "radiation absorbed dose" ]
+       ] [
+         fhir:code [ fhir:v "REM" ] ;
+         fhir:display [ fhir:v "radiation equivalent man" ]
+       ] [
+         fhir:code [ fhir:v "S" ] ;
+         fhir:display [ fhir:v "Siemens" ]
+       ] [
+         fhir:code [ fhir:v "St" ] ;
+         fhir:display [ fhir:v "Stokes" ]
+       ] [
+         fhir:code [ fhir:v "Sv" ] ;
+         fhir:display [ fhir:v "Sievert" ]
+       ] [
+         fhir:code [ fhir:v "T" ] ;
+         fhir:display [ fhir:v "Tesla" ]
+       ] [
+         fhir:code [ fhir:v "U" ] ;
+         fhir:display [ fhir:v "enzyme Unit" ]
+       ] [
+         fhir:code [ fhir:v "U/(1.h)" ] ;
+         fhir:display [ fhir:v "enzyme Unit per 1 hour" ]
+       ] [
+         fhir:code [ fhir:v "U/(10.g)" ] ;
+         fhir:display [ fhir:v "enzyme unit per 10 gram" ]
+       ] [
+         fhir:code [ fhir:v "U/(12.h)" ] ;
+         fhir:display [ fhir:v "enzyme unit per 12 hour" ]
+       ] [
+         fhir:code [ fhir:v "U/(18.h)" ] ;
+         fhir:display [ fhir:v "enzyme Unit per 18 hour" ]
+       ] [
+         fhir:code [ fhir:v "U/(2.h)" ] ;
+         fhir:display [ fhir:v "enzyme unit per 2 hour" ]
+       ] [
+         fhir:code [ fhir:v "U/(24.h)" ] ;
+         fhir:display [ fhir:v "enzyme unit per 24 hour" ]
+       ] [
+         fhir:code [ fhir:v "U/10" ] ;
+         fhir:display [ fhir:v "enzyme unit per 10" ]
+       ] [
+         fhir:code [ fhir:v "U/10*10" ] ;
+         fhir:display [ fhir:v "enzyme unit per 10 billion" ]
+       ] [
+         fhir:code [ fhir:v "U/10*12" ] ;
+         fhir:display [ fhir:v "enzyme unit per trillion" ]
+       ] [
+         fhir:code [ fhir:v "U/10*12" ] ;
+         fhir:display [ fhir:v "enzyme unit per trillion" ]
+       ] [
+         fhir:code [ fhir:v "U/10*6" ] ;
+         fhir:display [ fhir:v "enzyme unit per million" ]
+       ] [
+         fhir:code [ fhir:v "U/10*9" ] ;
+         fhir:display [ fhir:v "enzyme unit per billion" ]
+       ] [
+         fhir:code [ fhir:v "U/L" ] ;
+         fhir:display [ fhir:v "enzyme unit per liter" ]
+       ] [
+         fhir:code [ fhir:v "U/d" ] ;
+         fhir:display [ fhir:v "enzyme unit per day" ]
+       ] [
+         fhir:code [ fhir:v "U/dL" ] ;
+         fhir:display [ fhir:v "enzyme unit per deciliter" ]
+       ] [
+         fhir:code [ fhir:v "U/g" ] ;
+         fhir:display [ fhir:v "enzyme unit per gram" ]
+       ] [
+         fhir:code [ fhir:v "U/h" ] ;
+         fhir:display [ fhir:v "enzyme unit per hour" ]
+       ] [
+         fhir:code [ fhir:v "U/kg" ] ;
+         fhir:display [ fhir:v "enzyme unit per kilogram" ]
+       ] [
+         fhir:code [ fhir:v "U/kg/h" ] ;
+         fhir:display [ fhir:v "Unit / kilogram / hour" ]
+       ] [
+         fhir:code [ fhir:v "U/mL" ] ;
+         fhir:display [ fhir:v "enzyme unit per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "U/min" ] ;
+         fhir:display [ fhir:v "enzyme unit per minute" ]
+       ] [
+         fhir:code [ fhir:v "U/mmol" ] ;
+         fhir:display [ fhir:v "enzyme unit per millimole" ]
+       ] [
+         fhir:code [ fhir:v "U/mol" ] ;
+         fhir:display [ fhir:v "enzyme Unit per mole" ]
+       ] [
+         fhir:code [ fhir:v "U/s" ] ;
+         fhir:display [ fhir:v "enzyme unit per second" ]
+       ] [
+         fhir:code [ fhir:v "U/umol" ] ;
+         fhir:display [ fhir:v "enzyme Unit per micromole" ]
+       ] [
+         fhir:code [ fhir:v "V" ] ;
+         fhir:display [ fhir:v "volt" ]
+       ] [
+         fhir:code [ fhir:v "W" ] ;
+         fhir:display [ fhir:v "Watt" ]
+       ] [
+         fhir:code [ fhir:v "Wb" ] ;
+         fhir:display [ fhir:v "Weber" ]
+       ] [
+         fhir:code [ fhir:v "[APL'U]" ] ;
+         fhir:display [ fhir:v "IgA anticardiolipin unit" ]
+       ] [
+         fhir:code [ fhir:v "[APL'U]/mL" ] ;
+         fhir:display [ fhir:v "IgA anticardiolipin unit per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "[AU]" ] ;
+         fhir:display [ fhir:v "allergy unit" ]
+       ] [
+         fhir:code [ fhir:v "[Amb'a'1'U]" ] ;
+         fhir:display [ fhir:v "Amb a 1 units" ]
+       ] [
+         fhir:code [ fhir:v "[BAU]" ] ;
+         fhir:display [ fhir:v "bioequivalent allergen unit" ]
+       ] [
+         fhir:code [ fhir:v "[Btu]" ] ;
+         fhir:display [ fhir:v "British thermal unit" ]
+       ] [
+         fhir:code [ fhir:v "[Btu_39]" ] ;
+         fhir:display [ fhir:v "British thermal unit at 39 °F" ]
+       ] [
+         fhir:code [ fhir:v "[Btu_59]" ] ;
+         fhir:display [ fhir:v "British thermal unit at 59 °F" ]
+       ] [
+         fhir:code [ fhir:v "[Btu_60]" ] ;
+         fhir:display [ fhir:v "British thermal unit at 60 °F" ]
+       ] [
+         fhir:code [ fhir:v "[Btu_IT]" ] ;
+         fhir:display [ fhir:v "international table British thermal unit" ]
+       ] [
+         fhir:code [ fhir:v "[Btu_m]" ] ;
+         fhir:display [ fhir:v "mean British thermal unit" ]
+       ] [
+         fhir:code [ fhir:v "[Btu_th]" ] ;
+         fhir:display [ fhir:v "thermochemical British thermal unit" ]
+       ] [
+         fhir:code [ fhir:v "[CCID_50]" ] ;
+         fhir:display [ fhir:v "CELL CULTURE INFECTIOUS DOSE 50%" ]
+       ] [
+         fhir:code [ fhir:v "[CFU]" ] ;
+         fhir:display [ fhir:v "colony forming unit" ]
+       ] [
+         fhir:code [ fhir:v "[CFU]/L" ] ;
+         fhir:display [ fhir:v "colony forming unit per liter" ]
+       ] [
+         fhir:code [ fhir:v "[CFU]/mL" ] ;
+         fhir:display [ fhir:v "colony forming unit per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "[Cal]" ] ;
+         fhir:display [ fhir:v "nutrition label Calories" ]
+       ] [
+         fhir:code [ fhir:v "[Ch]" ] ;
+         fhir:display [ fhir:v "French (catheter gauge)" ]
+       ] [
+         fhir:code [ fhir:v "[D'ag'U]" ] ;
+         fhir:display [ fhir:v "D-ANTIGEN UNITS" ]
+       ] [
+         fhir:code [ fhir:v "[FFU]" ] ;
+         fhir:display [ fhir:v "FOCUS-FORMING UNITS" ]
+       ] [
+         fhir:code [ fhir:v "[GPL'U]" ] ;
+         fhir:display [ fhir:v "IgG anticardiolipin unit" ]
+       ] [
+         fhir:code [ fhir:v "[GPL'U]/mL" ] ;
+         fhir:display [ fhir:v "IgG anticardiolipin unit per milliliter**" ]
+       ] [
+         fhir:code [ fhir:v "[G]" ] ;
+         fhir:display [ fhir:v "Newtonian constant of gravitation" ]
+       ] [
+         fhir:code [ fhir:v "[HPF]" ] ;
+         fhir:display [ fhir:v "high power field" ]
+       ] [
+         fhir:code [ fhir:v "[HP]" ] ;
+         fhir:display [ fhir:v "horsepower" ]
+       ] [
+         fhir:code [ fhir:v "[IU]" ] ;
+         fhir:display [ fhir:v "international unit" ]
+       ] [
+         fhir:code [ fhir:v "[IU]/(2.h)" ] ;
+         fhir:display [ fhir:v "international unit per 2 hour" ]
+       ] [
+         fhir:code [ fhir:v "[IU]/(24.h)" ] ;
+         fhir:display [ fhir:v "international unit per 24 hour" ]
+       ] [
+         fhir:code [ fhir:v "[IU]/10*9" ] ;
+         fhir:display [ fhir:v "international unit per billion" ]
+       ] [
+         fhir:code [ fhir:v "[IU]/L" ] ;
+         fhir:display [ fhir:v "international unit per liter" ]
+       ] [
+         fhir:code [ fhir:v "[IU]/d" ] ;
+         fhir:display [ fhir:v "international unit per day" ]
+       ] [
+         fhir:code [ fhir:v "[IU]/dL" ] ;
+         fhir:display [ fhir:v "international unit per deciliter" ]
+       ] [
+         fhir:code [ fhir:v "[IU]/g" ] ;
+         fhir:display [ fhir:v "international unit per gram" ]
+       ] [
+         fhir:code [ fhir:v "[IU]/h" ] ;
+         fhir:display [ fhir:v "international unit per hour" ]
+       ] [
+         fhir:code [ fhir:v "[IU]/kg" ] ;
+         fhir:display [ fhir:v "international unit per kilogram" ]
+       ] [
+         fhir:code [ fhir:v "[IU]/kg/d" ] ;
+         fhir:display [ fhir:v "international unit per kilogram per day" ]
+       ] [
+         fhir:code [ fhir:v "[IU]/mL" ] ;
+         fhir:display [ fhir:v "international unit per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "[IU]/min" ] ;
+         fhir:display [ fhir:v "international unit per minute" ]
+       ] [
+         fhir:code [ fhir:v "[LPF]" ] ;
+         fhir:display [ fhir:v "low power field" ]
+       ] [
+         fhir:code [ fhir:v "[Lf]" ] ;
+         fhir:display [ fhir:v "LIMIT OF FLOCCULATION" ]
+       ] [
+         fhir:code [ fhir:v "[MET]" ] ;
+         fhir:display [ fhir:v "metabolic equivalent" ]
+       ] [
+         fhir:code [ fhir:v "[MPL'U]" ] ;
+         fhir:display [ fhir:v "IgM anticardiolipin unit" ]
+       ] [
+         fhir:code [ fhir:v "[MPL'U]/mL" ] ;
+         fhir:display [ fhir:v "IgM anticardiolipin unit per milliliter**" ]
+       ] [
+         fhir:code [ fhir:v "[PFU]" ] ;
+         fhir:display [ fhir:v "PLAQUE-FORMING UNITS" ]
+       ] [
+         fhir:code [ fhir:v "[PNU]" ] ;
+         fhir:display [ fhir:v "PROTEIN NITROGEN UNITS" ]
+       ] [
+         fhir:code [ fhir:v "[PRU]" ] ;
+         fhir:display [ fhir:v "peripheral vascular resistance unit" ]
+       ] [
+         fhir:code [ fhir:v "[S]" ] ;
+         fhir:display [ fhir:v "Svedberg unit" ]
+       ] [
+         fhir:code [ fhir:v "[TCID_50]" ] ;
+         fhir:display [ fhir:v "TISSUE CULTURE INFECTIOUS DOSE 50%" ]
+       ] [
+         fhir:code [ fhir:v "[USP'U]" ] ;
+         fhir:display [ fhir:v "UNITED STATES PHARMACOPEIA UNIT" ]
+       ] [
+         fhir:code [ fhir:v "[acr_br]" ] ;
+         fhir:display [ fhir:v "acre" ]
+       ] [
+         fhir:code [ fhir:v "[acr_us]" ] ;
+         fhir:display [ fhir:v "acre" ]
+       ] [
+         fhir:code [ fhir:v "[arb'U]" ] ;
+         fhir:display [ fhir:v "arbitrary unit" ]
+       ] [
+         fhir:code [ fhir:v "[arb'U]/L" ] ;
+         fhir:display [ fhir:v "arbitary unit / liter" ]
+       ] [
+         fhir:code [ fhir:v "[arb'U]/mL" ] ;
+         fhir:display [ fhir:v "arbitrary unit per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "[bbl_us]" ] ;
+         fhir:display [ fhir:v "barrel" ]
+       ] [
+         fhir:code [ fhir:v "[bdsk'U]" ] ;
+         fhir:display [ fhir:v "Bodansky unit" ]
+       ] [
+         fhir:code [ fhir:v "[beth'U]" ] ;
+         fhir:display [ fhir:v "Bethesda unit" ]
+       ] [
+         fhir:code [ fhir:v "[beth'U]" ] ;
+         fhir:display [ fhir:v "Bethesda unit" ]
+       ] [
+         fhir:code [ fhir:v "[bf_i]" ] ;
+         fhir:display [ fhir:v "board foot" ]
+       ] [
+         fhir:code [ fhir:v "[bu_br]" ] ;
+         fhir:display [ fhir:v "bushel" ]
+       ] [
+         fhir:code [ fhir:v "[bu_us]" ] ;
+         fhir:display [ fhir:v "bushel" ]
+       ] [
+         fhir:code [ fhir:v "[c]" ] ;
+         fhir:display [ fhir:v "velocity of light" ]
+       ] [
+         fhir:code [ fhir:v "[car_Au]" ] ;
+         fhir:display [ fhir:v "carat of gold alloys" ]
+       ] [
+         fhir:code [ fhir:v "[car_m]" ] ;
+         fhir:display [ fhir:v "metric carat" ]
+       ] [
+         fhir:code [ fhir:v "[cft_i]" ] ;
+         fhir:display [ fhir:v "cubic foot" ]
+       ] [
+         fhir:code [ fhir:v "[ch_br]" ] ;
+         fhir:display [ fhir:v "Gunter's chain" ]
+       ] [
+         fhir:code [ fhir:v "[ch_us]" ] ;
+         fhir:display [ fhir:v "Gunter's chain Surveyor's chain" ]
+       ] [
+         fhir:code [ fhir:v "[cicero]" ] ;
+         fhir:display [ fhir:v "cicero Didot's pica" ]
+       ] [
+         fhir:code [ fhir:v "[cin_i]" ] ;
+         fhir:display [ fhir:v "cubic inch" ]
+       ] [
+         fhir:code [ fhir:v "[cml_i]" ] ;
+         fhir:display [ fhir:v "circular mil" ]
+       ] [
+         fhir:code [ fhir:v "[cr_i]" ] ;
+         fhir:display [ fhir:v "cord" ]
+       ] [
+         fhir:code [ fhir:v "[crd_us]" ] ;
+         fhir:display [ fhir:v "cord" ]
+       ] [
+         fhir:code [ fhir:v "[cup_us]" ] ;
+         fhir:display [ fhir:v "cup" ]
+       ] [
+         fhir:code [ fhir:v "[cyd_i]" ] ;
+         fhir:display [ fhir:v "cubic yard" ]
+       ] [
+         fhir:code [ fhir:v "[degF]" ] ;
+         fhir:display [ fhir:v "degree Fahrenheit" ]
+       ] [
+         fhir:code [ fhir:v "[didot]" ] ;
+         fhir:display [ fhir:v "didot Didot's point" ]
+       ] [
+         fhir:code [ fhir:v "[diop]" ] ;
+         fhir:display [ fhir:v "diopter" ]
+       ] [
+         fhir:code [ fhir:v "[dpt_us]" ] ;
+         fhir:display [ fhir:v "dry pint" ]
+       ] [
+         fhir:code [ fhir:v "[dqt_us]" ] ;
+         fhir:display [ fhir:v "dry quart" ]
+       ] [
+         fhir:code [ fhir:v "[dr_ap]" ] ;
+         fhir:display [ fhir:v "dram drachm" ]
+       ] [
+         fhir:code [ fhir:v "[dr_av]" ] ;
+         fhir:display [ fhir:v "Dram (US and British)" ]
+       ] [
+         fhir:code [ fhir:v "[drp]" ] ;
+         fhir:display [ fhir:v "drop" ]
+       ] [
+         fhir:code [ fhir:v "[drp]/[HPF]" ] ;
+         fhir:display [ fhir:v "drop / HPF" ]
+       ] [
+         fhir:code [ fhir:v "[drp]/h" ] ;
+         fhir:display [ fhir:v "drop / hour" ]
+       ] [
+         fhir:code [ fhir:v "[drp]/mL" ] ;
+         fhir:display [ fhir:v "drop / milliliter" ]
+       ] [
+         fhir:code [ fhir:v "[drp]/min" ] ;
+         fhir:display [ fhir:v "drop / minute" ]
+       ] [
+         fhir:code [ fhir:v "[drp]/s" ] ;
+         fhir:display [ fhir:v "drop / second" ]
+       ] [
+         fhir:code [ fhir:v "[dye'U]" ] ;
+         fhir:display [ fhir:v "Dye unit" ]
+       ] [
+         fhir:code [ fhir:v "[e]" ] ;
+         fhir:display [ fhir:v "elementary charge" ]
+       ] [
+         fhir:code [ fhir:v "[eps_0]" ] ;
+         fhir:display [ fhir:v "permittivity of vacuum" ]
+       ] [
+         fhir:code [ fhir:v "[fdr_br]" ] ;
+         fhir:display [ fhir:v "fluid dram" ]
+       ] [
+         fhir:code [ fhir:v "[fdr_us]" ] ;
+         fhir:display [ fhir:v "fluid dram" ]
+       ] [
+         fhir:code [ fhir:v "[foz_br]" ] ;
+         fhir:display [ fhir:v "fluid ounce" ]
+       ] [
+         fhir:code [ fhir:v "[foz_us]" ] ;
+         fhir:display [ fhir:v "fluid ounce" ]
+       ] [
+         fhir:code [ fhir:v "[ft_br]" ] ;
+         fhir:display [ fhir:v "foot" ]
+       ] [
+         fhir:code [ fhir:v "[ft_i]" ] ;
+         fhir:display [ fhir:v "Feet" ]
+       ] [
+         fhir:code [ fhir:v "[ft_us]" ] ;
+         fhir:display [ fhir:v "foot" ]
+       ] [
+         fhir:code [ fhir:v "[fth_br]" ] ;
+         fhir:display [ fhir:v "fathom" ]
+       ] [
+         fhir:code [ fhir:v "[fth_i]" ] ;
+         fhir:display [ fhir:v "fathom" ]
+       ] [
+         fhir:code [ fhir:v "[fth_us]" ] ;
+         fhir:display [ fhir:v "fathom" ]
+       ] [
+         fhir:code [ fhir:v "[fur_us]" ] ;
+         fhir:display [ fhir:v "furlong" ]
+       ] [
+         fhir:code [ fhir:v "[gal_br]" ] ;
+         fhir:display [ fhir:v "gallon" ]
+       ] [
+         fhir:code [ fhir:v "[gal_us]" ] ;
+         fhir:display [ fhir:v "Queen Anne's wine gallon" ]
+       ] [
+         fhir:code [ fhir:v "[gal_wi]" ] ;
+         fhir:display [ fhir:v "historical winchester gallon" ]
+       ] [
+         fhir:code [ fhir:v "[gil_br]" ] ;
+         fhir:display [ fhir:v "gill" ]
+       ] [
+         fhir:code [ fhir:v "[gil_us]" ] ;
+         fhir:display [ fhir:v "gill" ]
+       ] [
+         fhir:code [ fhir:v "[gr]" ] ;
+         fhir:display [ fhir:v "grain" ]
+       ] [
+         fhir:code [ fhir:v "[h]" ] ;
+         fhir:display [ fhir:v "Planck constant" ]
+       ] [
+         fhir:code [ fhir:v "[hd_i]" ] ;
+         fhir:display [ fhir:v "hand" ]
+       ] [
+         fhir:code [ fhir:v "[hnsf'U]" ] ;
+         fhir:display [ fhir:v "Hounsfield unit" ]
+       ] [
+         fhir:code [ fhir:v "[hp_C]" ] ;
+         fhir:display [ fhir:v "HOMEOPATHIC POTENCY OF CENTESIMAL SERIES" ]
+       ] [
+         fhir:code [ fhir:v "[hp_M]" ] ;
+         fhir:display [ fhir:v "HOMEOPATHIC POTENCY OF MILLESIMAL SERIES" ]
+       ] [
+         fhir:code [ fhir:v "[hp_Q]" ] ;
+         fhir:display [ fhir:v "HOMEOPATHIC POTENCY OF QUINTAMILLESIMAL SERIES" ]
+       ] [
+         fhir:code [ fhir:v "[hp_X]" ] ;
+         fhir:display [ fhir:v "HOMEOPATHIC POTENCY OF DECIMAL SERIES" ]
+       ] [
+         fhir:code [ fhir:v "[iU]" ] ;
+         fhir:display [ fhir:v "international unit" ]
+       ] [
+         fhir:code [ fhir:v "[iU]" ] ;
+         fhir:display [ fhir:v "international unit" ]
+       ] [
+         fhir:code [ fhir:v "[iU]/L" ] ;
+         fhir:display [ fhir:v "InternationalUnitsPerLiter" ]
+       ] [
+         fhir:code [ fhir:v "[iU]/dL" ] ;
+         fhir:display [ fhir:v "InternationalUnitsPerDeciLiter" ]
+       ] [
+         fhir:code [ fhir:v "[iU]/g" ] ;
+         fhir:display [ fhir:v "InternationalUnitsPerGram" ]
+       ] [
+         fhir:code [ fhir:v "[iU]/kg" ] ;
+         fhir:display [ fhir:v "InternationalUnitsPerKilogram" ]
+       ] [
+         fhir:code [ fhir:v "[iU]/mL" ] ;
+         fhir:display [ fhir:v "InternationalUnitsPerMilliLiter" ]
+       ] [
+         fhir:code [ fhir:v "[in_br]" ] ;
+         fhir:display [ fhir:v "inch" ]
+       ] [
+         fhir:code [ fhir:v "[in_i'H2O]" ] ;
+         fhir:display [ fhir:v "inch (international) of water" ]
+       ] [
+         fhir:code [ fhir:v "[in_i'Hg]" ] ;
+         fhir:display [ fhir:v "inch of mercury column" ]
+       ] [
+         fhir:code [ fhir:v "[in_i]" ] ;
+         fhir:display [ fhir:v "inch (international)" ]
+       ] [
+         fhir:code [ fhir:v "[in_us]" ] ;
+         fhir:display [ fhir:v "inch" ]
+       ] [
+         fhir:code [ fhir:v "[k]" ] ;
+         fhir:display [ fhir:v "Boltzmann constant" ]
+       ] [
+         fhir:code [ fhir:v "[ka'U]" ] ;
+         fhir:display [ fhir:v "King Armstrong unit" ]
+       ] [
+         fhir:code [ fhir:v "[kn_br]" ] ;
+         fhir:display [ fhir:v "knot" ]
+       ] [
+         fhir:code [ fhir:v "[kn_i]" ] ;
+         fhir:display [ fhir:v "knot" ]
+       ] [
+         fhir:code [ fhir:v "[knk'U]" ] ;
+         fhir:display [ fhir:v "Kunkel unit" ]
+       ] [
+         fhir:code [ fhir:v "[kp_C]" ] ;
+         fhir:display [ fhir:v "HOMEOPATHIC POTENCY OF CENTESIMAL KORSAKOVIAN SERIES" ]
+       ] [
+         fhir:code [ fhir:v "[lb_ap]" ] ;
+         fhir:display [ fhir:v "pound" ]
+       ] [
+         fhir:code [ fhir:v "[lb_av]" ] ;
+         fhir:display [ fhir:v "pound (US and British)" ]
+       ] [
+         fhir:code [ fhir:v "[lb_tr]" ] ;
+         fhir:display [ fhir:v "pound" ]
+       ] [
+         fhir:code [ fhir:v "[lbf_av]" ] ;
+         fhir:display [ fhir:v "pound force" ]
+       ] [
+         fhir:code [ fhir:v "[lcwt_av]" ] ;
+         fhir:display [ fhir:v "long hunderdweight British hundredweight" ]
+       ] [
+         fhir:code [ fhir:v "[ligne]" ] ;
+         fhir:display [ fhir:v "ligne French line" ]
+       ] [
+         fhir:code [ fhir:v "[lk_br]" ] ;
+         fhir:display [ fhir:v "link for Gunter's chain" ]
+       ] [
+         fhir:code [ fhir:v "[lk_us]" ] ;
+         fhir:display [ fhir:v "link for Gunter's chain" ]
+       ] [
+         fhir:code [ fhir:v "[lne]" ] ;
+         fhir:display [ fhir:v "line" ]
+       ] [
+         fhir:code [ fhir:v "[lton_av]" ] ;
+         fhir:display [ fhir:v "long ton British ton" ]
+       ] [
+         fhir:code [ fhir:v "[ly]" ] ;
+         fhir:display [ fhir:v "light-year" ]
+       ] [
+         fhir:code [ fhir:v "[m_e]" ] ;
+         fhir:display [ fhir:v "electron mass" ]
+       ] [
+         fhir:code [ fhir:v "[m_p]" ] ;
+         fhir:display [ fhir:v "proton mass" ]
+       ] [
+         fhir:code [ fhir:v "[mclg'U]" ] ;
+         fhir:display [ fhir:v "Mac Lagan unit" ]
+       ] [
+         fhir:code [ fhir:v "[mesh_i]" ] ;
+         fhir:display [ fhir:v "mesh" ]
+       ] [
+         fhir:code [ fhir:v "[mi_br]" ] ;
+         fhir:display [ fhir:v "mile" ]
+       ] [
+         fhir:code [ fhir:v "[mi_i]" ] ;
+         fhir:display [ fhir:v "statute mile" ]
+       ] [
+         fhir:code [ fhir:v "[mi_us]" ] ;
+         fhir:display [ fhir:v "mile" ]
+       ] [
+         fhir:code [ fhir:v "[mil_i]" ] ;
+         fhir:display [ fhir:v "mil" ]
+       ] [
+         fhir:code [ fhir:v "[mil_us]" ] ;
+         fhir:display [ fhir:v "mil" ]
+       ] [
+         fhir:code [ fhir:v "[min_br]" ] ;
+         fhir:display [ fhir:v "minim" ]
+       ] [
+         fhir:code [ fhir:v "[min_us]" ] ;
+         fhir:display [ fhir:v "minim" ]
+       ] [
+         fhir:code [ fhir:v "[mu_0]" ] ;
+         fhir:display [ fhir:v "permeability of vacuum" ]
+       ] [
+         fhir:code [ fhir:v "[nmi_br]" ] ;
+         fhir:display [ fhir:v "nautical mile" ]
+       ] [
+         fhir:code [ fhir:v "[nmi_i]" ] ;
+         fhir:display [ fhir:v "nautical mile" ]
+       ] [
+         fhir:code [ fhir:v "[oz_ap]" ] ;
+         fhir:display [ fhir:v "ounce (US and British)" ]
+       ] [
+         fhir:code [ fhir:v "[oz_av]" ] ;
+         fhir:display [ fhir:v "ounce (US and British)" ]
+       ] [
+         fhir:code [ fhir:v "[oz_tr]" ] ;
+         fhir:display [ fhir:v "ounce" ]
+       ] [
+         fhir:code [ fhir:v "[p'diop]" ] ;
+         fhir:display [ fhir:v "prism diopter" ]
+       ] [
+         fhir:code [ fhir:v "[pH]" ] ;
+         fhir:display [ fhir:v "pH" ]
+       ] [
+         fhir:code [ fhir:v "[pc_br]" ] ;
+         fhir:display [ fhir:v "pace" ]
+       ] [
+         fhir:code [ fhir:v "[pca]" ] ;
+         fhir:display [ fhir:v "pica" ]
+       ] [
+         fhir:code [ fhir:v "[pca_pr]" ] ;
+         fhir:display [ fhir:v "Printer's pica" ]
+       ] [
+         fhir:code [ fhir:v "[pi]" ] ;
+         fhir:display [ fhir:v "the number pi" ]
+       ] [
+         fhir:code [ fhir:v "[pi].rad/min" ] ;
+         fhir:display [ fhir:v "the number pi * radian / minute" ]
+       ] [
+         fhir:code [ fhir:v "[pied]" ] ;
+         fhir:display [ fhir:v "pied French foot" ]
+       ] [
+         fhir:code [ fhir:v "[pk_br]" ] ;
+         fhir:display [ fhir:v "peck" ]
+       ] [
+         fhir:code [ fhir:v "[pk_us]" ] ;
+         fhir:display [ fhir:v "peck" ]
+       ] [
+         fhir:code [ fhir:v "[pnt]" ] ;
+         fhir:display [ fhir:v "point" ]
+       ] [
+         fhir:code [ fhir:v "[pnt_pr]" ] ;
+         fhir:display [ fhir:v "Printer's point" ]
+       ] [
+         fhir:code [ fhir:v "[pouce]" ] ;
+         fhir:display [ fhir:v "pouce French inch" ]
+       ] [
+         fhir:code [ fhir:v "[ppb]" ] ;
+         fhir:display [ fhir:v "part per billion" ]
+       ] [
+         fhir:code [ fhir:v "[ppm]" ] ;
+         fhir:display [ fhir:v "part per million" ]
+       ] [
+         fhir:code [ fhir:v "[ppth]" ] ;
+         fhir:display [ fhir:v "parts per thousand" ]
+       ] [
+         fhir:code [ fhir:v "[pptr]" ] ;
+         fhir:display [ fhir:v "part per trillion" ]
+       ] [
+         fhir:code [ fhir:v "[pptr]" ] ;
+         fhir:display [ fhir:v "parts per trillion" ]
+       ] [
+         fhir:code [ fhir:v "[psi]" ] ;
+         fhir:display [ fhir:v "pound per square inch" ]
+       ] [
+         fhir:code [ fhir:v "[pt_br]" ] ;
+         fhir:display [ fhir:v "pint" ]
+       ] [
+         fhir:code [ fhir:v "[pt_us]" ] ;
+         fhir:display [ fhir:v "pint" ]
+       ] [
+         fhir:code [ fhir:v "[pwt_tr]" ] ;
+         fhir:display [ fhir:v "pennyweight" ]
+       ] [
+         fhir:code [ fhir:v "[qt_br]" ] ;
+         fhir:display [ fhir:v "quart" ]
+       ] [
+         fhir:code [ fhir:v "[qt_us]" ] ;
+         fhir:display [ fhir:v "quart" ]
+       ] [
+         fhir:code [ fhir:v "[rch_us]" ] ;
+         fhir:display [ fhir:v "Ramden's chain Engineer's chain" ]
+       ] [
+         fhir:code [ fhir:v "[rd_br]" ] ;
+         fhir:display [ fhir:v "rod" ]
+       ] [
+         fhir:code [ fhir:v "[rd_us]" ] ;
+         fhir:display [ fhir:v "rod" ]
+       ] [
+         fhir:code [ fhir:v "[rlk_us]" ] ;
+         fhir:display [ fhir:v "link for Ramden's chain" ]
+       ] [
+         fhir:code [ fhir:v "[sc_ap]" ] ;
+         fhir:display [ fhir:v "scruple" ]
+       ] [
+         fhir:code [ fhir:v "[sct]" ] ;
+         fhir:display [ fhir:v "section" ]
+       ] [
+         fhir:code [ fhir:v "[scwt_av]" ] ;
+         fhir:display [ fhir:v "short hundredweight U.S. hundredweight" ]
+       ] [
+         fhir:code [ fhir:v "[sft_i]" ] ;
+         fhir:display [ fhir:v "square foot (international)" ]
+       ] [
+         fhir:code [ fhir:v "[sin_i]" ] ;
+         fhir:display [ fhir:v "square inch (international)" ]
+       ] [
+         fhir:code [ fhir:v "[smgy'U]" ] ;
+         fhir:display [ fhir:v "Somogyi unit" ]
+       ] [
+         fhir:code [ fhir:v "[smi_us]" ] ;
+         fhir:display [ fhir:v "square mile" ]
+       ] [
+         fhir:code [ fhir:v "[smoot]" ] ;
+         fhir:display [ fhir:v "Smoot" ]
+       ] [
+         fhir:code [ fhir:v "[srd_us]" ] ;
+         fhir:display [ fhir:v "square rod" ]
+       ] [
+         fhir:code [ fhir:v "[ston_av]" ] ;
+         fhir:display [ fhir:v "short ton U.S. ton" ]
+       ] [
+         fhir:code [ fhir:v "[stone_av]" ] ;
+         fhir:display [ fhir:v "stone British stone" ]
+       ] [
+         fhir:code [ fhir:v "[syd_i]" ] ;
+         fhir:display [ fhir:v "square yard" ]
+       ] [
+         fhir:code [ fhir:v "[tb'U]" ] ;
+         fhir:display [ fhir:v "tuberculin unit" ]
+       ] [
+         fhir:code [ fhir:v "[tbs_us]" ] ;
+         fhir:display [ fhir:v "tablespoon (US)" ]
+       ] [
+         fhir:code [ fhir:v "[todd'U]" ] ;
+         fhir:display [ fhir:v "Todd unit" ]
+       ] [
+         fhir:code [ fhir:v "[todd'U]" ] ;
+         fhir:display [ fhir:v "Todd unit" ]
+       ] [
+         fhir:code [ fhir:v "[tsp_us]" ] ;
+         fhir:display [ fhir:v "teaspoon" ]
+       ] [
+         fhir:code [ fhir:v "[twp]" ] ;
+         fhir:display [ fhir:v "township" ]
+       ] [
+         fhir:code [ fhir:v "[yd_br]" ] ;
+         fhir:display [ fhir:v "yard" ]
+       ] [
+         fhir:code [ fhir:v "[yd_i]" ] ;
+         fhir:display [ fhir:v "yard" ]
+       ] [
+         fhir:code [ fhir:v "[yd_us]" ] ;
+         fhir:display [ fhir:v "yard" ]
+       ] [
+         fhir:code [ fhir:v "a" ] ;
+         fhir:display [ fhir:v "year" ]
+       ] [
+         fhir:code [ fhir:v "a_g" ] ;
+         fhir:display [ fhir:v "mean Gregorian year" ]
+       ] [
+         fhir:code [ fhir:v "a_j" ] ;
+         fhir:display [ fhir:v "mean Julian year" ]
+       ] [
+         fhir:code [ fhir:v "a_t" ] ;
+         fhir:display [ fhir:v "tropical year" ]
+       ] [
+         fhir:code [ fhir:v "ag" ] ;
+         fhir:display [ fhir:v "attogram" ]
+       ] [
+         fhir:code [ fhir:v "ar" ] ;
+         fhir:display [ fhir:v "are" ]
+       ] [
+         fhir:code [ fhir:v "atm" ] ;
+         fhir:display [ fhir:v "standard atmosphere" ]
+       ] [
+         fhir:code [ fhir:v "att" ] ;
+         fhir:display [ fhir:v "technical atmosphere" ]
+       ] [
+         fhir:code [ fhir:v "b" ] ;
+         fhir:display [ fhir:v "barn" ]
+       ] [
+         fhir:code [ fhir:v "bar" ] ;
+         fhir:display [ fhir:v "bar" ]
+       ] [
+         fhir:code [ fhir:v "bit" ] ;
+         fhir:display [ fhir:v "bit" ]
+       ] [
+         fhir:code [ fhir:v "bit_s" ] ;
+         fhir:display [ fhir:v "bit" ]
+       ] [
+         fhir:code [ fhir:v "cL" ] ;
+         fhir:display [ fhir:v "centiliter" ]
+       ] [
+         fhir:code [ fhir:v "cP" ] ;
+         fhir:display [ fhir:v "centiPoise" ]
+       ] [
+         fhir:code [ fhir:v "cSt" ] ;
+         fhir:display [ fhir:v "centiStokes" ]
+       ] [
+         fhir:code [ fhir:v "cal" ] ;
+         fhir:display [ fhir:v "calorie" ]
+       ] [
+         fhir:code [ fhir:v "cal_IT" ] ;
+         fhir:display [ fhir:v "international table calorie" ]
+       ] [
+         fhir:code [ fhir:v "cal_[15]" ] ;
+         fhir:display [ fhir:v "calorie at 15 °C" ]
+       ] [
+         fhir:code [ fhir:v "cal_[20]" ] ;
+         fhir:display [ fhir:v "calorie at 20 °C" ]
+       ] [
+         fhir:code [ fhir:v "cal_m" ] ;
+         fhir:display [ fhir:v "mean calorie" ]
+       ] [
+         fhir:code [ fhir:v "cal_th" ] ;
+         fhir:display [ fhir:v "thermochemical calorie" ]
+       ] [
+         fhir:code [ fhir:v "cd" ] ;
+         fhir:display [ fhir:v "candela" ]
+       ] [
+         fhir:code [ fhir:v "cg" ] ;
+         fhir:display [ fhir:v "centigram" ]
+       ] [
+         fhir:code [ fhir:v "circ" ] ;
+         fhir:display [ fhir:v "circle" ]
+       ] [
+         fhir:code [ fhir:v "cm" ] ;
+         fhir:display [ fhir:v "centimeter" ]
+       ] [
+         fhir:code [ fhir:v "cm2" ] ;
+         fhir:display [ fhir:v "square centimeter" ]
+       ] [
+         fhir:code [ fhir:v "cm2/s" ] ;
+         fhir:display [ fhir:v "square centimeter per second" ]
+       ] [
+         fhir:code [ fhir:v "cm3" ] ;
+         fhir:display [ fhir:v "cubic centimeter" ]
+       ] [
+         fhir:code [ fhir:v "cm[H2O]" ] ;
+         fhir:display [ fhir:v "centimeter of water" ]
+       ] [
+         fhir:code [ fhir:v "cm[H2O]/(s.m)" ] ;
+         fhir:display [ fhir:v "centimeter of water column / second * meter" ]
+       ] [
+         fhir:code [ fhir:v "cm[H2O]/L/s" ] ;
+         fhir:display [ fhir:v "centimeter of water per liter per second" ]
+       ] [
+         fhir:code [ fhir:v "cm[H2O]/s/m" ] ;
+         fhir:display [ fhir:v "centimeter of water per second per meter" ]
+       ] [
+         fhir:code [ fhir:v "cm[Hg]" ] ;
+         fhir:display [ fhir:v "centimeter of mercury" ]
+       ] [
+         fhir:code [ fhir:v "d" ] ;
+         fhir:display [ fhir:v "day" ]
+       ] [
+         fhir:code [ fhir:v "dB" ] ;
+         fhir:display [ fhir:v "decibel" ]
+       ] [
+         fhir:code [ fhir:v "dL" ] ;
+         fhir:display [ fhir:v "deciliter" ]
+       ] [
+         fhir:code [ fhir:v "daL/min" ] ;
+         fhir:display [ fhir:v "dekaliter per minute" ]
+       ] [
+         fhir:code [ fhir:v "daL/min/m2" ] ;
+         fhir:display [ fhir:v "dekaliter per minute per square meter" ]
+       ] [
+         fhir:code [ fhir:v "deg" ] ;
+         fhir:display [ fhir:v "degree" ]
+       ] [
+         fhir:code [ fhir:v "deg/s" ] ;
+         fhir:display [ fhir:v "degree per second" ]
+       ] [
+         fhir:code [ fhir:v "dg" ] ;
+         fhir:display [ fhir:v "decigram" ]
+       ] [
+         fhir:code [ fhir:v "dm" ] ;
+         fhir:display [ fhir:v "decimeter" ]
+       ] [
+         fhir:code [ fhir:v "dm2/s2" ] ;
+         fhir:display [ fhir:v "square decimeter per square second" ]
+       ] [
+         fhir:code [ fhir:v "dyn" ] ;
+         fhir:display [ fhir:v "dyne" ]
+       ] [
+         fhir:code [ fhir:v "dyn.s/(cm.m2)" ] ;
+         fhir:display [ fhir:v "dyne second per centimeter per square meter" ]
+       ] [
+         fhir:code [ fhir:v "dyn.s/cm" ] ;
+         fhir:display [ fhir:v "dyne second per centimeter" ]
+       ] [
+         fhir:code [ fhir:v "eV" ] ;
+         fhir:display [ fhir:v "electronvolt" ]
+       ] [
+         fhir:code [ fhir:v "eq" ] ;
+         fhir:display [ fhir:v "equivalents" ]
+       ] [
+         fhir:code [ fhir:v "eq/L" ] ;
+         fhir:display [ fhir:v "equivalents / liter" ]
+       ] [
+         fhir:code [ fhir:v "eq/mL" ] ;
+         fhir:display [ fhir:v "equivalents / milliliter" ]
+       ] [
+         fhir:code [ fhir:v "eq/mmol" ] ;
+         fhir:display [ fhir:v "equivalents / millimole" ]
+       ] [
+         fhir:code [ fhir:v "eq/umol" ] ;
+         fhir:display [ fhir:v "equivalents / micromole" ]
+       ] [
+         fhir:code [ fhir:v "erg" ] ;
+         fhir:display [ fhir:v "erg" ]
+       ] [
+         fhir:code [ fhir:v "fL" ] ;
+         fhir:display [ fhir:v "femtoliter" ]
+       ] [
+         fhir:code [ fhir:v "fL/nL" ] ;
+         fhir:display [ fhir:v "femtoliter / nanoliter" ]
+       ] [
+         fhir:code [ fhir:v "fg" ] ;
+         fhir:display [ fhir:v "femtogram" ]
+       ] [
+         fhir:code [ fhir:v "fm" ] ;
+         fhir:display [ fhir:v "femtometer" ]
+       ] [
+         fhir:code [ fhir:v "fmol" ] ;
+         fhir:display [ fhir:v "femtomole" ]
+       ] [
+         fhir:code [ fhir:v "fmol/L" ] ;
+         fhir:display [ fhir:v "femtomole per liter" ]
+       ] [
+         fhir:code [ fhir:v "fmol/g" ] ;
+         fhir:display [ fhir:v "femtomole per gram" ]
+       ] [
+         fhir:code [ fhir:v "fmol/mL" ] ;
+         fhir:display [ fhir:v "femtomole / milliliter" ]
+       ] [
+         fhir:code [ fhir:v "fmol/mg" ] ;
+         fhir:display [ fhir:v "femtomole / milligram" ]
+       ] [
+         fhir:code [ fhir:v "fmol/mg" ] ;
+         fhir:display [ fhir:v "femtomole per milligram" ]
+       ] [
+         fhir:code [ fhir:v "g" ] ;
+         fhir:display [ fhir:v "gram" ]
+       ] [
+         fhir:code [ fhir:v "g%" ] ;
+         fhir:display [ fhir:v "gram percent" ]
+       ] [
+         fhir:code [ fhir:v "g.m" ] ;
+         fhir:display [ fhir:v "gram * meter" ]
+       ] [
+         fhir:code [ fhir:v "g/(100.g)" ] ;
+         fhir:display [ fhir:v "gram per 100 gram" ]
+       ] [
+         fhir:code [ fhir:v "g/(12.h)" ] ;
+         fhir:display [ fhir:v "gram per 12 hour" ]
+       ] [
+         fhir:code [ fhir:v "g/(24.h)" ] ;
+         fhir:display [ fhir:v "gram per 24 hour" ]
+       ] [
+         fhir:code [ fhir:v "g/(3.d)" ] ;
+         fhir:display [ fhir:v "gram per 3 days" ]
+       ] [
+         fhir:code [ fhir:v "g/(4.h)" ] ;
+         fhir:display [ fhir:v "gram per 4 hour" ]
+       ] [
+         fhir:code [ fhir:v "g/(48.h)" ] ;
+         fhir:display [ fhir:v "gram per 48 hour" ]
+       ] [
+         fhir:code [ fhir:v "g/(5.h)" ] ;
+         fhir:display [ fhir:v "gram per 5 hour" ]
+       ] [
+         fhir:code [ fhir:v "g/(6.h)" ] ;
+         fhir:display [ fhir:v "gram per 6 hour" ]
+       ] [
+         fhir:code [ fhir:v "g/(72.h)" ] ;
+         fhir:display [ fhir:v "gram per 72 hour" ]
+       ] [
+         fhir:code [ fhir:v "g/(8.h)" ] ;
+         fhir:display [ fhir:v "gram / 8 * hour" ]
+       ] [
+         fhir:code [ fhir:v "g/(8.kg.h)" ] ;
+         fhir:display [ fhir:v "gram / 8 * kilogram * hour" ]
+       ] [
+         fhir:code [ fhir:v "g/(kg.h)" ] ;
+         fhir:display [ fhir:v "gram / kilogram * hour" ]
+       ] [
+         fhir:code [ fhir:v "g/(kg.min)" ] ;
+         fhir:display [ fhir:v "gram / kilogram * minute" ]
+       ] [
+         fhir:code [ fhir:v "g/L" ] ;
+         fhir:display [ fhir:v "gram per liter" ]
+       ] [
+         fhir:code [ fhir:v "g/cm3" ] ;
+         fhir:display [ fhir:v "gram per cubic centimeter" ]
+       ] [
+         fhir:code [ fhir:v "g/d" ] ;
+         fhir:display [ fhir:v "gram per day" ]
+       ] [
+         fhir:code [ fhir:v "g/dL" ] ;
+         fhir:display [ fhir:v "gram per deciliter" ]
+       ] [
+         fhir:code [ fhir:v "g/g" ] ;
+         fhir:display [ fhir:v "gram per gram" ]
+       ] [
+         fhir:code [ fhir:v "g/h" ] ;
+         fhir:display [ fhir:v "gram per hour" ]
+       ] [
+         fhir:code [ fhir:v "g/h/m2" ] ;
+         fhir:display [ fhir:v "gram per hour per square meter" ]
+       ] [
+         fhir:code [ fhir:v "g/kg" ] ;
+         fhir:display [ fhir:v "gram per kilogram" ]
+       ] [
+         fhir:code [ fhir:v "g/kg/(8.h)" ] ;
+         fhir:display [ fhir:v "gram per  kilogram per 8 hour" ]
+       ] [
+         fhir:code [ fhir:v "g/kg/d" ] ;
+         fhir:display [ fhir:v "gram per kilogram per day" ]
+       ] [
+         fhir:code [ fhir:v "g/kg/h" ] ;
+         fhir:display [ fhir:v "gram per kilogram per hour" ]
+       ] [
+         fhir:code [ fhir:v "g/kg/min" ] ;
+         fhir:display [ fhir:v "gram per kilogram per minute" ]
+       ] [
+         fhir:code [ fhir:v "g/m2" ] ;
+         fhir:display [ fhir:v "grams Per Square Meter" ]
+       ] [
+         fhir:code [ fhir:v "g/mL" ] ;
+         fhir:display [ fhir:v "gram per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "g/mg" ] ;
+         fhir:display [ fhir:v "gram per milligram" ]
+       ] [
+         fhir:code [ fhir:v "g/min" ] ;
+         fhir:display [ fhir:v "gram per minute" ]
+       ] [
+         fhir:code [ fhir:v "g/mmol" ] ;
+         fhir:display [ fhir:v "gram per millimole" ]
+       ] [
+         fhir:code [ fhir:v "g/mol" ] ;
+         fhir:display [ fhir:v "gram per mole" ]
+       ] [
+         fhir:code [ fhir:v "gf" ] ;
+         fhir:display [ fhir:v "gram-force" ]
+       ] [
+         fhir:code [ fhir:v "gon" ] ;
+         fhir:display [ fhir:v "gon grade" ]
+       ] [
+         fhir:code [ fhir:v "h" ] ;
+         fhir:display [ fhir:v "hour" ]
+       ] [
+         fhir:code [ fhir:v "hL" ] ;
+         fhir:display [ fhir:v "hectoliter" ]
+       ] [
+         fhir:code [ fhir:v "kBq" ] ;
+         fhir:display [ fhir:v "kiloBecquerel" ]
+       ] [
+         fhir:code [ fhir:v "kL" ] ;
+         fhir:display [ fhir:v "kiloliter" ]
+       ] [
+         fhir:code [ fhir:v "kPa" ] ;
+         fhir:display [ fhir:v "kiloPascal" ]
+       ] [
+         fhir:code [ fhir:v "kU" ] ;
+         fhir:display [ fhir:v "kilo enzyme unit" ]
+       ] [
+         fhir:code [ fhir:v "kU/L" ] ;
+         fhir:display [ fhir:v "kiloenzyme Unit per liter" ]
+       ] [
+         fhir:code [ fhir:v "kU/g" ] ;
+         fhir:display [ fhir:v "kiloenzyme Unit per gram" ]
+       ] [
+         fhir:code [ fhir:v "kU/h" ] ;
+         fhir:display [ fhir:v "kiloUnit / hour" ]
+       ] [
+         fhir:code [ fhir:v "kU/mL" ] ;
+         fhir:display [ fhir:v "kilo enzyme unit per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "k[IU]/L" ] ;
+         fhir:display [ fhir:v "kilo international unit per liter" ]
+       ] [
+         fhir:code [ fhir:v "k[IU]/mL" ] ;
+         fhir:display [ fhir:v "kilo international unit per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "k[iU]/mL" ] ;
+         fhir:display [ fhir:v "KiloInternationalUnitsPerMilliLiter" ]
+       ] [
+         fhir:code [ fhir:v "kat" ] ;
+         fhir:display [ fhir:v "katal" ]
+       ] [
+         fhir:code [ fhir:v "kat/L" ] ;
+         fhir:display [ fhir:v "katal / liter" ]
+       ] [
+         fhir:code [ fhir:v "kat/kg" ] ;
+         fhir:display [ fhir:v "katal / kilogram" ]
+       ] [
+         fhir:code [ fhir:v "kcal" ] ;
+         fhir:display [ fhir:v "kilocalorie" ]
+       ] [
+         fhir:code [ fhir:v "kcal/(8.h)" ] ;
+         fhir:display [ fhir:v "kilocalorie / 8 * hour" ]
+       ] [
+         fhir:code [ fhir:v "kcal/[oz_av]" ] ;
+         fhir:display [ fhir:v "kilocalorie per ounce (US & British)" ]
+       ] [
+         fhir:code [ fhir:v "kcal/d" ] ;
+         fhir:display [ fhir:v "kilocalorie per day" ]
+       ] [
+         fhir:code [ fhir:v "kcal/h" ] ;
+         fhir:display [ fhir:v "kilocalorie per hour" ]
+       ] [
+         fhir:code [ fhir:v "kcal/kg/(24.h)" ] ;
+         fhir:display [ fhir:v "kilocalorie per kilogram per 24 hour" ]
+       ] [
+         fhir:code [ fhir:v "kg" ] ;
+         fhir:display [ fhir:v "kilogram" ]
+       ] [
+         fhir:code [ fhir:v "kg.m/s" ] ;
+         fhir:display [ fhir:v "kilogram meter per second" ]
+       ] [
+         fhir:code [ fhir:v "kg/(s.m2)" ] ;
+         fhir:display [ fhir:v "kilogram per second per square meter" ]
+       ] [
+         fhir:code [ fhir:v "kg/L" ] ;
+         fhir:display [ fhir:v "kilogram per liter" ]
+       ] [
+         fhir:code [ fhir:v "kg/h" ] ;
+         fhir:display [ fhir:v "kilogram per hour" ]
+       ] [
+         fhir:code [ fhir:v "kg/m2" ] ;
+         fhir:display [ fhir:v "kilogram / (meter ^ 2)" ]
+       ] [
+         fhir:code [ fhir:v "kg/m3" ] ;
+         fhir:display [ fhir:v "kilogram / (meter ^ 3)" ]
+       ] [
+         fhir:code [ fhir:v "kg/min" ] ;
+         fhir:display [ fhir:v "kilogram / minute" ]
+       ] [
+         fhir:code [ fhir:v "kg/mol" ] ;
+         fhir:display [ fhir:v "kilogram per mole" ]
+       ] [
+         fhir:code [ fhir:v "kg/s" ] ;
+         fhir:display [ fhir:v "kilogram / second" ]
+       ] [
+         fhir:code [ fhir:v "km" ] ;
+         fhir:display [ fhir:v "kilometer" ]
+       ] [
+         fhir:code [ fhir:v "ks" ] ;
+         fhir:display [ fhir:v "kilosecond" ]
+       ] [
+         fhir:code [ fhir:v "lm" ] ;
+         fhir:display [ fhir:v "lumen" ]
+       ] [
+         fhir:code [ fhir:v "lm.m2" ] ;
+         fhir:display [ fhir:v "lumen square meter" ]
+       ] [
+         fhir:code [ fhir:v "lm/m2" ] ;
+         fhir:display [ fhir:v "lumen / (meter ^ 2)" ]
+       ] [
+         fhir:code [ fhir:v "lx" ] ;
+         fhir:display [ fhir:v "lux" ]
+       ] [
+         fhir:code [ fhir:v "m" ] ;
+         fhir:display [ fhir:v "meter" ]
+       ] [
+         fhir:code [ fhir:v "m/s" ] ;
+         fhir:display [ fhir:v "meter per second" ]
+       ] [
+         fhir:code [ fhir:v "m/s2" ] ;
+         fhir:display [ fhir:v "meter per square second" ]
+       ] [
+         fhir:code [ fhir:v "m2" ] ;
+         fhir:display [ fhir:v "square meter" ]
+       ] [
+         fhir:code [ fhir:v "m2/s" ] ;
+         fhir:display [ fhir:v "square meter per second" ]
+       ] [
+         fhir:code [ fhir:v "m3/s" ] ;
+         fhir:display [ fhir:v "cubic meter per second" ]
+       ] [
+         fhir:code [ fhir:v "mA" ] ;
+         fhir:display [ fhir:v "milliAmpère" ]
+       ] [
+         fhir:code [ fhir:v "mCi" ] ;
+         fhir:display [ fhir:v "milliCurie" ]
+       ] [
+         fhir:code [ fhir:v "mL" ] ;
+         fhir:display [ fhir:v "milliliter" ]
+       ] [
+         fhir:code [ fhir:v "mL/(10.h)" ] ;
+         fhir:display [ fhir:v "milliliter per 10 hour" ]
+       ] [
+         fhir:code [ fhir:v "mL/(12.h)" ] ;
+         fhir:display [ fhir:v "milliliter per 12 hour" ]
+       ] [
+         fhir:code [ fhir:v "mL/(2.h)" ] ;
+         fhir:display [ fhir:v "milliliter per 2 hour" ]
+       ] [
+         fhir:code [ fhir:v "mL/(24.h)" ] ;
+         fhir:display [ fhir:v "milliliter per 24 hour" ]
+       ] [
+         fhir:code [ fhir:v "mL/(4.h)" ] ;
+         fhir:display [ fhir:v "milliliter per 4 hour" ]
+       ] [
+         fhir:code [ fhir:v "mL/(5.h)" ] ;
+         fhir:display [ fhir:v "milliliter per 5 hour" ]
+       ] [
+         fhir:code [ fhir:v "mL/(6.h)" ] ;
+         fhir:display [ fhir:v "milliliter per 6 hour" ]
+       ] [
+         fhir:code [ fhir:v "mL/(72.h)" ] ;
+         fhir:display [ fhir:v "milliliter per 72 hour" ]
+       ] [
+         fhir:code [ fhir:v "mL/(8.h)" ] ;
+         fhir:display [ fhir:v "milliliter per 8 hour" ]
+       ] [
+         fhir:code [ fhir:v "mL/(kg.min)" ] ;
+         fhir:display [ fhir:v "milliliter / kilogram * minute" ]
+       ] [
+         fhir:code [ fhir:v "mL/L" ] ;
+         fhir:display [ fhir:v "milliliter per liter" ]
+       ] [
+         fhir:code [ fhir:v "mL/[sin_i]" ] ;
+         fhir:display [ fhir:v "milliliter per square inch (international)" ]
+       ] [
+         fhir:code [ fhir:v "mL/cm[H2O]" ] ;
+         fhir:display [ fhir:v "milliliter / centimeter of water column" ]
+       ] [
+         fhir:code [ fhir:v "mL/d" ] ;
+         fhir:display [ fhir:v "milliliter per day" ]
+       ] [
+         fhir:code [ fhir:v "mL/dL" ] ;
+         fhir:display [ fhir:v "milliliter per deciliter" ]
+       ] [
+         fhir:code [ fhir:v "mL/h" ] ;
+         fhir:display [ fhir:v "milliliter per hour" ]
+       ] [
+         fhir:code [ fhir:v "mL/kg" ] ;
+         fhir:display [ fhir:v "milliliter per kilogram" ]
+       ] [
+         fhir:code [ fhir:v "mL/kg/(8.h)" ] ;
+         fhir:display [ fhir:v "milliliter per kilogram per 8 hour" ]
+       ] [
+         fhir:code [ fhir:v "mL/kg/d" ] ;
+         fhir:display [ fhir:v "milliliter per kilogram per day" ]
+       ] [
+         fhir:code [ fhir:v "mL/kg/h" ] ;
+         fhir:display [ fhir:v "milliliter per kilogram per hour" ]
+       ] [
+         fhir:code [ fhir:v "mL/kg/min" ] ;
+         fhir:display [ fhir:v "milliliter per kilogram per minute" ]
+       ] [
+         fhir:code [ fhir:v "mL/m2" ] ;
+         fhir:display [ fhir:v "milliliter per square meter" ]
+       ] [
+         fhir:code [ fhir:v "mL/mbar" ] ;
+         fhir:display [ fhir:v "milliliter per millibar" ]
+       ] [
+         fhir:code [ fhir:v "mL/min" ] ;
+         fhir:display [ fhir:v "milliliter per minute" ]
+       ] [
+         fhir:code [ fhir:v "mL/min/(173.10*-2.m2)" ] ;
+         fhir:display [ fhir:v "milliliter / minute / 173 * (the number ten for arbitrary powers ^ -2) * (meter ^ 2)" ]
+       ] [
+         fhir:code [ fhir:v "mL/min/1.73.m2" ] ;
+         fhir:display [ fhir:v "milliliter per minute per 1.73 square meter" ]
+       ] [
+         fhir:code [ fhir:v "mL/min/m2" ] ;
+         fhir:display [ fhir:v "milliliter per minute per square meter" ]
+       ] [
+         fhir:code [ fhir:v "mL/mm" ] ;
+         fhir:display [ fhir:v "milliliter per millimeter" ]
+       ] [
+         fhir:code [ fhir:v "mL/s" ] ;
+         fhir:display [ fhir:v "milliliter per second" ]
+       ] [
+         fhir:code [ fhir:v "mPa" ] ;
+         fhir:display [ fhir:v "millipascal" ]
+       ] [
+         fhir:code [ fhir:v "mPa.s" ] ;
+         fhir:display [ fhir:v "millipascal second" ]
+       ] [
+         fhir:code [ fhir:v "mU" ] ;
+         fhir:display [ fhir:v "millienzyme Unit" ]
+       ] [
+         fhir:code [ fhir:v "mU/L" ] ;
+         fhir:display [ fhir:v "millienzyme Unit per liter" ]
+       ] [
+         fhir:code [ fhir:v "mU/g" ] ;
+         fhir:display [ fhir:v "millienzyme Unit per gram" ]
+       ] [
+         fhir:code [ fhir:v "mU/mL" ] ;
+         fhir:display [ fhir:v "millienzyme Unit per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "mU/mL/min" ] ;
+         fhir:display [ fhir:v "millienzyme Unit per milliliter per minute" ]
+       ] [
+         fhir:code [ fhir:v "mU/mg" ] ;
+         fhir:display [ fhir:v "milliUnit / milligram" ]
+       ] [
+         fhir:code [ fhir:v "mU/min" ] ;
+         fhir:display [ fhir:v "milliUnit / minute" ]
+       ] [
+         fhir:code [ fhir:v "mU/mmol" ] ;
+         fhir:display [ fhir:v "millienzyme Unit per millimole" ]
+       ] [
+         fhir:code [ fhir:v "mV" ] ;
+         fhir:display [ fhir:v "milliVolt" ]
+       ] [
+         fhir:code [ fhir:v "m[H2O]" ] ;
+         fhir:display [ fhir:v "meter of water column" ]
+       ] [
+         fhir:code [ fhir:v "m[Hg]" ] ;
+         fhir:display [ fhir:v "meter of mercury column" ]
+       ] [
+         fhir:code [ fhir:v "m[IU]/L" ] ;
+         fhir:display [ fhir:v "milli international unit per liter" ]
+       ] [
+         fhir:code [ fhir:v "m[IU]/mL" ] ;
+         fhir:display [ fhir:v "milli international unit per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "m[iU]" ] ;
+         fhir:display [ fhir:v "milliinternational unit" ]
+       ] [
+         fhir:code [ fhir:v "mbar" ] ;
+         fhir:display [ fhir:v "millibar" ]
+       ] [
+         fhir:code [ fhir:v "mbar.s/L" ] ;
+         fhir:display [ fhir:v "millibar second per liter" ]
+       ] [
+         fhir:code [ fhir:v "mbar/L/s" ] ;
+         fhir:display [ fhir:v "millibar per liter per second" ]
+       ] [
+         fhir:code [ fhir:v "meq" ] ;
+         fhir:display [ fhir:v "milliequivalent" ]
+       ] [
+         fhir:code [ fhir:v "meq/(12.h)" ] ;
+         fhir:display [ fhir:v "milliequivalent per 12 hour" ]
+       ] [
+         fhir:code [ fhir:v "meq/(2.h)" ] ;
+         fhir:display [ fhir:v "milliequivalent per 2 hour" ]
+       ] [
+         fhir:code [ fhir:v "meq/(24.h)" ] ;
+         fhir:display [ fhir:v "milliequivalent per 24 hour" ]
+       ] [
+         fhir:code [ fhir:v "meq/(8.h)" ] ;
+         fhir:display [ fhir:v "milliequivalent per 8 hour" ]
+       ] [
+         fhir:code [ fhir:v "meq/(8.h.kg)" ] ;
+         fhir:display [ fhir:v "milliequivalents / 8 * hour * kilogram" ]
+       ] [
+         fhir:code [ fhir:v "meq/(kg.d)" ] ;
+         fhir:display [ fhir:v "milliequivalents / kilogram * day" ]
+       ] [
+         fhir:code [ fhir:v "meq/L" ] ;
+         fhir:display [ fhir:v "milliequivalent per liter" ]
+       ] [
+         fhir:code [ fhir:v "meq/d" ] ;
+         fhir:display [ fhir:v "milliequivalent per day" ]
+       ] [
+         fhir:code [ fhir:v "meq/dL" ] ;
+         fhir:display [ fhir:v "milliequivalent per deciliter" ]
+       ] [
+         fhir:code [ fhir:v "meq/g" ] ;
+         fhir:display [ fhir:v "milliequivalent per gram" ]
+       ] [
+         fhir:code [ fhir:v "meq/h" ] ;
+         fhir:display [ fhir:v "milliequivalent per hour" ]
+       ] [
+         fhir:code [ fhir:v "meq/kg" ] ;
+         fhir:display [ fhir:v "milliequivalent per kilogram" ]
+       ] [
+         fhir:code [ fhir:v "meq/kg/h" ] ;
+         fhir:display [ fhir:v "milliequivalent per kilogram per hour" ]
+       ] [
+         fhir:code [ fhir:v "meq/kg/min" ] ;
+         fhir:display [ fhir:v "milliequivalents / kilogram / minute" ]
+       ] [
+         fhir:code [ fhir:v "meq/m2" ] ;
+         fhir:display [ fhir:v "milliequivalent per square meter" ]
+       ] [
+         fhir:code [ fhir:v "meq/mL" ] ;
+         fhir:display [ fhir:v "milliequivalent per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "meq/min" ] ;
+         fhir:display [ fhir:v "milliequivalent per minute" ]
+       ] [
+         fhir:code [ fhir:v "mg" ] ;
+         fhir:display [ fhir:v "milligram" ]
+       ] [
+         fhir:code [ fhir:v "mg/(10.h)" ] ;
+         fhir:display [ fhir:v "milligram per 10 hour" ]
+       ] [
+         fhir:code [ fhir:v "mg/(12.h)" ] ;
+         fhir:display [ fhir:v "milligram per 12 hour" ]
+       ] [
+         fhir:code [ fhir:v "mg/(18.h)" ] ;
+         fhir:display [ fhir:v "milligram per 18 hour" ]
+       ] [
+         fhir:code [ fhir:v "mg/(2.h)" ] ;
+         fhir:display [ fhir:v "milligram per 2 hour" ]
+       ] [
+         fhir:code [ fhir:v "mg/(24.h)" ] ;
+         fhir:display [ fhir:v "milligram per 24 hour" ]
+       ] [
+         fhir:code [ fhir:v "mg/(6.h)" ] ;
+         fhir:display [ fhir:v "milligram per 6 hour" ]
+       ] [
+         fhir:code [ fhir:v "mg/(72.h)" ] ;
+         fhir:display [ fhir:v "milligram per 72 hour" ]
+       ] [
+         fhir:code [ fhir:v "mg/(8.h)" ] ;
+         fhir:display [ fhir:v "milligram per 8 hour" ]
+       ] [
+         fhir:code [ fhir:v "mg/(8.h.kg)" ] ;
+         fhir:display [ fhir:v "milligram / 8 * hour * kilogram" ]
+       ] [
+         fhir:code [ fhir:v "mg/(kg.h)" ] ;
+         fhir:display [ fhir:v "milligram / kilogram * hour" ]
+       ] [
+         fhir:code [ fhir:v "mg/L" ] ;
+         fhir:display [ fhir:v "milligram per liter" ]
+       ] [
+         fhir:code [ fhir:v "mg/d" ] ;
+         fhir:display [ fhir:v "milligram per day" ]
+       ] [
+         fhir:code [ fhir:v "mg/d/(173.10*-2.m2)" ] ;
+         fhir:display [ fhir:v "milligram / day / 173 * (the number ten for arbitrary powers ^ -2) * (meter ^ 2)" ]
+       ] [
+         fhir:code [ fhir:v "mg/d/1.73.m2" ] ;
+         fhir:display [ fhir:v "milligram per day per 1.73 square meter" ]
+       ] [
+         fhir:code [ fhir:v "mg/dL" ] ;
+         fhir:display [ fhir:v "milligram per deciliter" ]
+       ] [
+         fhir:code [ fhir:v "mg/g" ] ;
+         fhir:display [ fhir:v "milligram per gram" ]
+       ] [
+         fhir:code [ fhir:v "mg/h" ] ;
+         fhir:display [ fhir:v "milligram per hour" ]
+       ] [
+         fhir:code [ fhir:v "mg/kg" ] ;
+         fhir:display [ fhir:v "milligram per kilogram" ]
+       ] [
+         fhir:code [ fhir:v "mg/kg/(24.h)" ] ;
+         fhir:display [ fhir:v "milligram / kilogram / 24 * hour" ]
+       ] [
+         fhir:code [ fhir:v "mg/kg/(8.h)" ] ;
+         fhir:display [ fhir:v "milligram per kilogram per 8 hour" ]
+       ] [
+         fhir:code [ fhir:v "mg/kg/d" ] ;
+         fhir:display [ fhir:v "milligram per kilogram per day" ]
+       ] [
+         fhir:code [ fhir:v "mg/kg/h" ] ;
+         fhir:display [ fhir:v "milligram per kilogram per hour" ]
+       ] [
+         fhir:code [ fhir:v "mg/kg/min" ] ;
+         fhir:display [ fhir:v "milligram per kilogram per minute" ]
+       ] [
+         fhir:code [ fhir:v "mg/m2" ] ;
+         fhir:display [ fhir:v "milligram per square meter" ]
+       ] [
+         fhir:code [ fhir:v "mg/m3" ] ;
+         fhir:display [ fhir:v "milligram per cubic meter" ]
+       ] [
+         fhir:code [ fhir:v "mg/mL" ] ;
+         fhir:display [ fhir:v "milligram per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "mg/mg" ] ;
+         fhir:display [ fhir:v "milligram per milligram" ]
+       ] [
+         fhir:code [ fhir:v "mg/min" ] ;
+         fhir:display [ fhir:v "milligram per minute" ]
+       ] [
+         fhir:code [ fhir:v "mg/mmol" ] ;
+         fhir:display [ fhir:v "milligram per millimole" ]
+       ] [
+         fhir:code [ fhir:v "mg/wk" ] ;
+         fhir:display [ fhir:v "milligram per week" ]
+       ] [
+         fhir:code [ fhir:v "mho" ] ;
+         fhir:display [ fhir:v "mho" ]
+       ] [
+         fhir:code [ fhir:v "min" ] ;
+         fhir:display [ fhir:v "minute" ]
+       ] [
+         fhir:code [ fhir:v "mm" ] ;
+         fhir:display [ fhir:v "millimeter" ]
+       ] [
+         fhir:code [ fhir:v "mm/h" ] ;
+         fhir:display [ fhir:v "millimeter per hour" ]
+       ] [
+         fhir:code [ fhir:v "mm/min" ] ;
+         fhir:display [ fhir:v "millimeter per minute" ]
+       ] [
+         fhir:code [ fhir:v "mm2" ] ;
+         fhir:display [ fhir:v "square millimeter" ]
+       ] [
+         fhir:code [ fhir:v "mm3" ] ;
+         fhir:display [ fhir:v "cubic millimeter" ]
+       ] [
+         fhir:code [ fhir:v "mm[H2O]" ] ;
+         fhir:display [ fhir:v "millimeter of water" ]
+       ] [
+         fhir:code [ fhir:v "mm[Hg]" ] ;
+         fhir:display [ fhir:v "millimeter of mercury" ]
+       ] [
+         fhir:code [ fhir:v "mmol" ] ;
+         fhir:display [ fhir:v "millimole" ]
+       ] [
+         fhir:code [ fhir:v "mmol/(12.h)" ] ;
+         fhir:display [ fhir:v "millimole per 12 hour" ]
+       ] [
+         fhir:code [ fhir:v "mmol/(18.h)" ] ;
+         fhir:display [ fhir:v "millimole per 18 hour" ]
+       ] [
+         fhir:code [ fhir:v "mmol/(2.h)" ] ;
+         fhir:display [ fhir:v "millimole per 2 hour" ]
+       ] [
+         fhir:code [ fhir:v "mmol/(24.h)" ] ;
+         fhir:display [ fhir:v "millimole per 24 hour" ]
+       ] [
+         fhir:code [ fhir:v "mmol/(5.h)" ] ;
+         fhir:display [ fhir:v "millimole per 5 hour" ]
+       ] [
+         fhir:code [ fhir:v "mmol/(6.h)" ] ;
+         fhir:display [ fhir:v "millimole per 6 hour" ]
+       ] [
+         fhir:code [ fhir:v "mmol/(8.h)" ] ;
+         fhir:display [ fhir:v "millimole per 8 hour" ]
+       ] [
+         fhir:code [ fhir:v "mmol/(8.h.kg)" ] ;
+         fhir:display [ fhir:v "millimole / 8 * hour * kilogram" ]
+       ] [
+         fhir:code [ fhir:v "mmol/L" ] ;
+         fhir:display [ fhir:v "millimole per liter" ]
+       ] [
+         fhir:code [ fhir:v "mmol/L/s" ] ;
+         fhir:display [ fhir:v "millimole per liter per second" ]
+       ] [
+         fhir:code [ fhir:v "mmol/d" ] ;
+         fhir:display [ fhir:v "millimole per day" ]
+       ] [
+         fhir:code [ fhir:v "mmol/dL" ] ;
+         fhir:display [ fhir:v "millimole per deciliter" ]
+       ] [
+         fhir:code [ fhir:v "mmol/g" ] ;
+         fhir:display [ fhir:v "millimole per gram" ]
+       ] [
+         fhir:code [ fhir:v "mmol/h" ] ;
+         fhir:display [ fhir:v "millimole per hour" ]
+       ] [
+         fhir:code [ fhir:v "mmol/h/mg" ] ;
+         fhir:display [ fhir:v "millimole per hour per milligram" ]
+       ] [
+         fhir:code [ fhir:v "mmol/kg" ] ;
+         fhir:display [ fhir:v "millimole per kilogram" ]
+       ] [
+         fhir:code [ fhir:v "mmol/kg/(8.h)" ] ;
+         fhir:display [ fhir:v "millimole per kilogram per 8 hour" ]
+       ] [
+         fhir:code [ fhir:v "mmol/kg/d" ] ;
+         fhir:display [ fhir:v "millimole per kilogram per day" ]
+       ] [
+         fhir:code [ fhir:v "mmol/kg/h" ] ;
+         fhir:display [ fhir:v "millimole per kilogram per hour" ]
+       ] [
+         fhir:code [ fhir:v "mmol/kg/min" ] ;
+         fhir:display [ fhir:v "millimole per kilogram per minute" ]
+       ] [
+         fhir:code [ fhir:v "mmol/m" ] ;
+         fhir:display [ fhir:v "millimole / meter" ]
+       ] [
+         fhir:code [ fhir:v "mmol/m2" ] ;
+         fhir:display [ fhir:v "millimole per square meter" ]
+       ] [
+         fhir:code [ fhir:v "mmol/min" ] ;
+         fhir:display [ fhir:v "millimole per minute" ]
+       ] [
+         fhir:code [ fhir:v "mmol/mmol" ] ;
+         fhir:display [ fhir:v "millimole per millimole" ]
+       ] [
+         fhir:code [ fhir:v "mmol/mol" ] ;
+         fhir:display [ fhir:v "millimole per mole" ]
+       ] [
+         fhir:code [ fhir:v "mmol/s/L" ] ;
+         fhir:display [ fhir:v "millimole per second per liter" ]
+       ] [
+         fhir:code [ fhir:v "mo" ] ;
+         fhir:display [ fhir:v "month" ]
+       ] [
+         fhir:code [ fhir:v "mo_g" ] ;
+         fhir:display [ fhir:v "mean Gregorian month" ]
+       ] [
+         fhir:code [ fhir:v "mo_j" ] ;
+         fhir:display [ fhir:v "mean Julian month" ]
+       ] [
+         fhir:code [ fhir:v "mo_s" ] ;
+         fhir:display [ fhir:v "synodal month" ]
+       ] [
+         fhir:code [ fhir:v "mol" ] ;
+         fhir:display [ fhir:v "mole" ]
+       ] [
+         fhir:code [ fhir:v "mol/L" ] ;
+         fhir:display [ fhir:v "mole per liter" ]
+       ] [
+         fhir:code [ fhir:v "mol/d" ] ;
+         fhir:display [ fhir:v "mole per day" ]
+       ] [
+         fhir:code [ fhir:v "mol/kg" ] ;
+         fhir:display [ fhir:v "mole per kilogram" ]
+       ] [
+         fhir:code [ fhir:v "mol/kg/s" ] ;
+         fhir:display [ fhir:v "mole per kilogram per second" ]
+       ] [
+         fhir:code [ fhir:v "mol/m3" ] ;
+         fhir:display [ fhir:v "mole per cubic meter" ]
+       ] [
+         fhir:code [ fhir:v "mol/mL" ] ;
+         fhir:display [ fhir:v "mole per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "mol/mol" ] ;
+         fhir:display [ fhir:v "mole per mole" ]
+       ] [
+         fhir:code [ fhir:v "mol/s" ] ;
+         fhir:display [ fhir:v "mole per second" ]
+       ] [
+         fhir:code [ fhir:v "mosm" ] ;
+         fhir:display [ fhir:v "milliosmole" ]
+       ] [
+         fhir:code [ fhir:v "mosm/L" ] ;
+         fhir:display [ fhir:v "milliosmole per liter" ]
+       ] [
+         fhir:code [ fhir:v "mosm/kg" ] ;
+         fhir:display [ fhir:v "milliosmole per kilogram" ]
+       ] [
+         fhir:code [ fhir:v "ms" ] ;
+         fhir:display [ fhir:v "millisecond" ]
+       ] [
+         fhir:code [ fhir:v "nCi" ] ;
+         fhir:display [ fhir:v "nanoCurie" ]
+       ] [
+         fhir:code [ fhir:v "nL" ] ;
+         fhir:display [ fhir:v "nanoliter" ]
+       ] [
+         fhir:code [ fhir:v "nU/mL" ] ;
+         fhir:display [ fhir:v "nanoenzyme unit per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "nU" ] ;
+         fhir:display [ fhir:v "nanoenzyme unit" ]
+       ] [
+         fhir:code [ fhir:v "ng" ] ;
+         fhir:display [ fhir:v "nanogram" ]
+       ] [
+         fhir:code [ fhir:v "ng/(24.h)" ] ;
+         fhir:display [ fhir:v "nanogram per 24 hour" ]
+       ] [
+         fhir:code [ fhir:v "ng/(8.h)" ] ;
+         fhir:display [ fhir:v "nanogram per 8 hour" ]
+       ] [
+         fhir:code [ fhir:v "ng/(8.h.kg)" ] ;
+         fhir:display [ fhir:v "nanogram / 8 * hour * kilogram" ]
+       ] [
+         fhir:code [ fhir:v "ng/(kg.d)" ] ;
+         fhir:display [ fhir:v "nanogram / kilogram * day" ]
+       ] [
+         fhir:code [ fhir:v "ng/(kg.h)" ] ;
+         fhir:display [ fhir:v "nanogram / kilogram * hour" ]
+       ] [
+         fhir:code [ fhir:v "ng/(kg.min)" ] ;
+         fhir:display [ fhir:v "nanogram / kilogram * minute" ]
+       ] [
+         fhir:code [ fhir:v "ng/10*6" ] ;
+         fhir:display [ fhir:v "nanogram per million" ]
+       ] [
+         fhir:code [ fhir:v "ng/L" ] ;
+         fhir:display [ fhir:v "nanogram per liter" ]
+       ] [
+         fhir:code [ fhir:v "ng/U" ] ;
+         fhir:display [ fhir:v "nanogram per enzyme unit" ]
+       ] [
+         fhir:code [ fhir:v "ng/d" ] ;
+         fhir:display [ fhir:v "nanogram per day" ]
+       ] [
+         fhir:code [ fhir:v "ng/dL" ] ;
+         fhir:display [ fhir:v "nanogram per deciliter" ]
+       ] [
+         fhir:code [ fhir:v "ng/dL/h" ] ;
+         fhir:display [ fhir:v "nanogram / deciliter / hour" ]
+       ] [
+         fhir:code [ fhir:v "ng/g" ] ;
+         fhir:display [ fhir:v "nanogram per gram" ]
+       ] [
+         fhir:code [ fhir:v "ng/h" ] ;
+         fhir:display [ fhir:v "nanogram per hour" ]
+       ] [
+         fhir:code [ fhir:v "ng/kg" ] ;
+         fhir:display [ fhir:v "nanogram per kilogram" ]
+       ] [
+         fhir:code [ fhir:v "ng/kg/(8.h)" ] ;
+         fhir:display [ fhir:v "nanogram per kilogram per 8 hour" ]
+       ] [
+         fhir:code [ fhir:v "ng/kg/h" ] ;
+         fhir:display [ fhir:v "nanogram per kilogram per hour" ]
+       ] [
+         fhir:code [ fhir:v "ng/kg/min" ] ;
+         fhir:display [ fhir:v "nanogram per kilogram per minute" ]
+       ] [
+         fhir:code [ fhir:v "ng/m2" ] ;
+         fhir:display [ fhir:v "nanogram per square meter" ]
+       ] [
+         fhir:code [ fhir:v "ng/mL" ] ;
+         fhir:display [ fhir:v "nanogram per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "ng/mL/h" ] ;
+         fhir:display [ fhir:v "nanogram per milliliter per hour" ]
+       ] [
+         fhir:code [ fhir:v "ng/mg" ] ;
+         fhir:display [ fhir:v "nanogram per milligram" ]
+       ] [
+         fhir:code [ fhir:v "ng/mg/h" ] ;
+         fhir:display [ fhir:v "nanogram per milligram per hour" ]
+       ] [
+         fhir:code [ fhir:v "ng/min" ] ;
+         fhir:display [ fhir:v "nanogram per minute" ]
+       ] [
+         fhir:code [ fhir:v "ng/s" ] ;
+         fhir:display [ fhir:v "nanogram per second" ]
+       ] [
+         fhir:code [ fhir:v "nkat" ] ;
+         fhir:display [ fhir:v "nanokatal" ]
+       ] [
+         fhir:code [ fhir:v "nm" ] ;
+         fhir:display [ fhir:v "nanometer" ]
+       ] [
+         fhir:code [ fhir:v "nm/s/L" ] ;
+         fhir:display [ fhir:v "nanometer per second per liter" ]
+       ] [
+         fhir:code [ fhir:v "nmol" ] ;
+         fhir:display [ fhir:v "nanomole" ]
+       ] [
+         fhir:code [ fhir:v "nmol/(24.h)" ] ;
+         fhir:display [ fhir:v "nanomole per 24 hour" ]
+       ] [
+         fhir:code [ fhir:v "nmol/L" ] ;
+         fhir:display [ fhir:v "nanomole per liter" ]
+       ] [
+         fhir:code [ fhir:v "nmol/L/mmol" ] ;
+         fhir:display [ fhir:v "nanomole per liter per millimole" ]
+       ] [
+         fhir:code [ fhir:v "nmol/L/s" ] ;
+         fhir:display [ fhir:v "nanomole per liter per second" ]
+       ] [
+         fhir:code [ fhir:v "nmol/d" ] ;
+         fhir:display [ fhir:v "nanomole per day" ]
+       ] [
+         fhir:code [ fhir:v "nmol/dL" ] ;
+         fhir:display [ fhir:v "nanomole per deciliter" ]
+       ] [
+         fhir:code [ fhir:v "nmol/g" ] ;
+         fhir:display [ fhir:v "nanomole per gram" ]
+       ] [
+         fhir:code [ fhir:v "nmol/h/L" ] ;
+         fhir:display [ fhir:v "nanomole per hour per liter" ]
+       ] [
+         fhir:code [ fhir:v "nmol/h/mL" ] ;
+         fhir:display [ fhir:v "nanomole per hour per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "nmol/h/mg" ] ;
+         fhir:display [ fhir:v "nanomole per hour per milligram" ]
+       ] [
+         fhir:code [ fhir:v "nmol/m/mg" ] ;
+         fhir:display [ fhir:v "nanomole per meter per milligram" ]
+       ] [
+         fhir:code [ fhir:v "nmol/mL" ] ;
+         fhir:display [ fhir:v "nanomole per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "nmol/mL/h" ] ;
+         fhir:display [ fhir:v "nanomole per milliliter per hour" ]
+       ] [
+         fhir:code [ fhir:v "nmol/mL/min" ] ;
+         fhir:display [ fhir:v "nanomole per milliliter per minute" ]
+       ] [
+         fhir:code [ fhir:v "nmol/mg" ] ;
+         fhir:display [ fhir:v "nanomole per milligram" ]
+       ] [
+         fhir:code [ fhir:v "nmol/mg/h" ] ;
+         fhir:display [ fhir:v "nanomole per milligram per hour" ]
+       ] [
+         fhir:code [ fhir:v "nmol/min" ] ;
+         fhir:display [ fhir:v "nanomole per minute" ]
+       ] [
+         fhir:code [ fhir:v "nmol/min/10*6" ] ;
+         fhir:display [ fhir:v "nanomole per minute per million" ]
+       ] [
+         fhir:code [ fhir:v "nmol/min/mL" ] ;
+         fhir:display [ fhir:v "nanomole per minute per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "nmol/min/mg" ] ;
+         fhir:display [ fhir:v "nanomole per minute per milligram" ]
+       ] [
+         fhir:code [ fhir:v "nmol/mmol" ] ;
+         fhir:display [ fhir:v "nanomole per millimole" ]
+       ] [
+         fhir:code [ fhir:v "nmol/mol" ] ;
+         fhir:display [ fhir:v "nanomole per mole" ]
+       ] [
+         fhir:code [ fhir:v "nmol/nmol" ] ;
+         fhir:display [ fhir:v "nanomole per nanomole" ]
+       ] [
+         fhir:code [ fhir:v "nmol/s" ] ;
+         fhir:display [ fhir:v "nanomole per second" ]
+       ] [
+         fhir:code [ fhir:v "nmol/s/L" ] ;
+         fhir:display [ fhir:v "nanomole per second per liter" ]
+       ] [
+         fhir:code [ fhir:v "ns" ] ;
+         fhir:display [ fhir:v "nanosecond" ]
+       ] [
+         fhir:code [ fhir:v "osm" ] ;
+         fhir:display [ fhir:v "osmole" ]
+       ] [
+         fhir:code [ fhir:v "osm/L" ] ;
+         fhir:display [ fhir:v "osmole per liter" ]
+       ] [
+         fhir:code [ fhir:v "osm/kg" ] ;
+         fhir:display [ fhir:v "osmole per kilogram" ]
+       ] [
+         fhir:code [ fhir:v "pA" ] ;
+         fhir:display [ fhir:v "picoampere" ]
+       ] [
+         fhir:code [ fhir:v "pL" ] ;
+         fhir:display [ fhir:v "picoliter" ]
+       ] [
+         fhir:code [ fhir:v "pT" ] ;
+         fhir:display [ fhir:v "picotesla" ]
+       ] [
+         fhir:code [ fhir:v "pc" ] ;
+         fhir:display [ fhir:v "parsec" ]
+       ] [
+         fhir:code [ fhir:v "pg" ] ;
+         fhir:display [ fhir:v "picogram" ]
+       ] [
+         fhir:code [ fhir:v "pg/L" ] ;
+         fhir:display [ fhir:v "picogram per liter" ]
+       ] [
+         fhir:code [ fhir:v "pg/dL" ] ;
+         fhir:display [ fhir:v "picogram per deciliter" ]
+       ] [
+         fhir:code [ fhir:v "pg/mL" ] ;
+         fhir:display [ fhir:v "picogram per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "pg/mg" ] ;
+         fhir:display [ fhir:v "picogram per milligram" ]
+       ] [
+         fhir:code [ fhir:v "pg/mm" ] ;
+         fhir:display [ fhir:v "picogram per millimeter" ]
+       ] [
+         fhir:code [ fhir:v "ph" ] ;
+         fhir:display [ fhir:v "phot" ]
+       ] [
+         fhir:code [ fhir:v "pkat" ] ;
+         fhir:display [ fhir:v "picokatal" ]
+       ] [
+         fhir:code [ fhir:v "pm" ] ;
+         fhir:display [ fhir:v "picometer" ]
+       ] [
+         fhir:code [ fhir:v "pmol" ] ;
+         fhir:display [ fhir:v "picomole" ]
+       ] [
+         fhir:code [ fhir:v "pmol/(24.h)" ] ;
+         fhir:display [ fhir:v "picomole per 24 hour" ]
+       ] [
+         fhir:code [ fhir:v "pmol/L" ] ;
+         fhir:display [ fhir:v "picomole per liter" ]
+       ] [
+         fhir:code [ fhir:v "pmol/d" ] ;
+         fhir:display [ fhir:v "picomole per day" ]
+       ] [
+         fhir:code [ fhir:v "pmol/dL" ] ;
+         fhir:display [ fhir:v "picomole per deciliter" ]
+       ] [
+         fhir:code [ fhir:v "pmol/g" ] ;
+         fhir:display [ fhir:v "picomole per gram" ]
+       ] [
+         fhir:code [ fhir:v "pmol/h/mL" ] ;
+         fhir:display [ fhir:v "picomole per hour per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "pmol/h/mg" ] ;
+         fhir:display [ fhir:v "picomole per hour per milligram" ]
+       ] [
+         fhir:code [ fhir:v "pmol/mL" ] ;
+         fhir:display [ fhir:v "picomole per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "pmol/mg" ] ;
+         fhir:display [ fhir:v "picomole per milligram" ]
+       ] [
+         fhir:code [ fhir:v "pmol/min" ] ;
+         fhir:display [ fhir:v "picomole per minute" ]
+       ] [
+         fhir:code [ fhir:v "pmol/min/mg" ] ;
+         fhir:display [ fhir:v "picomole per minute per milligram" ]
+       ] [
+         fhir:code [ fhir:v "pmol/mmol" ] ;
+         fhir:display [ fhir:v "picomole per millimole" ]
+       ] [
+         fhir:code [ fhir:v "pmol/mol" ] ;
+         fhir:display [ fhir:v "picomole per mole" ]
+       ] [
+         fhir:code [ fhir:v "pmol/umol" ] ;
+         fhir:display [ fhir:v "picomole per micromole" ]
+       ] [
+         fhir:code [ fhir:v "ps" ] ;
+         fhir:display [ fhir:v "picosecond" ]
+       ] [
+         fhir:code [ fhir:v "rad" ] ;
+         fhir:display [ fhir:v "radian" ]
+       ] [
+         fhir:code [ fhir:v "s" ] ;
+         fhir:display [ fhir:v "second" ]
+       ] [
+         fhir:code [ fhir:v "sb" ] ;
+         fhir:display [ fhir:v "stilb" ]
+       ] [
+         fhir:code [ fhir:v "sph" ] ;
+         fhir:display [ fhir:v "spere" ]
+       ] [
+         fhir:code [ fhir:v "sr" ] ;
+         fhir:display [ fhir:v "steradian" ]
+       ] [
+         fhir:code [ fhir:v "st" ] ;
+         fhir:display [ fhir:v "stere" ]
+       ] [
+         fhir:code [ fhir:v "t" ] ;
+         fhir:display [ fhir:v "tonne" ]
+       ] [
+         fhir:code [ fhir:v "u" ] ;
+         fhir:display [ fhir:v "unified atomic mass unit" ]
+       ] [
+         fhir:code [ fhir:v "uCi" ] ;
+         fhir:display [ fhir:v "MICROCURIE" ]
+       ] [
+         fhir:code [ fhir:v "uL" ] ;
+         fhir:display [ fhir:v "microliter" ]
+       ] [
+         fhir:code [ fhir:v "uL/(2.h)" ] ;
+         fhir:display [ fhir:v "microliter per 2 hour" ]
+       ] [
+         fhir:code [ fhir:v "uL/h" ] ;
+         fhir:display [ fhir:v "microliter per hour" ]
+       ] [
+         fhir:code [ fhir:v "uOhm" ] ;
+         fhir:display [ fhir:v "microOhm" ]
+       ] [
+         fhir:code [ fhir:v "uU" ] ;
+         fhir:display [ fhir:v "microUnit" ]
+       ] [
+         fhir:code [ fhir:v "uU/L" ] ;
+         fhir:display [ fhir:v "micro enzyme unit per liter" ]
+       ] [
+         fhir:code [ fhir:v "uU/g" ] ;
+         fhir:display [ fhir:v "micro enzyme unit per gram" ]
+       ] [
+         fhir:code [ fhir:v "uU/mL" ] ;
+         fhir:display [ fhir:v "micro enzyme unit per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "uV" ] ;
+         fhir:display [ fhir:v "microvolt" ]
+       ] [
+         fhir:code [ fhir:v "u[IU]" ] ;
+         fhir:display [ fhir:v "micro international unit" ]
+       ] [
+         fhir:code [ fhir:v "u[IU]/L" ] ;
+         fhir:display [ fhir:v "microinternational unit per liter" ]
+       ] [
+         fhir:code [ fhir:v "u[IU]/mL" ] ;
+         fhir:display [ fhir:v "micro international unit per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "ueq" ] ;
+         fhir:display [ fhir:v "microequivalents" ]
+       ] [
+         fhir:code [ fhir:v "ueq/L" ] ;
+         fhir:display [ fhir:v "microequivalent per liter" ]
+       ] [
+         fhir:code [ fhir:v "ueq/mL" ] ;
+         fhir:display [ fhir:v "microequivalent per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "ug" ] ;
+         fhir:display [ fhir:v "microgram" ]
+       ] [
+         fhir:code [ fhir:v "ug/(100.g)" ] ;
+         fhir:display [ fhir:v "microgram per 100 gram" ]
+       ] [
+         fhir:code [ fhir:v "ug/(24.h)" ] ;
+         fhir:display [ fhir:v "microgram per 24 hour" ]
+       ] [
+         fhir:code [ fhir:v "ug/(8.h)" ] ;
+         fhir:display [ fhir:v "microgram per 8 hour" ]
+       ] [
+         fhir:code [ fhir:v "ug/(kg.d)" ] ;
+         fhir:display [ fhir:v "microgram / kilogram * day" ]
+       ] [
+         fhir:code [ fhir:v "ug/(kg.h)" ] ;
+         fhir:display [ fhir:v "microgram / kilogram * hour" ]
+       ] [
+         fhir:code [ fhir:v "ug/L" ] ;
+         fhir:display [ fhir:v "microgram per liter" ]
+       ] [
+         fhir:code [ fhir:v "ug/L/(24.h)" ] ;
+         fhir:display [ fhir:v "microgram per liter per 24 hour" ]
+       ] [
+         fhir:code [ fhir:v "ug/[sft_i]" ] ;
+         fhir:display [ fhir:v "microgram per square foot (international)" ]
+       ] [
+         fhir:code [ fhir:v "ug/d" ] ;
+         fhir:display [ fhir:v "microgram per day" ]
+       ] [
+         fhir:code [ fhir:v "ug/dL" ] ;
+         fhir:display [ fhir:v "microgram per deciliter" ]
+       ] [
+         fhir:code [ fhir:v "ug/g" ] ;
+         fhir:display [ fhir:v "microgram per gram" ]
+       ] [
+         fhir:code [ fhir:v "ug/h" ] ;
+         fhir:display [ fhir:v "microgram per hour" ]
+       ] [
+         fhir:code [ fhir:v "ug/kg" ] ;
+         fhir:display [ fhir:v "microgram per kilogram" ]
+       ] [
+         fhir:code [ fhir:v "ug/kg/(8.h)" ] ;
+         fhir:display [ fhir:v "microgram per kilogram per 8 hour" ]
+       ] [
+         fhir:code [ fhir:v "ug/kg/d" ] ;
+         fhir:display [ fhir:v "microgram per kilogram per day" ]
+       ] [
+         fhir:code [ fhir:v "ug/kg/h" ] ;
+         fhir:display [ fhir:v "microgram per kilogram per hour" ]
+       ] [
+         fhir:code [ fhir:v "ug/kg/min" ] ;
+         fhir:display [ fhir:v "microgram per kilogram per minute" ]
+       ] [
+         fhir:code [ fhir:v "ug/m2" ] ;
+         fhir:display [ fhir:v "microgram per square meter" ]
+       ] [
+         fhir:code [ fhir:v "ug/m3" ] ;
+         fhir:display [ fhir:v "microgram per cubic meter" ]
+       ] [
+         fhir:code [ fhir:v "ug/mL" ] ;
+         fhir:display [ fhir:v "microgram per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "ug/mg" ] ;
+         fhir:display [ fhir:v "microgram per milligram" ]
+       ] [
+         fhir:code [ fhir:v "ug/min" ] ;
+         fhir:display [ fhir:v "microgram per minute" ]
+       ] [
+         fhir:code [ fhir:v "ug/mmol" ] ;
+         fhir:display [ fhir:v "microgram per millimole" ]
+       ] [
+         fhir:code [ fhir:v "ug/ng" ] ;
+         fhir:display [ fhir:v "microgram per nanogram" ]
+       ] [
+         fhir:code [ fhir:v "ukat" ] ;
+         fhir:display [ fhir:v "microkatal" ]
+       ] [
+         fhir:code [ fhir:v "um" ] ;
+         fhir:display [ fhir:v "micrometer" ]
+       ] [
+         fhir:code [ fhir:v "um/s" ] ;
+         fhir:display [ fhir:v "micrometer per second" ]
+       ] [
+         fhir:code [ fhir:v "umol" ] ;
+         fhir:display [ fhir:v "micromole" ]
+       ] [
+         fhir:code [ fhir:v "umol/(2.h)" ] ;
+         fhir:display [ fhir:v "micromole per 2 hour" ]
+       ] [
+         fhir:code [ fhir:v "umol/(24.h)" ] ;
+         fhir:display [ fhir:v "micromole per 24 hour" ]
+       ] [
+         fhir:code [ fhir:v "umol/(8.h)" ] ;
+         fhir:display [ fhir:v "micromole per 8 hour" ]
+       ] [
+         fhir:code [ fhir:v "umol/L" ] ;
+         fhir:display [ fhir:v "micromole per liter" ]
+       ] [
+         fhir:code [ fhir:v "umol/L/h" ] ;
+         fhir:display [ fhir:v "micromole per liter per hour" ]
+       ] [
+         fhir:code [ fhir:v "umol/d" ] ;
+         fhir:display [ fhir:v "micromole per day" ]
+       ] [
+         fhir:code [ fhir:v "umol/dL" ] ;
+         fhir:display [ fhir:v "micromole per deciliter" ]
+       ] [
+         fhir:code [ fhir:v "umol/g" ] ;
+         fhir:display [ fhir:v "micromole per gram" ]
+       ] [
+         fhir:code [ fhir:v "umol/h" ] ;
+         fhir:display [ fhir:v "micromole per hour" ]
+       ] [
+         fhir:code [ fhir:v "umol/h/L" ] ;
+         fhir:display [ fhir:v "micromole per hour per liter" ]
+       ] [
+         fhir:code [ fhir:v "umol/h/g" ] ;
+         fhir:display [ fhir:v "micromole / hour / gram" ]
+       ] [
+         fhir:code [ fhir:v "umol/h/mg" ] ;
+         fhir:display [ fhir:v "micromole per hour per milligram" ]
+       ] [
+         fhir:code [ fhir:v "umol/kg" ] ;
+         fhir:display [ fhir:v "micromole per kilogram" ]
+       ] [
+         fhir:code [ fhir:v "umol/m" ] ;
+         fhir:display [ fhir:v "micromole / meter" ]
+       ] [
+         fhir:code [ fhir:v "umol/mL" ] ;
+         fhir:display [ fhir:v "micromole per milliliter" ]
+       ] [
+         fhir:code [ fhir:v "umol/mL/min" ] ;
+         fhir:display [ fhir:v "micromole per milliliter per minute" ]
+       ] [
+         fhir:code [ fhir:v "umol/mg" ] ;
+         fhir:display [ fhir:v "micromole per milligram" ]
+       ] [
+         fhir:code [ fhir:v "umol/min" ] ;
+         fhir:display [ fhir:v "micromole per minute" ]
+       ] [
+         fhir:code [ fhir:v "umol/min/L" ] ;
+         fhir:display [ fhir:v "micromole per minute per liter" ]
+       ] [
+         fhir:code [ fhir:v "umol/min/g" ] ;
+         fhir:display [ fhir:v "micromole per minute per gram" ]
+       ] [
+         fhir:code [ fhir:v "umol/mmol" ] ;
+         fhir:display [ fhir:v "micromole per millimole" ]
+       ] [
+         fhir:code [ fhir:v "umol/mol" ] ;
+         fhir:display [ fhir:v "micromole per mole" ]
+       ] [
+         fhir:code [ fhir:v "umol/umol" ] ;
+         fhir:display [ fhir:v "micromole per micromole" ]
+       ] [
+         fhir:code [ fhir:v "us" ] ;
+         fhir:display [ fhir:v "microsecond" ]
+       ] [
+         fhir:code [ fhir:v "wk" ] ;
+         fhir:display [ fhir:v "week" ]
+       ] )
+     ] )
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

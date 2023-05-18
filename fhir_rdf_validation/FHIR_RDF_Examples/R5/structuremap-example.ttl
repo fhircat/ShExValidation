@@ -1,0 +1,68 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:StructureMap ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <pre class=\"fml\">\n\n        <span style=\"color: #cc00cc\">/// \n          <b>url</b> = \n        </span>\n        <span style=\"color: blue\">'http://hl7.org/fhir/StructureMap/example'</span>\n\n        <span style=\"color: #cc00cc\">/// \n          <b>name</b> = \n        </span>\n        <span style=\"color: blue\">'ExampleMap'</span>\n\n        <span style=\"color: #cc00cc\">/// \n          <b>title</b> = \n        </span>\n        <span style=\"color: blue\">'Example Map'</span>\n\n        <span style=\"color: #cc00cc\">/// \n          <b>status</b> = \n        </span>\n        <span style=\"color: blue\">'draft'</span>\n\n\n        <span style=\"color: navy\">// </span>\n        <span style=\"color: green\">test -&gt; testValue</span>\n\n        <b>group </b>Examples\n        <span style=\"color: navy\">(</span>\n        <b>source</b> \n        <span style=\"color: maroon\">testSrc</span>, \n        <b>target</b> \n        <span style=\"color: maroon\">testTgt</span>\n        <span style=\"color: navy\">)</span>\n        <span style=\"color: navy\"> {\n</span>  testSrc.test\n        <span style=\"color: navy\"> : </span>SourceClassA\n        <b> as </b>\n        <span style=\"color: maroon\">t</span>\n        <span style=\"color: navy\">\n          <b> -&gt; </b>\n        </span>testTgt.testValue = \n        <b>copy</b>\n        <span style=\"color: navy\">(</span>\n        <span style=\"color: navy\">)</span> \n        <i>&quot;rule1&quot;</i>\n        <span style=\"color: navy\">;</span>\n\n        <span style=\"color: navy\">}\n\n</span>\n      </pre>\n    </div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/StructureMap/example"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.13.2" ]
+  ] ) ; # 
+  fhir:version [ fhir:v "5.0.0"] ; # 
+  fhir:name [ fhir:v "ExampleMap"] ; # 
+  fhir:title [ fhir:v "Example Map"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:experimental [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:date [ fhir:v "2017-03-09"^^xsd:date] ; # 
+  fhir:publisher [ fhir:v "HL7 FHIR Standard"] ; # 
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Example Structure Map"] ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "009" ] ;
+       fhir:display [ fhir:v "Oceania" ]
+     ] )
+  ] ) ; # 
+  fhir:group ( [
+     fhir:name [ fhir:v "Examples" ] ;
+     fhir:documentation [ fhir:v "test -> testValue" ] ;
+     fhir:input ( [
+       fhir:name [ fhir:v "testSrc" ] ;
+       fhir:mode [ fhir:v "source" ]
+     ] [
+       fhir:name [ fhir:v "testTgt" ] ;
+       fhir:mode [ fhir:v "target" ]
+     ] ) ;
+     fhir:rule ( [
+       fhir:name [ fhir:v "rule1" ] ;
+       fhir:source ( [
+         fhir:context [ fhir:v "testSrc" ] ;
+         fhir:type [ fhir:v "SourceClassA" ] ;
+         fhir:element [ fhir:v "test" ] ;
+         fhir:variable [ fhir:v "t" ]
+       ] ) ;
+       fhir:target ( [
+         fhir:context [ fhir:v "testTgt" ] ;
+         fhir:element [ fhir:v "testValue" ] ;
+         fhir:transform [ fhir:v "copy" ]
+       ] )
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

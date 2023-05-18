@@ -1,0 +1,252 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ExplanationOfBenefit ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "EB3500"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the ExplanationOfBenefit</div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://www.BenefitsInc.com/fhir/explanationofbenefit"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "987654321" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:type [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/claim-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "oral" ]
+     ] )
+  ] ; # 
+  fhir:use [ fhir:v "claim"] ; # 
+  fhir:patient [
+     fhir:reference [ fhir:v "Patient/pat1" ]
+  ] ; # 
+  fhir:created [ fhir:v "2014-08-16"^^xsd:date] ; # 
+  fhir:enterer [
+     fhir:reference [ fhir:v "Practitioner/1" ]
+  ] ; # 
+  fhir:insurer [
+     fhir:reference [ fhir:v "Organization/3" ]
+  ] ; # 
+  fhir:provider [
+     fhir:reference [ fhir:v "Practitioner/1" ]
+  ] ; # 
+  fhir:payee [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/payeetype"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "provider" ]
+       ] )
+     ] ;
+     fhir:party [
+       fhir:reference [ fhir:v "Organization/2" ]
+     ]
+  ] ; # 
+  fhir:facility [
+     fhir:reference [ fhir:v "Location/1" ]
+  ] ; # 
+  fhir:claim [
+     fhir:reference [ fhir:v "Claim/100150" ]
+  ] ; # 
+  fhir:claimResponse [
+     fhir:reference [ fhir:v "ClaimResponse/R3500" ]
+  ] ; # 
+  fhir:outcome [ fhir:v "complete"] ; # 
+  fhir:disposition [ fhir:v "Claim settled as per contract."] ; # 
+  fhir:careTeam ( [
+     fhir:sequence [ fhir:v "1"^^xsd:positiveInteger ] ;
+     fhir:provider [
+       fhir:reference [ fhir:v "Practitioner/example" ]
+     ]
+  ] ) ; # 
+  fhir:insurance ( [
+     fhir:focal [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:coverage [
+       fhir:reference [ fhir:v "Coverage/9876B1" ]
+     ]
+  ] ) ; # 
+  fhir:item ( [
+     fhir:sequence [ fhir:v "1"^^xsd:positiveInteger ] ;
+     fhir:careTeamSequence ( [ fhir:v "1"^^xsd:positiveInteger ] ) ;
+     fhir:productOrService [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/ex-USCLS"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "1205" ]
+       ] )
+     ] ;
+     fhir:serviced [ fhir:v "2014-08-16"^^xsd:date ] ;
+     fhir:unitPrice [
+       fhir:value [ fhir:v "135.57"^^xsd:decimal ] ;
+       fhir:currency [ fhir:v "USD" ]
+     ] ;
+     fhir:net [
+       fhir:value [ fhir:v "135.57"^^xsd:decimal ] ;
+       fhir:currency [ fhir:v "USD" ]
+     ] ;
+     fhir:udi ( [
+       fhir:reference [ fhir:v "Device/example" ]
+     ] ) ;
+     fhir:encounter ( [
+       fhir:reference [ fhir:v "Encounter/example" ]
+     ] ) ;
+     fhir:adjudication ( [
+       fhir:category [
+         fhir:coding ( [
+           fhir:code [ fhir:v "eligible" ]
+         ] )
+       ] ;
+       fhir:amount [
+         fhir:value [ fhir:v "120.00"^^xsd:decimal ] ;
+         fhir:currency [ fhir:v "USD" ]
+       ]
+     ] [
+       fhir:category [
+         fhir:coding ( [
+           fhir:code [ fhir:v "eligpercent" ]
+         ] )
+       ] ;
+       fhir:quantity [
+         fhir:value [ fhir:v "0.80"^^xsd:decimal ]
+       ]
+     ] [
+       fhir:category [
+         fhir:coding ( [
+           fhir:code [ fhir:v "benefit" ]
+         ] )
+       ] ;
+       fhir:amount [
+         fhir:value [ fhir:v "96.00"^^xsd:decimal ] ;
+         fhir:currency [ fhir:v "USD" ]
+       ]
+     ] )
+  ] [
+     fhir:sequence [ fhir:v "2"^^xsd:positiveInteger ] ;
+     fhir:careTeamSequence ( [ fhir:v "1"^^xsd:positiveInteger ] ) ;
+     fhir:productOrService [
+       fhir:coding ( [
+         fhir:code [ fhir:v "group" ]
+       ] )
+     ] ;
+     fhir:serviced [ fhir:v "2014-08-16"^^xsd:date ] ;
+     fhir:net [
+       fhir:value [ fhir:v "200.00"^^xsd:decimal ] ;
+       fhir:currency [ fhir:v "USD" ]
+     ] ;
+     fhir:adjudication ( [
+       fhir:category [
+         fhir:coding ( [
+           fhir:code [ fhir:v "benefit" ]
+         ] )
+       ] ;
+       fhir:amount [
+         fhir:value [ fhir:v "180.00"^^xsd:decimal ] ;
+         fhir:currency [ fhir:v "USD" ]
+       ]
+     ] ) ;
+     fhir:detail ( [
+       fhir:sequence [ fhir:v "1"^^xsd:positiveInteger ] ;
+       fhir:productOrService [
+         fhir:coding ( [
+           fhir:code [ fhir:v "group" ]
+         ] )
+       ] ;
+       fhir:net [
+         fhir:value [ fhir:v "200.00"^^xsd:decimal ] ;
+         fhir:currency [ fhir:v "USD" ]
+       ] ;
+       fhir:udi ( [
+         fhir:reference [ fhir:v "Device/example" ]
+       ] ) ;
+       fhir:adjudication ( [
+         fhir:category [
+           fhir:coding ( [
+             fhir:code [ fhir:v "benefit" ]
+           ] )
+         ] ;
+         fhir:amount [
+           fhir:value [ fhir:v "180.00"^^xsd:decimal ] ;
+           fhir:currency [ fhir:v "USD" ]
+         ]
+       ] ) ;
+       fhir:subDetail ( [
+         fhir:sequence [ fhir:v "1"^^xsd:positiveInteger ] ;
+         fhir:productOrService [
+           fhir:coding ( [
+             fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/ex-USCLS"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "1205" ]
+           ] )
+         ] ;
+         fhir:unitPrice [
+           fhir:value [ fhir:v "200.00"^^xsd:decimal ] ;
+           fhir:currency [ fhir:v "USD" ]
+         ] ;
+         fhir:net [
+           fhir:value [ fhir:v "200.00"^^xsd:decimal ] ;
+           fhir:currency [ fhir:v "USD" ]
+         ] ;
+         fhir:udi ( [
+           fhir:reference [ fhir:v "Device/example" ]
+         ] ) ;
+         fhir:adjudication ( [
+           fhir:category [
+             fhir:coding ( [
+               fhir:code [ fhir:v "eligible" ]
+             ] )
+           ] ;
+           fhir:amount [
+             fhir:value [ fhir:v "200.00"^^xsd:decimal ] ;
+             fhir:currency [ fhir:v "USD" ]
+           ]
+         ] [
+           fhir:category [
+             fhir:coding ( [
+               fhir:code [ fhir:v "eligpercent" ]
+             ] )
+           ] ;
+           fhir:quantity [
+             fhir:value [ fhir:v "0.90"^^xsd:decimal ]
+           ]
+         ] [
+           fhir:category [
+             fhir:coding ( [
+               fhir:code [ fhir:v "benefit" ]
+             ] )
+           ] ;
+           fhir:amount [
+             fhir:value [ fhir:v "180.00"^^xsd:decimal ] ;
+             fhir:currency [ fhir:v "USD" ]
+           ]
+         ] )
+       ] )
+     ] )
+  ] ) ; # 
+  fhir:total ( [
+     fhir:category [
+       fhir:coding ( [
+         fhir:code [ fhir:v "submitted" ]
+       ] )
+     ] ;
+     fhir:amount [
+       fhir:value [ fhir:v "135.57"^^xsd:decimal ] ;
+       fhir:currency [ fhir:v "USD" ]
+     ]
+  ] [
+     fhir:category [
+       fhir:coding ( [
+         fhir:code [ fhir:v "benefit" ]
+       ] )
+     ] ;
+     fhir:amount [
+       fhir:value [ fhir:v "96.00"^^xsd:decimal ] ;
+       fhir:currency [ fhir:v "USD" ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

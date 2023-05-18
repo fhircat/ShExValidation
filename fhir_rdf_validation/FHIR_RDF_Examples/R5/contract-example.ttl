@@ -1,0 +1,97 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Contract ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "C-123"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the contract</div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://happyvalley.com/contract"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "12347" ]
+  ] ) ; # 
+  fhir:term ( [
+     fhir:offer [
+       fhir:text [ fhir:v "Can't refuse" ]
+     ] ;
+     fhir:asset ( [
+       fhir:type ( [
+         fhir:coding ( [
+           fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "urn:uuid:3a48c68c-318d-4c68-8471-4a3c10fcb41b" ] ;
+           fhir:display [ fhir:v "RicardianContract" ]
+         ] )
+       ] ) ;
+       fhir:subtype ( [
+         fhir:text [ fhir:v "sample" ]
+       ] ) ;
+       fhir:period ( [
+         fhir:start [ fhir:v "2017-06-01"^^xsd:date ]
+       ] ) ;
+       fhir:valuedItem ( [
+         fhir:entity [
+           a fhir:CodeableConcept ;
+           fhir:text [ fhir:v "Ford Bobcat" ]
+         ] ;
+         fhir:identifier [
+           fhir:system [ fhir:v "http://somewhere.motor-vehicle.com/vin"^^xsd:anyURI ] ;
+           fhir:value [ fhir:v "XXSVT34-7665t952236" ]
+         ] ;
+         fhir:effectiveTime [ fhir:v "1995"^^xsd:gYear ] ;
+         fhir:quantity [
+           fhir:value [ fhir:v "1"^^xsd:decimal ]
+         ] ;
+         fhir:unitPrice [
+           fhir:value [ fhir:v "200.00"^^xsd:decimal ] ;
+           fhir:currency [ fhir:v "CAD" ]
+         ] ;
+         fhir:factor [ fhir:v "1.0"^^xsd:decimal ] ;
+         fhir:points [ fhir:v "1.0"^^xsd:decimal ] ;
+         fhir:net [
+           fhir:value [ fhir:v "200.00"^^xsd:decimal ] ;
+           fhir:currency [ fhir:v "CAD" ]
+         ]
+       ] )
+     ] )
+  ] ) ; # 
+  fhir:rule ( [
+     fhir:content [
+       a fhir:Attachment ;
+       fhir:contentType [ fhir:v "application/txt" ] ;
+       fhir:url [ fhir:v "http://www.rfc-editor.org/bcp/bcp13.txt"^^xsd:anyURI ]
+     ]
+  ] ) ; #  
+#  <issued value="2014-08-17"/>
+# 
+#  <subject>
+#     <reference value="http://www.somewhere.org/Patient/12345"/>
+#  </subject>
+#
+#  <type>
+#     <coding>
+#	   <system value="http://terminology.hl7.org/CodeSystem/coverage-copay-type"/>
+#	   <code value="disclosure"/>
+#	 </coding>
+#  </type>
+#
+#  <subtype>
+#     <coding>
+#	   <system value="http://terminology.hl7.org/CodeSystem/contractsubtypecodes"/>
+#	   <code value="disclosure-US"/>
+#	 </coding>
+#  </subtype>
+#    
+  fhir:legallyBinding [
+     a fhir:Attachment ;
+     fhir:contentType [ fhir:v "application/pdf" ] ;
+     fhir:url [ fhir:v "http://www.aws3.com/storage/doc.pdf"^^xsd:anyURI ]
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

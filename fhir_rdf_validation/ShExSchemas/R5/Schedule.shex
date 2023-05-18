@@ -1,0 +1,68 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <Period.shex>
+IMPORT <string.shex>
+IMPORT <Device.shex>
+IMPORT <boolean.shex>
+IMPORT <Patient.shex>
+IMPORT <CareTeam.shex>
+IMPORT <Location.shex>
+IMPORT <Practitioner.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <DomainResource.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <HealthcareService.shex>
+
+
+start=@<Schedule> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A container for slots of time that may be available for booking appointments
+<Schedule> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Schedule];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # External Ids for this item
+    fhir:active @<boolean>?;                # Whether this schedule is in active 
+                                            # use 
+    fhir:serviceCategory @<OneOrMore_CodeableConcept>?;  # High-level category
+    fhir:serviceType @<OneOrMore_CodeableReference>?;  # Specific service
+    fhir:specialty @<OneOrMore_CodeableConcept>?;  # Type of specialty needed
+    fhir:actor @<OneOrMore_Reference_CareTeam_OR_Device_OR_HealthcareService_OR_Location_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>;  # Resource(s) that availability 
+                                            # information is being provided for 
+    fhir:planningHorizon @<Period>?;        # Period of time covered by schedule
+    fhir:comment @<string>?;                # Comments on availability
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_CodeableReference> CLOSED {
+    rdf:first @<CodeableReference>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableReference> 
+}
+
+<OneOrMore_Reference_CareTeam_OR_Device_OR_HealthcareService_OR_Location_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> OR 
+			@<Device> OR 
+			@<HealthcareService> OR 
+			@<Location> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam_OR_Device_OR_HealthcareService_OR_Location_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+

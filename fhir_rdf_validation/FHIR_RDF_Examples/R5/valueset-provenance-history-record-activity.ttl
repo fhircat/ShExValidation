@@ -1,0 +1,107 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ValueSet ;
+  fhir:id [ fhir:v "provenance-history-record-activity"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/provenance-history-record-activity" ] [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablevalueset" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "sec" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/provenance-history-record-activity"], [ fhir:v "http://hl7.org/fhir/ValueSet/provenance-history-record-activity"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.926" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.926" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "ProvenanceHistoryRecordActivityCodes"], [ fhir:v "ProvenanceHistoryRecordActivityCodes"] ;
+  fhir:title [ fhir:v "Provenance History Record Activity Codes"], [ fhir:v "Provenance History Record Activity Codes"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Codes for Provenance activities that are relevant when capturing event history for resources."], [ fhir:v "Codes for Provenance activities that are relevant when capturing event history for resources."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:compose [
+     fhir:include ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-DataOperation" ] ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "CREATE" ] ;
+         fhir:display [ fhir:v "Created" ]
+       ] [
+         fhir:code [ fhir:v "UPDATE" ] ;
+         fhir:display [ fhir:v "Updated" ]
+       ] [
+         fhir:code [ fhir:v "DELETE" ] ;
+         fhir:display [ fhir:v "Deleted" ]
+       ] [
+         fhir:code [ fhir:v "ABORT" ] ;
+         fhir:display [ fhir:v "Stopped/Ended/Aborted" ]
+       ] [
+         fhir:code [ fhir:v "HOLD" ] ;
+         fhir:display [ fhir:v "Held" ]
+       ] [
+         fhir:code [ fhir:v "RELEASE" ] ;
+         fhir:display [ fhir:v "Released" ]
+       ] [
+         fhir:code [ fhir:v "CANCEL" ] ;
+         fhir:display [ fhir:v "Cancelled" ]
+       ] [
+         fhir:code [ fhir:v "ACTIVATE" ] ;
+         fhir:display [ fhir:v "Activated" ]
+       ] [
+         fhir:code [ fhir:v "SUSPEND" ] ;
+         fhir:display [ fhir:v "Suspended" ]
+       ] [
+         fhir:code [ fhir:v "RESUME" ]
+       ] [
+         fhir:code [ fhir:v "COMPLETE" ] ;
+         fhir:display [ fhir:v "Completed" ]
+       ] [
+         fhir:code [ fhir:v "NULLIFY" ] ;
+         fhir:display [ fhir:v "Mark Entered-in-error" ]
+       ] [
+         fhir:code [ fhir:v "OBSOLETE" ] ;
+         fhir:display [ fhir:v "Replaced" ]
+       ] [
+         fhir:code [ fhir:v "REACTIVATE" ] ;
+         fhir:display [ fhir:v "Reactivated" ]
+       ] )
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

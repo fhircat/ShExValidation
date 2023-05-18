@@ -1,0 +1,26 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <BackboneElement.shex>
+IMPORT <FamilyMemberHistory.shex>
+
+
+start=@<familymemberhistory-genetic> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Information about patient's relatives, relevant for patient
+<familymemberhistory-genetic> EXTENDS @<FamilyMemberHistory> CLOSED {   
+
+    a [fhir:familymemberhistory-genetic];
+    fhir:nodeRole [fhir:treeRoot]?;
+}  
+
+# Condition that the related person had
+<FamilyMemberHistory.condition> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Procedures that the related person had
+<FamilyMemberHistory.procedure> EXTENDS @<BackboneElement> CLOSED {   
+}  
+

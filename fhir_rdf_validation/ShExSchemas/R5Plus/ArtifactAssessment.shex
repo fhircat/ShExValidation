@@ -1,0 +1,154 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <date.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
+IMPORT <Citation.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Resource.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedArtifact.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+
+start=@<ArtifactAssessment> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Adds metadata-supported comments, classifiers or ratings related to a Resource
+<ArtifactAssessment> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:ArtifactAssessment]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
+                                            # artifact assessment 
+    fhir:citeAs (@<Reference>  AND {fhir:link @<Citation> })  OR 
+    			@<markdown>  ?;  # How to cite the comment or rating
+    fhir:date @<dateTime>?;                 # Date last changed
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:approvalDate @<date>?;             # When the artifact assessment was 
+                                            # approved by publisher 
+    fhir:lastReviewDate @<date>?;           # When the artifact assessment was 
+                                            # last reviewed 
+    fhir:artifact (@<Reference>  AND {fhir:link @<Resource> })  OR 
+    			@<canonical>  OR 
+    			@<uri>  ;  # The artifact assessed, commented 
+                                            # upon or rated 
+    fhir:content @<OneOrMore_ArtifactAssessment.content>?;  # Comment, classifier, or rating 
+                                            # content 
+    fhir:workflowStatus @<code> AND
+    	{fhir:v @fhirvs:artifactassessment-workflow-status}?;  # submitted | triaged | 
+                                            # waiting-for-input | 
+                                            # resolved-no-change | 
+                                            # resolved-change-required | 
+                                            # deferred | duplicate | applied | 
+                                            # published 
+    fhir:disposition @<code> AND
+    	{fhir:v @fhirvs:artifactassessment-disposition}?;  # unresolved | not-persuasive | 
+                                            # persuasive | 
+                                            # persuasive-with-modification | 
+                                            # not-persuasive-with-modification 
+}  
+
+# Comment, classifier, or rating content
+<ArtifactAssessment.content> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:informationType @<code> AND
+    	{fhir:v @fhirvs:artifactassessment-information-type}?;  # comment | classifier | rating | 
+                                            # container | response | 
+                                            # change-request 
+    fhir:summary @<markdown>?;              # Brief summary of the content
+    fhir:type @<CodeableConcept>?;          # What type of content
+    fhir:classifier @<OneOrMore_CodeableConcept>?;  # Rating, classifier, or assessment
+    fhir:author @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> ? }?;  # Who authored the content
+    fhir:path @<OneOrMore_uri>?;            # What the comment is directed to
+    fhir:relatedArtifact @<OneOrMore_RelatedArtifact>?;  # Additional information
+    fhir:freeToShare @<boolean>?;           # Acceptable to publicly share the 
+                                            # resource content 
+    fhir:component @<OneOrMore_ArtifactAssessment.content>?;  # Contained content
+}  
+
+# Contained content
+<ArtifactAssessment.content.componentnull> CLOSED {   
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+<OneOrMore_ArtifactAssessment.content> CLOSED {
+    rdf:first @<ArtifactAssessment.content>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ArtifactAssessment.content> 
+}
+
+
+
+
+
+
+
+#---------------------- Value Sets ------------------------
+
+
+
+

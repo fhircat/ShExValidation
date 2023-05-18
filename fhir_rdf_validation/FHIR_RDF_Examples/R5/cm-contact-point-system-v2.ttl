@@ -1,0 +1,90 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ConceptMap ;
+  fhir:id [ fhir:v "cm-contact-point-system-v2"] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ConceptMap/cm-contact-point-system-v2"], [ fhir:v "http://hl7.org/fhir/ConceptMap/cm-contact-point-system-v2"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "v2.ContactPointSystem"], [ fhir:v "v2.ContactPointSystem"] ;
+  fhir:title [ fhir:v "v2 map for ContactPointSystem"], [ fhir:v "v2 map for ContactPointSystem"] ;
+  fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:sourceScope [ fhir:v "http://hl7.org/fhir/ValueSet/contact-point-system"] ;
+  fhir:targetScope [ fhir:v "http://terminology.hl7.org/ValueSet/v2-0202"] ;
+  fhir:group ( [
+     fhir:source [ fhir:v "http://hl7.org/fhir/contact-point-system" ] ;
+     fhir:target [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0202" ] ;
+     fhir:element ( [
+       fhir:code [ fhir:v "phone" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "PH" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "fax" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "FX" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "email" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Internet" ] ;
+         fhir:relationship [ fhir:v "source-is-narrower-than-target" ] ;
+         fhir:comment [ fhir:v "for email addresses" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "pager" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "BP" ] ;
+         fhir:relationship [ fhir:v "equivalent" ]
+       ] )
+     ] [
+       fhir:code [ fhir:v "url" ] ;
+       fhir:target ( [
+         fhir:code [ fhir:v "Internet" ] ;
+         fhir:relationship [ fhir:v "source-is-narrower-than-target" ] ;
+         fhir:comment [ fhir:v "for non-email kinds of addresses" ]
+       ] )
+     ] )
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

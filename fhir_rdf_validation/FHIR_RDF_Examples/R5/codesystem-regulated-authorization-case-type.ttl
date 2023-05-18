@@ -1,0 +1,143 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "regulated-authorization-case-type"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "brr" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/regulated-authorization-case-type"], [ fhir:v "http://hl7.org/fhir/regulated-authorization-case-type"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1910" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1910" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "RegulatedAuthorizationCaseType"], [ fhir:v "RegulatedAuthorizationCaseType"] ;
+  fhir:title [ fhir:v "Regulated Authorization Case Type"], [ fhir:v "Regulated Authorization Case Type"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2021-01-05T10:01:24+11:00"], [ fhir:v "2021-01-05T10:01:24+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "RegulatedAuthorizationCaseType"], [ fhir:v "RegulatedAuthorizationCaseType"] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/regulated-authorization-case-type"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "InitialMAA" ] ;
+     fhir:display [ fhir:v "Initial Marketing Authorization Application" ]
+  ] [
+     fhir:code [ fhir:v "Variation" ] ;
+     fhir:display [ fhir:v "Variation" ]
+  ] [
+     fhir:code [ fhir:v "LineExtension" ] ;
+     fhir:display [ fhir:v "Line Extension" ]
+  ] [
+     fhir:code [ fhir:v "PSUR" ] ;
+     fhir:display [ fhir:v "Periodic Safety Update Report" ]
+  ] [
+     fhir:code [ fhir:v "Renewal" ] ;
+     fhir:display [ fhir:v "Renewal" ]
+  ] [
+     fhir:code [ fhir:v "Follow-up" ] ;
+     fhir:display [ fhir:v "Follow-up Measure" ]
+  ] [
+     fhir:code [ fhir:v "100000155699" ] ;
+     fhir:display [ fhir:v "Specific Obligation" ]
+  ] [
+     fhir:code [ fhir:v "AnnualReassessment" ] ;
+     fhir:display [ fhir:v "Annual Reassessment" ]
+  ] [
+     fhir:code [ fhir:v "UrgentSafetyRestriction" ] ;
+     fhir:display [ fhir:v "Urgent Safety Restriction" ]
+  ] [
+     fhir:code [ fhir:v "PaediatricSubmission" ] ;
+     fhir:display [ fhir:v "Paediatric Submission" ]
+  ] [
+     fhir:code [ fhir:v "TransferMA" ] ;
+     fhir:display [ fhir:v "Transfer of a marketing authorization" ]
+  ] [
+     fhir:code [ fhir:v "LiftingSuspension" ] ;
+     fhir:display [ fhir:v "Lifting of a Suspension" ]
+  ] [
+     fhir:code [ fhir:v "Withdrawal" ] ;
+     fhir:display [ fhir:v "Withdrawal" ]
+  ] [
+     fhir:code [ fhir:v "Reformatting" ] ;
+     fhir:display [ fhir:v "Reformatting" ]
+  ] [
+     fhir:code [ fhir:v "RMP" ] ;
+     fhir:display [ fhir:v "Risk Management Plan" ]
+  ] [
+     fhir:code [ fhir:v "ReviewSuspension" ] ;
+     fhir:display [ fhir:v "Review of a Suspension of MA" ]
+  ] [
+     fhir:code [ fhir:v "SupplementalInformation" ] ;
+     fhir:display [ fhir:v "Supplemental Information" ]
+  ] [
+     fhir:code [ fhir:v "RepeatUse" ] ;
+     fhir:display [ fhir:v "Repeat Use Procedure" ]
+  ] [
+     fhir:code [ fhir:v "SignalDetection" ] ;
+     fhir:display [ fhir:v "Signal detection" ]
+  ] [
+     fhir:code [ fhir:v "FLU" ] ;
+     fhir:display [ fhir:v "FLU STRAIN UPDATE" ]
+  ] [
+     fhir:code [ fhir:v "PANDEMIC" ] ;
+     fhir:display [ fhir:v "PANDEMIC UPDATE" ]
+  ] [
+     fhir:code [ fhir:v "Orphan" ] ;
+     fhir:display [ fhir:v "Orphan Designation Application" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

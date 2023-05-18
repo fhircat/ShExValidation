@@ -1,0 +1,218 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:TestScript ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "testscript-example-readtest"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: TestScript</b><a name=\"testscript-example-readtest\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource TestScript &quot;testscript-example-readtest&quot; </p></div><p><b>url</b>: <code>http://hl7.org/fhir/TestScript/testscript-example-readtest</code></p><p><b>identifier</b>: id: urn:oid:2.16.840.1.113883.4.642.12.2</p><p><b>version</b>: 1.0</p><p><b>name</b>: TestScript Example Read Test</p><p><b>status</b>: draft</p><p><b>experimental</b>: true</p><p><b>date</b>: 2017-01-18</p><p><b>publisher</b>: HL7</p><p><b>contact</b>: Support: <a href=\"mailto:support@HL7.org\">support@HL7.org</a></p><p><b>description</b>: TestScript example resource with ported Sprinkler basic read tests R001, R002, R003, R004. The read tests will utilize user defined dynamic variables that will hold the Patient resource id values.</p><p><b>jurisdiction</b>: United States of America (the) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-ISO3166Part1.html\">ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code</a>#US)</span></p><p><b>purpose</b>: Patient Read Operation</p><p><b>copyright</b>: © HL7.org 2011+</p><blockquote><p><b>metadata</b></p><h3>Links</h3><table class=\"grid\"><tr><td>-</td><td><b>Url</b></td><td><b>Description</b></td></tr><tr><td>*</td><td><a href=\"http://hl7.org/fhir/patient.html\">http://hl7.org/fhir/patient.html</a></td><td>Demographics and other administrative information about an individual or animal receiving care or other health-related services.</td></tr></table><h3>Capabilities</h3><table class=\"grid\"><tr><td>-</td><td><b>Required</b></td><td><b>Validated</b></td><td><b>Description</b></td><td><b>Link</b></td><td><b>Capabilities</b></td></tr><tr><td>*</td><td>true</td><td>false</td><td>Patient Read Operation</td><td><a href=\"http://hl7.org/fhir/http.html#read\">http://hl7.org/fhir/http.html#read</a></td><td><a href=\"http://hl7.org/fhir/CapabilityStatement/example\">http://hl7.org/fhir/CapabilityStatement/example</a></td></tr></table></blockquote><h3>Scopes</h3><table class=\"grid\"><tr><td>-</td><td><b>Artifact</b></td><td><b>Conformance</b></td><td><b>Phase</b></td></tr><tr><td>*</td><td><a href=\"patient.html\">Patient</a></td><td>Optional <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-testscript-scope-conformance-codes.html\">Test Script Scope Conformance Type</a>#optional)</span></td><td>Unit <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-testscript-scope-phase-codes.html\">Test Script Scope Phase Type</a>#unit)</span></td></tr></table><p><b>profile</b>: <a href=\"patient.html\">Patient</a></p><blockquote><p><b>variable</b></p><p><b>name</b>: KnownPatientResourceId</p><p><b>defaultValue</b>: example</p></blockquote><blockquote><p><b>variable</b></p><p><b>name</b>: NonExistsPatientResourceId</p><p><b>defaultValue</b>: does-not-exist</p></blockquote><blockquote><p><b>test</b></p><p><b>name</b>: Sprinkler Read Test R001</p><p><b>description</b>: Read a known Patient and validate response.</p><blockquote><p><b>action</b></p><h3>Operations</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Resource</b></td><td><b>Description</b></td><td><b>Accept</b></td><td><b>EncodeRequestUrl</b></td><td><b>Params</b></td></tr><tr><td>*</td><td>read (Details: http://hl7.org/fhir/restful-interaction code read = 'read', stated as 'null')</td><td><a href=\"patient.html\">Patient</a></td><td>Read the known Patient resource on the destination test system using the user defined dynamic variable ${KnownPatientResourceId}.</td><td>xml</td><td>true</td><td>/${KnownPatientResourceId}</td></tr></table></blockquote><blockquote><p><b>action</b></p><h3>Asserts</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Response</b></td><td><b>StopTestOnFail</b></td><td><b>WarningOnly</b></td></tr><tr><td>*</td><td>Confirm that the returned HTTP status is 200(OK).</td><td>okay</td><td>false</td><td>false</td></tr></table></blockquote><blockquote><p><b>action</b></p><h3>Asserts</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>ContentType</b></td><td><b>StopTestOnFail</b></td><td><b>WarningOnly</b></td></tr><tr><td>*</td><td>Confirm that the returned format is XML.</td><td>xml</td><td>false</td><td>false</td></tr></table></blockquote><blockquote><p><b>action</b></p><h3>Asserts</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>HeaderField</b></td><td><b>Operator</b></td><td><b>StopTestOnFail</b></td><td><b>WarningOnly</b></td></tr><tr><td>*</td><td>Confirm that the returned HTTP Header Last-Modified is present. Warning only as the server might not support versioning.</td><td>Last-Modified</td><td>notEmpty</td><td>false</td><td>true</td></tr></table></blockquote><blockquote><p><b>action</b></p><h3>Asserts</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Resource</b></td><td><b>StopTestOnFail</b></td><td><b>WarningOnly</b></td></tr><tr><td>*</td><td>Confirm that the returned resource type is Patient.</td><td><a href=\"patient.html\">Patient</a></td><td>false</td><td>false</td></tr></table></blockquote><blockquote><p><b>action</b></p><h3>Asserts</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>StopTestOnFail</b></td><td><b>ValidateProfileId</b></td><td><b>WarningOnly</b></td></tr><tr><td>*</td><td>Confirm that the returned Patient conforms to the base FHIR specification.</td><td>false</td><td>patient-profile</td><td>false</td></tr></table></blockquote></blockquote><blockquote><p><b>test</b></p><p><b>name</b>: Sprinkler Read Test R002</p><p><b>description</b>: Read an unknown Resource Type and validate response.</p><blockquote><p><b>action</b></p><h3>Operations</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Resource</b></td><td><b>Description</b></td><td><b>Accept</b></td><td><b>EncodeRequestUrl</b></td><td><b>Params</b></td></tr><tr><td>*</td><td>read (Details: http://hl7.org/fhir/restful-interaction code read = 'read', stated as 'null')</td><td><a href=\"patient.html\">Patient</a></td><td>Attempt to read the Parameters resource type. What we really want here is an illegal type but the build process won't allow that. Parameters is a valid resource which doesn't have an end-point so, this should fail.</td><td>xml</td><td>true</td><td>/1</td></tr></table></blockquote><blockquote><p><b>action</b></p><h3>Asserts</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Response</b></td><td><b>StopTestOnFail</b></td><td><b>WarningOnly</b></td></tr><tr><td>*</td><td>Confirm that the returned HTTP status is 404(Not Found).</td><td>notFound</td><td>false</td><td>false</td></tr></table></blockquote></blockquote><blockquote><p><b>test</b></p><p><b>name</b>: Sprinkler Read Test R003</p><p><b>description</b>: Read a known, non-existing Patient and validate response.</p><blockquote><p><b>action</b></p><h3>Operations</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Resource</b></td><td><b>Description</b></td><td><b>Accept</b></td><td><b>EncodeRequestUrl</b></td><td><b>Params</b></td></tr><tr><td>*</td><td>read (Details: http://hl7.org/fhir/restful-interaction code read = 'read', stated as 'null')</td><td><a href=\"patient.html\">Patient</a></td><td>Attempt to read the non-existing Patient resource on the destination test system using the user defined dynamic variable ${NonExistsPatientResourceId}.</td><td>xml</td><td>true</td><td>/${NonExistsPatientResourceId}</td></tr></table></blockquote><blockquote><p><b>action</b></p><h3>Asserts</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Response</b></td><td><b>StopTestOnFail</b></td><td><b>WarningOnly</b></td></tr><tr><td>*</td><td>Confirm that the returned HTTP status is 404(Not Found).</td><td>notFound</td><td>false</td><td>false</td></tr></table></blockquote></blockquote><blockquote><p><b>test</b></p><p><b>name</b>: Sprinkler Read Test R004</p><p><b>description</b>: Read a Patient using a known bad formatted resource id and validate response.</p><blockquote><p><b>action</b></p><h3>Operations</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Resource</b></td><td><b>Description</b></td><td><b>Accept</b></td><td><b>EncodeRequestUrl</b></td><td><b>Params</b></td></tr><tr><td>*</td><td>read (Details: http://hl7.org/fhir/restful-interaction code read = 'read', stated as 'null')</td><td><a href=\"patient.html\">Patient</a></td><td>Attempt to read a Patient resource on the destination test system using known bad formatted resource id.</td><td>xml</td><td>true</td><td>/ID-may-not-contain-CAPITALS</td></tr></table></blockquote><blockquote><p><b>action</b></p><h3>Asserts</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Response</b></td><td><b>StopTestOnFail</b></td><td><b>WarningOnly</b></td></tr><tr><td>*</td><td>Confirm that the returned HTTP status is 400(Bad Request).</td><td>badRequest</td><td>false</td><td>false</td></tr></table></blockquote></blockquote></div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/TestScript/testscript-example-readtest"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.12.2" ]
+  ] ) ; # 
+  fhir:version [ fhir:v "1.0"] ; # 
+  fhir:name [ fhir:v "TestScript Example Read Test"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:experimental [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:date [ fhir:v "2017-01-18"^^xsd:date] ; # 
+  fhir:publisher [ fhir:v "HL7"] ; # 
+  fhir:contact ( [
+     fhir:name [ fhir:v "Support" ] ;
+     fhir:telecom ( [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "support@HL7.org" ] ;
+       fhir:use [ fhir:v "work" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "TestScript example resource with ported Sprinkler basic read tests R001, R002, R003, R004. The read tests will utilize user defined dynamic variables that will hold the Patient resource id values."] ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:iso:std:iso:3166"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "US" ] ;
+       fhir:display [ fhir:v "United States of America (the)" ]
+     ] )
+  ] ) ; # 
+  fhir:purpose [ fhir:v "Patient Read Operation"] ; # 
+  fhir:copyright [ fhir:v "© HL7.org 2011+"] ; # 
+  fhir:metadata [
+     fhir:link ( [
+       fhir:url [ fhir:v "http://hl7.org/fhir/patient.html"^^xsd:anyURI ] ;
+       fhir:description [ fhir:v "Demographics and other administrative information about an individual or animal receiving care or other health-related services." ]
+     ] ) ;
+     fhir:capability ( [
+       fhir:required [ fhir:v "true"^^xsd:boolean ] ;
+       fhir:validated [ fhir:v "false"^^xsd:boolean ] ;
+       fhir:description [ fhir:v "Patient Read Operation" ] ;
+       fhir:link ( [ fhir:v "http://hl7.org/fhir/http.html#read"^^xsd:anyURI ] ) ;
+       fhir:capabilities [
+         fhir:v "http://hl7.org/fhir/CapabilityStatement/example"^^xsd:anyURI ;
+         fhir:link <http://hl7.org/fhir/CapabilityStatement/example>
+       ]
+     ] )
+  ] ; # 
+  fhir:scope ( [
+     fhir:artifact [
+       fhir:v "http://hl7.org/fhir/StructureDefinition/Patient"^^xsd:anyURI ;
+       fhir:link <http://hl7.org/fhir/StructureDefinition/Patient>
+     ] ;
+     fhir:conformance [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/testscript-scope-conformance-codes"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "optional" ]
+       ] )
+     ] ;
+     fhir:phase [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/testscript-scope-phase-codes"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "unit" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:profile ( [
+     fhir:v "http://hl7.org/fhir/StructureDefinition/Patient"^^xsd:anyURI ;
+     fhir:link <http://hl7.org/fhir/StructureDefinition/Patient> ;
+     fhir:id [ fhir:v "patient-profile" ]
+  ] ) ; # 
+  fhir:variable ( [
+     fhir:name [ fhir:v "KnownPatientResourceId" ] ;
+     fhir:defaultValue [ fhir:v "example" ]
+  ] [
+     fhir:name [ fhir:v "NonExistsPatientResourceId" ] ;
+     fhir:defaultValue [ fhir:v "does-not-exist" ]
+  ] ) ; # 
+  fhir:test ( [
+     fhir:id [ fhir:v "R001" ] ;
+     fhir:name [ fhir:v "Sprinkler Read Test R001" ] ;
+     fhir:description [ fhir:v "Read a known Patient and validate response." ] ;
+     fhir:action ( [
+       fhir:operation [
+         fhir:type [
+           fhir:system [ fhir:v "http://hl7.org/fhir/restful-interaction"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "read" ]
+         ] ;
+         fhir:resource [ fhir:v "Patient"^^xsd:anyURI ] ;
+         fhir:description [ fhir:v "Read the known Patient resource on the destination test system using the user defined dynamic variable ${KnownPatientResourceId}." ] ;
+         fhir:accept [ fhir:v "xml" ] ;
+         fhir:encodeRequestUrl [ fhir:v "true"^^xsd:boolean ] ;
+         fhir:params [ fhir:v "/${KnownPatientResourceId}" ]
+       ]
+     ] [
+       fhir:assert [
+         fhir:description [ fhir:v "Confirm that the returned HTTP status is 200(OK)." ] ;
+         fhir:response [ fhir:v "okay" ] ;
+         fhir:stopTestOnFail [ fhir:v "false"^^xsd:boolean ] ;
+         fhir:warningOnly [ fhir:v "false"^^xsd:boolean ]
+       ]
+     ] [
+       fhir:assert [
+         fhir:description [ fhir:v "Confirm that the returned format is XML." ] ;
+         fhir:contentType [ fhir:v "xml" ] ;
+         fhir:stopTestOnFail [ fhir:v "false"^^xsd:boolean ] ;
+         fhir:warningOnly [ fhir:v "false"^^xsd:boolean ]
+       ]
+     ] [
+       fhir:assert [
+         fhir:description [ fhir:v "Confirm that the returned HTTP Header Last-Modified is present. Warning only as the server might not support versioning." ] ;
+         fhir:headerField [ fhir:v "Last-Modified" ] ;
+         fhir:operator [ fhir:v "notEmpty" ] ;
+         fhir:stopTestOnFail [ fhir:v "false"^^xsd:boolean ] ;
+         fhir:warningOnly [ fhir:v "true"^^xsd:boolean ]
+       ]
+     ] [
+       fhir:assert [
+         fhir:description [ fhir:v "Confirm that the returned resource type is Patient." ] ;
+         fhir:resource [ fhir:v "Patient"^^xsd:anyURI ] ;
+         fhir:stopTestOnFail [ fhir:v "false"^^xsd:boolean ] ;
+         fhir:warningOnly [ fhir:v "false"^^xsd:boolean ]
+       ]
+     ] [
+       fhir:assert [
+         fhir:description [ fhir:v "Confirm that the returned Patient conforms to the base FHIR specification." ] ;
+         fhir:stopTestOnFail [ fhir:v "false"^^xsd:boolean ] ;
+         fhir:validateProfileId [ fhir:v "patient-profile" ] ;
+         fhir:warningOnly [ fhir:v "false"^^xsd:boolean ]
+       ]
+     ] )
+  ] [
+     fhir:id [ fhir:v "R002" ] ;
+     fhir:name [ fhir:v "Sprinkler Read Test R002" ] ;
+     fhir:description [ fhir:v "Read an unknown Resource Type and validate response." ] ;
+     fhir:action ( [
+       fhir:operation [
+         fhir:type [
+           fhir:system [ fhir:v "http://hl7.org/fhir/restful-interaction"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "read" ]
+         ] ;
+         fhir:resource [ fhir:v "Patient"^^xsd:anyURI ] ;
+         fhir:description [ fhir:v "Attempt to read the Parameters resource type. What we really want here is an illegal type but the build process won't allow that. Parameters is a valid resource which doesn't have an end-point so, this should fail." ] ;
+         fhir:accept [ fhir:v "xml" ] ;
+         fhir:encodeRequestUrl [ fhir:v "true"^^xsd:boolean ] ;
+         fhir:params [ fhir:v "/1" ]
+       ]
+     ] [
+       fhir:assert [
+         fhir:description [ fhir:v "Confirm that the returned HTTP status is 404(Not Found)." ] ;
+         fhir:response [ fhir:v "notFound" ] ;
+         fhir:stopTestOnFail [ fhir:v "false"^^xsd:boolean ] ;
+         fhir:warningOnly [ fhir:v "false"^^xsd:boolean ]
+       ]
+     ] )
+  ] [
+     fhir:id [ fhir:v "R003" ] ;
+     fhir:name [ fhir:v "Sprinkler Read Test R003" ] ;
+     fhir:description [ fhir:v "Read a known, non-existing Patient and validate response." ] ;
+     fhir:action ( [
+       fhir:operation [
+         fhir:type [
+           fhir:system [ fhir:v "http://hl7.org/fhir/restful-interaction"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "read" ]
+         ] ;
+         fhir:resource [ fhir:v "Patient"^^xsd:anyURI ] ;
+         fhir:description [ fhir:v "Attempt to read the non-existing Patient resource on the destination test system using the user defined dynamic variable ${NonExistsPatientResourceId}." ] ;
+         fhir:accept [ fhir:v "xml" ] ;
+         fhir:encodeRequestUrl [ fhir:v "true"^^xsd:boolean ] ;
+         fhir:params [ fhir:v "/${NonExistsPatientResourceId}" ]
+       ]
+     ] [
+       fhir:assert [
+         fhir:description [ fhir:v "Confirm that the returned HTTP status is 404(Not Found)." ] ;
+         fhir:response [ fhir:v "notFound" ] ;
+         fhir:stopTestOnFail [ fhir:v "false"^^xsd:boolean ] ;
+         fhir:warningOnly [ fhir:v "false"^^xsd:boolean ]
+       ]
+     ] )
+  ] [
+     fhir:id [ fhir:v "R004" ] ;
+     fhir:name [ fhir:v "Sprinkler Read Test R004" ] ;
+     fhir:description [ fhir:v "Read a Patient using a known bad formatted resource id and validate response." ] ;
+     fhir:action ( [
+       fhir:operation [
+         fhir:type [
+           fhir:system [ fhir:v "http://hl7.org/fhir/restful-interaction"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "read" ]
+         ] ;
+         fhir:resource [ fhir:v "Patient"^^xsd:anyURI ] ;
+         fhir:description [ fhir:v "Attempt to read a Patient resource on the destination test system using known bad formatted resource id." ] ;
+         fhir:accept [ fhir:v "xml" ] ;
+         fhir:encodeRequestUrl [ fhir:v "true"^^xsd:boolean ] ;
+         fhir:params [ fhir:v "/ID-may-not-contain-CAPITALS" ]
+       ]
+     ] [
+       fhir:assert [
+         fhir:description [ fhir:v "Confirm that the returned HTTP status is 400(Bad Request)." ] ;
+         fhir:response [ fhir:v "badRequest" ] ;
+         fhir:stopTestOnFail [ fhir:v "false"^^xsd:boolean ] ;
+         fhir:warningOnly [ fhir:v "false"^^xsd:boolean ]
+       ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

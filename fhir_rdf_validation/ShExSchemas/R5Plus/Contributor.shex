@@ -1,0 +1,40 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <DataType.shex>
+#imported_end
+#imported_begin 
+IMPORT <ContactDetail.shex>
+#imported_end
+# Contributor information
+<Contributor> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:Contributor]?;
+
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:contributor-type};  # author | editor | reviewer | 
+                                            # endorser 
+    fhir:name @<string>;                    # Who contributed the content
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details of the contributor
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+#---------------------- Value Sets ------------------------
+
+

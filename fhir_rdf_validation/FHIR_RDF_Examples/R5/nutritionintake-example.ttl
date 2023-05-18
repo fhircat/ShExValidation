@@ -1,0 +1,173 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:NutritionIntake ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; #    id = example  file name = nutritionintake-example.xml  Name=Simple   Description = General NutritionIntake Example edited by Jean Duteau & Becky Gradl  
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: NutritionIntake</b><a name=\"example\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource NutritionIntake &quot;example&quot; </p></div><p><b>identifier</b>: id: 1144223344</p><p><b>status</b>: completed</p><p><b>code</b>: Inpatient <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>subject</b>: <span>: Paula Patient Chalmers</span></p><p><b>encounter</b>: <a href=\"encounter-example.html\">Encounter/example</a></p><p><b>occurrence</b>: 2019-08-02T12:45:18+04:00</p><p><b>reported</b>: <a href=\"practitionerrole-example.html\">PractitionerRole/example</a></p><blockquote><p><b>consumedItem</b></p><p><b>type</b>: food <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><h3>NutritionProducts</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Grill Sandwich <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table><p><b>amount</b>: 100 percent<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code % = '%')</span></p></blockquote><blockquote><p><b>consumedItem</b></p><p><b>type</b>: food <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><h3>NutritionProducts</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>French Fries Spiral Battered <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table><p><b>amount</b>: 100 percent<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code % = '%')</span></p></blockquote><blockquote><p><b>consumedItem</b></p><p><b>type</b>: food <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><h3>NutritionProducts</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Tomato Soup Healthy Request <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table><p><b>amount</b>: 50 percent<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code % = '%')</span></p></blockquote><blockquote><p><b>consumedItem</b></p><p><b>type</b>: food <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><h3>NutritionProducts</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Side Garden Salad <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table><p><b>amount</b>: 50 percent<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code % = '%')</span></p></blockquote><blockquote><p><b>consumedItem</b></p><p><b>type</b>: fluid <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><h3>NutritionProducts</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Ice Tea Unsweetened <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table><p><b>amount</b>: 100 percent<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code % = '%')</span></p></blockquote><blockquote><p><b>ingredientLabel</b></p><h3>Nutrients</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Total Calories <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table><p><b>amount</b>: 313 kilocalorie<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code kcal = 'kcal')</span></p></blockquote><blockquote><p><b>ingredientLabel</b></p><h3>Nutrients</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Protein <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table><p><b>amount</b>: 10.4 grams<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code g = 'g')</span></p></blockquote><blockquote><p><b>ingredientLabel</b></p><h3>Nutrients</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Fat (Total) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table><p><b>amount</b>: 18.00 grams<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code g = 'g')</span></p></blockquote><blockquote><p><b>ingredientLabel</b></p><h3>Nutrients</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Carbohydrate <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table><p><b>amount</b>: 26.47 grams<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code g = 'g')</span></p></blockquote><blockquote><p><b>ingredientLabel</b></p><h3>Nutrients</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Sodium <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></td></tr></table><p><b>amount</b>: 770 Milligrams<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mg = 'mg')</span></p></blockquote></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://example.org"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "1144223344" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:code [
+     fhir:text [ fhir:v "Inpatient" ]
+  ] ; # 
+  fhir:subject [
+     fhir:display [ fhir:v "Paula Patient Chalmers" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/example" ]
+  ] ; # 
+  fhir:occurrence [ fhir:v "2019-08-02T12:45:18+04:00"^^xsd:dateTime] ; # 
+  fhir:reported [
+     a fhir:Reference ;
+     fhir:reference [ fhir:v "PractitionerRole/example" ]
+  ] ; # 
+  fhir:consumedItem ( [
+     fhir:type [
+       fhir:text [ fhir:v "food" ]
+     ] ;
+     fhir:nutritionProduct [
+       fhir:concept [
+         fhir:text [ fhir:v "Grill Sandwich" ]
+       ]
+     ] ;
+     fhir:amount [
+       fhir:value [ fhir:v "100"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "percent" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "%" ]
+     ]
+  ] [
+     fhir:type [
+       fhir:text [ fhir:v "food" ]
+     ] ;
+     fhir:nutritionProduct [
+       fhir:concept [
+         fhir:text [ fhir:v "French Fries Spiral Battered" ]
+       ]
+     ] ;
+     fhir:amount [
+       fhir:value [ fhir:v "100"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "percent" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "%" ]
+     ]
+  ] [
+     fhir:type [
+       fhir:text [ fhir:v "food" ]
+     ] ;
+     fhir:nutritionProduct [
+       fhir:concept [
+         fhir:text [ fhir:v "Tomato Soup Healthy Request" ]
+       ]
+     ] ;
+     fhir:amount [
+       fhir:value [ fhir:v "50"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "percent" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "%" ]
+     ]
+  ] [
+     fhir:type [
+       fhir:text [ fhir:v "food" ]
+     ] ;
+     fhir:nutritionProduct [
+       fhir:concept [
+         fhir:text [ fhir:v "Side Garden Salad" ]
+       ]
+     ] ;
+     fhir:amount [
+       fhir:value [ fhir:v "50"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "percent" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "%" ]
+     ]
+  ] [
+     fhir:type [
+       fhir:text [ fhir:v "fluid" ]
+     ] ;
+     fhir:nutritionProduct [
+       fhir:concept [
+         fhir:text [ fhir:v "Ice Tea Unsweetened" ]
+       ]
+     ] ;
+     fhir:amount [
+       fhir:value [ fhir:v "100"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "percent" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "%" ]
+     ]
+  ] ) ; # 
+  fhir:ingredientLabel ( [
+     fhir:nutrient [
+       fhir:concept [
+         fhir:text [ fhir:v "Total Calories" ]
+       ]
+     ] ;
+     fhir:amount [
+       fhir:value [ fhir:v "313"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "kilocalorie" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "kcal" ]
+     ]
+  ] [
+     fhir:nutrient [
+       fhir:concept [
+         fhir:text [ fhir:v "Protein" ]
+       ]
+     ] ;
+     fhir:amount [
+       fhir:value [ fhir:v "10.4"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "grams" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "g" ]
+     ]
+  ] [
+     fhir:nutrient [
+       fhir:concept [
+         fhir:text [ fhir:v "Fat (Total)" ]
+       ]
+     ] ;
+     fhir:amount [
+       fhir:value [ fhir:v "18.00"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "grams" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "g" ]
+     ]
+  ] [
+     fhir:nutrient [
+       fhir:concept [
+         fhir:text [ fhir:v "Carbohydrate" ]
+       ]
+     ] ;
+     fhir:amount [
+       fhir:value [ fhir:v "26.47"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "grams" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "g" ]
+     ]
+  ] [
+     fhir:nutrient [
+       fhir:concept [
+         fhir:text [ fhir:v "Sodium" ]
+       ]
+     ] ;
+     fhir:amount [
+       fhir:value [ fhir:v "770"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "Milligrams" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "mg" ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

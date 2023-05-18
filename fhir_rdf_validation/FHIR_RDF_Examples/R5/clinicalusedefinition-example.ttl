@@ -1,0 +1,37 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ClinicalUseDefinition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: ClinicalUseDefinition</b><a name=\"example\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource ClinicalUseDefinition &quot;example&quot; </p></div><p><b>type</b>: contraindication</p><blockquote><p><b>contraindication</b></p><h3>DiseaseSymptomProcedures</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Hepatic disease associated with coagulopathy and clinically relevant bleeding risk <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (contraindicationsasdisease-symptom-procedure#Coagulopathiesandbleedingdiatheses(exclthrombocytopenic))</span></td></tr></table><h3>Comorbidities</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Hepaticdisease <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (comorbidity#Hepaticdisease)</span></td></tr></table></blockquote></div>"
+  ] ; # 
+  fhir:type [ fhir:v "contraindication"] ; # 
+  fhir:contraindication [
+     fhir:diseaseSymptomProcedure [
+       fhir:concept [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://ema.europa.eu/example/contraindicationsasdisease-symptom-procedure"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Coagulopathiesandbleedingdiatheses(exclthrombocytopenic)" ]
+         ] ) ;
+         fhir:text [ fhir:v "Hepatic disease associated with coagulopathy and clinically relevant bleeding risk" ]
+       ]
+     ] ;
+     fhir:comorbidity ( [
+       fhir:concept [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://ema.europa.eu/example/comorbidity"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Hepaticdisease" ]
+         ] )
+       ]
+     ] )
+  ]] . # 
+
+# -------------------------------------------------------------------------------------
+

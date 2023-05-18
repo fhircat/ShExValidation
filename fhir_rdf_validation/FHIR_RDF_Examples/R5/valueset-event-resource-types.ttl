@@ -1,0 +1,166 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:ValueSet ;
+  fhir:id [ fhir:v "event-resource-types"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablevalueset" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "extensions" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "fhir" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "normative" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "5" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/ValueSet/event-resource-types"], [ fhir:v "http://hl7.org/fhir/ValueSet/event-resource-types"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.1060" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.3.1060" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "EventResourceTypes"], [ fhir:v "EventResourceTypes"] ;
+  fhir:title [ fhir:v "Event Resource Types"], [ fhir:v "Event Resource Types"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "All Resource Types that represent event resources"], [ fhir:v "All Resource Types that represent event resources"] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:immutable [ fhir:v "true"] ;
+  fhir:compose [
+     fhir:include ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/fhir-types" ] ;
+       fhir:concept ( [
+         fhir:code [ fhir:v "AdverseEvent" ]
+       ] [
+         fhir:code [ fhir:v "AuditEvent" ]
+       ] [
+         fhir:code [ fhir:v "ChargeItem" ]
+       ] [
+         fhir:code [ fhir:v "ClaimResponse" ]
+       ] [
+         fhir:code [ fhir:v "ClinicalImpression" ]
+       ] [
+         fhir:code [ fhir:v "Communication" ]
+       ] [
+         fhir:code [ fhir:v "Composition" ]
+       ] [
+         fhir:code [ fhir:v "Consent" ]
+       ] [
+         fhir:code [ fhir:v "Contract" ]
+       ] [
+         fhir:code [ fhir:v "Coverage" ]
+       ] [
+         fhir:code [ fhir:v "CoverageEligibilityResponse" ]
+       ] [
+         fhir:code [ fhir:v "DetectedIssue" ]
+       ] [
+         fhir:code [ fhir:v "DeviceDispense" ]
+       ] [
+         fhir:code [ fhir:v "DeviceUsage" ]
+       ] [
+         fhir:code [ fhir:v "DiagnosticReport" ]
+       ] [
+         fhir:code [ fhir:v "DocumentReference" ]
+       ] [
+         fhir:code [ fhir:v "Encounter" ]
+       ] [
+         fhir:code [ fhir:v "EnrollmentResponse" ]
+       ] [
+         fhir:code [ fhir:v "EpisodeOfCare" ]
+       ] [
+         fhir:code [ fhir:v "ExplanationOfBenefit" ]
+       ] [
+         fhir:code [ fhir:v "FamilyMemberHistory" ]
+       ] [
+         fhir:code [ fhir:v "GenomicStudy" ]
+       ] [
+         fhir:code [ fhir:v "GuidanceResponse" ]
+       ] [
+         fhir:code [ fhir:v "ImagingSelection" ]
+       ] [
+         fhir:code [ fhir:v "ImagingStudy" ]
+       ] [
+         fhir:code [ fhir:v "Immunization" ]
+       ] [
+         fhir:code [ fhir:v "ImmunizationEvaluation" ]
+       ] [
+         fhir:code [ fhir:v "InventoryReport" ]
+       ] [
+         fhir:code [ fhir:v "Invoice" ]
+       ] [
+         fhir:code [ fhir:v "MedicationAdministration" ]
+       ] [
+         fhir:code [ fhir:v "MedicationDispense" ]
+       ] [
+         fhir:code [ fhir:v "MedicationStatement" ]
+       ] [
+         fhir:code [ fhir:v "MessageHeader" ]
+       ] [
+         fhir:code [ fhir:v "NutritionIntake" ]
+       ] [
+         fhir:code [ fhir:v "Observation" ]
+       ] [
+         fhir:code [ fhir:v "PaymentNotice" ]
+       ] [
+         fhir:code [ fhir:v "PaymentReconciliation" ]
+       ] [
+         fhir:code [ fhir:v "Procedure" ]
+       ] [
+         fhir:code [ fhir:v "Provenance" ]
+       ] [
+         fhir:code [ fhir:v "QuestionnaireResponse" ]
+       ] [
+         fhir:code [ fhir:v "RiskAssessment" ]
+       ] [
+         fhir:code [ fhir:v "SupplyDelivery" ]
+       ] [
+         fhir:code [ fhir:v "Transport" ]
+       ] )
+     ] )
+  ] .
+
+# -------------------------------------------------------------------------------------
+

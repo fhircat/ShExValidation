@@ -1,0 +1,53 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:MolecularSequence ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "molecularsequence-focus-example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MolecularSequence</b><a name=\"molecularsequence-focus-example\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MolecularSequence &quot;molecularsequence-focus-example&quot; </p></div><p><b>type</b>: dna</p><p><b>subject</b>: <a href=\"broken-link.html\">Patient/infant</a></p><p><b>focus</b>: <a href=\"patient-example-infant-mom.html\">Patient/infant-mom</a> &quot;Leia SOLO&quot;</p><blockquote><p><b>relative</b></p><p><b>coordinateSystem</b>: 0-based interval counting <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#LA30100-4)</span></p><h3>StartingSequences</h3><table class=\"grid\"><tr><td>-</td><td><b>Sequence[x]</b></td><td><b>WindowStart</b></td><td><b>WindowEnd</b></td></tr><tr><td>*</td><td>NC_000007.14 <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (#NC_000007.14)</span></td><td>87627610</td><td>87627635</td></tr></table><h3>Edits</h3><table class=\"grid\"><tr><td>-</td><td><b>Start</b></td><td><b>End</b></td><td><b>ReplacementSequence</b></td><td><b>ReplacedSequence</b></td></tr><tr><td>*</td><td>87627621</td><td>87642522</td><td>T</td><td>A</td></tr></table></blockquote></div>"
+  ] ; # 
+  fhir:type [ fhir:v "dna"] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/infant" ]
+  ] ; # 
+  fhir:focus ( [
+     fhir:reference [ fhir:v "Patient/infant-mom" ]
+  ] ) ; # 
+  fhir:relative ( [
+     fhir:coordinateSystem [
+       fhir:coding ( [
+         a loinc:LA30100-4 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "LA30100-4" ] ;
+         fhir:display [ fhir:v "0-based interval counting" ]
+       ] )
+     ] ;
+     fhir:startingSequence [
+       fhir:sequence [
+         a fhir:CodeableConcept ;
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://www.ncbi.nlm.nih.gov/nuccore/"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "NC_000007.14" ]
+         ] ) ;
+         fhir:text [ fhir:v "NC_000007.14" ]
+       ] ;
+       fhir:windowStart [ fhir:v "87627610"^^xsd:integer ] ;
+       fhir:windowEnd [ fhir:v "87627635"^^xsd:integer ]
+     ] ;
+     fhir:edit ( [
+       fhir:start [ fhir:v "87627621"^^xsd:integer ] ;
+       fhir:end [ fhir:v "87642522"^^xsd:integer ] ;
+       fhir:replacementSequence [ fhir:v "T" ] ;
+       fhir:replacedSequence [ fhir:v "A" ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,119 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:SubstanceDefinition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: SubstanceDefinition</b><a name=\"example\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource SubstanceDefinition &quot;example&quot; </p></div><p><b>identifier</b>: id: 100000099270</p><p><b>status</b>: Current <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (Status#200000005004)</span></p><p><b>classification</b>: Chemical <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (SubstanceType#100000075670)</span></p><p><b>domain</b>: Human use <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (Domain#100000000012)</span></p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Code</b></td></tr><tr><td>*</td><td>SUB99611MIG <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (Substance#SUB99611MIG)</span></td></tr></table><blockquote><p><b>name</b></p><p><b>name</b>: PARACETAMOL</p><p><b>status</b>: Current <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (Status#200000005004)</span></p><p><b>preferred</b>: true</p><p><b>language</b>: English <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ietf3066.html\">Tags for the Identification of Languages</a>#en)</span></p></blockquote><blockquote><p><b>name</b></p><p><b>name</b>: ΠΑΡΑΚΕΤΑΜΌΛΗ</p><p><b>status</b>: Current <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (Status#200000005004)</span></p><p><b>preferred</b>: false</p><p><b>language</b>: Greek <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ietf3066.html\">Tags for the Identification of Languages</a>#el)</span></p></blockquote><blockquote><p><b>name</b></p><p><b>name</b>: ПАРАЦЕТАМОЛ</p><p><b>status</b>: Current <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (Status#200000005004)</span></p><p><b>preferred</b>: false</p><p><b>language</b>: Bulgarian <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ietf3066.html\">Tags for the Identification of Languages</a>#bg)</span></p></blockquote><blockquote><p><b>name</b></p><p><b>name</b>: ACETAMINOPHEN</p><p><b>status</b>: Current <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (Status#200000005004)</span></p><p><b>preferred</b>: false</p><p><b>language</b>: English <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ietf3066.html\">Tags for the Identification of Languages</a>#en)</span></p></blockquote></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://example.europa.eu/fhir/SMSId"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "100000099270" ]
+  ] ) ; # 
+  fhir:status [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://example.europa.eu/fhir/Status"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "200000005004" ] ;
+       fhir:display [ fhir:v "Current" ]
+     ] )
+  ] ; # 
+  fhir:classification ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://example.europa.eu/fhir/SubstanceType"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "100000075670" ] ;
+       fhir:display [ fhir:v "Chemical" ]
+     ] )
+  ] ) ; # 
+  fhir:domain [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://example.europa.eu/fhir/Domain"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "100000000012" ] ;
+       fhir:display [ fhir:v "Human use" ]
+     ] )
+  ] ; # 
+  fhir:code ( [
+     fhir:code [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://example.europa.eu/fhir/Substance"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "SUB99611MIG" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:name ( [
+     fhir:name [ fhir:v "PARACETAMOL" ] ;
+     fhir:status [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://example.europa.eu/fhir/Status"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "200000005004" ] ;
+         fhir:display [ fhir:v "Current" ]
+       ] )
+     ] ;
+     fhir:preferred [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:language ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "urn:ietf:bcp:47"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "en" ] ;
+         fhir:display [ fhir:v "English" ]
+       ] )
+     ] )
+  ] [
+     fhir:name [ fhir:v "ΠΑΡΑΚΕΤΑΜΌΛΗ" ] ;
+     fhir:status [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://example.europa.eu/fhir/Status"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "200000005004" ] ;
+         fhir:display [ fhir:v "Current" ]
+       ] )
+     ] ;
+     fhir:preferred [ fhir:v "false"^^xsd:boolean ] ;
+     fhir:language ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "urn:ietf:bcp:47"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "el" ] ;
+         fhir:display [ fhir:v "Greek" ]
+       ] )
+     ] )
+  ] [
+     fhir:name [ fhir:v "ПАРАЦЕТАМОЛ" ] ;
+     fhir:status [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://example.europa.eu/fhir/Status"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "200000005004" ] ;
+         fhir:display [ fhir:v "Current" ]
+       ] )
+     ] ;
+     fhir:preferred [ fhir:v "false"^^xsd:boolean ] ;
+     fhir:language ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "urn:ietf:bcp:47"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "bg" ] ;
+         fhir:display [ fhir:v "Bulgarian" ]
+       ] )
+     ] )
+  ] [
+     fhir:name [ fhir:v "ACETAMINOPHEN" ] ;
+     fhir:status [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://example.europa.eu/fhir/Status"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "200000005004" ] ;
+         fhir:display [ fhir:v "Current" ]
+       ] )
+     ] ;
+     fhir:preferred [ fhir:v "false"^^xsd:boolean ] ;
+     fhir:language ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "urn:ietf:bcp:47"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "en" ] ;
+         fhir:display [ fhir:v "English" ]
+       ] )
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,662 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:EvidenceVariable ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-eligibility-criteria-ada-rec-bariatric"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: EvidenceVariable</b><a name=\"example-eligibility-criteria-ada-rec-bariatric\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource EvidenceVariable &quot;example-eligibility-criteria-ada-rec-bariatric&quot; </p></div><p><b>identifier</b>: FEvIR Object Identifier: 32140</p><p><b>name</b>: RecommendationEligibilityCriteriaEligibilityCriteriaForBariatricSurgeryADARecommendation816</p><p><b>title</b>: RecommendationEligibilityCriteria: Eligibility Criteria for Bariatric Surgery (ADA Recommendation 8.16)</p><p><b>shortTitle</b>: Recommend bariatric surgery if BMI 35 or higher</p><p><b>status</b>: active</p><p><b>publisher</b>: Computable Publishing LLC</p><p><b>contact</b>: <a href=\"mailto:support@computablepublishing.com\">support@computablepublishing.com</a></p><p><b>description</b>: Inclusion Criteria: [[1]] Adults. [[2]] Diagnosed with type 2 diabetes. [[3]] Body Mass Index (BMI) ≥ 40.0 kg/m2 (BMI ≥ 37.5 kg/m2 in Asian Americans), or BMI ≥ 35.0 kg/m2 and ≤ 39.9 kg/m2 (BMI 32.5-37.4 kg/m2 in Asian Americans) who do not achieve durable weight loss and improvement in comorbidities (including hyperglycemia) with nonsurgical methods. [[4]] Screened surgical candidates.</p><p><b>copyright</b>: https://creativecommons.org/licenses/by-nc-sa/4.0/</p><p><b>effectivePeriod</b>: 2021-01 --&gt; (ongoing)</p><p><b>author</b>: Brian S. Alper: </p><p><b>actual</b>: false</p><blockquote><p><b>characteristic</b></p><p><b>description</b>: Adult.</p><p><b>exclude</b>: false</p><h3>DefinitionByTypeAndValues</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Age <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#397669002)</span></td><td>&gt;=18 years<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code a = 'a')</span></td></tr></table></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Diagnosed with type 2 diabetes.</p><p><b>exclude</b>: false</p><h3>DefinitionByTypeAndValues</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Disease (disorder) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#64572001; resource-types#Condition &quot;Condition&quot;)</span></td><td>Diabetes mellitus type 2 (disorder) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#44054006)</span></td></tr></table></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Body Mass Index (BMI) ≥ 40.0 kg/m2 (BMI ≥ 37.5 kg/m2 in Asian Americans), or BMI ≥ 35.0 kg/m2 and ≤ 39.9 kg/m2 (BMI 32.5-37.4 kg/m2 in Asian Americans) who do not achieve durable weight loss and improvement in comorbidities (including hyperglycemia) with nonsurgical methods.</p><blockquote><p><b>definitionByCombination</b></p><p><b>code</b>: any-of</p><blockquote><p><b>characteristic</b></p><p><b>description</b>: Body Mass Index (BMI) ≥ 40.0 kg/m2</p><p><b>exclude</b>: false</p><blockquote><p><b>definitionByTypeAndValue</b></p></blockquote></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: BMI ≥ 37.5 kg/m2 in Asian Americans</p><blockquote><p><b>definitionByCombination</b></p></blockquote></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: BMI ≥ 35.0 kg/m2 and ≤ 39.9 kg/m2 who do not achieve durable weight loss and improvement in comorbidities (including hyperglycemia) with nonsurgical methods.</p><blockquote><p><b>definitionByCombination</b></p></blockquote></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: BMI ≥ 32.5 kg/m2 and ≤ 37.4 kg/m2 in Asian Americans who do not achieve durable weight loss and improvement in comorbidities (including hyperglycemia) with nonsurgical methods.</p><blockquote><p><b>definitionByCombination</b></p></blockquote></blockquote></blockquote></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Cardiovascular event (myocardial infarction, acute coronary syndrome, coronary artery angioplasty or bypass, stroke) in the past six months.</p><p><b>note</b>: placeholder for now to represent 'screened surgical candidate'</p><p><b>exclude</b>: true</p><blockquote><p><b>definitionByCombination</b></p><p><b>code</b>: any-of</p><blockquote><p><b>characteristic</b></p><p><b>description</b>: acute coronary heart disease (a value set covering many forms)</p><blockquote><p><b>definitionByTypeAndValue</b></p></blockquote></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: coronary artery angioplasty or bypass</p><blockquote><p><b>definitionByTypeAndValue</b></p></blockquote></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: stroke</p><blockquote><p><b>definitionByTypeAndValue</b></p></blockquote></blockquote></blockquote><h3>TimeFromEvents</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Note</b></td><td><b>Range</b></td></tr><tr><td>*</td><td>in the past six months</td><td>occurrence within the range is equivalent to 'in the past six months'</td><td>-6-0 months</td></tr></table></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Current evidence of congestive heart failure, angina pectoris, or symptomatic peripheral vascular disease.</p><p><b>note</b>: This may be possible to encode as presence of Disease(disorder) without 'in remission', placeholder for now to represent 'screened surgical candidate'</p><p><b>exclude</b>: true</p><p><b>definitionCodeableConcept</b>: Current evidence of congestive heart failure, angina pectoris, or symptomatic peripheral vascular disease. <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Cardiac stress test indicating that surgery or IMM would not be safe.</p><p><b>note</b>: placeholder for now to represent 'screened surgical candidate'</p><p><b>exclude</b>: true</p><p><b>definitionCodeableConcept</b>: Cardiac stress test indicating that surgery or IMM would not be safe. <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Pulmonary embolus in the past six months.</p><p><b>note</b>: placeholder for now to represent 'screened surgical candidate'</p><p><b>exclude</b>: true</p><h3>DefinitionByTypeAndValues</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Disease (disorder) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#64572001; resource-types#Condition &quot;Condition&quot;)</span></td><td>Pulmonary embolism (disorder) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#59282003)</span></td></tr></table><h3>TimeFromEvents</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Note</b></td><td><b>Range</b></td></tr><tr><td>*</td><td>in the past six months</td><td>occurrence within the range is equivalent to 'in the past six months'</td><td>-6-0 months</td></tr></table></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Thrombophlebitis in the past six months.</p><p><b>note</b>: placeholder for now to represent 'screened surgical candidate'</p><p><b>exclude</b>: true</p><h3>DefinitionByTypeAndValues</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Disease (disorder) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#64572001; resource-types#Condition &quot;Condition&quot;)</span></td><td>Thrombophlebitis (disorder) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#64156001)</span></td></tr></table><h3>TimeFromEvents</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Note</b></td><td><b>Range</b></td></tr><tr><td>*</td><td>in the past six months</td><td>occurrence within the range is equivalent to 'in the past six months'</td><td>-6-0 months</td></tr></table></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Cancer of any kind (except basal cell skin cancer or cancer in situ) unless documented to be disease-free for five years.</p><p><b>note</b>: This combination logic fails if the patient has both a basal cell skin cancer or cancer in situ and a cancer of another kind., placeholder for now to represent 'screened surgical candidate'</p><p><b>exclude</b>: true</p><blockquote><p><b>definitionByCombination</b></p><p><b>code</b>: all-of</p><blockquote><p><b>characteristic</b></p><p><b>description</b>: Cancer of any kind</p><p><b>exclude</b>: false</p><blockquote><p><b>definitionByTypeAndValue</b></p></blockquote></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: (except basal cell skin cancer)</p><p><b>exclude</b>: true</p><blockquote><p><b>definitionByTypeAndValue</b></p></blockquote></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: (except cancer in situ)</p><p><b>exclude</b>: true</p><blockquote><p><b>definitionByTypeAndValue</b></p></blockquote></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: unless documented to be disease-free for five years</p><p><b>exclude</b>: true</p><p><b>definitionCodeableConcept</b>: No evidence of cancer found (situation) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#395100000)</span></p><blockquote><p><b>timeFromEvent</b></p></blockquote></blockquote></blockquote></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: History of coagulopathy</p><p><b>note</b>: placeholder for now to represent 'screened surgical candidate'</p><p><b>exclude</b>: true</p><p><b>definitionCodeableConcept</b>: history of coagulopathy <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Significant anemia (hemoglobin 1.0 g or more below normal range)</p><p><b>note</b>: placeholder for now to represent 'screened surgical candidate'</p><p><b>exclude</b>: true</p><h3>DefinitionByTypeAndValues</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Value[x]</b></td><td><b>Offset</b></td></tr><tr><td>*</td><td>Hemoglobin [Mass/volume] in Blood <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#718-7)</span></td><td>&lt;=-1 g/dL<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code g/dL = 'g/dL')</span></td><td>Lower Normal Limit <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"codesystem-characteristic-offset.html\">Characteristic Offset</a>#LNL)</span></td></tr></table></blockquote><blockquote><p><b>characteristic</b></p><p><b>description</b>: Serum creatinine ≥ 1.5 mg/dl</p><p><b>note</b>: placeholder for now to represent 'screened surgical candidate'</p><p><b>exclude</b>: true</p><h3>DefinitionByTypeAndValues</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Creatinine [Mass/volume] in Serum or Plasma <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#2160-0)</span></td><td>&gt;=1.5 mg/dl<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code mg/dL = 'mg/dL')</span></td></tr></table></blockquote></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:type [
+       fhir:text [ fhir:v "FEvIR Object Identifier" ]
+     ] ;
+     fhir:system [ fhir:v "https://fevir.net"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "32140" ] ;
+     fhir:assigner [
+       fhir:display [ fhir:v "Computable Publishing LLC" ]
+     ]
+  ] ) ; # 
+  fhir:name [ fhir:v "RecommendationEligibilityCriteriaEligibilityCriteriaForBariatricSurgeryADARecommendation816"] ; # 
+  fhir:title [ fhir:v "RecommendationEligibilityCriteria: Eligibility Criteria for Bariatric Surgery (ADA Recommendation 8.16)"] ; # 
+  fhir:shortTitle [ fhir:v "Recommend bariatric surgery if BMI 35 or higher"] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:publisher [ fhir:v "Computable Publishing LLC"] ; # 
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "support@computablepublishing.com" ]
+     ] )
+  ] ) ; # 
+  fhir:description [ fhir:v "Inclusion Criteria: [[1]] Adults. [[2]] Diagnosed with type 2 diabetes. [[3]] Body Mass Index (BMI) ≥ 40.0 kg/m2 (BMI ≥ 37.5 kg/m2 in Asian Americans), or BMI ≥ 35.0 kg/m2 and ≤ 39.9 kg/m2 (BMI 32.5-37.4 kg/m2 in Asian Americans) who do not achieve durable weight loss and improvement in comorbidities (including hyperglycemia) with nonsurgical methods. [[4]] Screened surgical candidates."] ; # 
+  fhir:copyright [ fhir:v "https://creativecommons.org/licenses/by-nc-sa/4.0/"] ; # 
+  fhir:effectivePeriod [
+     fhir:start [ fhir:v "2021-01"^^xsd:gYearMonth ]
+  ] ; # 
+  fhir:author ( [
+     fhir:name [ fhir:v "Brian S. Alper" ]
+  ] ) ; # 
+  fhir:actual [ fhir:v "false"^^xsd:boolean] ; # 
+  fhir:characteristic ( [
+     fhir:description [ fhir:v "Adult." ] ;
+     fhir:exclude [ fhir:v "false"^^xsd:boolean ] ;
+     fhir:definitionByTypeAndValue [
+       fhir:type [
+         fhir:coding ( [
+           a sct:397669002 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "397669002" ] ;
+           fhir:display [ fhir:v "Age" ]
+         ] )
+       ] ;
+       fhir:value [
+         a fhir:Quantity ;
+         fhir:value [ fhir:v "18"^^xsd:decimal ] ;
+         fhir:comparator [ fhir:v ">=" ] ;
+         fhir:unit [ fhir:v "years" ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "a" ]
+       ]
+     ]
+  ] [
+     fhir:description [ fhir:v "Diagnosed with type 2 diabetes." ] ;
+     fhir:exclude [ fhir:v "false"^^xsd:boolean ] ;
+     fhir:definitionByTypeAndValue [
+       fhir:type [
+         fhir:coding ( [
+           a sct:64572001 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "64572001" ] ;
+           fhir:display [ fhir:v "Disease (disorder)" ]
+         ] [
+           fhir:system [ fhir:v "http://hl7.org/fhir/resource-types"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Condition" ] ;
+           fhir:display [ fhir:v "Condition" ]
+         ] )
+       ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:coding ( [
+           a sct:44054006 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "44054006" ] ;
+           fhir:display [ fhir:v "Diabetes mellitus type 2 (disorder)" ]
+         ] )
+       ]
+     ]
+  ] [
+     fhir:description [ fhir:v "Body Mass Index (BMI) ≥ 40.0 kg/m2 (BMI ≥ 37.5 kg/m2 in Asian Americans), or BMI ≥ 35.0 kg/m2 and ≤ 39.9 kg/m2 (BMI 32.5-37.4 kg/m2 in Asian Americans) who do not achieve durable weight loss and improvement in comorbidities (including hyperglycemia) with nonsurgical methods." ] ;
+     fhir:definitionByCombination [
+       fhir:code [ fhir:v "any-of" ] ;
+       fhir:characteristic ( [
+         fhir:description [ fhir:v "Body Mass Index (BMI) ≥ 40.0 kg/m2" ] ;
+         fhir:exclude [ fhir:v "false"^^xsd:boolean ] ;
+         fhir:definitionByTypeAndValue [
+           fhir:type [
+             fhir:coding ( [
+               a loinc:39156-5 ;
+               fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "39156-5" ] ;
+               fhir:display [ fhir:v "Body mass index (BMI) [Ratio]" ]
+             ] )
+           ] ;
+           fhir:value [
+             a fhir:Quantity ;
+             fhir:value [ fhir:v "40"^^xsd:decimal ] ;
+             fhir:comparator [ fhir:v ">=" ] ;
+             fhir:unit [ fhir:v "kg/m2" ] ;
+             fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "kg/m2" ]
+           ]
+         ]
+       ] [
+         fhir:description [ fhir:v "BMI ≥ 37.5 kg/m2 in Asian Americans" ] ;
+         fhir:definitionByCombination [
+           fhir:code [ fhir:v "all-of" ] ;
+           fhir:characteristic ( [
+             fhir:description [ fhir:v "BMI ≥ 37.5 kg/m2" ] ;
+             fhir:exclude [ fhir:v "false"^^xsd:boolean ] ;
+             fhir:definitionByTypeAndValue [
+               fhir:type [
+                 fhir:coding ( [
+                   a loinc:39156-5 ;
+                   fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+                   fhir:code [ fhir:v "39156-5" ] ;
+                   fhir:display [ fhir:v "Body mass index (BMI) [Ratio]" ]
+                 ] )
+               ] ;
+               fhir:value [
+                 a fhir:Quantity ;
+                 fhir:value [ fhir:v "37.5"^^xsd:decimal ] ;
+                 fhir:comparator [ fhir:v ">=" ] ;
+                 fhir:unit [ fhir:v "kg/m2" ] ;
+                 fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+                 fhir:code [ fhir:v "kg/m2" ]
+               ]
+             ]
+           ] [
+             fhir:linkId [ fhir:v "AsianAmerican" ] ;
+             fhir:description [ fhir:v "Asian American" ] ;
+             fhir:note ( [
+               fhir:text [ fhir:v "The evidence and guideline panel decision to modify the BMI threshold for Asian Americans is based on data mostly from Asian Americans not generally including Native Hawaiians and other Pacific Islanders, so it is not explicit whether the modified thresholds apply to Native Hawaiians and other Pacific Islanders. See https://diabetesjournals.org/care/article/38/1/150/37769/BMI-Cut-Points-to-Identify-At-Risk-Asian-Americans for details" ]
+             ] ) ;
+             fhir:definitionByTypeAndValue [
+               fhir:type [
+                 fhir:coding ( [
+                   a sct:103579009 ;
+                   fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+                   fhir:code [ fhir:v "103579009" ] ;
+                   fhir:display [ fhir:v "Race (observable entity)" ]
+                 ] )
+               ] ;
+               fhir:value [
+                 a fhir:CodeableConcept ;
+                 fhir:coding ( [
+                   fhir:system [ fhir:v "urn:oid:2.16.840.1.113883.6.238"^^xsd:anyURI ] ;
+                   fhir:code [ fhir:v "2028-9" ] ;
+                   fhir:display [ fhir:v "Asian" ]
+                 ] ) ;
+                 fhir:text [ fhir:v "Asian American" ]
+               ]
+             ]
+           ] )
+         ]
+       ] [
+         fhir:description [ fhir:v "BMI ≥ 35.0 kg/m2 and ≤ 39.9 kg/m2 who do not achieve durable weight loss and improvement in comorbidities (including hyperglycemia) with nonsurgical methods." ] ;
+         fhir:definitionByCombination [
+           fhir:code [ fhir:v "all-of" ] ;
+           fhir:characteristic ( [
+             fhir:description [ fhir:v "BMI ≥ 35.0 kg/m2 and ≤ 39.9 kg/m2" ] ;
+             fhir:definitionByTypeAndValue [
+               fhir:type [
+                 fhir:coding ( [
+                   a loinc:39156-5 ;
+                   fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+                   fhir:code [ fhir:v "39156-5" ] ;
+                   fhir:display [ fhir:v "Body mass index (BMI) [Ratio]" ]
+                 ] )
+               ] ;
+               fhir:value [
+                 a fhir:Range ;
+                 fhir:low [
+                   fhir:value [ fhir:v "35"^^xsd:decimal ] ;
+                   fhir:unit [ fhir:v "kg/m2" ] ;
+                   fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+                   fhir:code [ fhir:v "kg/m2" ]
+                 ] ;
+                 fhir:high [
+                   fhir:value [ fhir:v "39.9"^^xsd:decimal ] ;
+                   fhir:unit [ fhir:v "kg/m2" ] ;
+                   fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+                   fhir:code [ fhir:v "kg/m2" ]
+                 ]
+               ]
+             ]
+           ] [
+             fhir:description [ fhir:v "who do not achieve durable weight loss and improvement in comorbidities (including hyperglycemia) with nonsurgical methods." ] ;
+             fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+             fhir:definitionCodeableConcept [
+               fhir:text [ fhir:v "achieving durable weight loss and improvement in comorbidities (including hyperglycemia) with nonsurgical methods" ]
+             ]
+           ] )
+         ]
+       ] [
+         fhir:description [ fhir:v "BMI ≥ 32.5 kg/m2 and ≤ 37.4 kg/m2 in Asian Americans who do not achieve durable weight loss and improvement in comorbidities (including hyperglycemia) with nonsurgical methods." ] ;
+         fhir:definitionByCombination [
+           fhir:code [ fhir:v "all-of" ] ;
+           fhir:characteristic ( [
+             fhir:description [ fhir:v "BMI ≥ 32.5 kg/m2 and ≤ 37.4 kg/m2" ] ;
+             fhir:definitionByTypeAndValue [
+               fhir:type [
+                 fhir:coding ( [
+                   a loinc:39156-5 ;
+                   fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+                   fhir:code [ fhir:v "39156-5" ] ;
+                   fhir:display [ fhir:v "Body mass index (BMI) [Ratio]" ]
+                 ] )
+               ] ;
+               fhir:value [
+                 a fhir:Range ;
+                 fhir:low [
+                   fhir:value [ fhir:v "32.5"^^xsd:decimal ] ;
+                   fhir:unit [ fhir:v "kg/m2" ] ;
+                   fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+                   fhir:code [ fhir:v "kg/m2" ]
+                 ] ;
+                 fhir:high [
+                   fhir:value [ fhir:v "37.4"^^xsd:decimal ] ;
+                   fhir:unit [ fhir:v "kg/m2" ] ;
+                   fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+                   fhir:code [ fhir:v "kg/m2" ]
+                 ]
+               ]
+             ]
+           ] [
+             fhir:description [ fhir:v "Asian American" ] ;
+             fhir:definitionId [ fhir:v "AsianAmerican" ]
+           ] [
+             fhir:description [ fhir:v "who do not achieve durable weight loss and improvement in comorbidities (including hyperglycemia) with nonsurgical methods." ] ;
+             fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+             fhir:definitionCodeableConcept [
+               fhir:text [ fhir:v "achieving durable weight loss and improvement in comorbidities (including hyperglycemia) with nonsurgical methods" ]
+             ]
+           ] )
+         ]
+       ] )
+     ]
+  ] [
+     fhir:description [ fhir:v "Cardiovascular event (myocardial infarction, acute coronary syndrome, coronary artery angioplasty or bypass, stroke) in the past six months." ] ;
+     fhir:note ( [
+       fhir:text [ fhir:v "placeholder for now to represent 'screened surgical candidate'" ]
+     ] ) ;
+     fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:definitionByCombination [
+       fhir:code [ fhir:v "any-of" ] ;
+       fhir:characteristic ( [
+         fhir:description [ fhir:v "acute coronary heart disease (a value set covering many forms)" ] ;
+         fhir:definitionByTypeAndValue [
+           fhir:type [
+             fhir:coding ( [
+               a sct:64572001 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "64572001" ] ;
+               fhir:display [ fhir:v "Disease (disorder)" ]
+             ] [
+               fhir:system [ fhir:v "http://hl7.org/fhir/resource-types"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "Condition" ] ;
+               fhir:display [ fhir:v "Condition" ]
+             ] )
+           ] ;
+           fhir:value [
+             a fhir:Reference ;
+             fhir:reference [ fhir:v "ValueSet/32152" ] ;
+             fhir:type [ fhir:v "ValueSet"^^xsd:anyURI ] ;
+             fhir:display [ fhir:v "Acute Coronary Heart Disease Value Set" ]
+           ]
+         ]
+       ] [
+         fhir:description [ fhir:v "coronary artery angioplasty or bypass" ] ;
+         fhir:definitionByTypeAndValue [
+           fhir:type [
+             fhir:coding ( [
+               a sct:71388002 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "71388002" ] ;
+               fhir:display [ fhir:v "Procedure (procedure)" ]
+             ] [
+               fhir:system [ fhir:v "http://hl7.org/fhir/resource-types"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "Procedure" ] ;
+               fhir:display [ fhir:v "Procedure" ]
+             ] )
+           ] ;
+           fhir:value [
+             a fhir:CodeableConcept ;
+             fhir:coding ( [
+               a sct:81266008 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "81266008" ] ;
+               fhir:display [ fhir:v "Heart revascularization (procedure)" ]
+             ] )
+           ]
+         ]
+       ] [
+         fhir:description [ fhir:v "stroke" ] ;
+         fhir:definitionByTypeAndValue [
+           fhir:type [
+             fhir:coding ( [
+               a sct:64572001 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "64572001" ] ;
+               fhir:display [ fhir:v "Disease (disorder)" ]
+             ] [
+               fhir:system [ fhir:v "http://hl7.org/fhir/resource-types"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "Condition" ] ;
+               fhir:display [ fhir:v "Condition" ]
+             ] )
+           ] ;
+           fhir:value [
+             a fhir:CodeableConcept ;
+             fhir:coding ( [
+               a sct:230690007 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "230690007" ] ;
+               fhir:display [ fhir:v "Cerebrovascular accident (disorder)" ]
+             ] )
+           ]
+         ]
+       ] )
+     ] ;
+     fhir:timeFromEvent ( [
+       fhir:description [ fhir:v "in the past six months" ] ;
+       fhir:note ( [
+         fhir:text [ fhir:v "occurrence within the range is equivalent to 'in the past six months'" ]
+       ] ) ;
+       fhir:range [
+         fhir:low [
+           fhir:value [ fhir:v "-6"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "months" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "mo" ]
+         ] ;
+         fhir:high [
+           fhir:value [ fhir:v "0"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "months" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "mo" ]
+         ]
+       ]
+     ] )
+  ] [
+     fhir:description [ fhir:v "Current evidence of congestive heart failure, angina pectoris, or symptomatic peripheral vascular disease." ] ;
+     fhir:note ( [
+       fhir:text [ fhir:v "This may be possible to encode as presence of Disease(disorder) without 'in remission'" ]
+     ] [
+       fhir:text [ fhir:v "placeholder for now to represent 'screened surgical candidate'" ]
+     ] ) ;
+     fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:definitionCodeableConcept [
+       fhir:text [ fhir:v "Current evidence of congestive heart failure, angina pectoris, or symptomatic peripheral vascular disease." ]
+     ]
+  ] [
+     fhir:description [ fhir:v "Cardiac stress test indicating that surgery or IMM would not be safe." ] ;
+     fhir:note ( [
+       fhir:text [ fhir:v "placeholder for now to represent 'screened surgical candidate'" ]
+     ] ) ;
+     fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:definitionCodeableConcept [
+       fhir:text [ fhir:v "Cardiac stress test indicating that surgery or IMM would not be safe." ]
+     ]
+  ] [
+     fhir:description [ fhir:v "Pulmonary embolus in the past six months." ] ;
+     fhir:note ( [
+       fhir:text [ fhir:v "placeholder for now to represent 'screened surgical candidate'" ]
+     ] ) ;
+     fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:definitionByTypeAndValue [
+       fhir:type [
+         fhir:coding ( [
+           a sct:64572001 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "64572001" ] ;
+           fhir:display [ fhir:v "Disease (disorder)" ]
+         ] [
+           fhir:system [ fhir:v "http://hl7.org/fhir/resource-types"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Condition" ] ;
+           fhir:display [ fhir:v "Condition" ]
+         ] )
+       ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:coding ( [
+           a sct:59282003 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "59282003" ] ;
+           fhir:display [ fhir:v "Pulmonary embolism (disorder)" ]
+         ] )
+       ]
+     ] ;
+     fhir:timeFromEvent ( [
+       fhir:description [ fhir:v "in the past six months" ] ;
+       fhir:note ( [
+         fhir:text [ fhir:v "occurrence within the range is equivalent to 'in the past six months'" ]
+       ] ) ;
+       fhir:range [
+         fhir:low [
+           fhir:value [ fhir:v "-6"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "months" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "mo" ]
+         ] ;
+         fhir:high [
+           fhir:value [ fhir:v "0"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "months" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "mo" ]
+         ]
+       ]
+     ] )
+  ] [
+     fhir:description [ fhir:v "Thrombophlebitis in the past six months." ] ;
+     fhir:note ( [
+       fhir:text [ fhir:v "placeholder for now to represent 'screened surgical candidate'" ]
+     ] ) ;
+     fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:definitionByTypeAndValue [
+       fhir:type [
+         fhir:coding ( [
+           a sct:64572001 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "64572001" ] ;
+           fhir:display [ fhir:v "Disease (disorder)" ]
+         ] [
+           fhir:system [ fhir:v "http://hl7.org/fhir/resource-types"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Condition" ] ;
+           fhir:display [ fhir:v "Condition" ]
+         ] )
+       ] ;
+       fhir:value [
+         a fhir:CodeableConcept ;
+         fhir:coding ( [
+           a sct:64156001 ;
+           fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "64156001" ] ;
+           fhir:display [ fhir:v "Thrombophlebitis (disorder)" ]
+         ] )
+       ]
+     ] ;
+     fhir:timeFromEvent ( [
+       fhir:description [ fhir:v "in the past six months" ] ;
+       fhir:note ( [
+         fhir:text [ fhir:v "occurrence within the range is equivalent to 'in the past six months'" ]
+       ] ) ;
+       fhir:range [
+         fhir:low [
+           fhir:value [ fhir:v "-6"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "months" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "mo" ]
+         ] ;
+         fhir:high [
+           fhir:value [ fhir:v "0"^^xsd:decimal ] ;
+           fhir:unit [ fhir:v "months" ] ;
+           fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "mo" ]
+         ]
+       ]
+     ] )
+  ] [
+     fhir:description [ fhir:v "Cancer of any kind (except basal cell skin cancer or cancer in situ) unless documented to be disease-free for five years." ] ;
+     fhir:note ( [
+       fhir:text [ fhir:v "This combination logic fails if the patient has both a basal cell skin cancer or cancer in situ and a cancer of another kind." ]
+     ] [
+       fhir:text [ fhir:v "placeholder for now to represent 'screened surgical candidate'" ]
+     ] ) ;
+     fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:definitionByCombination [
+       fhir:code [ fhir:v "all-of" ] ;
+       fhir:characteristic ( [
+         fhir:description [ fhir:v "Cancer of any kind" ] ;
+         fhir:exclude [ fhir:v "false"^^xsd:boolean ] ;
+         fhir:definitionByTypeAndValue [
+           fhir:type [
+             fhir:coding ( [
+               a sct:64572001 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "64572001" ] ;
+               fhir:display [ fhir:v "Disease (disorder)" ]
+             ] [
+               fhir:system [ fhir:v "http://hl7.org/fhir/resource-types"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "Condition" ] ;
+               fhir:display [ fhir:v "Condition" ]
+             ] )
+           ] ;
+           fhir:value [
+             a fhir:CodeableConcept ;
+             fhir:coding ( [
+               a sct:363346000 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "363346000" ] ;
+               fhir:display [ fhir:v "Malignant neoplastic disease (disorder)" ]
+             ] )
+           ]
+         ]
+       ] [
+         fhir:description [ fhir:v "(except basal cell skin cancer)" ] ;
+         fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+         fhir:definitionByTypeAndValue [
+           fhir:type [
+             fhir:coding ( [
+               a sct:64572001 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "64572001" ] ;
+               fhir:display [ fhir:v "Disease (disorder)" ]
+             ] [
+               fhir:system [ fhir:v "http://hl7.org/fhir/resource-types"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "Condition" ] ;
+               fhir:display [ fhir:v "Condition" ]
+             ] )
+           ] ;
+           fhir:value [
+             a fhir:CodeableConcept ;
+             fhir:coding ( [
+               a sct:254701007 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "254701007" ] ;
+               fhir:display [ fhir:v "Basal cell carcinoma of skin (disorder)" ]
+             ] )
+           ]
+         ]
+       ] [
+         fhir:description [ fhir:v "(except cancer in situ)" ] ;
+         fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+         fhir:definitionByTypeAndValue [
+           fhir:type [
+             fhir:coding ( [
+               a sct:64572001 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "64572001" ] ;
+               fhir:display [ fhir:v "Disease (disorder)" ]
+             ] [
+               fhir:system [ fhir:v "http://hl7.org/fhir/resource-types"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "Condition" ] ;
+               fhir:display [ fhir:v "Condition" ]
+             ] )
+           ] ;
+           fhir:value [
+             a fhir:CodeableConcept ;
+             fhir:coding ( [
+               a sct:109355002 ;
+               fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "109355002" ] ;
+               fhir:display [ fhir:v "Carcinoma in situ (disorder)" ]
+             ] )
+           ]
+         ]
+       ] [
+         fhir:description [ fhir:v "unless documented to be disease-free for five years" ] ;
+         fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+         fhir:definitionCodeableConcept [
+           fhir:coding ( [
+             a sct:395100000 ;
+             fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+             fhir:code [ fhir:v "395100000" ] ;
+             fhir:display [ fhir:v "No evidence of cancer found (situation)" ]
+           ] )
+         ] ;
+         fhir:timeFromEvent ( [
+           fhir:description [ fhir:v "for five years" ] ;
+           fhir:note ( [
+             fhir:text [ fhir:v "presence throughout the range is equivalent to 'for five years'" ]
+           ] ) ;
+           fhir:range [
+             fhir:low [
+               fhir:value [ fhir:v "-5"^^xsd:decimal ] ;
+               fhir:unit [ fhir:v "years" ] ;
+               fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "a" ]
+             ] ;
+             fhir:high [
+               fhir:value [ fhir:v "0"^^xsd:decimal ] ;
+               fhir:unit [ fhir:v "years" ] ;
+               fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "a" ]
+             ]
+           ]
+         ] )
+       ] )
+     ]
+  ] [
+     fhir:description [ fhir:v "History of coagulopathy" ] ;
+     fhir:note ( [
+       fhir:text [ fhir:v "placeholder for now to represent 'screened surgical candidate'" ]
+     ] ) ;
+     fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:definitionCodeableConcept [
+       fhir:text [ fhir:v "history of coagulopathy" ]
+     ]
+  ] [
+     fhir:description [ fhir:v "Significant anemia (hemoglobin 1.0 g or more below normal range)" ] ;
+     fhir:note ( [
+       fhir:text [ fhir:v "placeholder for now to represent 'screened surgical candidate'" ]
+     ] ) ;
+     fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:definitionByTypeAndValue [
+       fhir:type [
+         fhir:coding ( [
+           a loinc:718-7 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "718-7" ] ;
+           fhir:display [ fhir:v "Hemoglobin [Mass/volume] in Blood" ]
+         ] )
+       ] ;
+       fhir:value [
+         a fhir:Quantity ;
+         fhir:value [ fhir:v "-1"^^xsd:decimal ] ;
+         fhir:comparator [ fhir:v "<=" ] ;
+         fhir:unit [ fhir:v "g/dL" ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "g/dL" ]
+       ] ;
+       fhir:offset [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/characteristic-offset"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "LNL" ] ;
+           fhir:display [ fhir:v "Lower Normal Limit" ]
+         ] )
+       ]
+     ]
+  ] [
+     fhir:description [ fhir:v "Serum creatinine ≥ 1.5 mg/dl" ] ;
+     fhir:note ( [
+       fhir:text [ fhir:v "placeholder for now to represent 'screened surgical candidate'" ]
+     ] ) ;
+     fhir:exclude [ fhir:v "true"^^xsd:boolean ] ;
+     fhir:definitionByTypeAndValue [
+       fhir:type [
+         fhir:coding ( [
+           a loinc:2160-0 ;
+           fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "2160-0" ] ;
+           fhir:display [ fhir:v "Creatinine [Mass/volume] in Serum or Plasma" ]
+         ] )
+       ] ;
+       fhir:value [
+         a fhir:Quantity ;
+         fhir:value [ fhir:v "1.5"^^xsd:decimal ] ;
+         fhir:comparator [ fhir:v ">=" ] ;
+         fhir:unit [ fhir:v "mg/dl" ] ;
+         fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "mg/dL" ]
+       ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

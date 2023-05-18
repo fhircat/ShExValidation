@@ -1,0 +1,51 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <DataType.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+# Range of ratio values
+<RatioRange> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:RatioRange]?;
+
+    fhir:lowNumerator @<Quantity>?;         # Low Numerator limit
+    fhir:highNumerator @<Quantity>?;        # High Numerator limit
+    fhir:denominator @<Quantity>?;          # Denominator value
+} AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: LessOrEqual
+# # Constraint UniqueKey:inv-2
+# Human readable:If present, lowNumerator SHALL have a lower value than highNumerator
+#
+# Constraint: lowNumerator.empty() or highNumerator.empty() or (lowNumerator <= highNumerator)
+# ShEx:
+#
+# NOT { fhir:lowNumerator {fhir:v .} }  OR  NOT { fhir:highNumerator {fhir:v .} }  OR ({ fhir:lowNumerator  LessOrEqual  { fhir:highNumerator } })
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Xor
+# # Constraint UniqueKey:inv-1
+# Human readable:One of lowNumerator or highNumerator and denominator SHALL be present, or all are absent. If all are absent, there SHALL be some extension present
+#
+# Constraint: ((lowNumerator.empty() and highNumerator.empty()) xor denominator.exists()) and (lowNumerator.exists() or extension.exists())
+# ShEx:
+#
+#(( NOT { fhir:lowNumerator {fhir:v .} }  AND  NOT { fhir:highNumerator {fhir:v .} } )  Xor  {fhir:denominator .}) AND ({fhir:lowNumerator . OR {fhir:extension .}})
+{}
+
+)
+ 
+

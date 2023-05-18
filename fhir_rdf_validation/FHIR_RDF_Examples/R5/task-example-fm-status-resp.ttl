@@ -1,0 +1,62 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Task ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "fm-example6"] ; #     This is an example to demonstrate using task for actioning a claim status check  
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n			<p>\n				<b> Generated Narrative with Details</b>\n			</p>\n		</div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "official" ] ;
+     fhir:system [ fhir:v "http:/happyvalley.com/task"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "20181012-001" ]
+  ] [
+     fhir:use [ fhir:v "official" ] ;
+     fhir:system [ fhir:v "http://nationalinsurers.com/identifiers/12345"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "123GB5674" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:intent [ fhir:v "order"] ; # 
+  fhir:priority [ fhir:v "stat"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/financialtaskcode"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "status" ]
+     ] )
+  ] ; #   real time request and response required  ,     fictive code and description elements populated for this example     
+  fhir:focus [
+     fhir:identifier [
+       fhir:system [ fhir:v "http://happyvalley.com/claim"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "1500" ]
+     ]
+  ] ; # 
+  fhir:authoredOn [ fhir:v "2018-10-04T08:25:05+10:00"^^xsd:dateTime] ; # 
+  fhir:lastModified [ fhir:v "2018-10-04T08:25:05+10:00"^^xsd:dateTime] ; # 
+  fhir:requester [
+     fhir:reference [ fhir:v "Organization/example" ] ;
+     fhir:display [ fhir:v "Happy Valley Clinic" ]
+  ] ; # 
+  fhir:owner [
+     fhir:identifier [
+       fhir:system [ fhir:v "http://nationalinsurers.com/identifiers"^^xsd:anyURI ] ;
+       fhir:value [ fhir:v "12345" ]
+     ]
+  ] ; # 
+  fhir:output ( [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/financial-taskoutputtype"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "status" ]
+       ] ) #   the processing status of the referenced resource  
+     ] ;
+     fhir:value [ fhir:v "complete" ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

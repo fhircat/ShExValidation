@@ -1,0 +1,155 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:ServiceRequest ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "physiotherapy"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: ServiceRequest</b><a name=\"physiotherapy\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource ServiceRequest &quot;physiotherapy&quot; </p></div><p><b>identifier</b>: Placer: 20170201-0001</p><p><b>basedOn</b>: <span title=\"   example to show how a CarePlan can be referenced from a request  \"><a href=\"careplan-example-GPVisit.html\">CarePlan/gpvisit</a></span></p><p><b>status</b>: completed</p><p><b>intent</b>: order</p><h3>Codes</h3><table class=\"grid\"><tr><td>-</td><td><b>Concept</b></td></tr><tr><td>*</td><td>Physiotherapy of chest (regime/therapy) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#34431008)</span></td></tr></table><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>occurrence</b>: Duration 15days, 1-1 per 1 days</p><p><b>asNeeded</b>: as needed to clear mucus <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>authoredOn</b>: <span title=\"  TimeStamp when order authorized \">2017-02-01T17:23:07Z</span></p><p><b>requester</b>: <a href=\"practitioner-example.html\">Practitioner/example: Dr Adam Careful</a> &quot;Adam CAREFUL&quot;</p><h3>Reasons</h3><table class=\"grid\"><tr><td>-</td><td><b>Reference</b></td></tr><tr><td>*</td><td><a name=\"cystic-fibrosis\"> </a><blockquote><p/><p><a name=\"cystic-fibrosis\"> </a></p><p><b>clinicalStatus</b>: Active <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-condition-clinical.html\">Condition Clinical Status Codes</a>#active)</span></p><p><b>verificationStatus</b>: Confirmed <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-condition-ver-status.html\">ConditionVerificationStatus</a>#confirmed)</span></p><p><b>category</b>: Problem List Item <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-condition-category.html\">Condition Category Codes</a>#problem-list-item)</span></p><p><b>severity</b>: Mild <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#255604002)</span></p><p><b>code</b>: Cystic Fibrosis <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-icd10CM.html\">International Classification of Diseases, 10th Revision, Clinical Modification (ICD-10-CM)</a>#E84.0 &quot;Cystic fibrosis with pulmonary manifestations&quot;)</span></p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><p><b>onset</b>: 2012-11-12</p></blockquote></td></tr></table><p><b>relevantHistory</b>: <span title=\"  demonstrating in this example the relevant history element using a contained resource for the purpose of this example only typically would reference an external resource \"><a name=\"signature\"> </a></span></p><blockquote><p/><p><a name=\"signature\"> </a></p><p><b>target</b>: <a href=\"servicerequest-example2.html\">ServiceRequest/physiotherapy/_history/1</a></p><p><b>recorded</b>: 2 Feb 2017, 4:23:07 am</p><h3>Agents</h3><table class=\"grid\"><tr><td>-</td><td><b>Role</b></td><td><b>Who</b></td></tr><tr><td>*</td><td>author (originator) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ParticipationType.html\">ParticipationType</a>#AUT)</span></td><td><a href=\"practitioner-example.html\">Practitioner/example: Dr Adam Careful</a> &quot;Adam CAREFUL&quot;</td></tr></table><h3>Signatures</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>When</b></td><td><b>Who</b></td><td><b>TargetFormat</b></td><td><b>SigFormat</b></td><td><b>Data</b></td></tr><tr><td>*</td><td>Author's Signature (Details: urn:iso-astm:E1762-95:2013 code 1.2.840.10065.1.12.1.1 = 'Author's Signature', stated as 'Author's Signature')</td><td>2 Feb 2017, 4:23:07 am</td><td><a href=\"practitioner-example.html\">Practitioner/example: Dr Adam Careful</a> &quot;Adam CAREFUL&quot;</td><td>application/fhir+xml</td><td>application/signature+xml</td><td>dGhpcyBibG9iIGlzIHNuaXBwZWQ=</td></tr></table></blockquote></div>"
+  ] ; #    demonstrating in this example the reason reference element using contained resources for the purpose of this example only typically this would be a separate independent resource  
+  fhir:contained ( [
+     a fhir:Provenance ;
+     fhir:id [ fhir:v "signature" ] ;
+     fhir:target ( [
+       fhir:reference [ fhir:v "ServiceRequest/physiotherapy/_history/1" ]
+     ] ) ;
+     fhir:recorded [ fhir:v "2017-02-01T17:23:07Z"^^xsd:dateTime ] ;
+     fhir:agent ( [
+       fhir:role ( [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ParticipationType"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "AUT" ]
+         ] )
+       ] ) ;
+       fhir:who [
+         fhir:reference [ fhir:v "Practitioner/example" ] ;
+         fhir:display [ fhir:v "Dr Adam Careful" ]
+       ]
+     ] ) ;
+     fhir:signature ( [
+       fhir:type ( [
+         fhir:system [ fhir:v "urn:iso-astm:E1762-95:2013"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "1.2.840.10065.1.12.1.1" ] ;
+         fhir:display [ fhir:v "Author's Signature" ]
+       ] ) ;
+       fhir:when [ fhir:v "2017-02-01T17:23:07Z"^^xsd:dateTime ] ;
+       fhir:who [
+         fhir:reference [ fhir:v "Practitioner/example" ] ;
+         fhir:display [ fhir:v "Dr Adam Careful" ]
+       ] ;
+       fhir:targetFormat [ fhir:v "application/fhir+xml" ] ;
+       fhir:sigFormat [ fhir:v "application/signature+xml" ] ;
+       fhir:data [ fhir:v "dGhpcyBibG9iIGlzIHNuaXBwZWQ="^^xsd:base64Binary ]
+     ] )
+  ] [
+     a fhir:Condition ;
+     fhir:id [ fhir:v "cystic-fibrosis" ] ;
+     fhir:clinicalStatus [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/condition-clinical"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "active" ]
+       ] )
+     ] ;
+     fhir:verificationStatus [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/condition-ver-status"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "confirmed" ]
+       ] )
+     ] ;
+     fhir:category ( [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/condition-category"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "problem-list-item" ] ;
+         fhir:display [ fhir:v "Problem List Item" ]
+       ] )
+     ] ) ;
+     fhir:severity [
+       fhir:coding ( [
+         a sct:255604002 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "255604002" ] ;
+         fhir:display [ fhir:v "Mild" ]
+       ] )
+     ] ;
+     fhir:code [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/sid/icd-10-cm"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "E84.0" ] ;
+         fhir:display [ fhir:v "Cystic fibrosis with pulmonary manifestations" ]
+       ] ) ;
+       fhir:text [ fhir:v "Cystic Fibrosis" ]
+     ] ;
+     fhir:subject [
+       fhir:reference [ fhir:v "Patient/example" ]
+     ] ;
+     fhir:onset [ fhir:v "2012-11-12"^^xsd:date ]
+  ] ) ; # 
+  fhir:identifier ( [
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0203"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "PLAC" ] ;
+         fhir:display [ fhir:v "Placer Identifier" ]
+       ] ) ;
+       fhir:text [ fhir:v "Placer" ]
+     ] ;
+     fhir:system [ fhir:v "http://goodhealth.org/placer-ids"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "20170201-0001" ]
+  ] ) ; # 
+  fhir:basedOn ( [
+     fhir:reference [ fhir:v "CarePlan/gpvisit" ]
+  ] ) ; #     example to show how a CarePlan can be referenced from a request   
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:intent [ fhir:v "order"] ; # 
+  fhir:code [
+     fhir:concept [
+       fhir:coding ( [
+         a sct:34431008 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "34431008" ] ;
+         fhir:display [ fhir:v "Physiotherapy of chest (regime/therapy)" ]
+       ] )
+     ]
+  ] ; #    Physiotherapy or home excercises would be a common use case for as needed. E.g. exercises for cystic fibrosis - "Chest therapy 1-4 times per day as needed to clear mucus"   
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:occurrence [
+     a fhir:Timing ;
+     fhir:repeat [
+       fhir:duration [ fhir:v "15"^^xsd:decimal ] ;
+       fhir:durationMax [ fhir:v "25"^^xsd:decimal ] ;
+       fhir:durationUnit [ fhir:v "min" ] ;
+       fhir:frequency [ fhir:v "1"^^xsd:positiveInteger ] ;
+       fhir:frequencyMax [ fhir:v "4"^^xsd:positiveInteger ] ;
+       fhir:period [ fhir:v "1"^^xsd:decimal ] ;
+       fhir:periodUnit [ fhir:v "d" ]
+     ]
+  ] ; # 
+  fhir:asNeeded [
+     a fhir:CodeableConcept ;
+     fhir:text [ fhir:v "as needed to clear mucus" ]
+  ] ; # 
+  fhir:authoredOn [ fhir:v "2017-02-01T17:23:07Z"^^xsd:dateTime] ; #    TimeStamp when order authorized  
+  fhir:requester [
+     fhir:reference [ fhir:v "Practitioner/example" ] ;
+     fhir:display [ fhir:v "Dr Adam Careful" ]
+  ] ; # 
+  fhir:reason ( [
+     fhir:reference [
+       fhir:reference [ fhir:v "#cystic-fibrosis" ]
+     ]
+  ] ) ; #    demonstrating in this example the reason reference element using a contained resource for the purpose of this example only typically would reference an external resource  
+  fhir:relevantHistory ( [
+     fhir:reference [ fhir:v "#signature" ] ;
+     fhir:display [ fhir:v "Author's Signature" ]
+  ] )] . #    demonstrating in this example the relevant history element using a contained resource for the purpose of this example only typically would reference an external resource  
+
+# -------------------------------------------------------------------------------------
+

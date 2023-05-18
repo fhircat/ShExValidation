@@ -1,0 +1,182 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:PlanDefinition ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "opioidcds-05"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: PlanDefinition</b><a name=\"opioidcds-05\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource PlanDefinition &quot;opioidcds-05&quot; </p></div><p><b>url</b>: <code>http://hl7.org/fhir/ig/opioid-cds/PlanDefinition/opioidcds-05</code></p><p><b>identifier</b>: id: urn:oid:2.16.840.1.113883.4.642.11.1, id: cdc-opioid-guidance (use: OFFICIAL)</p><p><b>version</b>: 0.1.0</p><p><b>name</b>: Cdcopioid05</p><p><b>title</b>: CDC Opioid Prescribing Guideline Recommendation #5</p><p><b>type</b>: ECA Rule <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-plan-definition-type.html\">PlanDefinitionType</a>#eca-rule)</span></p><p><b>status</b>: draft</p><p><b>date</b>: 2017-04-23</p><p><b>publisher</b>: Centers for Disease Control and Prevention (CDC)</p><p><b>description</b>: When opioids are started, providers should prescribe the lowest effective dosage.</p><h3>UseContexts</h3><table class=\"grid\"><tr><td>-</td><td><b>Code</b></td><td><b>Value[x]</b></td></tr><tr><td>*</td><td>Clinical Focus (Details: http://terminology.hl7.org/CodeSystem/usage-context-type code focus = 'Clinical Focus', stated as 'Clinical Focus')</td><td>Medication requested (situation) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#182888003)</span></td></tr><tr><td>*</td><td>Clinical Focus (Details: http://terminology.hl7.org/CodeSystem/usage-context-type code focus = 'Clinical Focus', stated as 'Clinical Focus')</td><td>Chronic pain (finding) <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://browser.ihtsdotools.org/\">SNOMED CT</a>#82423001)</span></td></tr></table><p><b>jurisdiction</b>: United States of America <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-ISO3166Part1.html\">ISO 3166-1 Codes for the representation of names of countries and their subdivisions — Part 1: Country code</a>#US)</span></p><p><b>purpose</b>: CDC’s Guideline for Prescribing Opioids for Chronic Pain is intended to improve communication between providers and patients about the risks and benefits of opioid therapy for chronic pain, improve the safety and effectiveness of pain treatment, and reduce the risks associated with long-term opioid therapy, including opioid use disorder and overdose. The Guideline is not intended for patients who are in active cancer treatment, palliative care, or end-of-life care.</p><p><b>usage</b>: Providers should use caution when prescribing opioids at any dosage, should carefully reassess evidence of individual benefits and risks when considering increasing dosage to ≥50 morphine milligram equivalents (MME)/day, and should avoid increasing dosage to ≥90 MME/day or carefully justify a decision to titrate dosage to &gt;90 MME/day</p><p><b>copyright</b>: © CDC 2016+.</p><p><b>topic</b>: Opioid Prescribing <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> ()</span></p><p><b>author</b>: Kensaku Kawamoto, MD, PhD, MHS: , Bryn Rhodes: , Floyd Eisenberg, MD, MPH: , Robert McClure, MD, MPH: </p><blockquote><p><b>relatedArtifact</b></p><p><b>type</b>: documentation</p><p><b>display</b>: CDC guideline for prescribing opioids for chronic pain</p><blockquote><p><b>document</b></p></blockquote></blockquote><blockquote><p><b>relatedArtifact</b></p><p><b>type</b>: documentation</p><p><b>display</b>: MME Conversion Tables</p><blockquote><p><b>document</b></p></blockquote></blockquote><p><b>library</b>: <a href=\"http://example.org/fhir/Library/opioidcds-recommendation-05\">http://example.org/fhir/Library/opioidcds-recommendation-05</a></p><blockquote><p><b>action</b></p><p><b>title</b>: High risk for opioid overdose.</p><p><b>description</b>: Total morphine milligram equivalent (MME) exceeds recommended amount. Taper to less than 50.</p><blockquote><p><b>documentation</b></p><p><b>type</b>: documentation</p><blockquote><p><b>document</b></p></blockquote></blockquote><h3>Triggers</h3><table class=\"grid\"><tr><td>-</td><td><b>Type</b></td><td><b>Name</b></td></tr><tr><td>*</td><td>named-event</td><td>medication-prescribe</td></tr></table><blockquote><p><b>condition</b></p><p><b>kind</b>: applicability</p><h3>Expressions</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td><td><b>Language</b></td><td><b>Expression</b></td></tr><tr><td>*</td><td>Is total MME &gt;= 50?</td><td>text/cql</td><td>Is MME 50 Or More?</td></tr></table></blockquote><p><b>groupingBehavior</b>: visual-group</p><p><b>selectionBehavior</b>: exactly-one</p><blockquote><p><b>dynamicValue</b></p><p><b>path</b>: action.title</p><h3>Expressions</h3><table class=\"grid\"><tr><td>-</td><td><b>Language</b></td><td><b>Expression</b></td></tr><tr><td>*</td><td>text/cql</td><td>getSummary</td></tr></table></blockquote><blockquote><p><b>dynamicValue</b></p><p><b>path</b>: action.description</p><h3>Expressions</h3><table class=\"grid\"><tr><td>-</td><td><b>Language</b></td><td><b>Expression</b></td></tr><tr><td>*</td><td>text/cql</td><td>getDetail</td></tr></table></blockquote><blockquote><p><b>dynamicValue</b></p><p><b>path</b>: activity.extension</p><h3>Expressions</h3><table class=\"grid\"><tr><td>-</td><td><b>Language</b></td><td><b>Expression</b></td></tr><tr><td>*</td><td>text/cql</td><td>getIndicator</td></tr></table></blockquote><h3>Actions</h3><table class=\"grid\"><tr><td>-</td><td><b>Description</b></td></tr><tr><td>*</td><td>Will reduce dosage</td></tr><tr><td>*</td><td>Risk of overdose carefully considered and outweighed by benefit; snooze 3 mo</td></tr><tr><td>*</td><td>Acute pain; snooze 1 mo</td></tr><tr><td>*</td><td>N/A - see comment (will be reviewed by medical director); snooze 3 mo</td></tr></table></blockquote></div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/ig/opioid-cds/PlanDefinition/opioidcds-05"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.11.1" ]
+  ] [
+     fhir:use [ fhir:v "official" ] ;
+     fhir:value [ fhir:v "cdc-opioid-guidance" ]
+  ] ) ; # 
+  fhir:version [ fhir:v "0.1.0"] ; # 
+  fhir:name [ fhir:v "Cdcopioid05"] ; # 
+  fhir:title [ fhir:v "CDC Opioid Prescribing Guideline Recommendation #5"] ; # 
+  fhir:type [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/plan-definition-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "eca-rule" ] ;
+       fhir:display [ fhir:v "ECA Rule" ]
+     ] )
+  ] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:date [ fhir:v "2017-04-23"^^xsd:date] ; # 
+  fhir:publisher [ fhir:v "Centers for Disease Control and Prevention (CDC)"] ; # 
+  fhir:description [ fhir:v "When opioids are started, providers should prescribe the lowest effective dosage."] ; # 
+  fhir:useContext ( [
+     fhir:code [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/usage-context-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "focus" ] ;
+       fhir:display [ fhir:v "Clinical Focus" ]
+     ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         a sct:182888003 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "182888003" ] ;
+         fhir:display [ fhir:v "Medication requested (situation)" ]
+       ] )
+     ]
+  ] [
+     fhir:code [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/usage-context-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "focus" ] ;
+       fhir:display [ fhir:v "Clinical Focus" ]
+     ] ;
+     fhir:value [
+       a fhir:CodeableConcept ;
+       fhir:coding ( [
+         a sct:82423001 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "82423001" ] ;
+         fhir:display [ fhir:v "Chronic pain (finding)" ]
+       ] )
+     ]
+  ] ) ; # 
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "urn:iso:std:iso:3166"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "US" ] ;
+       fhir:display [ fhir:v "United States of America" ]
+     ] )
+  ] ) ; # 
+  fhir:purpose [ fhir:v "CDC’s Guideline for Prescribing Opioids for Chronic Pain is intended to improve communication between providers and patients about the risks and benefits of opioid therapy for chronic pain, improve the safety and effectiveness of pain treatment, and reduce the risks associated with long-term opioid therapy, including opioid use disorder and overdose. The Guideline is not intended for patients who are in active cancer treatment, palliative care, or end-of-life care."] ; # 
+  fhir:usage [ fhir:v "Providers should use caution when prescribing opioids at any dosage, should carefully reassess evidence of individual benefits and risks when considering increasing dosage to ≥50 morphine milligram equivalents (MME)/day, and should avoid increasing dosage to ≥90 MME/day or carefully justify a decision to titrate dosage to >90 MME/day"] ; # 
+  fhir:copyright [ fhir:v "© CDC 2016+."] ; # 
+  fhir:topic ( [
+     fhir:text [ fhir:v "Opioid Prescribing" ]
+  ] ) ; # 
+  fhir:author ( [
+     fhir:name [ fhir:v "Kensaku Kawamoto, MD, PhD, MHS" ]
+  ] [
+     fhir:name [ fhir:v "Bryn Rhodes" ]
+  ] [
+     fhir:name [ fhir:v "Floyd Eisenberg, MD, MPH" ]
+  ] [
+     fhir:name [ fhir:v "Robert McClure, MD, MPH" ]
+  ] ) ; # 
+  fhir:relatedArtifact ( [
+     fhir:type [ fhir:v "documentation" ] ;
+     fhir:display [ fhir:v "CDC guideline for prescribing opioids for chronic pain" ] ;
+     fhir:document [
+       fhir:url [ fhir:v "https://guidelines.gov/summaries/summary/50153/cdc-guideline-for-prescribing-opioids-for-chronic-pain---united-states-2016#420"^^xsd:anyURI ]
+     ]
+  ] [
+     fhir:type [ fhir:v "documentation" ] ;
+     fhir:display [ fhir:v "MME Conversion Tables" ] ;
+     fhir:document [
+       fhir:url [ fhir:v "https://www.cdc.gov/drugoverdose/pdf/calculating_total_daily_dose-a.pdf"^^xsd:anyURI ]
+     ]
+  ] ) ; # 
+  fhir:library ( [
+     fhir:v "http://example.org/fhir/Library/opioidcds-recommendation-05"^^xsd:anyURI ;
+     fhir:link <http://example.org/fhir/Library/opioidcds-recommendation-05>
+  ] ) ; # 
+  fhir:action ( [
+     fhir:title [ fhir:v "High risk for opioid overdose." ] ;
+     fhir:description [ fhir:v "Total morphine milligram equivalent (MME) exceeds recommended amount. Taper to less than 50." ] ;
+     fhir:documentation ( [
+       fhir:type [ fhir:v "documentation" ] ;
+       fhir:document [
+         fhir:extension ( [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/cqf-strengthOfRecommendation"^^xsd:anyURI ] ;
+           fhir:value [
+             a fhir:CodeableConcept ;
+             fhir:coding ( [
+               fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/recommendation-strength"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "strong" ] ;
+               fhir:display [ fhir:v "Strong" ]
+             ] )
+           ]
+         ] [
+           fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/cqf-qualityOfEvidence"^^xsd:anyURI ] ;
+           fhir:value [
+             a fhir:CodeableConcept ;
+             fhir:coding ( [
+               fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/evidence-quality"^^xsd:anyURI ] ;
+               fhir:code [ fhir:v "low" ] ;
+               fhir:display [ fhir:v "Low quality" ]
+             ] )
+           ]
+         ] )
+       ]
+     ] ) ;
+     fhir:trigger ( [
+       fhir:type [ fhir:v "named-event" ] ;
+       fhir:name [ fhir:v "medication-prescribe" ]
+     ] ) ;
+     fhir:condition ( [
+       fhir:kind [ fhir:v "applicability" ] ;
+       fhir:expression [
+         fhir:description [ fhir:v "Is total MME >= 50?" ] ;
+         fhir:language [ fhir:v "text/cql" ] ;
+         fhir:expression [ fhir:v "Is MME 50 Or More?" ]
+       ]
+     ] ) ;
+     fhir:groupingBehavior [ fhir:v "visual-group" ] ;
+     fhir:selectionBehavior [ fhir:v "exactly-one" ] ;
+     fhir:dynamicValue ( [
+       fhir:path [ fhir:v "action.title" ] ;
+       fhir:expression [
+         fhir:language [ fhir:v "text/cql" ] ;
+         fhir:expression [ fhir:v "getSummary" ]
+       ]
+     ] [
+       fhir:path [ fhir:v "action.description" ] ;
+       fhir:expression [
+         fhir:language [ fhir:v "text/cql" ] ;
+         fhir:expression [ fhir:v "getDetail" ]
+       ]
+     ] [
+       fhir:path [ fhir:v "activity.extension" ] ;
+       fhir:expression [
+         fhir:language [ fhir:v "text/cql" ] ;
+         fhir:expression [ fhir:v "getIndicator" ]
+       ]
+     ] ) ;
+     fhir:action ( [
+       fhir:description [ fhir:v "Will reduce dosage" ]
+     ] [
+       fhir:description [ fhir:v "Risk of overdose carefully considered and outweighed by benefit; snooze 3 mo" ]
+     ] [
+       fhir:description [ fhir:v "Acute pain; snooze 1 mo" ]
+     ] [
+       fhir:description [ fhir:v "N/A - see comment (will be reviewed by medical director); snooze 3 mo" ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

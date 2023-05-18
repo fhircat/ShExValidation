@@ -1,0 +1,69 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <Range.shex>
+IMPORT <string.shex>
+IMPORT <Quantity.shex>
+IMPORT <Identifier.shex>
+IMPORT <DomainResource.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <DocumentReference.shex>
+
+
+start=@<SubstanceReferenceInformation> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Todo
+<SubstanceReferenceInformation> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:SubstanceReferenceInformation];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:comment @<string>?;                # Todo
+    fhir:gene @<OneOrMore_BackboneElement>?;  # Todo
+    fhir:geneElement @<OneOrMore_BackboneElement>?;  # Todo
+    fhir:target @<OneOrMore_BackboneElement>?;  # Todo
+}  
+
+# Todo
+<SubstanceReferenceInformation.target> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:target @<Identifier>?;             # Todo
+    fhir:type @<CodeableConcept>?;          # Todo
+    fhir:interaction @<CodeableConcept>?;   # Todo
+    fhir:organism @<CodeableConcept>?;      # Todo
+    fhir:organismType @<CodeableConcept>?;  # Todo
+    fhir:amount (@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<string> )  AND { rdf:type IRI } ?;  # Todo
+    fhir:amountType @<CodeableConcept>?;    # Todo
+    fhir:source @<OneOrMore_Reference_DocumentReference>?;  # Todo
+}  
+
+# Todo
+<SubstanceReferenceInformation.geneElement> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>?;          # Todo
+    fhir:element @<Identifier>?;            # Todo
+    fhir:source @<OneOrMore_Reference_DocumentReference>?;  # Todo
+}  
+
+# Todo
+<SubstanceReferenceInformation.gene> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:geneSequenceOrigin @<CodeableConcept>?;  # Todo
+    fhir:gene @<CodeableConcept>?;          # Todo
+    fhir:source @<OneOrMore_Reference_DocumentReference>?;  # Todo
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Reference_DocumentReference> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<DocumentReference> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_DocumentReference> 
+}
+

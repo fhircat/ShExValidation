@@ -1,0 +1,82 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Observation ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "herd1"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Observation</b><a name=\"herd1\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Observation &quot;herd1&quot; </p></div><p><b>status</b>: <span title=\"   the mandatory status   \">final</span></p><p><b>category</b>: <span title=\"  category code is A code that classifies the general type of observation being made. This is used for searching, sorting and display purposes. \">Laboratory <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-observation-category.html\">Observation Category Codes</a>#laboratory)</span></span></p><p><b>code</b>: <span title=\"  \n    Observations are often coded in multiple code systems.\n      - LOINC provides codes of varying granularity (though not usefully more specific in this particular case) and more generic LOINCs  can be mapped to more specific codes as shown here\n      - snomed provides a clinically relevant code that is usually less granular than LOINC\n      - the source system provides its own code, which may be less or more granular than LOINC\n    \">Mycoplasma hyopneumoniae - MHP <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#80219-9 &quot;Mycoplasma hyopneumoniae Ab sample/Positive control in Serum by Immunoassay&quot;; clinical-codes#Mycoplasma &quot;Mycoplasma&quot;)</span></span></p><p><b>subject</b>: <span title=\"    subject is a herd of 2500 breding sows  \"><a href=\"group-example-herd1.html\">Group/herd1</a> &quot;Breeding herd&quot;</span></p><p><b>encounter</b>: <span>: part of a health assurance program</span></p><p><b>effective</b>: 2017-11-20</p><p><b>value</b>: <span title=\"   In FHIR, units may be represented twice. Once in the\n    agreed human representation, and once in a coded form.\n    Both is best, since it's not always possible to infer\n    one from the other in code.\n\n    When a computable unit is provided, UCUM (http://unitsofmeasure.org)\n    is always preferred, but it doesn't provide notional units (such as\n    &quot;tablet&quot;), etc. For these, something else is required (e.g. SNOMED CT)\n     \">0.2 % (sample/positive control)<span style=\"background: LightGoldenRodYellow\"> (Details: UCUM code % = '%')</span></span></p><p><b>interpretation</b>: Negative <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-ObservationInterpretation.html\">ObservationInterpretation</a>#NEG)</span></p><p><b>specimen</b>: <span title=\"  Specimen is a pooled serology sample of 30 animals. \"><a href=\"specimen-example-pooled-serum.html\">Specimen/pooled-serum: 30 serum</a></span></p><h3>ReferenceRanges</h3><table class=\"grid\"><tr><td>-</td><td><b>Text</b></td></tr><tr><td>*</td><td>&gt;0.4 Positive; 0.3 to 0.4 Suspect &lt; 0.3 Negative</td></tr></table></div>"
+  ] ; #     the mandatory status    
+  fhir:status [ fhir:v "final"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/observation-category"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "laboratory" ] ;
+       fhir:display [ fhir:v "Laboratory" ]
+     ] ) ;
+     fhir:text [ fhir:v "Laboratory" ]
+  ] ) ; #    category code is A code that classifies the general type of observation being made. This is used for searching, sorting and display purposes.  
+  fhir:code [
+     fhir:coding ( [
+       a loinc:80219-9 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "80219-9" ] ;
+       fhir:display [ fhir:v "Mycoplasma hyopneumoniae Ab sample/Positive control in Serum by Immunoassay" ] #   more generic methodless LOINC  
+     ] [
+       fhir:system [ fhir:v "http://acme.org/devices/clinical-codes"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "Mycoplasma" ] ;
+       fhir:display [ fhir:v "Mycoplasma" ]
+     ] ) ; #     LOINC - always recommended to have a LOINC code    
+     fhir:text [ fhir:v "Mycoplasma hyopneumoniae - MHP" ]
+  ] ; #    
+#    Observations are often coded in multiple code systems.
+#      - LOINC provides codes of varying granularity (though not usefully more specific in this particular case) and more generic LOINCs  can be mapped to more specific codes as shown here
+#      - snomed provides a clinically relevant code that is usually less granular than LOINC
+#      - the source system provides its own code, which may be less or more granular than LOINC
+#     
+  fhir:subject [
+     fhir:reference [ fhir:v "Group/herd1" ]
+  ] ; #      subject is a herd of 2500 breding sows   
+  fhir:encounter [
+     fhir:display [ fhir:v "part of a health assurance program" ]
+  ] ; # 
+  fhir:effective [ fhir:v "2017-11-20"^^xsd:date] ; # 
+  fhir:value [
+     a fhir:Quantity ;
+     fhir:value [ fhir:v "0.2"^^xsd:decimal ] ;
+     fhir:unit [ fhir:v "% (sample/positive control)" ] ;
+     fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+     fhir:code [ fhir:v "%" ]
+  ] ; #     In FHIR, units may be represented twice. Once in the
+#    agreed human representation, and once in a coded form.
+#    Both is best, since it's not always possible to infer
+#    one from the other in code.
+#
+#    When a computable unit is provided, UCUM (http://unitsofmeasure.org)
+#    is always preferred, but it doesn't provide notional units (such as
+#    "tablet"), etc. For these, something else is required (e.g. SNOMED CT)
+#      
+  fhir:interpretation ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "NEG" ] ;
+       fhir:display [ fhir:v "Negative" ]
+     ] ) ;
+     fhir:text [ fhir:v "Negative" ]
+  ] ) ; # 
+  fhir:specimen [
+     fhir:reference [ fhir:v "Specimen/pooled-serum" ] ;
+     fhir:display [ fhir:v "30 serum" ]
+  ] ; #    Specimen is a pooled serology sample of 30 animals.  
+  fhir:referenceRange ( [
+     fhir:text [ fhir:v ">0.4 Positive; 0.3 to 0.4 Suspect < 0.3 Negative" ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

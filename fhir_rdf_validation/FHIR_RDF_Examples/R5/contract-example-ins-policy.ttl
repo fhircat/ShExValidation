@@ -1,0 +1,138 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Contract ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "INS-101"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n         <p>Plan: Your Choice Split Copay (Non-Grandfathered)</p>\n         <p>Certificate Form Number: YCSCWLN (01-2017)</p>\n      </div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://xyz-insurance.com/forms"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "YCSCWLN(01-2017)" ]
+  ] ) ; # 
+  fhir:applies [
+     fhir:start [ fhir:v "2017-01-01"^^xsd:date ]
+  ] ; # 
+  fhir:subject ( [
+     fhir:reference [ fhir:v "Patient/1" ]
+  ] ) ; # 
+  fhir:type [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/contract-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "healthinsurance" ] ;
+       fhir:display [ fhir:v "Health Insurance" ]
+     ] )
+  ] ; # 
+  fhir:term ( [
+     fhir:offer [
+       fhir:text [ fhir:v "The benefits, limitations, exclusions and other coverage provisions in this booklet are subject to the terms of our contract with the Group. This booklet is a part of that contract, which is on file in the Group's office." ]
+     ] ;
+     fhir:asset ( [
+       fhir:type ( [
+         fhir:coding ( [
+           fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "urn:uuid:3a48c68c-318d-4c68-8471-4a3c10fcb41b" ] ;
+           fhir:display [ fhir:v "RicardianContract" ]
+         ] )
+       ] ) ;
+       fhir:subtype ( [
+         fhir:text [ fhir:v "sample" ]
+       ] ) ;
+       fhir:period ( [
+         fhir:start [ fhir:v "2017-06-01"^^xsd:date ]
+       ] ) ;
+       fhir:valuedItem ( [
+         fhir:entity [
+           a fhir:CodeableConcept ;
+           fhir:text [ fhir:v "Ford Bobcat" ]
+         ] ;
+         fhir:identifier [
+           fhir:system [ fhir:v "http://somewhere.motor-vehicle.com/vin"^^xsd:anyURI ] ;
+           fhir:value [ fhir:v "XXSVT34-7665t952236" ]
+         ] ;
+         fhir:effectiveTime [ fhir:v "1995"^^xsd:gYear ] ;
+         fhir:quantity [
+           fhir:value [ fhir:v "1"^^xsd:decimal ]
+         ] ;
+         fhir:unitPrice [
+           fhir:value [ fhir:v "200.00"^^xsd:decimal ] ;
+           fhir:currency [ fhir:v "CAD" ]
+         ] ;
+         fhir:factor [ fhir:v "1.0"^^xsd:decimal ] ;
+         fhir:points [ fhir:v "1.0"^^xsd:decimal ] ;
+         fhir:net [
+           fhir:value [ fhir:v "200.00"^^xsd:decimal ] ;
+           fhir:currency [ fhir:v "CAD" ]
+         ]
+       ] )
+     ] ) ;
+     fhir:group ( [
+       fhir:offer [
+         fhir:text [ fhir:v "Eligible Providers" ]
+       ]
+     ] [
+       fhir:offer [
+         fhir:text [ fhir:v "Responsibility for Payment" ]
+       ]
+     ] [
+       fhir:offer [
+         fhir:text [ fhir:v "List of Benefits" ]
+       ] ;
+       fhir:group ( [
+         fhir:offer [
+           fhir:text [ fhir:v "Copays" ]
+         ] ;
+         fhir:group ( [
+           fhir:offer [
+             fhir:text [ fhir:v "Emergency Room Copay" ]
+           ]
+         ] [
+           fhir:offer [
+             fhir:text [ fhir:v "Professional Visit Copay" ]
+           ]
+         ] )
+       ] [
+         fhir:offer [
+           fhir:text [ fhir:v "Calendar Year Deductible" ]
+         ]
+       ] [
+         fhir:offer [
+           fhir:text [ fhir:v "Out-Of-Pocket Maximum" ]
+         ]
+       ] [
+         fhir:offer [
+           fhir:text [ fhir:v "Medical Services" ]
+         ] ;
+         fhir:group ( [
+           fhir:offer [
+             fhir:text [ fhir:v "Ambulance Services" ]
+           ]
+         ] [
+           fhir:offer [
+             fhir:text [ fhir:v "Dental Services" ]
+           ]
+         ] [
+           fhir:offer [
+             fhir:text [ fhir:v "Diagnostic Services" ]
+           ]
+         ] [
+           fhir:offer [
+             fhir:text [ fhir:v "Emergency Room Services" ]
+           ]
+         ] [
+           fhir:offer [
+             fhir:text [ fhir:v "Hospital Inpatient Care" ]
+           ]
+         ] )
+       ] )
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,109 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <url.shex>
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <string.shex>
+IMPORT <Coding.shex>
+IMPORT <instant.shex>
+IMPORT <canonical.shex>
+IMPORT <unsignedInt.shex>
+IMPORT <positiveInt.shex>
+IMPORT <DomainResource.shex>
+IMPORT <BackboneElement.shex>
+
+
+start=@<Subscription> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Notification about a SubscriptionTopic
+<Subscription> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Subscription];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifiers (business 
+                                            # identifier) 
+    fhir:name @<string>?;                   # Human readable name for this 
+                                            # subscription 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:subscription-status};  # requested | active | error | off | 
+                                            # entered-in-error 
+    fhir:topic @<canonical>;                # Reference to the subscription 
+                                            # topic being subscribed to 
+    fhir:contact @<OneOrMore_ContactPoint>?;  # Contact details for source (e.g. 
+                                            # troubleshooting) 
+    fhir:end @<instant>?;                   # When to automatically delete the 
+                                            # subscription 
+    fhir:reason @<string>?;                 # Description of why this 
+                                            # subscription was created 
+    fhir:filterBy @<OneOrMore_BackboneElement>?;  # Criteria for narrowing the 
+                                            # subscription topic stream 
+    fhir:channelType @<Coding>;             # Channel type for notifications
+    fhir:endpoint @<url>?;                  # Where the channel points to
+    fhir:header @<OneOrMore_string>?;       # Usage depends on the channel type
+    fhir:heartbeatPeriod @<unsignedInt>?;   # Interval in seconds to send 
+                                            # 'heartbeat' notification 
+    fhir:timeout @<unsignedInt>?;           # Timeout in seconds to attempt 
+                                            # notification delivery 
+    fhir:contentType @<code> AND
+    	{fhir:v @fhirvs:mimetypes}?;  # MIME type to send, or omit for no 
+                                            # payload 
+    fhir:content @<code> AND
+    	{fhir:v @fhirvs:subscription-payload-content}?;  # empty | id-only | full-resource
+    fhir:maxCount @<positiveInt>?;          # Maximum number of triggering 
+                                            # resources included in notification 
+                                            # bundles 
+}  
+
+# Criteria for narrowing the subscription topic stream
+<Subscription.filterBy> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:resourceType @<uri>?;              # Allowed Data type or Resource 
+                                            # (reference to definition) for this 
+                                            # Subscription 
+    fhir:filterParameter @<string>;         # Filter label defined in 
+                                            # SubscriptionTopic 
+    fhir:modifier @<code> AND
+    	{fhir:v @fhirvs:subscription-search-modifier}?;  # = | eq | ne | gt | lt | ge | le | 
+                                            # sa | eb | ap | above | below | in 
+                                            # | not-in | of-type 
+    fhir:v @<string>;                   # Literal value or resource path
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_ContactPoint> CLOSED {
+    rdf:first @<ContactPoint>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactPoint> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_string> CLOSED {
+    rdf:first @<string>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_string> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Codes to represent how much resource content to send in the notification payload.
+fhirvs:subscription-payload-content ["empty" "id-only" "full-resource"]
+
+# FHIR search modifiers allowed for use in Subscriptions and SubscriptionTopics.
+fhirvs:subscription-search-modifier ["=" "eq" "ne" "gt" "lt" "ge" "le" "sa" "eb" "ap" "above" "below" "in" "not-in" "of-type"]
+
+# State values for FHIR Subscriptions.
+fhirvs:subscription-status ["requested" "active" "error" "off" "entered-in-error"]
+
+# This value set includes all possible codes from BCP-13 (http://tools.ietf.org/html/bcp13)
+fhirvs:mimetypes xsd:string # EXTERNAL
+

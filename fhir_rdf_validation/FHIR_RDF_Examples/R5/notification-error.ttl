@@ -1,0 +1,47 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Bundle ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "e2c9dc20-615e-4603-9005-74deb209cbb0"] ; # 
+  fhir:type [ fhir:v "subscription-notification"] ; # 
+  fhir:timestamp [ fhir:v "2020-04-17T10:24:13.1882432-05:00"^^xsd:dateTime] ; # 
+  fhir:entry ( [
+     fhir:fullUrl [ fhir:v "urn:uuid:b21e4fae-ce73-45cb-8e37-1e203362b2ae"^^xsd:anyURI ] ;
+     fhir:resource ( <urn:uuid:b21e4fae-ce73-45cb-8e37-1e203362b2ae> )
+  ] )] . # 
+
+<urn:uuid:b21e4fae-ce73-45cb-8e37-1e203362b2ae> a fhir:SubscriptionStatus ;
+  fhir:id [ fhir:v "b21e4fae-ce73-45cb-8e37-1e203362b2ae"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: SubscriptionStatus</b><a name=\"b21e4fae-ce73-45cb-8e37-1e203362b2ae\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource SubscriptionStatus &quot;b21e4fae-ce73-45cb-8e37-1e203362b2ae&quot; </p></div><p><b>status</b>: error</p><p><b>type</b>: event-notification</p><p><b>eventsSinceSubscriptionStart</b>: 328</p><h3>NotificationEvents</h3><table class=\"grid\"><tr><td>-</td><td><b>EventNumber</b></td><td><b>Timestamp</b></td></tr><tr><td>*</td><td>328</td><td>18 Apr 2020, 1:20:00 am</td></tr></table><p><b>subscription</b>: <a href=\"broken-link.html\">http://example.org/FHIR/R5/Subscription/123</a></p><p><b>topic</b>: <a href=\"http://example.org/FHIR/R5/SubscriptionTopic/admission\">http://example.org/FHIR/R5/SubscriptionTopic/admission</a></p><p><b>error</b>: No response <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-subscription-error.html\">Subscription Error Codes</a>#no-response)</span></p></div>"
+  ] ; # 
+  fhir:status [ fhir:v "error"] ; # 
+  fhir:type [ fhir:v "event-notification"] ; # 
+  fhir:eventsSinceSubscriptionStart [ fhir:v "328"^^xsd:long] ; # 
+  fhir:notificationEvent ( [
+     fhir:eventNumber [ fhir:v "328"^^xsd:long ] ;
+     fhir:timestamp [ fhir:v "2020-04-17T10:20:00.0000000-05:00"^^xsd:dateTime ]
+  ] ) ; # 
+  fhir:subscription [
+     fhir:link <http://example.org/FHIR/R5/Subscription/123> ;
+     fhir:reference [ fhir:v "http://example.org/FHIR/R5/Subscription/123" ]
+  ] ; # 
+  fhir:topic [
+     fhir:v "http://example.org/FHIR/R5/SubscriptionTopic/admission"^^xsd:anyURI ;
+     fhir:link <http://example.org/FHIR/R5/SubscriptionTopic/admission>
+  ] ; # 
+  fhir:error ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/subscription-error"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "no-response" ]
+     ] )
+  ] ) . # 
+
+# -------------------------------------------------------------------------------------
+

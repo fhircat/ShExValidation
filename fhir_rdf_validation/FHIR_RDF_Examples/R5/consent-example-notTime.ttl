@@ -1,0 +1,50 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Consent ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "consent-example-notTime"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      <p>The following scenario is based on existing jurisdictional policy and are realized in existing systems in Canada. \n	      The default policy is one of implied consent for the provision of care, so these scenarios all deal with withdrawal or withholding consent for that purpose. \n        Withhold or withdraw consent for disclosure of records related published during a timeframe</p>\n      <p>Patient &quot;P. van de Heuvel&quot; wishes to withhold disclosure of all data from a timeframe to any provider.</p>\n    </div>"
+  ] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:category ( [
+     fhir:coding ( [
+       a loinc:59284-0 ;
+       fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "59284-0" ]
+     ] )
+  ] ) ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/f001" ] ;
+     fhir:display [ fhir:v "P. van de Heuvel" ]
+  ] ; # 
+  fhir:date [ fhir:v "2018-12-28"^^xsd:date] ; # 
+  fhir:controller ( [
+     fhir:reference [ fhir:v "Organization/f001" ]
+  ] ) ; # 
+  fhir:sourceAttachment ( [
+     fhir:title [ fhir:v "The terms of the consent in lawyer speak." ]
+  ] ) ; #   likely use url pointer to common text  
+  fhir:regulatoryBasis ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActCode"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "INFA" ]
+     ] )
+  ] ) ; #   this is opt-in - e.g. everything approved unless otherwise stated  
+  fhir:decision [ fhir:v "permit"] ; # 
+  fhir:provision ( [
+     fhir:period [
+       fhir:start [ fhir:v "2015-01-01"^^xsd:date ] ;
+       fhir:end [ fhir:v "2015-02-01"^^xsd:date ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

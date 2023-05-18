@@ -1,0 +1,52 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Requirements ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example2"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Requirements</b><a name=\"example2\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Requirements &quot;example2&quot; </p></div><p><b>url</b>: <code>http://hl7.org/fhir/Requirements/example2</code></p><p><b>identifier</b>: id: urn:oid:2.16.840.1.113883.4.642.18.2</p><p><b>name</b>: ExampleRequirements2</p><p><b>title</b>: Example Requirements Set 2</p><p><b>status</b>: active</p><p><b>date</b>: 2021-11-02T14:31:30.239Z</p><p><b>description</b>: Example Requirements Set 2</p><p><b>derivedFrom</b>: <a href=\"http://hl7.org/fhir/Requirements/example2\">http://hl7.org/fhir/Requirements/example2</a></p><p><b>actor</b>: <a href=\"http://hl7.org/fhir/ActorDefinition/server\">http://hl7.org/fhir/ActorDefinition/server</a></p><blockquote><p><b>statement</b></p><p><b>key</b>: 44595579-fa13-42a5-bd24-0515cde96963</p><p><b>label</b>: requirement-B1</p><p><b>conformance</b>: SHOULD</p><p><b>requirement</b>: Operations based on the SNOMED-CT should use the current version within 24 hours of each release</p><p><b>source</b>: <span>: Lloyd Mackenzie</span></p></blockquote><blockquote><p><b>statement</b></p><p><b>key</b>: 46f77dcd-d51e-4738-b61f-22506d0cb0ac</p><p><b>label</b>: requirement-2/a</p><p><b>conformance</b>: SHALL</p><p><b>requirement</b>: ValueSet expansion and validation SHALL have the same result whether or not underlying CodeSystem resources have relationships represented explicitly as properties or implicitly using the CodeSystem resource hierarchy</p><p><b>source</b>: <span>: Robert Hausam</span></p></blockquote></div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/Requirements/example2"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.18.2" ]
+  ] ) ; # 
+  fhir:name [ fhir:v "ExampleRequirements2"] ; # 
+  fhir:title [ fhir:v "Example Requirements Set 2"] ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:date [ fhir:v "2021-11-02T14:31:30.239Z"^^xsd:dateTime] ; # 
+  fhir:description [ fhir:v "Example Requirements Set 2"] ; # 
+  fhir:derivedFrom ( [
+     fhir:v "http://hl7.org/fhir/Requirements/example2"^^xsd:anyURI ;
+     fhir:link <http://hl7.org/fhir/Requirements/example2>
+  ] ) ; # 
+  fhir:actor ( [
+     fhir:v "http://hl7.org/fhir/ActorDefinition/server"^^xsd:anyURI ;
+     fhir:link <http://hl7.org/fhir/ActorDefinition/server>
+  ] ) ; # 
+  fhir:statement ( [
+     fhir:key [ fhir:v "44595579-fa13-42a5-bd24-0515cde96963" ] ;
+     fhir:label [ fhir:v "requirement-B1" ] ;
+     fhir:conformance ( [ fhir:v "SHOULD" ] ) ;
+     fhir:requirement [ fhir:v "Operations based on the SNOMED-CT should use the current version within 24 hours of each release" ] ;
+     fhir:source ( [
+       fhir:display [ fhir:v "Lloyd Mackenzie" ]
+     ] )
+  ] [
+     fhir:key [ fhir:v "46f77dcd-d51e-4738-b61f-22506d0cb0ac" ] ;
+     fhir:label [ fhir:v "requirement-2/a" ] ;
+     fhir:conformance ( [ fhir:v "SHALL" ] ) ;
+     fhir:requirement [ fhir:v "ValueSet expansion and validation SHALL have the same result whether or not underlying CodeSystem resources have relationships represented explicitly as properties or implicitly using the CodeSystem resource hierarchy" ] ;
+     fhir:source ( [
+       fhir:display [ fhir:v "Robert Hausam" ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

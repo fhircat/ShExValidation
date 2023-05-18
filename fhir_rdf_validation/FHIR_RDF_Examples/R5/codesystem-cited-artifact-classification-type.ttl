@@ -1,0 +1,121 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "cited-artifact-classification-type"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "cds" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "0" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/cited-artifact-classification-type"], [ fhir:v "http://hl7.org/fhir/cited-artifact-classification-type"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1885" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1885" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "CitedArtifactClassificationType"], [ fhir:v "CitedArtifactClassificationType"] ;
+  fhir:title [ fhir:v "Cited Artifact Classification Type"], [ fhir:v "Cited Artifact Classification Type"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2021-03-11T10:55:11.085+11:00"], [ fhir:v "2021-03-11T10:55:11.085+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Cited Artifact Classification Type"], [ fhir:v "Cited Artifact Classification Type"] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/cited-artifact-classification-type"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "publication-type" ] ;
+     fhir:display [ fhir:v "Publication type" ] ;
+     fhir:definition [ fhir:v "Publication type" ]
+  ] [
+     fhir:code [ fhir:v "mesh-heading" ] ;
+     fhir:display [ fhir:v "MeSH heading" ] ;
+     fhir:definition [ fhir:v "MeSH heading" ]
+  ] [
+     fhir:code [ fhir:v "supplemental-mesh-protocol" ] ;
+     fhir:display [ fhir:v "Supplemental MeSH for Protocol" ] ;
+     fhir:definition [ fhir:v "Supplemental MeSH for Protocol" ]
+  ] [
+     fhir:code [ fhir:v "supplemental-mesh-disease" ] ;
+     fhir:display [ fhir:v "Supplemental MeSH for Disease" ] ;
+     fhir:definition [ fhir:v "Supplemental MeSH for Disease" ]
+  ] [
+     fhir:code [ fhir:v "supplemental-mesh-organism" ] ;
+     fhir:display [ fhir:v "Supplemental MeSH for Organism" ] ;
+     fhir:definition [ fhir:v "Supplemental MeSH for Organism" ]
+  ] [
+     fhir:code [ fhir:v "keyword" ] ;
+     fhir:display [ fhir:v "Keyword" ] ;
+     fhir:definition [ fhir:v "Keyword" ]
+  ] [
+     fhir:code [ fhir:v "citation-subset" ] ;
+     fhir:display [ fhir:v "Citation subset" ] ;
+     fhir:definition [ fhir:v "Citation subset" ]
+  ] [
+     fhir:code [ fhir:v "chemical" ] ;
+     fhir:display [ fhir:v "Chemical" ] ;
+     fhir:definition [ fhir:v "Chemical" ]
+  ] [
+     fhir:code [ fhir:v "publishing-model" ] ;
+     fhir:display [ fhir:v "Publishing Model" ] ;
+     fhir:definition [ fhir:v "Used for PubModel attribute in Medline" ]
+  ] [
+     fhir:code [ fhir:v "knowledge-artifact-type" ] ;
+     fhir:display [ fhir:v "Knowledge Artifact Type" ] ;
+     fhir:definition [ fhir:v "Knowledge Artifact Type" ]
+  ] [
+     fhir:code [ fhir:v "coverage" ] ;
+     fhir:display [ fhir:v "Coverage" ] ;
+     fhir:definition [ fhir:v "The spatial or temporal topic of the resource, spatial applicability of the resource, or jurisdiction under which the resource is relevant" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

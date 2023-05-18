@@ -1,0 +1,72 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Ratio.shex>
+IMPORT <string.shex>
+IMPORT <boolean.shex>
+IMPORT <dateTime.shex>
+IMPORT <Quantity.shex>
+IMPORT <Reference.shex>
+IMPORT <Substance.shex>
+IMPORT <DomainResource.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <CodeableReference.shex>
+
+
+start=@<Substance> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A homogeneous material with a definite composition
+<Substance> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Substance];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Unique identifier
+    fhir:instance @<boolean>;               # Is this an instance of a substance 
+                                            # or a kind of one 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:substance-status}?;  # active | inactive | 
+                                            # entered-in-error 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # What class/type of substance this 
+                                            # is 
+    fhir:code @<CodeableReference>;         # What substance this is
+    fhir:description @<string>?;            # Textual description of the 
+                                            # substance, comments 
+    fhir:expiry @<dateTime>?;               # When no longer valid to use
+    fhir:quantity @<Quantity>?;             # Amount of substance in the package
+    fhir:ingredient @<OneOrMore_BackboneElement>?;  # Composition information about the 
+                                            # substance 
+}  
+
+# Composition information about the substance
+<Substance.ingredient> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:quantity @<Ratio>?;                # Optional amount (concentration)
+    fhir:substance (@<CodeableConcept>  OR 
+    			(@<Reference>  AND {fhir:link @<Substance> }) )  AND { rdf:type IRI } ;  # A component of the substance
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# A code to indicate if the substance is actively used.
+fhirvs:substance-status ["active" "inactive" "entered-in-error"]
+

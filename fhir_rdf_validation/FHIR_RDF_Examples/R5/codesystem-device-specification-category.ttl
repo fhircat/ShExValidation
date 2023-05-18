@@ -1,0 +1,105 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "device-specification-category"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "oo" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "2" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/device-specification-category"], [ fhir:v "http://hl7.org/fhir/device-specification-category"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.2054" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.2054" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "FHIRDeviceSpecializationCategory"], [ fhir:v "FHIRDeviceSpecializationCategory"] ;
+  fhir:title [ fhir:v "FHIR Device Specialization Category"], [ fhir:v "FHIR Device Specialization Category"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2022-03-28T10:01:24+11:00"], [ fhir:v "2022-03-28T10:01:24+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The kind of standards used by the device."], [ fhir:v "The kind of standards used by the device."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/device-specification-category"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "communication" ] ;
+     fhir:display [ fhir:v "Communication" ] ;
+     fhir:definition [ fhir:v "A communication standard." ]
+  ] [
+     fhir:code [ fhir:v "performance" ] ;
+     fhir:display [ fhir:v "Performance" ] ;
+     fhir:definition [ fhir:v "A performance standard." ]
+  ] [
+     fhir:code [ fhir:v "measurement" ] ;
+     fhir:display [ fhir:v "Measurement" ] ;
+     fhir:definition [ fhir:v "A measurement standard." ]
+  ] [
+     fhir:code [ fhir:v "risk-class" ] ;
+     fhir:display [ fhir:v "Risk Class" ] ;
+     fhir:definition [ fhir:v "Class or catefory of risk." ]
+  ] [
+     fhir:code [ fhir:v "electrical" ] ;
+     fhir:display [ fhir:v "Electrical" ] ;
+     fhir:definition [ fhir:v "Electrical classification." ]
+  ] [
+     fhir:code [ fhir:v "material" ] ;
+     fhir:display [ fhir:v "Material" ] ;
+     fhir:definition [ fhir:v "Classification related to materials." ]
+  ] [
+     fhir:code [ fhir:v "exchange" ] ;
+     fhir:display [ fhir:v "Exchange" ] ;
+     fhir:definition [ fhir:v "Exchange category." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

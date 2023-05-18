@@ -1,0 +1,53 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:RelatedPerson ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "relatedPersonDenovoFather"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: RelatedPerson</b><a name=\"relatedPersonDenovoFather\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource RelatedPerson &quot;relatedPersonDenovoFather&quot; </p></div><p><b>identifier</b>: Medical record number: 11113 (use: TEMP, period: 2021-01-01 --&gt; (ongoing))</p><p><b>active</b>: true</p><p><b>patient</b>: <span title=\"  0..1 Whether this related person's record is in active use  \"><a href=\"broken-link.html\">Patient/denovoChild</a></span></p><p><b>relationship</b>: natural Father <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/5.1.0/CodeSystem-v3-RoleCode.html\">RoleCode</a>#NFTH)</span></p><p><b>name</b>: John Father Doe (OFFICIAL)</p><p><b>gender</b>: male</p><p><b>birthDate</b>: 2000-01-01</p></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:use [ fhir:v "temp" ] ;
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v2-0203"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "MR" ] ;
+         fhir:display [ fhir:v "Medical record number" ]
+       ] )
+     ] ;
+     fhir:system [ fhir:v "http://www.somesystemabc.net/identifiers/persons"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "11113" ] ;
+     fhir:period [
+       fhir:start [ fhir:v "2021-01-01"^^xsd:date ]
+     ] ;
+     fhir:assigner [
+       fhir:display [ fhir:v "Child Hospital" ]
+     ]
+  ] ) ; # 
+  fhir:active [ fhir:v "true"^^xsd:boolean] ; # 
+  fhir:patient [
+     fhir:reference [ fhir:v "Patient/denovoChild" ]
+  ] ; #    0..1 Whether this related person's record is in active use   
+  fhir:relationship ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-RoleCode"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "NFTH" ] ;
+       fhir:display [ fhir:v "natural Father" ]
+     ] )
+  ] ) ; # 
+  fhir:name ( [
+     fhir:use [ fhir:v "official" ] ;
+     fhir:family [ fhir:v "Doe" ] ;
+     fhir:given ( [ fhir:v "John" ] [ fhir:v "Father" ] )
+  ] ) ; # 
+  fhir:gender [ fhir:v "male"] ; # 
+  fhir:birthDate [ fhir:v "2000-01-01"^^xsd:date]] . # 
+
+# -------------------------------------------------------------------------------------
+

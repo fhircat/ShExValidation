@@ -1,0 +1,268 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Evidence ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-stroke-3-4half-alteplase-vs-no-alteplase-mRS0-2"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n      \n      <p>\n        &quot;Effect of Alteplase vs No alteplase on mRS 0-2 at 90 days in Stroke 3-4.5 hours prior&quot; is a comparative effect estimate.\n      </p>\n	\n    </div>"
+  ] ; # 
+  fhir:url [ fhir:v "http://hl7.org/fhir/Evidence/example-stroke-3-4half-alteplase-vs-no-alteplase-mRS0-2"^^xsd:anyURI] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.10.3" ]
+  ] ) ; # 
+  fhir:name [ fhir:v "EffectOfAlteplaseVsNoAlteplaseOnMRS02At90DaysInStroke345HoursPrior"] ; # 
+  fhir:title [ fhir:v "Effect of Alteplase vs No alteplase on mRS 0-2 at 90 days in Stroke 3-4.5 hours prior"] ; # 
+  fhir:status [ fhir:v "draft"] ; # 
+  fhir:relatedArtifact ( [
+     fhir:type [ fhir:v "citation" ] ;
+     fhir:label [ fhir:v "Lees 2016" ] ;
+     fhir:display [ fhir:v "Figure 2 Lees 2016" ] ;
+     fhir:citation [ fhir:v "Lees KR, Emberson J, Blackwell L, Bluhmki E, Davis SM, Donnan GA, et al; Stroke Thrombolysis Trialists’ Collaborators Group. Effects of alteplase for acute stroke on the distribution of functional outcomes: a pooled analysis of 9 trials. Stroke. 2016;47:2373-2379. PMID 27507856" ] ;
+     fhir:document [
+       fhir:url [ fhir:v "https://doi.org/10.1161/STROKEAHA.116.013644"^^xsd:anyURI ]
+     ]
+  ] ) ; # 
+  fhir:description [ fhir:v "mRS 0-2 at 90 days Odds Ratio 1.2 for Alteplase vs. No Alteplase in patients with acute ischemic stroke 3-4.5 hours prior"] ; # 
+  fhir:variableDefinition ( [
+     fhir:variableRole [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/variable-role"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "population" ] ;
+         fhir:display [ fhir:v "population" ]
+       ] )
+     ] ;
+     fhir:observed [
+       fhir:reference [ fhir:v "EvidenceVariable/Stroke-Thrombolysis-Trialists-2014-2016-IPD-MA-Cohort" ] ;
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "Stroke Thrombolysis Trialists’ 2014-2016 IPD-MA Cohort" ]
+     ] ;
+     fhir:intended [
+       fhir:reference [ fhir:v "Group/AcuteIschemicStroke3-4halfHours" ] ;
+       fhir:type [ fhir:v "Group"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "stroke at 3-4.5 hours" ]
+     ] ;
+     fhir:directnessMatch [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/directness"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "moderate" ] ;
+         fhir:display [ fhir:v "Moderate quality match" ]
+       ] )
+     ]
+  ] [
+     fhir:variableRole [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/variable-role"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "measuredVariable" ] ;
+         fhir:display [ fhir:v "measured variable" ]
+       ] )
+     ] ;
+     fhir:observed [
+       fhir:reference [ fhir:v "EvidenceVariable/example-mRS0-2-at-90days" ] ;
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "mRS 0-2 at 90 days" ]
+     ] ;
+     fhir:intended [
+       fhir:reference [ fhir:v "EvidenceVariable/example-alive-independent-90day" ] ;
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "Alive and not functionally dependent at 90 days" ]
+     ]
+  ] [
+     fhir:variableRole [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/variable-role"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "exposure" ] ;
+         fhir:display [ fhir:v "exposure" ]
+       ] )
+     ] ;
+     fhir:observed [
+       fhir:reference [ fhir:v "EvidenceVariable/example-alteplase-for-stroke" ] ;
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "Alteplase for Stroke" ]
+     ] ;
+     fhir:intended [
+       fhir:reference [ fhir:v "EvidenceVariable/example-alteplase-for-stroke" ] ;
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "Alteplase for Stroke" ]
+     ]
+  ] [
+     fhir:variableRole [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/variable-role"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "referenceExposure" ] ;
+         fhir:display [ fhir:v "reference exposure" ]
+       ] )
+     ] ;
+     fhir:observed [
+       fhir:reference [ fhir:v "EvidenceVariable/example-no-alteplase" ] ;
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "no alteplase" ]
+     ] ;
+     fhir:intended [
+       fhir:reference [ fhir:v "EvidenceVariable/example-no-alteplase" ] ;
+       fhir:type [ fhir:v "EvidenceVariable"^^xsd:anyURI ] ;
+       fhir:display [ fhir:v "no alteplase" ]
+     ]
+  ] ) ; # 
+  fhir:synthesisType [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/synthesis-type"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "IPD-MA" ] ;
+       fhir:display [ fhir:v "individual patient data meta-analysis" ]
+     ] )
+  ] ; # 
+  fhir:studyDesign ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://hl7.org/fhir/study-design"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "SEVCO:01003" ] ;
+       fhir:display [ fhir:v "randomized assignment" ]
+     ] )
+  ] ) ; # 
+  fhir:statistic ( [
+     fhir:statisticType [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/statistic-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "C16932" ] ;
+         fhir:display [ fhir:v "Odds Ratio" ]
+       ] )
+     ] ;
+     fhir:quantity [
+       fhir:value [ fhir:v "1.2"^^xsd:decimal ]
+     ] ;
+     fhir:sampleSize [
+       fhir:numberOfStudies [ fhir:v "9"^^xsd:nonNegativeInteger ]
+     ] ;
+     fhir:attributeEstimate ( [
+       fhir:description [ fhir:v "95% CI 1.06 to 1.3" ] ;
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/attribute-estimate-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "C53324" ] ;
+           fhir:display [ fhir:v "Confidence interval" ]
+         ] )
+       ] ;
+       fhir:level [ fhir:v "0.95"^^xsd:decimal ] ;
+       fhir:range [
+         fhir:low [
+           fhir:value [ fhir:v "1.06"^^xsd:decimal ]
+         ] ;
+         fhir:high [
+           fhir:value [ fhir:v "1.3"^^xsd:decimal ]
+         ]
+       ]
+     ] )
+  ] ) ; # 
+  fhir:certainty ( [
+     fhir:description [ fhir:v "Very low certainty due to risk of bias, inconsistency, imprecision, and indirectness" ] ;
+     fhir:type [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/certainty-type"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "Overall" ] ;
+         fhir:display [ fhir:v "Overall quality" ]
+       ] )
+     ] ;
+     fhir:rating [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://hl7.org/fhir/certainty-rating"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "very-low" ] ;
+         fhir:display [ fhir:v "Very low quality" ]
+       ] )
+     ] ;
+     fhir:subcomponent ( [
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "PublicationBias" ] ;
+           fhir:display [ fhir:v "Publication bias" ]
+         ] )
+       ] ;
+       fhir:rating [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-rating"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "no-concern" ] ;
+           fhir:display [ fhir:v "no serious concern" ]
+         ] )
+       ]
+     ] [
+       fhir:note ( [
+         fhir:text [ fhir:v "IST-3 had inconsistent results and contributed large proportion of data" ]
+       ] ) ;
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Inconsistency" ] ;
+           fhir:display [ fhir:v "Inconsistency" ]
+         ] )
+       ] ;
+       fhir:rating [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-rating"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "serious-concern" ] ;
+           fhir:display [ fhir:v "serious concern" ]
+         ] )
+       ]
+     ] [
+       fhir:note ( [
+         fhir:text [ fhir:v "results derived from figure with limited data reported to support the specific effect estimate; derived odds ratio in figure does not match results from rates of mRS 0-2 reported in Supplementary Figure 3b" ]
+       ] ) ;
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Imprecision" ] ;
+           fhir:display [ fhir:v "Imprecision" ]
+         ] )
+       ] ;
+       fhir:rating [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-rating"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "serious-concern" ] ;
+           fhir:display [ fhir:v "serious concern" ]
+         ] )
+       ]
+     ] [
+       fhir:note ( [
+         fhir:text [ fhir:v "resuts derived for 3 - 4.5 hours assume data from 0 - 6 hours is informative" ]
+       ] ) ;
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "Indirectness" ] ;
+           fhir:display [ fhir:v "Indirectness" ]
+         ] )
+       ] ;
+       fhir:rating [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-rating"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "serious-concern" ] ;
+           fhir:display [ fhir:v "serious concern" ]
+         ] )
+       ]
+     ] [
+       fhir:note ( [
+         fhir:text [ fhir:v "results largely influenced by IST-3 trial which was unblinded and ECASS III which had baseline imbalances" ]
+       ] ) ;
+       fhir:type [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-type"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "RiskOfBias" ] ;
+           fhir:display [ fhir:v "Risk of bias" ]
+         ] )
+       ] ;
+       fhir:rating [
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://hl7.org/fhir/certainty-rating"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "serious-concern" ] ;
+           fhir:display [ fhir:v "serious concern" ]
+         ] )
+       ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

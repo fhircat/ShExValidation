@@ -1,0 +1,31 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Extension.shex>
+
+# Certainty or quality rating
+<cqf-certainty> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:cqf-certainty];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:description @<Extension>?; 
+    fhir:note @<OneOrMore_Extension>?; 
+    fhir:type @<Extension>?; 
+    fhir:rating @<Extension>?; 
+    fhir:rater @<Extension>?; 
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/cqf-certainty"]}; 
+    ^fhir:extension { a [fhir:Element]
+        }
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Extension> CLOSED {
+    rdf:first @<Extension>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Extension> 
+}
+

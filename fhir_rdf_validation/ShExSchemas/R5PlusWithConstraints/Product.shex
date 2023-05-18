@@ -1,0 +1,102 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <Base.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Element.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Annotation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+# Product Pattern
+<Product> EXTENDS @<Base> CLOSED {   
+
+    a [fhir:Product]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:product-status};  # active | inactive | 
+                                            # entered-in-error 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # A category or class of the product
+    fhir:code @<CodeableConcept>?;          # A code designating a specific type 
+                                            # of product 
+    fhir:manufacturer @<OneOrMore_Reference_Organization>?;  # Manufacturer, representative or 
+                                            # officially responsible for the 
+                                            # product 
+    fhir:instance @<Element>?;              # One or several physical instances 
+                                            # or occurrences of the product 
+    fhir:note @<OneOrMore_Annotation>?;     # Comments made about the product
+}  
+
+# One or several physical instances or occurrences of the product
+<Product.instance> EXTENDS @<Element> CLOSED {   
+    fhir:quantity @<Quantity>?;             # The amount of items
+    fhir:identifier @<OneOrMore_Identifier>?;  # The identifier for the physical 
+                                            # instance, typically a serial 
+                                            # number 
+    fhir:lotNumber @<string>?;              # The identification of the batch or 
+                                            # lot of the product 
+    fhir:expiry @<dateTime>?;               # The expiry date or date and time 
+                                            # for the product 
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Patient> ? }?;  # Individual the product is 
+                                            # associated with, or which has used 
+                                            # the product 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+#---------------------- Value Sets ------------------------
+
+

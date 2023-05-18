@@ -1,0 +1,125 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "genomicstudy-type"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-25T23:21:02.749-05:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "cg" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/genomicstudy-type"], [ fhir:v "http://hl7.org/fhir/genomicstudy-type"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1975" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1975" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "GenomicStudyType"], [ fhir:v "GenomicStudyType"] ;
+  fhir:title [ fhir:v "Genomic Study Type"], [ fhir:v "Genomic Study Type"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "true"], [ fhir:v "true"] ;
+  fhir:date [ fhir:v "2022-08-17T16:19:24-05:00"], [ fhir:v "2022-08-17T16:19:24-05:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The type relevant to GenomicStudy."], [ fhir:v "The type relevant to GenomicStudy."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/genomicstudy-type"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "alt-splc" ] ;
+     fhir:display [ fhir:v "Alternative splicing detection" ] ;
+     fhir:definition [ fhir:v "Identification of multiple different processed mRNA transcripts from the same DNA template" ]
+  ] [
+     fhir:code [ fhir:v "chromatin" ] ;
+     fhir:display [ fhir:v "Chromatin conformation" ] ;
+     fhir:definition [ fhir:v "Analysis of the spacial organization of chromatin within a cell" ]
+  ] [
+     fhir:code [ fhir:v "cnv" ] ;
+     fhir:display [ fhir:v "CNV detection" ] ;
+     fhir:definition [ fhir:v "Detection of a change in the number of copies of a defined region of genomic DNA sequence resulting in structural variation when compared to the reference sequence" ]
+  ] [
+     fhir:code [ fhir:v "epi-alt-hist" ] ;
+     fhir:display [ fhir:v "Epigenetic Alterations - histone modifications" ] ;
+     fhir:definition [ fhir:v "Detection of biochemical modifications covalently bound to the N-terminal tail of a histone protein. These modifications may alter chromatin compaction and gene expression" ]
+  ] [
+     fhir:code [ fhir:v "epi-alt-dna" ] ;
+     fhir:display [ fhir:v "Epigenetic Alterations -DNA methylation" ] ;
+     fhir:definition [ fhir:v "Detection of the presence of an additional methyl group on a DNA nucleobase, which may alter gene transcription" ]
+  ] [
+     fhir:code [ fhir:v "fam-var-segr" ] ;
+     fhir:display [ fhir:v "Familial variant segregation" ] ;
+     fhir:definition [ fhir:v "Determining if a variant identified in an individual is present in other family members" ]
+  ] [
+     fhir:code [ fhir:v "func-var" ] ;
+     fhir:display [ fhir:v "Functional variation detection" ] ;
+     fhir:definition [ fhir:v "Detection of sequence variants which may alter gene expression or gene product function when compared to the reference sequence" ]
+  ] [
+     fhir:code [ fhir:v "gene-expression" ] ;
+     fhir:display [ fhir:v "Gene expression profiling" ] ;
+     fhir:definition [ fhir:v "Measurement and characterization of activity from all gene products" ]
+  ] [
+     fhir:code [ fhir:v "post-trans-mod" ] ;
+     fhir:display [ fhir:v "Post-translational Modification Identification" ] ;
+     fhir:definition [ fhir:v "Detection of biochemical modifications covalently bound to the amino acid monomers of a processed protein" ]
+  ] [
+     fhir:code [ fhir:v "snp" ] ;
+     fhir:display [ fhir:v "SNP Detection" ] ;
+     fhir:definition [ fhir:v "Determination of which nucleotide is base present at a known variable location of the genomic sequence" ]
+  ] [
+     fhir:code [ fhir:v "str" ] ;
+     fhir:display [ fhir:v "STR count" ] ;
+     fhir:definition [ fhir:v "Quantification of the number of sequential microsatellite units in a repetitive sequence region" ]
+  ] [
+     fhir:code [ fhir:v "struc-var" ] ;
+     fhir:display [ fhir:v "Structural variation detection" ] ;
+     fhir:definition [ fhir:v "Detection of deletions, insertions, or rearrangements of DNA segments compared to the reference sequence" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

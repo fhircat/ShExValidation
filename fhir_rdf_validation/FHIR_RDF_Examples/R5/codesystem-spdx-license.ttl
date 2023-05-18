@@ -1,0 +1,1461 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "spdx-license"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "fhir" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/spdx-license"], [ fhir:v "http://hl7.org/fhir/spdx-license"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1027" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1027" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "SPDXLicense"], [ fhir:v "SPDXLicense"] ;
+  fhir:title [ fhir:v "S P D X License"], [ fhir:v "S P D X License"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2021-01-05T10:01:24+11:00"], [ fhir:v "2021-01-05T10:01:24+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "The license that applies to an Implementation Guide (using an SPDX license Identifiers, or 'not-open-source'). The binding is required but new SPDX license Identifiers are allowed to be used (https://spdx.org/licenses/)."], [ fhir:v "The license that applies to an Implementation Guide (using an SPDX license Identifiers, or 'not-open-source'). The binding is required but new SPDX license Identifiers are allowed to be used (https://spdx.org/licenses/)."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/spdx-license"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "not-open-source" ] ;
+     fhir:display [ fhir:v "Not open source" ] ;
+     fhir:definition [ fhir:v "Not an open source license." ]
+  ] [
+     fhir:code [ fhir:v "0BSD" ] ;
+     fhir:display [ fhir:v "BSD Zero Clause License" ] ;
+     fhir:definition [ fhir:v "BSD Zero Clause License." ]
+  ] [
+     fhir:code [ fhir:v "AAL" ] ;
+     fhir:display [ fhir:v "Attribution Assurance License" ] ;
+     fhir:definition [ fhir:v "Attribution Assurance License." ]
+  ] [
+     fhir:code [ fhir:v "Abstyles" ] ;
+     fhir:display [ fhir:v "Abstyles License" ] ;
+     fhir:definition [ fhir:v "Abstyles License." ]
+  ] [
+     fhir:code [ fhir:v "Adobe-2006" ] ;
+     fhir:display [ fhir:v "Adobe Systems Incorporated Source Code License Agreement" ] ;
+     fhir:definition [ fhir:v "Adobe Systems Incorporated Source Code License Agreement." ]
+  ] [
+     fhir:code [ fhir:v "Adobe-Glyph" ] ;
+     fhir:display [ fhir:v "Adobe Glyph List License" ] ;
+     fhir:definition [ fhir:v "Adobe Glyph List License." ]
+  ] [
+     fhir:code [ fhir:v "ADSL" ] ;
+     fhir:display [ fhir:v "Amazon Digital Services License" ] ;
+     fhir:definition [ fhir:v "Amazon Digital Services License." ]
+  ] [
+     fhir:code [ fhir:v "AFL-1.1" ] ;
+     fhir:display [ fhir:v "Academic Free License v1.1" ] ;
+     fhir:definition [ fhir:v "Academic Free License v1.1." ]
+  ] [
+     fhir:code [ fhir:v "AFL-1.2" ] ;
+     fhir:display [ fhir:v "Academic Free License v1.2" ] ;
+     fhir:definition [ fhir:v "Academic Free License v1.2." ]
+  ] [
+     fhir:code [ fhir:v "AFL-2.0" ] ;
+     fhir:display [ fhir:v "Academic Free License v2.0" ] ;
+     fhir:definition [ fhir:v "Academic Free License v2.0." ]
+  ] [
+     fhir:code [ fhir:v "AFL-2.1" ] ;
+     fhir:display [ fhir:v "Academic Free License v2.1" ] ;
+     fhir:definition [ fhir:v "Academic Free License v2.1." ]
+  ] [
+     fhir:code [ fhir:v "AFL-3.0" ] ;
+     fhir:display [ fhir:v "Academic Free License v3.0" ] ;
+     fhir:definition [ fhir:v "Academic Free License v3.0." ]
+  ] [
+     fhir:code [ fhir:v "Afmparse" ] ;
+     fhir:display [ fhir:v "Afmparse License" ] ;
+     fhir:definition [ fhir:v "Afmparse License." ]
+  ] [
+     fhir:code [ fhir:v "AGPL-1.0-only" ] ;
+     fhir:display [ fhir:v "Affero General Public License v1.0 only" ] ;
+     fhir:definition [ fhir:v "Affero General Public License v1.0 only." ]
+  ] [
+     fhir:code [ fhir:v "AGPL-1.0-or-later" ] ;
+     fhir:display [ fhir:v "Affero General Public License v1.0 or later" ] ;
+     fhir:definition [ fhir:v "Affero General Public License v1.0 or later." ]
+  ] [
+     fhir:code [ fhir:v "AGPL-3.0-only" ] ;
+     fhir:display [ fhir:v "GNU Affero General Public License v3.0 only" ] ;
+     fhir:definition [ fhir:v "GNU Affero General Public License v3.0 only." ]
+  ] [
+     fhir:code [ fhir:v "AGPL-3.0-or-later" ] ;
+     fhir:display [ fhir:v "GNU Affero General Public License v3.0 or later" ] ;
+     fhir:definition [ fhir:v "GNU Affero General Public License v3.0 or later." ]
+  ] [
+     fhir:code [ fhir:v "Aladdin" ] ;
+     fhir:display [ fhir:v "Aladdin Free Public License" ] ;
+     fhir:definition [ fhir:v "Aladdin Free Public License." ]
+  ] [
+     fhir:code [ fhir:v "AMDPLPA" ] ;
+     fhir:display [ fhir:v "AMD's plpa_map.c License" ] ;
+     fhir:definition [ fhir:v "AMD's plpa_map.c License." ]
+  ] [
+     fhir:code [ fhir:v "AML" ] ;
+     fhir:display [ fhir:v "Apple MIT License" ] ;
+     fhir:definition [ fhir:v "Apple MIT License." ]
+  ] [
+     fhir:code [ fhir:v "AMPAS" ] ;
+     fhir:display [ fhir:v "Academy of Motion Picture Arts and Sciences BSD" ] ;
+     fhir:definition [ fhir:v "Academy of Motion Picture Arts and Sciences BSD." ]
+  ] [
+     fhir:code [ fhir:v "ANTLR-PD" ] ;
+     fhir:display [ fhir:v "ANTLR Software Rights Notice" ] ;
+     fhir:definition [ fhir:v "ANTLR Software Rights Notice." ]
+  ] [
+     fhir:code [ fhir:v "Apache-1.0" ] ;
+     fhir:display [ fhir:v "Apache License 1.0" ] ;
+     fhir:definition [ fhir:v "Apache License 1.0." ]
+  ] [
+     fhir:code [ fhir:v "Apache-1.1" ] ;
+     fhir:display [ fhir:v "Apache License 1.1" ] ;
+     fhir:definition [ fhir:v "Apache License 1.1." ]
+  ] [
+     fhir:code [ fhir:v "Apache-2.0" ] ;
+     fhir:display [ fhir:v "Apache License 2.0" ] ;
+     fhir:definition [ fhir:v "Apache License 2.0." ]
+  ] [
+     fhir:code [ fhir:v "APAFML" ] ;
+     fhir:display [ fhir:v "Adobe Postscript AFM License" ] ;
+     fhir:definition [ fhir:v "Adobe Postscript AFM License." ]
+  ] [
+     fhir:code [ fhir:v "APL-1.0" ] ;
+     fhir:display [ fhir:v "Adaptive Public License 1.0" ] ;
+     fhir:definition [ fhir:v "Adaptive Public License 1.0." ]
+  ] [
+     fhir:code [ fhir:v "APSL-1.0" ] ;
+     fhir:display [ fhir:v "Apple Public Source License 1.0" ] ;
+     fhir:definition [ fhir:v "Apple Public Source License 1.0." ]
+  ] [
+     fhir:code [ fhir:v "APSL-1.1" ] ;
+     fhir:display [ fhir:v "Apple Public Source License 1.1" ] ;
+     fhir:definition [ fhir:v "Apple Public Source License 1.1." ]
+  ] [
+     fhir:code [ fhir:v "APSL-1.2" ] ;
+     fhir:display [ fhir:v "Apple Public Source License 1.2" ] ;
+     fhir:definition [ fhir:v "Apple Public Source License 1.2." ]
+  ] [
+     fhir:code [ fhir:v "APSL-2.0" ] ;
+     fhir:display [ fhir:v "Apple Public Source License 2.0" ] ;
+     fhir:definition [ fhir:v "Apple Public Source License 2.0." ]
+  ] [
+     fhir:code [ fhir:v "Artistic-1.0-cl8" ] ;
+     fhir:display [ fhir:v "Artistic License 1.0 w/clause 8" ] ;
+     fhir:definition [ fhir:v "Artistic License 1.0 w/clause 8." ]
+  ] [
+     fhir:code [ fhir:v "Artistic-1.0-Perl" ] ;
+     fhir:display [ fhir:v "Artistic License 1.0 (Perl)" ] ;
+     fhir:definition [ fhir:v "Artistic License 1.0 (Perl)." ]
+  ] [
+     fhir:code [ fhir:v "Artistic-1.0" ] ;
+     fhir:display [ fhir:v "Artistic License 1.0" ] ;
+     fhir:definition [ fhir:v "Artistic License 1.0." ]
+  ] [
+     fhir:code [ fhir:v "Artistic-2.0" ] ;
+     fhir:display [ fhir:v "Artistic License 2.0" ] ;
+     fhir:definition [ fhir:v "Artistic License 2.0." ]
+  ] [
+     fhir:code [ fhir:v "Bahyph" ] ;
+     fhir:display [ fhir:v "Bahyph License" ] ;
+     fhir:definition [ fhir:v "Bahyph License." ]
+  ] [
+     fhir:code [ fhir:v "Barr" ] ;
+     fhir:display [ fhir:v "Barr License" ] ;
+     fhir:definition [ fhir:v "Barr License." ]
+  ] [
+     fhir:code [ fhir:v "Beerware" ] ;
+     fhir:display [ fhir:v "Beerware License" ] ;
+     fhir:definition [ fhir:v "Beerware License." ]
+  ] [
+     fhir:code [ fhir:v "BitTorrent-1.0" ] ;
+     fhir:display [ fhir:v "BitTorrent Open Source License v1.0" ] ;
+     fhir:definition [ fhir:v "BitTorrent Open Source License v1.0." ]
+  ] [
+     fhir:code [ fhir:v "BitTorrent-1.1" ] ;
+     fhir:display [ fhir:v "BitTorrent Open Source License v1.1" ] ;
+     fhir:definition [ fhir:v "BitTorrent Open Source License v1.1." ]
+  ] [
+     fhir:code [ fhir:v "Borceux" ] ;
+     fhir:display [ fhir:v "Borceux license" ] ;
+     fhir:definition [ fhir:v "Borceux license." ]
+  ] [
+     fhir:code [ fhir:v "BSD-1-Clause" ] ;
+     fhir:display [ fhir:v "BSD 1-Clause License" ] ;
+     fhir:definition [ fhir:v "BSD 1-Clause License." ]
+  ] [
+     fhir:code [ fhir:v "BSD-2-Clause-FreeBSD" ] ;
+     fhir:display [ fhir:v "BSD 2-Clause FreeBSD License" ] ;
+     fhir:definition [ fhir:v "BSD 2-Clause FreeBSD License." ]
+  ] [
+     fhir:code [ fhir:v "BSD-2-Clause-NetBSD" ] ;
+     fhir:display [ fhir:v "BSD 2-Clause NetBSD License" ] ;
+     fhir:definition [ fhir:v "BSD 2-Clause NetBSD License." ]
+  ] [
+     fhir:code [ fhir:v "BSD-2-Clause-Patent" ] ;
+     fhir:display [ fhir:v "BSD-2-Clause Plus Patent License" ] ;
+     fhir:definition [ fhir:v "BSD-2-Clause Plus Patent License." ]
+  ] [
+     fhir:code [ fhir:v "BSD-2-Clause" ] ;
+     fhir:display [ fhir:v "BSD 2-Clause \"Simplified\" License" ] ;
+     fhir:definition [ fhir:v "BSD 2-Clause \"Simplified\" License." ]
+  ] [
+     fhir:code [ fhir:v "BSD-3-Clause-Attribution" ] ;
+     fhir:display [ fhir:v "BSD with attribution" ] ;
+     fhir:definition [ fhir:v "BSD with attribution." ]
+  ] [
+     fhir:code [ fhir:v "BSD-3-Clause-Clear" ] ;
+     fhir:display [ fhir:v "BSD 3-Clause Clear License" ] ;
+     fhir:definition [ fhir:v "BSD 3-Clause Clear License." ]
+  ] [
+     fhir:code [ fhir:v "BSD-3-Clause-LBNL" ] ;
+     fhir:display [ fhir:v "Lawrence Berkeley National Labs BSD variant license" ] ;
+     fhir:definition [ fhir:v "Lawrence Berkeley National Labs BSD variant license." ]
+  ] [
+     fhir:code [ fhir:v "BSD-3-Clause-No-Nuclear-License-2014" ] ;
+     fhir:display [ fhir:v "BSD 3-Clause No Nuclear License 2014" ] ;
+     fhir:definition [ fhir:v "BSD 3-Clause No Nuclear License 2014." ]
+  ] [
+     fhir:code [ fhir:v "BSD-3-Clause-No-Nuclear-License" ] ;
+     fhir:display [ fhir:v "BSD 3-Clause No Nuclear License" ] ;
+     fhir:definition [ fhir:v "BSD 3-Clause No Nuclear License." ]
+  ] [
+     fhir:code [ fhir:v "BSD-3-Clause-No-Nuclear-Warranty" ] ;
+     fhir:display [ fhir:v "BSD 3-Clause No Nuclear Warranty" ] ;
+     fhir:definition [ fhir:v "BSD 3-Clause No Nuclear Warranty." ]
+  ] [
+     fhir:code [ fhir:v "BSD-3-Clause" ] ;
+     fhir:display [ fhir:v "BSD 3-Clause \"New\" or \"Revised\" License" ] ;
+     fhir:definition [ fhir:v "BSD 3-Clause \"New\" or \"Revised\" License." ]
+  ] [
+     fhir:code [ fhir:v "BSD-4-Clause-UC" ] ;
+     fhir:display [ fhir:v "BSD-4-Clause (University of California-Specific)" ] ;
+     fhir:definition [ fhir:v "BSD-4-Clause (University of California-Specific)." ]
+  ] [
+     fhir:code [ fhir:v "BSD-4-Clause" ] ;
+     fhir:display [ fhir:v "BSD 4-Clause \"Original\" or \"Old\" License" ] ;
+     fhir:definition [ fhir:v "BSD 4-Clause \"Original\" or \"Old\" License." ]
+  ] [
+     fhir:code [ fhir:v "BSD-Protection" ] ;
+     fhir:display [ fhir:v "BSD Protection License" ] ;
+     fhir:definition [ fhir:v "BSD Protection License." ]
+  ] [
+     fhir:code [ fhir:v "BSD-Source-Code" ] ;
+     fhir:display [ fhir:v "BSD Source Code Attribution" ] ;
+     fhir:definition [ fhir:v "BSD Source Code Attribution." ]
+  ] [
+     fhir:code [ fhir:v "BSL-1.0" ] ;
+     fhir:display [ fhir:v "Boost Software License 1.0" ] ;
+     fhir:definition [ fhir:v "Boost Software License 1.0." ]
+  ] [
+     fhir:code [ fhir:v "bzip2-1.0.5" ] ;
+     fhir:display [ fhir:v "bzip2 and libbzip2 License v1.0.5" ] ;
+     fhir:definition [ fhir:v "bzip2 and libbzip2 License v1.0.5." ]
+  ] [
+     fhir:code [ fhir:v "bzip2-1.0.6" ] ;
+     fhir:display [ fhir:v "bzip2 and libbzip2 License v1.0.6" ] ;
+     fhir:definition [ fhir:v "bzip2 and libbzip2 License v1.0.6." ]
+  ] [
+     fhir:code [ fhir:v "Caldera" ] ;
+     fhir:display [ fhir:v "Caldera License" ] ;
+     fhir:definition [ fhir:v "Caldera License." ]
+  ] [
+     fhir:code [ fhir:v "CATOSL-1.1" ] ;
+     fhir:display [ fhir:v "Computer Associates Trusted Open Source License 1.1" ] ;
+     fhir:definition [ fhir:v "Computer Associates Trusted Open Source License 1.1." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-1.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution 1.0 Generic" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution 1.0 Generic." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-2.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution 2.0 Generic" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution 2.0 Generic." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-2.5" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution 2.5 Generic" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution 2.5 Generic." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-3.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution 3.0 Unported" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution 3.0 Unported." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-4.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution 4.0 International" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution 4.0 International." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-NC-1.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution Non Commercial 1.0 Generic" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution Non Commercial 1.0 Generic." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-NC-2.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution Non Commercial 2.0 Generic" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution Non Commercial 2.0 Generic." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-NC-2.5" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution Non Commercial 2.5 Generic" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution Non Commercial 2.5 Generic." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-NC-3.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution Non Commercial 3.0 Unported" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution Non Commercial 3.0 Unported." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-NC-4.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution Non Commercial 4.0 International" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution Non Commercial 4.0 International." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-NC-ND-1.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution Non Commercial No Derivatives 1.0 Generic" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution Non Commercial No Derivatives 1.0 Generic." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-NC-ND-2.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution Non Commercial No Derivatives 2.0 Generic" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution Non Commercial No Derivatives 2.0 Generic." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-NC-ND-2.5" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution Non Commercial No Derivatives 2.5 Generic" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution Non Commercial No Derivatives 2.5 Generic." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-NC-ND-3.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution Non Commercial No Derivatives 3.0 Unported" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution Non Commercial No Derivatives 3.0 Unported." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-NC-ND-4.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution Non Commercial No Derivatives 4.0 International" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution Non Commercial No Derivatives 4.0 International." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-NC-SA-1.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution Non Commercial Share Alike 1.0 Generic" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution Non Commercial Share Alike 1.0 Generic." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-NC-SA-2.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution Non Commercial Share Alike 2.0 Generic" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution Non Commercial Share Alike 2.0 Generic." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-NC-SA-2.5" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution Non Commercial Share Alike 2.5 Generic" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution Non Commercial Share Alike 2.5 Generic." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-NC-SA-3.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution Non Commercial Share Alike 3.0 Unported" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution Non Commercial Share Alike 3.0 Unported." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-NC-SA-4.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution Non Commercial Share Alike 4.0 International" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution Non Commercial Share Alike 4.0 International." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-ND-1.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution No Derivatives 1.0 Generic" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution No Derivatives 1.0 Generic." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-ND-2.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution No Derivatives 2.0 Generic" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution No Derivatives 2.0 Generic." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-ND-2.5" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution No Derivatives 2.5 Generic" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution No Derivatives 2.5 Generic." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-ND-3.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution No Derivatives 3.0 Unported" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution No Derivatives 3.0 Unported." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-ND-4.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution No Derivatives 4.0 International" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution No Derivatives 4.0 International." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-SA-1.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution Share Alike 1.0 Generic" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution Share Alike 1.0 Generic." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-SA-2.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution Share Alike 2.0 Generic" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution Share Alike 2.0 Generic." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-SA-2.5" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution Share Alike 2.5 Generic" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution Share Alike 2.5 Generic." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-SA-3.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution Share Alike 3.0 Unported" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution Share Alike 3.0 Unported." ]
+  ] [
+     fhir:code [ fhir:v "CC-BY-SA-4.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Attribution Share Alike 4.0 International" ] ;
+     fhir:definition [ fhir:v "Creative Commons Attribution Share Alike 4.0 International." ]
+  ] [
+     fhir:code [ fhir:v "CC0-1.0" ] ;
+     fhir:display [ fhir:v "Creative Commons Zero v1.0 Universal" ] ;
+     fhir:definition [ fhir:v "Creative Commons Zero v1.0 Universal." ]
+  ] [
+     fhir:code [ fhir:v "CDDL-1.0" ] ;
+     fhir:display [ fhir:v "Common Development and Distribution License 1.0" ] ;
+     fhir:definition [ fhir:v "Common Development and Distribution License 1.0." ]
+  ] [
+     fhir:code [ fhir:v "CDDL-1.1" ] ;
+     fhir:display [ fhir:v "Common Development and Distribution License 1.1" ] ;
+     fhir:definition [ fhir:v "Common Development and Distribution License 1.1." ]
+  ] [
+     fhir:code [ fhir:v "CDLA-Permissive-1.0" ] ;
+     fhir:display [ fhir:v "Community Data License Agreement Permissive 1.0" ] ;
+     fhir:definition [ fhir:v "Community Data License Agreement Permissive 1.0." ]
+  ] [
+     fhir:code [ fhir:v "CDLA-Sharing-1.0" ] ;
+     fhir:display [ fhir:v "Community Data License Agreement Sharing 1.0" ] ;
+     fhir:definition [ fhir:v "Community Data License Agreement Sharing 1.0." ]
+  ] [
+     fhir:code [ fhir:v "CECILL-1.0" ] ;
+     fhir:display [ fhir:v "CeCILL Free Software License Agreement v1.0" ] ;
+     fhir:definition [ fhir:v "CeCILL Free Software License Agreement v1.0." ]
+  ] [
+     fhir:code [ fhir:v "CECILL-1.1" ] ;
+     fhir:display [ fhir:v "CeCILL Free Software License Agreement v1.1" ] ;
+     fhir:definition [ fhir:v "CeCILL Free Software License Agreement v1.1." ]
+  ] [
+     fhir:code [ fhir:v "CECILL-2.0" ] ;
+     fhir:display [ fhir:v "CeCILL Free Software License Agreement v2.0" ] ;
+     fhir:definition [ fhir:v "CeCILL Free Software License Agreement v2.0." ]
+  ] [
+     fhir:code [ fhir:v "CECILL-2.1" ] ;
+     fhir:display [ fhir:v "CeCILL Free Software License Agreement v2.1" ] ;
+     fhir:definition [ fhir:v "CeCILL Free Software License Agreement v2.1." ]
+  ] [
+     fhir:code [ fhir:v "CECILL-B" ] ;
+     fhir:display [ fhir:v "CeCILL-B Free Software License Agreement" ] ;
+     fhir:definition [ fhir:v "CeCILL-B Free Software License Agreement." ]
+  ] [
+     fhir:code [ fhir:v "CECILL-C" ] ;
+     fhir:display [ fhir:v "CeCILL-C Free Software License Agreement" ] ;
+     fhir:definition [ fhir:v "CeCILL-C Free Software License Agreement." ]
+  ] [
+     fhir:code [ fhir:v "ClArtistic" ] ;
+     fhir:display [ fhir:v "Clarified Artistic License" ] ;
+     fhir:definition [ fhir:v "Clarified Artistic License." ]
+  ] [
+     fhir:code [ fhir:v "CNRI-Jython" ] ;
+     fhir:display [ fhir:v "CNRI Jython License" ] ;
+     fhir:definition [ fhir:v "CNRI Jython License." ]
+  ] [
+     fhir:code [ fhir:v "CNRI-Python-GPL-Compatible" ] ;
+     fhir:display [ fhir:v "CNRI Python Open Source GPL Compatible License Agreement" ] ;
+     fhir:definition [ fhir:v "CNRI Python Open Source GPL Compatible License Agreement." ]
+  ] [
+     fhir:code [ fhir:v "CNRI-Python" ] ;
+     fhir:display [ fhir:v "CNRI Python License" ] ;
+     fhir:definition [ fhir:v "CNRI Python License." ]
+  ] [
+     fhir:code [ fhir:v "Condor-1.1" ] ;
+     fhir:display [ fhir:v "Condor Public License v1.1" ] ;
+     fhir:definition [ fhir:v "Condor Public License v1.1." ]
+  ] [
+     fhir:code [ fhir:v "CPAL-1.0" ] ;
+     fhir:display [ fhir:v "Common Public Attribution License 1.0" ] ;
+     fhir:definition [ fhir:v "Common Public Attribution License 1.0." ]
+  ] [
+     fhir:code [ fhir:v "CPL-1.0" ] ;
+     fhir:display [ fhir:v "Common Public License 1.0" ] ;
+     fhir:definition [ fhir:v "Common Public License 1.0." ]
+  ] [
+     fhir:code [ fhir:v "CPOL-1.02" ] ;
+     fhir:display [ fhir:v "Code Project Open License 1.02" ] ;
+     fhir:definition [ fhir:v "Code Project Open License 1.02." ]
+  ] [
+     fhir:code [ fhir:v "Crossword" ] ;
+     fhir:display [ fhir:v "Crossword License" ] ;
+     fhir:definition [ fhir:v "Crossword License." ]
+  ] [
+     fhir:code [ fhir:v "CrystalStacker" ] ;
+     fhir:display [ fhir:v "CrystalStacker License" ] ;
+     fhir:definition [ fhir:v "CrystalStacker License." ]
+  ] [
+     fhir:code [ fhir:v "CUA-OPL-1.0" ] ;
+     fhir:display [ fhir:v "CUA Office Public License v1.0" ] ;
+     fhir:definition [ fhir:v "CUA Office Public License v1.0." ]
+  ] [
+     fhir:code [ fhir:v "Cube" ] ;
+     fhir:display [ fhir:v "Cube License" ] ;
+     fhir:definition [ fhir:v "Cube License." ]
+  ] [
+     fhir:code [ fhir:v "curl" ] ;
+     fhir:display [ fhir:v "curl License" ] ;
+     fhir:definition [ fhir:v "curl License." ]
+  ] [
+     fhir:code [ fhir:v "D-FSL-1.0" ] ;
+     fhir:display [ fhir:v "Deutsche Freie Software Lizenz" ] ;
+     fhir:definition [ fhir:v "Deutsche Freie Software Lizenz." ]
+  ] [
+     fhir:code [ fhir:v "diffmark" ] ;
+     fhir:display [ fhir:v "diffmark license" ] ;
+     fhir:definition [ fhir:v "diffmark license." ]
+  ] [
+     fhir:code [ fhir:v "DOC" ] ;
+     fhir:display [ fhir:v "DOC License" ] ;
+     fhir:definition [ fhir:v "DOC License." ]
+  ] [
+     fhir:code [ fhir:v "Dotseqn" ] ;
+     fhir:display [ fhir:v "Dotseqn License" ] ;
+     fhir:definition [ fhir:v "Dotseqn License." ]
+  ] [
+     fhir:code [ fhir:v "DSDP" ] ;
+     fhir:display [ fhir:v "DSDP License" ] ;
+     fhir:definition [ fhir:v "DSDP License." ]
+  ] [
+     fhir:code [ fhir:v "dvipdfm" ] ;
+     fhir:display [ fhir:v "dvipdfm License" ] ;
+     fhir:definition [ fhir:v "dvipdfm License." ]
+  ] [
+     fhir:code [ fhir:v "ECL-1.0" ] ;
+     fhir:display [ fhir:v "Educational Community License v1.0" ] ;
+     fhir:definition [ fhir:v "Educational Community License v1.0." ]
+  ] [
+     fhir:code [ fhir:v "ECL-2.0" ] ;
+     fhir:display [ fhir:v "Educational Community License v2.0" ] ;
+     fhir:definition [ fhir:v "Educational Community License v2.0." ]
+  ] [
+     fhir:code [ fhir:v "EFL-1.0" ] ;
+     fhir:display [ fhir:v "Eiffel Forum License v1.0" ] ;
+     fhir:definition [ fhir:v "Eiffel Forum License v1.0." ]
+  ] [
+     fhir:code [ fhir:v "EFL-2.0" ] ;
+     fhir:display [ fhir:v "Eiffel Forum License v2.0" ] ;
+     fhir:definition [ fhir:v "Eiffel Forum License v2.0." ]
+  ] [
+     fhir:code [ fhir:v "eGenix" ] ;
+     fhir:display [ fhir:v "eGenix.com Public License 1.1.0" ] ;
+     fhir:definition [ fhir:v "eGenix.com Public License 1.1.0." ]
+  ] [
+     fhir:code [ fhir:v "Entessa" ] ;
+     fhir:display [ fhir:v "Entessa Public License v1.0" ] ;
+     fhir:definition [ fhir:v "Entessa Public License v1.0." ]
+  ] [
+     fhir:code [ fhir:v "EPL-1.0" ] ;
+     fhir:display [ fhir:v "Eclipse Public License 1.0" ] ;
+     fhir:definition [ fhir:v "Eclipse Public License 1.0." ]
+  ] [
+     fhir:code [ fhir:v "EPL-2.0" ] ;
+     fhir:display [ fhir:v "Eclipse Public License 2.0" ] ;
+     fhir:definition [ fhir:v "Eclipse Public License 2.0." ]
+  ] [
+     fhir:code [ fhir:v "ErlPL-1.1" ] ;
+     fhir:display [ fhir:v "Erlang Public License v1.1" ] ;
+     fhir:definition [ fhir:v "Erlang Public License v1.1." ]
+  ] [
+     fhir:code [ fhir:v "EUDatagrid" ] ;
+     fhir:display [ fhir:v "EU DataGrid Software License" ] ;
+     fhir:definition [ fhir:v "EU DataGrid Software License." ]
+  ] [
+     fhir:code [ fhir:v "EUPL-1.0" ] ;
+     fhir:display [ fhir:v "European Union Public License 1.0" ] ;
+     fhir:definition [ fhir:v "European Union Public License 1.0." ]
+  ] [
+     fhir:code [ fhir:v "EUPL-1.1" ] ;
+     fhir:display [ fhir:v "European Union Public License 1.1" ] ;
+     fhir:definition [ fhir:v "European Union Public License 1.1." ]
+  ] [
+     fhir:code [ fhir:v "EUPL-1.2" ] ;
+     fhir:display [ fhir:v "European Union Public License 1.2" ] ;
+     fhir:definition [ fhir:v "European Union Public License 1.2." ]
+  ] [
+     fhir:code [ fhir:v "Eurosym" ] ;
+     fhir:display [ fhir:v "Eurosym License" ] ;
+     fhir:definition [ fhir:v "Eurosym License." ]
+  ] [
+     fhir:code [ fhir:v "Fair" ] ;
+     fhir:display [ fhir:v "Fair License" ] ;
+     fhir:definition [ fhir:v "Fair License." ]
+  ] [
+     fhir:code [ fhir:v "Frameworx-1.0" ] ;
+     fhir:display [ fhir:v "Frameworx Open License 1.0" ] ;
+     fhir:definition [ fhir:v "Frameworx Open License 1.0." ]
+  ] [
+     fhir:code [ fhir:v "FreeImage" ] ;
+     fhir:display [ fhir:v "FreeImage Public License v1.0" ] ;
+     fhir:definition [ fhir:v "FreeImage Public License v1.0." ]
+  ] [
+     fhir:code [ fhir:v "FSFAP" ] ;
+     fhir:display [ fhir:v "FSF All Permissive License" ] ;
+     fhir:definition [ fhir:v "FSF All Permissive License." ]
+  ] [
+     fhir:code [ fhir:v "FSFUL" ] ;
+     fhir:display [ fhir:v "FSF Unlimited License" ] ;
+     fhir:definition [ fhir:v "FSF Unlimited License." ]
+  ] [
+     fhir:code [ fhir:v "FSFULLR" ] ;
+     fhir:display [ fhir:v "FSF Unlimited License (with License Retention)" ] ;
+     fhir:definition [ fhir:v "FSF Unlimited License (with License Retention)." ]
+  ] [
+     fhir:code [ fhir:v "FTL" ] ;
+     fhir:display [ fhir:v "Freetype Project License" ] ;
+     fhir:definition [ fhir:v "Freetype Project License." ]
+  ] [
+     fhir:code [ fhir:v "GFDL-1.1-only" ] ;
+     fhir:display [ fhir:v "GNU Free Documentation License v1.1 only" ] ;
+     fhir:definition [ fhir:v "GNU Free Documentation License v1.1 only." ]
+  ] [
+     fhir:code [ fhir:v "GFDL-1.1-or-later" ] ;
+     fhir:display [ fhir:v "GNU Free Documentation License v1.1 or later" ] ;
+     fhir:definition [ fhir:v "GNU Free Documentation License v1.1 or later." ]
+  ] [
+     fhir:code [ fhir:v "GFDL-1.2-only" ] ;
+     fhir:display [ fhir:v "GNU Free Documentation License v1.2 only" ] ;
+     fhir:definition [ fhir:v "GNU Free Documentation License v1.2 only." ]
+  ] [
+     fhir:code [ fhir:v "GFDL-1.2-or-later" ] ;
+     fhir:display [ fhir:v "GNU Free Documentation License v1.2 or later" ] ;
+     fhir:definition [ fhir:v "GNU Free Documentation License v1.2 or later." ]
+  ] [
+     fhir:code [ fhir:v "GFDL-1.3-only" ] ;
+     fhir:display [ fhir:v "GNU Free Documentation License v1.3 only" ] ;
+     fhir:definition [ fhir:v "GNU Free Documentation License v1.3 only." ]
+  ] [
+     fhir:code [ fhir:v "GFDL-1.3-or-later" ] ;
+     fhir:display [ fhir:v "GNU Free Documentation License v1.3 or later" ] ;
+     fhir:definition [ fhir:v "GNU Free Documentation License v1.3 or later." ]
+  ] [
+     fhir:code [ fhir:v "Giftware" ] ;
+     fhir:display [ fhir:v "Giftware License" ] ;
+     fhir:definition [ fhir:v "Giftware License." ]
+  ] [
+     fhir:code [ fhir:v "GL2PS" ] ;
+     fhir:display [ fhir:v "GL2PS License" ] ;
+     fhir:definition [ fhir:v "GL2PS License." ]
+  ] [
+     fhir:code [ fhir:v "Glide" ] ;
+     fhir:display [ fhir:v "3dfx Glide License" ] ;
+     fhir:definition [ fhir:v "3dfx Glide License." ]
+  ] [
+     fhir:code [ fhir:v "Glulxe" ] ;
+     fhir:display [ fhir:v "Glulxe License" ] ;
+     fhir:definition [ fhir:v "Glulxe License." ]
+  ] [
+     fhir:code [ fhir:v "gnuplot" ] ;
+     fhir:display [ fhir:v "gnuplot License" ] ;
+     fhir:definition [ fhir:v "gnuplot License." ]
+  ] [
+     fhir:code [ fhir:v "GPL-1.0-only" ] ;
+     fhir:display [ fhir:v "GNU General Public License v1.0 only" ] ;
+     fhir:definition [ fhir:v "GNU General Public License v1.0 only." ]
+  ] [
+     fhir:code [ fhir:v "GPL-1.0-or-later" ] ;
+     fhir:display [ fhir:v "GNU General Public License v1.0 or later" ] ;
+     fhir:definition [ fhir:v "GNU General Public License v1.0 or later." ]
+  ] [
+     fhir:code [ fhir:v "GPL-2.0-only" ] ;
+     fhir:display [ fhir:v "GNU General Public License v2.0 only" ] ;
+     fhir:definition [ fhir:v "GNU General Public License v2.0 only." ]
+  ] [
+     fhir:code [ fhir:v "GPL-2.0-or-later" ] ;
+     fhir:display [ fhir:v "GNU General Public License v2.0 or later" ] ;
+     fhir:definition [ fhir:v "GNU General Public License v2.0 or later." ]
+  ] [
+     fhir:code [ fhir:v "GPL-3.0-only" ] ;
+     fhir:display [ fhir:v "GNU General Public License v3.0 only" ] ;
+     fhir:definition [ fhir:v "GNU General Public License v3.0 only." ]
+  ] [
+     fhir:code [ fhir:v "GPL-3.0-or-later" ] ;
+     fhir:display [ fhir:v "GNU General Public License v3.0 or later" ] ;
+     fhir:definition [ fhir:v "GNU General Public License v3.0 or later." ]
+  ] [
+     fhir:code [ fhir:v "gSOAP-1.3b" ] ;
+     fhir:display [ fhir:v "gSOAP Public License v1.3b" ] ;
+     fhir:definition [ fhir:v "gSOAP Public License v1.3b." ]
+  ] [
+     fhir:code [ fhir:v "HaskellReport" ] ;
+     fhir:display [ fhir:v "Haskell Language Report License" ] ;
+     fhir:definition [ fhir:v "Haskell Language Report License." ]
+  ] [
+     fhir:code [ fhir:v "HPND" ] ;
+     fhir:display [ fhir:v "Historical Permission Notice and Disclaimer" ] ;
+     fhir:definition [ fhir:v "Historical Permission Notice and Disclaimer." ]
+  ] [
+     fhir:code [ fhir:v "IBM-pibs" ] ;
+     fhir:display [ fhir:v "IBM PowerPC Initialization and Boot Software" ] ;
+     fhir:definition [ fhir:v "IBM PowerPC Initialization and Boot Software." ]
+  ] [
+     fhir:code [ fhir:v "ICU" ] ;
+     fhir:display [ fhir:v "ICU License" ] ;
+     fhir:definition [ fhir:v "ICU License." ]
+  ] [
+     fhir:code [ fhir:v "IJG" ] ;
+     fhir:display [ fhir:v "Independent JPEG Group License" ] ;
+     fhir:definition [ fhir:v "Independent JPEG Group License." ]
+  ] [
+     fhir:code [ fhir:v "ImageMagick" ] ;
+     fhir:display [ fhir:v "ImageMagick License" ] ;
+     fhir:definition [ fhir:v "ImageMagick License." ]
+  ] [
+     fhir:code [ fhir:v "iMatix" ] ;
+     fhir:display [ fhir:v "iMatix Standard Function Library Agreement" ] ;
+     fhir:definition [ fhir:v "iMatix Standard Function Library Agreement." ]
+  ] [
+     fhir:code [ fhir:v "Imlib2" ] ;
+     fhir:display [ fhir:v "Imlib2 License" ] ;
+     fhir:definition [ fhir:v "Imlib2 License." ]
+  ] [
+     fhir:code [ fhir:v "Info-ZIP" ] ;
+     fhir:display [ fhir:v "Info-ZIP License" ] ;
+     fhir:definition [ fhir:v "Info-ZIP License." ]
+  ] [
+     fhir:code [ fhir:v "Intel-ACPI" ] ;
+     fhir:display [ fhir:v "Intel ACPI Software License Agreement" ] ;
+     fhir:definition [ fhir:v "Intel ACPI Software License Agreement." ]
+  ] [
+     fhir:code [ fhir:v "Intel" ] ;
+     fhir:display [ fhir:v "Intel Open Source License" ] ;
+     fhir:definition [ fhir:v "Intel Open Source License." ]
+  ] [
+     fhir:code [ fhir:v "Interbase-1.0" ] ;
+     fhir:display [ fhir:v "Interbase Public License v1.0" ] ;
+     fhir:definition [ fhir:v "Interbase Public License v1.0." ]
+  ] [
+     fhir:code [ fhir:v "IPA" ] ;
+     fhir:display [ fhir:v "IPA Font License" ] ;
+     fhir:definition [ fhir:v "IPA Font License." ]
+  ] [
+     fhir:code [ fhir:v "IPL-1.0" ] ;
+     fhir:display [ fhir:v "IBM Public License v1.0" ] ;
+     fhir:definition [ fhir:v "IBM Public License v1.0." ]
+  ] [
+     fhir:code [ fhir:v "ISC" ] ;
+     fhir:display [ fhir:v "ISC License" ] ;
+     fhir:definition [ fhir:v "ISC License." ]
+  ] [
+     fhir:code [ fhir:v "JasPer-2.0" ] ;
+     fhir:display [ fhir:v "JasPer License" ] ;
+     fhir:definition [ fhir:v "JasPer License." ]
+  ] [
+     fhir:code [ fhir:v "JSON" ] ;
+     fhir:display [ fhir:v "JSON License" ] ;
+     fhir:definition [ fhir:v "JSON License." ]
+  ] [
+     fhir:code [ fhir:v "LAL-1.2" ] ;
+     fhir:display [ fhir:v "Licence Art Libre 1.2" ] ;
+     fhir:definition [ fhir:v "Licence Art Libre 1.2." ]
+  ] [
+     fhir:code [ fhir:v "LAL-1.3" ] ;
+     fhir:display [ fhir:v "Licence Art Libre 1.3" ] ;
+     fhir:definition [ fhir:v "Licence Art Libre 1.3." ]
+  ] [
+     fhir:code [ fhir:v "Latex2e" ] ;
+     fhir:display [ fhir:v "Latex2e License" ] ;
+     fhir:definition [ fhir:v "Latex2e License." ]
+  ] [
+     fhir:code [ fhir:v "Leptonica" ] ;
+     fhir:display [ fhir:v "Leptonica License" ] ;
+     fhir:definition [ fhir:v "Leptonica License." ]
+  ] [
+     fhir:code [ fhir:v "LGPL-2.0-only" ] ;
+     fhir:display [ fhir:v "GNU Library General Public License v2 only" ] ;
+     fhir:definition [ fhir:v "GNU Library General Public License v2 only." ]
+  ] [
+     fhir:code [ fhir:v "LGPL-2.0-or-later" ] ;
+     fhir:display [ fhir:v "GNU Library General Public License v2 or later" ] ;
+     fhir:definition [ fhir:v "GNU Library General Public License v2 or later." ]
+  ] [
+     fhir:code [ fhir:v "LGPL-2.1-only" ] ;
+     fhir:display [ fhir:v "GNU Lesser General Public License v2.1 only" ] ;
+     fhir:definition [ fhir:v "GNU Lesser General Public License v2.1 only." ]
+  ] [
+     fhir:code [ fhir:v "LGPL-2.1-or-later" ] ;
+     fhir:display [ fhir:v "GNU Lesser General Public License v2.1 or later" ] ;
+     fhir:definition [ fhir:v "GNU Lesser General Public License v2.1 or later." ]
+  ] [
+     fhir:code [ fhir:v "LGPL-3.0-only" ] ;
+     fhir:display [ fhir:v "GNU Lesser General Public License v3.0 only" ] ;
+     fhir:definition [ fhir:v "GNU Lesser General Public License v3.0 only." ]
+  ] [
+     fhir:code [ fhir:v "LGPL-3.0-or-later" ] ;
+     fhir:display [ fhir:v "GNU Lesser General Public License v3.0 or later" ] ;
+     fhir:definition [ fhir:v "GNU Lesser General Public License v3.0 or later." ]
+  ] [
+     fhir:code [ fhir:v "LGPLLR" ] ;
+     fhir:display [ fhir:v "Lesser General Public License For Linguistic Resources" ] ;
+     fhir:definition [ fhir:v "Lesser General Public License For Linguistic Resources." ]
+  ] [
+     fhir:code [ fhir:v "Libpng" ] ;
+     fhir:display [ fhir:v "libpng License" ] ;
+     fhir:definition [ fhir:v "libpng License." ]
+  ] [
+     fhir:code [ fhir:v "libtiff" ] ;
+     fhir:display [ fhir:v "libtiff License" ] ;
+     fhir:definition [ fhir:v "libtiff License." ]
+  ] [
+     fhir:code [ fhir:v "LiLiQ-P-1.1" ] ;
+     fhir:display [ fhir:v "Licence Libre du Québec – Permissive version 1.1" ] ;
+     fhir:definition [ fhir:v "Licence Libre du Québec – Permissive version 1.1." ]
+  ] [
+     fhir:code [ fhir:v "LiLiQ-R-1.1" ] ;
+     fhir:display [ fhir:v "Licence Libre du Québec – Réciprocité version 1.1" ] ;
+     fhir:definition [ fhir:v "Licence Libre du Québec – Réciprocité version 1.1." ]
+  ] [
+     fhir:code [ fhir:v "LiLiQ-Rplus-1.1" ] ;
+     fhir:display [ fhir:v "Licence Libre du Québec – Réciprocité forte version 1.1" ] ;
+     fhir:definition [ fhir:v "Licence Libre du Québec – Réciprocité forte version 1.1." ]
+  ] [
+     fhir:code [ fhir:v "Linux-OpenIB" ] ;
+     fhir:display [ fhir:v "Linux Kernel Variant of OpenIB.org license" ] ;
+     fhir:definition [ fhir:v "Linux Kernel Variant of OpenIB.org license." ]
+  ] [
+     fhir:code [ fhir:v "LPL-1.0" ] ;
+     fhir:display [ fhir:v "Lucent Public License Version 1.0" ] ;
+     fhir:definition [ fhir:v "Lucent Public License Version 1.0." ]
+  ] [
+     fhir:code [ fhir:v "LPL-1.02" ] ;
+     fhir:display [ fhir:v "Lucent Public License v1.02" ] ;
+     fhir:definition [ fhir:v "Lucent Public License v1.02." ]
+  ] [
+     fhir:code [ fhir:v "LPPL-1.0" ] ;
+     fhir:display [ fhir:v "LaTeX Project Public License v1.0" ] ;
+     fhir:definition [ fhir:v "LaTeX Project Public License v1.0." ]
+  ] [
+     fhir:code [ fhir:v "LPPL-1.1" ] ;
+     fhir:display [ fhir:v "LaTeX Project Public License v1.1" ] ;
+     fhir:definition [ fhir:v "LaTeX Project Public License v1.1." ]
+  ] [
+     fhir:code [ fhir:v "LPPL-1.2" ] ;
+     fhir:display [ fhir:v "LaTeX Project Public License v1.2" ] ;
+     fhir:definition [ fhir:v "LaTeX Project Public License v1.2." ]
+  ] [
+     fhir:code [ fhir:v "LPPL-1.3a" ] ;
+     fhir:display [ fhir:v "LaTeX Project Public License v1.3a" ] ;
+     fhir:definition [ fhir:v "LaTeX Project Public License v1.3a." ]
+  ] [
+     fhir:code [ fhir:v "LPPL-1.3c" ] ;
+     fhir:display [ fhir:v "LaTeX Project Public License v1.3c" ] ;
+     fhir:definition [ fhir:v "LaTeX Project Public License v1.3c." ]
+  ] [
+     fhir:code [ fhir:v "MakeIndex" ] ;
+     fhir:display [ fhir:v "MakeIndex License" ] ;
+     fhir:definition [ fhir:v "MakeIndex License." ]
+  ] [
+     fhir:code [ fhir:v "MirOS" ] ;
+     fhir:display [ fhir:v "MirOS License" ] ;
+     fhir:definition [ fhir:v "MirOS License." ]
+  ] [
+     fhir:code [ fhir:v "MIT-0" ] ;
+     fhir:display [ fhir:v "MIT No Attribution" ] ;
+     fhir:definition [ fhir:v "MIT No Attribution." ]
+  ] [
+     fhir:code [ fhir:v "MIT-advertising" ] ;
+     fhir:display [ fhir:v "Enlightenment License (e16)" ] ;
+     fhir:definition [ fhir:v "Enlightenment License (e16)." ]
+  ] [
+     fhir:code [ fhir:v "MIT-CMU" ] ;
+     fhir:display [ fhir:v "CMU License" ] ;
+     fhir:definition [ fhir:v "CMU License." ]
+  ] [
+     fhir:code [ fhir:v "MIT-enna" ] ;
+     fhir:display [ fhir:v "enna License" ] ;
+     fhir:definition [ fhir:v "enna License." ]
+  ] [
+     fhir:code [ fhir:v "MIT-feh" ] ;
+     fhir:display [ fhir:v "feh License" ] ;
+     fhir:definition [ fhir:v "feh License." ]
+  ] [
+     fhir:code [ fhir:v "MIT" ] ;
+     fhir:display [ fhir:v "MIT License" ] ;
+     fhir:definition [ fhir:v "MIT License." ]
+  ] [
+     fhir:code [ fhir:v "MITNFA" ] ;
+     fhir:display [ fhir:v "MIT +no-false-attribs license" ] ;
+     fhir:definition [ fhir:v "MIT +no-false-attribs license." ]
+  ] [
+     fhir:code [ fhir:v "Motosoto" ] ;
+     fhir:display [ fhir:v "Motosoto License" ] ;
+     fhir:definition [ fhir:v "Motosoto License." ]
+  ] [
+     fhir:code [ fhir:v "mpich2" ] ;
+     fhir:display [ fhir:v "mpich2 License" ] ;
+     fhir:definition [ fhir:v "mpich2 License." ]
+  ] [
+     fhir:code [ fhir:v "MPL-1.0" ] ;
+     fhir:display [ fhir:v "Mozilla Public License 1.0" ] ;
+     fhir:definition [ fhir:v "Mozilla Public License 1.0." ]
+  ] [
+     fhir:code [ fhir:v "MPL-1.1" ] ;
+     fhir:display [ fhir:v "Mozilla Public License 1.1" ] ;
+     fhir:definition [ fhir:v "Mozilla Public License 1.1." ]
+  ] [
+     fhir:code [ fhir:v "MPL-2.0-no-copyleft-exception" ] ;
+     fhir:display [ fhir:v "Mozilla Public License 2.0 (no copyleft exception)" ] ;
+     fhir:definition [ fhir:v "Mozilla Public License 2.0 (no copyleft exception)." ]
+  ] [
+     fhir:code [ fhir:v "MPL-2.0" ] ;
+     fhir:display [ fhir:v "Mozilla Public License 2.0" ] ;
+     fhir:definition [ fhir:v "Mozilla Public License 2.0." ]
+  ] [
+     fhir:code [ fhir:v "MS-PL" ] ;
+     fhir:display [ fhir:v "Microsoft Public License" ] ;
+     fhir:definition [ fhir:v "Microsoft Public License." ]
+  ] [
+     fhir:code [ fhir:v "MS-RL" ] ;
+     fhir:display [ fhir:v "Microsoft Reciprocal License" ] ;
+     fhir:definition [ fhir:v "Microsoft Reciprocal License." ]
+  ] [
+     fhir:code [ fhir:v "MTLL" ] ;
+     fhir:display [ fhir:v "Matrix Template Library License" ] ;
+     fhir:definition [ fhir:v "Matrix Template Library License." ]
+  ] [
+     fhir:code [ fhir:v "Multics" ] ;
+     fhir:display [ fhir:v "Multics License" ] ;
+     fhir:definition [ fhir:v "Multics License." ]
+  ] [
+     fhir:code [ fhir:v "Mup" ] ;
+     fhir:display [ fhir:v "Mup License" ] ;
+     fhir:definition [ fhir:v "Mup License." ]
+  ] [
+     fhir:code [ fhir:v "NASA-1.3" ] ;
+     fhir:display [ fhir:v "NASA Open Source Agreement 1.3" ] ;
+     fhir:definition [ fhir:v "NASA Open Source Agreement 1.3." ]
+  ] [
+     fhir:code [ fhir:v "Naumen" ] ;
+     fhir:display [ fhir:v "Naumen Public License" ] ;
+     fhir:definition [ fhir:v "Naumen Public License." ]
+  ] [
+     fhir:code [ fhir:v "NBPL-1.0" ] ;
+     fhir:display [ fhir:v "Net Boolean Public License v1" ] ;
+     fhir:definition [ fhir:v "Net Boolean Public License v1." ]
+  ] [
+     fhir:code [ fhir:v "NCSA" ] ;
+     fhir:display [ fhir:v "University of Illinois/NCSA Open Source License" ] ;
+     fhir:definition [ fhir:v "University of Illinois/NCSA Open Source License." ]
+  ] [
+     fhir:code [ fhir:v "Net-SNMP" ] ;
+     fhir:display [ fhir:v "Net-SNMP License" ] ;
+     fhir:definition [ fhir:v "Net-SNMP License." ]
+  ] [
+     fhir:code [ fhir:v "NetCDF" ] ;
+     fhir:display [ fhir:v "NetCDF license" ] ;
+     fhir:definition [ fhir:v "NetCDF license." ]
+  ] [
+     fhir:code [ fhir:v "Newsletr" ] ;
+     fhir:display [ fhir:v "Newsletr License" ] ;
+     fhir:definition [ fhir:v "Newsletr License." ]
+  ] [
+     fhir:code [ fhir:v "NGPL" ] ;
+     fhir:display [ fhir:v "Nethack General Public License" ] ;
+     fhir:definition [ fhir:v "Nethack General Public License." ]
+  ] [
+     fhir:code [ fhir:v "NLOD-1.0" ] ;
+     fhir:display [ fhir:v "Norwegian Licence for Open Government Data" ] ;
+     fhir:definition [ fhir:v "Norwegian Licence for Open Government Data." ]
+  ] [
+     fhir:code [ fhir:v "NLPL" ] ;
+     fhir:display [ fhir:v "No Limit Public License" ] ;
+     fhir:definition [ fhir:v "No Limit Public License." ]
+  ] [
+     fhir:code [ fhir:v "Nokia" ] ;
+     fhir:display [ fhir:v "Nokia Open Source License" ] ;
+     fhir:definition [ fhir:v "Nokia Open Source License." ]
+  ] [
+     fhir:code [ fhir:v "NOSL" ] ;
+     fhir:display [ fhir:v "Netizen Open Source License" ] ;
+     fhir:definition [ fhir:v "Netizen Open Source License." ]
+  ] [
+     fhir:code [ fhir:v "Noweb" ] ;
+     fhir:display [ fhir:v "Noweb License" ] ;
+     fhir:definition [ fhir:v "Noweb License." ]
+  ] [
+     fhir:code [ fhir:v "NPL-1.0" ] ;
+     fhir:display [ fhir:v "Netscape Public License v1.0" ] ;
+     fhir:definition [ fhir:v "Netscape Public License v1.0." ]
+  ] [
+     fhir:code [ fhir:v "NPL-1.1" ] ;
+     fhir:display [ fhir:v "Netscape Public License v1.1" ] ;
+     fhir:definition [ fhir:v "Netscape Public License v1.1." ]
+  ] [
+     fhir:code [ fhir:v "NPOSL-3.0" ] ;
+     fhir:display [ fhir:v "Non-Profit Open Software License 3.0" ] ;
+     fhir:definition [ fhir:v "Non-Profit Open Software License 3.0." ]
+  ] [
+     fhir:code [ fhir:v "NRL" ] ;
+     fhir:display [ fhir:v "NRL License" ] ;
+     fhir:definition [ fhir:v "NRL License." ]
+  ] [
+     fhir:code [ fhir:v "NTP" ] ;
+     fhir:display [ fhir:v "NTP License" ] ;
+     fhir:definition [ fhir:v "NTP License." ]
+  ] [
+     fhir:code [ fhir:v "OCCT-PL" ] ;
+     fhir:display [ fhir:v "Open CASCADE Technology Public License" ] ;
+     fhir:definition [ fhir:v "Open CASCADE Technology Public License." ]
+  ] [
+     fhir:code [ fhir:v "OCLC-2.0" ] ;
+     fhir:display [ fhir:v "OCLC Research Public License 2.0" ] ;
+     fhir:definition [ fhir:v "OCLC Research Public License 2.0." ]
+  ] [
+     fhir:code [ fhir:v "ODbL-1.0" ] ;
+     fhir:display [ fhir:v "ODC Open Database License v1.0" ] ;
+     fhir:definition [ fhir:v "ODC Open Database License v1.0." ]
+  ] [
+     fhir:code [ fhir:v "OFL-1.0" ] ;
+     fhir:display [ fhir:v "SIL Open Font License 1.0" ] ;
+     fhir:definition [ fhir:v "SIL Open Font License 1.0." ]
+  ] [
+     fhir:code [ fhir:v "OFL-1.1" ] ;
+     fhir:display [ fhir:v "SIL Open Font License 1.1" ] ;
+     fhir:definition [ fhir:v "SIL Open Font License 1.1." ]
+  ] [
+     fhir:code [ fhir:v "OGTSL" ] ;
+     fhir:display [ fhir:v "Open Group Test Suite License" ] ;
+     fhir:definition [ fhir:v "Open Group Test Suite License." ]
+  ] [
+     fhir:code [ fhir:v "OLDAP-1.1" ] ;
+     fhir:display [ fhir:v "Open LDAP Public License v1.1" ] ;
+     fhir:definition [ fhir:v "Open LDAP Public License v1.1." ]
+  ] [
+     fhir:code [ fhir:v "OLDAP-1.2" ] ;
+     fhir:display [ fhir:v "Open LDAP Public License v1.2" ] ;
+     fhir:definition [ fhir:v "Open LDAP Public License v1.2." ]
+  ] [
+     fhir:code [ fhir:v "OLDAP-1.3" ] ;
+     fhir:display [ fhir:v "Open LDAP Public License v1.3" ] ;
+     fhir:definition [ fhir:v "Open LDAP Public License v1.3." ]
+  ] [
+     fhir:code [ fhir:v "OLDAP-1.4" ] ;
+     fhir:display [ fhir:v "Open LDAP Public License v1.4" ] ;
+     fhir:definition [ fhir:v "Open LDAP Public License v1.4." ]
+  ] [
+     fhir:code [ fhir:v "OLDAP-2.0.1" ] ;
+     fhir:display [ fhir:v "Open LDAP Public License v2.0.1" ] ;
+     fhir:definition [ fhir:v "Open LDAP Public License v2.0.1." ]
+  ] [
+     fhir:code [ fhir:v "OLDAP-2.0" ] ;
+     fhir:display [ fhir:v "Open LDAP Public License v2.0 (or possibly 2.0A and 2.0B)" ] ;
+     fhir:definition [ fhir:v "Open LDAP Public License v2.0 (or possibly 2.0A and 2.0B)." ]
+  ] [
+     fhir:code [ fhir:v "OLDAP-2.1" ] ;
+     fhir:display [ fhir:v "Open LDAP Public License v2.1" ] ;
+     fhir:definition [ fhir:v "Open LDAP Public License v2.1." ]
+  ] [
+     fhir:code [ fhir:v "OLDAP-2.2.1" ] ;
+     fhir:display [ fhir:v "Open LDAP Public License v2.2.1" ] ;
+     fhir:definition [ fhir:v "Open LDAP Public License v2.2.1." ]
+  ] [
+     fhir:code [ fhir:v "OLDAP-2.2.2" ] ;
+     fhir:display [ fhir:v "Open LDAP Public License 2.2.2" ] ;
+     fhir:definition [ fhir:v "Open LDAP Public License 2.2.2." ]
+  ] [
+     fhir:code [ fhir:v "OLDAP-2.2" ] ;
+     fhir:display [ fhir:v "Open LDAP Public License v2.2" ] ;
+     fhir:definition [ fhir:v "Open LDAP Public License v2.2." ]
+  ] [
+     fhir:code [ fhir:v "OLDAP-2.3" ] ;
+     fhir:display [ fhir:v "Open LDAP Public License v2.3" ] ;
+     fhir:definition [ fhir:v "Open LDAP Public License v2.3." ]
+  ] [
+     fhir:code [ fhir:v "OLDAP-2.4" ] ;
+     fhir:display [ fhir:v "Open LDAP Public License v2.4" ] ;
+     fhir:definition [ fhir:v "Open LDAP Public License v2.4." ]
+  ] [
+     fhir:code [ fhir:v "OLDAP-2.5" ] ;
+     fhir:display [ fhir:v "Open LDAP Public License v2.5" ] ;
+     fhir:definition [ fhir:v "Open LDAP Public License v2.5." ]
+  ] [
+     fhir:code [ fhir:v "OLDAP-2.6" ] ;
+     fhir:display [ fhir:v "Open LDAP Public License v2.6" ] ;
+     fhir:definition [ fhir:v "Open LDAP Public License v2.6." ]
+  ] [
+     fhir:code [ fhir:v "OLDAP-2.7" ] ;
+     fhir:display [ fhir:v "Open LDAP Public License v2.7" ] ;
+     fhir:definition [ fhir:v "Open LDAP Public License v2.7." ]
+  ] [
+     fhir:code [ fhir:v "OLDAP-2.8" ] ;
+     fhir:display [ fhir:v "Open LDAP Public License v2.8" ] ;
+     fhir:definition [ fhir:v "Open LDAP Public License v2.8." ]
+  ] [
+     fhir:code [ fhir:v "OML" ] ;
+     fhir:display [ fhir:v "Open Market License" ] ;
+     fhir:definition [ fhir:v "Open Market License." ]
+  ] [
+     fhir:code [ fhir:v "OpenSSL" ] ;
+     fhir:display [ fhir:v "OpenSSL License" ] ;
+     fhir:definition [ fhir:v "OpenSSL License." ]
+  ] [
+     fhir:code [ fhir:v "OPL-1.0" ] ;
+     fhir:display [ fhir:v "Open Public License v1.0" ] ;
+     fhir:definition [ fhir:v "Open Public License v1.0." ]
+  ] [
+     fhir:code [ fhir:v "OSET-PL-2.1" ] ;
+     fhir:display [ fhir:v "OSET Public License version 2.1" ] ;
+     fhir:definition [ fhir:v "OSET Public License version 2.1." ]
+  ] [
+     fhir:code [ fhir:v "OSL-1.0" ] ;
+     fhir:display [ fhir:v "Open Software License 1.0" ] ;
+     fhir:definition [ fhir:v "Open Software License 1.0." ]
+  ] [
+     fhir:code [ fhir:v "OSL-1.1" ] ;
+     fhir:display [ fhir:v "Open Software License 1.1" ] ;
+     fhir:definition [ fhir:v "Open Software License 1.1." ]
+  ] [
+     fhir:code [ fhir:v "OSL-2.0" ] ;
+     fhir:display [ fhir:v "Open Software License 2.0" ] ;
+     fhir:definition [ fhir:v "Open Software License 2.0." ]
+  ] [
+     fhir:code [ fhir:v "OSL-2.1" ] ;
+     fhir:display [ fhir:v "Open Software License 2.1" ] ;
+     fhir:definition [ fhir:v "Open Software License 2.1." ]
+  ] [
+     fhir:code [ fhir:v "OSL-3.0" ] ;
+     fhir:display [ fhir:v "Open Software License 3.0" ] ;
+     fhir:definition [ fhir:v "Open Software License 3.0." ]
+  ] [
+     fhir:code [ fhir:v "PDDL-1.0" ] ;
+     fhir:display [ fhir:v "ODC Public Domain Dedication & License 1.0" ] ;
+     fhir:definition [ fhir:v "ODC Public Domain Dedication & License 1.0." ]
+  ] [
+     fhir:code [ fhir:v "PHP-3.0" ] ;
+     fhir:display [ fhir:v "PHP License v3.0" ] ;
+     fhir:definition [ fhir:v "PHP License v3.0." ]
+  ] [
+     fhir:code [ fhir:v "PHP-3.01" ] ;
+     fhir:display [ fhir:v "PHP License v3.01" ] ;
+     fhir:definition [ fhir:v "PHP License v3.01." ]
+  ] [
+     fhir:code [ fhir:v "Plexus" ] ;
+     fhir:display [ fhir:v "Plexus Classworlds License" ] ;
+     fhir:definition [ fhir:v "Plexus Classworlds License." ]
+  ] [
+     fhir:code [ fhir:v "PostgreSQL" ] ;
+     fhir:display [ fhir:v "PostgreSQL License" ] ;
+     fhir:definition [ fhir:v "PostgreSQL License." ]
+  ] [
+     fhir:code [ fhir:v "psfrag" ] ;
+     fhir:display [ fhir:v "psfrag License" ] ;
+     fhir:definition [ fhir:v "psfrag License." ]
+  ] [
+     fhir:code [ fhir:v "psutils" ] ;
+     fhir:display [ fhir:v "psutils License" ] ;
+     fhir:definition [ fhir:v "psutils License." ]
+  ] [
+     fhir:code [ fhir:v "Python-2.0" ] ;
+     fhir:display [ fhir:v "Python License 2.0" ] ;
+     fhir:definition [ fhir:v "Python License 2.0." ]
+  ] [
+     fhir:code [ fhir:v "Qhull" ] ;
+     fhir:display [ fhir:v "Qhull License" ] ;
+     fhir:definition [ fhir:v "Qhull License." ]
+  ] [
+     fhir:code [ fhir:v "QPL-1.0" ] ;
+     fhir:display [ fhir:v "Q Public License 1.0" ] ;
+     fhir:definition [ fhir:v "Q Public License 1.0." ]
+  ] [
+     fhir:code [ fhir:v "Rdisc" ] ;
+     fhir:display [ fhir:v "Rdisc License" ] ;
+     fhir:definition [ fhir:v "Rdisc License." ]
+  ] [
+     fhir:code [ fhir:v "RHeCos-1.1" ] ;
+     fhir:display [ fhir:v "Red Hat eCos Public License v1.1" ] ;
+     fhir:definition [ fhir:v "Red Hat eCos Public License v1.1." ]
+  ] [
+     fhir:code [ fhir:v "RPL-1.1" ] ;
+     fhir:display [ fhir:v "Reciprocal Public License 1.1" ] ;
+     fhir:definition [ fhir:v "Reciprocal Public License 1.1." ]
+  ] [
+     fhir:code [ fhir:v "RPL-1.5" ] ;
+     fhir:display [ fhir:v "Reciprocal Public License 1.5" ] ;
+     fhir:definition [ fhir:v "Reciprocal Public License 1.5." ]
+  ] [
+     fhir:code [ fhir:v "RPSL-1.0" ] ;
+     fhir:display [ fhir:v "RealNetworks Public Source License v1.0" ] ;
+     fhir:definition [ fhir:v "RealNetworks Public Source License v1.0." ]
+  ] [
+     fhir:code [ fhir:v "RSA-MD" ] ;
+     fhir:display [ fhir:v "RSA Message-Digest License" ] ;
+     fhir:definition [ fhir:v "RSA Message-Digest License." ]
+  ] [
+     fhir:code [ fhir:v "RSCPL" ] ;
+     fhir:display [ fhir:v "Ricoh Source Code Public License" ] ;
+     fhir:definition [ fhir:v "Ricoh Source Code Public License." ]
+  ] [
+     fhir:code [ fhir:v "Ruby" ] ;
+     fhir:display [ fhir:v "Ruby License" ] ;
+     fhir:definition [ fhir:v "Ruby License." ]
+  ] [
+     fhir:code [ fhir:v "SAX-PD" ] ;
+     fhir:display [ fhir:v "Sax Public Domain Notice" ] ;
+     fhir:definition [ fhir:v "Sax Public Domain Notice." ]
+  ] [
+     fhir:code [ fhir:v "Saxpath" ] ;
+     fhir:display [ fhir:v "Saxpath License" ] ;
+     fhir:definition [ fhir:v "Saxpath License." ]
+  ] [
+     fhir:code [ fhir:v "SCEA" ] ;
+     fhir:display [ fhir:v "SCEA Shared Source License" ] ;
+     fhir:definition [ fhir:v "SCEA Shared Source License." ]
+  ] [
+     fhir:code [ fhir:v "Sendmail" ] ;
+     fhir:display [ fhir:v "Sendmail License" ] ;
+     fhir:definition [ fhir:v "Sendmail License." ]
+  ] [
+     fhir:code [ fhir:v "SGI-B-1.0" ] ;
+     fhir:display [ fhir:v "SGI Free Software License B v1.0" ] ;
+     fhir:definition [ fhir:v "SGI Free Software License B v1.0." ]
+  ] [
+     fhir:code [ fhir:v "SGI-B-1.1" ] ;
+     fhir:display [ fhir:v "SGI Free Software License B v1.1" ] ;
+     fhir:definition [ fhir:v "SGI Free Software License B v1.1." ]
+  ] [
+     fhir:code [ fhir:v "SGI-B-2.0" ] ;
+     fhir:display [ fhir:v "SGI Free Software License B v2.0" ] ;
+     fhir:definition [ fhir:v "SGI Free Software License B v2.0." ]
+  ] [
+     fhir:code [ fhir:v "SimPL-2.0" ] ;
+     fhir:display [ fhir:v "Simple Public License 2.0" ] ;
+     fhir:definition [ fhir:v "Simple Public License 2.0." ]
+  ] [
+     fhir:code [ fhir:v "SISSL-1.2" ] ;
+     fhir:display [ fhir:v "Sun Industry Standards Source License v1.2" ] ;
+     fhir:definition [ fhir:v "Sun Industry Standards Source License v1.2." ]
+  ] [
+     fhir:code [ fhir:v "SISSL" ] ;
+     fhir:display [ fhir:v "Sun Industry Standards Source License v1.1" ] ;
+     fhir:definition [ fhir:v "Sun Industry Standards Source License v1.1." ]
+  ] [
+     fhir:code [ fhir:v "Sleepycat" ] ;
+     fhir:display [ fhir:v "Sleepycat License" ] ;
+     fhir:definition [ fhir:v "Sleepycat License." ]
+  ] [
+     fhir:code [ fhir:v "SMLNJ" ] ;
+     fhir:display [ fhir:v "Standard ML of New Jersey License" ] ;
+     fhir:definition [ fhir:v "Standard ML of New Jersey License." ]
+  ] [
+     fhir:code [ fhir:v "SMPPL" ] ;
+     fhir:display [ fhir:v "Secure Messaging Protocol Public License" ] ;
+     fhir:definition [ fhir:v "Secure Messaging Protocol Public License." ]
+  ] [
+     fhir:code [ fhir:v "SNIA" ] ;
+     fhir:display [ fhir:v "SNIA Public License 1.1" ] ;
+     fhir:definition [ fhir:v "SNIA Public License 1.1." ]
+  ] [
+     fhir:code [ fhir:v "Spencer-86" ] ;
+     fhir:display [ fhir:v "Spencer License 86" ] ;
+     fhir:definition [ fhir:v "Spencer License 86." ]
+  ] [
+     fhir:code [ fhir:v "Spencer-94" ] ;
+     fhir:display [ fhir:v "Spencer License 94" ] ;
+     fhir:definition [ fhir:v "Spencer License 94." ]
+  ] [
+     fhir:code [ fhir:v "Spencer-99" ] ;
+     fhir:display [ fhir:v "Spencer License 99" ] ;
+     fhir:definition [ fhir:v "Spencer License 99." ]
+  ] [
+     fhir:code [ fhir:v "SPL-1.0" ] ;
+     fhir:display [ fhir:v "Sun Public License v1.0" ] ;
+     fhir:definition [ fhir:v "Sun Public License v1.0." ]
+  ] [
+     fhir:code [ fhir:v "SugarCRM-1.1.3" ] ;
+     fhir:display [ fhir:v "SugarCRM Public License v1.1.3" ] ;
+     fhir:definition [ fhir:v "SugarCRM Public License v1.1.3." ]
+  ] [
+     fhir:code [ fhir:v "SWL" ] ;
+     fhir:display [ fhir:v "Scheme Widget Library (SWL) Software License Agreement" ] ;
+     fhir:definition [ fhir:v "Scheme Widget Library (SWL) Software License Agreement." ]
+  ] [
+     fhir:code [ fhir:v "TCL" ] ;
+     fhir:display [ fhir:v "TCL/TK License" ] ;
+     fhir:definition [ fhir:v "TCL/TK License." ]
+  ] [
+     fhir:code [ fhir:v "TCP-wrappers" ] ;
+     fhir:display [ fhir:v "TCP Wrappers License" ] ;
+     fhir:definition [ fhir:v "TCP Wrappers License." ]
+  ] [
+     fhir:code [ fhir:v "TMate" ] ;
+     fhir:display [ fhir:v "TMate Open Source License" ] ;
+     fhir:definition [ fhir:v "TMate Open Source License." ]
+  ] [
+     fhir:code [ fhir:v "TORQUE-1.1" ] ;
+     fhir:display [ fhir:v "TORQUE v2.5+ Software License v1.1" ] ;
+     fhir:definition [ fhir:v "TORQUE v2.5+ Software License v1.1." ]
+  ] [
+     fhir:code [ fhir:v "TOSL" ] ;
+     fhir:display [ fhir:v "Trusster Open Source License" ] ;
+     fhir:definition [ fhir:v "Trusster Open Source License." ]
+  ] [
+     fhir:code [ fhir:v "Unicode-DFS-2015" ] ;
+     fhir:display [ fhir:v "Unicode License Agreement - Data Files and Software (2015)" ] ;
+     fhir:definition [ fhir:v "Unicode License Agreement - Data Files and Software (2015)." ]
+  ] [
+     fhir:code [ fhir:v "Unicode-DFS-2016" ] ;
+     fhir:display [ fhir:v "Unicode License Agreement - Data Files and Software (2016)" ] ;
+     fhir:definition [ fhir:v "Unicode License Agreement - Data Files and Software (2016)." ]
+  ] [
+     fhir:code [ fhir:v "Unicode-TOU" ] ;
+     fhir:display [ fhir:v "Unicode Terms of Use" ] ;
+     fhir:definition [ fhir:v "Unicode Terms of Use." ]
+  ] [
+     fhir:code [ fhir:v "Unlicense" ] ;
+     fhir:display [ fhir:v "The Unlicense" ] ;
+     fhir:definition [ fhir:v "The Unlicense." ]
+  ] [
+     fhir:code [ fhir:v "UPL-1.0" ] ;
+     fhir:display [ fhir:v "Universal Permissive License v1.0" ] ;
+     fhir:definition [ fhir:v "Universal Permissive License v1.0." ]
+  ] [
+     fhir:code [ fhir:v "Vim" ] ;
+     fhir:display [ fhir:v "Vim License" ] ;
+     fhir:definition [ fhir:v "Vim License." ]
+  ] [
+     fhir:code [ fhir:v "VOSTROM" ] ;
+     fhir:display [ fhir:v "VOSTROM Public License for Open Source" ] ;
+     fhir:definition [ fhir:v "VOSTROM Public License for Open Source." ]
+  ] [
+     fhir:code [ fhir:v "VSL-1.0" ] ;
+     fhir:display [ fhir:v "Vovida Software License v1.0" ] ;
+     fhir:definition [ fhir:v "Vovida Software License v1.0." ]
+  ] [
+     fhir:code [ fhir:v "W3C-19980720" ] ;
+     fhir:display [ fhir:v "W3C Software Notice and License (1998-07-20)" ] ;
+     fhir:definition [ fhir:v "W3C Software Notice and License (1998-07-20)." ]
+  ] [
+     fhir:code [ fhir:v "W3C-20150513" ] ;
+     fhir:display [ fhir:v "W3C Software Notice and Document License (2015-05-13)" ] ;
+     fhir:definition [ fhir:v "W3C Software Notice and Document License (2015-05-13)." ]
+  ] [
+     fhir:code [ fhir:v "W3C" ] ;
+     fhir:display [ fhir:v "W3C Software Notice and License (2002-12-31)" ] ;
+     fhir:definition [ fhir:v "W3C Software Notice and License (2002-12-31)." ]
+  ] [
+     fhir:code [ fhir:v "Watcom-1.0" ] ;
+     fhir:display [ fhir:v "Sybase Open Watcom Public License 1.0" ] ;
+     fhir:definition [ fhir:v "Sybase Open Watcom Public License 1.0." ]
+  ] [
+     fhir:code [ fhir:v "Wsuipa" ] ;
+     fhir:display [ fhir:v "Wsuipa License" ] ;
+     fhir:definition [ fhir:v "Wsuipa License." ]
+  ] [
+     fhir:code [ fhir:v "WTFPL" ] ;
+     fhir:display [ fhir:v "Do What The F*ck You Want To Public License" ] ;
+     fhir:definition [ fhir:v "Do What The F*ck You Want To Public License." ]
+  ] [
+     fhir:code [ fhir:v "X11" ] ;
+     fhir:display [ fhir:v "X11 License" ] ;
+     fhir:definition [ fhir:v "X11 License." ]
+  ] [
+     fhir:code [ fhir:v "Xerox" ] ;
+     fhir:display [ fhir:v "Xerox License" ] ;
+     fhir:definition [ fhir:v "Xerox License." ]
+  ] [
+     fhir:code [ fhir:v "XFree86-1.1" ] ;
+     fhir:display [ fhir:v "XFree86 License 1.1" ] ;
+     fhir:definition [ fhir:v "XFree86 License 1.1." ]
+  ] [
+     fhir:code [ fhir:v "xinetd" ] ;
+     fhir:display [ fhir:v "xinetd License" ] ;
+     fhir:definition [ fhir:v "xinetd License." ]
+  ] [
+     fhir:code [ fhir:v "Xnet" ] ;
+     fhir:display [ fhir:v "X.Net License" ] ;
+     fhir:definition [ fhir:v "X.Net License." ]
+  ] [
+     fhir:code [ fhir:v "xpp" ] ;
+     fhir:display [ fhir:v "XPP License" ] ;
+     fhir:definition [ fhir:v "XPP License." ]
+  ] [
+     fhir:code [ fhir:v "XSkat" ] ;
+     fhir:display [ fhir:v "XSkat License" ] ;
+     fhir:definition [ fhir:v "XSkat License." ]
+  ] [
+     fhir:code [ fhir:v "YPL-1.0" ] ;
+     fhir:display [ fhir:v "Yahoo! Public License v1.0" ] ;
+     fhir:definition [ fhir:v "Yahoo! Public License v1.0." ]
+  ] [
+     fhir:code [ fhir:v "YPL-1.1" ] ;
+     fhir:display [ fhir:v "Yahoo! Public License v1.1" ] ;
+     fhir:definition [ fhir:v "Yahoo! Public License v1.1." ]
+  ] [
+     fhir:code [ fhir:v "Zed" ] ;
+     fhir:display [ fhir:v "Zed License" ] ;
+     fhir:definition [ fhir:v "Zed License." ]
+  ] [
+     fhir:code [ fhir:v "Zend-2.0" ] ;
+     fhir:display [ fhir:v "Zend License v2.0" ] ;
+     fhir:definition [ fhir:v "Zend License v2.0." ]
+  ] [
+     fhir:code [ fhir:v "Zimbra-1.3" ] ;
+     fhir:display [ fhir:v "Zimbra Public License v1.3" ] ;
+     fhir:definition [ fhir:v "Zimbra Public License v1.3." ]
+  ] [
+     fhir:code [ fhir:v "Zimbra-1.4" ] ;
+     fhir:display [ fhir:v "Zimbra Public License v1.4" ] ;
+     fhir:definition [ fhir:v "Zimbra Public License v1.4." ]
+  ] [
+     fhir:code [ fhir:v "zlib-acknowledgement" ] ;
+     fhir:display [ fhir:v "zlib/libpng License with Acknowledgement" ] ;
+     fhir:definition [ fhir:v "zlib/libpng License with Acknowledgement." ]
+  ] [
+     fhir:code [ fhir:v "Zlib" ] ;
+     fhir:display [ fhir:v "zlib License" ] ;
+     fhir:definition [ fhir:v "zlib License." ]
+  ] [
+     fhir:code [ fhir:v "ZPL-1.1" ] ;
+     fhir:display [ fhir:v "Zope Public License 1.1" ] ;
+     fhir:definition [ fhir:v "Zope Public License 1.1." ]
+  ] [
+     fhir:code [ fhir:v "ZPL-2.0" ] ;
+     fhir:display [ fhir:v "Zope Public License 2.0" ] ;
+     fhir:definition [ fhir:v "Zope Public License 2.0." ]
+  ] [
+     fhir:code [ fhir:v "ZPL-2.1" ] ;
+     fhir:display [ fhir:v "Zope Public License 2.1" ] ;
+     fhir:definition [ fhir:v "Zope Public License 2.1." ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

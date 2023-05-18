@@ -1,0 +1,85 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Encounter ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "emerg"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">Emergency visit that escalated into inpatient patient @example</div>"
+  ] ; # 
+  fhir:status [ fhir:v "in-progress"] ; # 
+  fhir:class ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-ActCode"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "IMP" ] ;
+       fhir:display [ fhir:v "inpatient encounter" ]
+     ] )
+  ] ) ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:actualPeriod [
+     fhir:start [ fhir:v "2017-02-01T07:15:00+10:00"^^xsd:dateTime ]
+  ] ; # 
+  fhir:admission [
+     fhir:admitSource [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/admit-source"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "emd" ] ;
+         fhir:display [ fhir:v "From accident/emergency department" ]
+       ] )
+     ]
+  ] ; # 
+  fhir:location ( [
+     fhir:location [
+       fhir:display [ fhir:v "Emergency Waiting Room" ]
+     ] ;
+     fhir:status [ fhir:v "active" ] ;
+     fhir:period [
+       fhir:start [ fhir:v "2017-02-01T07:15:00+10:00"^^xsd:dateTime ] ;
+       fhir:end [ fhir:v "2017-02-01T08:45:00+10:00"^^xsd:dateTime ]
+     ]
+  ] [
+     fhir:location [
+       fhir:display [ fhir:v "Emergency" ]
+     ] ;
+     fhir:status [ fhir:v "active" ] ;
+     fhir:period [
+       fhir:start [ fhir:v "2017-02-01T08:45:00+10:00"^^xsd:dateTime ] ;
+       fhir:end [ fhir:v "2017-02-01T09:27:00+10:00"^^xsd:dateTime ]
+     ]
+  ] [
+     fhir:location [
+       fhir:display [ fhir:v "Ward 1, Room 42, Bed 1" ]
+     ] ;
+     fhir:status [ fhir:v "active" ] ;
+     fhir:period [
+       fhir:start [ fhir:v "2017-02-01T09:27:00+10:00"^^xsd:dateTime ] ;
+       fhir:end [ fhir:v "2017-02-01T12:15:00+10:00"^^xsd:dateTime ]
+     ]
+  ] [
+     fhir:location [
+       fhir:display [ fhir:v "Ward 1, Room 42, Bed 1" ]
+     ] ;
+     fhir:status [ fhir:v "reserved" ] ;
+     fhir:period [
+       fhir:start [ fhir:v "2017-02-01T12:15:00+10:00"^^xsd:dateTime ] ;
+       fhir:end [ fhir:v "2017-02-01T12:45:00+10:00"^^xsd:dateTime ]
+     ]
+  ] [
+     fhir:location [
+       fhir:display [ fhir:v "Ward 1, Room 42, Bed 1" ]
+     ] ;
+     fhir:status [ fhir:v "active" ] ;
+     fhir:period [
+       fhir:start [ fhir:v "2017-02-01T12:45:00+10:00"^^xsd:dateTime ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

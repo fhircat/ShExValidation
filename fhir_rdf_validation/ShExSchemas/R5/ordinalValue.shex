@@ -1,0 +1,24 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <decimal.shex>
+IMPORT <Extension.shex>
+
+# Assigned Ordinal Value
+<ordinalValue> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:ordinalValue];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/ordinalValue"]}; 
+    fhir:v (@<decimal> )  AND { rdf:type IRI } ; 
+    ^fhir:extension { a [fhir:Coding] OR 
+          ^fhir:answerOption {^fhir:item {a [fhir:Questionnaire]}} OR 
+          ^fhir:concept {a [fhir:CodeSystem]} OR 
+          ^fhir:concept {^fhir:include {^fhir:compose {a [fhir:ValueSet]}}}
+        }
+}  
+

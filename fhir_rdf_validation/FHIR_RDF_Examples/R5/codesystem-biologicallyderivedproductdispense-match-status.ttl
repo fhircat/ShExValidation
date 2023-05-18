@@ -1,0 +1,75 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "biologicallyderivedproductdispense-match-status"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "oo" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/CodeSystem/biologicallyderivedproductdispense-match-status"], [ fhir:v "http://hl7.org/fhir/CodeSystem/biologicallyderivedproductdispense-match-status"] ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "BiologicallyDerivedProductDispenseMatchStatus"], [ fhir:v "BiologicallyDerivedProductDispenseMatchStatus"] ;
+  fhir:title [ fhir:v "Biologically derived product dispense - match status"], [ fhir:v "Biologically derived product dispense - match status"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2023-01-29T21:19:50+01:00"], [ fhir:v "2023-01-29T21:19:50+01:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Biologically derived product dispense - match status"], [ fhir:v "Biologically derived product dispense - match status"] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/biologicallyderivedproductdispense-match-status"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:count [ fhir:v "4"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "crossmatched" ] ;
+     fhir:display [ fhir:v "Crossmatched" ] ;
+     fhir:definition [ fhir:v "The product has been serologically or electronically crossmatched for the recipient" ]
+  ] [
+     fhir:code [ fhir:v "selected" ] ;
+     fhir:display [ fhir:v "Selected" ] ;
+     fhir:definition [ fhir:v "The product has been selected for the specific use of the recipient" ]
+  ] [
+     fhir:code [ fhir:v "unmatched" ] ;
+     fhir:display [ fhir:v "Unmatched" ] ;
+     fhir:definition [ fhir:v "No specific matching has been carried out" ]
+  ] [
+     fhir:code [ fhir:v "least-incompatible" ] ;
+     fhir:display [ fhir:v "Least incompatible" ] ;
+     fhir:definition [ fhir:v "The product has been selected through crossmatching as least incompatible" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

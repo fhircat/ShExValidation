@@ -1,0 +1,27 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <Extension.shex>
+
+# messageheader initiator requests a response
+<messageheader-response-request> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:messageheader-response-request];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/messageheader-response-request"]}; 
+    fhir:v (@<code> AND
+    	{fhir:v @fhirvs:messageheader-response-request} )  AND { rdf:type IRI } ; 
+    ^fhir:extension { a [fhir:MessageHeader]
+        }
+}  
+
+#---------------------- Value Sets ------------------------
+
+# HL7-defined table of codes which identify conditions under which acknowledgments are required to be returned in response to a message.
+fhirvs:messageheader-response-request ["always" "on-error" "never" "on-success"]
+

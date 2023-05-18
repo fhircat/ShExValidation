@@ -1,0 +1,149 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Timing.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Location.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <Contract.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Substance.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Medication.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <SupplyRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+#imported_begin 
+IMPORT <BiologicallyDerivedProduct.shex>
+#imported_end
+
+start=@<SupplyDelivery> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Delivery of bulk Supplies
+<SupplyDelivery> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:SupplyDelivery]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # External identifier
+    fhir:basedOn @<OneOrMore_Reference_SupplyRequest>?;  # Fulfills plan, proposal or order
+    fhir:partOf @<OneOrMore_Reference_Contract_OR_SupplyDelivery>?;  # Part of referenced event
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:supplydelivery-status}?;  # in-progress | completed | 
+                                            # abandoned | entered-in-error 
+    fhir:patient @<Reference> AND {fhir:link 
+    			@<Patient> ? }?;  # Patient for whom the item is 
+                                            # supplied 
+    fhir:type @<CodeableConcept>?;          # Category of supply event
+    fhir:suppliedItem @<OneOrMore_SupplyDelivery.suppliedItem>?;  # The item that is delivered or 
+                                            # supplied 
+    fhir:occurrence @<dateTime>  OR 
+    			@<Period>  OR 
+    			@<Timing>  ?;  # When event occurred
+    fhir:supplier @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> ? }?;  # The item supplier
+    fhir:destination @<Reference> AND {fhir:link 
+    			@<Location> ? }?;  # Where the delivery was sent
+    fhir:receiver @<OneOrMore_Reference_Organization_OR_Practitioner_OR_PractitionerRole>?;  # Who received the delivery
+}  
+
+# The item that is delivered or supplied
+<SupplyDelivery.suppliedItem> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:quantity @<Quantity>?;             # Amount supplied
+    fhir:item @<CodeableConcept>  OR 
+    			(@<Reference>  AND {fhir:link @<Medication> OR 
+    			 @<Substance> OR 
+    			 @<Device> OR 
+    			 @<BiologicallyDerivedProduct> })  ?;  # Medication, Substance, Device or 
+                                            # Biologically Derived Product 
+                                            # supplied 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_SupplyDelivery.suppliedItem> CLOSED {
+    rdf:first @<SupplyDelivery.suppliedItem>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_SupplyDelivery.suppliedItem> 
+}
+
+
+
+
+
+
+
+
+
+#---------------------- Value Sets ------------------------
+
+

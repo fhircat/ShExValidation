@@ -1,0 +1,84 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:VisionPrescription ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "33124"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">Sample Contract Lens prescription</div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://www.happysight.com/prescription"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "15014" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "active"] ; # 
+  fhir:created [ fhir:v "2014-06-15"^^xsd:date] ; # 
+  fhir:patient [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:encounter [
+     fhir:reference [ fhir:v "Encounter/f001" ]
+  ] ; # 
+  fhir:dateWritten [ fhir:v "2014-06-15"^^xsd:date] ; # 
+  fhir:prescriber [
+     fhir:reference [ fhir:v "Practitioner/example" ]
+  ] ; # 
+  fhir:lensSpecification ( [
+     fhir:product [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/ex-visionprescriptionproduct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "contact" ]
+       ] )
+     ] ;
+     fhir:eye [ fhir:v "right" ] ;
+     fhir:cylinder [ fhir:v "-2.25"^^xsd:decimal ] ;
+     fhir:axis [ fhir:v "160"^^xsd:integer ] ;
+     fhir:add [ fhir:v "1.75"^^xsd:decimal ] ;
+     fhir:power [ fhir:v "-2.75"^^xsd:decimal ] ;
+     fhir:backCurve [ fhir:v "8.7"^^xsd:decimal ] ;
+     fhir:diameter [ fhir:v "14.0"^^xsd:decimal ] ;
+     fhir:duration [
+       fhir:value [ fhir:v "1"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "mo" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "mo" ]
+     ] ;
+     fhir:color [ fhir:v "green" ] ;
+     fhir:brand [ fhir:v "OphthaGuard" ] ;
+     fhir:note ( [
+       fhir:text [ fhir:v "Shade treatment for extreme light sensitivity" ]
+     ] )
+  ] [
+     fhir:product [
+       fhir:coding ( [
+         fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/ex-visionprescriptionproduct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "contact" ]
+       ] )
+     ] ;
+     fhir:eye [ fhir:v "left" ] ;
+     fhir:cylinder [ fhir:v "-3.50"^^xsd:decimal ] ;
+     fhir:axis [ fhir:v "160"^^xsd:integer ] ;
+     fhir:add [ fhir:v "1.75"^^xsd:decimal ] ;
+     fhir:power [ fhir:v "-2.75"^^xsd:decimal ] ;
+     fhir:backCurve [ fhir:v "8.7"^^xsd:decimal ] ;
+     fhir:diameter [ fhir:v "14.0"^^xsd:decimal ] ;
+     fhir:duration [
+       fhir:value [ fhir:v "1"^^xsd:decimal ] ;
+       fhir:unit [ fhir:v "month" ] ;
+       fhir:system [ fhir:v "http://unitsofmeasure.org"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "mo" ]
+     ] ;
+     fhir:color [ fhir:v "green" ] ;
+     fhir:brand [ fhir:v "OphthaGuard" ] ;
+     fhir:note ( [
+       fhir:text [ fhir:v "Shade treatment for extreme light sensitivity" ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

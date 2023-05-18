@@ -1,0 +1,64 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Procedure ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example"] ; # 
+  fhir:meta [
+     fhir:versionId [ fhir:v "1" ]
+  ] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">Routine Appendectomy</div>"
+  ] ; # 
+  fhir:status [ fhir:v "completed"] ; # 
+  fhir:code [
+     fhir:coding ( [
+       a sct:80146002 ;
+       fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "80146002" ] ;
+       fhir:display [ fhir:v "Appendectomy (Procedure)" ]
+     ] ) ;
+     fhir:text [ fhir:v "Appendectomy" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:occurrence [ fhir:v "2013-04-05"^^xsd:date] ; # 
+  fhir:recorder [
+     fhir:reference [ fhir:v "Practitioner/example" ] ;
+     fhir:display [ fhir:v "Dr Cecil Surgeon" ]
+  ] ; # 
+  fhir:reported [
+     a fhir:Reference ;
+     fhir:reference [ fhir:v "Practitioner/example" ] ;
+     fhir:display [ fhir:v "Dr Cecil Surgeon" ]
+  ] ; # 
+  fhir:performer ( [
+     fhir:actor [
+       fhir:reference [ fhir:v "Practitioner/example" ] ;
+       fhir:display [ fhir:v "Dr Cecil Surgeon" ]
+     ]
+  ] ) ; # 
+  fhir:reason ( [
+     fhir:concept [
+       fhir:text [ fhir:v "Generalized abdominal pain 24 hours. Localized in RIF with rebound and guarding" ]
+     ]
+  ] ) ; # 
+  fhir:followUp ( [
+     fhir:text [ fhir:v "ROS 5 days  - 2013-04-10" ]
+  ] ) ; # 
+  fhir:note ( [
+     fhir:text [ fhir:v "Routine Appendectomy. Appendix was inflamed and in retro-caecal position" ]
+  ] ) ; # 
+  fhir:supportingInfo ( [
+     fhir:reference [ fhir:v "ImagingStudy/example" ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

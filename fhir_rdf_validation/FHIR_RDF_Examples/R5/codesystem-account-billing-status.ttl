@@ -1,0 +1,105 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "account-billing-status"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "pa" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "0" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/account-billing-status"], [ fhir:v "http://hl7.org/fhir/account-billing-status"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.2063" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.2063" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "AccountBillingStatus"], [ fhir:v "AccountBillingStatus"] ;
+  fhir:title [ fhir:v "Example Account Billing Statuses"], [ fhir:v "Example Account Billing Statuses"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "true"], [ fhir:v "true"] ;
+  fhir:date [ fhir:v "2021-05-26"], [ fhir:v "2021-05-26"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Indicates whether the account is available to be used for billing purposes."], [ fhir:v "Indicates whether the account is available to be used for billing purposes."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/account-billing-status"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "open" ] ;
+     fhir:display [ fhir:v "Open" ] ;
+     fhir:definition [ fhir:v "The account is open for charging transactions (account.status is active)" ]
+  ] [
+     fhir:code [ fhir:v "carecomplete-notbilled" ] ;
+     fhir:display [ fhir:v "CareComplete/Not Billed" ] ;
+     fhir:definition [ fhir:v "The account.status is still active and may have charges recorded against it (only for events in the servicePeriod), however the encounters associated are completed. (Also known as Discharged not billed) This BillingStatus is often not used in ongoing accounts. (account.status is active)" ]
+  ] [
+     fhir:code [ fhir:v "billing" ] ;
+     fhir:display [ fhir:v "Billing" ] ;
+     fhir:definition [ fhir:v "Indicates that all transactions are recorded and the finance system can perform the billing process, including preparing insurance claims, scrubbing charges, invoicing etc. During this time any new charges will not be included in the current billing run/cycle. (account.status is active)" ]
+  ] [
+     fhir:code [ fhir:v "closed-baddebt" ] ;
+     fhir:display [ fhir:v "Closed-Bad Debt" ] ;
+     fhir:definition [ fhir:v "The balance of this debt has not been able to be recovered, and the organization has decided not to persue debt recovery. (account.status is in-active)" ]
+  ] [
+     fhir:code [ fhir:v "closed-voided" ] ;
+     fhir:display [ fhir:v "Closed-Voided" ] ;
+     fhir:definition [ fhir:v "The account was not created in error, however the organization has decided that it will not be charging any transactions associated. (account.status is i n-active)" ]
+  ] [
+     fhir:code [ fhir:v "closed-completed" ] ;
+     fhir:display [ fhir:v "Closed-Completed" ] ;
+     fhir:definition [ fhir:v "The account is closed and all charges are processed and accounted for. (account.status is i n-active)" ]
+  ] [
+     fhir:code [ fhir:v "closed-combined" ] ;
+     fhir:display [ fhir:v "Closed-Combined" ] ;
+     fhir:definition [ fhir:v "This account has been merged into another account, all charged have been migrated. This account should no longer be used, and will not be billed. (account.status is i n-active)" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

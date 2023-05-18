@@ -1,0 +1,78 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <code.shex>
+IMPORT <Ratio.shex>
+IMPORT <string.shex>
+IMPORT <boolean.shex>
+IMPORT <Quantity.shex>
+IMPORT <dateTime.shex>
+IMPORT <Reference.shex>
+IMPORT <Organization.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <CodeableReference.shex>
+
+
+start=@<Medication> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Definition of a Medication
+<Medication> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Medication];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business identifier for this 
+                                            # medication 
+    fhir:code @<CodeableConcept>?;          # Codes that identify this medication
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:medication-status}?;  # active | inactive | 
+                                            # entered-in-error 
+    fhir:marketingAuthorizationHolder @<Reference> AND {fhir:link 
+    			@<Organization> }?;  # Organization that has 
+                                            # authorization to market medication 
+    fhir:doseForm @<CodeableConcept>?;      # powder | tablets | capsule +
+    fhir:totalVolume @<Ratio>?;             # When the specified product code 
+                                            # does not infer a package size, 
+                                            # this is the specific amount of 
+                                            # drug in the product 
+    fhir:ingredient @<OneOrMore_BackboneElement>?;  # Active or inactive ingredient
+    fhir:batch @<BackboneElement>?;         # Details about packaged medications
+}  
+
+# Active or inactive ingredient
+<Medication.ingredient> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:item @<CodeableReference>;         # The ingredient (substance or 
+                                            # medication) that the 
+                                            # ingredient.strength relates to 
+    fhir:isActive @<boolean>?;              # Active ingredient indicator
+    fhir:strength (@<Ratio>  OR 
+    			@<CodeableConcept>  OR 
+    			@<Quantity> )  AND { rdf:type IRI } ?;  # Quantity of ingredient present
+}  
+
+# Details about packaged medications
+<Medication.batch> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:lotNumber @<string>?;              # Identifier assigned to batch
+    fhir:expirationDate @<dateTime>?;       # When batch will expire
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Medication Status Codes
+fhirvs:medication-status ["active" "inactive" "entered-in-error"]
+

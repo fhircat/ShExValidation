@@ -1,0 +1,46 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+
+start=@<FormularyItem> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Definition of a FormularyItem
+<FormularyItem> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:FormularyItem]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business identifier for this 
+                                            # formulary item 
+    fhir:code @<CodeableConcept>?;          # Codes that identify this formulary 
+                                            # item 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:formularyitem-status}?;  # active | entered-in-error | 
+                                            # inactive 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+#---------------------- Value Sets ------------------------
+
+

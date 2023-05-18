@@ -1,0 +1,51 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix loinc: <https://loinc.org/rdf/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:MolecularSequence ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-pgx-2"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MolecularSequence</b><a name=\"example-pgx-2\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MolecularSequence &quot;example-pgx-2&quot; </p></div><p><b>type</b>: dna</p><p><b>subject</b>: <a href=\"patient-example.html\">Patient/example</a> &quot;Peter CHALMERS&quot;</p><blockquote><p><b>relative</b></p><p><b>coordinateSystem</b>: 0-based interval counting <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#LA30100-4)</span></p><h3>StartingSequences</h3><table class=\"grid\"><tr><td>-</td><td><b>Sequence[x]</b></td><td><b>WindowStart</b></td><td><b>WindowEnd</b></td><td><b>Orientation</b></td><td><b>Strand</b></td></tr><tr><td>*</td><td>NG_007726.3 <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (nuccore#NG_007726.3)</span></td><td>55227970</td><td>55227980</td><td>sense</td><td>watson</td></tr></table><h3>Edits</h3><table class=\"grid\"><tr><td>-</td><td><b>Start</b></td><td><b>End</b></td><td><b>ReplacementSequence</b></td><td><b>ReplacedSequence</b></td></tr><tr><td>*</td><td>55227978</td><td>55227979</td><td>G</td><td>T</td></tr></table></blockquote></div>"
+  ] ; # 
+  fhir:type [ fhir:v "dna"] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ]
+  ] ; # 
+  fhir:relative ( [
+     fhir:coordinateSystem [
+       fhir:coding ( [
+         a loinc:LA30100-4 ;
+         fhir:system [ fhir:v "http://loinc.org"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "LA30100-4" ] ;
+         fhir:display [ fhir:v "0-based interval counting" ]
+       ] )
+     ] ;
+     fhir:startingSequence [
+       fhir:sequence [
+         a fhir:CodeableConcept ;
+         fhir:coding ( [
+           fhir:system [ fhir:v "http://www.ncbi.nlm.nih.gov/nuccore"^^xsd:anyURI ] ;
+           fhir:code [ fhir:v "NG_007726.3" ]
+         ] )
+       ] ;
+       fhir:windowStart [ fhir:v "55227970"^^xsd:integer ] ;
+       fhir:windowEnd [ fhir:v "55227980"^^xsd:integer ] ;
+       fhir:orientation [ fhir:v "sense" ] ;
+       fhir:strand [ fhir:v "watson" ]
+     ] ;
+     fhir:edit ( [
+       fhir:start [ fhir:v "55227978"^^xsd:integer ] ;
+       fhir:end [ fhir:v "55227979"^^xsd:integer ] ;
+       fhir:replacementSequence [ fhir:v "G" ] ;
+       fhir:replacedSequence [ fhir:v "T" ]
+     ] )
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

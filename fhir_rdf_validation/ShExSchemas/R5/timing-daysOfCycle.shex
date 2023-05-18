@@ -1,0 +1,28 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <Extension.shex>
+
+# Days on which the action should be performed
+<timing-daysOfCycle> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:timing-daysOfCycle];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:day @<OneOrMore_Extension>; 
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/timing-daysOfCycle"]}; 
+    ^fhir:extension { ^fhir:action {a [fhir:PlanDefinition]} OR 
+          ^fhir:action {a [fhir:RequestGroup]}
+        }
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Extension> CLOSED {
+    rdf:first @<Extension>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Extension> 
+}
+

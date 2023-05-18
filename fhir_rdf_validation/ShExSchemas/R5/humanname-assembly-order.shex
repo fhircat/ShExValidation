@@ -1,0 +1,27 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <Extension.shex>
+
+# Preferred display order of name parts
+<humanname-assembly-order> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:humanname-assembly-order];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/humanname-assembly-order"]}; 
+    fhir:v (@<code> AND
+    	{fhir:v @fhirvs:name-assembly-order} )  AND { rdf:type IRI } ; 
+    ^fhir:extension { a [fhir:HumanName]
+        }
+}  
+
+#---------------------- Value Sets ------------------------
+
+# A code that represents the preferred display order of the components of a human name.
+fhirvs:name-assembly-order ["NL1" "NL2" "NL3" "NL4" "F" "G" "UNK"]
+

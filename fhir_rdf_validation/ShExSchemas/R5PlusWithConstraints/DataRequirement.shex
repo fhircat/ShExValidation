@@ -1,0 +1,216 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
+IMPORT <Element.shex>
+#imported_end
+#imported_begin 
+IMPORT <DataType.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Duration.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <positiveInt.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+# Describes a required data item
+<DataRequirement> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:DataRequirement]?;
+
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:fhir-types};  # The type of the required data
+    fhir:profile @<OneOrMore_canonical>?;   # The profile of the required data
+    fhir:subject @<CodeableConcept>  OR 
+    			(@<Reference>  AND {fhir:link @<Group> })  ?;  # E.g. Patient, Practitioner, 
+                                            # RelatedPerson, Organization, 
+                                            # Location, Device 
+    fhir:mustSupport @<OneOrMore_string>?;  # Indicates specific structure 
+                                            # elements that are referenced by 
+                                            # the knowledge module 
+    fhir:codeFilter @<OneOrMore_Element>?;  # What codes are expected
+    fhir:dateFilter @<OneOrMore_Element>?;  # What dates/date ranges are expected
+    fhir:valueFilter @<OneOrMore_Element>?;  # What values are expected
+    fhir:limit @<positiveInt>?;             # Number of results
+    fhir:sort @<OneOrMore_Element>?;        # Order of the results
+} AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Xor
+# # Constraint UniqueKey:drq-1
+# Human readable:Either a path or a searchParam must be provided, but not both
+#
+# Constraint: path.exists() xor searchParam.exists()
+# ShEx:
+#
+#{fhir:path .  Xor  {fhir:searchParam .}}
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Xor
+# # Constraint UniqueKey:drq-2
+# Human readable:Either a path or a searchParam must be provided, but not both
+#
+# Constraint: path.exists() xor searchParam.exists()
+# ShEx:
+#
+#{fhir:path .  Xor  {fhir:searchParam .}}
+{}
+
+)
+ 
+
+# What dates/date ranges are expected
+<DataRequirement.dateFilter> EXTENDS @<Element> CLOSED {   
+    fhir:path @<string>?;                   # A date-valued attribute to filter 
+                                            # on 
+    fhir:searchParam @<string>?;            # A date valued parameter to search 
+                                            # on 
+    fhir:value @<dateTime>  OR 
+    			@<Period>  OR 
+    			@<Duration>  ?;  # The value of the filter, as a 
+                                            # Period, DateTime, or Duration 
+                                            # value 
+} AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Xor
+# # Constraint UniqueKey:drq-1
+# Human readable:Either a path or a searchParam must be provided, but not both
+#
+# Constraint: path.exists() xor searchParam.exists()
+# ShEx:
+#
+#{fhir:path .  Xor  {fhir:searchParam .}}
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Xor
+# # Constraint UniqueKey:drq-2
+# Human readable:Either a path or a searchParam must be provided, but not both
+#
+# Constraint: path.exists() xor searchParam.exists()
+# ShEx:
+#
+#{fhir:path .  Xor  {fhir:searchParam .}}
+{}
+
+)
+ 
+
+# Order of the results
+<DataRequirement.sort> EXTENDS @<Element> CLOSED {   
+    fhir:path @<string>;                    # The name of the attribute to 
+                                            # perform the sort 
+    fhir:direction @<code> AND
+    	{fhir:v @fhirvs:sort-direction};  # ascending | descending
+}  
+
+# What values are expected
+<DataRequirement.valueFilter> EXTENDS @<Element> CLOSED {   
+    fhir:path @<string>?;                   # An attribute to filter on
+    fhir:searchParam @<string>?;            # A parameter to search on
+    fhir:comparator @<code> AND
+    	{fhir:v @fhirvs:value-filter-comparator}?;  # eq | gt | lt | ge | le | sa | eb
+    fhir:value @<dateTime>  OR 
+    			@<Period>  OR 
+    			@<Duration>  ?;  # The value of the filter, as a 
+                                            # Period, DateTime, or Duration 
+                                            # value 
+}  
+
+# What codes are expected
+<DataRequirement.codeFilter> EXTENDS @<Element> CLOSED {   
+    fhir:path @<string>?;                   # A code-valued attribute to filter 
+                                            # on 
+    fhir:searchParam @<string>?;            # A coded (token) parameter to 
+                                            # search on 
+    fhir:valueSet @<canonical>?;            # Valueset for the filter
+    fhir:code @<OneOrMore_Coding>?;         # What code is expected
+} AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Xor
+# # Constraint UniqueKey:drq-1
+# Human readable:Either a path or a searchParam must be provided, but not both
+#
+# Constraint: path.exists() xor searchParam.exists()
+# ShEx:
+#
+#{fhir:path .  Xor  {fhir:searchParam .}}
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Xor
+# # Constraint UniqueKey:drq-2
+# Human readable:Either a path or a searchParam must be provided, but not both
+#
+# Constraint: path.exists() xor searchParam.exists()
+# ShEx:
+#
+#{fhir:path .  Xor  {fhir:searchParam .}}
+{}
+
+)
+ 
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+#---------------------- Value Sets ------------------------
+
+
+
+

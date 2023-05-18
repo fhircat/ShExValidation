@@ -1,0 +1,49 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sct: <http://snomed.info/id/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Goal ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "stop-smoking"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "additional" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n			<p> A simple care goal for a patient to stop smoking.</p>\n		</div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:value [ fhir:v "123" ]
+  ] ) ; # 
+  fhir:lifecycleStatus [ fhir:v "completed"] ; # 
+  fhir:achievementStatus [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/goal-achievement"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "achieved" ] ;
+       fhir:display [ fhir:v "Achieved" ]
+     ] ) ;
+     fhir:text [ fhir:v "Achieved" ]
+  ] ; # 
+  fhir:description [
+     fhir:text [ fhir:v "Stop smoking" ]
+  ] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/example" ] ;
+     fhir:display [ fhir:v "Peter James Chalmers" ]
+  ] ; # 
+  fhir:start [ fhir:v "2015-04-05"^^xsd:date] ; # 
+  fhir:outcome ( [
+     fhir:concept [
+       fhir:coding ( [
+         a sct:8517006 ;
+         fhir:system [ fhir:v "http://snomed.info/sct"^^xsd:anyURI ] ;
+         fhir:code [ fhir:v "8517006" ] ;
+         fhir:display [ fhir:v "Ex-smoker (finding)" ]
+       ] ) ;
+       fhir:text [ fhir:v "Former smoker" ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

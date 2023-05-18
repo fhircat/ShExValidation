@@ -1,0 +1,48 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:Device ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "example-pacemaker"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: Device</b><a name=\"example-pacemaker\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource Device &quot;example-pacemaker&quot; </p></div><p><b>identifier</b>: id: 1234-5678-90AB-CDEF</p><p><b>manufacturer</b>: Acme Devices, Inc</p><p><b>lotNumber</b>: 1234-5678</p><h3>Names</h3><table class=\"grid\"><tr><td>-</td><td><b>Value</b></td><td><b>Type</b></td></tr><tr><td>*</td><td>PM/Octane 2014</td><td>user-friendly-name</td></tr></table><p><b>type</b>: Performance pace maker for high octane patients <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (devices#octane2014)</span></p><p><b>contact</b>: <span title=\"  &lt;association&gt;\n	  &lt;status&gt; \n	     &lt;coding&gt;\n		   &lt;system value=&quot;http://terminology.hl7.org/CodeSystem/device-associationstatus&quot; /&gt;\n           &lt;code value=&quot;attached&quot;/&gt;\n		 &lt;/coding&gt;\n	  &lt;/status&gt;\n      &lt;humanSubject&gt;\n		&lt;reference value=&quot;Patient/example&quot;/&gt;\n	  &lt;/humanSubject&gt;\n	&lt;/association&gt;  \">ph: ext 4352</span></p></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://acme.com/devices/pacemakers/octane/serial"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "1234-5678-90AB-CDEF" ]
+  ] ) ; # 
+  fhir:manufacturer [ fhir:v "Acme Devices, Inc"] ; # 
+  fhir:lotNumber [ fhir:v "1234-5678"] ; # 
+  fhir:name ( [
+     fhir:value [ fhir:v "PM/Octane 2014" ] ;
+     fhir:type [ fhir:v "user-friendly-name" ]
+  ] ) ; # 
+  fhir:type ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://acme.com/devices"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "octane2014" ] ;
+       fhir:display [ fhir:v "Performance pace maker for high octane patients" ]
+     ] )
+  ] ) ; # 
+  fhir:contact ( [
+     fhir:system [ fhir:v "phone" ] ;
+     fhir:value [ fhir:v "ext 4352" ]
+  ] )] . #    <association>
+#	  <status> 
+#	     <coding>
+#		   <system value="http://terminology.hl7.org/CodeSystem/device-associationstatus" />
+#           <code value="attached"/>
+#		 </coding>
+#	  </status>
+#      <humanSubject>
+#		<reference value="Patient/example"/>
+#	  </humanSubject>
+#	</association>   
+
+# -------------------------------------------------------------------------------------
+

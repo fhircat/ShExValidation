@@ -1,0 +1,27 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <Extension.shex>
+
+# not-present | partial | complete
+<codesystem-properties-mode> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:codesystem-properties-mode];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/codesystem-properties-mode"]}; 
+    fhir:v (@<code> AND
+    	{fhir:v @fhirvs:codesystem-properties-mode} )  AND { rdf:type IRI } ; 
+    ^fhir:extension { a [fhir:CodeSystem]
+        }
+}  
+
+#---------------------- Value Sets ------------------------
+
+# Description Needed Here
+fhirvs:codesystem-properties-mode ["not-present" "partial" "complete"]
+

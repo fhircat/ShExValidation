@@ -1,0 +1,353 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <id.shex>
+IMPORT <uri.shex>
+IMPORT <oid.shex>
+IMPORT <url.shex>
+IMPORT <Age.shex>
+IMPORT <code.shex>
+IMPORT <date.shex>
+IMPORT <time.shex>
+IMPORT <uuid.shex>
+IMPORT <Meta.shex>
+IMPORT <Count.shex>
+IMPORT <Money.shex>
+IMPORT <Range.shex>
+IMPORT <Ratio.shex>
+IMPORT <Group.shex>
+IMPORT <string.shex>
+IMPORT <Device.shex>
+IMPORT <Coding.shex>
+IMPORT <Period.shex>
+IMPORT <Timing.shex>
+IMPORT <Dosage.shex>
+IMPORT <Patient.shex>
+IMPORT <boolean.shex>
+IMPORT <decimal.shex>
+IMPORT <instant.shex>
+IMPORT <integer.shex>
+IMPORT <Address.shex>
+IMPORT <Resource.shex>
+IMPORT <dateTime.shex>
+IMPORT <CareTeam.shex>
+IMPORT <Location.shex>
+IMPORT <markdown.shex>
+IMPORT <Distance.shex>
+IMPORT <Duration.shex>
+IMPORT <Quantity.shex>
+IMPORT <Contract.shex>
+IMPORT <Coverage.shex>
+IMPORT <canonical.shex>
+IMPORT <Reference.shex>
+IMPORT <Encounter.shex>
+IMPORT <integer64.shex>
+IMPORT <HumanName.shex>
+IMPORT <Signature.shex>
+IMPORT <Transport.shex>
+IMPORT <Identifier.shex>
+IMPORT <Annotation.shex>
+IMPORT <Attachment.shex>
+IMPORT <RatioRange.shex>
+IMPORT <Expression.shex>
+IMPORT <Provenance.shex>
+IMPORT <positiveInt.shex>
+IMPORT <unsignedInt.shex>
+IMPORT <SampledData.shex>
+IMPORT <Contributor.shex>
+IMPORT <Organization.shex>
+IMPORT <Practitioner.shex>
+IMPORT <base64Binary.shex>
+IMPORT <ContactPoint.shex>
+IMPORT <UsageContext.shex>
+IMPORT <RelatedPerson.shex>
+IMPORT <ContactDetail.shex>
+IMPORT <ClaimResponse.shex>
+IMPORT <DomainResource.shex>
+IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
+IMPORT <DataRequirement.shex>
+IMPORT <RelatedArtifact.shex>
+IMPORT <PractitionerRole.shex>
+IMPORT <HealthcareService.shex>
+IMPORT <CodeableReference.shex>
+IMPORT <TriggerDefinition.shex>
+IMPORT <ParameterDefinition.shex>
+
+
+start=@<Transport> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Delivery of item
+<Transport> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Transport];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:identifier @<OneOrMore_Identifier>?;  # External identifier
+    fhir:instantiatesCanonical @<canonical>?;  # Formal definition of transport
+    fhir:instantiatesUri @<uri>?;           # Formal definition of transport
+    fhir:basedOn @<OneOrMore_Reference_Resource>?;  # Request fulfilled by this transport
+    fhir:groupIdentifier @<Identifier>?;    # Requisition or grouper id
+    fhir:partOf @<OneOrMore_Reference_Contract_OR_Transport>?;  # Part of referenced event
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:transport-status}?;  # in-progress | completed | 
+                                            # abandoned | cancelled | planned | 
+                                            # entered-in-error 
+    fhir:statusReason @<CodeableConcept>?;  # Reason for current status
+    fhir:intent @<code> AND
+    	{fhir:v @fhirvs:transport-intent};  # unknown | proposal | plan | order 
+                                            # | original-order | reflex-order | 
+                                            # filler-order | instance-order | 
+                                            # option 
+    fhir:priority @<code> AND
+    	{fhir:v @fhirvs:request-priority}?;  # routine | urgent | asap | stat
+    fhir:code @<CodeableConcept>?;          # Transport Type
+    fhir:description @<string>?;            # Human-readable explanation of 
+                                            # transport 
+    fhir:focus @<Reference> AND {fhir:link 
+    			@<Resource> }?;  # What transport is acting on
+    fhir:for @<Reference> AND {fhir:link 
+    			@<Resource> }?;  # Beneficiary of the Transport
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> }?;  # Healthcare event during which this 
+                                            # transport originated 
+    fhir:completionTime @<dateTime>?;       # Completion time of the event (the 
+                                            # occurrence) 
+    fhir:authoredOn @<dateTime>?;           # Transport Creation Date
+    fhir:lastModified @<dateTime>?;         # Transport Last Modified Date
+    fhir:requester @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Who is asking for transport to be 
+                                            # done 
+    fhir:performerType @<OneOrMore_CodeableConcept>?;  # Requested performer
+    fhir:owner @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<HealthcareService> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> }?;  # Responsible individual
+    fhir:location @<Reference> AND {fhir:link 
+    			@<Location> }?;  # Where transport occurs
+    fhir:reasonCode @<CodeableConcept>?;    # Why transport is needed
+    fhir:reasonReference @<Reference> AND {fhir:link 
+    			@<Resource> }?;  # Why transport is needed
+    fhir:insurance @<OneOrMore_Reference_ClaimResponse_OR_Coverage>?;  # Associated insurance coverage
+    fhir:note @<OneOrMore_Annotation>?;     # Comments made about the transport
+    fhir:relevantHistory @<OneOrMore_Reference_Provenance>?;  # Key events in history of the 
+                                            # Transport 
+    fhir:restriction @<BackboneElement>?;   # Constraints on fulfillment 
+                                            # transports 
+    fhir:input @<OneOrMore_BackboneElement>?;  # Information used to perform 
+                                            # transport 
+    fhir:output @<OneOrMore_BackboneElement>?;  # Information produced as part of 
+                                            # transport 
+    fhir:requestedLocation @<Reference> AND {fhir:link 
+    			@<Location> };  # The desired location
+    fhir:currentLocation @<Reference> AND {fhir:link 
+    			@<Location> };  # The current location
+    fhir:history @<Reference> AND {fhir:link 
+    			@<Transport> }?;  # Parent (or preceding) transport
+}  
+
+# Information used to perform transport
+<Transport.input> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # Label for the input
+    fhir:v (@<base64Binary>  OR 
+    			@<boolean>  OR 
+    			@<canonical>  OR 
+    			@<code>  OR 
+    			@<date>  OR 
+    			@<dateTime>  OR 
+    			@<decimal>  OR 
+    			@<id>  OR 
+    			@<instant>  OR 
+    			@<integer>  OR 
+    			@<integer64>  OR 
+    			@<markdown>  OR 
+    			@<oid>  OR 
+    			@<positiveInt>  OR 
+    			@<string>  OR 
+    			@<time>  OR 
+    			@<unsignedInt>  OR 
+    			@<uri>  OR 
+    			@<url>  OR 
+    			@<uuid>  OR 
+    			@<Address>  OR 
+    			@<Age>  OR 
+    			@<Annotation>  OR 
+    			@<Attachment>  OR 
+    			@<CodeableConcept>  OR 
+    			@<CodeableReference>  OR 
+    			@<Coding>  OR 
+    			@<ContactPoint>  OR 
+    			@<Count>  OR 
+    			@<Distance>  OR 
+    			@<Duration>  OR 
+    			@<HumanName>  OR 
+    			@<Identifier>  OR 
+    			@<Money>  OR 
+    			@<Period>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<Ratio>  OR 
+    			@<RatioRange>  OR 
+    			@<Reference>  OR 
+    			@<SampledData>  OR 
+    			@<Signature>  OR 
+    			@<Timing>  OR 
+    			@<ContactDetail>  OR 
+    			@<Contributor>  OR 
+    			@<DataRequirement>  OR 
+    			@<Expression>  OR 
+    			@<ParameterDefinition>  OR 
+    			@<RelatedArtifact>  OR 
+    			@<TriggerDefinition>  OR 
+    			@<UsageContext>  OR 
+    			@<Dosage>  OR 
+    			@<Meta> )  AND { rdf:type IRI } ;  # Content to use in performing the 
+                                            # transport 
+}  
+
+# Constraints on fulfillment transports
+<Transport.restriction> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:repetitions @<positiveInt>?;       # How many times to repeat
+    fhir:period @<Period>?;                 # When fulfillment sought
+    fhir:recipient @<OneOrMore_Reference_Group_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # For whom is fulfillment sought?
+}  
+
+# Information produced as part of transport
+<Transport.output> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # Label for output
+    fhir:v (@<base64Binary>  OR 
+    			@<boolean>  OR 
+    			@<canonical>  OR 
+    			@<code>  OR 
+    			@<date>  OR 
+    			@<dateTime>  OR 
+    			@<decimal>  OR 
+    			@<id>  OR 
+    			@<instant>  OR 
+    			@<integer>  OR 
+    			@<integer64>  OR 
+    			@<markdown>  OR 
+    			@<oid>  OR 
+    			@<positiveInt>  OR 
+    			@<string>  OR 
+    			@<time>  OR 
+    			@<unsignedInt>  OR 
+    			@<uri>  OR 
+    			@<url>  OR 
+    			@<uuid>  OR 
+    			@<Address>  OR 
+    			@<Age>  OR 
+    			@<Annotation>  OR 
+    			@<Attachment>  OR 
+    			@<CodeableConcept>  OR 
+    			@<CodeableReference>  OR 
+    			@<Coding>  OR 
+    			@<ContactPoint>  OR 
+    			@<Count>  OR 
+    			@<Distance>  OR 
+    			@<Duration>  OR 
+    			@<HumanName>  OR 
+    			@<Identifier>  OR 
+    			@<Money>  OR 
+    			@<Period>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<Ratio>  OR 
+    			@<RatioRange>  OR 
+    			@<Reference>  OR 
+    			@<SampledData>  OR 
+    			@<Signature>  OR 
+    			@<Timing>  OR 
+    			@<ContactDetail>  OR 
+    			@<Contributor>  OR 
+    			@<DataRequirement>  OR 
+    			@<Expression>  OR 
+    			@<ParameterDefinition>  OR 
+    			@<RelatedArtifact>  OR 
+    			@<TriggerDefinition>  OR 
+    			@<UsageContext>  OR 
+    			@<Dosage>  OR 
+    			@<Meta> )  AND { rdf:type IRI } ;  # Result of output
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+
+<OneOrMore_Reference_Contract_OR_Transport> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Contract> OR 
+			@<Transport> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Contract_OR_Transport> 
+}
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+<OneOrMore_Reference_ClaimResponse_OR_Coverage> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ClaimResponse> OR 
+			@<Coverage> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ClaimResponse_OR_Coverage> 
+}
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+<OneOrMore_Reference_Provenance> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Provenance> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Provenance> 
+}
+
+<OneOrMore_BackboneElement> CLOSED {
+    rdf:first @<BackboneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BackboneElement> 
+}
+
+<OneOrMore_Reference_Group_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Group> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Group_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Status of the transport
+fhirvs:transport-status ["in-progress" "completed" "abandoned" "cancelled" "planned" "entered-in-error"]
+
+# Identifies the level of importance to be assigned to actioning the request.
+fhirvs:request-priority ["routine" "urgent" "asap" "stat"]
+
+# Distinguishes whether the transport is a proposal, plan or full order.
+fhirvs:transport-intent ["unknown" "proposal" "plan" "order" "original-order" "reflex-order" "filler-order" "instance-order" "option"]
+

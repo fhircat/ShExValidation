@@ -1,0 +1,42 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# - resource -------------------------------------------------------------------
+
+[a fhir:DocumentReference ;
+  fhir:nodeRole fhir:treeRoot ;
+  fhir:id [ fhir:v "genomicFile2"] ; # 
+  fhir:text [
+     fhir:status [ fhir:v "generated" ] ;
+     fhir:div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative</b></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource &quot;genomicFile2&quot; </p></div><p><b>identifier</b>: id: 11112</p><p><b>status</b>: current</p><p><b>docStatus</b>: preliminary</p><p><b>subject</b>: <a href=\"Patient-denovoMother.html\">Patient/denovoMother: Jane Doe</a> &quot; DOE&quot;</p><p><b>description</b>: A sample Document Reference instance representing a generic genomic file that may ber used as input or output of a genomic analysis pipeline.</p><p><b>securityLabel</b>: Restricted <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"http://terminology.hl7.org/3.1.0/CodeSystem-v3-Confidentiality.html\">Confidentiality</a>#R)</span></p><blockquote><p><b>content</b></p></blockquote></div>"
+  ] ; # 
+  fhir:identifier ( [
+     fhir:system [ fhir:v "http://www.somesystemabc.net/identifiers/files"^^xsd:anyURI ] ;
+     fhir:value [ fhir:v "11112" ]
+  ] ) ; # 
+  fhir:status [ fhir:v "current"] ; # 
+  fhir:docStatus [ fhir:v "preliminary"] ; # 
+  fhir:subject [
+     fhir:reference [ fhir:v "Patient/denovoMother" ] ;
+     fhir:display [ fhir:v "Jane Doe" ]
+  ] ; # 
+  fhir:description [ fhir:v "A sample Document Reference instance representing a generic genomic file that may ber used as input or output of a genomic analysis pipeline."] ; # 
+  fhir:securityLabel ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://terminology.hl7.org/CodeSystem/v3-Confidentiality"^^xsd:anyURI ] ;
+       fhir:code [ fhir:v "R" ] ;
+       fhir:display [ fhir:v "Restricted" ]
+     ] )
+  ] ) ; # 
+  fhir:content ( [
+     fhir:attachment [
+       fhir:url [ fhir:v "http://www.somesystemabc.net/identifiers/files/11112"^^xsd:anyURI ] ;
+       fhir:title [ fhir:v "Sample Genomic File" ] ;
+       fhir:creation [ fhir:v "2021-01-01T01:01:01+01:00"^^xsd:dateTime ]
+     ]
+  ] )] . # 
+
+# -------------------------------------------------------------------------------------
+

@@ -1,0 +1,209 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <date.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
+IMPORT <Substance.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Expression.shex>
+#imported_end
+#imported_begin 
+IMPORT <Medication.shex>
+#imported_end
+#imported_begin 
+IMPORT <UsageContext.shex>
+#imported_end
+#imported_begin 
+IMPORT <ContactDetail.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <PlanDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedArtifact.shex>
+#imported_end
+#imported_begin 
+IMPORT <DeviceDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <MonetaryComponent.shex>
+#imported_end
+#imported_begin 
+IMPORT <HealthcareService.shex>
+#imported_end
+#imported_begin 
+IMPORT <ActivityDefinition.shex>
+#imported_end
+
+start=@<ChargeItemDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Definition of properties and rules about how the price and the applicability of a ChargeItem can be determined
+<ChargeItemDefinition> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:ChargeItemDefinition]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri>;                        # Canonical identifier for this 
+                                            # charge item definition, 
+                                            # represented as a URI (globally 
+                                            # unique) 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
+                                            # charge item definition 
+    fhir:version @<string>?;                # Business version of the charge 
+                                            # item definition 
+    fhir:name @<string>?;                   # Name for this charge item 
+                                            # definition (computer friendly) 
+    fhir:title @<string>?;                  # Name for this charge item 
+                                            # definition (human friendly) 
+    fhir:derivedFromUri @<OneOrMore_uri>?;  # Underlying externally-defined 
+                                            # charge item definition 
+    fhir:partOf @<OneOrMore_canonical>?;    # A larger definition of which this 
+                                            # particular definition is a 
+                                            # component or step 
+    fhir:replaces @<OneOrMore_canonical>?;  # Completed or terminated request(s) 
+                                            # whose function is taken by this 
+                                            # new request 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:date @<dateTime>?;                 # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher/steward 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the charge item definition 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for charge 
+                                            # item definition (if applicable) 
+    fhir:purpose @<markdown>?;              # Why this charge item definition is 
+                                            # defined 
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:approvalDate @<date>?;             # When the charge item definition 
+                                            # was approved by publisher 
+    fhir:lastReviewDate @<date>?;           # When the charge item definition 
+                                            # was last reviewed 
+    fhir:code @<CodeableConcept>?;          # Billing code or product type this 
+                                            # definition applies to 
+    fhir:instance @<OneOrMore_Reference_ActivityDefinition_OR_Device_OR_DeviceDefinition_OR_HealthcareService_OR_Medication_OR_PlanDefinition_OR_Substance>?;  # Instances this definition applies 
+                                            # to 
+    fhir:applicability @<OneOrMore_ChargeItemDefinition.applicability>?;  # Whether or not the billing code is 
+                                            # applicable 
+    fhir:propertyGroup @<OneOrMore_ChargeItemDefinition.propertyGroup>?;  # Group of properties which are 
+                                            # applicable under the same 
+                                            # conditions 
+}  
+
+# Group of properties which are applicable under the same conditions
+<ChargeItemDefinition.propertyGroup> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:applicability @<OneOrMore_ChargeItemDefinition.applicability>?;  # Conditions under which the 
+                                            # priceComponent is applicable 
+    fhir:priceComponent @<OneOrMore_MonetaryComponent>?;  # Components of total line item price
+}  
+
+# Whether or not the billing code is applicable
+<ChargeItemDefinition.applicability> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:condition @<Expression>?;          # Boolean-valued expression
+    fhir:effectivePeriod @<Period>?;        # When the charge item definition is 
+                                            # expected to be used 
+    fhir:relatedArtifact @<RelatedArtifact>?;  # Reference to / quotation of the 
+                                            # external source of the group of 
+                                            # properties 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_ChargeItemDefinition.applicability> CLOSED {
+    rdf:first @<ChargeItemDefinition.applicability>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ChargeItemDefinition.applicability> 
+}
+
+<OneOrMore_ChargeItemDefinition.propertyGroup> CLOSED {
+    rdf:first @<ChargeItemDefinition.propertyGroup>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ChargeItemDefinition.propertyGroup> 
+}
+
+
+
+#---------------------- Value Sets ------------------------
+
+

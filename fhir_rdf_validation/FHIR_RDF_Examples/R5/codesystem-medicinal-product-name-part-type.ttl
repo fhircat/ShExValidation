@@ -1,0 +1,125 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# - resource -------------------------------------------------------------------
+
+[] a fhir:CodeSystem ;
+  fhir:id [ fhir:v "medicinal-product-name-part-type"] ;
+  fhir:meta [
+     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
+  ] ;
+  fhir:text [
+     fhir:status [ fhir:v "generated" ]
+  ] ;
+  fhir:extension ( [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-wg" ] ;
+     fhir:value [ fhir:v "brr" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status" ] ;
+     fhir:value [ fhir:v "trial-use" ]
+  ] [
+     fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm" ] ;
+     fhir:value [ fhir:v "1" ]
+  ] ) ;
+  fhir:url [ fhir:v "http://hl7.org/fhir/medicinal-product-name-part-type"], [ fhir:v "http://hl7.org/fhir/medicinal-product-name-part-type"] ;
+  fhir:identifier ( [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1924" ]
+  ] [
+     fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
+     fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1924" ]
+  ] ) ;
+  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:name [ fhir:v "ProductNamePartType"], [ fhir:v "ProductNamePartType"] ;
+  fhir:title [ fhir:v "Product Name Part Type"], [ fhir:v "Product Name Part Type"] ;
+  fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
+  fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
+  fhir:date [ fhir:v "2021-01-05T10:01:24+11:00"], [ fhir:v "2021-01-05T10:01:24+11:00"] ;
+  fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
+  fhir:contact ( [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] [
+     fhir:telecom ( [
+       fhir:system [ fhir:v "url" ] ;
+       fhir:value [ fhir:v "http://hl7.org/fhir" ]
+     ] [
+       fhir:system [ fhir:v "email" ] ;
+       fhir:value [ fhir:v "fhir@lists.hl7.org" ]
+     ] )
+  ] ) ;
+  fhir:description [ fhir:v "Type of part of a name for a Medicinal Product."], [ fhir:v "Type of part of a name for a Medicinal Product."] ;
+  fhir:jurisdiction ( [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] [
+     fhir:coding ( [
+       fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
+       fhir:code [ fhir:v "001" ] ;
+       fhir:display [ fhir:v "World" ]
+     ] )
+  ] ) ;
+  fhir:caseSensitive [ fhir:v "true"] ;
+  fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/medicinal-product-name-part-type"] ;
+  fhir:content [ fhir:v "complete"] ;
+  fhir:concept ( [
+     fhir:code [ fhir:v "FullName" ] ;
+     fhir:display [ fhir:v "Full name" ]
+  ] [
+     fhir:code [ fhir:v "InventedNamePart" ] ;
+     fhir:display [ fhir:v "Invented name part" ]
+  ] [
+     fhir:code [ fhir:v "ScientificNamePart" ] ;
+     fhir:display [ fhir:v "Scientific name part" ]
+  ] [
+     fhir:code [ fhir:v "StrengthPart" ] ;
+     fhir:display [ fhir:v "Strength part" ]
+  ] [
+     fhir:code [ fhir:v "DoseFormPart" ] ;
+     fhir:display [ fhir:v "Pharmaceutical dose form part" ]
+  ] [
+     fhir:code [ fhir:v "FormulationPart" ] ;
+     fhir:display [ fhir:v "Formulation part" ]
+  ] [
+     fhir:code [ fhir:v "IntendedUsePart" ] ;
+     fhir:display [ fhir:v "Intended use part" ]
+  ] [
+     fhir:code [ fhir:v "PopulationPart" ] ;
+     fhir:display [ fhir:v "Target population part" ]
+  ] [
+     fhir:code [ fhir:v "ContainerPart" ] ;
+     fhir:display [ fhir:v "Container or pack part" ]
+  ] [
+     fhir:code [ fhir:v "DevicePart" ] ;
+     fhir:display [ fhir:v "Device part" ]
+  ] [
+     fhir:code [ fhir:v "TrademarkOrCompanyPart" ] ;
+     fhir:display [ fhir:v "Trademark or company name part" ]
+  ] [
+     fhir:code [ fhir:v "TimeOrPeriodPart" ] ;
+     fhir:display [ fhir:v "Time/Period part" ]
+  ] [
+     fhir:code [ fhir:v "FlavorPart" ] ;
+     fhir:display [ fhir:v "Flavor part" ]
+  ] [
+     fhir:code [ fhir:v "DelimiterPart" ] ;
+     fhir:display [ fhir:v "Delimiter part" ]
+  ] [
+     fhir:code [ fhir:v "LegacyNamePart" ] ;
+     fhir:display [ fhir:v "Legacy name" ]
+  ] [
+     fhir:code [ fhir:v "SpeciesNamePart" ] ;
+     fhir:display [ fhir:v "Target species name part" ]
+  ] ) .
+
+# -------------------------------------------------------------------------------------
+

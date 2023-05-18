@@ -1,0 +1,27 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <uri.shex>
+IMPORT <code.shex>
+IMPORT <Extension.shex>
+
+# Declares the source of the parameter
+<valueset-parameterSource> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:valueset-parameterSource];
+    fhir:nodeRole [fhir:treeRoot]?;
+    fhir:v @<uri> AND
+    	{fhir:v ["http://hl7.org/fhir/StructureDefinition/valueset-parameterSource"]}; 
+    fhir:v (@<code> AND
+    	{fhir:v @fhirvs:expansion-parameter-source} )  AND { rdf:type IRI } ; 
+    ^fhir:extension { ^fhir:parameter {^fhir:expansion {a [fhir:ValueSet]}}
+        }
+}  
+
+#---------------------- Value Sets ------------------------
+
+# Description Needed Here
+fhirvs:expansion-parameter-source ["input" "server" "codesystem"]
+
