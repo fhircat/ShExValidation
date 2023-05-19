@@ -1,0 +1,260 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <url.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <date.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Resource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CareTeam.shex>
+#imported_end
+#imported_begin 
+IMPORT <Contract.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Attachment.shex>
+#imported_end
+#imported_begin 
+IMPORT <Expression.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+#imported_begin 
+IMPORT <HealthcareService.shex>
+#imported_end
+#imported_begin 
+IMPORT <DocumentReference.shex>
+#imported_end
+#imported_begin 
+IMPORT <QuestionnaireResponse.shex>
+#imported_end
+
+start=@<Consent> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A healthcare consumer's  or third party's choices to permit or deny recipients or roles to perform actions for specific purposes and periods of time
+<Consent> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Consent]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Identifier for this record 
+                                            # (external references) 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:consent-state-codes};  # draft | active | inactive | 
+                                            # not-done | entered-in-error | 
+                                            # unknown 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Classification of the consent 
+                                            # statement - for indexing/retrieval 
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Patient> OR 
+    			@<Practitioner> ? }?;  # Who the consent applies to
+    fhir:date @<date>?;                     # Fully executed date of the consent
+    fhir:period @<Period>?;                 # Effective period for this Consent
+    fhir:grantor @<OneOrMore_Reference_CareTeam_OR_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Who is granting rights according 
+                                            # to the policy and rules 
+    fhir:grantee @<OneOrMore_Reference_CareTeam_OR_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Who is agreeing to the policy and 
+                                            # rules 
+    fhir:manager @<OneOrMore_Reference_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner>?;  # Consent workflow management
+    fhir:controller @<OneOrMore_Reference_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner>?;  # Consent Enforcer
+    fhir:sourceAttachment @<OneOrMore_Attachment>?;  # Source from which this consent is 
+                                            # taken 
+    fhir:sourceReference @<OneOrMore_Reference_Consent_OR_Contract_OR_DocumentReference_OR_QuestionnaireResponse>?;  # Source from which this consent is 
+                                            # taken 
+    fhir:regulatoryBasis @<OneOrMore_CodeableConcept>?;  # Regulations establishing base 
+                                            # Consent 
+    fhir:policyBasis @<Consent.policyBasis>?;  # Computable version of the backing 
+                                            # policy 
+    fhir:policyText @<OneOrMore_Reference_DocumentReference>?;  # Human Readable Policy
+    fhir:verification @<OneOrMore_Consent.verification>?;  # Consent Verified by patient or 
+                                            # family 
+    fhir:provision @<Consent.provision>?;   # Constraints to the base 
+                                            # Consent.policyRule/Consent.policy 
+}  
+
+# Consent Verified by patient or family
+<Consent.verification> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:verified @<boolean>;               # Has been verified
+    fhir:verificationType @<CodeableConcept>?;  # Business case of verification
+    fhir:verifiedBy @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> ? }?;  # Person conducting verification
+    fhir:verifiedWith @<Reference> AND {fhir:link 
+    			@<Patient> OR 
+    			@<RelatedPerson> ? }?;  # Person who verified
+    fhir:verificationDate @<OneOrMore_dateTime>?;  # When consent verified
+}  
+
+# Data controlled by this provision
+<Consent.provision.data> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:meaning @<code> AND
+    	{fhir:v @fhirvs:consent-data-meaning};  # instance | related | dependents | 
+                                            # authoredby 
+    fhir:reference @<Reference> AND {fhir:link 
+    			@<Resource> ? };  # The actual data reference
+}  
+
+# Computable version of the backing policy
+<Consent.policyBasis> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:reference @<Reference> AND {fhir:link 
+    			@<Resource> ? }?;  # Reference backing policy resource
+    fhir:url @<url>?;                       # URL to a computable backing policy
+}  
+
+# Nested Exception Provisions
+<Consent.provision.provisionnull> CLOSED {   
+}  
+
+# Constraints to the base Consent.policyRule/Consent.policy
+<Consent.provision> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:consent-provision-type}?;  # deny | permit
+    fhir:period @<Period>?;                 # Timeframe for this provision
+    fhir:actor @<OneOrMore_Consent.provision.actor>?;  # Who|what controlled by this 
+                                            # provision (or group, by role) 
+    fhir:action @<OneOrMore_CodeableConcept>?;  # Actions controlled by this 
+                                            # provision 
+    fhir:securityLabel @<OneOrMore_Coding>?;  # Security Labels that define 
+                                            # affected resources 
+    fhir:purpose @<OneOrMore_Coding>?;      # Context of activities covered by 
+                                            # this provision 
+    fhir:documentType @<OneOrMore_Coding>?;  # e.g. Resource Type, Profile, CDA, 
+                                            # etc. 
+    fhir:resourceType @<OneOrMore_Coding>?;  # e.g. Resource Type, Profile, etc.
+    fhir:code @<OneOrMore_CodeableConcept>?;  # e.g. LOINC or SNOMED CT code, etc. 
+                                            # in the content 
+    fhir:dataPeriod @<Period>?;             # Timeframe for data controlled by 
+                                            # this provision 
+    fhir:data @<OneOrMore_Consent.provision.data>?;  # Data controlled by this provision
+    fhir:expression @<Expression>?;         # A computable expression of the 
+                                            # consent 
+    fhir:provision @<OneOrMore_Consent.provision>?;  # Nested Exception Provisions
+}  
+
+# Who|what controlled by this provision (or group, by role)
+<Consent.provision.actor> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:role @<CodeableConcept>?;          # How the actor is involved
+    fhir:reference @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ? }?;  # Resource for the actor (or group, 
+                                            # by role) 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_Consent.verification> CLOSED {
+    rdf:first @<Consent.verification>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Consent.verification> 
+}
+
+
+
+<OneOrMore_Consent.provision.actor> CLOSED {
+    rdf:first @<Consent.provision.actor>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Consent.provision.actor> 
+}
+
+
+
+<OneOrMore_Consent.provision.data> CLOSED {
+    rdf:first @<Consent.provision.data>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Consent.provision.data> 
+}
+
+<OneOrMore_Consent.provision> CLOSED {
+    rdf:first @<Consent.provision>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Consent.provision> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# How a resource reference is interpreted when testing consent restrictions.
+fhirvs:consent-data-meaning ["instance" "related" "dependents" "authoredby"]
+
+# How a rule statement is applied, such as adding additional consent or removing consent.
+fhirvs:consent-provision-type ["deny" "permit"]
+
+# Indicates the state of the consent.
+fhirvs:consent-state-codes ["draft" "active" "inactive" "not-done" "entered-in-error" "unknown"]
+

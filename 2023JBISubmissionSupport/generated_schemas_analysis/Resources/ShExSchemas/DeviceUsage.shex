@@ -1,0 +1,158 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Claim.shex>
+#imported_end
+#imported_begin 
+IMPORT <Timing.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Encounter.shex>
+#imported_end
+#imported_begin 
+IMPORT <Procedure.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Annotation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Observation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <EpisodeOfCare.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <ServiceRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableReference.shex>
+#imported_end
+#imported_begin 
+IMPORT <DocumentReference.shex>
+#imported_end
+#imported_begin 
+IMPORT <QuestionnaireResponse.shex>
+#imported_end
+
+start=@<DeviceUsage> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Record of use of a device
+<DeviceUsage> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:DeviceUsage]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # External identifier for this record
+    fhir:basedOn @<OneOrMore_Reference_ServiceRequest>?;  # Fulfills plan, proposal or order
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:deviceusage-status};  # active | completed | not-done | 
+                                            # entered-in-error + 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # The category of the statement - 
+                                            # classifying how the statement is 
+                                            # made 
+    fhir:patient @<Reference> AND {fhir:link 
+    			@<Patient> ? };  # Patient using device
+    fhir:derivedFrom @<OneOrMore_Reference_Claim_OR_DocumentReference_OR_Observation_OR_Procedure_OR_QuestionnaireResponse_OR_ServiceRequest>?;  # Supporting information
+    fhir:context @<Reference> AND {fhir:link 
+    			@<Encounter> OR 
+    			@<EpisodeOfCare> ? }?;  # The encounter or episode of care 
+                                            # that establishes the context for 
+                                            # this device use statement 
+    fhir:timing @<Timing>  OR 
+    			@<Period>  OR 
+    			@<dateTime>  ?;  # How often  the device was used
+    fhir:dateAsserted @<dateTime>?;         # When the statement was made (and 
+                                            # recorded) 
+    fhir:usageStatus @<CodeableConcept>?;   # The status of the device usage, 
+                                            # for example always, sometimes, 
+                                            # never. This is not the same as the 
+                                            # status of the statement 
+    fhir:usageReason @<OneOrMore_CodeableConcept>?;  # The reason for asserting the usage 
+                                            # status - for example forgot, lost, 
+                                            # stolen, broken 
+    fhir:adherence @<DeviceUsage.adherence>?;  # How device is being used
+    fhir:informationSource @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ? }?;  # Who made the statement
+    fhir:device @<CodeableReference>;       # Code or Reference to device used
+    fhir:reason @<OneOrMore_CodeableReference>?;  # Why device was used
+    fhir:bodySite @<CodeableReference>?;    # Target body site
+    fhir:note @<OneOrMore_Annotation>?;     # Addition details (comments, 
+                                            # instructions) 
+}  
+
+# How device is being used
+<DeviceUsage.adherence> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>;           # always | never | sometimes
+    fhir:reason @<OneOrMore_CodeableConcept>;  # lost | stolen | prescribed | 
+                                            # broken | burned | forgot 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+#---------------------- Value Sets ------------------------
+
+# A coded concept indicating the current status of the Device Usage.
+fhirvs:deviceusage-status ["active" "completed" "not-done" "entered-in-error" "intended" "stopped" "on-hold"]
+

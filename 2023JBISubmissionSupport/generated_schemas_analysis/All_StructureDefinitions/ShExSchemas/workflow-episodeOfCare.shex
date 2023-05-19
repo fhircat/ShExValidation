@@ -1,0 +1,79 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <EpisodeOfCare.shex>
+#imported_end
+# Associated Encounter episode of care
+<workflow-episodeOfCare> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:workflow-episodeOfCare]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri> AND
+    	{fhir:value ["http://hl7.org/fhir/StructureDefinition/workflow-episodeOfCare"]}; 
+    fhir:value (@<Reference>  AND {fhir:link @<EpisodeOfCare> })  ; 
+    ^fhir:extension { a [fhir:AdverseEvent]} OR 
+          {a [fhir:Appointment]} OR 
+          {a [fhir:Basic]} OR 
+          {a [fhir:CarePlan]} OR 
+          {a [fhir:ClinicalImpression]} OR 
+          {a [fhir:Communication]} OR 
+          {a [fhir:CommunicationRequest]} OR 
+          {a [fhir:Composition]} OR 
+          {a [fhir:Condition]} OR 
+          {a [fhir:Consent]} OR 
+          {a [fhir:DetectedIssue]} OR 
+          {a [fhir:DeviceRequest]} OR 
+          {a [fhir:DeviceUsage]} OR 
+          {a [fhir:DiagnosticReport]} OR 
+          {a [fhir:DocumentReference]} OR 
+          {a [fhir:Encounter]} OR 
+          {a [fhir:EnrollmentRequest]} OR 
+          {a [fhir:EnrollmentResponse]} OR 
+          {a [fhir:FamilyMemberHistory]} OR 
+          {a [fhir:Flag]} OR 
+          {a [fhir:Goal]} OR 
+          {a [fhir:ImagingStudy]} OR 
+          {a [fhir:Immunization]} OR 
+          {a [fhir:ImmunizationEvaluation]} OR 
+          {a [fhir:ImmunizationRecommendation]} OR 
+          {a [fhir:Invoice]} OR 
+          {a [fhir:List]} OR 
+          {a [fhir:MeasureReport]} OR 
+          {a [fhir:MedicationAdministration]} OR 
+          {a [fhir:MedicationDispense]} OR 
+          {a [fhir:MedicationRequest]} OR 
+          {a [fhir:MedicationUsage]} OR 
+          {a [fhir:MolecularSequence]} OR 
+          {a [fhir:NutritionIntake]} OR 
+          {a [fhir:NutritionOrder]} OR 
+          {a [fhir:Observation]} OR 
+          {a [fhir:Procedure]} OR 
+          {a [fhir:QuestionnaireResponse]} OR 
+          {a [fhir:RequestOrchestration]} OR 
+          {a [fhir:ResearchSubject]} OR 
+          {a [fhir:RiskAssessment]} OR 
+          {a [fhir:SupplyDelivery]} OR 
+          {a [fhir:SupplyRequest]} OR 
+          {a [fhir:VisionPrescription]} OR 
+          {a [fhir:ServiceRequest]} OR 
+          {a [fhir:ChargeItem]}
+
+}  
+

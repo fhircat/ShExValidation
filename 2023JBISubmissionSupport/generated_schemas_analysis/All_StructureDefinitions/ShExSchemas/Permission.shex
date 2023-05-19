@@ -1,0 +1,197 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <CareTeam.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Resource.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Expression.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+#imported_begin 
+IMPORT <HealthcareService.shex>
+#imported_end
+
+start=@<Permission> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Access Rules
+<Permission> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Permission]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:permission-status};  # active | entered-in-error | draft 
+                                            # | rejected 
+    fhir:asserter @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<HealthcareService> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ? }?;  # The person or entity that asserts 
+                                            # the permission 
+    fhir:date @<OneOrMore_dateTime>?;       # The date that permission was 
+                                            # asserted 
+    fhir:validity @<Period>?;               # The period in which the permission 
+                                            # is active 
+    fhir:justification @<Permission.justification>?;  # The asserted justification for 
+                                            # using the data 
+    fhir:combining @<code> AND
+    	{fhir:v @fhirvs:permission-rule-combining};  # deny-overrides | permit-overrides 
+                                            # | ordered-deny-overrides | 
+                                            # ordered-permit-overrides | 
+                                            # deny-unless-permit | 
+                                            # permit-unless-deny 
+    fhir:rule @<OneOrMore_Permission.rule>?;  # Constraints to the Permission
+}  
+
+# Constraints to the Permission
+<Permission.rule> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:consent-provision-type}?;  # deny | permit
+    fhir:data @<OneOrMore_Permission.rule.data>?;  # The selection criteria to identify 
+                                            # data that is within scope of this 
+                                            # provision 
+    fhir:activity @<OneOrMore_Permission.rule.activity>?;  # A description or definition of 
+                                            # which activities are allowed to be 
+                                            # done on the data 
+    fhir:limit @<OneOrMore_CodeableConcept>?;  # What limits apply to the use of 
+                                            # the data 
+}  
+
+# Explicit FHIR Resource references
+<Permission.rule.data.resource> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:meaning @<code> AND
+    	{fhir:v @fhirvs:consent-data-meaning};  # instance | related | dependents | 
+                                            # authoredby 
+    fhir:reference @<Reference> AND {fhir:link 
+    			@<Resource> ? };  # The actual data reference
+}  
+
+# A description or definition of which activities are allowed to be done on the data
+<Permission.rule.activity> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:actor @<OneOrMore_Reference_CareTeam_OR_Device_OR_Group_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Authorized actor(s)
+    fhir:action @<OneOrMore_CodeableConcept>?;  # Actions controlled by this rule
+    fhir:purpose @<OneOrMore_CodeableConcept>?;  # The purpose for which the 
+                                            # permission is given 
+}  
+
+# The selection criteria to identify data that is within scope of this provision
+<Permission.rule.data> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:resource @<OneOrMore_Permission.rule.data.resource>?;  # Explicit FHIR Resource references
+    fhir:security @<OneOrMore_Coding>?;     # Security tag code on .meta.security
+    fhir:period @<OneOrMore_Period>?;       # Timeframe encompasing data 
+                                            # create/update 
+    fhir:expression @<Expression>?;         # Expression identifying the data
+}  
+
+# The asserted justification for using the data
+<Permission.justification> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:basis @<OneOrMore_CodeableConcept>?;  # The regulatory grounds upon which 
+                                            # this Permission builds 
+    fhir:evidence @<OneOrMore_Reference_Resource>?;  # Justifing rational
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+<OneOrMore_Permission.rule> CLOSED {
+    rdf:first @<Permission.rule>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Permission.rule> 
+}
+
+<OneOrMore_Permission.rule.data> CLOSED {
+    rdf:first @<Permission.rule.data>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Permission.rule.data> 
+}
+
+<OneOrMore_Permission.rule.activity> CLOSED {
+    rdf:first @<Permission.rule.activity>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Permission.rule.activity> 
+}
+
+
+
+
+
+<OneOrMore_Permission.rule.data.resource> CLOSED {
+    rdf:first @<Permission.rule.data.resource>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Permission.rule.data.resource> 
+}
+
+
+
+
+
+
+
+#---------------------- Value Sets ------------------------
+
+# How a resource reference is interpreted when testing consent restrictions.
+fhirvs:consent-data-meaning ["instance" "related" "dependents" "authoredby"]
+
+# How a rule statement is applied, such as adding additional consent or removing consent.
+fhirvs:consent-provision-type ["deny" "permit"]
+
+# Codes identifying rule combining algorithm.
+fhirvs:permission-rule-combining ["deny-overrides" "permit-overrides" "ordered-deny-overrides" "ordered-permit-overrides" "deny-unless-permit" "permit-unless-deny"]
+
+# Codes identifying the lifecycle stage of a product.
+fhirvs:permission-status ["active" "entered-in-error" "draft" "rejected"]
+

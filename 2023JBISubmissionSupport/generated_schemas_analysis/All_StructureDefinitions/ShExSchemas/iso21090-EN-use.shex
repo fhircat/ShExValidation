@@ -1,0 +1,40 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <http:.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+# A | ANON | I | P | R | C | M | ABC | IDE | SYL | OLD | DN | OR | PHON | SRCH | T
+<iso21090-EN-use> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:iso21090-EN-use]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri> AND
+    	{fhir:value ["http://hl7.org/fhir/StructureDefinition/iso21090-EN-use"]}; 
+    fhir:value @<code> AND
+    	{fhir:v @<http://terminology.hl7.org/ValueSet/v3-EntityNameUseR2>}  ; 
+    ^fhir:extension { a [fhir:HumanName]}
+
+}  
+
+#---------------------- Value Sets ------------------------
+
+# **Description:**A set of codes advising a system or user which name in a set of names to select for a given purpose.
+<http://terminology.hl7.org/ValueSet/v3-EntityNameUseR2> ["Assumed" "A" "ANON" "I" "P" "R" "C" "N" "M" "NameRepresentationUse" "ABC" "IDE" "SYL" "OLD" "DN" "OR" "PHON" "SRCH" "T"]
+

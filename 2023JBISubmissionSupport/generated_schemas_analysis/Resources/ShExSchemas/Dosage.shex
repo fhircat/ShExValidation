@@ -1,0 +1,107 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <Ratio.shex>
+#imported_end
+#imported_begin 
+IMPORT <Range.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Timing.shex>
+#imported_end
+#imported_begin 
+IMPORT <integer.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <Element.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneType.shex>
+#imported_end
+#imported_begin 
+IMPORT <SimpleQuantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+# How the medication is/was taken or should be taken
+<Dosage> EXTENDS @<BackboneType> CLOSED {   
+
+    a [fhir:Dosage]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:sequence @<integer>?;              # The order of the dosage 
+                                            # instructions 
+    fhir:text @<string>?;                   # Free text dosage instructions e.g. 
+                                            # SIG 
+    fhir:additionalInstruction @<OneOrMore_CodeableConcept>?;  # Supplemental instruction or 
+                                            # warnings to the patient - e.g. 
+                                            # "with meals", "may cause 
+                                            # drowsiness" 
+    fhir:patientInstruction @<string>?;     # Patient or consumer oriented 
+                                            # instructions 
+    fhir:timing @<Timing>?;                 # When medication should be 
+                                            # administered 
+    fhir:asNeeded @<boolean>?;              # Take "as needed"
+    fhir:asNeededFor @<OneOrMore_CodeableConcept>?;  # Take "as needed" (for x)
+    fhir:site @<CodeableConcept>?;          # Body site to administer to
+    fhir:route @<CodeableConcept>?;         # How drug should enter body
+    fhir:method @<CodeableConcept>?;        # Technique for administering 
+                                            # medication 
+    fhir:doseAndRate @<OneOrMore_Element>?;  # Amount of medication administered, 
+                                            # to be administered or typical 
+                                            # amount to be administered 
+    fhir:maxDosePerPeriod @<OneOrMore_Ratio>?;  # Upper limit on medication per unit 
+                                            # of time 
+    fhir:maxDosePerAdministration @<Quantity>?;  # Upper limit on medication per 
+                                            # administration 
+    fhir:maxDosePerLifetime @<Quantity>?;   # Upper limit on medication per 
+                                            # lifetime of the patient 
+} AND (
+
+# Constraint UniqueKey:dosage-1
+# Human readable:AsNeededFor can only be set if AsNeeded is empty or true
+
+# Constraint: asNeededFor.empty() or asNeeded.empty() or asNeeded
+# ShEx:
+
+ NOT { fhir:asNeededFor {fhir:v .} }  OR  NOT { fhir:asNeeded {fhir:v .} }  OR { fhir:asNeeded }
+
+)
+ 
+
+# Amount of medication administered, to be administered or typical amount to be administered
+<Dosage.doseAndRate> EXTENDS @<Element> CLOSED {   
+    fhir:type @<CodeableConcept>?;          # The kind of dose or rate specified
+    fhir:dose @<Range>  OR 
+    			@<SimpleQuantity>  ?;  # Amount of medication per dose
+    fhir:rate @<Ratio>  OR 
+    			@<Range>  OR 
+    			@<SimpleQuantity>  ?;  # Amount of medication per unit of 
+                                            # time 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+

@@ -1,0 +1,54 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <RequestOrchestration.shex>
+#imported_end
+
+start=@<cdshooksrequestorchestration> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A set of related requests
+<cdshooksrequestorchestration> EXTENDS @<RequestOrchestration> CLOSED {   
+
+    a [fhir:cdshooksrequestorchestration]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+}  
+
+# Input data requirements
+<RequestOrchestration.action.input> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Who should perform the action
+<RequestOrchestration.action.participant> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Output data definition
+<RequestOrchestration.action.output> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Whether or not the action is applicable
+<RequestOrchestration.action.condition> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Proposed actions, if any
+<RequestOrchestration.action> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Relationship to another action
+<RequestOrchestration.action.relatedAction> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Dynamic aspects of the definition
+<RequestOrchestration.action.dynamicValue> EXTENDS @<BackboneElement> CLOSED {   
+}  
+

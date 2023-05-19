@@ -1,0 +1,31 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+# A length - a value with a unit that is a physical distance
+<Distance> EXTENDS @<Quantity> CLOSED {   
+
+    a [fhir:Distance]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+} AND (
+
+# Constraint UniqueKey:dis-1
+# Human readable:There SHALL be a code if there is a value and it SHALL be an expression of length.  If system is present, it SHALL be UCUM.
+
+# Constraint: (code.exists() or value.empty()) and (system.empty() or system = %ucum)
+# ShEx:
+
+({fhir:code . OR  NOT { fhir:value {fhir:v .} } }) AND ( NOT { fhir:system {fhir:v .} }  OR ({ fhir:system { fhir:v ['http://unitsofmeasure.org'] }  }))
+
+)
+ 
+

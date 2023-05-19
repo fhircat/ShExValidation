@@ -1,0 +1,178 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Money.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <Contract.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <positiveInt.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <InsurancePlan.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <SimpleQuantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+
+start=@<Coverage> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Insurance or medical plan or a payment agreement
+<Coverage> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Coverage]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business identifier(s) for this 
+                                            # coverage 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:fm-status};  # active | cancelled | draft | 
+                                            # entered-in-error 
+    fhir:kind @<code> AND
+    	{fhir:v @fhirvs:coverage-kind};  # insurance | self-pay | other
+    fhir:paymentBy @<OneOrMore_Coverage.paymentBy>?;  # Self-pay parties and responsibility
+    fhir:type @<CodeableConcept>?;          # Coverage category such as medical 
+                                            # or accident 
+    fhir:policyHolder @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<RelatedPerson> ? }?;  # Owner of the policy
+    fhir:subscriber @<Reference> AND {fhir:link 
+    			@<Patient> OR 
+    			@<RelatedPerson> ? }?;  # Subscriber to the policy
+    fhir:subscriberId @<OneOrMore_Identifier>?;  # ID assigned to the subscriber
+    fhir:beneficiary @<Reference> AND {fhir:link 
+    			@<Patient> ? };  # Plan beneficiary
+    fhir:dependent @<string>?;              # Dependent number
+    fhir:relationship @<CodeableConcept>?;  # Beneficiary relationship to the 
+                                            # subscriber 
+    fhir:period @<Period>?;                 # Coverage start and end dates
+    fhir:insurer @<Reference> AND {fhir:link 
+    			@<Organization> ? }?;  # Issuer of the policy
+    fhir:class @<OneOrMore_Coverage.class>?;  # Additional coverage classifications
+    fhir:order @<positiveInt>?;             # Relative order of the coverage
+    fhir:network @<string>?;                # Insurer network
+    fhir:costToBeneficiary @<OneOrMore_Coverage.costToBeneficiary>?;  # Patient payments for 
+                                            # services/products 
+    fhir:subrogation @<boolean>?;           # Reimbursement to insurer
+    fhir:contract @<OneOrMore_Reference_Contract>?;  # Contract details
+    fhir:insurancePlan @<Reference> AND {fhir:link 
+    			@<InsurancePlan> ? }?;  # Insurance plan details
+}  
+
+# Self-pay parties and responsibility
+<Coverage.paymentBy> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:party @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<RelatedPerson> ? };  # Parties performing self-payment
+    fhir:responsibility @<string>?;         # Party's responsibility
+}  
+
+# Exceptions for patient payments
+<Coverage.costToBeneficiary.exception> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # Exception category
+    fhir:period @<Period>?;                 # The effective period of the 
+                                            # exception 
+}  
+
+# Additional coverage classifications
+<Coverage.class> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # Type of class such as 'group' or 
+                                            # 'plan' 
+    fhir:value @<Identifier>;               # Value associated with the type
+    fhir:name @<string>?;                   # Human readable description of the 
+                                            # type and value 
+}  
+
+# Patient payments for services/products
+<Coverage.costToBeneficiary> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>?;          # Cost category
+    fhir:category @<CodeableConcept>?;      # Benefit classification
+    fhir:network @<CodeableConcept>?;       # In or out of network
+    fhir:unit @<CodeableConcept>?;          # Individual or family
+    fhir:term @<CodeableConcept>?;          # Annual or lifetime
+    fhir:value @<SimpleQuantity>  OR 
+    			@<Money>  ?;  # The amount or percentage due from 
+                                            # the beneficiary 
+    fhir:exception @<OneOrMore_Coverage.costToBeneficiary.exception>?;  # Exceptions for patient payments
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+<OneOrMore_Coverage.paymentBy> CLOSED {
+    rdf:first @<Coverage.paymentBy>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Coverage.paymentBy> 
+}
+
+<OneOrMore_Coverage.class> CLOSED {
+    rdf:first @<Coverage.class>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Coverage.class> 
+}
+
+<OneOrMore_Coverage.costToBeneficiary> CLOSED {
+    rdf:first @<Coverage.costToBeneficiary>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Coverage.costToBeneficiary> 
+}
+
+
+
+<OneOrMore_Coverage.costToBeneficiary.exception> CLOSED {
+    rdf:first @<Coverage.costToBeneficiary.exception>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Coverage.costToBeneficiary.exception> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The kind of coverage: insurance, selfpay or other.
+fhirvs:coverage-kind ["insurance" "self-pay" "other"]
+
+# This value set includes Status codes.
+fhirvs:fm-status ["active" "cancelled" "draft" "entered-in-error"]
+

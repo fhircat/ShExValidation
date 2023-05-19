@@ -1,0 +1,135 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <Location.shex>
+#imported_end
+#imported_begin 
+IMPORT <Endpoint.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <HealthcareService.shex>
+#imported_end
+#imported_begin 
+IMPORT <ExtendedContactDetail.shex>
+#imported_end
+
+start=@<OrganizationAffiliation> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Defines an affiliation/assotiation/relationship between 2 distinct organizations, that is not a part-of relationship/sub-division relationship
+<OrganizationAffiliation> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:OrganizationAffiliation]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business identifiers that are 
+                                            # specific to this role 
+    fhir:active @<boolean>?;                # Whether this organization 
+                                            # affiliation record is in active 
+                                            # use 
+    fhir:period @<Period>?;                 # The period during which the 
+                                            # participatingOrganization is 
+                                            # affiliated with the primary 
+                                            # organization 
+    fhir:organization @<Reference> AND {fhir:link 
+    			@<Organization> ? }?;  # Organization where the role is 
+                                            # available 
+    fhir:participatingOrganization @<Reference> AND {fhir:link 
+    			@<Organization> ? }?;  # Organization that 
+                                            # provides/performs the role (e.g. 
+                                            # providing services or is a member 
+                                            # of) 
+    fhir:network @<OneOrMore_Reference_Organization>?;  # The network in which the 
+                                            # participatingOrganization provides 
+                                            # the role's services (if defined) 
+                                            # at the indicated locations (if 
+                                            # defined) 
+    fhir:code @<OneOrMore_CodeableConcept>?;  # Definition of the role the 
+                                            # participatingOrganization plays 
+    fhir:specialty @<OneOrMore_CodeableConcept>?;  # Specific specialty of the 
+                                            # participatingOrganization in the 
+                                            # context of the role 
+    fhir:location @<OneOrMore_Reference_Location>?;  # The location(s) at which the role 
+                                            # occurs 
+    fhir:healthcareService @<OneOrMore_Reference_HealthcareService>?;  # Healthcare services provided 
+                                            # through the role 
+    fhir:contact @<OneOrMore_ExtendedContactDetail>?;  # Official contact details at the 
+                                            # participatingOrganization relevant 
+                                            # to this Affiliation 
+    fhir:endpoint @<OneOrMore_Reference_Endpoint>?;  # Technical endpoints providing 
+                                            # access to services operated for 
+                                            # this role 
+} AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: where
+# # Constraint UniqueKey:org-3
+# Human readable:The telecom of an organization can never be of use 'home'
+#
+# Constraint: telecom.where(use = 'home').empty()
+# ShEx:
+#
+# NOT { fhir:telecom. where  (use { fhir:v ['home'] } ) {fhir:v .} } 
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: where
+# # Constraint UniqueKey:org-4
+# Human readable:The address of an organization can never be of use 'home'
+#
+# Constraint: address.where(use = 'home').empty()
+# ShEx:
+#
+# NOT { fhir:address. where  (use { fhir:v ['home'] } ) {fhir:v .} } 
+{}
+
+)
+ 
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,170 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <integer.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Attachment.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+
+start=@<SubstanceNucleicAcid> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Nucleic acids are defined by three distinct elements: the base, sugar and linkage. Individual substance/moiety IDs will be created for each of these elements. The nucleotide sequence will be always entered in the 5’-3’ direction
+<SubstanceNucleicAcid> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:SubstanceNucleicAcid]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:sequenceType @<CodeableConcept>?;  # The type of the sequence shall be 
+                                            # specified based on a controlled 
+                                            # vocabulary 
+    fhir:numberOfSubunits @<integer>?;      # The number of linear sequences of 
+                                            # nucleotides linked through 
+                                            # phosphodiester bonds shall be 
+                                            # described. Subunits would be 
+                                            # strands of nucleic acids that are 
+                                            # tightly associated typically 
+                                            # through Watson-Crick base pairing. 
+                                            # NOTE: If not specified in the 
+                                            # reference source, the assumption 
+                                            # is that there is 1 subunit 
+    fhir:areaOfHybridisation @<string>?;    # The area of hybridisation shall be 
+                                            # described if applicable for double 
+                                            # stranded RNA or DNA. The number 
+                                            # associated with the subunit 
+                                            # followed by the number associated 
+                                            # to the residue shall be specified 
+                                            # in increasing order. The 
+                                            # underscore “” shall be used as 
+                                            # separator as follows: 
+                                            # “Subunitnumber Residue” 
+    fhir:oligoNucleotideType @<CodeableConcept>?;  # (TBC)
+    fhir:subunit @<OneOrMore_SubstanceNucleicAcid.subunit>?;  # Subunits are listed in order of 
+                                            # decreasing length; sequences of 
+                                            # the same length will be ordered by 
+                                            # molecular weight; subunits that 
+                                            # have identical sequences will be 
+                                            # repeated multiple times 
+}  
+
+# 5.3.6.8.1 Sugar ID (Mandatory)
+<SubstanceNucleicAcid.subunit.sugar> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:identifier @<Identifier>?;         # The Substance ID of the sugar or 
+                                            # sugar-like component that make up 
+                                            # the nucleotide 
+    fhir:name @<string>?;                   # The name of the sugar or 
+                                            # sugar-like component that make up 
+                                            # the nucleotide 
+    fhir:residueSite @<string>?;            # The residues that contain a given 
+                                            # sugar will be captured. The order 
+                                            # of given residues will be captured 
+                                            # in the 5‘-3‘direction consistent 
+                                            # with the base sequences listed 
+                                            # above 
+}  
+
+# The linkages between sugar residues will also be captured
+<SubstanceNucleicAcid.subunit.linkage> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:connectivity @<string>?;           # The entity that links the sugar 
+                                            # residues together should also be 
+                                            # captured for nearly all naturally 
+                                            # occurring nucleic acid the linkage 
+                                            # is a phosphate group. For many 
+                                            # synthetic oligonucleotides 
+                                            # phosphorothioate linkages are 
+                                            # often seen. Linkage connectivity 
+                                            # is assumed to be 3’-5’. If the 
+                                            # linkage is either 3’-3’ or 5’-5’ 
+                                            # this should be specified 
+    fhir:identifier @<Identifier>?;         # Each linkage will be registered as 
+                                            # a fragment and have an ID 
+    fhir:name @<string>?;                   # Each linkage will be registered as 
+                                            # a fragment and have at least one 
+                                            # name. A single name shall be 
+                                            # assigned to each linkage 
+    fhir:residueSite @<string>?;            # Residues shall be captured as 
+                                            # described in 5.3.6.8.3 
+}  
+
+# Subunits are listed in order of decreasing length; sequences of the same length will be ordered by molecular weight; subunits that have identical sequences will be repeated multiple times
+<SubstanceNucleicAcid.subunit> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:subunit @<integer>?;               # Index of linear sequences of 
+                                            # nucleic acids in order of 
+                                            # decreasing length. Sequences of 
+                                            # the same length will be ordered by 
+                                            # molecular weight. Subunits that 
+                                            # have identical sequences will be 
+                                            # repeated and have sequential 
+                                            # subscripts 
+    fhir:sequence @<string>?;               # Actual nucleotide sequence 
+                                            # notation from 5' to 3' end using 
+                                            # standard single letter codes. In 
+                                            # addition to the base sequence, 
+                                            # sugar and type of phosphate or 
+                                            # non-phosphate linkage should also 
+                                            # be captured 
+    fhir:length @<integer>?;                # The length of the sequence shall 
+                                            # be captured 
+    fhir:sequenceAttachment @<Attachment>?;  # (TBC)
+    fhir:fivePrime @<CodeableConcept>?;     # The nucleotide present at the 5’ 
+                                            # terminal shall be specified based 
+                                            # on a controlled vocabulary. Since 
+                                            # the sequence is represented from 
+                                            # the 5' to the 3' end, the 5’ prime 
+                                            # nucleotide is the letter at the 
+                                            # first position in the sequence. A 
+                                            # separate representation would be 
+                                            # redundant 
+    fhir:threePrime @<CodeableConcept>?;    # The nucleotide present at the 3’ 
+                                            # terminal shall be specified based 
+                                            # on a controlled vocabulary. Since 
+                                            # the sequence is represented from 
+                                            # the 5' to the 3' end, the 5’ prime 
+                                            # nucleotide is the letter at the 
+                                            # last position in the sequence. A 
+                                            # separate representation would be 
+                                            # redundant 
+    fhir:linkage @<OneOrMore_SubstanceNucleicAcid.subunit.linkage>?;  # The linkages between sugar 
+                                            # residues will also be captured 
+    fhir:sugar @<OneOrMore_SubstanceNucleicAcid.subunit.sugar>?;  # 5.3.6.8.1 Sugar ID (Mandatory)
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_SubstanceNucleicAcid.subunit> CLOSED {
+    rdf:first @<SubstanceNucleicAcid.subunit>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_SubstanceNucleicAcid.subunit> 
+}
+
+<OneOrMore_SubstanceNucleicAcid.subunit.linkage> CLOSED {
+    rdf:first @<SubstanceNucleicAcid.subunit.linkage>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_SubstanceNucleicAcid.subunit.linkage> 
+}
+
+<OneOrMore_SubstanceNucleicAcid.subunit.sugar> CLOSED {
+    rdf:first @<SubstanceNucleicAcid.subunit.sugar>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_SubstanceNucleicAcid.subunit.sugar> 
+}
+

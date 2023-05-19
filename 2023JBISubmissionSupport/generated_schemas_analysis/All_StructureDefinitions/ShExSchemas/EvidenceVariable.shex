@@ -1,0 +1,386 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <id.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <date.shex>
+#imported_end
+#imported_begin 
+IMPORT <Range.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <Evidence.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Annotation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Expression.shex>
+#imported_end
+#imported_begin 
+IMPORT <positiveInt.shex>
+#imported_end
+#imported_begin 
+IMPORT <UsageContext.shex>
+#imported_end
+#imported_begin 
+IMPORT <DeviceMetric.shex>
+#imported_end
+#imported_begin 
+IMPORT <ContactDetail.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedArtifact.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+
+start=@<EvidenceVariable> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A definition of an exposure, outcome, or other variable
+<EvidenceVariable> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:EvidenceVariable]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri>?;                       # Canonical identifier for this 
+                                            # evidence variable, represented as 
+                                            # a URI (globally unique) 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
+                                            # evidence variable 
+    fhir:version @<string>?;                # Business version of the evidence 
+                                            # variable 
+    fhir:name @<string>?;                   # Name for this evidence variable 
+                                            # (computer friendly) 
+    fhir:title @<string>?;                  # Name for this evidence variable 
+                                            # (human friendly) 
+    fhir:shortTitle @<string>?;             # Title for use in informal contexts
+    fhir:subtitle @<string>?;               # Subordinate title of the 
+                                            # EvidenceVariable 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:date @<dateTime>?;                 # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher/steward 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the evidence variable 
+    fhir:note @<OneOrMore_Annotation>?;     # Used for footnotes or explanatory 
+                                            # notes 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:approvalDate @<date>?;             # When the resource was approved by 
+                                            # publisher 
+    fhir:lastReviewDate @<date>?;           # When the resource was last reviewed
+    fhir:effectivePeriod @<Period>?;        # When the resource is expected to 
+                                            # be used 
+    fhir:author @<OneOrMore_ContactDetail>?;  # Who authored the content
+    fhir:editor @<OneOrMore_ContactDetail>?;  # Who edited the content
+    fhir:reviewer @<OneOrMore_ContactDetail>?;  # Who reviewed the content
+    fhir:endorser @<OneOrMore_ContactDetail>?;  # Who endorsed the content
+    fhir:relatedArtifact @<OneOrMore_RelatedArtifact>?;  # Additional documentation, 
+                                            # citations, etc. 
+    fhir:actual @<boolean>?;                # Actual or conceptual
+    fhir:characteristic @<OneOrMore_EvidenceVariable.characteristic>?;  # A defining factor of the 
+                                            # EvidenceVariable 
+    fhir:handling @<code> AND
+    	{fhir:v @fhirvs:variable-handling}?;  # continuous | dichotomous | ordinal 
+                                            # | polychotomous 
+    fhir:category @<OneOrMore_EvidenceVariable.category>?;  # A grouping for ordinal or 
+                                            # polychotomous variables 
+} AND (
+
+# Constraint UniqueKey:cnl-1
+# Human readable:URL should not contain | or # - these characters make processing canonical references problematic
+
+# Constraint: url.matches('([^|#])*')
+# ShEx:
+
+{fhir:url { fhir:v /'([^|#])*'/ } }
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:cnl-0
+# Human readable:Name should be usable as an identifier for the module by machine processing applications such as code generation
+#
+# Constraint: name.exists() implies name.matches('[A-Z]([A-Za-z0-9_]){1,254}')
+# ShEx:
+#
+#{fhir:name .  Implies  {fhir:name { fhir:v /'[A-Z]([A-Za-z0-9_]){1,254}'/ } }}
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: count
+# Unmapped construct found: Plus
+# Unmapped construct found: count
+# Unmapped construct found: Plus
+# Unmapped construct found: count
+# Unmapped construct found: Plus
+# Unmapped construct found: count
+# Unmapped construct found: Plus
+# Unmapped construct found: count
+# Unmapped construct found: Plus
+# Unmapped construct found: count
+# Unmapped construct found: Plus
+# Unmapped construct found: count
+# # Constraint UniqueKey:evv-1
+# Human readable:In a characteristic, at most one of these seven elements shall be used: definitionReference or definitionCanonical or definitionCodeableConcept or definitionExpression or definitionId or definitionByTypeAndValue or definitionByCombination
+#
+# Constraint: (definitionReference.count() + definitionCanonical.count() + definitionCodeableConcept.count() + definitionExpression.count() + definitionId.count() + definitionByTypeAndValue.count() + definitionByCombination.count())  < 2
+# ShEx:
+#
+#(   count  ( fhir:definitionReference )  Plus     count  ( fhir:definitionCanonical )  Plus     count  ( fhir:definitionCodeableConcept )  Plus     count  ( fhir:definitionExpression )  Plus     count  ( fhir:definitionId )  Plus     count  ( fhir:definitionByTypeAndValue )  Plus     count  ( fhir:definitionByCombination )) { fhir:v MaxExclusive 2 } 
+{}
+
+)
+ 
+
+# Defines the characteristic using type and value
+<EvidenceVariable.characteristic.definitionByTypeAndValue> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # Expresses the type of 
+                                            # characteristic 
+    fhir:method @<OneOrMore_CodeableConcept>?;  # Method for how the characteristic 
+                                            # value was determined 
+    fhir:device @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<DeviceMetric> ? }?;  # Device used for determining 
+                                            # characteristic 
+    fhir:value @<CodeableConcept>  OR 
+    			@<boolean>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<Reference>  OR 
+    			@<id>  ;  # Defines the characteristic when 
+                                            # coupled with characteristic.type 
+    fhir:offset @<CodeableConcept>?;        # Reference point for valueQuantity
+}  
+
+# Observation time from study specified event
+<EvidenceVariable.characteristic.timeFromEvent> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:description @<string>?;            # Human readable description
+    fhir:note @<OneOrMore_Annotation>?;     # Used for footnotes or explanatory 
+                                            # notes 
+    fhir:event @<CodeableConcept>  OR 
+    			@<Reference>  OR 
+    			@<dateTime>  OR 
+    			@<id>  ?;  # The event used as a base point 
+                                            # (reference point) in time 
+    fhir:quantity @<Quantity>?;             # Used to express the observation at 
+                                            # a defined amount of time after the 
+                                            # study start 
+    fhir:range @<Range>?;                   # Used to express the observation 
+                                            # within a period after the study 
+                                            # start 
+}  
+
+# A grouping for ordinal or polychotomous variables
+<EvidenceVariable.category> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>?;                   # Description of the grouping
+    fhir:value @<CodeableConcept>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  ?;  # Definition of the grouping
+}  
+
+# A defining factor of the EvidenceVariable
+<EvidenceVariable.characteristic> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:linkId @<id>?;                     # Label for internal linking
+    fhir:description @<string>?;            # Natural language description of 
+                                            # the characteristic 
+    fhir:note @<OneOrMore_Annotation>?;     # Used for footnotes or explanatory 
+                                            # notes 
+    fhir:exclude @<boolean>?;               # Whether the characteristic is an 
+                                            # inclusion criterion or exclusion 
+                                            # criterion 
+    fhir:definitionReference @<Reference> AND {fhir:link 
+    			@<Evidence> OR 
+    			@<EvidenceVariable> OR 
+    			@<Group> ? }?;  # Defines the characteristic 
+                                            # (without using type and value) by 
+                                            # a Reference 
+    fhir:definitionCanonical @<canonical>?;  # Defines the characteristic 
+                                            # (without using type and value) by 
+                                            # a Canonical 
+    fhir:definitionCodeableConcept @<CodeableConcept>?;  # Defines the characteristic 
+                                            # (without using type and value) by 
+                                            # a CodeableConcept 
+    fhir:definitionExpression @<Expression>?;  # Defines the characteristic 
+                                            # (without using type and value) by 
+                                            # a Expression 
+    fhir:definitionId @<id>?;               # Defines the characteristic 
+                                            # (without using type and value) by 
+                                            # a id 
+    fhir:definitionByTypeAndValue @<EvidenceVariable.characteristic.definitionByTypeAndValue>?;  # Defines the characteristic using 
+                                            # type and value 
+    fhir:definitionByCombination @<EvidenceVariable.characteristic.definitionByCombination>?;  # Used to specify how two or more 
+                                            # characteristics are combined 
+    fhir:timeFromEvent @<OneOrMore_EvidenceVariable.characteristic.timeFromEvent>?;  # Observation time from study 
+                                            # specified event 
+} AND (
+
+# Constraint UniqueKey:cnl-1
+# Human readable:URL should not contain | or # - these characters make processing canonical references problematic
+
+# Constraint: url.matches('([^|#])*')
+# ShEx:
+
+{fhir:url { fhir:v /'([^|#])*'/ } }
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:cnl-0
+# Human readable:Name should be usable as an identifier for the module by machine processing applications such as code generation
+#
+# Constraint: name.exists() implies name.matches('[A-Z]([A-Za-z0-9_]){1,254}')
+# ShEx:
+#
+#{fhir:name .  Implies  {fhir:name { fhir:v /'[A-Z]([A-Za-z0-9_]){1,254}'/ } }}
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: count
+# Unmapped construct found: Plus
+# Unmapped construct found: count
+# Unmapped construct found: Plus
+# Unmapped construct found: count
+# Unmapped construct found: Plus
+# Unmapped construct found: count
+# Unmapped construct found: Plus
+# Unmapped construct found: count
+# Unmapped construct found: Plus
+# Unmapped construct found: count
+# Unmapped construct found: Plus
+# Unmapped construct found: count
+# # Constraint UniqueKey:evv-1
+# Human readable:In a characteristic, at most one of these seven elements shall be used: definitionReference or definitionCanonical or definitionCodeableConcept or definitionExpression or definitionId or definitionByTypeAndValue or definitionByCombination
+#
+# Constraint: (definitionReference.count() + definitionCanonical.count() + definitionCodeableConcept.count() + definitionExpression.count() + definitionId.count() + definitionByTypeAndValue.count() + definitionByCombination.count())  < 2
+# ShEx:
+#
+#(   count  ( fhir:definitionReference )  Plus     count  ( fhir:definitionCanonical )  Plus     count  ( fhir:definitionCodeableConcept )  Plus     count  ( fhir:definitionExpression )  Plus     count  ( fhir:definitionId )  Plus     count  ( fhir:definitionByTypeAndValue )  Plus     count  ( fhir:definitionByCombination )) { fhir:v MaxExclusive 2 } 
+{}
+
+)
+ 
+
+# Used to specify how two or more characteristics are combined
+<EvidenceVariable.characteristic.definitionByCombination> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code> AND
+    	{fhir:v @fhirvs:characteristic-combination};  # all-of | any-of | at-least | 
+                                            # at-most | statistical | net-effect 
+                                            # | dataset 
+    fhir:threshold @<positiveInt>?;         # Provides the value of "n" when 
+                                            # "at-least" or "at-most" codes are 
+                                            # used 
+    fhir:characteristic @<OneOrMore_EvidenceVariable.characteristic>;  # A defining factor of the 
+                                            # characteristic 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_EvidenceVariable.characteristic> CLOSED {
+    rdf:first @<EvidenceVariable.characteristic>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_EvidenceVariable.characteristic> 
+}
+
+<OneOrMore_EvidenceVariable.category> CLOSED {
+    rdf:first @<EvidenceVariable.category>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_EvidenceVariable.category> 
+}
+
+
+
+<OneOrMore_EvidenceVariable.characteristic.timeFromEvent> CLOSED {
+    rdf:first @<EvidenceVariable.characteristic.timeFromEvent>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_EvidenceVariable.characteristic.timeFromEvent> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Logical grouping of characteristics.
+fhirvs:characteristic-combination ["all-of" "any-of" "at-least" "at-most" "statistical" "net-effect" "dataset"]
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+
+# The handling of the variable in statistical analysis for exposures or outcomes (E.g. Dichotomous, Continuous, Descriptive).
+fhirvs:variable-handling ["continuous" "dichotomous" "ordinal" "polychotomous"]
+

@@ -1,0 +1,38 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <Observation.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+
+start=@<triglyceride> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Triglyceride Result
+<triglyceride> EXTENDS @<Observation> CLOSED {   
+
+    a [fhir:triglyceride]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+}  
+
+# Component results
+<Observation.component> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Triggering observation(s)
+<Observation.triggeredBy> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Provides guide for interpretation
+<Observation.referenceRange> EXTENDS @<BackboneElement> CLOSED {   
+}  
+

@@ -1,0 +1,261 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <Age.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <Range.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <CareTeam.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Encounter.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Annotation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Observation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+#imported_begin 
+IMPORT <DiagnosticReport.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableReference.shex>
+#imported_end
+#imported_begin 
+IMPORT <ClinicalImpression.shex>
+#imported_end
+
+start=@<Condition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Detailed information about conditions, problems or diagnoses
+<Condition> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Condition]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # External Ids for this condition
+    fhir:clinicalStatus @<CodeableConcept>;  # active | recurrence | relapse | 
+                                            # inactive | remission | resolved | 
+                                            # unknown 
+    fhir:verificationStatus @<CodeableConcept>?;  # unconfirmed | provisional | 
+                                            # differential | confirmed | refuted 
+                                            # | entered-in-error 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # problem-list-item | 
+                                            # encounter-diagnosis 
+    fhir:severity @<CodeableConcept>?;      # Subjective severity of condition
+    fhir:code @<CodeableConcept>?;          # Identification of the condition, 
+                                            # problem or diagnosis 
+    fhir:bodySite @<OneOrMore_CodeableConcept>?;  # Anatomical location, if relevant
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Patient> ? };  # Who has the condition?
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> ? }?;  # The Encounter during which this 
+                                            # Condition was created 
+    fhir:onset @<dateTime>  OR 
+    			@<Age>  OR 
+    			@<Period>  OR 
+    			@<Range>  OR 
+    			@<string>  ?;  # Estimated or actual date,  
+                                            # date-time, or age 
+    fhir:abatement @<dateTime>  OR 
+    			@<Age>  OR 
+    			@<Period>  OR 
+    			@<Range>  OR 
+    			@<string>  ?;  # When in resolution/remission
+    fhir:recordedDate @<dateTime>?;         # Date condition was first recorded
+    fhir:participant @<OneOrMore_Condition.participant>?;  # Who or what participated in the 
+                                            # activities related to the 
+                                            # condition and how they were 
+                                            # involved 
+    fhir:stage @<OneOrMore_Condition.stage>?;  # Stage/grade, usually assessed 
+                                            # formally 
+    fhir:evidence @<OneOrMore_CodeableReference>?;  # Supporting evidence for the 
+                                            # verification status 
+    fhir:note @<OneOrMore_Annotation>?;     # Additional information about the 
+                                            # Condition 
+} AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: where
+# Unmapped construct found: Implies
+# Unmapped construct found: where
+# # Constraint UniqueKey:con-2
+# Human readable:If category is problems list item, the clinicalStatus should not be unknown
+#
+# Constraint: category.coding.where(system='http://terminology.hl7.org/CodeSystem/condition-category' and code='problem-list-item').exists() implies clinicalStatus.coding.where(system='http://terminology.hl7.org/CodeSystem/condition-clinical' and code='unknown').exists().not()
+# ShEx:
+#
+#{fhir:category.coding.  where  (system { fhir:v ['http://terminology.hl7.org/CodeSystem/condition-category'] }  AND code { fhir:v ['problem-list-item'] } ) .  Implies   NOT { fhir:clinicalStatus.coding. where  (system { fhir:v ['http://terminology.hl7.org/CodeSystem/condition-clinical'] }  AND code { fhir:v ['unknown'] } ). }}
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# Unmapped construct found: where
+# # Constraint UniqueKey:con-3
+# Human readable:If condition is abated, then clinicalStatus must be either inactive, resolved, or remission.
+#
+# Constraint: abatement.exists() implies (clinicalStatus.coding.where(system='http://terminology.hl7.org/CodeSystem/condition-clinical' and (code='inactive' or code='resolved' or code='remission')).exists())
+# ShEx:
+#
+#{fhir:abatement .  Implies  ({fhir:clinicalStatus.coding.  where  (system { fhir:v ['http://terminology.hl7.org/CodeSystem/condition-clinical'] }  AND code { fhir:v ['inactive'] }  OR code { fhir:v ['resolved'] }  OR code { fhir:v ['remission'] } ) .})}
+{}
+
+) AND (
+
+# Constraint UniqueKey:con-1
+# Human readable:Stage SHALL have summary or assessment
+
+# Constraint: summary.exists() or assessment.exists()
+# ShEx:
+
+{fhir:summary . OR {fhir:assessment .}}
+
+)
+ 
+
+# Who or what participated in the activities related to the condition and how they were involved
+<Condition.participant> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:function @<CodeableConcept>?;      # Type of involvement
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ? };  # Who or what participated in the 
+                                            # activities related to the 
+                                            # condition 
+}  
+
+# Stage/grade, usually assessed formally
+<Condition.stage> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:summary @<CodeableConcept>?;       # Simple summary (disease specific)
+    fhir:assessment @<OneOrMore_Reference_ClinicalImpression_OR_DiagnosticReport_OR_Observation>?;  # Formal record of assessment
+    fhir:type @<CodeableConcept>?;          # Kind of staging
+} AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: where
+# Unmapped construct found: Implies
+# Unmapped construct found: where
+# # Constraint UniqueKey:con-2
+# Human readable:If category is problems list item, the clinicalStatus should not be unknown
+#
+# Constraint: category.coding.where(system='http://terminology.hl7.org/CodeSystem/condition-category' and code='problem-list-item').exists() implies clinicalStatus.coding.where(system='http://terminology.hl7.org/CodeSystem/condition-clinical' and code='unknown').exists().not()
+# ShEx:
+#
+#{fhir:category.coding.  where  (system { fhir:v ['http://terminology.hl7.org/CodeSystem/condition-category'] }  AND code { fhir:v ['problem-list-item'] } ) .  Implies   NOT { fhir:clinicalStatus.coding. where  (system { fhir:v ['http://terminology.hl7.org/CodeSystem/condition-clinical'] }  AND code { fhir:v ['unknown'] } ). }}
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# Unmapped construct found: where
+# # Constraint UniqueKey:con-3
+# Human readable:If condition is abated, then clinicalStatus must be either inactive, resolved, or remission.
+#
+# Constraint: abatement.exists() implies (clinicalStatus.coding.where(system='http://terminology.hl7.org/CodeSystem/condition-clinical' and (code='inactive' or code='resolved' or code='remission')).exists())
+# ShEx:
+#
+#{fhir:abatement .  Implies  ({fhir:clinicalStatus.coding.  where  (system { fhir:v ['http://terminology.hl7.org/CodeSystem/condition-clinical'] }  AND code { fhir:v ['inactive'] }  OR code { fhir:v ['resolved'] }  OR code { fhir:v ['remission'] } ) .})}
+{}
+
+) AND (
+
+# Constraint UniqueKey:con-1
+# Human readable:Stage SHALL have summary or assessment
+
+# Constraint: summary.exists() or assessment.exists()
+# ShEx:
+
+{fhir:summary . OR {fhir:assessment .}}
+
+)
+ 
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+<OneOrMore_Condition.participant> CLOSED {
+    rdf:first @<Condition.participant>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Condition.participant> 
+}
+
+<OneOrMore_Condition.stage> CLOSED {
+    rdf:first @<Condition.stage>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Condition.stage> 
+}
+
+
+
+
+
+
+

@@ -1,0 +1,694 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <url.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <unsignedInt.shex>
+#imported_end
+#imported_begin 
+IMPORT <UsageContext.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <ContactDetail.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+
+start=@<CapabilityStatement> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A statement of system capabilities
+<CapabilityStatement> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:CapabilityStatement]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri>?;                       # Canonical identifier for this 
+                                            # capability statement, represented 
+                                            # as a URI (globally unique) 
+    fhir:version @<string>?;                # Business version of the capability 
+                                            # statement 
+    fhir:versionAlgorithm @<string>  OR 
+    			@<Coding>  ?;  # How to compare versions
+    fhir:name @<string>?;                   # Name for this capability statement 
+                                            # (computer friendly) 
+    fhir:title @<string>?;                  # Name for this capability statement 
+                                            # (human friendly) 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:date @<dateTime>;                  # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher/steward 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the capability statement 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for 
+                                            # capability statement (if 
+                                            # applicable) 
+    fhir:purpose @<markdown>?;              # Why this capability statement is 
+                                            # defined 
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:copyrightLabel @<string>?;         # Copyright holder and year(s)
+    fhir:kind @<code> AND
+    	{fhir:v @fhirvs:capability-statement-kind};  # instance | capability | 
+                                            # requirements 
+    fhir:instantiates @<OneOrMore_canonical>?;  # Canonical URL of another 
+                                            # capability statement this 
+                                            # implements 
+    fhir:imports @<OneOrMore_canonical>?;   # Canonical URL of another 
+                                            # capability statement this adds to 
+    fhir:software @<CapabilityStatement.software>?;  # Software that is covered by this 
+                                            # capability statement 
+    fhir:implementation @<CapabilityStatement.implementation>?;  # If this describes a specific 
+                                            # instance 
+    fhir:fhirVersion @<code> AND
+    	{fhir:v @fhirvs:FHIR-version};  # FHIR Version the system supports
+    fhir:format @<OneOrMore_code>;          # formats supported (xml | json | 
+                                            # ttl | mime type) 
+    fhir:patchFormat @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:mimetypes}?;  # Patch formats supported
+    fhir:acceptLanguage @<OneOrMore_code>?;  # Languages supported
+    fhir:implementationGuide @<OneOrMore_canonical>?;  # Implementation guides supported
+    fhir:rest @<OneOrMore_CapabilityStatement.rest>?;  # If the endpoint is a RESTful one
+    fhir:messaging @<OneOrMore_CapabilityStatement.messaging>?;  # If messaging is supported
+    fhir:document @<OneOrMore_CapabilityStatement.document>?;  # Document definition
+} AND (
+
+# Constraint UniqueKey:cnl-1
+# Human readable:URL should not contain | or # - these characters make processing canonical references problematic
+
+# Constraint: url.matches('([^|#])*')
+# ShEx:
+
+{fhir:url { fhir:v /'([^|#])*'/ } }
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:cnl-0
+# Human readable:Name should be usable as an identifier for the module by machine processing applications such as code generation
+#
+# Constraint: name.exists() implies name.matches('[A-Z]([A-Za-z0-9_]){1,254}')
+# ShEx:
+#
+#{fhir:name .  Implies  {fhir:name { fhir:v /'[A-Z]([A-Za-z0-9_]){1,254}'/ } }}
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: isDistinct
+# Unmapped construct found: select
+# Unmapped construct found: Concatenate
+# # Constraint UniqueKey:cpb-7
+# Human readable:The set of documents must be unique by the combination of profile and mode.
+#
+# Constraint: document.select(profile&mode).isDistinct()
+# ShEx:
+#
+#   isDistinct  ( fhir:document. select  (profile  Concatenate  mode) )
+{}
+
+) AND (
+
+# Constraint UniqueKey:cpb-16
+# Human readable:If kind = requirements, implementation and software must be absent
+
+# Constraint: (kind!='requirements') or (implementation.exists().not() and software.exists().not())
+# ShEx:
+
+({ fhir:kind [fhir:v  . -'requirements']  }) OR ( NOT { fhir:implementation. } AND  NOT { fhir:software. })
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: isDistinct
+# # Constraint UniqueKey:cpb-4
+# Human readable:There should only be one CapabilityStatement.rest per mode.
+#
+# Constraint: rest.mode.isDistinct()
+# ShEx:
+#
+#   isDistinct  ( fhir:rest.mode )
+{}
+
+) AND (
+
+# Constraint UniqueKey:cpb-15
+# Human readable:If kind = capability, implementation must be absent, software must be present
+
+# Constraint: (kind != 'capability') or (implementation.exists().not() and software.exists())
+# ShEx:
+
+({ fhir:kind [fhir:v  . -'capability']  }) OR ( NOT { fhir:implementation. } AND {fhir:software .})
+
+) AND (
+
+# Constraint UniqueKey:cpb-3
+# Human readable:Messaging end-point is only permitted when a capability statement is for an implementation.
+
+# Constraint: messaging.endpoint.empty() or kind = 'instance'
+# ShEx:
+
+ NOT { fhir:messaging.endpoint {fhir:v .} }  OR ({ fhir:kind { fhir:v ['instance'] }  })
+
+) AND (
+
+# Constraint UniqueKey:cpb-14
+# Human readable:If kind = instance, implementation must be present and software may be present
+
+# Constraint: (kind != 'instance') or implementation.exists()
+# ShEx:
+
+({ fhir:kind [fhir:v  . -'instance']  }) OR {fhir:implementation .}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: count
+# Unmapped construct found: Plus
+# Unmapped construct found: count
+# Unmapped construct found: Plus
+# Unmapped construct found: count
+# # Constraint UniqueKey:cpb-2
+# Human readable:A Capability Statement SHALL have at least one of description, software, or implementation element.
+#
+# Constraint: (description.count() + software.count() + implementation.count()) > 0
+# ShEx:
+#
+#(   count  ( fhir:description )  Plus     count  ( fhir:software )  Plus     count  ( fhir:implementation )) { fhir:v MinExclusive 0 } 
+{}
+
+) AND (
+
+# Constraint UniqueKey:cpb-1
+# Human readable:A Capability Statement SHALL have at least one of REST, messaging or document element.
+
+# Constraint: rest.exists() or messaging.exists() or document.exists()
+# ShEx:
+
+{fhir:rest . OR {fhir:messaging . OR {fhir:document .}}}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: isDistinct
+# Unmapped construct found: select
+# # Constraint UniqueKey:cpb-9
+# Human readable:A given resource can only be described once per RESTful mode.
+#
+# Constraint: resource.select(type).isDistinct()
+# ShEx:
+#
+#   isDistinct  ( fhir:resource. select  (type) )
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: isDistinct
+# Unmapped construct found: select
+# # Constraint UniqueKey:cpb-12
+# Human readable:Search parameter names must be unique in the context of a resource.
+#
+# Constraint: searchParam.select(name).isDistinct()
+# ShEx:
+#
+#   isDistinct  ( fhir:searchParam. select  (name) )
+{}
+
+)
+ 
+
+# If this describes a specific instance
+<CapabilityStatement.implementation> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:description @<string>;             # Describes this specific instance
+    fhir:url @<url>?;                       # Base URL for the installation
+    fhir:custodian @<Reference> AND {fhir:link 
+    			@<Organization> ? }?;  # Organization that manages the data
+}  
+
+# Software that is covered by this capability statement
+<CapabilityStatement.software> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>;                    # A name the software is known by
+    fhir:version @<string>?;                # Version covered by this statement
+    fhir:releaseDate @<dateTime>?;          # Date this version was released
+}  
+
+# Messages supported by this system
+<CapabilityStatement.messaging.supportedMessage> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:mode @<code> AND
+    	{fhir:v @fhirvs:event-capability-mode};  # sender | receiver
+    fhir:definition @<canonical>;           # Message supported by this system
+}  
+
+# If the endpoint is a RESTful one
+<CapabilityStatement.rest> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:mode @<code> AND
+    	{fhir:v @fhirvs:restful-capability-mode};  # client | server
+    fhir:documentation @<markdown>?;        # General description of 
+                                            # implementation 
+    fhir:security @<CapabilityStatement.rest.security>?;  # Information about security of 
+                                            # implementation 
+    fhir:resource @<OneOrMore_CapabilityStatement.rest.resource>?;  # Resource served on the REST 
+                                            # interface 
+    fhir:interaction @<OneOrMore_CapabilityStatement.rest.interaction>?;  # What operations are supported?
+    fhir:searchParam @<OneOrMore_CapabilityStatement.rest.resource.searchParam>?;  # Search parameters for searching 
+                                            # all resources 
+    fhir:operation @<OneOrMore_CapabilityStatement.rest.resource.operation>?;  # Definition of a system level 
+                                            # operation 
+    fhir:compartment @<OneOrMore_canonical>?;  # Compartments served/used by system
+} AND (
+
+# Constraint UniqueKey:cnl-1
+# Human readable:URL should not contain | or # - these characters make processing canonical references problematic
+
+# Constraint: url.matches('([^|#])*')
+# ShEx:
+
+{fhir:url { fhir:v /'([^|#])*'/ } }
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:cnl-0
+# Human readable:Name should be usable as an identifier for the module by machine processing applications such as code generation
+#
+# Constraint: name.exists() implies name.matches('[A-Z]([A-Za-z0-9_]){1,254}')
+# ShEx:
+#
+#{fhir:name .  Implies  {fhir:name { fhir:v /'[A-Z]([A-Za-z0-9_]){1,254}'/ } }}
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: isDistinct
+# Unmapped construct found: select
+# Unmapped construct found: Concatenate
+# # Constraint UniqueKey:cpb-7
+# Human readable:The set of documents must be unique by the combination of profile and mode.
+#
+# Constraint: document.select(profile&mode).isDistinct()
+# ShEx:
+#
+#   isDistinct  ( fhir:document. select  (profile  Concatenate  mode) )
+{}
+
+) AND (
+
+# Constraint UniqueKey:cpb-16
+# Human readable:If kind = requirements, implementation and software must be absent
+
+# Constraint: (kind!='requirements') or (implementation.exists().not() and software.exists().not())
+# ShEx:
+
+({ fhir:kind [fhir:v  . -'requirements']  }) OR ( NOT { fhir:implementation. } AND  NOT { fhir:software. })
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: isDistinct
+# # Constraint UniqueKey:cpb-4
+# Human readable:There should only be one CapabilityStatement.rest per mode.
+#
+# Constraint: rest.mode.isDistinct()
+# ShEx:
+#
+#   isDistinct  ( fhir:rest.mode )
+{}
+
+) AND (
+
+# Constraint UniqueKey:cpb-15
+# Human readable:If kind = capability, implementation must be absent, software must be present
+
+# Constraint: (kind != 'capability') or (implementation.exists().not() and software.exists())
+# ShEx:
+
+({ fhir:kind [fhir:v  . -'capability']  }) OR ( NOT { fhir:implementation. } AND {fhir:software .})
+
+) AND (
+
+# Constraint UniqueKey:cpb-3
+# Human readable:Messaging end-point is only permitted when a capability statement is for an implementation.
+
+# Constraint: messaging.endpoint.empty() or kind = 'instance'
+# ShEx:
+
+ NOT { fhir:messaging.endpoint {fhir:v .} }  OR ({ fhir:kind { fhir:v ['instance'] }  })
+
+) AND (
+
+# Constraint UniqueKey:cpb-14
+# Human readable:If kind = instance, implementation must be present and software may be present
+
+# Constraint: (kind != 'instance') or implementation.exists()
+# ShEx:
+
+({ fhir:kind [fhir:v  . -'instance']  }) OR {fhir:implementation .}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: count
+# Unmapped construct found: Plus
+# Unmapped construct found: count
+# Unmapped construct found: Plus
+# Unmapped construct found: count
+# # Constraint UniqueKey:cpb-2
+# Human readable:A Capability Statement SHALL have at least one of description, software, or implementation element.
+#
+# Constraint: (description.count() + software.count() + implementation.count()) > 0
+# ShEx:
+#
+#(   count  ( fhir:description )  Plus     count  ( fhir:software )  Plus     count  ( fhir:implementation )) { fhir:v MinExclusive 0 } 
+{}
+
+) AND (
+
+# Constraint UniqueKey:cpb-1
+# Human readable:A Capability Statement SHALL have at least one of REST, messaging or document element.
+
+# Constraint: rest.exists() or messaging.exists() or document.exists()
+# ShEx:
+
+{fhir:rest . OR {fhir:messaging . OR {fhir:document .}}}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: isDistinct
+# Unmapped construct found: select
+# # Constraint UniqueKey:cpb-9
+# Human readable:A given resource can only be described once per RESTful mode.
+#
+# Constraint: resource.select(type).isDistinct()
+# ShEx:
+#
+#   isDistinct  ( fhir:resource. select  (type) )
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: isDistinct
+# Unmapped construct found: select
+# # Constraint UniqueKey:cpb-12
+# Human readable:Search parameter names must be unique in the context of a resource.
+#
+# Constraint: searchParam.select(name).isDistinct()
+# ShEx:
+#
+#   isDistinct  ( fhir:searchParam. select  (name) )
+{}
+
+)
+ 
+
+# Search parameters supported by implementation
+<CapabilityStatement.rest.resource.searchParam> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>;                    # Name for parameter in search url
+    fhir:definition @<canonical>?;          # Source of definition for parameter
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:search-param-type};  # number | date | string | token | 
+                                            # reference | composite | quantity | 
+                                            # uri | special 
+    fhir:documentation @<markdown>?;        # Server-specific usage
+}  
+
+# Definition of a resource operation
+<CapabilityStatement.rest.resource.operation> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>;                    # Name by which the operation/query 
+                                            # is invoked 
+    fhir:definition @<canonical>;           # The defined operation/query
+    fhir:documentation @<markdown>?;        # Specific details about operation 
+                                            # behavior 
+}  
+
+# Where messages should be sent
+<CapabilityStatement.messaging.endpoint> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:protocol @<Coding>;                # http | ftp | mllp +
+    fhir:address @<url>;                    # Network address or identifier of 
+                                            # the end-point 
+}  
+
+# If messaging is supported
+<CapabilityStatement.messaging> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:endpoint @<OneOrMore_CapabilityStatement.messaging.endpoint>?;  # Where messages should be sent
+    fhir:reliableCache @<unsignedInt>?;     # Reliable Message Cache Length (min)
+    fhir:documentation @<markdown>?;        # Messaging interface behavior 
+                                            # details 
+    fhir:supportedMessage @<OneOrMore_CapabilityStatement.messaging.supportedMessage>?;  # Messages supported by this system
+}  
+
+# Information about security of implementation
+<CapabilityStatement.rest.security> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:cors @<boolean>?;                  # Adds CORS Headers 
+                                            # (http://enable-cors.org/) 
+    fhir:service @<OneOrMore_CodeableConcept>?;  # OAuth | SMART-on-FHIR | NTLM | 
+                                            # Basic | Kerberos | Certificates 
+    fhir:description @<markdown>?;          # General description of how 
+                                            # security works 
+}  
+
+# Resource served on the REST interface
+<CapabilityStatement.rest.resource> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:resource-types};  # A resource type that is supported
+    fhir:profile @<canonical>?;             # System-wide profile
+    fhir:supportedProfile @<OneOrMore_canonical>?;  # Use-case specific profiles
+    fhir:documentation @<markdown>?;        # Additional information about the 
+                                            # use of the resource type 
+    fhir:interaction @<OneOrMore_CapabilityStatement.rest.resource.interaction>?;  # What operations are supported?
+    fhir:versioning @<code> AND
+    	{fhir:v @fhirvs:versioning-policy}?;  # no-version | versioned | 
+                                            # versioned-update 
+    fhir:readHistory @<boolean>?;           # Whether vRead can return past 
+                                            # versions 
+    fhir:updateCreate @<boolean>?;          # If update can commit to a new 
+                                            # identity 
+    fhir:conditionalCreate @<boolean>?;     # If allows/uses conditional create
+    fhir:conditionalRead @<code> AND
+    	{fhir:v @fhirvs:conditional-read-status}?;  # not-supported | modified-since | 
+                                            # not-match | full-support 
+    fhir:conditionalUpdate @<boolean>?;     # If allows/uses conditional update
+    fhir:conditionalPatch @<boolean>?;      # If allows/uses conditional patch
+    fhir:conditionalDelete @<code> AND
+    	{fhir:v @fhirvs:conditional-delete-status}?;  # not-supported | single | multiple 
+                                            # - how conditional delete is 
+                                            # supported 
+    fhir:referencePolicy @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:reference-handling-policy}?;  # literal | logical | resolves | 
+                                            # enforced | local 
+    fhir:searchInclude @<OneOrMore_string>?;  # _include values supported by the 
+                                            # server 
+    fhir:searchRevInclude @<OneOrMore_string>?;  # _revinclude values supported by 
+                                            # the server 
+    fhir:searchParam @<OneOrMore_CapabilityStatement.rest.resource.searchParam>?;  # Search parameters supported by 
+                                            # implementation 
+    fhir:operation @<OneOrMore_CapabilityStatement.rest.resource.operation>?;  # Definition of a resource operation
+}  
+
+# What operations are supported?
+<CapabilityStatement.rest.resource.interaction> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code> AND
+    	{fhir:v @fhirvs:type-restful-interaction};  # read | vread | update | patch | 
+                                            # delete | history-instance | 
+                                            # history-type | create | 
+                                            # search-type 
+    fhir:documentation @<markdown>?;        # Anything special about operation 
+                                            # behavior 
+}  
+
+# Document definition
+<CapabilityStatement.document> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:mode @<code> AND
+    	{fhir:v @fhirvs:document-mode};  # producer | consumer
+    fhir:documentation @<markdown>?;        # Description of document support
+    fhir:profile @<canonical>;              # Constraint on the resources used 
+                                            # in the document 
+}  
+
+# What operations are supported?
+<CapabilityStatement.rest.interaction> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code> AND
+    	{fhir:v @fhirvs:system-restful-interaction};  # transaction | batch | 
+                                            # search-system | history-system 
+    fhir:documentation @<markdown>?;        # Anything special about operation 
+                                            # behavior 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_CapabilityStatement.rest> CLOSED {
+    rdf:first @<CapabilityStatement.rest>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CapabilityStatement.rest> 
+}
+
+<OneOrMore_CapabilityStatement.messaging> CLOSED {
+    rdf:first @<CapabilityStatement.messaging>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CapabilityStatement.messaging> 
+}
+
+<OneOrMore_CapabilityStatement.document> CLOSED {
+    rdf:first @<CapabilityStatement.document>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CapabilityStatement.document> 
+}
+
+<OneOrMore_CapabilityStatement.rest.resource> CLOSED {
+    rdf:first @<CapabilityStatement.rest.resource>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CapabilityStatement.rest.resource> 
+}
+
+<OneOrMore_CapabilityStatement.rest.interaction> CLOSED {
+    rdf:first @<CapabilityStatement.rest.interaction>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CapabilityStatement.rest.interaction> 
+}
+
+<OneOrMore_CapabilityStatement.rest.resource.searchParam> CLOSED {
+    rdf:first @<CapabilityStatement.rest.resource.searchParam>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CapabilityStatement.rest.resource.searchParam> 
+}
+
+<OneOrMore_CapabilityStatement.rest.resource.operation> CLOSED {
+    rdf:first @<CapabilityStatement.rest.resource.operation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CapabilityStatement.rest.resource.operation> 
+}
+
+<OneOrMore_CapabilityStatement.messaging.endpoint> CLOSED {
+    rdf:first @<CapabilityStatement.messaging.endpoint>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CapabilityStatement.messaging.endpoint> 
+}
+
+<OneOrMore_CapabilityStatement.messaging.supportedMessage> CLOSED {
+    rdf:first @<CapabilityStatement.messaging.supportedMessage>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CapabilityStatement.messaging.supportedMessage> 
+}
+
+<OneOrMore_CapabilityStatement.rest.resource.interaction> CLOSED {
+    rdf:first @<CapabilityStatement.rest.resource.interaction>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CapabilityStatement.rest.resource.interaction> 
+}
+
+
+
+#---------------------- Value Sets ------------------------
+
+# All published FHIR Versions.
+fhirvs:FHIR-version ["0.01" "0.05" "0.06" "0.11" "0.0" "0.0.80" "0.0.81" "0.0.82" "0.4" "0.4.0" "0.5" "0.5.0" "1.0" "1.0.0" "1.0.1" "1.0.2" "1.1" "1.1.0" "1.4" "1.4.0" "1.6" "1.6.0" "1.8" "1.8.0" "3.0" "3.0.0" "3.0.1" "3.0.2" "3.3" "3.3.0" "3.5" "3.5.0" "4.0" "4.0.0" "4.0.1" "4.1" "4.1.0" "4.2" "4.2.0" "4.3" "4.3.0" "4.3.0-cibuild" "4.3.0-snapshot1" "4.4" "4.4.0" "4.5" "4.5.0" "4.6" "4.6.0" "5.0" "5.0.0" "5.0.0-cibuild" "5.0.0-snapshot1" "5.0.0-snapshot2" "5.0.0-ballot" "5.0.0-snapshot3"]
+
+# How a capability statement is intended to be used.
+fhirvs:capability-statement-kind ["instance" "capability" "requirements"]
+
+# A code that indicates how the server supports conditional delete.
+fhirvs:conditional-delete-status ["not-supported" "single" "multiple"]
+
+# A code that indicates how the server supports conditional read.
+fhirvs:conditional-read-status ["not-supported" "modified-since" "not-match" "full-support"]
+
+# Whether the application produces or consumes documents.
+fhirvs:document-mode ["producer" "consumer"]
+
+# The mode of a message capability statement.
+fhirvs:event-capability-mode ["sender" "receiver"]
+
+# This value set includes all possible codes from BCP-13 (http://tools.ietf.org/html/bcp13)
+fhirvs:mimetypes xsd:string #EXTERNAL
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+
+# A set of flags that defines how references are supported.
+fhirvs:reference-handling-policy ["literal" "logical" "resolves" "enforced" "local"]
+
+# All fhir data types
+fhirvs:resource-types ["Account" "ActivityDefinition" "ActorDefinition" "AdministrableProductDefinition" "AdverseEvent" "AllergyIntolerance" "Appointment" "AppointmentResponse" "ArtifactAssessment" "AuditEvent" "Basic" "Binary" "BiologicallyDerivedProduct" "BodyStructure" "Bundle" "CapabilityStatement" "CarePlan" "CareTeam" "ChargeItem" "ChargeItemDefinition" "Citation" "Claim" "ClaimResponse" "ClinicalImpression" "ClinicalUseDefinition" "CodeSystem" "Communication" "CommunicationRequest" "CompartmentDefinition" "Composition" "ConceptMap" "Condition" "ConditionDefinition" "Consent" "Contract" "Coverage" "CoverageEligibilityRequest" "CoverageEligibilityResponse" "DetectedIssue" "Device" "DeviceDefinition" "DeviceDispense" "DeviceMetric" "DeviceRequest" "DeviceUsage" "DiagnosticReport" "DocumentManifest" "DocumentReference" "Encounter" "Endpoint" "EnrollmentRequest" "EnrollmentResponse" "EpisodeOfCare" "EventDefinition" "Evidence" "EvidenceReport" "EvidenceVariable" "ExampleScenario" "ExplanationOfBenefit" "FamilyMemberHistory" "Flag" "FormularyItem" "GenomicStudy" "Goal" "GraphDefinition" "Group" "GuidanceResponse" "HealthcareService" "ImagingSelection" "ImagingStudy" "Immunization" "ImmunizationEvaluation" "ImmunizationRecommendation" "ImplementationGuide" "Ingredient" "InsurancePlan" "InventoryReport" "Invoice" "Library" "Linkage" "List" "Location" "ManufacturedItemDefinition" "Measure" "MeasureReport" "Medication" "MedicationAdministration" "MedicationDispense" "MedicationKnowledge" "MedicationRequest" "MedicationUsage" "MedicinalProductDefinition" "MessageDefinition" "MessageHeader" "MolecularSequence" "NamingSystem" "NutritionIntake" "NutritionOrder" "NutritionProduct" "Observation" "ObservationDefinition" "OperationDefinition" "OperationOutcome" "Organization" "OrganizationAffiliation" "PackagedProductDefinition" "Parameters" "Patient" "PaymentNotice" "PaymentReconciliation" "Permission" "Person" "PlanDefinition" "Practitioner" "PractitionerRole" "Procedure" "Provenance" "Questionnaire" "QuestionnaireResponse" "RegulatedAuthorization" "RelatedPerson" "RequestOrchestration" "Requirements" "ResearchStudy" "ResearchSubject" "RiskAssessment" "Schedule" "SearchParameter" "ServiceRequest" "Slot" "Specimen" "SpecimenDefinition" "StructureDefinition" "StructureMap" "Subscription" "SubscriptionStatus" "SubscriptionTopic" "Substance" "SubstanceDefinition" "SubstanceNucleicAcid" "SubstancePolymer" "SubstanceProtein" "SubstanceReferenceInformation" "SubstanceSourceMaterial" "SupplyDelivery" "SupplyRequest" "Task" "TerminologyCapabilities" "TestReport" "TestScript" "Transport" "ValueSet" "VerificationResult" "VisionPrescription"]
+
+# The mode of a RESTful capability statement.
+fhirvs:restful-capability-mode ["client" "server"]
+
+# Data types allowed to be used for search parameters.
+fhirvs:search-param-type ["number" "date" "string" "token" "reference" "composite" "quantity" "uri" "special"]
+
+# Operations supported by REST at the system level.
+fhirvs:system-restful-interaction ["transaction" "batch" "search-system" "history-system"]
+
+# Operations supported by REST at the type or instance level.
+fhirvs:type-restful-interaction ["read" "vread" "update" "patch" "delete" "history-instance" "history-type" "create" "search-type"]
+
+# How the system supports versioning for a resource.
+fhirvs:versioning-policy ["no-version" "versioned" "versioned-update"]
+

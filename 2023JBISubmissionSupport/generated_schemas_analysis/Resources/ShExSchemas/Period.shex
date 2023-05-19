@@ -1,0 +1,41 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <DataType.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+# Time range defined by start and end date/time
+<Period> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:Period]?;
+
+    fhir:start @<dateTime>?;                # Starting time with inclusive 
+                                            # boundary 
+    fhir:end @<dateTime>?;                  # End time with inclusive boundary, 
+                                            # if not ongoing 
+} AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: LessOrEqual
+# # Constraint UniqueKey:per-1
+# Human readable:If present, start SHALL have a lower or equal value than end
+#
+# Constraint: start.hasValue().not() or end.hasValue().not() or (start <= end)
+# ShEx:
+#
+# NOT { fhir:start. } OR  NOT { fhir:end. } OR ({ fhir:start  LessOrEqual  { fhir:end } })
+{}
+
+)
+ 
+

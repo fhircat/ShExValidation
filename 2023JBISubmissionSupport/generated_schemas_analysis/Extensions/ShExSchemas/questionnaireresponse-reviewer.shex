@@ -1,0 +1,34 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+# Who verified completion of form?
+<questionnaireresponse-reviewer> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:questionnaireresponse-reviewer]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri> AND
+    	{fhir:value ["http://hl7.org/fhir/StructureDefinition/questionnaireresponse-reviewer"]}; 
+    fhir:value (@<Reference>  AND {fhir:link @<Practitioner> })  ; 
+    ^fhir:extension { a [fhir:QuestionnaireResponse]}
+
+}  
+

@@ -1,0 +1,56 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <Element.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+# Base for elements defined inside a resource
+<BackboneElement> EXTENDS @<Element> CLOSED {   
+
+
+    fhir:modifierExtension @<OneOrMore_Extension>?;  # Extensions that cannot be ignored 
+                                            # even if unrecognized 
+} AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: count
+# Unmapped construct found: children
+# Unmapped construct found: Greater
+# Unmapped construct found: count
+# # Constraint UniqueKey:ele-1
+# Human readable:All FHIR elements must have a @value or children
+#
+# Constraint: hasValue() or (children().count() > id.count())
+# ShEx:
+#
+# . OR (   count  (    children  (  ) )  Greater     count  ( fhir:id ))
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: NotEquals
+# # Constraint UniqueKey:ext-1
+# Human readable:Must have either extensions or value[x], not both
+#
+# Constraint: extension.exists() != value.exists()
+# ShEx:
+#
+#{fhir:extension .  NotEquals  {fhir:value .}}
+{}
+
+)
+ 
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+

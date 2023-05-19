@@ -1,0 +1,46 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <shareableconceptmap.shex>
+#imported_end
+
+start=@<publishableconceptmap> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A map from one set of concepts to one or more other concepts
+<publishableconceptmap> EXTENDS @<shareableconceptmap> CLOSED {   
+
+    a [fhir:publishableconceptmap]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+}  
+
+# Other properties required for this mapping
+<ConceptMap.group.element.target.dependsOn> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# What to do when there is no mapping target for the source concept
+<ConceptMap.group.unmapped> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Same source and target systems
+<ConceptMap.group> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Concept in target system for element
+<ConceptMap.group.element.target> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Mappings for a concept from the source set
+<ConceptMap.group.element> EXTENDS @<BackboneElement> CLOSED {   
+}  
+

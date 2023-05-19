@@ -1,0 +1,34 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+
+start=@<groupdefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Group of multiple entities
+<groupdefinition> EXTENDS @<Group> CLOSED {   
+
+    a [fhir:groupdefinition]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+}  
+
+# Include / Exclude group members by Trait
+<Group.characteristic> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Who or what is in group
+<Group.member> EXTENDS @<BackboneElement> CLOSED {   
+}  
+

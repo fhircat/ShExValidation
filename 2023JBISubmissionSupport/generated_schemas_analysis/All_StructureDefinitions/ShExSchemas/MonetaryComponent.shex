@@ -1,0 +1,45 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Money.shex>
+#imported_end
+#imported_begin 
+IMPORT <decimal.shex>
+#imported_end
+#imported_begin 
+IMPORT <DataType.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+# Availability data for an {item}
+<MonetaryComponent> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:MonetaryComponent]?;
+
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:price-component-type};  # base | surcharge | deduction | 
+                                            # discount | tax | informational 
+    fhir:code @<CodeableConcept>?;          # Codes may be used to differentiate 
+                                            # between kinds of taxes, 
+                                            # surcharges, discounts etc. 
+    fhir:factor @<decimal>?;                # Factor used for calculating this 
+                                            # component 
+    fhir:amount @<Money>?;                  # Explicit value amount to be used
+}  
+
+#---------------------- Value Sets ------------------------
+
+# Codes indicating the kind of the price component.
+fhirvs:price-component-type ["base" "surcharge" "deduction" "discount" "tax" "informational"]
+

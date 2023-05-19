@@ -1,0 +1,29 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+# Additional code for the concept
+<codesystem-alternate> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:codesystem-alternate]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:code @<Extension>; 
+    fhir:use @<Extension>; 
+    fhir:url @<uri> AND
+    	{fhir:value ["http://hl7.org/fhir/StructureDefinition/codesystem-alternate"]}; 
+    ^fhir:extension { ^fhir:concept {a [fhir:CodeSystem]}}
+
+}  
+

@@ -1,0 +1,154 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Dosage.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Resource.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Encounter.shex>
+#imported_end
+#imported_begin 
+IMPORT <Procedure.shex>
+#imported_end
+#imported_begin 
+IMPORT <Condition.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Annotation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Observation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableReference.shex>
+#imported_end
+
+start=@<MedicationUsage> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Record of medication being taken by a patient
+<MedicationUsage> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:MedicationUsage]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # External identifier
+    fhir:partOf @<OneOrMore_Reference_Procedure>?;  # Part of referenced event
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:medication-usage-status};  # recorded | entered-in-error | draft
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Type of medication usage
+    fhir:medication @<CodeableReference>;   # What medication was taken
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Patient> ? };  # Who is/was taking  the medication
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> ? }?;  # Encounter associated with 
+                                            # MedicationUsage 
+    fhir:effective @<dateTime>  OR 
+    			@<Period>  ?;  # The date/time or interval when the 
+                                            # medication is/was/will be taken 
+    fhir:dateAsserted @<dateTime>?;         # When the usage was asserted?
+    fhir:informationSource @<OneOrMore_Reference_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Person or organization that 
+                                            # provided the information about the 
+                                            # taking of this medication 
+    fhir:derivedFrom @<OneOrMore_Reference_Resource>?;  # Link to information used to derive 
+                                            # the MedicationUsage 
+    fhir:reason @<OneOrMore_CodeableReference>?;  # Reason for why the medication is 
+                                            # being/was taken 
+    fhir:note @<OneOrMore_Annotation>?;     # Further information about the usage
+    fhir:relatedClinicalInformation @<OneOrMore_Reference_Condition_OR_Observation>?;  # Link to information relevant to 
+                                            # the usage of a medication 
+    fhir:renderedDosageInstruction @<string>?;  # Full representation of the dosage 
+                                            # instructions 
+    fhir:dosage @<OneOrMore_Dosage>?;       # Details of how medication is/was 
+                                            # taken or should be taken 
+    fhir:adherence @<MedicationUsage.adherence>?;  # Indicates if the medication is 
+                                            # being consumed or administered as 
+                                            # instructed 
+}  
+
+# Indicates if the medication is being consumed or administered as instructed
+<MedicationUsage.adherence> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>;           # Type of adherence
+    fhir:reason @<CodeableConcept>?;        # Details of the reason for the 
+                                            # current use of the medication 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#---------------------- Value Sets ------------------------
+
+# MedicationUsage Status Codes
+fhirvs:medication-usage-status ["recorded" "entered-in-error" "draft"]
+

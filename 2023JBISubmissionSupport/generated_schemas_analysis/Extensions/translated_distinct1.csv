@@ -1,0 +1,6 @@
+        TRANSLATED	Extension	Cannot be used where description already exists or description is of type string or markdown.	%resource.description.exists().not() or ((%resource.description is string).not() and (%resource.description is markdown).not())	 NOT { 'false'.description. } OR ( NOT { 'true'.description a { fhir:string } } AND  NOT { 'true'.description a { fhir:markdown } })
+        TRANSLATED	Extension	Cannot be used where title already exists.	%resource.title.exists().not()	 NOT { 'false'.title. }
+        TRANSLATED	Extension	Cannot have length if offset is missing.	extension.where(url='length').exists() implies extension.where(url='offset').exists()	{fhir:extension. SHEX_where_SHEX (url { fhir:v ['length'] } ) . SHEX_Implies_SHEX {fhir:extension. SHEX_where_SHEX (url { fhir:v ['offset'] } ) .}}
+        TRANSLATED	Extension	If the substanceExposureRisk extension element is present, the AllergyIntolerance.code element must be omitted.	substanceExposureRisk.exists() and code.empty()	{fhir:substanceExposureRisk . AND  NOT { fhir:code {fhir:v .} } }
+        TRANSLATED	Extension	Must have either extensions or value[x], not both	extension.exists() != value.exists()	{fhir:extension . SHEX_NotEquals_SHEX {fhir:value .}}
+        TRANSLATED	Extension	Variable expressions must have a name	value.name.exists()	{fhir:value.name .}

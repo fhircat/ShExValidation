@@ -1,0 +1,113 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <Resource.shex>
+#imported_end
+#imported_begin 
+IMPORT <Narrative.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+
+start=@<DomainResource> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A resource with narrative, extensions, and contained resources
+<DomainResource> EXTENDS @<Resource> CLOSED {   
+
+    a [fhir:DomainResource]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:text @<Narrative>?;                # Text summary of the resource, for 
+                                            # human interpretation 
+    fhir:contained @<OneOrMore_Resource>?;  # Contained, inline Resources
+    fhir:extension @<OneOrMore_Extension>?;  # Additional content defined by 
+                                            # implementations 
+    fhir:modifierExtension @<OneOrMore_Extension>?;  # Extensions that cannot be ignored
+} AND (
+
+# Constraint UniqueKey:dom-2
+# Human readable:If the resource is contained in another resource, it SHALL NOT contain nested Resources
+
+# Constraint: contained.contained.empty()
+# ShEx:
+
+ NOT { fhir:contained.contained {fhir:v .} } 
+
+) AND (
+
+# Constraint UniqueKey:dom-4
+# Human readable:If a resource is contained in another resource, it SHALL NOT have a meta.versionId or a meta.lastUpdated
+
+# Constraint: contained.meta.versionId.empty() and contained.meta.lastUpdated.empty()
+# ShEx:
+
+ NOT { fhir:contained.meta.versionId {fhir:v .} }  AND  NOT { fhir:contained.meta.lastUpdated {fhir:v .} } 
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: where
+# Unmapped construct found: Plus
+# Unmapped construct found: descendants
+# Unmapped construct found: descendants
+# Unmapped construct found: ofType
+# Unmapped construct found: descendants
+# Unmapped construct found: ofType
+# Unmapped construct found: descendants
+# Unmapped construct found: ofType
+# Unmapped construct found: descendants
+# Unmapped construct found: where
+# Unmapped construct found: descendants
+# Unmapped construct found: where
+# Unmapped construct found: as
+# Unmapped construct found: descendants
+# Unmapped construct found: where
+# Unmapped construct found: as
+# Unmapped construct found: trace
+# # Constraint UniqueKey:dom-3
+# Human readable:If the resource is contained in another resource, it SHALL be referred to from elsewhere in the resource or SHALL refer to the containing resource
+#
+# Constraint: contained.where((('#'+id in (%resource.descendants().reference | %resource.descendants().ofType(canonical) | %resource.descendants().ofType(uri) | %resource.descendants().ofType(url))) or descendants().where(reference = '#').exists() or descendants().where(as(canonical) = '#').exists() or descendants().where(as(canonical) = '#').exists()).not()).trace('unmatched', id).empty()
+# ShEx:
+#
+# NOT { fhir:contained. where  ( NOT { .'#'  Plus  id { fhir:v [   descendants  ( .'http://hl7.org/fhir/StructureDefinition/Resource' ).reference    descendants  ( .'http://hl7.org/fhir/StructureDefinition/Resource' ).  ofType  (canonical)    descendants  ( .'http://hl7.org/fhir/StructureDefinition/DomainResource' ).  ofType  (uri)    descendants  ( .'id' ).  ofType  (url)] }  OR    descendants  (  ).  where  (reference { fhir:v ['#'] } ) . OR    descendants  (  ).  where  (  as  (canonical) { fhir:v ['#'] } ) . OR    descendants  (  ).  where  (  as  (canonical) { fhir:v ['#'] } ) . }). trace  ('unmatched', id) {fhir:v .} } 
+{}
+
+) AND (
+
+# Constraint UniqueKey:dom-6
+# Human readable:A resource should have narrative for robust management
+
+# Constraint: text.`div`.exists()
+# ShEx:
+
+{fhir:text.div .}
+
+) AND (
+
+# Constraint UniqueKey:dom-5
+# Human readable:If a resource is contained in another resource, it SHALL NOT have a security label
+
+# Constraint: contained.meta.security.empty()
+# ShEx:
+
+ NOT { fhir:contained.meta.security {fhir:v .} } 
+
+)
+ 
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+

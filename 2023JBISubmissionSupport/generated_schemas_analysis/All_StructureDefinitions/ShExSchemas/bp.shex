@@ -1,0 +1,95 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <vitalsigns.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+
+start=@<bp> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# FHIR Blood Pressure Profile
+<bp> EXTENDS @<vitalsigns> CLOSED {   
+
+    a [fhir:bp]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+}  
+
+# Triggering observation(s)
+<Observation.triggeredBy> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Used when reporting systolic and diastolic blood pressure.
+<Observation.component> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Vital Sign Value recorded with UCUM
+<Observation.component.value> EXTENDS @<Quantity> CLOSED {   
+}  
+
+# Systolic Blood Pressure
+<CodeableConcept.coding> EXTENDS @<Coding> CLOSED {   
+}  
+
+# Used when reporting systolic and diastolic blood pressure.
+<Observation.component> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Provides guide for interpretation
+<Observation.referenceRange> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Blood Pressure
+<Observation.code> EXTENDS @<CodeableConcept> CLOSED {   
+}  
+
+# Vital Sign Value recorded with UCUM
+<Observation.component.value> EXTENDS @<Quantity> CLOSED {   
+}  
+
+# Code defined by a terminology system
+<CodeableConcept.coding> EXTENDS @<Coding> CLOSED {   
+}  
+
+# Code defined by a terminology system
+<CodeableConcept.coding> EXTENDS @<Coding> CLOSED {   
+}  
+
+# Type of component observation (code / type)
+<Observation.component.code> EXTENDS @<CodeableConcept> CLOSED {   
+}  
+
+# Used when reporting systolic and diastolic blood pressure.
+<Observation.component> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Diastolic Blood Pressure
+<CodeableConcept.coding> EXTENDS @<Coding> CLOSED {   
+}  
+
+# Classification of  type of observation
+<Observation.category> EXTENDS @<CodeableConcept> CLOSED {   
+}  
+
+# Type of component observation (code / type)
+<Observation.component.code> EXTENDS @<CodeableConcept> CLOSED {   
+}  
+

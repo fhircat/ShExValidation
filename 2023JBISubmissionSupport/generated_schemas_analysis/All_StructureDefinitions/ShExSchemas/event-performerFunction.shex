@@ -1,0 +1,34 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+# Type of performance
+<event-performerFunction> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:event-performerFunction]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri> AND
+    	{fhir:value ["http://hl7.org/fhir/StructureDefinition/event-performerFunction"]}; 
+    fhir:value @<CodeableConcept>  ; 
+    ^fhir:extension { ^fhir:performer {a [fhir:Observation]}} OR 
+          {^fhir:performer {a [fhir:DiagnosticReport]}} OR 
+          {^fhir:author {a [fhir:DocumentReference]}} OR 
+          {^fhir:grantee {a [fhir:Consent]}}
+
+}  
+

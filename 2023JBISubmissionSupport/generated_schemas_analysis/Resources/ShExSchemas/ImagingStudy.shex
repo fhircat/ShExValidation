@@ -1,0 +1,225 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <id.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Task.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Location.shex>
+#imported_end
+#imported_begin 
+IMPORT <CareTeam.shex>
+#imported_end
+#imported_begin 
+IMPORT <CarePlan.shex>
+#imported_end
+#imported_begin 
+IMPORT <Endpoint.shex>
+#imported_end
+#imported_begin 
+IMPORT <Specimen.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Encounter.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Annotation.shex>
+#imported_end
+#imported_begin 
+IMPORT <unsignedInt.shex>
+#imported_end
+#imported_begin 
+IMPORT <Appointment.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <ServiceRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableReference.shex>
+#imported_end
+#imported_begin 
+IMPORT <HealthcareService.shex>
+#imported_end
+#imported_begin 
+IMPORT <AppointmentResponse.shex>
+#imported_end
+
+start=@<ImagingStudy> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A set of images produced in single study (one or more series of references images)
+<ImagingStudy> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:ImagingStudy]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Identifiers for the whole study
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:imagingstudy-status};  # registered | available | cancelled 
+                                            # | entered-in-error | unknown 
+    fhir:modality @<OneOrMore_CodeableConcept>?;  # All of the distinct values for 
+                                            # series' modalities 
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<Patient> ? };  # Who or what is the subject of the 
+                                            # study 
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> ? }?;  # Encounter with which this imaging 
+                                            # study is associated 
+    fhir:started @<dateTime>?;              # When the study was started
+    fhir:basedOn @<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_ServiceRequest_OR_Task>?;  # Request fulfilled
+    fhir:referrer @<Reference> AND {fhir:link 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> ? }?;  # Referring physician
+    fhir:interpreter @<OneOrMore_Reference_Practitioner_OR_PractitionerRole>?;  # Who interpreted images
+    fhir:endpoint @<OneOrMore_Reference_Endpoint>?;  # Study access endpoint
+    fhir:numberOfSeries @<unsignedInt>?;    # Number of Study Related Series
+    fhir:numberOfInstances @<unsignedInt>?;  # Number of Study Related Instances
+    fhir:procedure @<OneOrMore_CodeableReference>?;  # The performed procedure or code
+    fhir:location @<Reference> AND {fhir:link 
+    			@<Location> ? }?;  # Where ImagingStudy occurred
+    fhir:reason @<OneOrMore_CodeableReference>?;  # Why the study was requested / 
+                                            # performed 
+    fhir:note @<OneOrMore_Annotation>?;     # User-defined comments
+    fhir:description @<string>?;            # Institution-generated description
+    fhir:series @<OneOrMore_ImagingStudy.series>?;  # Each study has one or more series 
+                                            # of instances 
+}  
+
+# A single SOP instance from the series
+<ImagingStudy.series.instance> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:uid @<id>;                         # DICOM SOP Instance UID
+    fhir:sopClass @<Coding>;                # DICOM class type
+    fhir:number @<unsignedInt>?;            # The number of this instance in the 
+                                            # series 
+    fhir:title @<string>?;                  # Description of instance
+}  
+
+# Each study has one or more series of instances
+<ImagingStudy.series> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:uid @<id>;                         # DICOM Series Instance UID for the 
+                                            # series 
+    fhir:number @<unsignedInt>?;            # Numeric identifier of this series
+    fhir:modality @<CodeableConcept>;       # The modality used for this series
+    fhir:description @<string>?;            # A short human readable summary of 
+                                            # the series 
+    fhir:numberOfInstances @<unsignedInt>?;  # Number of Series Related Instances
+    fhir:endpoint @<OneOrMore_Reference_Endpoint>?;  # Series access endpoint
+    fhir:bodySite @<CodeableReference>?;    # Body part examined
+    fhir:laterality @<CodeableConcept>?;    # Body part laterality
+    fhir:specimen @<OneOrMore_Reference_Specimen>?;  # Specimen imaged
+    fhir:started @<dateTime>?;              # When the series started
+    fhir:performer @<OneOrMore_ImagingStudy.series.performer>?;  # Who performed the series
+    fhir:instance @<OneOrMore_ImagingStudy.series.instance>?;  # A single SOP instance from the 
+                                            # series 
+}  
+
+# Who performed the series
+<ImagingStudy.series.performer> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:function @<CodeableConcept>?;      # Type of performance
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<HealthcareService> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ? };  # Who performed the series
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_ImagingStudy.series> CLOSED {
+    rdf:first @<ImagingStudy.series>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ImagingStudy.series> 
+}
+
+
+
+<OneOrMore_ImagingStudy.series.performer> CLOSED {
+    rdf:first @<ImagingStudy.series.performer>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ImagingStudy.series.performer> 
+}
+
+<OneOrMore_ImagingStudy.series.instance> CLOSED {
+    rdf:first @<ImagingStudy.series.instance>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ImagingStudy.series.instance> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The status of the ImagingStudy.
+fhirvs:imagingstudy-status ["registered" "available" "cancelled" "entered-in-error" "unknown"]
+

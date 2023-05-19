@@ -1,0 +1,31 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+# An amount of money. With regard to precision, see [Decimal Precision](datatypes.html#precision)
+<MoneyQuantity> EXTENDS @<Quantity> CLOSED {   
+
+    a [fhir:MoneyQuantity]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+} AND (
+
+# Constraint UniqueKey:mtqy-1
+# Human readable:There SHALL be a code if there is a value and it SHALL be an expression of currency.  If system is present, it SHALL be ISO 4217 (system = "urn:iso:std:iso:4217" - currency).
+
+# Constraint: (code.exists() or value.empty()) and (system.empty() or system = 'urn:iso:std:iso:4217')
+# ShEx:
+
+({fhir:code . OR  NOT { fhir:value {fhir:v .} } }) AND ( NOT { fhir:system {fhir:v .} }  OR ({ fhir:system { fhir:v ['urn:iso:std:iso:4217'] }  }))
+
+)
+ 
+

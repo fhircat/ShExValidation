@@ -1,0 +1,113 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <Location.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Procedure.shex>
+#imported_end
+#imported_begin 
+IMPORT <Encounter.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Medication.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <PlanDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+
+start=@<Flag> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Key information to flag to healthcare providers
+<Flag> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Flag]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business identifier
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:flag-status};  # active | inactive | 
+                                            # entered-in-error 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Clinical, administrative, etc.
+    fhir:code @<CodeableConcept>;           # Coded or textual message to 
+                                            # display to user 
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Location> OR 
+    			@<Medication> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<PlanDefinition> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<Procedure> OR 
+    			@<RelatedPerson> ? };  # Who/What is flag about?
+    fhir:period @<Period>?;                 # Time period when flag is active
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> ? }?;  # Alert relevant during encounter
+    fhir:author @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ? }?;  # Flag creator
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+#---------------------- Value Sets ------------------------
+
+# Indicates whether this flag is active and needs to be displayed to a user, or whether it is no longer needed or was entered in error.
+fhirvs:flag-status ["active" "inactive" "entered-in-error"]
+

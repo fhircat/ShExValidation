@@ -1,0 +1,38 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+# Allowed resource for reference
+<questionnaire-referenceResource> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:questionnaire-referenceResource]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri> AND
+    	{fhir:value ["http://hl7.org/fhir/StructureDefinition/questionnaire-referenceResource"]}; 
+    fhir:value @<code> AND
+    	{fhir:v @fhirvs:resource-types}  ; 
+    ^fhir:extension { ^fhir:item {a [fhir:Questionnaire]}} OR 
+          {a [fhir:ElementDefinition]}
+
+}  
+
+#---------------------- Value Sets ------------------------
+
+# All fhir data types
+fhirvs:resource-types ["Account" "ActivityDefinition" "ActorDefinition" "AdministrableProductDefinition" "AdverseEvent" "AllergyIntolerance" "Appointment" "AppointmentResponse" "ArtifactAssessment" "AuditEvent" "Basic" "Binary" "BiologicallyDerivedProduct" "BodyStructure" "Bundle" "CapabilityStatement" "CarePlan" "CareTeam" "ChargeItem" "ChargeItemDefinition" "Citation" "Claim" "ClaimResponse" "ClinicalImpression" "ClinicalUseDefinition" "CodeSystem" "Communication" "CommunicationRequest" "CompartmentDefinition" "Composition" "ConceptMap" "Condition" "ConditionDefinition" "Consent" "Contract" "Coverage" "CoverageEligibilityRequest" "CoverageEligibilityResponse" "DetectedIssue" "Device" "DeviceDefinition" "DeviceDispense" "DeviceMetric" "DeviceRequest" "DeviceUsage" "DiagnosticReport" "DocumentManifest" "DocumentReference" "Encounter" "Endpoint" "EnrollmentRequest" "EnrollmentResponse" "EpisodeOfCare" "EventDefinition" "Evidence" "EvidenceReport" "EvidenceVariable" "ExampleScenario" "ExplanationOfBenefit" "FamilyMemberHistory" "Flag" "FormularyItem" "GenomicStudy" "Goal" "GraphDefinition" "Group" "GuidanceResponse" "HealthcareService" "ImagingSelection" "ImagingStudy" "Immunization" "ImmunizationEvaluation" "ImmunizationRecommendation" "ImplementationGuide" "Ingredient" "InsurancePlan" "InventoryReport" "Invoice" "Library" "Linkage" "List" "Location" "ManufacturedItemDefinition" "Measure" "MeasureReport" "Medication" "MedicationAdministration" "MedicationDispense" "MedicationKnowledge" "MedicationRequest" "MedicationUsage" "MedicinalProductDefinition" "MessageDefinition" "MessageHeader" "MolecularSequence" "NamingSystem" "NutritionIntake" "NutritionOrder" "NutritionProduct" "Observation" "ObservationDefinition" "OperationDefinition" "OperationOutcome" "Organization" "OrganizationAffiliation" "PackagedProductDefinition" "Parameters" "Patient" "PaymentNotice" "PaymentReconciliation" "Permission" "Person" "PlanDefinition" "Practitioner" "PractitionerRole" "Procedure" "Provenance" "Questionnaire" "QuestionnaireResponse" "RegulatedAuthorization" "RelatedPerson" "RequestOrchestration" "Requirements" "ResearchStudy" "ResearchSubject" "RiskAssessment" "Schedule" "SearchParameter" "ServiceRequest" "Slot" "Specimen" "SpecimenDefinition" "StructureDefinition" "StructureMap" "Subscription" "SubscriptionStatus" "SubscriptionTopic" "Substance" "SubstanceDefinition" "SubstanceNucleicAcid" "SubstancePolymer" "SubstanceProtein" "SubstanceReferenceInformation" "SubstanceSourceMaterial" "SupplyDelivery" "SupplyRequest" "Task" "TerminologyCapabilities" "TestReport" "TestScript" "Transport" "ValueSet" "VerificationResult" "VisionPrescription"]
+

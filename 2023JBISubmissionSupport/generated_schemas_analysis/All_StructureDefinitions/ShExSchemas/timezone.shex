@@ -1,0 +1,41 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+# IANA Timezone Code per BCP 175
+<timezone> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:timezone]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri> AND
+    	{fhir:value ["http://hl7.org/fhir/StructureDefinition/timezone"]}; 
+    fhir:value @<code> AND
+    	{fhir:v @fhirvs:timezones}  ; 
+    ^fhir:extension { a [fhir:date]} OR 
+          {a [fhir:dateTime]} OR 
+          {a [fhir:instant]} OR 
+          {a [fhir:Meta]} OR 
+          {a [fhir:time]}
+
+}  
+
+#---------------------- Value Sets ------------------------
+
+# An IANA timezone code for  the timezone offset per [BCP 175](https://www.iana.org/go/rfc6557). The offset is specified as part of a dateTime/instant (or using the tzOffset extension on a date if necessary). The timezone code may also be provided to allow for human display of the location associated with the offset. These are codes like 'America/New_York' or 'America/Los_Angeles'. See [IANA Timezones](https://www.iana.org/time-zones) for the official source, and [Wikipedia](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for information
+fhirvs:timezones xsd:string #EXTERNAL
+

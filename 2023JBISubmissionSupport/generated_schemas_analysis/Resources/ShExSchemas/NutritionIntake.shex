@@ -1,0 +1,234 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <Timing.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Location.shex>
+#imported_end
+#imported_begin 
+IMPORT <CareTeam.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <CarePlan.shex>
+#imported_end
+#imported_begin 
+IMPORT <Resource.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Encounter.shex>
+#imported_end
+#imported_begin 
+IMPORT <Procedure.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Annotation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Observation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <NutritionOrder.shex>
+#imported_end
+#imported_begin 
+IMPORT <ServiceRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableReference.shex>
+#imported_end
+
+start=@<NutritionIntake> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Record of food or fluid being taken by a patient
+<NutritionIntake> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:NutritionIntake]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # External identifier
+    fhir:instantiatesCanonical @<OneOrMore_canonical>?;  # Instantiates FHIR protocol or 
+                                            # definition 
+    fhir:instantiatesUri @<OneOrMore_uri>?;  # Instantiates external protocol or 
+                                            # definition 
+    fhir:basedOn @<OneOrMore_Reference_CarePlan_OR_NutritionOrder_OR_ServiceRequest>?;  # Fulfils plan, proposal or order
+    fhir:partOf @<OneOrMore_Reference_NutritionIntake_OR_Observation_OR_Procedure>?;  # Part of referenced event
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:event-status};  # preparation | in-progress | 
+                                            # not-done | on-hold | stopped | 
+                                            # completed | entered-in-error | 
+                                            # unknown 
+    fhir:statusReason @<OneOrMore_CodeableConcept>?;  # Reason for current status
+    fhir:code @<CodeableConcept>?;          # Code representing an overall type 
+                                            # of nutrition intake 
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Patient> ? };  # Who is/was consuming the food or 
+                                            # fluid 
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> ? }?;  # Encounter associated with 
+                                            # NutritionIntake 
+    fhir:occurrence @<dateTime>  OR 
+    			@<Period>  ?;  # The date/time or interval when the 
+                                            # food or fluid is/was consumed 
+    fhir:recorded @<dateTime>?;             # When the intake was recorded
+    fhir:reported @<boolean>  OR 
+    			(@<Reference>  AND {fhir:link @<Patient> OR 
+    			 @<RelatedPerson> OR 
+    			 @<Practitioner> OR 
+    			 @<PractitionerRole> OR 
+    			 @<Organization> })  ?;  # Person or organization that 
+                                            # provided the information about the 
+                                            # consumption of this food or fluid 
+    fhir:consumedItem @<OneOrMore_NutritionIntake.consumedItem>;  # What food or fluid product or item 
+                                            # was consumed 
+    fhir:ingredientLabel @<OneOrMore_NutritionIntake.ingredientLabel>?;  # Total nutrient for the whole meal, 
+                                            # product, serving 
+    fhir:performer @<OneOrMore_NutritionIntake.performer>?;  # Who was performed in the intake
+    fhir:location @<Reference> AND {fhir:link 
+    			@<Location> ? }?;  # Where the intake occurred
+    fhir:derivedFrom @<OneOrMore_Reference_Resource>?;  # Additional supporting information
+    fhir:reason @<OneOrMore_CodeableReference>?;  # Reason for why the food or fluid 
+                                            # is /was consumed 
+    fhir:note @<OneOrMore_Annotation>?;     # Further information about the 
+                                            # consumption 
+}  
+
+# Who was performed in the intake
+<NutritionIntake.performer> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:function @<CodeableConcept>?;      # Type of performer
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ? };  # Who performed the intake
+}  
+
+# What food or fluid product or item was consumed
+<NutritionIntake.consumedItem> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # The type of food or fluid product
+    fhir:nutritionProduct @<CodeableReference>;  # Code that identifies the food or 
+                                            # fluid product that was consumed 
+    fhir:schedule @<Timing>?;               # Scheduled frequency of consumption
+    fhir:amount @<Quantity>?;               # Quantity of the specified food
+    fhir:rate @<Quantity>?;                 # Rate at which enteral feeding was 
+                                            # administered 
+    fhir:notConsumed @<boolean>?;           # Flag to indicate if the food or 
+                                            # fluid item was refused or 
+                                            # otherwise not consumed 
+    fhir:notConsumedReason @<CodeableConcept>?;  # Reason food or fluid was not 
+                                            # consumed 
+}  
+
+# Total nutrient for the whole meal, product, serving
+<NutritionIntake.ingredientLabel> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:nutrient @<CodeableReference>;     # Total nutrient consumed
+    fhir:amount @<Quantity>;                # Total amount of nutrient consumed
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_NutritionIntake.consumedItem> CLOSED {
+    rdf:first @<NutritionIntake.consumedItem>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_NutritionIntake.consumedItem> 
+}
+
+<OneOrMore_NutritionIntake.ingredientLabel> CLOSED {
+    rdf:first @<NutritionIntake.ingredientLabel>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_NutritionIntake.ingredientLabel> 
+}
+
+<OneOrMore_NutritionIntake.performer> CLOSED {
+    rdf:first @<NutritionIntake.performer>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_NutritionIntake.performer> 
+}
+
+
+
+
+
+
+
+#---------------------- Value Sets ------------------------
+
+# Codes identifying the lifecycle stage of an event.
+fhirvs:event-status ["preparation" "in-progress" "not-done" "on-hold" "stopped" "completed" "entered-in-error" "unknown"]
+

@@ -1,0 +1,136 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Resource.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Immunization.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <ImmunizationEvaluation.shex>
+#imported_end
+
+start=@<ImmunizationRecommendation> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Guidance or advice relating to an immunization
+<ImmunizationRecommendation> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:ImmunizationRecommendation]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business identifier
+    fhir:patient @<Reference> AND {fhir:link 
+    			@<Patient> ? };  # Who this profile is for
+    fhir:date @<dateTime>;                  # Date recommendation(s) created
+    fhir:authority @<Reference> AND {fhir:link 
+    			@<Organization> ? }?;  # Who is responsible for protocol
+    fhir:recommendation @<OneOrMore_ImmunizationRecommendation.recommendation>;  # Vaccine administration 
+                                            # recommendations 
+} AND (
+
+# Constraint UniqueKey:imr-1
+# Human readable:One of vaccineCode or targetDisease SHALL be present
+
+# Constraint: vaccineCode.exists() or targetDisease.exists()
+# ShEx:
+
+{fhir:vaccineCode . OR {fhir:targetDisease .}}
+
+)
+ 
+
+# Dates governing proposed immunization
+<ImmunizationRecommendation.recommendation.dateCriterion> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>;           # Type of date
+    fhir:value @<dateTime>;                 # Recommended date
+}  
+
+# Vaccine administration recommendations
+<ImmunizationRecommendation.recommendation> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:vaccineCode @<OneOrMore_CodeableConcept>?;  # Vaccine  or vaccine group 
+                                            # recommendation applies to 
+    fhir:targetDisease @<OneOrMore_CodeableConcept>?;  # Disease to be immunized against
+    fhir:contraindicatedVaccineCode @<OneOrMore_CodeableConcept>?;  # Vaccine which is contraindicated 
+                                            # to fulfill the recommendation 
+    fhir:forecastStatus @<CodeableConcept>;  # Vaccine recommendation status
+    fhir:forecastReason @<OneOrMore_CodeableConcept>?;  # Vaccine administration status 
+                                            # reason 
+    fhir:dateCriterion @<OneOrMore_ImmunizationRecommendation.recommendation.dateCriterion>?;  # Dates governing proposed 
+                                            # immunization 
+    fhir:description @<string>?;            # Protocol details
+    fhir:series @<string>?;                 # Name of vaccination series
+    fhir:doseNumber @<string>?;             # Recommended dose number within 
+                                            # series 
+    fhir:seriesDoses @<string>?;            # Recommended number of doses for 
+                                            # immunity 
+    fhir:supportingImmunization @<OneOrMore_Reference_Immunization_OR_ImmunizationEvaluation>?;  # Past immunizations supporting 
+                                            # recommendation 
+    fhir:supportingPatientInformation @<OneOrMore_Reference_Resource>?;  # Patient observations supporting 
+                                            # recommendation 
+} AND (
+
+# Constraint UniqueKey:imr-1
+# Human readable:One of vaccineCode or targetDisease SHALL be present
+
+# Constraint: vaccineCode.exists() or targetDisease.exists()
+# ShEx:
+
+{fhir:vaccineCode . OR {fhir:targetDisease .}}
+
+)
+ 
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+<OneOrMore_ImmunizationRecommendation.recommendation> CLOSED {
+    rdf:first @<ImmunizationRecommendation.recommendation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ImmunizationRecommendation.recommendation> 
+}
+
+
+
+<OneOrMore_ImmunizationRecommendation.recommendation.dateCriterion> CLOSED {
+    rdf:first @<ImmunizationRecommendation.recommendation.dateCriterion>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ImmunizationRecommendation.recommendation.dateCriterion> 
+}
+
+
+
+
+

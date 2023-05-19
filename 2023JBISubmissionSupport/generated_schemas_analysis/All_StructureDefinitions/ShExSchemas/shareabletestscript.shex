@@ -1,0 +1,94 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <TestScript.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+
+start=@<shareabletestscript> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Describes a set of tests
+<shareabletestscript> EXTENDS @<TestScript> CLOSED {   
+
+    a [fhir:shareabletestscript]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+}  
+
+# A series of required setup operations before tests are executed
+<TestScript.setup> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# The assertion to perform
+<TestScript.setup.action.assert> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Capabilities  that are assumed to function correctly on the FHIR server being tested
+<TestScript.metadata.capability> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# A setup operation or assert to perform
+<TestScript.setup.action> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Required capability that is assumed to function correctly on the FHIR server being tested
+<TestScript.metadata> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Each operation can have one or more header elements
+<TestScript.setup.action.operation.requestHeader> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# A series of required clean up steps
+<TestScript.teardown> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# An abstract server representing a client or sender in a message exchange
+<TestScript.origin> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Fixture in the test script - by reference (uri)
+<TestScript.fixture> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# The setup operation to perform
+<TestScript.setup.action.operation> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# A test operation or assert to perform
+<TestScript.test.action> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# One or more teardown operations to perform
+<TestScript.teardown.action> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Links to the FHIR specification
+<TestScript.metadata.link> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Placeholder for evaluated elements
+<TestScript.variable> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# An abstract server representing a destination or receiver in a message exchange
+<TestScript.destination> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Indication of the artifact(s) that are tested by this test case
+<TestScript.scope> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# A test in this script
+<TestScript.test> EXTENDS @<BackboneElement> CLOSED {   
+}  
+

@@ -1,0 +1,35 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+# A length of time
+<Duration> EXTENDS @<Quantity> CLOSED {   
+
+    a [fhir:Duration]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+} AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:drt-1
+# Human readable:There SHALL be a code if there is a value and it SHALL be an expression of time.  If system is present, it SHALL be UCUM.
+#
+# Constraint: code.exists() implies ((system = %ucum) and value.exists())
+# ShEx:
+#
+#{fhir:code .  Implies  (({ fhir:system { fhir:v ['http://unitsofmeasure.org'] }  }) AND {fhir:value .})}
+{}
+
+)
+ 
+

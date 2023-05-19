@@ -1,0 +1,175 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <date.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Timing.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Resource.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Signature.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+
+start=@<VerificationResult> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Describes validation requirements, source(s), status and dates for one or more elements
+<VerificationResult> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:VerificationResult]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:target @<OneOrMore_Reference_Resource>?;  # A resource that was validated
+    fhir:targetLocation @<OneOrMore_string>?;  # The fhirpath location(s) within 
+                                            # the resource that was validated 
+    fhir:need @<CodeableConcept>?;          # none | initial | periodic
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:verificationresult-status};  # attested | validated | in-process 
+                                            # | req-revalid | val-fail | 
+                                            # reval-fail 
+    fhir:statusDate @<dateTime>?;           # When the validation status was 
+                                            # updated 
+    fhir:validationType @<CodeableConcept>?;  # nothing | primary | multiple
+    fhir:validationProcess @<OneOrMore_CodeableConcept>?;  # The primary process by which the 
+                                            # target is validated (edit check; 
+                                            # value set; primary source; 
+                                            # multiple sources; standalone; in 
+                                            # context) 
+    fhir:frequency @<Timing>?;              # Frequency of revalidation
+    fhir:lastPerformed @<dateTime>?;        # The date/time validation was last 
+                                            # completed (including failed 
+                                            # validations) 
+    fhir:nextScheduled @<date>?;            # The date when target is next 
+                                            # validated, if appropriate 
+    fhir:failureAction @<CodeableConcept>?;  # fatal | warn | rec-only | none
+    fhir:primarySource @<OneOrMore_VerificationResult.primarySource>?;  # Information about the primary 
+                                            # source(s) involved in validation 
+    fhir:attestation @<VerificationResult.attestation>?;  # Information about the entity 
+                                            # attesting to information 
+    fhir:validator @<OneOrMore_VerificationResult.validator>?;  # Information about the entity 
+                                            # validating information 
+}  
+
+# Information about the entity validating information
+<VerificationResult.validator> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:organization @<Reference> AND {fhir:link 
+    			@<Organization> ? };  # Reference to the organization 
+                                            # validating information 
+    fhir:identityCertificate @<string>?;    # A digital identity certificate 
+                                            # associated with the validator 
+    fhir:attestationSignature @<Signature>?;  # Validator signature
+}  
+
+# Information about the primary source(s) involved in validation
+<VerificationResult.primarySource> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:who @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> ? }?;  # Reference to the primary source
+    fhir:type @<OneOrMore_CodeableConcept>?;  # Type of primary source (License 
+                                            # Board; Primary Education; 
+                                            # Continuing Education; Postal 
+                                            # Service; Relationship owner; 
+                                            # Registration Authority; legal 
+                                            # source; issuing source; 
+                                            # authoritative source) 
+    fhir:communicationMethod @<OneOrMore_CodeableConcept>?;  # Method for exchanging information 
+                                            # with the primary source 
+    fhir:validationStatus @<CodeableConcept>?;  # successful | failed | unknown
+    fhir:validationDate @<dateTime>?;       # When the target was validated 
+                                            # against the primary source 
+    fhir:canPushUpdates @<CodeableConcept>?;  # yes | no | undetermined
+    fhir:pushTypeAvailable @<OneOrMore_CodeableConcept>?;  # specific | any | source
+}  
+
+# Information about the entity attesting to information
+<VerificationResult.attestation> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:who @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> ? }?;  # The individual or organization 
+                                            # attesting to information 
+    fhir:onBehalfOf @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> ? }?;  # When the who is asserting on 
+                                            # behalf of another (organization or 
+                                            # individual) 
+    fhir:communicationMethod @<CodeableConcept>?;  # The method by which attested 
+                                            # information was 
+                                            # submitted/retrieved 
+    fhir:date @<date>?;                     # The date the information was 
+                                            # attested to 
+    fhir:sourceIdentityCertificate @<string>?;  # A digital identity certificate 
+                                            # associated with the attestation 
+                                            # source 
+    fhir:proxyIdentityCertificate @<string>?;  # A digital identity certificate 
+                                            # associated with the proxy entity 
+                                            # submitting attested information on 
+                                            # behalf of the attestation source 
+    fhir:proxySignature @<Signature>?;      # Proxy signature
+    fhir:sourceSignature @<Signature>?;     # Attester signature
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+<OneOrMore_VerificationResult.primarySource> CLOSED {
+    rdf:first @<VerificationResult.primarySource>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_VerificationResult.primarySource> 
+}
+
+<OneOrMore_VerificationResult.validator> CLOSED {
+    rdf:first @<VerificationResult.validator>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_VerificationResult.validator> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# The validation status of the target
+fhirvs:verificationresult-status ["attested" "validated" "in-process" "req-revalid" "val-fail" "reval-fail"]
+

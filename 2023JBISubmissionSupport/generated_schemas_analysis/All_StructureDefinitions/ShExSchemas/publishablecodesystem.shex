@@ -1,0 +1,46 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <shareablecodesystem.shex>
+#imported_end
+
+start=@<publishablecodesystem> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Declares the existence of and describes a code system or code system supplement
+<publishablecodesystem> EXTENDS @<shareablecodesystem> CLOSED {   
+
+    a [fhir:publishablecodesystem]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+}  
+
+# Additional representations for the concept
+<CodeSystem.concept.designation> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Additional information supplied about each concept
+<CodeSystem.property> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Filter that can be used in a value set
+<CodeSystem.filter> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Concepts in the code system
+<CodeSystem.concept> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Property value for the concept
+<CodeSystem.concept.property> EXTENDS @<BackboneElement> CLOSED {   
+}  
+

@@ -1,0 +1,38 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <Provenance.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+
+start=@<provenance-relevant-history> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Who, What, When for a set of resources
+<provenance-relevant-history> EXTENDS @<Provenance> CLOSED {   
+
+    a [fhir:provenance-relevant-history]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+}  
+
+# Who was involved with change
+<Provenance.agent> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# An entity used in this activity
+<Provenance.entity> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Author
+<Provenance.agent> EXTENDS @<BackboneElement> CLOSED {   
+}  
+

@@ -1,0 +1,229 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <CareTeam.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <UsageContext.shex>
+#imported_end
+#imported_begin 
+IMPORT <ContactDetail.shex>
+#imported_end
+#imported_begin 
+IMPORT <Questionnaire.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <PlanDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+
+start=@<ConditionDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A definition of a condition
+<ConditionDefinition> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:ConditionDefinition]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri>?;                       # Canonical identifier for this 
+                                            # condition definition, represented 
+                                            # as a URI (globally unique) 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
+                                            # condition definition 
+    fhir:version @<string>?;                # Business version of the condition 
+                                            # definition 
+    fhir:name @<string>?;                   # Name for this condition definition 
+                                            # (computer friendly) 
+    fhir:title @<string>?;                  # Name for this condition definition 
+                                            # (human friendly) 
+    fhir:subtitle @<string>?;               # Subordinate title of the event 
+                                            # definition 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:date @<dateTime>?;                 # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher/steward 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the condition definition 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for 
+                                            # condition definition (if 
+                                            # applicable) 
+    fhir:code @<CodeableConcept>;           # Identification of the condition, 
+                                            # problem or diagnosis 
+    fhir:severity @<CodeableConcept>?;      # Subjective severity of condition
+    fhir:bodySite @<CodeableConcept>?;      # Anatomical location, if relevant
+    fhir:stage @<CodeableConcept>?;         # Stage/grade, usually assessed 
+                                            # formally 
+    fhir:hasSeverity @<boolean>?;           # Whether Severity is appropriate
+    fhir:hasBodySite @<boolean>?;           # Whether bodySite is appropriate
+    fhir:hasStage @<boolean>?;              # Whether stage is appropriate
+    fhir:definition @<OneOrMore_uri>?;      # Formal Definition for the condition
+    fhir:observation @<OneOrMore_ConditionDefinition.observation>?;  # Observations particularly relevant 
+                                            # to this condition 
+    fhir:medication @<OneOrMore_ConditionDefinition.medication>?;  # Medications particularly relevant 
+                                            # for this condition 
+    fhir:precondition @<OneOrMore_ConditionDefinition.precondition>?;  # Observation that suggets this 
+                                            # condition 
+    fhir:team @<OneOrMore_Reference_CareTeam>?;  # Appropriate team for this condition
+    fhir:questionnaire @<OneOrMore_ConditionDefinition.questionnaire>?;  # Questionnaire for this condition
+    fhir:plan @<OneOrMore_ConditionDefinition.plan>?;  # Plan that is appropriate
+} AND (
+
+# Constraint UniqueKey:cnl-1
+# Human readable:URL should not contain | or # - these characters make processing canonical references problematic
+
+# Constraint: url.matches('([^|#])*')
+# ShEx:
+
+{fhir:url { fhir:v /'([^|#])*'/ } }
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:cnl-0
+# Human readable:Name should be usable as an identifier for the module by machine processing applications such as code generation
+#
+# Constraint: name.exists() implies name.matches('[A-Z]([A-Za-z0-9_]){1,254}')
+# ShEx:
+#
+#{fhir:name .  Implies  {fhir:name { fhir:v /'[A-Z]([A-Za-z0-9_]){1,254}'/ } }}
+{}
+
+)
+ 
+
+# Plan that is appropriate
+<ConditionDefinition.plan> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:role @<CodeableConcept>?;          # Use for the plan
+    fhir:reference @<Reference> AND {fhir:link 
+    			@<PlanDefinition> ? };  # The actual plan
+}  
+
+# Observations particularly relevant to this condition
+<ConditionDefinition.observation> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:category @<CodeableConcept>?;      # Category that is relevant
+    fhir:code @<CodeableConcept>?;          # Code for relevant Observation
+}  
+
+# Medications particularly relevant for this condition
+<ConditionDefinition.medication> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:category @<CodeableConcept>?;      # Category that is relevant
+    fhir:code @<CodeableConcept>?;          # Code for relevant Medication
+}  
+
+# Observation that suggets this condition
+<ConditionDefinition.precondition> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:condition-precondition-type};  # sensitive | specific
+    fhir:code @<CodeableConcept>;           # Code for relevant Observation
+    fhir:value @<CodeableConcept>  OR 
+    			@<Quantity>  ?;  # Value of Observation
+}  
+
+# Questionnaire for this condition
+<ConditionDefinition.questionnaire> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:purpose @<code> AND
+    	{fhir:v @fhirvs:condition-questionnaire-purpose};  # preadmit | diff-diagnosis | outcome
+    fhir:reference @<Reference> AND {fhir:link 
+    			@<Questionnaire> ? };  # Specific Questionnaire
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_ConditionDefinition.observation> CLOSED {
+    rdf:first @<ConditionDefinition.observation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ConditionDefinition.observation> 
+}
+
+<OneOrMore_ConditionDefinition.medication> CLOSED {
+    rdf:first @<ConditionDefinition.medication>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ConditionDefinition.medication> 
+}
+
+<OneOrMore_ConditionDefinition.precondition> CLOSED {
+    rdf:first @<ConditionDefinition.precondition>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ConditionDefinition.precondition> 
+}
+
+
+
+<OneOrMore_ConditionDefinition.questionnaire> CLOSED {
+    rdf:first @<ConditionDefinition.questionnaire>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ConditionDefinition.questionnaire> 
+}
+
+<OneOrMore_ConditionDefinition.plan> CLOSED {
+    rdf:first @<ConditionDefinition.plan>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ConditionDefinition.plan> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Kind of precondition for the condition.
+fhirvs:condition-precondition-type ["sensitive" "specific"]
+
+# The use of a questionnaire.
+fhirvs:condition-questionnaire-purpose ["preadmit" "diff-diagnosis" "outcome"]
+
+# The lifecycle status of an artifact.
+fhirvs:publication-status ["draft" "active" "retired" "unknown"]
+

@@ -1,0 +1,66 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <DataType.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+# A reference from one resource to another
+<Reference> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:Reference]?;
+
+    fhir:link IRI?;
+    fhir:reference @<string>?;              # Literal reference, Relative, 
+                                            # internal or absolute URL 
+    fhir:type @<uri>?;                      # Type the reference refers to (e.g. 
+                                            # "Patient") - must be a resource in 
+                                            # resources 
+    fhir:identifier @<Identifier>?;         # Logical reference, when literal 
+                                            # reference is not known 
+    fhir:display @<string>?;                # Text alternative for the resource
+} AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# Unmapped construct found: startsWith
+# Unmapped construct found: substring
+# Unmapped construct found: trace
+# Unmapped construct found: trace
+# # Constraint UniqueKey:ref-1
+# Human readable:SHALL have a contained resource if a local reference is provided
+#
+# Constraint: reference.exists()  implies (reference.startsWith('#').not() or (reference.substring(1).trace('url') in %rootResource.contained.id.trace('ids')) or (reference='#' and %rootResource!=%resource))
+# ShEx:
+#
+#{fhir:reference .  Implies  ( NOT { fhir:reference. startsWith  ('#') } OR ({fhir:reference.  substring  (1).  trace  ('url') { fhir:v ['%rootResource'.contained.id.  trace  ('ids')] } }) OR (({ fhir:reference { fhir:v ['#'] }  }) AND 'false' [fhir:v  . -'null'] ))}
+{}
+
+) AND (
+
+# Constraint UniqueKey:ref-2
+# Human readable:At least one of reference, identifier and display SHALL be present (unless an extension is provided).
+
+# Constraint: reference.exists() or identifier.exists() or display.exists() or extension.exists()
+# ShEx:
+
+{fhir:reference . OR {fhir:identifier . OR {fhir:display . OR {fhir:extension .}}}}
+
+)
+ 
+

@@ -1,0 +1,40 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <http:.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+# NI | OTH | NINF | PINF | UNK | ASKU | NAV | NASK | TRC | MSK | NA | QS
+<iso21090-nullFlavor> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:iso21090-nullFlavor]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri> AND
+    	{fhir:value ["http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor"]}; 
+    fhir:value @<code> AND
+    	{fhir:v @<http://terminology.hl7.org/ValueSet/v3-NullFlavor>}  ; 
+    ^fhir:extension { a [fhir:Element]}
+
+}  
+
+#---------------------- Value Sets ------------------------
+
+# ***No description***
+<http://terminology.hl7.org/ValueSet/v3-NullFlavor> ["NI" "INV" "DER" "OTH" "NINF" "PINF" "UNC" "MSK" "NA" "UNK" "ASKU" "NAV" "NASK" "NAVU" "QS" "TRC" "NP"]
+

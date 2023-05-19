@@ -1,0 +1,50 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <Measure.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+
+start=@<shareablemeasure> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A quality measure definition
+<shareablemeasure> EXTENDS @<Measure> CLOSED {   
+
+    a [fhir:shareablemeasure]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+}  
+
+# Stratifier criteria component for the measure
+<Measure.group.stratifier.component> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Defined terms used in the measure documentation
+<Measure.term> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Stratifier criteria for the measure
+<Measure.group.stratifier> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# What other data should be reported with the measure
+<Measure.supplementalData> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Population criteria group
+<Measure.group> EXTENDS @<BackboneElement> CLOSED {   
+}  
+
+# Population criteria
+<Measure.group.population> EXTENDS @<BackboneElement> CLOSED {   
+}  
+

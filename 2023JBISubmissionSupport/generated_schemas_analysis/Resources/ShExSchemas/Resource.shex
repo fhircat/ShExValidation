@@ -1,0 +1,33 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <id.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <Meta.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+
+start=@<Resource> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Base Resource
+<Resource> {
+    fhir:id @<id>?;                         # Logical id of this artifact
+    fhir:meta @<Meta>?;                     # Metadata about the resource
+    fhir:implicitRules @<uri>?;             # A set of rules under which this 
+                                            # content was created 
+    fhir:language @<code>?;                 # Language of the resource content
+}  
+

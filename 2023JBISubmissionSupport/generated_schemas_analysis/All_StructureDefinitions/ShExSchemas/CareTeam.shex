@@ -1,0 +1,185 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Timing.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Annotation.shex>
+#imported_end
+#imported_begin 
+IMPORT <ContactPoint.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableReference.shex>
+#imported_end
+
+start=@<CareTeam> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Planned participants in the coordination and delivery of care
+<CareTeam> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:CareTeam]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # External Ids for this team
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:care-team-status}?;  # proposed | active | suspended | 
+                                            # inactive | entered-in-error 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Type of team
+    fhir:name @<string>?;                   # Name of the team, such as crisis 
+                                            # assessment team 
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Patient> ? }?;  # Who care team is for
+    fhir:period @<Period>?;                 # Time period team covers
+    fhir:participant @<OneOrMore_CareTeam.participant>?;  # Members of the team
+    fhir:reason @<OneOrMore_CodeableReference>?;  # Why the care team exists
+    fhir:managingOrganization @<OneOrMore_Reference_Organization>?;  # Organization responsible for the 
+                                            # care team 
+    fhir:telecom @<OneOrMore_ContactPoint>?;  # A contact detail for the care team 
+                                            # (that applies to all members) 
+    fhir:note @<OneOrMore_Annotation>?;     # Comments made about the CareTeam
+} AND (
+
+# Constraint UniqueKey:ctm-2
+# Human readable:CareTeam.participant.role or CareTeam.participant.member exists
+
+# Constraint: role.exists() or member.exists()
+# ShEx:
+
+{fhir:role . OR {fhir:member .}}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# Unmapped construct found: resolve
+# # Constraint UniqueKey:ctm-1
+# Human readable:CareTeam.participant.onBehalfOf can only be populated when CareTeam.participant.member is a Practitioner
+#
+# Constraint: onBehalfOf.exists() implies (member.resolve() is Practitioner)
+# ShEx:
+#
+#{fhir:onBehalfOf .  Implies  (   resolve  ( fhir:member ) a { fhir:Practitioner })}
+{}
+
+)
+ 
+
+# Members of the team
+<CareTeam.participant> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:role @<CodeableConcept>?;          # Type of involvement
+    fhir:member @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ? }?;  # Who is involved
+    fhir:onBehalfOf @<Reference> AND {fhir:link 
+    			@<Organization> ? }?;  # Organization of the practitioner
+    fhir:coverage @<Period>  OR 
+    			@<Timing>  ?;  # When the member is generally 
+                                            # available within this care team 
+} AND (
+
+# Constraint UniqueKey:ctm-2
+# Human readable:CareTeam.participant.role or CareTeam.participant.member exists
+
+# Constraint: role.exists() or member.exists()
+# ShEx:
+
+{fhir:role . OR {fhir:member .}}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# Unmapped construct found: resolve
+# # Constraint UniqueKey:ctm-1
+# Human readable:CareTeam.participant.onBehalfOf can only be populated when CareTeam.participant.member is a Practitioner
+#
+# Constraint: onBehalfOf.exists() implies (member.resolve() is Practitioner)
+# ShEx:
+#
+#{fhir:onBehalfOf .  Implies  (   resolve  ( fhir:member ) a { fhir:Practitioner })}
+{}
+
+)
+ 
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+<OneOrMore_CareTeam.participant> CLOSED {
+    rdf:first @<CareTeam.participant>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CareTeam.participant> 
+}
+
+
+
+
+
+
+
+
+
+#---------------------- Value Sets ------------------------
+
+# Indicates the status of the care team.
+fhirvs:care-team-status ["proposed" "active" "suspended" "inactive" "entered-in-error"]
+

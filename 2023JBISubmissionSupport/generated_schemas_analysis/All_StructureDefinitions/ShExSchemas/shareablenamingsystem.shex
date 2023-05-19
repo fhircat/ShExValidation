@@ -1,0 +1,30 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <NamingSystem.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+
+start=@<shareablenamingsystem> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# System of unique identification
+<shareablenamingsystem> EXTENDS @<NamingSystem> CLOSED {   
+
+    a [fhir:shareablenamingsystem]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+}  
+
+# Unique identifiers used for system
+<NamingSystem.uniqueId> EXTENDS @<BackboneElement> CLOSED {   
+}  
+

@@ -1,0 +1,49 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <DataType.shex>
+#imported_end
+# Name of a human or other living entity - parts and usage
+<HumanName> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:HumanName]?;
+
+    fhir:use @<code> AND
+    	{fhir:v @fhirvs:name-use}?;  # usual | official | temp | nickname 
+                                            # | anonymous | old | maiden 
+    fhir:text @<string>?;                   # Text representation of the full 
+                                            # name 
+    fhir:family @<string>?;                 # Family name (often called 
+                                            # 'Surname') 
+    fhir:given @<OneOrMore_string>?;        # Given names (not always 'first'). 
+                                            # Includes middle names 
+    fhir:prefix @<OneOrMore_string>?;       # Parts that come before the name
+    fhir:suffix @<OneOrMore_string>?;       # Parts that come after the name
+    fhir:period @<Period>?;                 # Time period when name was/is in use
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+#---------------------- Value Sets ------------------------
+
+# The use of a human name.
+fhirvs:name-use ["usual" "official" "temp" "nickname" "anonymous" "old" "maiden"]
+

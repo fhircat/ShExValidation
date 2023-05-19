@@ -1,0 +1,113 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+ PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <GuidanceResponse.shex>
+#imported_end
+#imported_begin 
+IMPORT <RequestOrchestration.shex>
+#imported_end
+#imported_begin 
+IMPORT <PlanDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <Attachment.shex>
+#imported_end
+#imported_begin 
+IMPORT <logiclibrary.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedArtifact.shex>
+#imported_end
+#imported_begin 
+IMPORT <Composition.shex>
+#imported_end
+#imported_begin 
+IMPORT <shareablevalueset.shex>
+#imported_end
+#imported_begin 
+IMPORT <Element.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+#imported_begin 
+IMPORT <ElementDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <Observation.shex>
+#imported_end
+#imported_begin 
+IMPORT <ArtifactAssessment.shex>
+#imported_end
+#imported_begin 
+IMPORT <DiagnosticReport.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <FamilyMemberHistory.shex>
+#imported_end
+#imported_begin 
+IMPORT <shareablelibrary.shex>
+#imported_end
+#imported_begin 
+IMPORT <Provenance.shex>
+#imported_end
+#imported_begin 
+IMPORT <shareablecodesystem.shex>
+#imported_end
+#imported_begin 
+IMPORT <shareableconceptmap.shex>
+#imported_end
+#imported_begin 
+IMPORT <shareablenamingsystem.shex>
+#imported_end
+#imported_begin 
+IMPORT <ActivityDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <Measure.shex>
+#imported_end
+#imported_begin 
+IMPORT <TestScript.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeSystem.shex>
+#imported_end
+#imported_begin 
+IMPORT <ConceptMap.shex>
+#imported_end
+#imported_begin 
+IMPORT <Library.shex>
+#imported_end
+#imported_begin 
+IMPORT <NamingSystem.shex>
+#imported_end
+#imported_begin 
+IMPORT <ValueSet.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
+IMPORT <vitalsigns.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end#oneOrMore_begin
+
+<OneOrMore_Extension> CLOSED {
+    rdf:first @<Extension>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Extension> 
+}
+
+#oneOrMore_end

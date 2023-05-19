@@ -1,0 +1,2110 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+ PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/> 
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Money.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <instant.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coverage.shex>
+#imported_end
+#imported_begin 
+IMPORT <Location.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <positiveInt.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+#imported_begin 
+IMPORT <HealthcareService.shex>
+#imported_end
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <url.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
+IMPORT <UsageContext.shex>
+#imported_end
+#imported_begin 
+IMPORT <ContactDetail.shex>
+#imported_end
+#imported_begin 
+IMPORT <DataType.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <Timing.shex>
+#imported_end
+#imported_begin 
+IMPORT <CareTeam.shex>
+#imported_end
+#imported_begin 
+IMPORT <Encounter.shex>
+#imported_end
+#imported_begin 
+IMPORT <Procedure.shex>
+#imported_end
+#imported_begin 
+IMPORT <Condition.shex>
+#imported_end
+#imported_begin 
+IMPORT <Substance.shex>
+#imported_end
+#imported_begin 
+IMPORT <Annotation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Medication.shex>
+#imported_end
+#imported_begin 
+IMPORT <Observation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Immunization.shex>
+#imported_end
+#imported_begin 
+IMPORT <ResearchStudy.shex>
+#imported_end
+#imported_begin 
+IMPORT <ResearchSubject.shex>
+#imported_end
+#imported_begin 
+IMPORT <MedicationUsage.shex>
+#imported_end
+#imported_begin 
+IMPORT <DocumentReference.shex>
+#imported_end
+#imported_begin 
+IMPORT <MedicationRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <AllergyIntolerance.shex>
+#imported_end
+#imported_begin 
+IMPORT <FamilyMemberHistory.shex>
+#imported_end
+#imported_begin 
+IMPORT <MedicationAdministration.shex>
+#imported_end
+#imported_begin 
+IMPORT <BiologicallyDerivedProduct.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <Age.shex>
+#imported_end
+#imported_begin 
+IMPORT <Range.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableReference.shex>
+#imported_end
+#imported_begin 
+IMPORT <date.shex>
+#imported_end
+#imported_begin 
+IMPORT <Slot.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
+IMPORT <Account.shex>
+#imported_end
+#imported_begin 
+IMPORT <Resource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CarePlan.shex>
+#imported_end
+#imported_begin 
+IMPORT <DeviceRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <ServiceRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <VirtualServiceDetail.shex>
+#imported_end
+#imported_begin 
+IMPORT <Appointment.shex>
+#imported_end
+#imported_begin 
+IMPORT <Citation.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedArtifact.shex>
+#imported_end
+#imported_begin 
+IMPORT <decimal.shex>
+#imported_end
+#imported_begin 
+IMPORT <integer64.shex>
+#imported_end
+#imported_begin 
+IMPORT <base64Binary.shex>
+#imported_end
+#imported_begin 
+IMPORT <time.shex>
+#imported_end
+#imported_begin 
+IMPORT <Task.shex>
+#imported_end
+#imported_begin 
+IMPORT <Ratio.shex>
+#imported_end
+#imported_begin 
+IMPORT <integer.shex>
+#imported_end
+#imported_begin 
+IMPORT <Endpoint.shex>
+#imported_end
+#imported_begin 
+IMPORT <NutritionOrder.shex>
+#imported_end
+#imported_begin 
+IMPORT <ImmunizationRecommendation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Element.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+#imported_begin 
+IMPORT <Attachment.shex>
+#imported_end
+#imported_begin 
+IMPORT <Signature.shex>
+#imported_end
+#imported_begin 
+IMPORT <unsignedInt.shex>
+#imported_end
+#imported_begin 
+IMPORT <Goal.shex>
+#imported_end
+#imported_begin 
+IMPORT <SupplyRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <VisionPrescription.shex>
+#imported_end
+#imported_begin 
+IMPORT <CommunicationRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <RequestOrchestration.shex>
+#imported_end
+#imported_begin 
+IMPORT <ContactPoint.shex>
+#imported_end
+#imported_begin 
+IMPORT <MonetaryComponent.shex>
+#imported_end
+#imported_begin 
+IMPORT <ArtifactAssessment.shex>
+#imported_end
+#imported_begin 
+IMPORT <Address.shex>
+#imported_end
+#imported_begin 
+IMPORT <Claim.shex>
+#imported_end
+#imported_begin 
+IMPORT <RiskAssessment.shex>
+#imported_end
+#imported_begin 
+IMPORT <Narrative.shex>
+#imported_end
+#imported_begin 
+IMPORT <DiagnosticReport.shex>
+#imported_end
+#imported_begin 
+IMPORT <ClinicalImpression.shex>
+#imported_end
+#imported_begin 
+IMPORT <Questionnaire.shex>
+#imported_end
+#imported_begin 
+IMPORT <PlanDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <Contract.shex>
+#imported_end
+#imported_begin 
+IMPORT <Expression.shex>
+#imported_end
+#imported_begin 
+IMPORT <QuestionnaireResponse.shex>
+#imported_end
+#imported_begin 
+IMPORT <Provenance.shex>
+#imported_end
+#imported_begin 
+IMPORT <Composition.shex>
+#imported_end
+#imported_begin 
+IMPORT <EpisodeOfCare.shex>
+#imported_end
+#imported_begin 
+IMPORT <InsurancePlan.shex>
+#imported_end
+#imported_begin 
+IMPORT <SimpleQuantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <CoverageEligibilityRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <Duration.shex>
+#imported_end
+#imported_begin 
+IMPORT <Base.shex>
+#imported_end
+#imported_begin 
+IMPORT <NutritionProduct.shex>
+#imported_end
+#imported_begin 
+IMPORT <Count.shex>
+#imported_end
+#imported_begin 
+IMPORT <ClaimResponse.shex>
+#imported_end
+#imported_begin 
+IMPORT <Specimen.shex>
+#imported_end
+#imported_begin 
+IMPORT <GenomicStudy.shex>
+#imported_end
+#imported_begin 
+IMPORT <ImagingStudy.shex>
+#imported_end
+#imported_begin 
+IMPORT <EnrollmentRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <AppointmentResponse.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneType.shex>
+#imported_end
+#imported_begin 
+IMPORT <Consent.shex>
+#imported_end
+#imported_begin 
+IMPORT <Transport.shex>
+#imported_end
+#imported_begin 
+IMPORT <ChargeItem.shex>
+#imported_end
+#imported_begin 
+IMPORT <DeviceUsage.shex>
+#imported_end
+#imported_begin 
+IMPORT <Communication.shex>
+#imported_end
+#imported_begin 
+IMPORT <DetectedIssue.shex>
+#imported_end
+#imported_begin 
+IMPORT <PaymentNotice.shex>
+#imported_end
+#imported_begin 
+IMPORT <SupplyDelivery.shex>
+#imported_end
+#imported_begin 
+IMPORT <InventoryReport.shex>
+#imported_end
+#imported_begin 
+IMPORT <NutritionIntake.shex>
+#imported_end
+#imported_begin 
+IMPORT <DocumentManifest.shex>
+#imported_end
+#imported_begin 
+IMPORT <GuidanceResponse.shex>
+#imported_end
+#imported_begin 
+IMPORT <ImagingSelection.shex>
+#imported_end
+#imported_begin 
+IMPORT <EnrollmentResponse.shex>
+#imported_end
+#imported_begin 
+IMPORT <MedicationDispense.shex>
+#imported_end
+#imported_begin 
+IMPORT <ExplanationOfBenefit.shex>
+#imported_end
+#imported_begin 
+IMPORT <PaymentReconciliation.shex>
+#imported_end
+#imported_begin 
+IMPORT <ImmunizationEvaluation.shex>
+#imported_end
+#imported_begin 
+IMPORT <CoverageEligibilityResponse.shex>
+#imported_end
+#imported_begin 
+IMPORT <Person.shex>
+#imported_end
+#imported_begin 
+IMPORT <id.shex>
+#imported_end
+#imported_begin 
+IMPORT <Evidence.shex>
+#imported_end
+#imported_begin 
+IMPORT <DeviceMetric.shex>
+#imported_end
+#imported_begin 
+IMPORT <HumanName.shex>
+#imported_end
+#imported_begin 
+IMPORT <Availability.shex>
+#imported_end
+#imported_begin 
+IMPORT <ExtendedContactDetail.shex>
+#imported_end
+#imported_begin 
+IMPORT <RatioRange.shex>
+#imported_end
+#imported_begin 
+IMPORT <ManufacturedItemDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <MedicinalProductDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <AdministrableProductDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <Dosage.shex>
+#imported_end
+#imported_begin 
+IMPORT <ClinicalUseDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <PackagedProductDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <DeviceDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <EventDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <OperationOutcome.shex>
+#imported_end
+#imported_begin 
+IMPORT <xhtml.shex>
+#imported_end
+#imported_begin 
+IMPORT <SampledData.shex>
+#imported_end
+#imported_begin 
+IMPORT <BodyStructure.shex>
+#imported_end
+#imported_begin 
+IMPORT <MolecularSequence.shex>
+#imported_end
+#imported_begin 
+IMPORT <oid.shex>
+#imported_end
+#imported_begin 
+IMPORT <uuid.shex>
+#imported_end
+#imported_begin 
+IMPORT <Meta.shex>
+#imported_end
+#imported_begin 
+IMPORT <Distance.shex>
+#imported_end
+#imported_begin 
+IMPORT <DataRequirement.shex>
+#imported_end
+#imported_begin 
+IMPORT <TriggerDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <ParameterDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <Invoice.shex>
+#imported_end
+#imported_begin 
+IMPORT <Ingredient.shex>
+#imported_end
+#imported_begin 
+IMPORT <ActivityDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <SubstanceDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <ObservationDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <HealthCareService.shex>
+#imported_end
+#imported_begin 
+IMPORT <SpecimenDefinition.shex>
+#imported_end
+#imported_begin 
+IMPORT <CapabilityStatement.shex>
+#imported_end
+#imported_begin 
+IMPORT <EvidenceReport.shex>
+#imported_end
+#imported_begin 
+IMPORT <EvidenceVariable.shex>
+#imported_end
+#imported_begin 
+IMPORT <Schedule.shex>
+#imported_end
+#imported_begin 
+IMPORT <Subscription.shex>
+#imported_end
+#imported_begin 
+IMPORT <PrimitiveType.shex>
+#imported_end#oneOrMore_begin
+
+<OneOrMore_Identifier> CLOSED {
+    rdf:first @<Identifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Identifier> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Device_OR_HealthcareService_OR_Location_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Device> OR 
+			@<HealthcareService> OR 
+			@<Location> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Device_OR_HealthcareService_OR_Location_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_ContactDetail> CLOSED {
+    rdf:first @<ContactDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactDetail> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_UsageContext> CLOSED {
+    rdf:first @<UsageContext>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_UsageContext> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_CodeableConcept> CLOSED {
+    rdf:first @<CodeableConcept>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableConcept> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_url> CLOSED {
+    rdf:first @<url>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_url> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_canonical> CLOSED {
+    rdf:first @<canonical>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_canonical> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_string> CLOSED {
+    rdf:first @<string>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_string> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Condition_OR_Observation> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Condition> OR 
+			@<Observation> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Condition_OR_Observation> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_ResearchStudy> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ResearchStudy> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ResearchStudy> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Annotation> CLOSED {
+    rdf:first @<Annotation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Annotation> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_code> CLOSED {
+    rdf:first @<code>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_code> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_CodeableReference> CLOSED {
+    rdf:first @<CodeableReference>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CodeableReference> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Appointment> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Appointment> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Appointment> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_VirtualServiceDetail> CLOSED {
+    rdf:first @<VirtualServiceDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_VirtualServiceDetail> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Resource> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Resource> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Resource> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Slot> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Slot> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Slot> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Account> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Account> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Account> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_MedicationRequest_OR_ServiceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CarePlan> OR 
+			@<DeviceRequest> OR 
+			@<MedicationRequest> OR 
+			@<ServiceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_MedicationRequest_OR_ServiceRequest> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Period> CLOSED {
+    rdf:first @<Period>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Period> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_date> CLOSED {
+    rdf:first @<date>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_date> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_positiveInt> CLOSED {
+    rdf:first @<positiveInt>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_positiveInt> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_uri> CLOSED {
+    rdf:first @<uri>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_uri> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_RelatedArtifact> CLOSED {
+    rdf:first @<RelatedArtifact>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_RelatedArtifact> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest_OR_Task> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CarePlan> OR 
+			@<DeviceRequest> OR 
+			@<ImmunizationRecommendation> OR 
+			@<MedicationRequest> OR 
+			@<NutritionOrder> OR 
+			@<ServiceRequest> OR 
+			@<Task> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest_OR_Task> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Element> CLOSED {
+    rdf:first @<Element>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Element> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Extension> CLOSED {
+    rdf:first @<Extension>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Extension> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_BiologicallyDerivedProduct> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<BiologicallyDerivedProduct> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_BiologicallyDerivedProduct> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_ServiceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ServiceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ServiceRequest> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Organization> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Organization> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Organization> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Attachment> CLOSED {
+    rdf:first @<Attachment>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Attachment> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CarePlan_OR_NutritionOrder_OR_RequestOrchestration_OR_ServiceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CarePlan> OR 
+			@<NutritionOrder> OR 
+			@<RequestOrchestration> OR 
+			@<ServiceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CarePlan_OR_NutritionOrder_OR_RequestOrchestration_OR_ServiceRequest> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CarePlan> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CarePlan> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CarePlan> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CareTeam_OR_Device_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> OR 
+			@<Device> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam_OR_Device_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CareTeam> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Goal> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Goal> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Goal> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CareTeam_OR_Device_OR_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> OR 
+			@<Device> OR 
+			@<HealthcareService> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam_OR_Device_OR_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_ContactPoint> CLOSED {
+    rdf:first @<ContactPoint>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ContactPoint> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_ChargeItem> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ChargeItem> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ChargeItem> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Organization_OR_PractitionerRole> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Organization> OR 
+			@<PractitionerRole> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Organization_OR_PractitionerRole> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_ArtifactAssessment> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ArtifactAssessment> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ArtifactAssessment> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Encounter> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Encounter> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Encounter> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Device> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Device> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Device> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CommunicationRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CommunicationRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CommunicationRequest> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Organization_OR_Practitioner_OR_PractitionerRole> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Organization> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Organization_OR_Practitioner_OR_PractitionerRole> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_AllergyIntolerance_OR_Condition> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<AllergyIntolerance> OR 
+			@<Condition> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_AllergyIntolerance_OR_Condition> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_RiskAssessment> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<RiskAssessment> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_RiskAssessment> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Coding> CLOSED {
+    rdf:first @<Coding>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Coding> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Communication> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Communication> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Communication> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CareTeam_OR_Device_OR_Endpoint_OR_Group_OR_HealthcareService_OR_Location_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> OR 
+			@<Device> OR 
+			@<Endpoint> OR 
+			@<Group> OR 
+			@<HealthcareService> OR 
+			@<Location> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam_OR_Device_OR_Endpoint_OR_Group_OR_HealthcareService_OR_Location_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CareTeam_OR_Device_OR_Endpoint_OR_Group_OR_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> OR 
+			@<Device> OR 
+			@<Endpoint> OR 
+			@<Group> OR 
+			@<HealthcareService> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam_OR_Device_OR_Endpoint_OR_Group_OR_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Device_OR_Endpoint_OR_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Device> OR 
+			@<Endpoint> OR 
+			@<HealthcareService> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Device_OR_Endpoint_OR_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Device_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Device> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Device_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_ClinicalImpression_OR_DiagnosticReport_OR_Observation> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ClinicalImpression> OR 
+			@<DiagnosticReport> OR 
+			@<Observation> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ClinicalImpression_OR_DiagnosticReport_OR_Observation> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CareTeam_OR_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> OR 
+			@<HealthcareService> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam_OR_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<HealthcareService> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Consent_OR_Contract_OR_DocumentReference_OR_QuestionnaireResponse> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Consent> OR 
+			@<Contract> OR 
+			@<DocumentReference> OR 
+			@<QuestionnaireResponse> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Consent_OR_Contract_OR_DocumentReference_OR_QuestionnaireResponse> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_DocumentReference> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<DocumentReference> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_DocumentReference> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_dateTime> CLOSED {
+    rdf:first @<dateTime>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_dateTime> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Location> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Location> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Location> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Provenance> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Provenance> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Provenance> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_unsignedInt> CLOSED {
+    rdf:first @<unsignedInt>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_unsignedInt> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Signature> CLOSED {
+    rdf:first @<Signature>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Signature> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Device_OR_Group_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Device> OR 
+			@<Group> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Device_OR_Group_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Contract> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Contract> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Contract> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Endpoint> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Endpoint> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Endpoint> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Patient_OR_Practitioner_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Patient_OR_Practitioner_OR_RelatedPerson> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CarePlan_OR_DeviceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CarePlan> OR 
+			@<DeviceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CarePlan_OR_DeviceRequest> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Procedure> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Procedure> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Procedure> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_DeviceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<DeviceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_DeviceRequest> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_ClaimResponse_OR_Coverage> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ClaimResponse> OR 
+			@<Coverage> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ClaimResponse_OR_Coverage> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Claim_OR_DocumentReference_OR_Observation_OR_Procedure_OR_QuestionnaireResponse_OR_ServiceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Claim> OR 
+			@<DocumentReference> OR 
+			@<Observation> OR 
+			@<Procedure> OR 
+			@<QuestionnaireResponse> OR 
+			@<ServiceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Claim_OR_DocumentReference_OR_Observation_OR_Procedure_OR_QuestionnaireResponse_OR_ServiceRequest> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CarePlan_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CarePlan> OR 
+			@<ImmunizationRecommendation> OR 
+			@<MedicationRequest> OR 
+			@<NutritionOrder> OR 
+			@<ServiceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CarePlan_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CareTeam_OR_Organization_OR_Practitioner_OR_PractitionerRole> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> OR 
+			@<Organization> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam_OR_Organization_OR_Practitioner_OR_PractitionerRole> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Specimen> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Specimen> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Specimen> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Observation> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Observation> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Observation> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_GenomicStudy_OR_ImagingStudy> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<GenomicStudy> OR 
+			@<ImagingStudy> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_GenomicStudy_OR_ImagingStudy> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_Claim_OR_CommunicationRequest_OR_Contract_OR_CoverageEligibilityRequest_OR_DeviceRequest_OR_EnrollmentRequest_OR_EpisodeOfCare_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_RequestOrchestration_OR_ServiceRequest_OR_SupplyRequest_OR_VisionPrescription> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Appointment> OR 
+			@<AppointmentResponse> OR 
+			@<CarePlan> OR 
+			@<Claim> OR 
+			@<CommunicationRequest> OR 
+			@<Contract> OR 
+			@<CoverageEligibilityRequest> OR 
+			@<DeviceRequest> OR 
+			@<EnrollmentRequest> OR 
+			@<EpisodeOfCare> OR 
+			@<ImmunizationRecommendation> OR 
+			@<MedicationRequest> OR 
+			@<NutritionOrder> OR 
+			@<RequestOrchestration> OR 
+			@<ServiceRequest> OR 
+			@<SupplyRequest> OR 
+			@<VisionPrescription> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_Claim_OR_CommunicationRequest_OR_Contract_OR_CoverageEligibilityRequest_OR_DeviceRequest_OR_EnrollmentRequest_OR_EpisodeOfCare_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_RequestOrchestration_OR_ServiceRequest_OR_SupplyRequest_OR_VisionPrescription> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Appointment_OR_Encounter_OR_EpisodeOfCare> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Appointment> OR 
+			@<Encounter> OR 
+			@<EpisodeOfCare> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Appointment_OR_Encounter_OR_EpisodeOfCare> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Resource> CLOSED {
+    rdf:first @<Resource>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Resource> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Ratio> CLOSED {
+    rdf:first @<Ratio>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Ratio> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_EpisodeOfCare> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<EpisodeOfCare> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_EpisodeOfCare> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_Claim_OR_CommunicationRequest_OR_Contract_OR_CoverageEligibilityRequest_OR_DeviceRequest_OR_EnrollmentRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_RequestOrchestration_OR_ServiceRequest_OR_SupplyRequest_OR_VisionPrescription> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Appointment> OR 
+			@<AppointmentResponse> OR 
+			@<CarePlan> OR 
+			@<Claim> OR 
+			@<CommunicationRequest> OR 
+			@<Contract> OR 
+			@<CoverageEligibilityRequest> OR 
+			@<DeviceRequest> OR 
+			@<EnrollmentRequest> OR 
+			@<ImmunizationRecommendation> OR 
+			@<MedicationRequest> OR 
+			@<NutritionOrder> OR 
+			@<RequestOrchestration> OR 
+			@<ServiceRequest> OR 
+			@<SupplyRequest> OR 
+			@<VisionPrescription> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_Claim_OR_CommunicationRequest_OR_Contract_OR_CoverageEligibilityRequest_OR_DeviceRequest_OR_EnrollmentRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_RequestOrchestration_OR_ServiceRequest_OR_SupplyRequest_OR_VisionPrescription> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_AuditEvent_OR_ChargeItem_OR_ClaimResponse_OR_ClinicalImpression_OR_Communication_OR_Composition_OR_Consent_OR_Coverage_OR_CoverageEligibilityResponse_OR_DetectedIssue_OR_DeviceUsage_OR_DiagnosticReport_OR_DocumentManifest_OR_DocumentReference_OR_Encounter_OR_EnrollmentResponse_OR_EpisodeOfCare_OR_ExplanationOfBenefit_OR_FamilyMemberHistory_OR_GuidanceResponse_OR_ImagingSelection_OR_ImagingStudy_OR_Immunization_OR_ImmunizationEvaluation_OR_InventoryReport_OR_MedicationAdministration_OR_MedicationDispense_OR_MedicationUsage_OR_NutritionIntake_OR_Observation_OR_PaymentNotice_OR_PaymentReconciliation_OR_Procedure_OR_Provenance_OR_QuestionnaireResponse_OR_RiskAssessment_OR_SupplyDelivery_OR_Transport> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<AuditEvent> OR 
+			@<ChargeItem> OR 
+			@<ClaimResponse> OR 
+			@<ClinicalImpression> OR 
+			@<Communication> OR 
+			@<Composition> OR 
+			@<Consent> OR 
+			@<Coverage> OR 
+			@<CoverageEligibilityResponse> OR 
+			@<DetectedIssue> OR 
+			@<DeviceUsage> OR 
+			@<DiagnosticReport> OR 
+			@<DocumentManifest> OR 
+			@<DocumentReference> OR 
+			@<Encounter> OR 
+			@<EnrollmentResponse> OR 
+			@<EpisodeOfCare> OR 
+			@<ExplanationOfBenefit> OR 
+			@<FamilyMemberHistory> OR 
+			@<GuidanceResponse> OR 
+			@<ImagingSelection> OR 
+			@<ImagingStudy> OR 
+			@<Immunization> OR 
+			@<ImmunizationEvaluation> OR 
+			@<InventoryReport> OR 
+			@<MedicationAdministration> OR 
+			@<MedicationDispense> OR 
+			@<MedicationUsage> OR 
+			@<NutritionIntake> OR 
+			@<Observation> OR 
+			@<PaymentNotice> OR 
+			@<PaymentReconciliation> OR 
+			@<Procedure> OR 
+			@<Provenance> OR 
+			@<QuestionnaireResponse> OR 
+			@<RiskAssessment> OR 
+			@<SupplyDelivery> OR 
+			@<Transport> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_AuditEvent_OR_ChargeItem_OR_ClaimResponse_OR_ClinicalImpression_OR_Communication_OR_Composition_OR_Consent_OR_Coverage_OR_CoverageEligibilityResponse_OR_DetectedIssue_OR_DeviceUsage_OR_DiagnosticReport_OR_DocumentManifest_OR_DocumentReference_OR_Encounter_OR_EnrollmentResponse_OR_EpisodeOfCare_OR_ExplanationOfBenefit_OR_FamilyMemberHistory_OR_GuidanceResponse_OR_ImagingSelection_OR_ImagingStudy_OR_Immunization_OR_ImmunizationEvaluation_OR_InventoryReport_OR_MedicationAdministration_OR_MedicationDispense_OR_MedicationUsage_OR_NutritionIntake_OR_Observation_OR_PaymentNotice_OR_PaymentReconciliation_OR_Procedure_OR_Provenance_OR_QuestionnaireResponse_OR_RiskAssessment_OR_SupplyDelivery_OR_Transport> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Quantity> CLOSED {
+    rdf:first @<Quantity>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Quantity> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Range> CLOSED {
+    rdf:first @<Range>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Range> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Device_OR_Group_OR_Organization_OR_Person> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Device> OR 
+			@<Group> OR 
+			@<Organization> OR 
+			@<Person> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Device_OR_Group_OR_Organization_OR_Person> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_HumanName> CLOSED {
+    rdf:first @<HumanName>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_HumanName> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Organization_OR_Patient_OR_Practitioner_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Organization_OR_Patient_OR_Practitioner_OR_RelatedPerson> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Timing> CLOSED {
+    rdf:first @<Timing>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Timing> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_ServiceRequest_OR_Task> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ServiceRequest> OR 
+			@<Task> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ServiceRequest_OR_Task> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Practitioner_OR_PractitionerRole> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Practitioner> OR 
+			@<PractitionerRole> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Practitioner_OR_PractitionerRole> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_DocumentReference_OR_Observation> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<DocumentReference> OR 
+			@<Observation> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_DocumentReference_OR_Observation> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Condition_OR_MedicationRequest_OR_MedicationUsage_OR_NutritionOrder_OR_Observation_OR_RiskAssessment_OR_ServiceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Condition> OR 
+			@<MedicationRequest> OR 
+			@<MedicationUsage> OR 
+			@<NutritionOrder> OR 
+			@<Observation> OR 
+			@<RiskAssessment> OR 
+			@<ServiceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Condition_OR_MedicationRequest_OR_MedicationUsage_OR_NutritionOrder_OR_Observation_OR_RiskAssessment_OR_ServiceRequest> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_HealthcareService> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<HealthcareService> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_HealthcareService> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_ExtendedContactDetail> CLOSED {
+    rdf:first @<ExtendedContactDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ExtendedContactDetail> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Availability> CLOSED {
+    rdf:first @<Availability>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Availability> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_ServiceRequest_OR_Task> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Appointment> OR 
+			@<AppointmentResponse> OR 
+			@<CarePlan> OR 
+			@<ServiceRequest> OR 
+			@<Task> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_ServiceRequest_OR_Task> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_ImagingStudy> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ImagingStudy> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ImagingStudy> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_ImagingSelection> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ImagingSelection> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ImagingSelection> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_decimal> CLOSED {
+    rdf:first @<decimal>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_decimal> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CarePlan_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_ServiceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CarePlan> OR 
+			@<ImmunizationRecommendation> OR 
+			@<MedicationRequest> OR 
+			@<ServiceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CarePlan_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_ServiceRequest> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Immunization_OR_ImmunizationEvaluation> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Immunization> OR 
+			@<ImmunizationEvaluation> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Immunization_OR_ImmunizationEvaluation> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_AdministrableProductDefinition_OR_ManufacturedItemDefinition_OR_MedicinalProductDefinition> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<AdministrableProductDefinition> OR 
+			@<ManufacturedItemDefinition> OR 
+			@<MedicinalProductDefinition> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_AdministrableProductDefinition_OR_ManufacturedItemDefinition_OR_MedicinalProductDefinition> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_MonetaryComponent> CLOSED {
+    rdf:first @<MonetaryComponent>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_MonetaryComponent> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_MedicationAdministration_OR_Procedure> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<MedicationAdministration> OR 
+			@<Procedure> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_MedicationAdministration_OR_Procedure> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_MedicationRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<MedicationRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_MedicationRequest> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Location_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Location> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Location_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Dosage> CLOSED {
+    rdf:first @<Dosage>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Dosage> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Medication> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Medication> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Medication> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_ClinicalUseDefinition> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ClinicalUseDefinition> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ClinicalUseDefinition> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_MedicinalProductDefinition> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<MedicinalProductDefinition> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_MedicinalProductDefinition> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_MedicationKnowledge> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<MedicationKnowledge> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_MedicationKnowledge> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CareTeam_OR_DeviceDefinition_OR_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> OR 
+			@<DeviceDefinition> OR 
+			@<HealthcareService> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam_OR_DeviceDefinition_OR_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CarePlan_OR_NutritionOrder_OR_ServiceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CarePlan> OR 
+			@<NutritionOrder> OR 
+			@<ServiceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CarePlan_OR_NutritionOrder_OR_ServiceRequest> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_NutritionIntake_OR_Observation_OR_Procedure> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<NutritionIntake> OR 
+			@<Observation> OR 
+			@<Procedure> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_NutritionIntake_OR_Observation_OR_Procedure> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_AllergyIntolerance> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<AllergyIntolerance> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_AllergyIntolerance> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CarePlan> OR 
+			@<DeviceRequest> OR 
+			@<ImmunizationRecommendation> OR 
+			@<MedicationRequest> OR 
+			@<NutritionOrder> OR 
+			@<ServiceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_GenomicStudy_OR_ImagingStudy_OR_Immunization_OR_MedicationAdministration_OR_MedicationDispense_OR_MedicationUsage_OR_Procedure> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<GenomicStudy> OR 
+			@<ImagingStudy> OR 
+			@<Immunization> OR 
+			@<MedicationAdministration> OR 
+			@<MedicationDispense> OR 
+			@<MedicationUsage> OR 
+			@<Procedure> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_GenomicStudy_OR_ImagingStudy_OR_Immunization_OR_MedicationAdministration_OR_MedicationDispense_OR_MedicationUsage_OR_Procedure> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CareTeam_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_MolecularSequence_OR_Observation_OR_QuestionnaireResponse> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<MolecularSequence> OR 
+			@<Observation> OR 
+			@<QuestionnaireResponse> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_MolecularSequence_OR_Observation_OR_QuestionnaireResponse> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_DocumentReference_OR_GenomicStudy_OR_ImagingSelection_OR_ImagingStudy_OR_MolecularSequence_OR_Observation_OR_QuestionnaireResponse> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<DocumentReference> OR 
+			@<GenomicStudy> OR 
+			@<ImagingSelection> OR 
+			@<ImagingStudy> OR 
+			@<MolecularSequence> OR 
+			@<Observation> OR 
+			@<QuestionnaireResponse> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_DocumentReference_OR_GenomicStudy_OR_ImagingSelection_OR_ImagingStudy_OR_MolecularSequence_OR_Observation_OR_QuestionnaireResponse> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Address> CLOSED {
+    rdf:first @<Address>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Address> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CareTeam_OR_Device_OR_Group_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> OR 
+			@<Device> OR 
+			@<Group> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam_OR_Device_OR_Group_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CarePlan_OR_ServiceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CarePlan> OR 
+			@<ServiceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CarePlan_OR_ServiceRequest> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_MedicationAdministration_OR_Observation_OR_Procedure> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<MedicationAdministration> OR 
+			@<Observation> OR 
+			@<Procedure> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_MedicationAdministration_OR_Observation_OR_Procedure> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Composition_OR_DiagnosticReport_OR_DocumentReference> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Composition> OR 
+			@<DiagnosticReport> OR 
+			@<DocumentReference> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Composition_OR_DiagnosticReport_OR_DocumentReference> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Observation_OR_Procedure> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Observation> OR 
+			@<Procedure> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Observation_OR_Procedure> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_ActivityDefinition_OR_BiologicallyDerivedProduct_OR_DeviceDefinition_OR_Ingredient_OR_Location_OR_ManufacturedItemDefinition_OR_MedicinalProductDefinition_OR_NutritionProduct_OR_ObservationDefinition_OR_Organization_OR_PackagedProductDefinition_OR_PlanDefinition_OR_Practitioner_OR_ResearchStudy_OR_SubstanceDefinition> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<ActivityDefinition> OR 
+			@<BiologicallyDerivedProduct> OR 
+			@<DeviceDefinition> OR 
+			@<Ingredient> OR 
+			@<Location> OR 
+			@<ManufacturedItemDefinition> OR 
+			@<MedicinalProductDefinition> OR 
+			@<NutritionProduct> OR 
+			@<ObservationDefinition> OR 
+			@<Organization> OR 
+			@<PackagedProductDefinition> OR 
+			@<PlanDefinition> OR 
+			@<Practitioner> OR 
+			@<ResearchStudy> OR 
+			@<SubstanceDefinition> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_ActivityDefinition_OR_BiologicallyDerivedProduct_OR_DeviceDefinition_OR_Ingredient_OR_Location_OR_ManufacturedItemDefinition_OR_MedicinalProductDefinition_OR_NutritionProduct_OR_ObservationDefinition_OR_Organization_OR_PackagedProductDefinition_OR_PlanDefinition_OR_Practitioner_OR_ResearchStudy_OR_SubstanceDefinition> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CareTeam_OR_Device_OR_Endpoint_OR_HealthCareService_OR_Location_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> OR 
+			@<Device> OR 
+			@<Endpoint> OR 
+			@<HealthCareService> OR 
+			@<Location> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam_OR_Device_OR_Endpoint_OR_HealthCareService_OR_Location_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CareTeam_OR_Group_OR_Organization_OR_Practitioner> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> OR 
+			@<Group> OR 
+			@<Organization> OR 
+			@<Practitioner> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam_OR_Group_OR_Organization_OR_Practitioner> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_PlanDefinition> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<PlanDefinition> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_PlanDefinition> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Location_OR_Organization_OR_ResearchStudy> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Location> OR 
+			@<Organization> OR 
+			@<ResearchStudy> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Location_OR_Organization_OR_ResearchStudy> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Citation_OR_DiagnosticReport_OR_EvidenceReport> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Citation> OR 
+			@<DiagnosticReport> OR 
+			@<EvidenceReport> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Citation_OR_DiagnosticReport_OR_EvidenceReport> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_EvidenceVariable> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<EvidenceVariable> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_EvidenceVariable> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CareTeam_OR_Device_OR_HealthcareService_OR_Location_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CareTeam> OR 
+			@<Device> OR 
+			@<HealthcareService> OR 
+			@<Location> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CareTeam_OR_Device_OR_HealthcareService_OR_Location_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_CarePlan_OR_MedicationRequest_OR_ServiceRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<CarePlan> OR 
+			@<MedicationRequest> OR 
+			@<ServiceRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_CarePlan_OR_MedicationRequest_OR_ServiceRequest> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Substance> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Substance> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Substance> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_SupplyRequest> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<SupplyRequest> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_SupplyRequest> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Contract_OR_SupplyDelivery> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Contract> OR 
+			@<SupplyDelivery> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Contract_OR_SupplyDelivery> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_HealthcareService_OR_Organization> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<HealthcareService> OR 
+			@<Organization> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_HealthcareService_OR_Organization> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_integer> CLOSED {
+    rdf:first @<integer>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_integer> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_time> CLOSED {
+    rdf:first @<time>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_time> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Contract_OR_Transport> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Contract> OR 
+			@<Transport> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Contract_OR_Transport> 
+}
+
+#oneOrMore_end
+#oneOrMore_begin
+
+<OneOrMore_Reference_Group_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> CLOSED {
+    rdf:first @<Reference> AND {fhir:link 
+			@<Group> OR 
+			@<Organization> OR 
+			@<Patient> OR 
+			@<Practitioner> OR 
+			@<PractitionerRole> OR 
+			@<RelatedPerson> } ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Reference_Group_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson> 
+}
+
+#oneOrMore_end

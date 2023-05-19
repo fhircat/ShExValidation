@@ -1,0 +1,170 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <Location.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Resource.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Procedure.shex>
+#imported_end
+#imported_begin 
+IMPORT <Substance.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Medication.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <NutritionProduct.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+#imported_begin 
+IMPORT <BiologicallyDerivedProduct.shex>
+#imported_end
+
+start=@<DetectedIssue> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Clinical issue with action
+<DetectedIssue> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:DetectedIssue]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Unique id for the detected issue
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:detectedissue-status};  # preliminary | final | 
+                                            # entered-in-error | mitigated 
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Type of detected issue, e.g. 
+                                            # drug-drug, duplicate therapy, etc. 
+    fhir:code @<CodeableConcept>?;          # Specific type of detected issue, 
+                                            # e.g. drug-drug, duplicate therapy, 
+                                            # etc. 
+    fhir:severity @<code> AND
+    	{fhir:v @fhirvs:detectedissue-severity}?;  # high | moderate | low
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<BiologicallyDerivedProduct> OR 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<Location> OR 
+    			@<Medication> OR 
+    			@<NutritionProduct> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<Procedure> OR 
+    			@<Substance> ? }?;  # Associated subject
+    fhir:identified @<dateTime>  OR 
+    			@<Period>  ?;  # When identified
+    fhir:author @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ? }?;  # The provider or device that 
+                                            # identified the issue 
+    fhir:implicated @<OneOrMore_Reference_Resource>?;  # Problem resource
+    fhir:evidence @<OneOrMore_DetectedIssue.evidence>?;  # Supporting evidence
+    fhir:detail @<string>?;                 # Description and context
+    fhir:reference @<uri>?;                 # Authority for issue
+    fhir:mitigation @<OneOrMore_DetectedIssue.mitigation>?;  # Step taken to address
+}  
+
+# Supporting evidence
+<DetectedIssue.evidence> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<OneOrMore_CodeableConcept>?;  # Manifestation
+    fhir:detail @<OneOrMore_Reference_Resource>?;  # Supporting information
+}  
+
+# Step taken to address
+<DetectedIssue.mitigation> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:action @<CodeableConcept>;         # What mitigation?
+    fhir:date @<dateTime>?;                 # Date committed
+    fhir:author @<Reference> AND {fhir:link 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> ? }?;  # Who is committing?
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+<OneOrMore_DetectedIssue.evidence> CLOSED {
+    rdf:first @<DetectedIssue.evidence>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_DetectedIssue.evidence> 
+}
+
+<OneOrMore_DetectedIssue.mitigation> CLOSED {
+    rdf:first @<DetectedIssue.mitigation>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_DetectedIssue.mitigation> 
+}
+
+#---------------------- Value Sets ------------------------
+
+# Indicates the potential degree of impact of the identified issue on the patient.
+fhirvs:detectedissue-severity ["high" "moderate" "low"]
+
+# Indicates the status of a detected issue
+fhirvs:detectedissue-status ["preliminary" "final" "entered-in-error" "mitigated"]
+

@@ -1,0 +1,50 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <id.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
+IMPORT <instant.shex>
+#imported_end
+#imported_begin 
+IMPORT <DataType.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+# Metadata about a resource
+<Meta> EXTENDS @<DataType> CLOSED {   
+
+    a [fhir:Meta]?;
+
+    fhir:versionId @<id>?;                  # Version specific identifier
+    fhir:lastUpdated @<instant>?;           # When the resource version last 
+                                            # changed 
+    fhir:source @<uri>?;                    # Identifies where the resource 
+                                            # comes from 
+    fhir:profile @<OneOrMore_canonical>?;   # Profiles this resource claims to 
+                                            # conform to 
+    fhir:security @<OneOrMore_Coding>?;     # Security Labels applied to this 
+                                            # resource 
+    fhir:tag @<OneOrMore_Coding>?;          # Tags applied to this resource
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+

@@ -1,0 +1,139 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <decimal.shex>
+#imported_end
+#imported_begin 
+IMPORT <integer.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Encounter.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Annotation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+
+start=@<VisionPrescription> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Prescription for vision correction products for a patient
+<VisionPrescription> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:VisionPrescription]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business Identifier for vision 
+                                            # prescription 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:fm-status};  # active | cancelled | draft | 
+                                            # entered-in-error 
+    fhir:created @<dateTime>;               # Response creation date
+    fhir:patient @<Reference> AND {fhir:link 
+    			@<Patient> ? };  # Who prescription is for
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> ? }?;  # Created during encounter / 
+                                            # admission / stay 
+    fhir:dateWritten @<dateTime>;           # When prescription was authorized
+    fhir:prescriber @<Reference> AND {fhir:link 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> ? };  # Who authorized the vision 
+                                            # prescription 
+    fhir:lensSpecification @<OneOrMore_VisionPrescription.lensSpecification>;  # Vision lens authorization
+}  
+
+# Eye alignment compensation
+<VisionPrescription.lensSpecification.prism> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:amount @<decimal>;                 # Amount of adjustment
+    fhir:base @<code> AND
+    	{fhir:v @fhirvs:vision-base-codes};  # up | down | in | out
+}  
+
+# Vision lens authorization
+<VisionPrescription.lensSpecification> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:product @<CodeableConcept>;        # Product to be supplied
+    fhir:eye @<code> AND
+    	{fhir:v @fhirvs:vision-eye-codes};  # right | left
+    fhir:sphere @<decimal>?;                # Power of the lens
+    fhir:cylinder @<decimal>?;              # Lens power for astigmatism
+    fhir:axis @<integer>?;                  # Lens meridian which contain no 
+                                            # power for astigmatism 
+    fhir:prism @<OneOrMore_VisionPrescription.lensSpecification.prism>?;  # Eye alignment compensation
+    fhir:add @<decimal>?;                   # Added power for multifocal levels
+    fhir:power @<decimal>?;                 # Contact lens power
+    fhir:backCurve @<decimal>?;             # Contact lens back curvature
+    fhir:diameter @<decimal>?;              # Contact lens diameter
+    fhir:duration @<Quantity>?;             # Lens wear duration
+    fhir:color @<string>?;                  # Color required
+    fhir:brand @<string>?;                  # Brand required
+    fhir:note @<OneOrMore_Annotation>?;     # Notes for coatings
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+<OneOrMore_VisionPrescription.lensSpecification> CLOSED {
+    rdf:first @<VisionPrescription.lensSpecification>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_VisionPrescription.lensSpecification> 
+}
+
+<OneOrMore_VisionPrescription.lensSpecification.prism> CLOSED {
+    rdf:first @<VisionPrescription.lensSpecification.prism>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_VisionPrescription.lensSpecification.prism> 
+}
+
+
+
+#---------------------- Value Sets ------------------------
+
+# This value set includes Status codes.
+fhirvs:fm-status ["active" "cancelled" "draft" "entered-in-error"]
+
+# A coded concept listing the base codes.
+fhirvs:vision-base-codes ["up" "down" "in" "out"]
+
+# A coded concept listing the eye codes.
+fhirvs:vision-eye-codes ["right" "left"]
+

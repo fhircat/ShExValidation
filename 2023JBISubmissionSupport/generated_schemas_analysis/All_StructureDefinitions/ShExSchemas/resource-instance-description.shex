@@ -1,0 +1,42 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+# Pertains to goal
+<resource-instance-description> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:resource-instance-description]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri> AND
+    	{fhir:value ["http://hl7.org/fhir/StructureDefinition/resource-instance-name"]}; 
+    fhir:value @<markdown>  ; 
+    ^fhir:extension { a [fhir:Resource]}
+
+} AND (
+
+# Constraint UniqueKey:rid-1
+# Human readable:Cannot be used where description already exists or description is of type string or markdown.
+
+# Constraint: %resource.description.exists().not() or ((%resource.description is string).not() and (%resource.description is markdown).not())
+# ShEx:
+
+ NOT { 'false'.description. } OR ( NOT { 'true'.description a { fhir:string } } AND  NOT { 'true'.description a { fhir:markdown } })
+
+)
+ 
+

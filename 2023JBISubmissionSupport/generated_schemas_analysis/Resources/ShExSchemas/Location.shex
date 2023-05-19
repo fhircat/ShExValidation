@@ -1,0 +1,136 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Address.shex>
+#imported_end
+#imported_begin 
+IMPORT <decimal.shex>
+#imported_end
+#imported_begin 
+IMPORT <Endpoint.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Availability.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <VirtualServiceDetail.shex>
+#imported_end
+#imported_begin 
+IMPORT <ExtendedContactDetail.shex>
+#imported_end
+
+start=@<Location> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Details and position information for a physical place
+<Location> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:Location]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Unique code or number identifying 
+                                            # the location to its users 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:location-status}?;  # active | suspended | inactive
+    fhir:operationalStatus @<Coding>?;      # The operational status of the 
+                                            # location (typically only for a 
+                                            # bed/room) 
+    fhir:name @<string>?;                   # Name of the location as used by 
+                                            # humans 
+    fhir:alias @<OneOrMore_string>?;        # A list of alternate names that the 
+                                            # location is known as, or was known 
+                                            # as, in the past 
+    fhir:description @<string>?;            # Additional details about the 
+                                            # location that could be displayed 
+                                            # as further information to identify 
+                                            # the location beyond its name 
+    fhir:mode @<code> AND
+    	{fhir:v @fhirvs:location-mode}?;  # instance | kind
+    fhir:type @<OneOrMore_CodeableConcept>?;  # Type of function performed
+    fhir:contact @<OneOrMore_ExtendedContactDetail>?;  # Official contact details for the 
+                                            # location 
+    fhir:address @<Address>?;               # Physical location
+    fhir:form @<CodeableConcept>?;          # Physical form of the location
+    fhir:position @<Location.position>?;    # The absolute geographic location
+    fhir:managingOrganization @<Reference> AND {fhir:link 
+    			@<Organization> ? }?;  # Organization responsible for 
+                                            # provisioning and upkeep 
+    fhir:partOf @<Reference> AND {fhir:link 
+    			@<Location> ? }?;  # Another Location this one is 
+                                            # physically a part of 
+    fhir:characteristic @<OneOrMore_CodeableConcept>?;  # Collection of characteristics 
+                                            # (attributes) 
+    fhir:hoursOfOperation @<OneOrMore_Availability>?;  # What days/times during a week is 
+                                            # this location usually open 
+                                            # (including exceptions) 
+    fhir:virtualService @<OneOrMore_VirtualServiceDetail>?;  # Connection details of a virtual 
+                                            # service (e.g. conference call) 
+    fhir:endpoint @<OneOrMore_Reference_Endpoint>?;  # Technical endpoints providing 
+                                            # access to services operated for 
+                                            # the location 
+}  
+
+# The absolute geographic location
+<Location.position> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:longitude @<decimal>;              # Longitude with WGS84 datum
+    fhir:latitude @<decimal>;               # Latitude with WGS84 datum
+    fhir:altitude @<decimal>?;              # Altitude with WGS84 datum
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#---------------------- Value Sets ------------------------
+
+# Indicates whether a resource instance represents a specific location or a class of locations.
+fhirvs:location-mode ["instance" "kind"]
+
+# Indicates whether the location is still in use.
+fhirvs:location-status ["active" "suspended" "inactive"]
+

@@ -1,0 +1,112 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <instant.shex>
+#imported_end
+#imported_begin 
+IMPORT <Resource.shex>
+#imported_end
+#imported_begin 
+IMPORT <integer64.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
+IMPORT <Subscription.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+
+start=@<SubscriptionStatus> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Status information about a Subscription provided during event notification
+<SubscriptionStatus> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:SubscriptionStatus]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:subscription-status}?;  # requested | active | error | off | 
+                                            # entered-in-error 
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:subscription-notification-type};  # handshake | heartbeat | 
+                                            # event-notification | query-status 
+                                            # | query-event 
+    fhir:eventsSinceSubscriptionStart @<integer64>?;  # Events since the Subscription was 
+                                            # created 
+    fhir:notificationEvent @<OneOrMore_SubscriptionStatus.notificationEvent>?;  # Detailed information about any 
+                                            # events relevant to this 
+                                            # notification 
+    fhir:subscription @<Reference> AND {fhir:link 
+    			@<Subscription> ? };  # Reference to the Subscription 
+                                            # responsible for this notification 
+    fhir:topic @<canonical>?;               # Reference to the SubscriptionTopic 
+                                            # this notification relates to 
+    fhir:error @<OneOrMore_CodeableConcept>?;  # List of errors on the subscription
+} AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# Unmapped construct found: first
+# # Constraint UniqueKey:sst-1
+# Human readable:events listed in event notifications
+#
+# Constraint: type = 'event-notification' implies (notificationEvent.exists() and notificationEvent.first().exists())
+# ShEx:
+#
+#({ fhir:type { fhir:v ['event-notification'] }  })  Implies  ({fhir:notificationEvent . AND    first  ( fhir:notificationEvent ) .})
+{}
+
+)
+ 
+
+# Detailed information about any events relevant to this notification
+<SubscriptionStatus.notificationEvent> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:eventNumber @<integer64>;          # Event number
+    fhir:timestamp @<instant>?;             # The instant this event occurred
+    fhir:focus @<Reference> AND {fhir:link 
+    			@<Resource> ? }?;  # The focus of this event
+    fhir:additionalContext @<OneOrMore_Reference_Resource>?;  # Additional context for this event
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_SubscriptionStatus.notificationEvent> CLOSED {
+    rdf:first @<SubscriptionStatus.notificationEvent>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_SubscriptionStatus.notificationEvent> 
+}
+
+
+
+
+
+#---------------------- Value Sets ------------------------
+
+# The type of notification represented by the status message.
+fhirvs:subscription-notification-type ["handshake" "heartbeat" "event-notification" "query-status" "query-event"]
+
+# State values for FHIR Subscriptions.
+fhirvs:subscription-status ["requested" "active" "error" "off" "entered-in-error"]
+

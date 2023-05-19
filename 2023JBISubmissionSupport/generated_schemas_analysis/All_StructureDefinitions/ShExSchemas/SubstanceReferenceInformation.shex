@@ -1,0 +1,95 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <Range.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <DocumentReference.shex>
+#imported_end
+
+start=@<SubstanceReferenceInformation> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Todo
+<SubstanceReferenceInformation> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:SubstanceReferenceInformation]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:comment @<string>?;                # Todo
+    fhir:gene @<OneOrMore_SubstanceReferenceInformation.gene>?;  # Todo
+    fhir:geneElement @<OneOrMore_SubstanceReferenceInformation.geneElement>?;  # Todo
+    fhir:target @<OneOrMore_SubstanceReferenceInformation.target>?;  # Todo
+}  
+
+# Todo
+<SubstanceReferenceInformation.geneElement> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>?;          # Todo
+    fhir:element @<Identifier>?;            # Todo
+    fhir:source @<OneOrMore_Reference_DocumentReference>?;  # Todo
+}  
+
+# Todo
+<SubstanceReferenceInformation.target> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:target @<Identifier>?;             # Todo
+    fhir:type @<CodeableConcept>?;          # Todo
+    fhir:interaction @<CodeableConcept>?;   # Todo
+    fhir:organism @<CodeableConcept>?;      # Todo
+    fhir:organismType @<CodeableConcept>?;  # Todo
+    fhir:amount @<Quantity>  OR 
+    			@<Range>  OR 
+    			@<string>  ?;  # Todo
+    fhir:amountType @<CodeableConcept>?;    # Todo
+    fhir:source @<OneOrMore_Reference_DocumentReference>?;  # Todo
+}  
+
+# Todo
+<SubstanceReferenceInformation.gene> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:geneSequenceOrigin @<CodeableConcept>?;  # Todo
+    fhir:gene @<CodeableConcept>?;          # Todo
+    fhir:source @<OneOrMore_Reference_DocumentReference>?;  # Todo
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+<OneOrMore_SubstanceReferenceInformation.gene> CLOSED {
+    rdf:first @<SubstanceReferenceInformation.gene>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_SubstanceReferenceInformation.gene> 
+}
+
+<OneOrMore_SubstanceReferenceInformation.geneElement> CLOSED {
+    rdf:first @<SubstanceReferenceInformation.geneElement>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_SubstanceReferenceInformation.geneElement> 
+}
+
+<OneOrMore_SubstanceReferenceInformation.target> CLOSED {
+    rdf:first @<SubstanceReferenceInformation.target>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_SubstanceReferenceInformation.target> 
+}
+
+
+

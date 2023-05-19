@@ -1,0 +1,284 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <Task.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <Device.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <Location.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Specimen.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Procedure.shex>
+#imported_end
+#imported_begin 
+IMPORT <Substance.shex>
+#imported_end
+#imported_begin 
+IMPORT <Encounter.shex>
+#imported_end
+#imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Medication.shex>
+#imported_end
+#imported_begin 
+IMPORT <Annotation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Observation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Organization.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <ServiceRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <NutritionProduct.shex>
+#imported_end
+#imported_begin 
+IMPORT <PractitionerRole.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableReference.shex>
+#imported_end
+#imported_begin 
+IMPORT <DocumentReference.shex>
+#imported_end
+#imported_begin 
+IMPORT <BiologicallyDerivedProduct.shex>
+#imported_end
+
+start=@<GenomicStudy> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Genomic Study
+<GenomicStudy> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:GenomicStudy]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Identifiers for this genomic study
+    fhir:status @<CodeableConcept>;         # The status of the genomic study
+    fhir:type @<OneOrMore_CodeableConcept>?;  # The type of the study (e.g., 
+                                            # Familial variant segregation, 
+                                            # Functional variation detection, or 
+                                            # Gene expression profiling) 
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<BiologicallyDerivedProduct> OR 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<Location> OR 
+    			@<Medication> OR 
+    			@<NutritionProduct> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<Procedure> OR 
+    			@<Substance> ? };  # The primary subject of the genomic 
+                                            # study 
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> ? }?;  # The healthcare event with which 
+                                            # this genomics study is associated 
+    fhir:startDate @<dateTime>?;            # When the genomic study was started
+    fhir:basedOn @<OneOrMore_Reference_ServiceRequest_OR_Task>?;  # Event resources that the genomic 
+                                            # study is based on 
+    fhir:referrer @<Reference> AND {fhir:link 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> ? }?;  # Healthcare professional who 
+                                            # requested or referred the genomic 
+                                            # study 
+    fhir:interpreter @<OneOrMore_Reference_Practitioner_OR_PractitionerRole>?;  # Healthcare professionals who 
+                                            # interpreted the genomic study 
+    fhir:reason @<OneOrMore_CodeableReference>?;  # Why the genomic study was performed
+    fhir:instantiatesCanonical @<canonical>?;  # The defined protocol that 
+                                            # describes the study 
+    fhir:instantiatesUri @<uri>?;           # The URL pointing to an externally 
+                                            # maintained protocol that describes 
+                                            # the study 
+    fhir:note @<OneOrMore_Annotation>?;     # Comments related to the genomic 
+                                            # study 
+    fhir:description @<string>?;            # Description of the genomic study
+    fhir:analysis @<OneOrMore_GenomicStudy.analysis>?;  # Genomic Analysis Event
+}  
+
+# Performer for the analysis event
+<GenomicStudy.analysis.performer> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> ? }?;  # The organization, healthcare 
+                                            # professional, or others who 
+                                            # participated in performing this 
+                                            # analysis 
+    fhir:role @<CodeableConcept>?;          # Role of the actor for this analysis
+}  
+
+# Inputs for the analysis event
+<GenomicStudy.analysis.input> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:file @<Reference> AND {fhir:link 
+    			@<DocumentReference> ? }?;  # File containing input data
+    fhir:type @<CodeableConcept>?;          # Type of input data (e.g., BAM, 
+                                            # CRAM, or FASTA) 
+    fhir:generatedBy @<Identifier>  OR 
+    			(@<Reference>  AND {fhir:link @<GenomicStudy> })  ?;  # The analysis event or other 
+                                            # GenomicStudy that generated this 
+                                            # input file 
+}  
+
+# Devices used for the analysis (e.g., instruments, software), with settings and parameters
+<GenomicStudy.analysis.device> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:device @<Reference> AND {fhir:link 
+    			@<Device> ? }?;  # Device used for the analysis
+    fhir:function @<CodeableConcept>?;      # Specific function for the device 
+                                            # used for the analysis 
+}  
+
+# Genomic Analysis Event
+<GenomicStudy.analysis> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:identifier @<OneOrMore_Identifier>?;  # Identifiers for the analysis event
+    fhir:methodType @<OneOrMore_CodeableConcept>?;  # Type of the methods used in the 
+                                            # analysis (e.g., FISH, Karyotyping, 
+                                            # MSI) 
+    fhir:changeType @<OneOrMore_CodeableConcept>?;  # Type of the genomic changes 
+                                            # studied in the analysis (e.g., 
+                                            # DNA, RNA, or AA change) 
+    fhir:genomeBuild @<CodeableConcept>?;   # Genome build that is used in this 
+                                            # analysis 
+    fhir:instantiatesCanonical @<canonical>?;  # The defined protocol that 
+                                            # describes the analysis 
+    fhir:instantiatesUri @<uri>?;           # The URL pointing to an externally 
+                                            # maintained protocol that describes 
+                                            # the analysis 
+    fhir:title @<string>?;                  # Name of the analysis event (human 
+                                            # friendly) 
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<BiologicallyDerivedProduct> OR 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<Location> OR 
+    			@<Medication> OR 
+    			@<NutritionProduct> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<Procedure> OR 
+    			@<Substance> ? }?;  # The subject of the analysis event
+    fhir:specimen @<OneOrMore_Reference_Specimen>?;  # The specimen used in the analysis 
+                                            # event 
+    fhir:date @<dateTime>?;                 # The date of the analysis event
+    fhir:note @<OneOrMore_Annotation>?;     # Any notes capture with the 
+                                            # analysis event 
+    fhir:protocolPerformed @<Reference> AND {fhir:link 
+    			@<Procedure> OR 
+    			@<Task> ? }?;  # The protocol that was performed 
+                                            # for the analysis event 
+    fhir:regionsStudied @<OneOrMore_Reference_DocumentReference_OR_Observation>?;  # The genomic regions to be studied 
+                                            # in the analysis (BED file) 
+    fhir:regionsCalled @<OneOrMore_Reference_DocumentReference_OR_Observation>?;  # Genomic regions actually called in 
+                                            # the analysis event (BED file) 
+    fhir:input @<OneOrMore_GenomicStudy.analysis.input>?;  # Inputs for the analysis event
+    fhir:output @<OneOrMore_GenomicStudy.analysis.output>?;  # Outputs for the analysis event
+    fhir:performer @<OneOrMore_GenomicStudy.analysis.performer>?;  # Performer for the analysis event
+    fhir:device @<OneOrMore_GenomicStudy.analysis.device>?;  # Devices used for the analysis 
+                                            # (e.g., instruments, software), 
+                                            # with settings and parameters 
+}  
+
+# Outputs for the analysis event
+<GenomicStudy.analysis.output> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:file @<Reference> AND {fhir:link 
+    			@<DocumentReference> ? }?;  # File containing output data
+    fhir:type @<CodeableConcept>?;          # Type of output data (e.g., VCF, 
+                                            # MAF, or BAM) 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_GenomicStudy.analysis> CLOSED {
+    rdf:first @<GenomicStudy.analysis>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_GenomicStudy.analysis> 
+}
+
+
+
+
+
+<OneOrMore_GenomicStudy.analysis.input> CLOSED {
+    rdf:first @<GenomicStudy.analysis.input>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_GenomicStudy.analysis.input> 
+}
+
+<OneOrMore_GenomicStudy.analysis.output> CLOSED {
+    rdf:first @<GenomicStudy.analysis.output>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_GenomicStudy.analysis.output> 
+}
+
+<OneOrMore_GenomicStudy.analysis.performer> CLOSED {
+    rdf:first @<GenomicStudy.analysis.performer>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_GenomicStudy.analysis.performer> 
+}
+
+<OneOrMore_GenomicStudy.analysis.device> CLOSED {
+    rdf:first @<GenomicStudy.analysis.device>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_GenomicStudy.analysis.device> 
+}
+
