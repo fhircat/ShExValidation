@@ -12,22 +12,27 @@ export PATH=$VALIDATE:$PATH
 # YAML=./FunctionPatterns/FunctionPatterns.yaml
 YAML=../fhir_rdf_validation/Account.yaml
 
-# validate --human --yaml-manifest $YAML
+validate --help
+
+validate --verbose --human --yaml-manifest $YAML
 
 # Another way of invoking validate with SHEX and TTL
 SHEX=../fhir_rdf_validation/ShExSchemas/R5Plus/Account.shex
 TTL=../fhir_rdf_validation/FHIR_RDF_Examples/R5/account-example.ttl
 
 # validate shex with a ttl
-validate --human -x $SHEX -d $TTL -m '{FOCUS a fhir:Account}@<Account>'
+# validate --human -x $SHEX -d $TTL -m '{FOCUS a fhir:Account}@<Account>'
 
 # validate for a select query map
 # validate -x $SHEX -d $TTL -m '<inst_exists>@<FunctionPatternsShape>,<inst_noExists>@!<FunctionPatternsShape>'
 
 # run it as a server
-# validate -x ../validation/ShExSchemas/R5/Observation.shex --diagnose  --serve http://localhost/validate || echo fail
+# validate -x ../fhir_rdf_validation/ShExSchemas/R5Plus/Account.shex --diagnose  --serve http://localhost/validate || echo fail
 
 # example to check if ShEx schema has any error
 # for example if they have duplicate shapes
 # validate -x packages/shex-cli/test/Imports/TrompPersonMissingRep/Issue.shex --diagnose --dry-run || echo fail
+
+# validate -x ../fhir_rdf_validation/ShExSchemas/R5Plus/Account.shex --dry-run --diagnose  || echo fail
+
 set +x
