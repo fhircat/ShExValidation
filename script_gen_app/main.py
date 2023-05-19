@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 def initialize():
     utils.delete_files(manifests_absolute_path, ".yaml")
-    utils.delete_files(manifests_absolute_path, ".md")
+    utils.delete_files(readme_path, ".md")
 
 
 def append_readme(text):
@@ -93,6 +93,8 @@ if __name__ == '__main__':
     load_dotenv()
     project_path = utils.get_project_root()
 
+    readme_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
     # ShEx Schemas - schemaURL
     shex_schemas_url_prefix = utils.get_env_val('SCHEMAS_URL_PREFIX')
 
@@ -106,7 +108,7 @@ if __name__ == '__main__':
     # Manifest Files
     manifests_relative_path = utils.get_env_val('MANIFEST_FILES_DIR')
     manifests_absolute_path = utils.get_env_path('MANIFEST_FILES_DIR')
-    manifests_readme_path = os.path.join(manifests_absolute_path, 'README.md')
+    manifests_readme_path = os.path.join(readme_path, 'README.md')
 
     # ShEx Validator
     shex_validator_prefix = utils.get_env_val('SHEX_VALIDATOR_URL_PREFIX')
@@ -114,7 +116,7 @@ if __name__ == '__main__':
     print(f'* Project Path: {project_path}')
     print(f"* RDF Examples are at: {rdf_examples_absolute_path}")
     print(f"* Manifests are at: {manifests_absolute_path}")
-    print(f"* Manifests are at: {manifests_readme_path}")
+    print(f"* README.md is at: {manifests_readme_path}")
     print(f"* ShEx Validator prefix: {shex_validator_prefix}")
 
     manifests = {}
