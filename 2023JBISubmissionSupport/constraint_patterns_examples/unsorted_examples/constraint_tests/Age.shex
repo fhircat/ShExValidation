@@ -1,0 +1,17 @@
+PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+
+IMPORT <types.shex>
+IMPORT <datatypes.shex>
+IMPORT <Quantity.shex>
+
+#------------------- Age ------------------------------
+
+# A duration of time during which an organism (or a process) has existed
+<Age> EXTENDS @<Quantity> CLOSED {   
+} AND (
+    ({ fhir:code . } OR  NOT { fhir:value {fhir:v .} } ) 
+    AND ( NOT { fhir:system {fhir:v .} }  OR ({ fhir:system { fhir:v ['https://ucum.org'^^xsd:anyURI] }  })) 
+    AND ( NOT { fhir:value {fhir:v .} }  OR  NOT { fhir:value  . } OR ({ fhir:value { fhir:v MinExclusive 0 }  }))
+)

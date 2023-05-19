@@ -1,0 +1,27 @@
+BASE <http://hl7.org/fhir/shape/>
+PREFIX fhir: <http://hl7.org/fhir/>
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+# value is present, but no code or system, should pass
+<inst1> fhir:value [ fhir:v 55.0 ] .
+
+# code is present, no value should be needed. it is OK is system does not exist. should pass
+<inst2> fhir:code [fhir:v "https://a.c"^^xsd:token] .
+
+# system exists, code and value is not there. should pass.
+<inst3> fhir:system [fhir:v "https://ucum.org"^^xsd:anyURI] .
+
+# code and system exist, no value. should pass
+<inst4> fhir:code [fhir:v "https://a.c"^^xsd:token];
+        fhir:system [fhir:v "https://ucum.org"^^xsd:anyURI] .
+
+# code and value exists, sould pass
+<inst5> fhir:code [fhir:v "https://a.c"^^xsd:token];
+        fhir:value [fhir:v 11.0 ] .
+
+# value is not decimal, should fail
+<inst6> fhir:value [ fhir:v "abcd" ] . 
+
+# value is zero, should be greater than zero. should fail
+<inst7> fhir:value [fhir:v 0.0 ] .

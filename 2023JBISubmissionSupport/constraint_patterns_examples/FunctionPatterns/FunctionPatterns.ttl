@@ -1,0 +1,48 @@
+@prefix fhir: <http://hl7.org/fhir/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# -------------------- exists -------------------- 
+# Valid test for exists
+<inst_exists> fhir:value1 [ fhir:v "1234" ].
+
+# Invalid test for exists, hasValue
+# no fhir:value1 is present
+<inst_noExists> fhir:url [fhir:v "'pqr'"^^xsd:anyURI] .
+
+# -------------------- NOT --------------------          
+# fhir:isEnrolled must be absent
+<inst_not> fhir:value1 [fhir:v "xyz" ] ;
+           fhir:url [fhir:v "'pqr'"^^xsd:anyURI] .
+
+# this will fail becuase 'isEnrolled' is present
+<inst_not_not> fhir:value1 [fhir:v "xyz" ];
+           fhir:isEnrolled [fhir:v true] .
+
+# -------------------- matches -------------------- 
+# fhir:url matches
+<inst_matches> fhir:value1 [fhir:v "xyz" ]; 
+           fhir:url [fhir:v "'abc'"^^xsd:anyURI].
+
+# fhir:url mismatch
+<inst_mismatches> fhir:value1 [fhir:v "xyz" ]; 
+           fhir:url [fhir:v "'#'"^^xsd:anyURI].
+
+# -------------------- contains -------------------- 
+# fhir:myColor contains
+<inst_contains> fhir:myColor [fhir:v 'red' ];             
+                fhir:value1 [fhir:v "xyz" ].
+
+# fhir:myColor does not contain
+<inst_notContains> fhir:myColor [fhir:v 'green' ];  
+                   fhir:value1 [fhir:v "xyz" ].
+
+# -------------------- Not Equal -------------------- 
+# fhir:type not equals to 'display' - should pass
+<inst_ne> fhir:myType [fhir:v "screen" ] ;  
+          fhir:value1 [fhir:v "xyz" ] .
+
+# fhir:type equals to forbidden value 'display' - should fail
+<inst_notNe> fhir:myType [fhir:v "display" ] ;  
+             fhir:value1 [fhir:v "xyz" ] .

@@ -1,0 +1,51 @@
+PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+IMPORT <selectedTypes.shex>
+
+<FunctionPatternsShape> CLOSED {
+  
+    fhir:value1 @<string>?;
+
+    fhir:isEnrolled @<boolean>?;
+
+    fhir:url @<uri>?;
+
+    fhir:myColor @<string>*;
+
+    fhir:myType @<string>*;
+
+} AND (
+
+    # constraint 'exists' 
+    # constraint 'hasValue'
+    # presence of value - example 'value1' must be present
+
+    {fhir:value1 .}
+
+) AND (
+
+    # constraint 'NOT' 
+    # absence of value - example 'isEnrolled' must be absent
+
+    NOT {fhir:isEnrolled .}
+
+) AND (
+
+    # Either fhir:url does not exist, if it does then...
+    # matches with a string in single quotes that does not start with "|" or "#"
+    NOT {fhir:url .} OR { fhir:url {fhir:v /'([^|#])*'/ } }
+
+) AND (
+
+    # Either fhir:myColor does not exist, if it does then...
+    # contains one of the values
+    NOT {fhir:myColor .} OR { fhir:myColor {fhir:v ['red' 'blue' 'teal'] } }
+    
+) AND (
+    
+    # Not Equal - type is not equal to 'display'
+    NOT {fhir:myType .} OR { fhir:myType { fhir:v  [. - 'display'] } }
+)

@@ -1,0 +1,14 @@
+<Base> CLOSED {  }
+
+<Element> EXTENDS @<Base> CLOSED {
+  fhir:id xsd:string?;
+  fhir:extension @<Extension>*;
+}
+
+<Extension> EXTENDS @<DataType> CLOSED {
+  fhir:id @<string>?;
+  fhir:extension @<Extension>*;
+  fhir:url @<uri>;
+  fhir:value @<code> OR @<string> OR @<boolean>?;
+}
+

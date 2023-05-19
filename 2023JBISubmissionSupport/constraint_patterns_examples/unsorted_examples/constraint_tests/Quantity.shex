@@ -1,0 +1,23 @@
+PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+
+IMPORT <types.shex>
+IMPORT <datatypes.shex>
+
+# A measured or measurable amount
+<Quantity> EXTENDS @<DataType> CLOSED {   
+    fhir:value @<decimal>?;                 
+                                           
+    fhir:comparator @<code> AND
+    	{fhir:value @fhirvs:quantity-comparator}?; 
+                                            
+    fhir:unit @<string>?;                  
+    fhir:system @<uri>?;                    
+    fhir:code @<code>?;                    
+} AND (
+    NOT { fhir:code {fhir:v .} } OR { fhir:system . } 
+)
+
+# How the Quantity should be understood and represented.
+fhirvs:quantity-comparator ["<" "<=" ">=" ">" "ad"]
