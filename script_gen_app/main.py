@@ -7,11 +7,28 @@ from dotenv import load_dotenv
 def initialize():
     utils.delete_files(manifests_absolute_path, ".yaml")
     utils.delete_files(readme_path, ".md")
+    utils.delete_files(scripts_dir, ".sh")
 
 
 def append_readme(text):
     with open(manifests_readme_path, 'a+') as readme:
         readme.write(text)
+
+
+def append_script(text):
+    with open(script_name, 'a+') as script:
+        script.write(text)
+
+
+def create_script():
+    append_script('\nSHEXJS=~/A123/git/research/FHIRCat/shex.js')
+    append_script('\nVALIDATE=$SHEXJS/packages/shex-cli/bin')
+    append_script('\nexport PATH=$VALIDATE:$PATH')
+    append_script('\nSCHEMAS=/Users/DKS02/A123/git/research/FHIRCat/ShExValidation/fhir_rdf_validation/')
+    append_script('\nEXAMPLES=/Users/DKS02/A123/git/research/FHIRCat/ShExValidation/fhir_rdf_validation/')
+    append_script('\nLOGS=/Users/DKS02/A123/git/research/FHIRCat/ShExValidation/logs/rdfs/')
+    # make file executable
+    os.chmod(script_name, 0o755)
 
 
 def create_readme(example_dict):
@@ -45,6 +62,7 @@ def process_examples():
     errors = []
     skip = []
     total = len(exdir)
+
     for rdf_file in exdir:
         if rdf_file.endswith(".ttl"):
             print(f'Processing file: {rdf_file}')
@@ -80,6 +98,10 @@ def process_examples():
                     # Create Entry in the dictionary of manifests
                     yaml_file_name = os.path.join(manifests_relative_path, manifest_file_name)
                     update_manifest(shex_name, yaml_file_name)
+
+                    # if len(processed) < 3:
+                    log_file = f"{shex_name}-{rdf_file}.log"
+                    append_script(f"\nset -x; validate --human -x ${{SCHEMAS}}{schema_url} -d ${{EXAMPLES}}{data_url} -m \"{{FOCUS a fhir:{shex_name}}}@<{shex_name}>\" > ${{LOGS}}{log_file} ; set +x; ")
                 else:
                     print(f'---------- ERROR! Could not map for File: {rdf_file} ------------')
                     errors.append(rdf_file)
@@ -94,6 +116,11 @@ if __name__ == '__main__':
     project_path = utils.get_project_root()
 
     readme_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+    # scripts directory
+    scripts_dir = os.path.join(project_path, utils.get_env_val('SCRIPTS_DIR'))
+    script_name = os.path.join(scripts_dir, utils.get_env_val('SCRIPT_NAME_TO_GENERATE'))
+    log_dir = os.path.join(project_path, utils.get_env_val('LOG_DIR'))
 
     # ShEx Schemas - schemaURL
     shex_schemas_url_prefix = utils.get_env_val('SCHEMAS_URL_PREFIX')
@@ -118,9 +145,12 @@ if __name__ == '__main__':
     print(f"* Manifests are at: {manifests_absolute_path}")
     print(f"* README.md is at: {manifests_readme_path}")
     print(f"* ShEx Validator prefix: {shex_validator_prefix}")
+    print(f"* Script to validate rdf examples one by one is: {script_name}")
+    print(f"* Log directory for the Script run -  to validate rdf examples one by one is: {log_dir}")
 
     manifests = {}
     initialize()
+    create_script()
     example_list, success, fails, rest, whole = process_examples()
     succeed = len(success)
     failed = len(fails)

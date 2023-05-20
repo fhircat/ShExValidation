@@ -7,8 +7,8 @@
 DIR=.
 source $DIR/setup_shexjs.sh
 
-SHEX_PATH=../fhir_rdf_validation/ShExSchemas/R5Plus
-LOG_DIR=../logs/shex
+SHEX_PATH=../fhir_rdf_validation/ShExSchemas/R5PlusWithConstraints
+LOG_DIR=../logs/shex_with_constraints
 
 # Create run time log directory, if not created already
 mkdir -p $LOG_DIR
@@ -21,6 +21,8 @@ do
   shex_entry=$(echo "${entry##*/}")
   logFile=${LOG_DIR}/${shex_entry}.log
   count=$((count+1))
+  echo $'\n'
+  echo "========================================================"
   echo "$count. Processing [$shex_entry]..."
   echo $'\t'output to log file $logFile
   echo "*************** Validating $shex_entry ****************" > $logFile

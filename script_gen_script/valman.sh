@@ -12,16 +12,18 @@ export PATH=$VALIDATE:$PATH
 # YAML=./FunctionPatterns/FunctionPatterns.yaml
 YAML=../fhir_rdf_validation/Account.yaml
 
-validate --help
+# validate --help
 
-validate --verbose --human --yaml-manifest $YAML
+# validate --verbose --human --yaml-manifest $YAML
 
 # Another way of invoking validate with SHEX and TTL
 SHEX=../fhir_rdf_validation/ShExSchemas/R5Plus/Account.shex
 TTL=../fhir_rdf_validation/FHIR_RDF_Examples/R5/account-example.ttl
 
 # validate shex with a ttl
-# validate --human -x $SHEX -d $TTL -m '{FOCUS a fhir:Account}@<Account>'
+validate --human -x $SHEX -d $TTL -m '{FOCUS a fhir:Account}@<Account>'
+TTL=../fhir_rdf_validation/FHIR_RDF_Examples/R5/account-example-with-guarantor.ttl
+validate --human -x $SHEX -d $TTL -m '{FOCUS a fhir:Account}@<Account>'
 
 # validate for a select query map
 # validate -x $SHEX -d $TTL -m '<inst_exists>@<FunctionPatternsShape>,<inst_noExists>@!<FunctionPatternsShape>'
