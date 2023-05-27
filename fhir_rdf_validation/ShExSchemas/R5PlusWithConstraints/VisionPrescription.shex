@@ -71,14 +71,14 @@ start=@<VisionPrescription> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # entered-in-error 
     fhir:created @<dateTime>;               # Response creation date
     fhir:patient @<Reference> AND {fhir:link 
-    			@<Patient> ? };  # Who prescription is for
+    			@<Patient> ?};  # Who prescription is for
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # Created during encounter / 
+    			@<Encounter> ?}?;  # Created during encounter / 
                                             # admission / stay 
     fhir:dateWritten @<dateTime>;           # When prescription was authorized
     fhir:prescriber @<Reference> AND {fhir:link 
     			@<Practitioner> OR 
-    			@<PractitionerRole> ? };  # Who authorized the vision 
+    			@<PractitionerRole> ?};  # Who authorized the vision 
                                             # prescription 
     fhir:lensSpecification @<OneOrMore_VisionPrescription.lensSpecification>;  # Vision lens authorization
 }  

@@ -20,7 +20,8 @@ IMPORT <Extension.shex>
     fhir:target @<Extension>; 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/goal-relationship"]}; 
-    ^fhir:extension { a [fhir:Goal]}
+    ^fhir:extension { a [fhir:Goal]} OR 
+          {^fhir:goal {a [fhir:PlanDefinition]}}
 
 }  
 

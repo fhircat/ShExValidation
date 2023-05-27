@@ -96,7 +96,7 @@ start=@<SupplyRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:priority @<code> AND
     	{fhir:v @fhirvs:request-priority}?;  # routine | urgent | asap | stat
     fhir:deliverFor @<Reference> AND {fhir:link 
-    			@<Patient> ? }?;  # The patient for who the supply 
+    			@<Patient> ?}?;  # The patient for who the supply 
                                             # request is for 
     fhir:item @<CodeableReference>;         # Medication, Substance, or Device 
                                             # requested to be supplied 
@@ -115,18 +115,19 @@ start=@<SupplyRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Individual making the request
+    			@<RelatedPerson> ?}?;  # Individual making the request
     fhir:supplier @<OneOrMore_Reference_HealthcareService_OR_Organization>?;  # Who is intended to fulfill the 
                                             # request 
     fhir:reason @<OneOrMore_CodeableReference>?;  # The reason why the supply item was 
                                             # requested 
     fhir:deliverFrom @<Reference> AND {fhir:link 
     			@<Location> OR 
-    			@<Organization> ? }?;  # The origin of the supply
+    			@<Organization> ?}?;  # The origin of the supply
     fhir:deliverTo @<Reference> AND {fhir:link 
     			@<Location> OR 
     			@<Organization> OR 
-    			@<Patient> ? }?;  # The destination of the supply
+    			@<Patient> OR 
+    			@<RelatedPerson> ?}?;  # The destination of the supply
 }  
 
 # Ordered item details

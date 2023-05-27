@@ -23,14 +23,16 @@ IMPORT <dateTime.shex>
 
 
 # This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: lowBoundary
 # Unmapped construct found: LessOrEqual
+# Unmapped construct found: highBoundary
 # # Constraint UniqueKey:per-1
 # Human readable:If present, start SHALL have a lower or equal value than end
 #
-# Constraint: start.hasValue().not() or end.hasValue().not() or (start <= end)
+# Constraint: start.hasValue().not() or end.hasValue().not() or (start.lowBoundary() <= end.highBoundary())
 # ShEx:
 #
-# NOT { fhir:start. } OR  NOT { fhir:end. } OR ({ fhir:start  LessOrEqual  { fhir:end } })
+# NOT { fhir:start . } OR  NOT { fhir:end . } OR (   lowBoundary  ( fhir:start )  LessOrEqual     highBoundary  ( fhir:end ))
 {}
 
 )

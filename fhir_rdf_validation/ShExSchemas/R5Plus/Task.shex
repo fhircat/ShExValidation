@@ -209,9 +209,6 @@ IMPORT <PractitionerRole.shex>
 IMPORT <CodeableReference.shex>
 #imported_end
 #imported_begin 
-IMPORT <HealthcareService.shex>
-#imported_end
-#imported_begin 
 IMPORT <TriggerDefinition.shex>
 #imported_end
 #imported_begin 
@@ -252,11 +249,11 @@ start=@<Task> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:code @<CodeableConcept>?;          # Task Type
     fhir:description @<string>?;            # Human-readable explanation of task
     fhir:focus @<Reference> AND {fhir:link 
-    			@<Resource> ? }?;  # What task is acting on
+    			@<Resource> ?}?;  # What task is acting on
     fhir:for @<Reference> AND {fhir:link 
-    			@<Resource> ? }?;  # Beneficiary of the Task
+    			@<Resource> ?}?;  # Beneficiary of the Task
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # Healthcare event during which this 
+    			@<Encounter> ?}?;  # Healthcare event during which this 
                                             # task originated 
     fhir:requestedPeriod @<Period>?;        # When the task should be performed
     fhir:executionPeriod @<Period>?;        # Start and end time of execution
@@ -268,19 +265,18 @@ start=@<Task> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Who is asking for task to be done
+    			@<RelatedPerson> ?}?;  # Who is asking for task to be done
     fhir:requestedPerformer @<OneOrMore_CodeableReference>?;  # Who should perform Task
     fhir:owner @<Reference> AND {fhir:link 
     			@<CareTeam> OR 
-    			@<Device> OR 
-    			@<HealthcareService> OR 
     			@<Organization> OR 
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Responsible individual
+    			@<RelatedPerson> ?}?;  # Responsible individual
+    fhir:performer @<OneOrMore_Task.performer>?;  # Who or what performed the task
     fhir:location @<Reference> AND {fhir:link 
-    			@<Location> ? }?;  # Where task occurs
+    			@<Location> ?}?;  # Where task occurs
     fhir:reason @<OneOrMore_CodeableReference>?;  # Why task is needed
     fhir:insurance @<OneOrMore_Reference_ClaimResponse_OR_Coverage>?;  # Associated insurance coverage
     fhir:note @<OneOrMore_Annotation>?;     # Comments made about the task
@@ -358,6 +354,18 @@ start=@<Task> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:recipient @<OneOrMore_Reference_Group_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # For whom is fulfillment sought?
 }  
 
+# Who or what performed the task
+<Task.performer> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:function @<CodeableConcept>?;      # Type of performance
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ?};  # Who performed the task
+}  
+
 # Information produced as part of task
 <Task.output> EXTENDS @<BackboneElement> CLOSED {   
     fhir:type @<CodeableConcept>;           # Label for output
@@ -432,6 +440,11 @@ start=@<Task> AND {fhir:nodeRole [fhir:treeRoot]}
 
 
 
+
+<OneOrMore_Task.performer> CLOSED {
+    rdf:first @<Task.performer>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Task.performer> 
+}
 
 
 

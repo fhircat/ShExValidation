@@ -59,7 +59,7 @@ start=@<SubscriptionStatus> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # events relevant to this 
                                             # notification 
     fhir:subscription @<Reference> AND {fhir:link 
-    			@<Subscription> ? };  # Reference to the Subscription 
+    			@<Subscription> ?};  # Reference to the Subscription 
                                             # responsible for this notification 
     fhir:topic @<canonical>?;               # Reference to the SubscriptionTopic 
                                             # this notification relates to 
@@ -68,11 +68,14 @@ start=@<SubscriptionStatus> AND {fhir:nodeRole [fhir:treeRoot]}
 
 # Detailed information about any events relevant to this notification
 <SubscriptionStatus.notificationEvent> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:eventNumber @<integer64>;          # Event number
+    fhir:eventNumber @<integer64>;          # Sequencing index of this event
     fhir:timestamp @<instant>?;             # The instant this event occurred
     fhir:focus @<Reference> AND {fhir:link 
-    			@<Resource> ? }?;  # The focus of this event
-    fhir:additionalContext @<OneOrMore_Reference_Resource>?;  # Additional context for this event
+    			@<Resource> ?}?;  # Reference to the primary resource 
+                                            # or information of this event 
+    fhir:additionalContext @<OneOrMore_Reference_Resource>?;  # References related to the focus 
+                                            # resource and/or context of this 
+                                            # event 
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

@@ -24,7 +24,7 @@ IMPORT <CodeSystem.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/valueset-supplement"]}; 
-    fhir:value (@<canonical>  AND {fhir:link @<CodeSystem> })  ; 
+    fhir:value (@<canonical>  AND {fhir:link @<CodeSystem> ?})  ; 
     ^fhir:extension { a [fhir:ValueSet]}
 
 }  

@@ -113,12 +113,12 @@ start=@<Communication> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:medium @<OneOrMore_CodeableConcept>?;  # A channel of communication
     fhir:subject @<Reference> AND {fhir:link 
     			@<Group> OR 
-    			@<Patient> ? }?;  # Focus of message
+    			@<Patient> ?}?;  # Focus of message
     fhir:topic @<CodeableConcept>?;         # Description of the purpose/content
     fhir:about @<OneOrMore_Reference_Resource>?;  # Resources that pertain to this 
                                             # communication 
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # The Encounter during which this 
+    			@<Encounter> ?}?;  # The Encounter during which this 
                                             # Communication was created 
     fhir:sent @<dateTime>?;                 # When sent
     fhir:received @<dateTime>?;             # When received
@@ -132,7 +132,7 @@ start=@<Communication> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Who shares the information
+    			@<RelatedPerson> ?}?;  # Who shares the information
     fhir:reason @<OneOrMore_CodeableReference>?;  # Indication for message
     fhir:payload @<OneOrMore_Communication.payload>?;  # Message payload
     fhir:note @<OneOrMore_Annotation>?;     # Comments made about the 
@@ -142,7 +142,7 @@ start=@<Communication> AND {fhir:nodeRole [fhir:treeRoot]}
 # Message payload
 <Communication.payload> EXTENDS @<BackboneElement> CLOSED {   
     fhir:content @<Attachment>  OR 
-    			(@<Reference>  AND {fhir:link @<Resource> })  OR 
+    			(@<Reference>  AND {fhir:link @<Resource> ?})  OR 
     			@<CodeableConcept>  ;  # Message part content
 }  
 

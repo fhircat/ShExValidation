@@ -19,17 +19,13 @@ IMPORT <Quantity.shex>
     fhir:denominator @<Quantity>?;          # Denominator value
 } AND (
 
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: Xor
-# # Constraint UniqueKey:rat-1
+# Constraint UniqueKey:rat-1
 # Human readable:Numerator and denominator SHALL both be present, or both are absent. If both are absent, there SHALL be some extension present
-#
-# Constraint: (numerator.empty() xor denominator.exists()) and (numerator.exists() or extension.exists())
+
+# Constraint: (numerator.exists() and denominator.exists()) or (numerator.empty() and denominator.empty() and extension.exists())
 # ShEx:
-#
-#( NOT { fhir:numerator {fhir:v .} }   Xor  {fhir:denominator .}) AND ({fhir:numerator . OR {fhir:extension .}})
-{}
+
+({fhir:numerator . AND {fhir:denominator .}}) OR ( NOT { fhir:numerator {fhir:v .} }  AND  NOT { fhir:denominator {fhir:v .} }  AND {fhir:extension .})
 
 )
  

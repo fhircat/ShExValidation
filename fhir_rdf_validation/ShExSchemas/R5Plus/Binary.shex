@@ -25,7 +25,7 @@ start=@<Binary> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:contentType @<code> AND
     	{fhir:v @fhirvs:mimetypes};  # MimeType of the binary content
     fhir:securityContext @<Reference> AND {fhir:link 
-    			@<Resource> ? }?;  # Identifies another resource to use 
+    			@<Resource> ?}?;  # Identifies another resource to use 
                                             # as proxy when enforcing access 
                                             # control 
     fhir:data @<base64Binary>?;             # The actual content

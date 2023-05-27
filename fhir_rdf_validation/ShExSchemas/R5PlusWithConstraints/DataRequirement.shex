@@ -17,10 +17,10 @@ IMPORT <Group.shex>
 IMPORT <string.shex>
 #imported_end
 #imported_begin 
-IMPORT <Period.shex>
+IMPORT <Coding.shex>
 #imported_end
 #imported_begin 
-IMPORT <Coding.shex>
+IMPORT <Period.shex>
 #imported_end
 #imported_begin 
 IMPORT <Element.shex>
@@ -55,7 +55,7 @@ IMPORT <CodeableConcept.shex>
     	{fhir:v @fhirvs:fhir-types};  # The type of the required data
     fhir:profile @<OneOrMore_canonical>?;   # The profile of the required data
     fhir:subject @<CodeableConcept>  OR 
-    			(@<Reference>  AND {fhir:link @<Group> })  ?;  # E.g. Patient, Practitioner, 
+    			(@<Reference>  AND {fhir:link @<Group> ?})  ?;  # E.g. Patient, Practitioner, 
                                             # RelatedPerson, Organization, 
                                             # Location, Device 
     fhir:mustSupport @<OneOrMore_string>?;  # Indicates specific structure 
@@ -66,6 +66,53 @@ IMPORT <CodeableConcept.shex>
     fhir:valueFilter @<OneOrMore_Element>?;  # What values are expected
     fhir:limit @<positiveInt>?;             # Number of results
     fhir:sort @<OneOrMore_Element>?;        # Order of the results
+} AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Xor
+# # Constraint UniqueKey:drq-1
+# Human readable:Either a path or a searchParam must be provided, but not both
+#
+# Constraint: path.exists() xor searchParam.exists()
+# ShEx:
+#
+#{fhir:path .  Xor  {fhir:searchParam .}}
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Xor
+# # Constraint UniqueKey:drq-2
+# Human readable:Either a path or a searchParam must be provided, but not both
+#
+# Constraint: path.exists() xor searchParam.exists()
+# ShEx:
+#
+#{fhir:path .  Xor  {fhir:searchParam .}}
+{}
+
+)
+ 
+
+# Order of the results
+<DataRequirement.sort> EXTENDS @<Element> CLOSED {   
+    fhir:path @<string>;                    # The name of the attribute to 
+                                            # perform the sort 
+    fhir:direction @<code> AND
+    	{fhir:v @fhirvs:sort-direction};  # ascending | descending
+}  
+
+# What codes are expected
+<DataRequirement.codeFilter> EXTENDS @<Element> CLOSED {   
+    fhir:path @<string>?;                   # A code-valued attribute to filter 
+                                            # on 
+    fhir:searchParam @<string>?;            # A coded (token) parameter to 
+                                            # search on 
+    fhir:valueSet @<canonical>?;            # ValueSet for the filter
+    fhir:code @<OneOrMore_Coding>?;         # What code is expected
 } AND (
 
 
@@ -139,14 +186,6 @@ IMPORT <CodeableConcept.shex>
 )
  
 
-# Order of the results
-<DataRequirement.sort> EXTENDS @<Element> CLOSED {   
-    fhir:path @<string>;                    # The name of the attribute to 
-                                            # perform the sort 
-    fhir:direction @<code> AND
-    	{fhir:v @fhirvs:sort-direction};  # ascending | descending
-}  
-
 # What values are expected
 <DataRequirement.valueFilter> EXTENDS @<Element> CLOSED {   
     fhir:path @<string>?;                   # An attribute to filter on
@@ -159,45 +198,6 @@ IMPORT <CodeableConcept.shex>
                                             # Period, DateTime, or Duration 
                                             # value 
 }  
-
-# What codes are expected
-<DataRequirement.codeFilter> EXTENDS @<Element> CLOSED {   
-    fhir:path @<string>?;                   # A code-valued attribute to filter 
-                                            # on 
-    fhir:searchParam @<string>?;            # A coded (token) parameter to 
-                                            # search on 
-    fhir:valueSet @<canonical>?;            # Valueset for the filter
-    fhir:code @<OneOrMore_Coding>?;         # What code is expected
-} AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: Xor
-# # Constraint UniqueKey:drq-1
-# Human readable:Either a path or a searchParam must be provided, but not both
-#
-# Constraint: path.exists() xor searchParam.exists()
-# ShEx:
-#
-#{fhir:path .  Xor  {fhir:searchParam .}}
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: Xor
-# # Constraint UniqueKey:drq-2
-# Human readable:Either a path or a searchParam must be provided, but not both
-#
-# Constraint: path.exists() xor searchParam.exists()
-# ShEx:
-#
-#{fhir:path .  Xor  {fhir:searchParam .}}
-{}
-
-)
- 
 
 #---------------------- Cardinality Types (OneOrMore) -------------------
 

@@ -24,7 +24,7 @@ IMPORT <RelatedPerson.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/patient-relatedPerson"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<RelatedPerson> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<RelatedPerson> ?})  ; 
     ^fhir:extension { ^fhir:contact {a [fhir:Patient]}}
 
 }  

@@ -24,7 +24,7 @@ IMPORT <Procedure.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/biologicallyderivedproduct-collection-procedure"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<Procedure> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<Procedure> ?})  ; 
     ^fhir:extension { ^fhir:collection {a [fhir:BiologicallyDerivedProduct]}}
 
 }  

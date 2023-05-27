@@ -62,7 +62,7 @@ start=@<HealthcareService> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:active @<boolean>?;                # Whether this HealthcareService 
                                             # record is in active use 
     fhir:providedBy @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Organization that provides this 
+    			@<Organization> ?}?;  # Organization that provides this 
                                             # service 
     fhir:offeredIn @<OneOrMore_Reference_HealthcareService>?;  # The service within which this 
                                             # service is offered 
@@ -77,7 +77,7 @@ start=@<HealthcareService> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:name @<string>?;                   # Description of service as 
                                             # presented to a consumer while 
                                             # searching 
-    fhir:comment @<string>?;                # Additional description and/or any 
+    fhir:comment @<markdown>?;              # Additional description and/or any 
                                             # specific issues not covered 
                                             # elsewhere 
     fhir:extraDetails @<markdown>?;         # Extra details about the service 

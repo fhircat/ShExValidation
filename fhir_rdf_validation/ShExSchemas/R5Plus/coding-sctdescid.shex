@@ -22,7 +22,9 @@ IMPORT <Extension.shex>
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/coding-sctdescid"]}; 
     fhir:value @<id>  ; 
-    ^fhir:extension { a [fhir:Coding]}
+    ^fhir:extension { a [fhir:Coding]} OR 
+          {^fhir:designation {^fhir:concept {a [fhir:CodeSystem]}}} OR 
+          {^fhir:designation {^fhir:contains {^fhir:expansion {a [fhir:ValueSet]}}}}
 
 }  
 

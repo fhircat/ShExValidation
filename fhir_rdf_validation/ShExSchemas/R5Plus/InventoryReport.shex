@@ -17,9 +17,6 @@ IMPORT <Device.shex>
 IMPORT <Period.shex>
 #imported_end
 #imported_begin 
-IMPORT <string.shex>
-#imported_end
-#imported_begin 
 IMPORT <Patient.shex>
 #imported_end
 #imported_begin 
@@ -67,7 +64,7 @@ start=@<InventoryReport> AND {fhir:nodeRole [fhir:treeRoot]}
     a [fhir:InventoryReport]?;
     fhir:nodeRole [fhir:treeRoot]?;
 
-    fhir:identifier @<OneOrMore_Identifier>?;  # Identifiers for the report
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business identifier for the report
     fhir:status @<code> AND
     	{fhir:v @fhirvs:inventoryreport-status};  # draft | requested | active | 
                                             # entered-in-error 
@@ -76,42 +73,40 @@ start=@<InventoryReport> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:operationType @<CodeableConcept>?;  # addition | subtraction
     fhir:operationTypeReason @<CodeableConcept>?;  # The reason for this count - 
                                             # regular count, ad-hoc count, new 
-                                            # arrivals, etc. 
+                                            # arrivals, etc 
     fhir:reportedDateTime @<dateTime>;      # When the report has been submitted
     fhir:reporter @<Reference> AND {fhir:link 
     			@<Device> OR 
     			@<Patient> OR 
     			@<Practitioner> OR 
-    			@<RelatedPerson> ? }?;  # Who submits the report
+    			@<RelatedPerson> ?}?;  # Who submits the report
     fhir:reportingPeriod @<Period>?;        # The period the report refers to
     fhir:inventoryListing @<OneOrMore_InventoryReport.inventoryListing>?;  # An inventory listing section 
                                             # (grouped by any of the attributes) 
-    fhir:note @<Annotation>?;               # A note associated with the 
+    fhir:note @<OneOrMore_Annotation>?;     # A note associated with the 
                                             # InventoryReport 
 }  
 
 # The item or items in this listing
-<InventoryReport.inventoryListing.items> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:category @<CodeableConcept>?;      # The category of the item or items
-    fhir:quantity @<Quantity>;              # The quantity of the item or items
+<InventoryReport.inventoryListing.item> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:category @<CodeableConcept>?;      # The inventory category or 
+                                            # classification of the items being 
+                                            # reported 
+    fhir:quantity @<Quantity>;              # The quantity of the item or items 
+                                            # being reported 
     fhir:item @<CodeableReference>;         # The code or reference to the item 
                                             # type 
-    fhir:lot @<string>?;                    # The lot number of the item or items
-    fhir:serial @<string>?;                 # The serial number of the item
-    fhir:expiry @<dateTime>?;               # The expiry date of the item or 
-                                            # items 
-    fhir:manufacturingDate @<dateTime>?;    # The manufacturingDate of the item 
-                                            # or items 
 }  
 
 # An inventory listing section (grouped by any of the attributes)
 <InventoryReport.inventoryListing> EXTENDS @<BackboneElement> CLOSED {   
     fhir:location @<Reference> AND {fhir:link 
-    			@<Location> ? }?;  # Location of the inventory items
-    fhir:itemStatus @<CodeableConcept>?;    # The status of the items
+    			@<Location> ?}?;  # Location of the inventory items
+    fhir:itemStatus @<CodeableConcept>?;    # The status of the items that are 
+                                            # being reported 
     fhir:countingDateTime @<dateTime>?;     # The date and time when the items 
                                             # were counted 
-    fhir:items @<OneOrMore_InventoryReport.inventoryListing.items>?;  # The item or items in this listing
+    fhir:item @<OneOrMore_InventoryReport.inventoryListing.item>?;  # The item or items in this listing
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------
@@ -123,9 +118,11 @@ start=@<InventoryReport> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:rest [rdf:nil] OR @<OneOrMore_InventoryReport.inventoryListing> 
 }
 
-<OneOrMore_InventoryReport.inventoryListing.items> CLOSED {
-    rdf:first @<InventoryReport.inventoryListing.items>  ;
-    rdf:rest [rdf:nil] OR @<OneOrMore_InventoryReport.inventoryListing.items> 
+
+
+<OneOrMore_InventoryReport.inventoryListing.item> CLOSED {
+    rdf:first @<InventoryReport.inventoryListing.item>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_InventoryReport.inventoryListing.item> 
 }
 
 #---------------------- Value Sets ------------------------

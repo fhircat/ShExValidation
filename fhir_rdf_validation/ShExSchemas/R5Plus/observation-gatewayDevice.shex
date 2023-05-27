@@ -24,7 +24,7 @@ IMPORT <Reference.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/observation-gatewayDevice"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<Device> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<Device> ?})  ; 
     ^fhir:extension { a [fhir:Observation]}
 
 }  

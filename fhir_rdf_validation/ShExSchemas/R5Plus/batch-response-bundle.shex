@@ -1,0 +1,20 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <Bundle.shex>
+#imported_end
+
+start=@<batch-response-bundle> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Contains a collection of resources
+<batch-response-bundle> EXTENDS @<Bundle> CLOSED {   
+
+    a [fhir:batch-response-bundle]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+}  
+

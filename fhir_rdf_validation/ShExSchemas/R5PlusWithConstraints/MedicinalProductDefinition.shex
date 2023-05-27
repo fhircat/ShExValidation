@@ -156,48 +156,6 @@ start=@<MedicinalProductDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # "sugar free", "modified release" 
 }  
 
-# Country and jurisdiction where the name applies
-<MedicinalProductDefinition.name.usage> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:country @<CodeableConcept>;        # Country code for where this name 
-                                            # applies 
-    fhir:jurisdiction @<CodeableConcept>?;  # Jurisdiction code for where this 
-                                            # name applies 
-    fhir:language @<CodeableConcept>;       # Language code for this name
-}  
-
-# Reference to another product, e.g. for linking authorised to investigational product
-<MedicinalProductDefinition.crossReference> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:product @<CodeableReference>;      # Reference to another product, e.g. 
-                                            # for linking authorised to 
-                                            # investigational product 
-    fhir:type @<CodeableConcept>?;          # The type of relationship, for 
-                                            # instance branded to generic or 
-                                            # virtual to actual product 
-}  
-
-# A product specific contact, person (in a role), or an organization
-<MedicinalProductDefinition.contact> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:type @<CodeableConcept>?;          # Allows the contact to be 
-                                            # classified, for example QPPV, 
-                                            # Pharmacovigilance Enquiry 
-                                            # Information 
-    fhir:contact @<Reference> AND {fhir:link 
-    			@<Organization> OR 
-    			@<PractitionerRole> ? };  # A product specific contact, person 
-                                            # (in a role), or an organization 
-}  
-
-# The product's name, including full name and possibly coded parts
-<MedicinalProductDefinition.name> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:productName @<string>;             # The full product name
-    fhir:type @<CodeableConcept>?;          # Type of product name, such as 
-                                            # rINN, BAN, Proprietary, 
-                                            # Non-Proprietary 
-    fhir:part @<OneOrMore_MedicinalProductDefinition.name.part>?;  # Coding words or phrases of the name
-    fhir:usage @<OneOrMore_MedicinalProductDefinition.name.usage>?;  # Country and jurisdiction where the 
-                                            # name applies 
-}  
-
 # A manufacturing or administrative process for the medicinal product
 <MedicinalProductDefinition.operation> EXTENDS @<BackboneElement> CLOSED {   
     fhir:type @<CodeableReference>?;        # The type of manufacturing 
@@ -212,12 +170,44 @@ start=@<MedicinalProductDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # confidential 
 }  
 
+# The product's name, including full name and possibly coded parts
+<MedicinalProductDefinition.name> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:productName @<string>;             # The full product name
+    fhir:type @<CodeableConcept>?;          # Type of product name, such as 
+                                            # rINN, BAN, Proprietary, 
+                                            # Non-Proprietary 
+    fhir:part @<OneOrMore_MedicinalProductDefinition.name.part>?;  # Coding words or phrases of the name
+    fhir:usage @<OneOrMore_MedicinalProductDefinition.name.usage>?;  # Country and jurisdiction where the 
+                                            # name applies 
+}  
+
+# Country and jurisdiction where the name applies
+<MedicinalProductDefinition.name.usage> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:country @<CodeableConcept>;        # Country code for where this name 
+                                            # applies 
+    fhir:jurisdiction @<CodeableConcept>?;  # Jurisdiction code for where this 
+                                            # name applies 
+    fhir:language @<CodeableConcept>;       # Language code for this name
+}  
+
+# A product specific contact, person (in a role), or an organization
+<MedicinalProductDefinition.contact> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>?;          # Allows the contact to be 
+                                            # classified, for example QPPV, 
+                                            # Pharmacovigilance Enquiry 
+                                            # Information 
+    fhir:contact @<Reference> AND {fhir:link 
+    			@<Organization> OR 
+    			@<PractitionerRole> ?};  # A product specific contact, person 
+                                            # (in a role), or an organization 
+}  
+
 # Key product features such as "sugar free", "modified release"
 <MedicinalProductDefinition.characteristic> EXTENDS @<BackboneElement> CLOSED {   
     fhir:type @<CodeableConcept>;           # A code expressing the type of 
                                             # characteristic 
     fhir:value @<CodeableConcept>  OR 
-    			@<string>  OR 
+    			@<markdown>  OR 
     			@<Quantity>  OR 
     			@<integer>  OR 
     			@<date>  OR 
@@ -230,6 +220,16 @@ start=@<MedicinalProductDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:part @<string>;                    # A fragment of a product name
     fhir:type @<CodeableConcept>;           # Identifying type for this part of 
                                             # the name (e.g. strength part) 
+}  
+
+# Reference to another product, e.g. for linking authorised to investigational product
+<MedicinalProductDefinition.crossReference> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:product @<CodeableReference>;      # Reference to another product, e.g. 
+                                            # for linking authorised to 
+                                            # investigational product 
+    fhir:type @<CodeableConcept>?;          # The type of relationship, for 
+                                            # instance branded to generic or 
+                                            # virtual to actual product 
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------
@@ -285,6 +285,10 @@ start=@<MedicinalProductDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:rest [rdf:nil] OR @<OneOrMore_MedicinalProductDefinition.characteristic> 
 }
 
+
+
+
+
 <OneOrMore_MedicinalProductDefinition.name.part> CLOSED {
     rdf:first @<MedicinalProductDefinition.name.part>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_MedicinalProductDefinition.name.part> 
@@ -294,8 +298,4 @@ start=@<MedicinalProductDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:first @<MedicinalProductDefinition.name.usage>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_MedicinalProductDefinition.name.usage> 
 }
-
-
-
-
 

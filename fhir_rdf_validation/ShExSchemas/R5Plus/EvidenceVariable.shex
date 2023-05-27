@@ -29,6 +29,9 @@ IMPORT <Group.shex>
 IMPORT <string.shex>
 #imported_end
 #imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
 IMPORT <Period.shex>
 #imported_end
 #imported_begin 
@@ -104,13 +107,13 @@ start=@<EvidenceVariable> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # evidence variable 
     fhir:version @<string>?;                # Business version of the evidence 
                                             # variable 
+    fhir:versionAlgorithm @<string>  OR 
+    			@<Coding>  ?;  # How to compare versions
     fhir:name @<string>?;                   # Name for this evidence variable 
                                             # (computer friendly) 
     fhir:title @<string>?;                  # Name for this evidence variable 
                                             # (human friendly) 
     fhir:shortTitle @<string>?;             # Title for use in informal contexts
-    fhir:subtitle @<string>?;               # Subordinate title of the 
-                                            # EvidenceVariable 
     fhir:status @<code> AND
     	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
     fhir:experimental @<boolean>?;          # For testing purposes, not real 
@@ -125,10 +128,14 @@ start=@<EvidenceVariable> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # notes 
     fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
                                             # intended to support 
+    fhir:purpose @<markdown>?;              # Why this EvidenceVariable is 
+                                            # defined 
     fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:copyrightLabel @<string>?;         # Copyright holder and year(s)
     fhir:approvalDate @<date>?;             # When the resource was approved by 
                                             # publisher 
-    fhir:lastReviewDate @<date>?;           # When the resource was last reviewed
+    fhir:lastReviewDate @<date>?;           # When the resource was last 
+                                            # reviewed by the publisher 
     fhir:effectivePeriod @<Period>?;        # When the resource is expected to 
                                             # be used 
     fhir:author @<OneOrMore_ContactDetail>?;  # Who authored the content
@@ -136,7 +143,7 @@ start=@<EvidenceVariable> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:reviewer @<OneOrMore_ContactDetail>?;  # Who reviewed the content
     fhir:endorser @<OneOrMore_ContactDetail>?;  # Who endorsed the content
     fhir:relatedArtifact @<OneOrMore_RelatedArtifact>?;  # Additional documentation, 
-                                            # citations, etc. 
+                                            # citations, etc 
     fhir:actual @<boolean>?;                # Actual or conceptual
     fhir:characteristic @<OneOrMore_EvidenceVariable.characteristic>?;  # A defining factor of the 
                                             # EvidenceVariable 
@@ -147,17 +154,9 @@ start=@<EvidenceVariable> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # polychotomous variables 
 }  
 
-# A grouping for ordinal or polychotomous variables
-<EvidenceVariable.category> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:name @<string>?;                   # Description of the grouping
-    fhir:value @<CodeableConcept>  OR 
-    			@<Quantity>  OR 
-    			@<Range>  ?;  # Definition of the grouping
-}  
-
-# Observation time from study specified event
+# Timing in which the characteristic is determined
 <EvidenceVariable.characteristic.timeFromEvent> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:description @<string>?;            # Human readable description
+    fhir:description @<markdown>?;          # Human readable description
     fhir:note @<OneOrMore_Annotation>?;     # Used for footnotes or explanatory 
                                             # notes 
     fhir:event @<CodeableConcept>  OR 
@@ -166,11 +165,82 @@ start=@<EvidenceVariable> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<id>  ?;  # The event used as a base point 
                                             # (reference point) in time 
     fhir:quantity @<Quantity>?;             # Used to express the observation at 
-                                            # a defined amount of time after the 
-                                            # study start 
+                                            # a defined amount of time before or 
+                                            # after the event 
     fhir:range @<Range>?;                   # Used to express the observation 
-                                            # within a period after the study 
-                                            # start 
+                                            # within a period before and/or 
+                                            # after the event 
+}  
+
+# A grouping for ordinal or polychotomous variables
+<EvidenceVariable.category> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>?;                   # Description of the grouping
+    fhir:value @<CodeableConcept>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  ?;  # Definition of the grouping
+}  
+
+# A defining factor of the EvidenceVariable
+<EvidenceVariable.characteristic> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:linkId @<id>?;                     # Label for internal linking
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the characteristic 
+    fhir:note @<OneOrMore_Annotation>?;     # Used for footnotes or explanatory 
+                                            # notes 
+    fhir:exclude @<boolean>?;               # Whether the characteristic is an 
+                                            # inclusion criterion or exclusion 
+                                            # criterion 
+    fhir:definitionReference @<Reference> AND {fhir:link 
+    			@<Evidence> OR 
+    			@<EvidenceVariable> OR 
+    			@<Group> ?}?;  # Defines the characteristic 
+                                            # (without using type and value) by 
+                                            # a Reference 
+    fhir:definitionCanonical @<canonical>?;  # Defines the characteristic 
+                                            # (without using type and value) by 
+                                            # a Canonical 
+    fhir:definitionCodeableConcept @<CodeableConcept>?;  # Defines the characteristic 
+                                            # (without using type and value) by 
+                                            # a CodeableConcept 
+    fhir:definitionExpression @<Expression>?;  # Defines the characteristic 
+                                            # (without using type and value) by 
+                                            # an expression 
+    fhir:definitionId @<id>?;               # Defines the characteristic 
+                                            # (without using type and value) by 
+                                            # an id 
+    fhir:definitionByTypeAndValue @<EvidenceVariable.characteristic.definitionByTypeAndValue>?;  # Defines the characteristic using 
+                                            # type and value 
+    fhir:definitionByCombination @<EvidenceVariable.characteristic.definitionByCombination>?;  # Used to specify how two or more 
+                                            # characteristics are combined 
+    fhir:instances @<Quantity>  OR 
+    			@<Range>  ?;  # Number of occurrences meeting the 
+                                            # characteristic 
+    fhir:duration @<Quantity>  OR 
+    			@<Range>  ?;  # Length of time in which the 
+                                            # characteristic is met 
+    fhir:timeFromEvent @<OneOrMore_EvidenceVariable.characteristic.timeFromEvent>?;  # Timing in which the characteristic 
+                                            # is determined 
+}  
+
+# Defines the characteristic using type and value
+<EvidenceVariable.characteristic.definitionByTypeAndValue> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # Expresses the type of 
+                                            # characteristic 
+    fhir:method @<OneOrMore_CodeableConcept>?;  # Method for how the characteristic 
+                                            # value was determined 
+    fhir:device @<Reference> AND {fhir:link 
+    			@<Device> OR 
+    			@<DeviceMetric> ?}?;  # Device used for determining 
+                                            # characteristic 
+    fhir:value @<CodeableConcept>  OR 
+    			@<boolean>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<Reference>  OR 
+    			@<id>  ;  # Defines the characteristic when 
+                                            # coupled with characteristic.type 
+    fhir:offset @<CodeableConcept>?;        # Reference point for valueQuantity 
+                                            # or valueRange 
 }  
 
 # Used to specify how two or more characteristics are combined
@@ -184,62 +254,6 @@ start=@<EvidenceVariable> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # used 
     fhir:characteristic @<OneOrMore_EvidenceVariable.characteristic>;  # A defining factor of the 
                                             # characteristic 
-}  
-
-# Defines the characteristic using type and value
-<EvidenceVariable.characteristic.definitionByTypeAndValue> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:type @<CodeableConcept>;           # Expresses the type of 
-                                            # characteristic 
-    fhir:method @<OneOrMore_CodeableConcept>?;  # Method for how the characteristic 
-                                            # value was determined 
-    fhir:device @<Reference> AND {fhir:link 
-    			@<Device> OR 
-    			@<DeviceMetric> ? }?;  # Device used for determining 
-                                            # characteristic 
-    fhir:value @<CodeableConcept>  OR 
-    			@<boolean>  OR 
-    			@<Quantity>  OR 
-    			@<Range>  OR 
-    			@<Reference>  OR 
-    			@<id>  ;  # Defines the characteristic when 
-                                            # coupled with characteristic.type 
-    fhir:offset @<CodeableConcept>?;        # Reference point for valueQuantity
-}  
-
-# A defining factor of the EvidenceVariable
-<EvidenceVariable.characteristic> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:linkId @<id>?;                     # Label for internal linking
-    fhir:description @<string>?;            # Natural language description of 
-                                            # the characteristic 
-    fhir:note @<OneOrMore_Annotation>?;     # Used for footnotes or explanatory 
-                                            # notes 
-    fhir:exclude @<boolean>?;               # Whether the characteristic is an 
-                                            # inclusion criterion or exclusion 
-                                            # criterion 
-    fhir:definitionReference @<Reference> AND {fhir:link 
-    			@<Evidence> OR 
-    			@<EvidenceVariable> OR 
-    			@<Group> ? }?;  # Defines the characteristic 
-                                            # (without using type and value) by 
-                                            # a Reference 
-    fhir:definitionCanonical @<canonical>?;  # Defines the characteristic 
-                                            # (without using type and value) by 
-                                            # a Canonical 
-    fhir:definitionCodeableConcept @<CodeableConcept>?;  # Defines the characteristic 
-                                            # (without using type and value) by 
-                                            # a CodeableConcept 
-    fhir:definitionExpression @<Expression>?;  # Defines the characteristic 
-                                            # (without using type and value) by 
-                                            # a Expression 
-    fhir:definitionId @<id>?;               # Defines the characteristic 
-                                            # (without using type and value) by 
-                                            # a id 
-    fhir:definitionByTypeAndValue @<EvidenceVariable.characteristic.definitionByTypeAndValue>?;  # Defines the characteristic using 
-                                            # type and value 
-    fhir:definitionByCombination @<EvidenceVariable.characteristic.definitionByCombination>?;  # Used to specify how two or more 
-                                            # characteristics are combined 
-    fhir:timeFromEvent @<OneOrMore_EvidenceVariable.characteristic.timeFromEvent>?;  # Observation time from study 
-                                            # specified event 
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------
@@ -264,12 +278,12 @@ start=@<EvidenceVariable> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:rest [rdf:nil] OR @<OneOrMore_EvidenceVariable.category> 
 }
 
-
-
 <OneOrMore_EvidenceVariable.characteristic.timeFromEvent> CLOSED {
     rdf:first @<EvidenceVariable.characteristic.timeFromEvent>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_EvidenceVariable.characteristic.timeFromEvent> 
 }
+
+
 
 #---------------------- Value Sets ------------------------
 

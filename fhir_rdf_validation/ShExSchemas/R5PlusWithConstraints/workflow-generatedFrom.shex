@@ -32,7 +32,7 @@ IMPORT <ActivityDefinition.shex>
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/workflow-generatedFrom"]}; 
     fhir:value (@<canonical>  AND {fhir:link @<ActivityDefinition> OR 
     			 @<PlanDefinition> OR 
-    			 @<Questionnaire> })  ; 
+    			 @<Questionnaire> ?})  ; 
     ^fhir:extension { a [fhir:CarePlan]} OR 
           {^fhir:plannedActivityDetail {^fhir:activity {a [fhir:CarePlan]}}} OR 
           {a [fhir:CommunicationRequest]} OR 

@@ -26,6 +26,9 @@ IMPORT <Range.shex>
 IMPORT <string.shex>
 #imported_end
 #imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
 IMPORT <Period.shex>
 #imported_end
 #imported_begin 
@@ -88,6 +91,10 @@ start=@<SpecimenDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:identifier @<Identifier>?;         # Business identifier
     fhir:version @<string>?;                # Business version of the 
                                             # SpecimenDefinition 
+    fhir:versionAlgorithm @<string>  OR 
+    			@<Coding>  ?;  # How to compare versions
+    fhir:name @<string>?;                   # Name for this {{title}} (computer 
+                                            # friendly) 
     fhir:title @<string>?;                  # Name for this SpecimenDefinition 
                                             # (Human friendly) 
     fhir:derivedFromCanonical @<OneOrMore_canonical>?;  # Based on FHIR definition of 
@@ -98,7 +105,7 @@ start=@<SpecimenDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:experimental @<boolean>?;          # If this SpecimenDefinition is not 
                                             # for real usage 
     fhir:subject @<CodeableConcept>  OR 
-    			(@<Reference>  AND {fhir:link @<Group> })  ?;  # Type of subject for specimen 
+    			(@<Reference>  AND {fhir:link @<Group> ?})  ?;  # Type of subject for specimen 
                                             # collection 
     fhir:date @<dateTime>?;                 # Date status first applied
     fhir:publisher @<string>?;              # The name of the individual or 
@@ -114,10 +121,12 @@ start=@<SpecimenDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:purpose @<markdown>?;              # Why this SpecimenDefinition is 
                                             # defined 
     fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:copyrightLabel @<string>?;         # Copyright holder and year(s)
     fhir:approvalDate @<date>?;             # When SpecimenDefinition was 
                                             # approved by publisher 
     fhir:lastReviewDate @<date>?;           # The date on which the asset 
-                                            # content was last reviewed 
+                                            # content was last reviewed by the 
+                                            # publisher 
     fhir:effectivePeriod @<Period>?;        # The effective date range for the 
                                             # SpecimenDefinition 
     fhir:typeCollected @<CodeableConcept>?;  # Kind of material to collect
@@ -128,6 +137,16 @@ start=@<SpecimenDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # testing by lab 
 }  
 
+# Specimen handling before testing
+<SpecimenDefinition.typeTested.handling> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:temperatureQualifier @<CodeableConcept>?;  # Qualifies the interval of 
+                                            # temperature 
+    fhir:temperatureRange @<Range>?;        # Temperature range for these 
+                                            # handling instructions 
+    fhir:maxDuration @<Duration>?;          # Maximum preservation time
+    fhir:instruction @<markdown>?;          # Preservation instruction
+}  
+
 # Specimen in container intended for testing by lab
 <SpecimenDefinition.typeTested> EXTENDS @<BackboneElement> CLOSED {   
     fhir:isDerived @<boolean>?;             # Primary or secondary specimen
@@ -135,7 +154,7 @@ start=@<SpecimenDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:preference @<code> AND
     	{fhir:v @fhirvs:specimen-contained-preference};  # preferred | alternate
     fhir:container @<SpecimenDefinition.typeTested.container>?;  # The specimen's container
-    fhir:requirement @<string>?;            # Requirements for specimen delivery 
+    fhir:requirement @<markdown>?;          # Requirements for specimen delivery 
                                             # and special handling 
     fhir:retentionTime @<Duration>?;        # The usual time for retaining this 
                                             # kind of specimen 
@@ -153,31 +172,21 @@ start=@<SpecimenDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:type @<CodeableConcept>?;          # Kind of container associated with 
                                             # the kind of specimen 
     fhir:cap @<CodeableConcept>?;           # Color of container cap
-    fhir:description @<string>?;            # The description of the kind of 
+    fhir:description @<markdown>?;          # The description of the kind of 
                                             # container 
     fhir:capacity @<Quantity>?;             # The capacity of this kind of 
                                             # container 
     fhir:minimumVolume @<SimpleQuantity>  OR 
     			@<string>  ?;  # Minimum volume
     fhir:additive @<OneOrMore_SpecimenDefinition.typeTested.container.additive>?;  # Additive associated with container
-    fhir:preparation @<string>?;            # Special processing applied to the 
+    fhir:preparation @<markdown>?;          # Special processing applied to the 
                                             # container for this specimen type 
 }  
 
 # Additive associated with container
 <SpecimenDefinition.typeTested.container.additive> EXTENDS @<BackboneElement> CLOSED {   
     fhir:additive @<CodeableConcept>  OR 
-    			(@<Reference>  AND {fhir:link @<SubstanceDefinition> })  ;  # Additive associated with container
-}  
-
-# Specimen handling before testing
-<SpecimenDefinition.typeTested.handling> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:temperatureQualifier @<CodeableConcept>?;  # Qualifies the interval of 
-                                            # temperature 
-    fhir:temperatureRange @<Range>?;        # Temperature range for these 
-                                            # handling instructions 
-    fhir:maxDuration @<Duration>?;          # Maximum preservation time
-    fhir:instruction @<string>?;            # Preservation instruction
+    			(@<Reference>  AND {fhir:link @<SubstanceDefinition> ?})  ;  # Additive associated with container
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

@@ -5,12 +5,13 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 
 #imported_begin 
-IMPORT <integer.shex>
+IMPORT <PrimitiveType.shex>
 #imported_end
 # Primitive Type unsignedInt
-<unsignedInt> EXTENDS @<integer> CLOSED {   
+<unsignedInt> EXTENDS @<PrimitiveType> CLOSED {   
 
     a [fhir:unsignedInt]?;
 
+    fhir:v xsd:nonNegativeInteger?;
 }  
 

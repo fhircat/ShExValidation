@@ -8,6 +8,9 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 IMPORT <uri.shex>
 #imported_end
 #imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
 IMPORT <Extension.shex>
 #imported_end
 # Date last changed
@@ -16,7 +19,7 @@ IMPORT <Extension.shex>
     a [fhir:artifact-date]?;
     fhir:nodeRole [fhir:treeRoot]?;
 
-    fhir:v @<uri> AND
+    fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/artifact-date"]}; 
     fhir:value @<dateTime>  ; 
     ^fhir:extension { a [fhir:Element]}

@@ -1,0 +1,119 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <Group.shex>
+#imported_end
+#imported_begin 
+IMPORT <Period.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Duration.shex>
+#imported_end
+#imported_begin 
+IMPORT <Location.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Encounter.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableReference.shex>
+#imported_end
+
+start=@<EncounterHistory> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A record of significant events/milestones key data throughout the history of an Encounter
+<EncounterHistory> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:EncounterHistory]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> ?}?;  # The Encounter associated with this 
+                                            # set of historic values 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Identifier(s) by which this 
+                                            # encounter is known 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:encounter-status};  # planned | in-progress | on-hold | 
+                                            # discharged | completed | cancelled 
+                                            # | discontinued | entered-in-error 
+                                            # | unknown 
+    fhir:class @<CodeableConcept>;          # Classification of patient encounter
+    fhir:type @<OneOrMore_CodeableConcept>?;  # Specific type of encounter
+    fhir:serviceType @<OneOrMore_CodeableReference>?;  # Specific type of service
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<Group> OR 
+    			@<Patient> ?}?;  # The patient or group related to 
+                                            # this encounter 
+    fhir:subjectStatus @<CodeableConcept>?;  # The current status of the subject 
+                                            # in relation to the Encounter 
+    fhir:actualPeriod @<Period>?;           # The actual start and end time 
+                                            # associated with this set of values 
+                                            # associated with the encounter 
+    fhir:plannedStartDate @<dateTime>?;     # The planned start date/time (or 
+                                            # admission date) of the encounter 
+    fhir:plannedEndDate @<dateTime>?;       # The planned end date/time (or 
+                                            # discharge date) of the encounter 
+    fhir:length @<Duration>?;               # Actual quantity of time the 
+                                            # encounter lasted (less time 
+                                            # absent) 
+    fhir:location @<OneOrMore_EncounterHistory.location>?;  # Location of the patient at this 
+                                            # point in the encounter 
+}  
+
+# Location of the patient at this point in the encounter
+<EncounterHistory.location> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:location @<Reference> AND {fhir:link 
+    			@<Location> ?};  # Location the encounter takes place
+    fhir:form @<CodeableConcept>?;          # The physical type of the location 
+                                            # (usually the level in the location 
+                                            # hierarchy - bed, room, ward, 
+                                            # virtual etc.) 
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+<OneOrMore_EncounterHistory.location> CLOSED {
+    rdf:first @<EncounterHistory.location>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_EncounterHistory.location> 
+}
+
+#---------------------- Value Sets ------------------------
+
+

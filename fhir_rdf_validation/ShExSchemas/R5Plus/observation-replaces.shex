@@ -24,7 +24,7 @@ IMPORT <Observation.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/observation-replaces"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<Observation> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<Observation> ?})  ; 
     ^fhir:extension { a [fhir:Observation]}
 
 }  

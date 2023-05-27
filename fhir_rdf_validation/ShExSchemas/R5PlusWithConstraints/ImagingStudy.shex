@@ -56,6 +56,9 @@ IMPORT <Reference.shex>
 IMPORT <Encounter.shex>
 #imported_end
 #imported_begin 
+IMPORT <Procedure.shex>
+#imported_end
+#imported_begin 
 IMPORT <Identifier.shex>
 #imported_end
 #imported_begin 
@@ -118,52 +121,29 @@ start=@<ImagingStudy> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:subject @<Reference> AND {fhir:link 
     			@<Device> OR 
     			@<Group> OR 
-    			@<Patient> ? };  # Who or what is the subject of the 
+    			@<Patient> ?};  # Who or what is the subject of the 
                                             # study 
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # Encounter with which this imaging 
+    			@<Encounter> ?}?;  # Encounter with which this imaging 
                                             # study is associated 
     fhir:started @<dateTime>?;              # When the study was started
     fhir:basedOn @<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_ServiceRequest_OR_Task>?;  # Request fulfilled
+    fhir:partOf @<OneOrMore_Reference_Procedure>?;  # Part of referenced event
     fhir:referrer @<Reference> AND {fhir:link 
     			@<Practitioner> OR 
-    			@<PractitionerRole> ? }?;  # Referring physician
-    fhir:interpreter @<OneOrMore_Reference_Practitioner_OR_PractitionerRole>?;  # Who interpreted images
+    			@<PractitionerRole> ?}?;  # Referring physician
     fhir:endpoint @<OneOrMore_Reference_Endpoint>?;  # Study access endpoint
     fhir:numberOfSeries @<unsignedInt>?;    # Number of Study Related Series
     fhir:numberOfInstances @<unsignedInt>?;  # Number of Study Related Instances
     fhir:procedure @<OneOrMore_CodeableReference>?;  # The performed procedure or code
     fhir:location @<Reference> AND {fhir:link 
-    			@<Location> ? }?;  # Where ImagingStudy occurred
+    			@<Location> ?}?;  # Where ImagingStudy occurred
     fhir:reason @<OneOrMore_CodeableReference>?;  # Why the study was requested / 
                                             # performed 
     fhir:note @<OneOrMore_Annotation>?;     # User-defined comments
     fhir:description @<string>?;            # Institution-generated description
     fhir:series @<OneOrMore_ImagingStudy.series>?;  # Each study has one or more series 
                                             # of instances 
-}  
-
-# Who performed the series
-<ImagingStudy.series.performer> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:function @<CodeableConcept>?;      # Type of performance
-    fhir:actor @<Reference> AND {fhir:link 
-    			@<CareTeam> OR 
-    			@<Device> OR 
-    			@<HealthcareService> OR 
-    			@<Organization> OR 
-    			@<Patient> OR 
-    			@<Practitioner> OR 
-    			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? };  # Who performed the series
-}  
-
-# A single SOP instance from the series
-<ImagingStudy.series.instance> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:uid @<id>;                         # DICOM SOP Instance UID
-    fhir:sopClass @<Coding>;                # DICOM class type
-    fhir:number @<unsignedInt>?;            # The number of this instance in the 
-                                            # series 
-    fhir:title @<string>?;                  # Description of instance
 }  
 
 # Each study has one or more series of instances
@@ -185,9 +165,30 @@ start=@<ImagingStudy> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # series 
 }  
 
+# Who performed the series
+<ImagingStudy.series.performer> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:function @<CodeableConcept>?;      # Type of performance
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<HealthcareService> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ?};  # Who performed the series
+}  
+
+# A single SOP instance from the series
+<ImagingStudy.series.instance> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:uid @<id>;                         # DICOM SOP Instance UID
+    fhir:sopClass @<Coding>;                # DICOM class type
+    fhir:number @<unsignedInt>?;            # The number of this instance in the 
+                                            # series 
+    fhir:title @<string>?;                  # Description of instance
+}  
+
 #---------------------- Cardinality Types (OneOrMore) -------------------
-
-
 
 
 

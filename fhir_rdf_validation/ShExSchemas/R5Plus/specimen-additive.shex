@@ -1,0 +1,32 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+#imported_begin 
+IMPORT <Substance.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableReference.shex>
+#imported_end
+# Specifies a substance that is added to a laboratory specimen
+<specimen-additive> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:specimen-additive]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri> AND
+    	{fhir:value ["http://hl7.org/fhir/StructureDefinition/specimen-additive"]}; 
+    fhir:value (@<CodeableReference>  AND {fhir:link @<Substance> ?})  ; 
+    ^fhir:extension { a [fhir:Specimen]} OR 
+          {^fhir:container {a [fhir:Specimen]}}
+
+}  
+

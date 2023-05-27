@@ -14,10 +14,10 @@ IMPORT <string.shex>
 IMPORT <integer.shex>
 #imported_end
 #imported_begin 
-IMPORT <Attachment.shex>
+IMPORT <Identifier.shex>
 #imported_end
 #imported_begin 
-IMPORT <Identifier.shex>
+IMPORT <Attachment.shex>
 #imported_end
 #imported_begin 
 IMPORT <DomainResource.shex>
@@ -67,6 +67,29 @@ start=@<SubstanceNucleicAcid> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # molecular weight; subunits that 
                                             # have identical sequences will be 
                                             # repeated multiple times 
+}  
+
+# The linkages between sugar residues will also be captured
+<SubstanceNucleicAcid.subunit.linkage> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:connectivity @<string>?;           # The entity that links the sugar 
+                                            # residues together should also be 
+                                            # captured for nearly all naturally 
+                                            # occurring nucleic acid the linkage 
+                                            # is a phosphate group. For many 
+                                            # synthetic oligonucleotides 
+                                            # phosphorothioate linkages are 
+                                            # often seen. Linkage connectivity 
+                                            # is assumed to be 3’-5’. If the 
+                                            # linkage is either 3’-3’ or 5’-5’ 
+                                            # this should be specified 
+    fhir:identifier @<Identifier>?;         # Each linkage will be registered as 
+                                            # a fragment and have an ID 
+    fhir:name @<string>?;                   # Each linkage will be registered as 
+                                            # a fragment and have at least one 
+                                            # name. A single name shall be 
+                                            # assigned to each linkage 
+    fhir:residueSite @<string>?;            # Residues shall be captured as 
+                                            # described in 5.3.6.8.3 
 }  
 
 # Subunits are listed in order of decreasing length; sequences of the same length will be ordered by molecular weight; subunits that have identical sequences will be repeated multiple times
@@ -126,29 +149,6 @@ start=@<SubstanceNucleicAcid> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # in the 5‘-3‘direction consistent 
                                             # with the base sequences listed 
                                             # above 
-}  
-
-# The linkages between sugar residues will also be captured
-<SubstanceNucleicAcid.subunit.linkage> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:connectivity @<string>?;           # The entity that links the sugar 
-                                            # residues together should also be 
-                                            # captured for nearly all naturally 
-                                            # occurring nucleic acid the linkage 
-                                            # is a phosphate group. For many 
-                                            # synthetic oligonucleotides 
-                                            # phosphorothioate linkages are 
-                                            # often seen. Linkage connectivity 
-                                            # is assumed to be 3’-5’. If the 
-                                            # linkage is either 3’-3’ or 5’-5’ 
-                                            # this should be specified 
-    fhir:identifier @<Identifier>?;         # Each linkage will be registered as 
-                                            # a fragment and have an ID 
-    fhir:name @<string>?;                   # Each linkage will be registered as 
-                                            # a fragment and have at least one 
-                                            # name. A single name shall be 
-                                            # assigned to each linkage 
-    fhir:residueSite @<string>?;            # Residues shall be captured as 
-                                            # described in 5.3.6.8.3 
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

@@ -93,10 +93,10 @@ start=@<AllergyIntolerance> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:code @<CodeableConcept>?;          # Code that identifies the allergy 
                                             # or intolerance 
     fhir:patient @<Reference> AND {fhir:link 
-    			@<Patient> ? };  # Who the allergy or intolerance is 
+    			@<Patient> ?};  # Who the allergy or intolerance is 
                                             # for 
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # Encounter when the allergy or 
+    			@<Encounter> ?}?;  # Encounter when the allergy or 
                                             # intolerance was asserted 
     fhir:onset @<dateTime>  OR 
     			@<Age>  OR 
@@ -128,7 +128,7 @@ start=@<AllergyIntolerance> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? };  # Who or what participated in the 
+    			@<RelatedPerson> ?};  # Who or what participated in the 
                                             # activities related to the allergy 
                                             # or intolerance 
 }  

@@ -35,6 +35,9 @@ IMPORT <Location.shex>
 IMPORT <dateTime.shex>
 #imported_end
 #imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
 IMPORT <Citation.shex>
 #imported_end
 #imported_begin 
@@ -50,13 +53,13 @@ IMPORT <Specimen.shex>
 IMPORT <Reference.shex>
 #imported_end
 #imported_begin 
-IMPORT <Procedure.shex>
-#imported_end
-#imported_begin 
 IMPORT <Substance.shex>
 #imported_end
 #imported_begin 
 IMPORT <Encounter.shex>
+#imported_end
+#imported_begin 
+IMPORT <Procedure.shex>
 #imported_end
 #imported_begin 
 IMPORT <Identifier.shex>
@@ -131,7 +134,9 @@ start=@<DiagnosticReport> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:basedOn @<OneOrMore_Reference_CarePlan_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest>?;  # What was requested
     fhir:status @<code> AND
     	{fhir:v @fhirvs:diagnostic-report-status};  # registered | partial | preliminary 
-                                            # | final + 
+                                            # | modified | final | amended | 
+                                            # corrected | appended | cancelled | 
+                                            # entered-in-error | unknown 
     fhir:category @<OneOrMore_CodeableConcept>?;  # Service category
     fhir:code @<CodeableConcept>;           # Name/Code for this diagnostic 
                                             # report 
@@ -144,12 +149,11 @@ start=@<DiagnosticReport> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Organization> OR 
     			@<Patient> OR 
     			@<Practitioner> OR 
-    			@<Procedure> OR 
-    			@<Substance> ? }?;  # The subject of the report - 
+    			@<Substance> ?}?;  # The subject of the report - 
                                             # usually, but not always, the 
                                             # patient 
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # Health care event when test ordered
+    			@<Encounter> ?}?;  # Health care event when test ordered
     fhir:effective @<dateTime>  OR 
     			@<Period>  ?;  # Clinically relevant 
                                             # time/time-period for report 
@@ -168,14 +172,23 @@ start=@<DiagnosticReport> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:media @<OneOrMore_DiagnosticReport.media>?;  # Key images or data associated with 
                                             # this report 
     fhir:composition @<Reference> AND {fhir:link 
-    			@<Composition> ? }?;  # Reference to a Composition 
+    			@<Composition> ?}?;  # Reference to a Composition 
                                             # resource for the DiagnosticReport 
                                             # structure 
-    fhir:conclusion @<string>?;             # Clinical conclusion 
+    fhir:conclusion @<markdown>?;           # Clinical conclusion 
                                             # (interpretation) of test results 
     fhir:conclusionCode @<OneOrMore_CodeableConcept>?;  # Codes for the clinical conclusion 
                                             # of test results 
     fhir:presentedForm @<OneOrMore_Attachment>?;  # Entire report as issued
+}  
+
+# Key images or data associated with this report
+<DiagnosticReport.media> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:comment @<string>?;                # Comment about the image or data 
+                                            # (e.g. explanation) 
+    fhir:link @<Reference> AND {fhir:link 
+    			@<DocumentReference> ?};  # Reference to the image or data 
+                                            # source 
 }  
 
 # Additional information supporting the diagnostic report
@@ -185,16 +198,7 @@ start=@<DiagnosticReport> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Citation> OR 
     			@<DiagnosticReport> OR 
     			@<Observation> OR 
-    			@<Procedure> ? };  # Supporting information reference
-}  
-
-# Key images or data associated with this report
-<DiagnosticReport.media> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:comment @<string>?;                # Comment about the image or data 
-                                            # (e.g. explanation) 
-    fhir:link @<Reference> AND {fhir:link 
-    			@<DocumentReference> ? };  # Reference to the image or data 
-                                            # source 
+    			@<Procedure> ?};  # Supporting information reference
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

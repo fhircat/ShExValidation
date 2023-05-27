@@ -24,7 +24,7 @@ IMPORT <StructureDefinition.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["capabilitystatement-declared-profile"]}; 
-    fhir:value (@<canonical>  AND {fhir:link @<StructureDefinition> })  ; 
+    fhir:value (@<canonical>  AND {fhir:link @<StructureDefinition> ?})  ; 
     ^fhir:extension { ^fhir:resource {^fhir:rest {a [fhir:CapabilityStatement]}}}
 
 }  

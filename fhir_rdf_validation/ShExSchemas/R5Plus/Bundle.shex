@@ -64,20 +64,6 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:issues @<Resource>?;               # Issues with the Bundle
 }  
 
-# Entry in the bundle - will have a resource or information
-<Bundle.entry> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:link @<OneOrMore_Bundle.link>?;    # Links related to this entry
-    fhir:fullUrl @<uri>?;                   # URI for resource (e.g. the 
-                                            # absolute URL server address, URI 
-                                            # for UUID/OID, etc.) 
-    fhir:resource @<Resource>?;             # A resource in the bundle
-    fhir:search @<Bundle.entry.search>?;    # Search related information
-    fhir:request @<Bundle.entry.request>?;  # Additional execution information 
-                                            # (transaction/batch/history) 
-    fhir:response @<Bundle.entry.response>?;  # Results of execution 
-                                            # (transaction/batch/history) 
-}  
-
 # Results of execution (transaction/batch/history)
 <Bundle.entry.response> EXTENDS @<BackboneElement> CLOSED {   
     fhir:status @<string>;                  # Status response code (text 
@@ -104,6 +90,14 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:ifNoneExist @<string>?;            # For conditional creates
 }  
 
+# Search related information
+<Bundle.entry.search> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:mode @<code> AND
+    	{fhir:v @fhirvs:search-entry-mode}?;  # match | include - why this is in 
+                                            # the result set 
+    fhir:score @<decimal>?;                 # Search ranking (between 0 and 1)
+}  
+
 # Links related to this Bundle
 <Bundle.link> EXTENDS @<BackboneElement> CLOSED {   
     fhir:relation @<code> AND
@@ -114,12 +108,18 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:url @<uri>;                        # Reference details for the link
 }  
 
-# Search related information
-<Bundle.entry.search> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:mode @<code> AND
-    	{fhir:v @fhirvs:search-entry-mode}?;  # match | include - why this is in 
-                                            # the result set 
-    fhir:score @<decimal>?;                 # Search ranking (between 0 and 1)
+# Entry in the bundle - will have a resource or information
+<Bundle.entry> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:link @<OneOrMore_Bundle.link>?;    # Links related to this entry
+    fhir:fullUrl @<uri>?;                   # URI for resource (e.g. the 
+                                            # absolute URL server address, URI 
+                                            # for UUID/OID, etc.) 
+    fhir:resource @<Resource>?;             # A resource in the bundle
+    fhir:search @<Bundle.entry.search>?;    # Search related information
+    fhir:request @<Bundle.entry.request>?;  # Additional execution information 
+                                            # (transaction/batch/history) 
+    fhir:response @<Bundle.entry.response>?;  # Results of execution 
+                                            # (transaction/batch/history) 
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

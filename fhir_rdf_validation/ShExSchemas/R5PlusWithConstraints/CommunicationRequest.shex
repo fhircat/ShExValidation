@@ -110,11 +110,11 @@ start=@<CommunicationRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:medium @<OneOrMore_CodeableConcept>?;  # A channel of communication
     fhir:subject @<Reference> AND {fhir:link 
     			@<Group> OR 
-    			@<Patient> ? }?;  # Focus of message
+    			@<Patient> ?}?;  # Focus of message
     fhir:about @<OneOrMore_Reference_Resource>?;  # Resources that pertain to this 
                                             # communication request 
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # The Encounter during which this 
+    			@<Encounter> ?}?;  # The Encounter during which this 
                                             # CommunicationRequest was created 
     fhir:payload @<OneOrMore_CommunicationRequest.payload>?;  # Message payload
     fhir:occurrence @<dateTime>  OR 
@@ -127,7 +127,7 @@ start=@<CommunicationRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Who asks for the information to be 
+    			@<RelatedPerson> ?}?;  # Who asks for the information to be 
                                             # shared 
     fhir:recipient @<OneOrMore_Reference_CareTeam_OR_Device_OR_Endpoint_OR_Group_OR_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Who to share the information with
     fhir:informationProvider @<OneOrMore_Reference_Device_OR_Endpoint_OR_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Who should share the information
@@ -139,7 +139,7 @@ start=@<CommunicationRequest> AND {fhir:nodeRole [fhir:treeRoot]}
 # Message payload
 <CommunicationRequest.payload> EXTENDS @<BackboneElement> CLOSED {   
     fhir:content @<Attachment>  OR 
-    			(@<Reference>  AND {fhir:link @<Resource> })  OR 
+    			(@<Reference>  AND {fhir:link @<Resource> ?})  OR 
     			@<CodeableConcept>  ;  # Message part content
 }  
 

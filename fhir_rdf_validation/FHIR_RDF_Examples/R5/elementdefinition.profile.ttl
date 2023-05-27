@@ -16,11 +16,11 @@
      fhir:value [ fhir:v "4.0.0" ]
   ] ) ;
   fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/ElementDefinition"], [ fhir:v "http://hl7.org/fhir/StructureDefinition/ElementDefinition"] ;
-  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:version [ fhir:v "6.0.0-cibuild"], [ fhir:v "6.0.0-cibuild"] ;
   fhir:name [ fhir:v "ElementDefinition"], [ fhir:v "ElementDefinition"] ;
   fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
   fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
-  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:date [ fhir:v "2023-05-26T00:17:51+00:00"], [ fhir:v "2023-05-26T00:17:51+00:00"] ;
   fhir:publisher [ fhir:v "HL7 FHIR Standard"], [ fhir:v "HL7 FHIR Standard"] ;
   fhir:contact ( [
      fhir:telecom ( [
@@ -47,7 +47,7 @@
        fhir:display [ fhir:v "World" ]
      ] )
   ] ) ;
-  fhir:fhirVersion [ fhir:v "5.0.0"] ;
+  fhir:fhirVersion [ fhir:v "6.0.0-cibuild"] ;
   fhir:mapping ( [
      fhir:identity [ fhir:v "v2" ] ;
      fhir:uri [ fhir:v "http://hl7.org/v2" ] ;
@@ -405,7 +405,7 @@
          ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:description [ fhir:v "How a property is represented when serialized." ] ;
-         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/property-representation|5.0.0" ]
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/property-representation|6.0.0-cibuild" ]
        ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "v2" ] ;
@@ -507,7 +507,7 @@
        fhir:path [ fhir:v "ElementDefinition.label" ] ;
        fhir:short [ fhir:v "Name for element to display with or prompt for element" ] ;
        fhir:definition [ fhir:v "A single preferred label which is the text to display beside the element indicating its meaning or to use to prompt for the element in a user display or form." ] ;
-       fhir:comment [ fhir:v "See also the extension [http://hl7.org/fhir/StructureDefinition/elementdefinition-question](http://hl7.org/fhir/extensions/StructureDefinition-elementdefinition-question.html)." ] ;
+       fhir:comment [ fhir:v "See also the extension [http://hl7.org/fhir/StructureDefinition/elementdefinition-question](https://build.fhir.org/ig/HL7/fhir-extensions/StructureDefinition-elementdefinition-question.html)." ] ;
        fhir:min [ fhir:v "0" ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:base [
@@ -824,7 +824,7 @@
          ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:description [ fhir:v "How an element value is interpreted when discrimination is evaluated." ] ;
-         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/discriminator-type|5.0.0" ]
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/discriminator-type|6.0.0-cibuild" ]
        ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -967,7 +967,7 @@
          ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:description [ fhir:v "How slices are interpreted when evaluating an instance." ] ;
-         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/resource-slicing-rules|5.0.0" ]
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/resource-slicing-rules|6.0.0-cibuild" ]
        ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -1666,7 +1666,7 @@
        fhir:path [ fhir:v "ElementDefinition.type.profile" ] ;
        fhir:short [ fhir:v "Profiles (StructureDefinition or IG) - one must apply" ] ;
        fhir:definition [ fhir:v "Identifies a profile structure or implementation Guide that applies to the datatype this element refers to. If any profiles are specified, then the content must conform to at least one of them. The URL can be a local reference - to a contained StructureDefinition, or a reference to another StructureDefinition or Implementation Guide by a canonical URL. When an implementation guide is specified, the type SHALL conform to at least one profile defined in the implementation guide." ] ;
-       fhir:comment [ fhir:v "It is possible to profile  backbone element (e.g. part of a resource), using the [http://hl7.org/fhir/StructureDefinition/elementdefinition-profile-element](http://hl7.org/fhir/extensions/StructureDefinition-elementdefinition-profile-element.html) extension." ] ;
+       fhir:comment [ fhir:v "It is possible to profile  backbone element (e.g. part of a resource), using the [http://hl7.org/fhir/StructureDefinition/elementdefinition-profile-element](https://build.fhir.org/ig/HL7/fhir-extensions/StructureDefinition-elementdefinition-profile-element.html) extension." ] ;
        fhir:min [ fhir:v "0" ] ;
        fhir:max [ fhir:v "*" ] ;
        fhir:base [
@@ -1763,7 +1763,7 @@
          ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:description [ fhir:v "How resource references can be aggregated." ] ;
-         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/resource-aggregation-mode|5.0.0" ]
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/resource-aggregation-mode|6.0.0-cibuild" ]
        ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -1807,7 +1807,7 @@
          ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:description [ fhir:v "Whether a reference needs to be version specific or version independent, or whether either can be used." ] ;
-         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/reference-version-rules|5.0.0" ]
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/reference-version-rules|6.0.0-cibuild" ]
        ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -2664,7 +2664,7 @@
        fhir:id [ fhir:v "ElementDefinition.maxLength" ] ;
        fhir:path [ fhir:v "ElementDefinition.maxLength" ] ;
        fhir:short [ fhir:v "Max length for string type data" ] ;
-       fhir:definition [ fhir:v "Indicates the maximum length in characters that is permitted to be present in conformant instances and which is expected to be supported by conformant consumers that support the element. ```maxLength``` SHOULD only be used on primitive data types that have a string representation (see [http://hl7.org/fhir/StructureDefinition/structuredefinition-type-characteristics](http://hl7.org/fhir/extensions/StructureDefinition-structuredefinition-type-characteristics.html))." ] ;
+       fhir:definition [ fhir:v "Indicates the maximum length in characters that is permitted to be present in conformant instances and which is expected to be supported by conformant consumers that support the element. ```maxLength``` SHOULD only be used on primitive data types that have a string representation (see [http://hl7.org/fhir/StructureDefinition/structuredefinition-type-characteristics](https://build.fhir.org/ig/HL7/fhir-extensions/StructureDefinition-structuredefinition-type-characteristics.html))." ] ;
        fhir:comment [ fhir:v "Receivers are not required to reject instances that exceed the maximum length.  The full length could be stored.  In some cases, data might be truncated, though truncation should be undertaken with care and an understanding of the consequences of doing so. If not specified, there is no conformance expectation for length support." ] ;
        fhir:min [ fhir:v "0" ] ;
        fhir:max [ fhir:v "1" ] ;
@@ -2934,7 +2934,7 @@
          ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:description [ fhir:v "SHALL applications comply with this constraint?" ] ;
-         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/constraint-severity|5.0.0" ]
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/constraint-severity|6.0.0-cibuild" ]
        ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -3080,7 +3080,7 @@
        fhir:path [ fhir:v "ElementDefinition.mustHaveValue" ] ;
        fhir:short [ fhir:v "For primitives, that a value must be present - not replaced by an extension" ] ;
        fhir:definition [ fhir:v "Specifies for a primitive data type that the value of the data type cannot be replaced by an extension." ] ;
-       fhir:comment [ fhir:v "Typical extensions that can be provided in place of a the value are [http://hl7.org/fhir/StructureDefinition/data-absent-reason](http://hl7.org/fhir/extensions/StructureDefinition-data-absent-reason.html),  [http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor](http://hl7.org/fhir/extensions/StructureDefinition-iso21090-nullFlavor.html),  [http://hl7.org/fhir/StructureDefinition/originalText](http://hl7.org/fhir/extensions/StructureDefinition-originalText.html), and [http://hl7.org/fhir/StructureDefinition/cqf-expression](http://hl7.org/fhir/extensions/StructureDefinition-cqf-expression.html). Note that this element has no meaning when a value is provided, and extensions can be provided in addition to a value." ] ;
+       fhir:comment [ fhir:v "Typical extensions that can be provided in place of a the value are [http://hl7.org/fhir/StructureDefinition/data-absent-reason](https://build.fhir.org/ig/HL7/fhir-extensions/StructureDefinition-data-absent-reason.html),  [http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor](https://build.fhir.org/ig/HL7/fhir-extensions/StructureDefinition-iso21090-nullFlavor.html),  [http://hl7.org/fhir/StructureDefinition/originalText](https://build.fhir.org/ig/HL7/fhir-extensions/StructureDefinition-originalText.html), and [http://hl7.org/fhir/StructureDefinition/cqf-expression](https://build.fhir.org/ig/HL7/fhir-extensions/StructureDefinition-cqf-expression.html). Note that this element has no meaning when a value is provided, and extensions can be provided in addition to a value." ] ;
        fhir:min [ fhir:v "0" ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:base [
@@ -3427,7 +3427,7 @@
          ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:description [ fhir:v "Indication of the degree of conformance expectations associated with a binding." ] ;
-         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/binding-strength|5.0.0" ]
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/binding-strength|6.0.0-cibuild" ]
        ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "v2" ] ;
@@ -3646,7 +3646,7 @@
          ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:description [ fhir:v "The use of an additional binding." ] ;
-         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/additional-binding-purpose|5.0.0" ]
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/additional-binding-purpose|6.0.0-cibuild" ]
        ]
      ] [
        fhir:id [ fhir:v "ElementDefinition.binding.additional.valueSet" ] ;
@@ -3946,7 +3946,7 @@
          ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:description [ fhir:v "BCP 13 (RFCs 2045, 2046, 2047, 4288, 4289 and 2049)" ] ;
-         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/mimetypes|5.0.0" ]
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/mimetypes|6.0.0-cibuild" ]
        ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -4202,7 +4202,7 @@
          ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:description [ fhir:v "How a property is represented when serialized." ] ;
-         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/property-representation|5.0.0" ]
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/property-representation|6.0.0-cibuild" ]
        ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "v2" ] ;
@@ -4278,7 +4278,7 @@
        fhir:path [ fhir:v "ElementDefinition.label" ] ;
        fhir:short [ fhir:v "Name for element to display with or prompt for element" ] ;
        fhir:definition [ fhir:v "A single preferred label which is the text to display beside the element indicating its meaning or to use to prompt for the element in a user display or form." ] ;
-       fhir:comment [ fhir:v "See also the extension [http://hl7.org/fhir/StructureDefinition/elementdefinition-question](http://hl7.org/fhir/extensions/StructureDefinition-elementdefinition-question.html)." ] ;
+       fhir:comment [ fhir:v "See also the extension [http://hl7.org/fhir/StructureDefinition/elementdefinition-question](https://build.fhir.org/ig/HL7/fhir-extensions/StructureDefinition-elementdefinition-question.html)." ] ;
        fhir:min [ fhir:v "0" ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:type ( [
@@ -4388,7 +4388,7 @@
          ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:description [ fhir:v "How an element value is interpreted when discrimination is evaluated." ] ;
-         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/discriminator-type|5.0.0" ]
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/discriminator-type|6.0.0-cibuild" ]
        ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -4479,7 +4479,7 @@
          ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:description [ fhir:v "How slices are interpreted when evaluating an instance." ] ;
-         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/resource-slicing-rules|5.0.0" ]
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/resource-slicing-rules|6.0.0-cibuild" ]
        ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -4856,7 +4856,7 @@
        fhir:path [ fhir:v "ElementDefinition.type.profile" ] ;
        fhir:short [ fhir:v "Profiles (StructureDefinition or IG) - one must apply" ] ;
        fhir:definition [ fhir:v "Identifies a profile structure or implementation Guide that applies to the datatype this element refers to. If any profiles are specified, then the content must conform to at least one of them. The URL can be a local reference - to a contained StructureDefinition, or a reference to another StructureDefinition or Implementation Guide by a canonical URL. When an implementation guide is specified, the type SHALL conform to at least one profile defined in the implementation guide." ] ;
-       fhir:comment [ fhir:v "It is possible to profile  backbone element (e.g. part of a resource), using the [http://hl7.org/fhir/StructureDefinition/elementdefinition-profile-element](http://hl7.org/fhir/extensions/StructureDefinition-elementdefinition-profile-element.html) extension." ] ;
+       fhir:comment [ fhir:v "It is possible to profile  backbone element (e.g. part of a resource), using the [http://hl7.org/fhir/StructureDefinition/elementdefinition-profile-element](https://build.fhir.org/ig/HL7/fhir-extensions/StructureDefinition-elementdefinition-profile-element.html) extension." ] ;
        fhir:min [ fhir:v "0" ] ;
        fhir:max [ fhir:v "*" ] ;
        fhir:type ( [
@@ -4914,7 +4914,7 @@
          ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:description [ fhir:v "How resource references can be aggregated." ] ;
-         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/resource-aggregation-mode|5.0.0" ]
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/resource-aggregation-mode|6.0.0-cibuild" ]
        ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -4945,7 +4945,7 @@
          ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:description [ fhir:v "Whether a reference needs to be version specific or version independent, or whether either can be used." ] ;
-         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/reference-version-rules|5.0.0" ]
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/reference-version-rules|6.0.0-cibuild" ]
        ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -5601,7 +5601,7 @@
        fhir:id [ fhir:v "ElementDefinition.maxLength" ] ;
        fhir:path [ fhir:v "ElementDefinition.maxLength" ] ;
        fhir:short [ fhir:v "Max length for string type data" ] ;
-       fhir:definition [ fhir:v "Indicates the maximum length in characters that is permitted to be present in conformant instances and which is expected to be supported by conformant consumers that support the element. ```maxLength``` SHOULD only be used on primitive data types that have a string representation (see [http://hl7.org/fhir/StructureDefinition/structuredefinition-type-characteristics](http://hl7.org/fhir/extensions/StructureDefinition-structuredefinition-type-characteristics.html))." ] ;
+       fhir:definition [ fhir:v "Indicates the maximum length in characters that is permitted to be present in conformant instances and which is expected to be supported by conformant consumers that support the element. ```maxLength``` SHOULD only be used on primitive data types that have a string representation (see [http://hl7.org/fhir/StructureDefinition/structuredefinition-type-characteristics](https://build.fhir.org/ig/HL7/fhir-extensions/StructureDefinition-structuredefinition-type-characteristics.html))." ] ;
        fhir:comment [ fhir:v "Receivers are not required to reject instances that exceed the maximum length.  The full length could be stored.  In some cases, data might be truncated, though truncation should be undertaken with care and an understanding of the consequences of doing so. If not specified, there is no conformance expectation for length support." ] ;
        fhir:min [ fhir:v "0" ] ;
        fhir:max [ fhir:v "1" ] ;
@@ -5723,7 +5723,7 @@
          ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:description [ fhir:v "SHALL applications comply with this constraint?" ] ;
-         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/constraint-severity|5.0.0" ]
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/constraint-severity|6.0.0-cibuild" ]
        ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;
@@ -5817,7 +5817,7 @@
        fhir:path [ fhir:v "ElementDefinition.mustHaveValue" ] ;
        fhir:short [ fhir:v "For primitives, that a value must be present - not replaced by an extension" ] ;
        fhir:definition [ fhir:v "Specifies for a primitive data type that the value of the data type cannot be replaced by an extension." ] ;
-       fhir:comment [ fhir:v "Typical extensions that can be provided in place of a the value are [http://hl7.org/fhir/StructureDefinition/data-absent-reason](http://hl7.org/fhir/extensions/StructureDefinition-data-absent-reason.html),  [http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor](http://hl7.org/fhir/extensions/StructureDefinition-iso21090-nullFlavor.html),  [http://hl7.org/fhir/StructureDefinition/originalText](http://hl7.org/fhir/extensions/StructureDefinition-originalText.html), and [http://hl7.org/fhir/StructureDefinition/cqf-expression](http://hl7.org/fhir/extensions/StructureDefinition-cqf-expression.html). Note that this element has no meaning when a value is provided, and extensions can be provided in addition to a value." ] ;
+       fhir:comment [ fhir:v "Typical extensions that can be provided in place of a the value are [http://hl7.org/fhir/StructureDefinition/data-absent-reason](https://build.fhir.org/ig/HL7/fhir-extensions/StructureDefinition-data-absent-reason.html),  [http://hl7.org/fhir/StructureDefinition/iso21090-nullFlavor](https://build.fhir.org/ig/HL7/fhir-extensions/StructureDefinition-iso21090-nullFlavor.html),  [http://hl7.org/fhir/StructureDefinition/originalText](https://build.fhir.org/ig/HL7/fhir-extensions/StructureDefinition-originalText.html), and [http://hl7.org/fhir/StructureDefinition/cqf-expression](https://build.fhir.org/ig/HL7/fhir-extensions/StructureDefinition-cqf-expression.html). Note that this element has no meaning when a value is provided, and extensions can be provided in addition to a value." ] ;
        fhir:min [ fhir:v "0" ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:type ( [
@@ -5990,7 +5990,7 @@
          ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:description [ fhir:v "Indication of the degree of conformance expectations associated with a binding." ] ;
-         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/binding-strength|5.0.0" ]
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/binding-strength|6.0.0-cibuild" ]
        ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "v2" ] ;
@@ -6086,7 +6086,7 @@
          ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:description [ fhir:v "The use of an additional binding." ] ;
-         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/additional-binding-purpose|5.0.0" ]
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/additional-binding-purpose|6.0.0-cibuild" ]
        ]
      ] [
        fhir:id [ fhir:v "ElementDefinition.binding.additional.valueSet" ] ;
@@ -6211,7 +6211,7 @@
          ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:description [ fhir:v "BCP 13 (RFCs 2045, 2046, 2047, 4288, 4289 and 2049)" ] ;
-         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/mimetypes|5.0.0" ]
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/mimetypes|6.0.0-cibuild" ]
        ] ;
        fhir:mapping ( [
          fhir:identity [ fhir:v "rim" ] ;

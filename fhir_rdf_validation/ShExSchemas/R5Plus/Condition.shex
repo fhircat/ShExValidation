@@ -103,9 +103,9 @@ start=@<Condition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:bodySite @<OneOrMore_CodeableConcept>?;  # Anatomical location, if relevant
     fhir:subject @<Reference> AND {fhir:link 
     			@<Group> OR 
-    			@<Patient> ? };  # Who has the condition?
+    			@<Patient> ?};  # Who has the condition?
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # The Encounter during which this 
+    			@<Encounter> ?}?;  # The Encounter during which this 
                                             # Condition was created 
     fhir:onset @<dateTime>  OR 
     			@<Age>  OR 
@@ -131,13 +131,6 @@ start=@<Condition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # Condition 
 }  
 
-# Stage/grade, usually assessed formally
-<Condition.stage> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:summary @<CodeableConcept>?;       # Simple summary (disease specific)
-    fhir:assessment @<OneOrMore_Reference_ClinicalImpression_OR_DiagnosticReport_OR_Observation>?;  # Formal record of assessment
-    fhir:type @<CodeableConcept>?;          # Kind of staging
-}  
-
 # Who or what participated in the activities related to the condition and how they were involved
 <Condition.participant> EXTENDS @<BackboneElement> CLOSED {   
     fhir:function @<CodeableConcept>?;      # Type of involvement
@@ -148,9 +141,16 @@ start=@<Condition> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? };  # Who or what participated in the 
+    			@<RelatedPerson> ?};  # Who or what participated in the 
                                             # activities related to the 
                                             # condition 
+}  
+
+# Stage/grade, usually assessed formally
+<Condition.stage> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:summary @<CodeableConcept>?;       # Simple summary (disease specific)
+    fhir:assessment @<OneOrMore_Reference_ClinicalImpression_OR_DiagnosticReport_OR_Observation>?;  # Formal record of assessment
+    fhir:type @<CodeableConcept>?;          # Kind of staging
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

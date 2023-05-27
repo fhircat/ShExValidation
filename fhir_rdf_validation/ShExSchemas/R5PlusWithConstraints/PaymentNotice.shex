@@ -56,28 +56,28 @@ start=@<PaymentNotice> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:nodeRole [fhir:treeRoot]?;
 
     fhir:identifier @<OneOrMore_Identifier>?;  # Business Identifier for the 
-                                            # payment noctice 
+                                            # payment notice 
     fhir:status @<code> AND
     	{fhir:v @fhirvs:fm-status};  # active | cancelled | draft | 
                                             # entered-in-error 
     fhir:request @<Reference> AND {fhir:link 
-    			@<Resource> ? }?;  # Request reference
+    			@<Resource> ?}?;  # Request reference
     fhir:response @<Reference> AND {fhir:link 
-    			@<Resource> ? }?;  # Response reference
+    			@<Resource> ?}?;  # Response reference
     fhir:created @<dateTime>;               # Creation date
-    fhir:provider @<Reference> AND {fhir:link 
+    fhir:reporter @<Reference> AND {fhir:link 
     			@<Organization> OR 
     			@<Practitioner> OR 
-    			@<PractitionerRole> ? }?;  # Responsible practitioner
+    			@<PractitionerRole> ?}?;  # Responsible practitioner
     fhir:payment @<Reference> AND {fhir:link 
-    			@<PaymentReconciliation> ? };  # Payment reference
+    			@<PaymentReconciliation> ?}?;  # Payment reference
     fhir:paymentDate @<date>?;              # Payment or clearing date
     fhir:payee @<Reference> AND {fhir:link 
     			@<Organization> OR 
     			@<Practitioner> OR 
-    			@<PractitionerRole> ? }?;  # Party being paid
+    			@<PractitionerRole> ?}?;  # Party being paid
     fhir:recipient @<Reference> AND {fhir:link 
-    			@<Organization> ? };  # Party being notified
+    			@<Organization> ?};  # Party being notified
     fhir:amount @<Money>;                   # Monetary amount of the payment
     fhir:paymentStatus @<CodeableConcept>?;  # Issued or cleared Status of the 
                                             # payment 

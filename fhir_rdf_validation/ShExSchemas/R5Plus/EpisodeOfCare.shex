@@ -29,9 +29,6 @@ IMPORT <Reference.shex>
 IMPORT <Identifier.shex>
 #imported_end
 #imported_begin 
-IMPORT <positiveInt.shex>
-#imported_end
-#imported_begin 
 IMPORT <Organization.shex>
 #imported_end
 #imported_begin 
@@ -76,13 +73,17 @@ start=@<EpisodeOfCare> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # status) 
     fhir:type @<OneOrMore_CodeableConcept>?;  # Type/class  - e.g. specialist 
                                             # referral, disease management 
-    fhir:diagnosis @<OneOrMore_EpisodeOfCare.diagnosis>?;  # The list of diagnosis relevant to 
-                                            # this episode of care 
+    fhir:reason @<OneOrMore_EpisodeOfCare.reason>?;  # The list of medical reasons that 
+                                            # are expected to be addressed 
+                                            # during the episode of care 
+    fhir:diagnosis @<OneOrMore_EpisodeOfCare.diagnosis>?;  # The list of medical conditions 
+                                            # that were addressed during the 
+                                            # episode of care 
     fhir:patient @<Reference> AND {fhir:link 
-    			@<Patient> ? };  # The patient who is the focus of 
+    			@<Patient> ?};  # The patient who is the focus of 
                                             # this episode of care 
     fhir:managingOrganization @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Organization that assumes 
+    			@<Organization> ?}?;  # Organization that assumes 
                                             # responsibility for care 
                                             # coordination 
     fhir:period @<Period>?;                 # Interval during responsibility is 
@@ -90,7 +91,7 @@ start=@<EpisodeOfCare> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:referralRequest @<OneOrMore_Reference_ServiceRequest>?;  # Originating Referral Request(s)
     fhir:careManager @<Reference> AND {fhir:link 
     			@<Practitioner> OR 
-    			@<PractitionerRole> ? }?;  # Care manager/care coordinator for 
+    			@<PractitionerRole> ?}?;  # Care manager/care coordinator for 
                                             # the patient 
     fhir:careTeam @<OneOrMore_Reference_CareTeam>?;  # Other practitioners facilitating 
                                             # this episode of care 
@@ -109,15 +110,21 @@ start=@<EpisodeOfCare> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # the specified status 
 }  
 
-# The list of diagnosis relevant to this episode of care
+# The list of medical reasons that are expected to be addressed during the episode of care
+<EpisodeOfCare.reason> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:use @<CodeableConcept>?;           # What the reason value should be 
+                                            # used for/as 
+    fhir:value @<OneOrMore_CodeableReference>?;  # Medical reason to be addressed
+}  
+
+# The list of medical conditions that were addressed during the episode of care
 <EpisodeOfCare.diagnosis> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:condition @<CodeableReference>;    # Conditions/problems/diagnoses this 
-                                            # episode of care is for 
-    fhir:role @<CodeableConcept>?;          # Role that this diagnosis has 
+    fhir:condition @<OneOrMore_CodeableReference>?;  # The medical condition that was 
+                                            # addressed during the episode of 
+                                            # care 
+    fhir:use @<CodeableConcept>?;           # Role that this diagnosis has 
                                             # within the episode of care (e.g. 
                                             # admission, billing, discharge …) 
-    fhir:rank @<positiveInt>?;              # Ranking of the diagnosis (for each 
-                                            # role type) 
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------
@@ -131,10 +138,17 @@ start=@<EpisodeOfCare> AND {fhir:nodeRole [fhir:treeRoot]}
 
 
 
+<OneOrMore_EpisodeOfCare.reason> CLOSED {
+    rdf:first @<EpisodeOfCare.reason>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_EpisodeOfCare.reason> 
+}
+
 <OneOrMore_EpisodeOfCare.diagnosis> CLOSED {
     rdf:first @<EpisodeOfCare.diagnosis>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_EpisodeOfCare.diagnosis> 
 }
+
+
 
 
 

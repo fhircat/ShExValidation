@@ -16,12 +16,12 @@
      fhir:value [ fhir:v "normative" ]
   ] ) ;
   fhir:url [ fhir:v "http://hl7.org/fhir/OperationDefinition/ValueSet-validate-code"], [ fhir:v "http://hl7.org/fhir/OperationDefinition/ValueSet-validate-code"] ;
-  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:version [ fhir:v "6.0.0-cibuild"], [ fhir:v "6.0.0-cibuild"] ;
   fhir:name [ fhir:v "ValidateCode"], [ fhir:v "ValidateCode"] ;
   fhir:title [ fhir:v "Value Set based Validation"], [ fhir:v "Value Set based Validation"] ;
   fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
   fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
-  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:date [ fhir:v "2023-05-26T00:17:51+00:00"], [ fhir:v "2023-05-26T00:17:51+00:00"] ;
   fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
   fhir:contact ( [
      fhir:telecom ( [
@@ -147,7 +147,7 @@
      fhir:use [ fhir:v "in" ] ;
      fhir:min [ fhir:v "0" ] ;
      fhir:max [ fhir:v "1" ] ;
-     fhir:documentation [ fhir:v "If this parameter has a value of true or the parametter is ommitted, the client is stating that the validation is being performed in a context where a concept designated as 'abstract' is appropriate/allowed to be used, and the server should regard abstract codes as valid. If this parameter is false, abstract codes are not considered to be valid.\n\nNote that. 'abstract' is a property defined by many HL7 code systems that indicates that the concept is a logical grouping concept that is not intended to be used as a 'concrete' concept to in an actual patient/care/process record. This language is borrowed from object-orientated theory where 'abstract' entities are never instantiated. However in the general record and terminology eco-system, there are many contexts where it is appropriate to use these codes e.g. as decision making criterion, or when editing value sets themselves. This parameter allows a client to indicate to the server that it is working in such a context." ] ;
+     fhir:documentation [ fhir:v "If this parameter has a value of true or the parametter is omitted, the client is stating that the validation is being performed in a context where a concept designated as 'abstract' is appropriate/allowed to be used, and the server should regard abstract codes as valid. If this parameter is false, abstract codes are not considered to be valid.\n\nNote that. 'abstract' is a property defined by many HL7 code systems that indicates that the concept is a logical grouping concept that is not intended to be used as a 'concrete' concept to in an actual patient/care/process record. This language is borrowed from object-orientated theory where 'abstract' entities are never instantiated. However in the general record and terminology eco-system, there are many contexts where it is appropriate to use these codes e.g. as decision making criterion, or when editing value sets themselves. This parameter allows a client to indicate to the server that it is working in such a context." ] ;
      fhir:type [ fhir:v "boolean" ]
   ] [
      fhir:name [ fhir:v "displayLanguage" ] ;
@@ -161,7 +161,7 @@
      fhir:use [ fhir:v "in" ] ;
      fhir:min [ fhir:v "0" ] ;
      fhir:max [ fhir:v "*" ] ;
-     fhir:documentation [ fhir:v "The supplement must be used when validating the code. Use of this parameter should result in $validate-code behaving the same way as if the supplements were included in the value set definition using the [http://hl7.org/fhir/StructureDefinition/valueset-supplement](http://hl7.org/fhir/extensions/StructureDefinition-valueset-supplement.html)" ] ;
+     fhir:documentation [ fhir:v "The supplement must be used when validating the code. Use of this parameter should result in $validate-code behaving the same way as if the supplements were included in the value set definition using the [http://hl7.org/fhir/StructureDefinition/valueset-supplement](https://build.fhir.org/ig/HL7/fhir-extensions/StructureDefinition-valueset-supplement.html)" ] ;
      fhir:type [ fhir:v "canonical" ]
   ] [
      fhir:name [ fhir:v "result" ] ;

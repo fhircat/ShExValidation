@@ -24,7 +24,7 @@ IMPORT <Reference.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/documentreference-sourcepatient"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<Patient> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<Patient> ?})  ; 
     ^fhir:extension { a [fhir:DocumentReference]}
 
 }  

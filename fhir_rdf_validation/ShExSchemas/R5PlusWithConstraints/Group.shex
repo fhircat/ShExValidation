@@ -17,10 +17,10 @@ IMPORT <Range.shex>
 IMPORT <string.shex>
 #imported_end
 #imported_begin 
-IMPORT <Device.shex>
+IMPORT <Period.shex>
 #imported_end
 #imported_begin 
-IMPORT <Period.shex>
+IMPORT <Device.shex>
 #imported_end
 #imported_begin 
 IMPORT <boolean.shex>
@@ -32,6 +32,9 @@ IMPORT <Patient.shex>
 IMPORT <markdown.shex>
 #imported_end
 #imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+#imported_begin 
 IMPORT <CareTeam.shex>
 #imported_end
 #imported_begin 
@@ -39,9 +42,6 @@ IMPORT <Location.shex>
 #imported_end
 #imported_begin 
 IMPORT <Specimen.shex>
-#imported_end
-#imported_begin 
-IMPORT <Quantity.shex>
 #imported_end
 #imported_begin 
 IMPORT <Reference.shex>
@@ -85,7 +85,7 @@ start=@<Group> AND {fhir:nodeRole [fhir:treeRoot]}
     a [fhir:Group]?;
     fhir:nodeRole [fhir:treeRoot]?;
 
-    fhir:identifier @<OneOrMore_Identifier>?;  # Unique id
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business Identifier for this Group
     fhir:active @<boolean>?;                # Whether this group's record is in 
                                             # active use 
     fhir:type @<code> AND
@@ -105,11 +105,24 @@ start=@<Group> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Organization> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Entity that is the custodian of 
+    			@<RelatedPerson> ?}?;  # Entity that is the custodian of 
                                             # the Group's definition 
     fhir:characteristic @<OneOrMore_Group.characteristic>?;  # Include / Exclude group members by 
                                             # Trait 
     fhir:member @<OneOrMore_Group.member>?;  # Who or what is in group
+}  
+
+# Include / Exclude group members by Trait
+<Group.characteristic> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>;           # Kind of characteristic
+    fhir:value @<CodeableConcept>  OR 
+    			@<boolean>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<Reference>  ;  # Value held by characteristic
+    fhir:exclude @<boolean>;                # Group includes or excludes
+    fhir:period @<Period>?;                 # Period over which characteristic 
+                                            # is tested 
 }  
 
 # Who or what is in group
@@ -125,22 +138,9 @@ start=@<Group> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
     			@<RelatedPerson> OR 
-    			@<Specimen> ? };  # Reference to the group member
+    			@<Specimen> ?};  # Reference to the group member
     fhir:period @<Period>?;                 # Period member belonged to the group
     fhir:inactive @<boolean>?;              # If member is no longer in group
-}  
-
-# Include / Exclude group members by Trait
-<Group.characteristic> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:code @<CodeableConcept>;           # Kind of characteristic
-    fhir:value @<CodeableConcept>  OR 
-    			@<boolean>  OR 
-    			@<Quantity>  OR 
-    			@<Range>  OR 
-    			@<Reference>  ;  # Value held by characteristic
-    fhir:exclude @<boolean>;                # Group includes or excludes
-    fhir:period @<Period>?;                 # Period over which characteristic 
-                                            # is tested 
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

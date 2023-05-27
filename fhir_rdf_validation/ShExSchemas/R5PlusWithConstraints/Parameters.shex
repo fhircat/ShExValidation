@@ -202,6 +202,10 @@ start=@<Parameters> AND {fhir:nodeRole [fhir:treeRoot]}
 )
  
 
+# Named part of a multi-part parameter
+<Parameters.parameter.partnull> CLOSED {   
+}  
+
 # Operation Parameter
 <Parameters.parameter> EXTENDS @<BackboneElement> CLOSED {   
     fhir:name @<string>;                    # Name from the definition
@@ -278,10 +282,6 @@ start=@<Parameters> AND {fhir:nodeRole [fhir:treeRoot]}
 
 )
  
-
-# Named part of a multi-part parameter
-<Parameters.parameter.partnull> CLOSED {   
-}  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------
 

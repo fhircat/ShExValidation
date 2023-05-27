@@ -107,17 +107,23 @@ start=@<StructureMap> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # map 
     fhir:import @<OneOrMore_canonical>?;    # Other maps used by this map 
                                             # (canonical URLs) 
+    fhir:const @<OneOrMore_StructureMap.const>?;  # Definition of the constant value 
+                                            # used in the map rules 
     fhir:group @<OneOrMore_StructureMap.group>;  # Named sections for reader 
                                             # convenience 
 } AND (
 
-# Constraint UniqueKey:cnl-1
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:cnl-1
 # Human readable:URL should not contain | or # - these characters make processing canonical references problematic
-
-# Constraint: url.matches('([^|#])*')
+#
+# Constraint: exists() implies matches('^[^|# ]+$')
 # ShEx:
-
-{fhir:url { fhir:v /'([^|#])*'/ } }
+#
+# .  Implies   { fhir:v /'^[^|# ]+$'/ } 
+{}
 
 ) AND (
 
@@ -127,10 +133,10 @@ start=@<StructureMap> AND {fhir:nodeRole [fhir:treeRoot]}
 # # Constraint UniqueKey:cnl-0
 # Human readable:Name should be usable as an identifier for the module by machine processing applications such as code generation
 #
-# Constraint: name.exists() implies name.matches('[A-Z]([A-Za-z0-9_]){1,254}')
+# Constraint: name.exists() implies name.matches('^[A-Z]([A-Za-z0-9_]){1,254}$')
 # ShEx:
 #
-#{fhir:name .  Implies  {fhir:name { fhir:v /'[A-Z]([A-Za-z0-9_]){1,254}'/ } }}
+#{fhir:name .  Implies  {fhir:name { fhir:v /'^[A-Z]([A-Za-z0-9_]){1,254}$'/ } }}
 {}
 
 ) AND (
@@ -165,54 +171,11 @@ start=@<StructureMap> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # target 
 }  
 
-# Source inputs to the mapping
-<StructureMap.group.rule.source> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:context @<id>;                     # Type or variable this rule applies 
-                                            # to 
-    fhir:min @<integer>?;                   # Specified minimum cardinality
-    fhir:max @<string>?;                    # Specified maximum cardinality 
-                                            # (number or *) 
-    fhir:type @<string>?;                   # Rule only applies if source has 
-                                            # this type 
-    fhir:defaultValue @<string>?;           # Default value if no value exists
-    fhir:element @<string>?;                # Optional field for this source
-    fhir:listMode @<code> AND
-    	{fhir:v @fhirvs:map-source-list-mode}?;  # first | not_first | last | 
-                                            # not_last | only_one 
-    fhir:variable @<id>?;                   # Named context for field, if a 
-                                            # field is specified 
-    fhir:condition @<string>?;              # FHIRPath expression  - must be 
-                                            # true or the rule does not apply 
-    fhir:check @<string>?;                  # FHIRPath expression  - must be 
-                                            # true or the mapping engine throws 
-                                            # an error instead of completing 
-    fhir:logMessage @<string>?;             # Message to put in log if source 
-                                            # exists (FHIRPath) 
-}  
-
-# Named instance provided when invoking the map
-<StructureMap.group.input> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:name @<id>;                        # Name for this instance of data
-    fhir:type @<string>?;                   # Type for this instance of data
-    fhir:mode @<code> AND
-    	{fhir:v @fhirvs:map-input-mode};  # source | target
-    fhir:documentation @<string>?;          # Documentation for this instance of 
-                                            # data 
-}  
-
-# Content to create because of this mapping rule
-<StructureMap.group.rule.target> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:context @<id>?;                    # Variable this rule applies to
-    fhir:element @<string>?;                # Field to create in the context
-    fhir:variable @<id>?;                   # Named context for field, if 
-                                            # desired, and a field is specified 
-    fhir:listMode @<OneOrMore_code> AND
-    	{fhir:v @fhirvs:map-target-list-mode}?;  # first | share | last | collate
-    fhir:listRuleId @<id>?;                 # Internal rule reference for shared 
-                                            # list items 
-    fhir:transform @<code> AND
-    	{fhir:v @fhirvs:map-transform}?;  # create | copy +
-    fhir:parameter @<OneOrMore_StructureMap.group.rule.target.parameter>?;  # Parameters to the transform
+# Definition of the constant value used in the map rules
+<StructureMap.const> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<id>?;                       # Constant name
+    fhir:value @<string>?;                  # FHIRPath exression - value of the 
+                                            # constant 
 }  
 
 # Transform Rule from source to target
@@ -242,17 +205,6 @@ start=@<StructureMap> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # literal 
 }  
 
-# Rules contained in this rule
-<StructureMap.group.rule.rulenull> CLOSED {   
-}  
-
-# Which other rules to apply in the context of this rule
-<StructureMap.group.rule.dependent> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:name @<id>;                        # Name of a rule or group to apply
-    fhir:parameter @<OneOrMore_StructureMap.group.rule.target.parameter>;  # Parameter to pass to the rule or 
-                                            # group 
-}  
-
 # Structure Definition used by this map
 <StructureMap.structure> EXTENDS @<BackboneElement> CLOSED {   
     fhir:url @<canonical>;                  # Canonical reference to structure 
@@ -262,6 +214,67 @@ start=@<StructureMap> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # produced 
     fhir:alias @<string>?;                  # Name for type in this map
     fhir:documentation @<string>?;          # Documentation on use of structure
+}  
+
+# Rules contained in this rule
+<StructureMap.group.rule.rulenull> CLOSED {   
+}  
+
+# Source inputs to the mapping
+<StructureMap.group.rule.source> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:context @<id>;                     # Type or variable this rule applies 
+                                            # to 
+    fhir:min @<integer>?;                   # Specified minimum cardinality
+    fhir:max @<string>?;                    # Specified maximum cardinality 
+                                            # (number or *) 
+    fhir:type @<string>?;                   # Rule only applies if source has 
+                                            # this type 
+    fhir:defaultValue @<string>?;           # Default value if no value exists
+    fhir:element @<string>?;                # Optional field for this source
+    fhir:listMode @<code> AND
+    	{fhir:v @fhirvs:map-source-list-mode}?;  # first | not_first | last | 
+                                            # not_last | only_one 
+    fhir:variable @<id>?;                   # Named context for field, if a 
+                                            # field is specified 
+    fhir:condition @<string>?;              # FHIRPath expression  - must be 
+                                            # true or the rule does not apply 
+    fhir:check @<string>?;                  # FHIRPath expression  - must be 
+                                            # true or the mapping engine throws 
+                                            # an error instead of completing 
+    fhir:logMessage @<string>?;             # Message to put in log if source 
+                                            # exists (FHIRPath) 
+}  
+
+# Content to create because of this mapping rule
+<StructureMap.group.rule.target> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:context @<string>?;                # Variable this rule applies to
+    fhir:element @<string>?;                # Field to create in the context
+    fhir:variable @<id>?;                   # Named context for field, if 
+                                            # desired, and a field is specified 
+    fhir:listMode @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:map-target-list-mode}?;  # first | share | last | single
+    fhir:listRuleId @<id>?;                 # Internal rule reference for shared 
+                                            # list items 
+    fhir:transform @<code> AND
+    	{fhir:v @fhirvs:map-transform}?;  # create | copy +
+    fhir:parameter @<OneOrMore_StructureMap.group.rule.target.parameter>?;  # Parameters to the transform
+}  
+
+# Named instance provided when invoking the map
+<StructureMap.group.input> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<id>;                        # Name for this instance of data
+    fhir:type @<string>?;                   # Type for this instance of data
+    fhir:mode @<code> AND
+    	{fhir:v @fhirvs:map-input-mode};  # source | target
+    fhir:documentation @<string>?;          # Documentation for this instance of 
+                                            # data 
+}  
+
+# Which other rules to apply in the context of this rule
+<StructureMap.group.rule.dependent> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<id>;                        # Name of a rule or group to apply
+    fhir:parameter @<OneOrMore_StructureMap.group.rule.target.parameter>;  # Parameter to pass to the rule or 
+                                            # group 
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------
@@ -281,6 +294,11 @@ start=@<StructureMap> AND {fhir:nodeRole [fhir:treeRoot]}
 
 
 
+<OneOrMore_StructureMap.const> CLOSED {
+    rdf:first @<StructureMap.const>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_StructureMap.const> 
+}
+
 <OneOrMore_StructureMap.group> CLOSED {
     rdf:first @<StructureMap.group>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_StructureMap.group> 
@@ -296,13 +314,6 @@ start=@<StructureMap> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:rest [rdf:nil] OR @<OneOrMore_StructureMap.group.rule> 
 }
 
-
-
-<OneOrMore_StructureMap.group.rule.target.parameter> CLOSED {
-    rdf:first @<StructureMap.group.rule.target.parameter>  ;
-    rdf:rest [rdf:nil] OR @<OneOrMore_StructureMap.group.rule.target.parameter> 
-}
-
 <OneOrMore_StructureMap.group.rule.source> CLOSED {
     rdf:first @<StructureMap.group.rule.source>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_StructureMap.group.rule.source> 
@@ -316,6 +327,13 @@ start=@<StructureMap> AND {fhir:nodeRole [fhir:treeRoot]}
 <OneOrMore_StructureMap.group.rule.dependent> CLOSED {
     rdf:first @<StructureMap.group.rule.dependent>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_StructureMap.group.rule.dependent> 
+}
+
+
+
+<OneOrMore_StructureMap.group.rule.target.parameter> CLOSED {
+    rdf:first @<StructureMap.group.rule.target.parameter>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_StructureMap.group.rule.target.parameter> 
 }
 
 #---------------------- Value Sets ------------------------

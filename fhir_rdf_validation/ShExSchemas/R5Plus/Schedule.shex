@@ -23,6 +23,9 @@ IMPORT <boolean.shex>
 IMPORT <Patient.shex>
 #imported_end
 #imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
 IMPORT <CareTeam.shex>
 #imported_end
 #imported_begin 
@@ -71,7 +74,7 @@ start=@<Schedule> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:actor @<OneOrMore_Reference_CareTeam_OR_Device_OR_HealthcareService_OR_Location_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>;  # Resource(s) that availability 
                                             # information is being provided for 
     fhir:planningHorizon @<Period>?;        # Period of time covered by schedule
-    fhir:comment @<string>?;                # Comments on availability
+    fhir:comment @<markdown>?;              # Comments on availability
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

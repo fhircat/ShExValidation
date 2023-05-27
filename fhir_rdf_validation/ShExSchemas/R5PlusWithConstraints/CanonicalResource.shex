@@ -83,13 +83,17 @@ start=@<CanonicalResource> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:copyrightLabel @<string>?;         # Copyright holder and year(s)
 } AND (
 
-# Constraint UniqueKey:cnl-1
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:cnl-1
 # Human readable:URL should not contain | or # - these characters make processing canonical references problematic
-
-# Constraint: url.matches('([^|#])*')
+#
+# Constraint: exists() implies matches('^[^|# ]+$')
 # ShEx:
-
-{fhir:url { fhir:v /'([^|#])*'/ } }
+#
+# .  Implies   { fhir:v /'^[^|# ]+$'/ } 
+{}
 
 ) AND (
 
@@ -99,10 +103,10 @@ start=@<CanonicalResource> AND {fhir:nodeRole [fhir:treeRoot]}
 # # Constraint UniqueKey:cnl-0
 # Human readable:Name should be usable as an identifier for the module by machine processing applications such as code generation
 #
-# Constraint: name.exists() implies name.matches('[A-Z]([A-Za-z0-9_]){1,254}')
+# Constraint: name.exists() implies name.matches('^[A-Z]([A-Za-z0-9_]){1,254}$')
 # ShEx:
 #
-#{fhir:name .  Implies  {fhir:name { fhir:v /'[A-Z]([A-Za-z0-9_]){1,254}'/ } }}
+#{fhir:name .  Implies  {fhir:name { fhir:v /'^[A-Z]([A-Za-z0-9_]){1,254}$'/ } }}
 {}
 
 )

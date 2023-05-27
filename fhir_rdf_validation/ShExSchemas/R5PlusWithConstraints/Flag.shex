@@ -74,7 +74,7 @@ start=@<Flag> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:status @<code> AND
     	{fhir:v @fhirvs:flag-status};  # active | inactive | 
                                             # entered-in-error 
-    fhir:category @<OneOrMore_CodeableConcept>?;  # Clinical, administrative, etc.
+    fhir:category @<OneOrMore_CodeableConcept>?;  # Clinical, administrative, etc
     fhir:code @<CodeableConcept>;           # Coded or textual message to 
                                             # display to user 
     fhir:subject @<Reference> AND {fhir:link 
@@ -87,17 +87,17 @@ start=@<Flag> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
     			@<Procedure> OR 
-    			@<RelatedPerson> ? };  # Who/What is flag about?
+    			@<RelatedPerson> ?};  # Who/What is flag about?
     fhir:period @<Period>?;                 # Time period when flag is active
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # Alert relevant during encounter
+    			@<Encounter> ?}?;  # Alert relevant during encounter
     fhir:author @<Reference> AND {fhir:link 
     			@<Device> OR 
     			@<Organization> OR 
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Flag creator
+    			@<RelatedPerson> ?}?;  # Flag creator
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

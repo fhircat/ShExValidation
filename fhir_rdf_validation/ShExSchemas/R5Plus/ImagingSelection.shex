@@ -107,6 +107,9 @@ IMPORT <CodeableReference.shex>
 IMPORT <HealthcareService.shex>
 #imported_end
 #imported_begin 
+IMPORT <DocumentReference.shex>
+#imported_end
+#imported_begin 
 IMPORT <AppointmentResponse.shex>
 #imported_end
 
@@ -133,7 +136,7 @@ start=@<ImagingSelection> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Practitioner> OR 
     			@<Procedure> OR 
     			@<Specimen> OR 
-    			@<Substance> ? }?;  # Subject of the selected instances
+    			@<Substance> ?}?;  # Subject of the selected instances
     fhir:issued @<instant>?;                # Date / Time when this imaging 
                                             # selection was created 
     fhir:performer @<OneOrMore_ImagingSelection.performer>?;  # Selector of the instances (human 
@@ -143,7 +146,7 @@ start=@<ImagingSelection> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:code @<CodeableConcept>;           # Imaging Selection purpose text or 
                                             # code 
     fhir:studyUid @<id>?;                   # DICOM Study Instance UID
-    fhir:derivedFrom @<OneOrMore_Reference_ImagingStudy>?;  # The imaging study from which the 
+    fhir:derivedFrom @<OneOrMore_Reference_DocumentReference_OR_ImagingStudy>?;  # The imaging study from which the 
                                             # imaging selection is derived 
     fhir:endpoint @<OneOrMore_Reference_Endpoint>?;  # The network service providing 
                                             # retrieval for the images 
@@ -157,15 +160,13 @@ start=@<ImagingSelection> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:focus @<OneOrMore_Reference_ImagingSelection>?;  # Related resource that is the focus 
                                             # for the imaging selection 
     fhir:instance @<OneOrMore_ImagingSelection.instance>?;  # The selected instances
-    fhir:imageRegion @<OneOrMore_ImagingSelection.imageRegion>?;  # A specific 3D region in a DICOM 
-                                            # frame of reference 
 }  
 
-# A specific 3D region in a DICOM frame of reference
-<ImagingSelection.imageRegion> EXTENDS @<BackboneElement> CLOSED {   
+# A specific 2D region in a DICOM image / frame
+<ImagingSelection.instance.imageRegion2D> EXTENDS @<BackboneElement> CLOSED {   
     fhir:regionType @<code> AND
-    	{fhir:v @fhirvs:imagingselection-3dgraphictype};  # point | multipoint | polyline | 
-                                            # polygon | ellipse | ellipsoid 
+    	{fhir:v @fhirvs:imagingselection-2dgraphictype};  # point | polyline | interpolated | 
+                                            # circle | ellipse 
     fhir:coordinate @<OneOrMore_decimal>;   # Specifies the coordinates that 
                                             # define the image region 
 }  
@@ -181,7 +182,7 @@ start=@<ImagingSelection> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Author (human or machine)
+    			@<RelatedPerson> ?}?;  # Author (human or machine)
 }  
 
 # The selected instances
@@ -191,15 +192,17 @@ start=@<ImagingSelection> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:sopClass @<Coding>?;               # DICOM SOP Class UID
     fhir:subset @<OneOrMore_string>?;       # The selected subset of the SOP 
                                             # Instance 
-    fhir:imageRegion @<OneOrMore_ImagingSelection.instance.imageRegion>?;  # A specific 2D region in a DICOM 
+    fhir:imageRegion2D @<OneOrMore_ImagingSelection.instance.imageRegion2D>?;  # A specific 2D region in a DICOM 
                                             # image / frame 
+    fhir:imageRegion3D @<OneOrMore_ImagingSelection.instance.imageRegion3D>?;  # A specific 3D region in a DICOM 
+                                            # frame of reference 
 }  
 
-# A specific 2D region in a DICOM image / frame
-<ImagingSelection.instance.imageRegion> EXTENDS @<BackboneElement> CLOSED {   
+# A specific 3D region in a DICOM frame of reference
+<ImagingSelection.instance.imageRegion3D> EXTENDS @<BackboneElement> CLOSED {   
     fhir:regionType @<code> AND
-    	{fhir:v @fhirvs:imagingselection-2dgraphictype};  # point | polyline | interpolated | 
-                                            # circle | ellipse 
+    	{fhir:v @fhirvs:imagingselection-3dgraphictype};  # point | multipoint | polyline | 
+                                            # polygon | ellipse | ellipsoid 
     fhir:coordinate @<OneOrMore_decimal>;   # Specifies the coordinates that 
                                             # define the image region 
 }  
@@ -241,23 +244,25 @@ start=@<ImagingSelection> AND {fhir:nodeRole [fhir:treeRoot]}
 
 
 
+
+
 <OneOrMore_ImagingSelection.instance> CLOSED {
     rdf:first @<ImagingSelection.instance>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_ImagingSelection.instance> 
 }
 
-<OneOrMore_ImagingSelection.imageRegion> CLOSED {
-    rdf:first @<ImagingSelection.imageRegion>  ;
-    rdf:rest [rdf:nil] OR @<OneOrMore_ImagingSelection.imageRegion> 
+
+
+
+
+<OneOrMore_ImagingSelection.instance.imageRegion2D> CLOSED {
+    rdf:first @<ImagingSelection.instance.imageRegion2D>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ImagingSelection.instance.imageRegion2D> 
 }
 
-
-
-
-
-<OneOrMore_ImagingSelection.instance.imageRegion> CLOSED {
-    rdf:first @<ImagingSelection.instance.imageRegion>  ;
-    rdf:rest [rdf:nil] OR @<OneOrMore_ImagingSelection.instance.imageRegion> 
+<OneOrMore_ImagingSelection.instance.imageRegion3D> CLOSED {
+    rdf:first @<ImagingSelection.instance.imageRegion3D>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ImagingSelection.instance.imageRegion3D> 
 }
 
 #---------------------- Value Sets ------------------------

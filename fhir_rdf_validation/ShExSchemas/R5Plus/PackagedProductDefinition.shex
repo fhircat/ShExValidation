@@ -92,7 +92,9 @@ start=@<PackagedProductDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # type/form, independent of 
                                             # sub-packaging or organization. 
                                             # This can be considered as the pack 
-                                            # size 
+                                            # size. See also 
+                                            # packaging.containedItem.amount 
+                                            # (especially the long definition) 
     fhir:description @<markdown>?;          # Textual description. Note that 
                                             # this is not the name of the 
                                             # package or product 
@@ -122,6 +124,17 @@ start=@<PackagedProductDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # "nurse prescribable" 
 }  
 
+# General characteristics of this item
+<PackagedProductDefinition.packaging.property> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # A code expressing the type of 
+                                            # characteristic 
+    fhir:value @<CodeableConcept>  OR 
+    			@<Quantity>  OR 
+    			@<date>  OR 
+    			@<boolean>  OR 
+    			@<Attachment>  ?;  # A value for the characteristic
+}  
+
 # The legal status of supply of the packaged item as classified by the regulator
 <PackagedProductDefinition.legalStatusOfSupply> EXTENDS @<BackboneElement> CLOSED {   
     fhir:code @<CodeableConcept>?;          # The actual status of supply. In 
@@ -129,10 +142,6 @@ start=@<PackagedProductDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # may be supplied for use 
     fhir:jurisdiction @<CodeableConcept>?;  # The place where the legal status 
                                             # of supply applies 
-}  
-
-# Allows containers (and parts of containers) within containers, still as a part of single packaged product
-<PackagedProductDefinition.packaging.packagingnull> CLOSED {   
 }  
 
 # A packaging item, as a container for medically related items, possibly with other packaging items within, or a packaging component, such as bottle cap
@@ -178,18 +187,17 @@ start=@<PackagedProductDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # medical fluids, gases etc.), as 
                                             # contained in the package 
     fhir:amount @<Quantity>?;               # The number of this type of item 
-                                            # within this packaging 
+                                            # within this packaging or for 
+                                            # continuous items such as liquids 
+                                            # it is the quantity (for example 
+                                            # 25ml). See also 
+                                            # PackagedProductDefinition.contai-
+                                            # nedItemQuantity (especially the 
+                                            # long definition) 
 }  
 
-# General characteristics of this item
-<PackagedProductDefinition.packaging.property> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:type @<CodeableConcept>;           # A code expressing the type of 
-                                            # characteristic 
-    fhir:value @<CodeableConcept>  OR 
-    			@<Quantity>  OR 
-    			@<date>  OR 
-    			@<boolean>  OR 
-    			@<Attachment>  ?;  # A value for the characteristic
+# Allows containers (and parts of containers) within containers, still as a part of single packaged product
+<PackagedProductDefinition.packaging.packagingnull> CLOSED {   
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

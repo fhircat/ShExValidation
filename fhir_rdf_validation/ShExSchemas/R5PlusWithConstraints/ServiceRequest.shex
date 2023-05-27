@@ -50,6 +50,9 @@ IMPORT <Location.shex>
 IMPORT <dateTime.shex>
 #imported_end
 #imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
 IMPORT <CarePlan.shex>
 #imported_end
 #imported_begin 
@@ -104,10 +107,16 @@ IMPORT <DomainResource.shex>
 IMPORT <CodeableConcept.shex>
 #imported_end
 #imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
 IMPORT <PractitionerRole.shex>
 #imported_end
 #imported_begin 
 IMPORT <CodeableReference.shex>
+#imported_end
+#imported_begin 
+IMPORT <DocumentReference.shex>
 #imported_end
 #imported_begin 
 IMPORT <MedicationRequest.shex>
@@ -145,7 +154,7 @@ start=@<ServiceRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:doNotPerform @<boolean>?;          # True if service/procedure should 
                                             # not be performed 
     fhir:code @<CodeableReference>?;        # What is being requested/ordered
-    fhir:orderDetail @<OneOrMore_CodeableConcept>?;  # Additional order information
+    fhir:orderDetail @<OneOrMore_ServiceRequest.orderDetail>?;  # Additional order information
     fhir:quantity @<Quantity>  OR 
     			@<Ratio>  OR 
     			@<Range>  ?;  # Service amount
@@ -153,13 +162,13 @@ start=@<ServiceRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Device> OR 
     			@<Group> OR 
     			@<Location> OR 
-    			@<Patient> ? };  # Individual or Entity the service 
+    			@<Patient> ?};  # Individual or Entity the service 
                                             # is ordered for 
     fhir:focus @<OneOrMore_Reference_Resource>?;  # What the service request is about, 
                                             # when it is not about the subject 
                                             # of record 
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # Encounter in which the request was 
+    			@<Encounter> ?}?;  # Encounter in which the request was 
                                             # created 
     fhir:occurrence @<dateTime>  OR 
     			@<Period>  OR 
@@ -173,32 +182,36 @@ start=@<ServiceRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Who/what is requesting service
+    			@<RelatedPerson> ?}?;  # Who/what is requesting service
     fhir:performerType @<CodeableConcept>?;  # Performer role
     fhir:performer @<OneOrMore_Reference_CareTeam_OR_Device_OR_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Requested performer
     fhir:location @<OneOrMore_CodeableReference>?;  # Requested location
     fhir:reason @<OneOrMore_CodeableReference>?;  # Explanation/Justification for 
                                             # procedure or service 
     fhir:insurance @<OneOrMore_Reference_ClaimResponse_OR_Coverage>?;  # Associated insurance coverage
-    fhir:supportingInfo @<OneOrMore_Reference_Resource>?;  # Additional clinical information
+    fhir:supportingInfo @<OneOrMore_CodeableReference>?;  # Additional clinical information
     fhir:specimen @<OneOrMore_Reference_Specimen>?;  # Procedure Samples
     fhir:bodySite @<OneOrMore_CodeableConcept>?;  # Coded location on Body
     fhir:bodyStructure @<Reference> AND {fhir:link 
-    			@<BodyStructure> ? }?;  # BodyStructure-based location on 
+    			@<BodyStructure> ?}?;  # BodyStructure-based location on 
                                             # the body 
     fhir:note @<OneOrMore_Annotation>?;     # Comments
-    fhir:patientInstruction @<string>?;     # Patient or consumer-oriented 
+    fhir:patientInstruction @<OneOrMore_ServiceRequest.patientInstruction>?;  # Patient or consumer-oriented 
                                             # instructions 
     fhir:relevantHistory @<OneOrMore_Reference_Provenance>?;  # Request provenance
 } AND (
 
-# Constraint UniqueKey:bdystr-1
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:bdystr-1
 # Human readable:bodyStructure SHALL only be present if bodySite is not present
-
-# Constraint: bodySite.exists() or bodyStructure.exists()
+#
+# Constraint: bodySite.exists() implies bodyStructure.empty()
 # ShEx:
-
-{fhir:bodySite . OR {fhir:bodyStructure .}}
+#
+#{fhir:bodySite .  Implies   NOT { fhir:bodyStructure {fhir:v .} } }
+{}
 
 ) AND (
 
@@ -212,6 +225,34 @@ start=@<ServiceRequest> AND {fhir:nodeRole [fhir:treeRoot]}
 
 )
  
+
+# Additional order information
+<ServiceRequest.orderDetail> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:parameterFocus @<CodeableReference>?;  # The context of the order details 
+                                            # by reference 
+    fhir:parameter @<OneOrMore_ServiceRequest.orderDetail.parameter>;  # The parameter details for the 
+                                            # service being requested 
+}  
+
+# Patient or consumer-oriented instructions
+<ServiceRequest.patientInstruction> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:instruction @<markdown>  OR 
+    			(@<Reference>  AND {fhir:link @<DocumentReference> ?})  ?;  # Patient or consumer-oriented 
+                                            # instructions 
+}  
+
+# The parameter details for the service being requested
+<ServiceRequest.orderDetail.parameter> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>;           # The detail of the order being 
+                                            # requested 
+    fhir:value @<Quantity>  OR 
+    			@<Ratio>  OR 
+    			@<Range>  OR 
+    			@<boolean>  OR 
+    			@<CodeableConcept>  OR 
+    			@<string>  OR 
+    			@<Period>  ;  # The value for the order detail
+}  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------
 
@@ -235,6 +276,10 @@ start=@<ServiceRequest> AND {fhir:nodeRole [fhir:treeRoot]}
 
 
 
+<OneOrMore_ServiceRequest.orderDetail> CLOSED {
+    rdf:first @<ServiceRequest.orderDetail>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ServiceRequest.orderDetail> 
+}
 
 
 
@@ -272,8 +317,19 @@ start=@<ServiceRequest> AND {fhir:nodeRole [fhir:treeRoot]}
 
 
 
+<OneOrMore_ServiceRequest.patientInstruction> CLOSED {
+    rdf:first @<ServiceRequest.patientInstruction>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ServiceRequest.patientInstruction> 
+}
 
 
+
+
+
+<OneOrMore_ServiceRequest.orderDetail.parameter> CLOSED {
+    rdf:first @<ServiceRequest.orderDetail.parameter>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ServiceRequest.orderDetail.parameter> 
+}
 
 #---------------------- Value Sets ------------------------
 

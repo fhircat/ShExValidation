@@ -103,19 +103,21 @@ start=@<QuestionnaireResponse> AND {fhir:nodeRole [fhir:treeRoot]}
     a [fhir:QuestionnaireResponse]?;
     fhir:nodeRole [fhir:treeRoot]?;
 
-    fhir:identifier @<OneOrMore_Identifier>?;  # Unique id for this set of answers
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business identifier for this set 
+                                            # of answers 
     fhir:basedOn @<OneOrMore_Reference_CarePlan_OR_ServiceRequest>?;  # Request fulfilled by this 
                                             # QuestionnaireResponse 
-    fhir:partOf @<OneOrMore_Reference_Observation_OR_Procedure>?;  # Part of this action
+    fhir:partOf @<OneOrMore_Reference_Observation_OR_Procedure>?;  # Part of referenced event
     fhir:questionnaire @<canonical>;        # Canonical URL of Questionnaire 
                                             # being answered 
     fhir:status @<code> AND
     	{fhir:v @fhirvs:questionnaire-answers-status};  # in-progress | completed | amended 
                                             # | entered-in-error | stopped 
     fhir:subject @<Reference> AND {fhir:link 
-    			@<Resource> ? }?;  # The subject of the questions
+    			@<Resource> ?}?;  # The subject of the questions
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # Encounter created as part of
+    			@<Encounter> ?}?;  # Encounter the questionnaire 
+                                            # response is part of 
     fhir:authored @<dateTime>?;             # Date the answers were gathered
     fhir:author @<Reference> AND {fhir:link 
     			@<Device> OR 
@@ -123,7 +125,7 @@ start=@<QuestionnaireResponse> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # The individual or device that 
+    			@<RelatedPerson> ?}?;  # The individual or device that 
                                             # received and recorded the answers 
     fhir:source @<Reference> AND {fhir:link 
     			@<Device> OR 
@@ -131,7 +133,7 @@ start=@<QuestionnaireResponse> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # The individual or device that 
+    			@<RelatedPerson> ?}?;  # The individual or device that 
                                             # answered the questions 
     fhir:item @<OneOrMore_QuestionnaireResponse.item>?;  # Groups and questions
 } AND (
@@ -159,8 +161,8 @@ start=@<QuestionnaireResponse> AND {fhir:nodeRole [fhir:treeRoot]}
 
 # Constraint: (answer.exists() and item.exists()).not()
 # ShEx:
-
- NOT { {fhir:answer . AND {fhir:item .}} }
+# UPDATED_TO_FIX
+ NOT ( {fhir:answer .} AND {fhir:item .})
 
 )
  
@@ -199,8 +201,8 @@ start=@<QuestionnaireResponse> AND {fhir:nodeRole [fhir:treeRoot]}
 
 # Constraint: (answer.exists() and item.exists()).not()
 # ShEx:
-
- NOT { {fhir:answer . AND {fhir:item .}} }
+# UPDATED_TO_FIX
+ NOT ( {fhir:answer .} AND {fhir:item .} )
 
 )
  
@@ -218,7 +220,7 @@ start=@<QuestionnaireResponse> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Attachment>  OR 
     			@<Coding>  OR 
     			@<SimpleQuantity>  OR 
-    			(@<Reference>  AND {fhir:link @<Resource> })  ;  # Single-valued answer to the 
+    			(@<Reference>  AND {fhir:link @<Resource> ?})  ;  # Single-valued answer to the 
                                             # question 
     fhir:item @<OneOrMore_QuestionnaireResponse.item>?;  # Child items of question
 }  

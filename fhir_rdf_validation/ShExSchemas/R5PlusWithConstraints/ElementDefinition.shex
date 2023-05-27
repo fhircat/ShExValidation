@@ -416,9 +416,6 @@ IMPORT <ExtendedContactDetail.shex>
                                             # replace a primitive value 
     fhir:mustSupport @<boolean>?;           # If the element must be supported 
                                             # (discouraged - see obligations) 
-    fhir:obligation @<OneOrMore_Element>?;  # Documents obligations for 
-                                            # applications making use of this 
-                                            # element 
     fhir:isModifier @<boolean>?;            # If this modifies the meaning of 
                                             # other elements 
     fhir:isModifierReason @<string>?;       # Reason that this element is marked 
@@ -429,16 +426,35 @@ IMPORT <ExtendedContactDetail.shex>
                                             # definitions 
 }  
 
-# This element is sliced - slices follow
-<ElementDefinition.slicing> EXTENDS @<Element> CLOSED {   
-    fhir:discriminator @<OneOrMore_Element>?;  # Element values that are used to 
-                                            # distinguish the slices 
-    fhir:description @<string>?;            # Text description of how slicing 
-                                            # works (or not) 
-    fhir:ordered @<boolean>?;               # If elements must be in same order 
-                                            # as slices 
-    fhir:rules @<code> AND
-    	{fhir:v @fhirvs:resource-slicing-rules};  # closed | open | openAtEnd
+# Condition that must evaluate to true
+<ElementDefinition.constraint> EXTENDS @<Element> CLOSED {   
+    fhir:key @<id>;                         # Target of 'condition' reference 
+                                            # above 
+    fhir:requirements @<markdown>?;         # Why this constraint is necessary 
+                                            # or appropriate 
+    fhir:severity @<code> AND
+    	{fhir:v @fhirvs:constraint-severity};  # error | warning
+    fhir:suppress @<boolean>?;              # Suppress warning or hint in profile
+    fhir:human @<string>;                   # Human description of constraint
+    fhir:expression @<string>?;             # FHIRPath expression of constraint
+    fhir:source @<canonical>?;              # Reference to original source of 
+                                            # constraint 
+}  
+
+# Element values that are used to distinguish the slices
+<ElementDefinition.slicing.discriminator> EXTENDS @<Element> CLOSED {   
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:discriminator-type};  # value | exists | type | profile | 
+                                            # position 
+    fhir:path @<string>;                    # Path to element value
+}  
+
+# Base definition information for tools
+<ElementDefinition.base> EXTENDS @<Element> CLOSED {   
+    fhir:path @<string>;                    # Path that identifies the base 
+                                            # element 
+    fhir:min @<unsignedInt>;                # Min cardinality of the base element
+    fhir:max @<string>;                     # Max cardinality of the base element
 }  
 
 # Example value (as defined for type)
@@ -502,6 +518,36 @@ IMPORT <ExtendedContactDetail.shex>
                                             # types) 
 }  
 
+# Additional Bindings - more rules about the binding
+<ElementDefinition.binding.additional> EXTENDS @<Element> CLOSED {   
+    fhir:purpose @<code> AND
+    	{fhir:v @fhirvs:additional-binding-purpose};  # maximum | minimum | required | 
+                                            # extensible | candidate | current | 
+                                            # preferred | ui | starter | 
+                                            # component 
+    fhir:valueSet @<canonical>;             # The value set for the additional 
+                                            # binding 
+    fhir:documentation @<markdown>?;        # Documentation of the purpose of 
+                                            # use of the binding 
+    fhir:shortDoco @<string>?;              # Concise documentation - for 
+                                            # summary tables 
+    fhir:usage @<OneOrMore_UsageContext>?;  # Qualifies the usage - 
+                                            # jurisdiction, gender, workflow 
+                                            # status etc. 
+    fhir:any @<boolean>?;                   # Whether binding can applies to all 
+                                            # repeats, or just one 
+}  
+
+# Map element to another set of definitions
+<ElementDefinition.mapping> EXTENDS @<Element> CLOSED {   
+    fhir:identity @<id>;                    # Reference to mapping declaration
+    fhir:language @<code> AND
+    	{fhir:v @fhirvs:mimetypes}?;  # Computable language of mapping
+    fhir:map @<string>;                     # Details of the mapping
+    fhir:comment @<markdown>?;              # Comments about the mapping or its 
+                                            # use 
+}  
+
 # Data type and Profile for this element
 <ElementDefinition.type> EXTENDS @<Element> CLOSED {   
     fhir:code @<uri>;                       # Data type or Resource (reference 
@@ -518,84 +564,16 @@ IMPORT <ExtendedContactDetail.shex>
     	{fhir:v @fhirvs:reference-version-rules}?;  # either | independent | specific
 }  
 
-# Condition that must evaluate to true
-<ElementDefinition.constraint> EXTENDS @<Element> CLOSED {   
-    fhir:key @<id>;                         # Target of 'condition' reference 
-                                            # above 
-    fhir:requirements @<markdown>?;         # Why this constraint is necessary 
-                                            # or appropriate 
-    fhir:severity @<code> AND
-    	{fhir:v @fhirvs:constraint-severity};  # error | warning
-    fhir:suppress @<boolean>?;              # Suppress warning or hint in profile
-    fhir:human @<string>;                   # Human description of constraint
-    fhir:expression @<string>?;             # FHIRPath expression of constraint
-    fhir:source @<canonical>?;              # Reference to original source of 
-                                            # constraint 
-}  
-
-# Map element to another set of definitions
-<ElementDefinition.mapping> EXTENDS @<Element> CLOSED {   
-    fhir:identity @<id>;                    # Reference to mapping declaration
-    fhir:language @<code> AND
-    	{fhir:v @fhirvs:mimetypes}?;  # Computable language of mapping
-    fhir:map @<string>;                     # Details of the mapping
-    fhir:comment @<markdown>?;              # Comments about the mapping or its 
-                                            # use 
-}  
-
-# Additional Bindings - more rules about the binding
-<ElementDefinition.binding.additional> EXTENDS @<Element> CLOSED {   
-    fhir:purpose @<code> AND
-    	{fhir:v @fhirvs:additional-binding-purpose};  # maximum | minimum | required | 
-                                            # extensible | candidate | current | 
-                                            # preferred | ui | starter | 
-                                            # component 
-    fhir:valueSet @<canonical>;             # The value set for the additional 
-                                            # binding 
-    fhir:documentation @<markdown>?;        # Documentation of the purpose of 
-                                            # use of the binding 
-    fhir:shortDoco @<string>?;              # Concise documentation - for 
-                                            # summary tables 
-    fhir:usage @<OneOrMore_UsageContext>?;  # Qualifies the usage - 
-                                            # jurisdiction, gender, workflow 
-                                            # status etc 
-    fhir:any @<boolean>?;                   # Whether binding can applies to all 
-                                            # repeats, or just one 
-}  
-
-# Element values that are used to distinguish the slices
-<ElementDefinition.slicing.discriminator> EXTENDS @<Element> CLOSED {   
-    fhir:type @<code> AND
-    	{fhir:v @fhirvs:discriminator-type};  # value | exists | type | profile | 
-                                            # position 
-    fhir:path @<string>;                    # Path to element value
-}  
-
-# Base definition information for tools
-<ElementDefinition.base> EXTENDS @<Element> CLOSED {   
-    fhir:path @<string>;                    # Path that identifies the base 
-                                            # element 
-    fhir:min @<unsignedInt>;                # Min cardinality of the base element
-    fhir:max @<string>;                     # Max cardinality of the base element
-}  
-
-# Documents obligations for applications making use of this element
-<ElementDefinition.obligation> EXTENDS @<Element> CLOSED {   
-    fhir:code @<Coding>;                    # Combination code describing the 
-                                            # nature of the obligation 
-    fhir:actor @<OneOrMore_canonical>?;     # Actor(s) this obligation applies 
-                                            # to (all actors if none) 
-    fhir:documentation @<markdown>?;        # Documentation of the purpose or 
-                                            # application of the obligation 
-    fhir:usage @<OneOrMore_UsageContext>?;  # Qualifies the usage - 
-                                            # jurisdiction, gender, workflow 
-                                            # status etc 
-    fhir:filter @<string>?;                 # Limits obligation to some repeats 
-                                            # by FHIRPath 
-    fhir:filterDocumentation @<string>?;    # Ddescribes the intent of the 
-                                            # filter (short) 
-    fhir:process @<OneOrMore_uri>?;         # The obligation only applies when 
-                                            # perfomring the indicated process 
+# This element is sliced - slices follow
+<ElementDefinition.slicing> EXTENDS @<Element> CLOSED {   
+    fhir:discriminator @<OneOrMore_Element>?;  # Element values that are used to 
+                                            # distinguish the slices 
+    fhir:description @<string>?;            # Text description of how slicing 
+                                            # works (or not) 
+    fhir:ordered @<boolean>?;               # If elements must be in same order 
+                                            # as slices 
+    fhir:rules @<code> AND
+    	{fhir:v @fhirvs:resource-slicing-rules};  # closed | open | openAtEnd
 }  
 
 # ValueSet details if this is coded
@@ -611,8 +589,6 @@ IMPORT <ExtendedContactDetail.shex>
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------
-
-
 
 
 

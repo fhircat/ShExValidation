@@ -24,7 +24,7 @@ IMPORT <ResearchStudy.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/consent-ResearchStudyContext"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<ResearchStudy> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<ResearchStudy> ?})  ; 
     ^fhir:extension { ^fhir:provision {a [fhir:Consent]}}
 
 }  

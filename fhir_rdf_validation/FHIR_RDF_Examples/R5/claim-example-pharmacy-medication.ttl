@@ -129,11 +129,7 @@
      fhir:careTeamSequence ( [ fhir:v "1"^^xsd:positiveInteger ] ) ;
      fhir:informationSequence ( [ fhir:v "1"^^xsd:positiveInteger ] [ fhir:v "2"^^xsd:positiveInteger ] [ fhir:v "3"^^xsd:positiveInteger ] ) ;
      fhir:productOrService [
-       fhir:coding ( [
-         fhir:system [ fhir:v "http://www.nlm.nih.gov/research/umls/rxnorm"^^xsd:anyURI ] ;
-         fhir:code [ fhir:v "562721" ] ;
-         fhir:display [ fhir:v "Alprazolam 0.25mg (Xanax)" ]
-       ] )
+       fhir:text [ fhir:v "Alprazolam 0.25mg (Xanax)" ] #   <coding>\n				<system value=\"http:\/\/www.nlm.nih.gov\/research\/umls\/rxnorm\"\/>\n				<code value=\"562721\"\/> \n				<display value=\"Alprazolam 0.25mg (Xanax)\"\/>\n			<\/coding>   
      ] ; #   type=packagemedication  
      fhir:serviced [ fhir:v "2014-08-16"^^xsd:date ] ;
      fhir:quantity [

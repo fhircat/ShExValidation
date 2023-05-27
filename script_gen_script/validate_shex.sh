@@ -8,6 +8,7 @@ DIR=.
 source $DIR/setup_shexjs.sh
 
 SHEX_PATH=../fhir_rdf_validation/ShExSchemas/R5Plus
+#SHEX_PATH=~/runtime_environments/ShExSchemas
 LOG_DIR=../logs/shex
 
 # Create run time log directory, if not created already

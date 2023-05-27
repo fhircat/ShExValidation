@@ -121,8 +121,8 @@ start=@<StructureDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:differential @<StructureDefinition.differential>?;  # Differential view of the structure
 }  
 
-# Differential view of the structure
-<StructureDefinition.differential> EXTENDS @<BackboneElement> CLOSED {   
+# Snapshot view of the structure
+<StructureDefinition.snapshot> EXTENDS @<BackboneElement> CLOSED {   
     fhir:element @<OneOrMore_ElementDefinition>;  # Definition of elements in the 
                                             # resource (if no 
                                             # StructureDefinition) 
@@ -144,11 +144,11 @@ start=@<StructureDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # refers to 
     fhir:name @<string>?;                   # Names what this mapping refers to
     fhir:comment @<string>?;                # Versions, Issues, Scope 
-                                            # limitations etc. 
+                                            # limitations etc 
 }  
 
-# Snapshot view of the structure
-<StructureDefinition.snapshot> EXTENDS @<BackboneElement> CLOSED {   
+# Differential view of the structure
+<StructureDefinition.differential> EXTENDS @<BackboneElement> CLOSED {   
     fhir:element @<OneOrMore_ElementDefinition>;  # Definition of elements in the 
                                             # resource (if no 
                                             # StructureDefinition) 

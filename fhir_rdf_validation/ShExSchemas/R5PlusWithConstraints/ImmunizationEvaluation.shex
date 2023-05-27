@@ -20,6 +20,9 @@ IMPORT <Patient.shex>
 IMPORT <dateTime.shex>
 #imported_end
 #imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
 IMPORT <Reference.shex>
 #imported_end
 #imported_begin 
@@ -50,21 +53,21 @@ start=@<ImmunizationEvaluation> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:status @<code> AND
     	{fhir:v @fhirvs:immunization-evaluation-status};  # completed | entered-in-error
     fhir:patient @<Reference> AND {fhir:link 
-    			@<Patient> ? };  # Who this evaluation is for
+    			@<Patient> ?};  # Who this evaluation is for
     fhir:date @<dateTime>?;                 # Date evaluation was performed
     fhir:authority @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Who is responsible for publishing 
+    			@<Organization> ?}?;  # Who is responsible for publishing 
                                             # the recommendations 
     fhir:targetDisease @<CodeableConcept>;  # The vaccine preventable disease 
                                             # schedule being evaluated 
     fhir:immunizationEvent @<Reference> AND {fhir:link 
-    			@<Immunization> ? };  # Immunization being evaluated
+    			@<Immunization> ?};  # Immunization being evaluated
     fhir:doseStatus @<CodeableConcept>;     # Status of the dose relative to 
                                             # published recommendations 
     fhir:doseStatusReason @<OneOrMore_CodeableConcept>?;  # Reason why the doese is considered 
                                             # valid, invalid or some other 
                                             # status 
-    fhir:description @<string>?;            # Evaluation notes
+    fhir:description @<markdown>?;          # Evaluation notes
     fhir:series @<string>?;                 # Name of vaccine series
     fhir:doseNumber @<string>?;             # Dose number within series
     fhir:seriesDoses @<string>?;            # Recommended number of doses for 

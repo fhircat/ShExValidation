@@ -24,7 +24,7 @@ IMPORT <Organization.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/cqf-initiatingOrganization"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<Organization> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<Organization> ?})  ; 
     ^fhir:extension { a [fhir:Basic]}
 
 }  

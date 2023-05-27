@@ -23,10 +23,10 @@ IMPORT <boolean.shex>
 IMPORT <markdown.shex>
 #imported_end
 #imported_begin 
-IMPORT <Quantity.shex>
+IMPORT <dateTime.shex>
 #imported_end
 #imported_begin 
-IMPORT <dateTime.shex>
+IMPORT <Quantity.shex>
 #imported_end
 #imported_begin 
 IMPORT <Citation.shex>
@@ -114,7 +114,7 @@ start=@<SubstanceDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:property @<OneOrMore_SubstanceDefinition.property>?;  # General specifications for this 
                                             # substance 
     fhir:referenceInformation @<Reference> AND {fhir:link 
-    			@<SubstanceReferenceInformation> ? }?;  # General information detailing this 
+    			@<SubstanceReferenceInformation> ?}?;  # General information detailing this 
                                             # substance 
     fhir:molecularWeight @<OneOrMore_SubstanceDefinition.molecularWeight>?;  # The average mass of a molecule of 
                                             # a compound 
@@ -124,14 +124,36 @@ start=@<SubstanceDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:relationship @<OneOrMore_SubstanceDefinition.relationship>?;  # A link between this substance and 
                                             # another 
     fhir:nucleicAcid @<Reference> AND {fhir:link 
-    			@<SubstanceNucleicAcid> ? }?;  # Data items specific to nucleic 
+    			@<SubstanceNucleicAcid> ?}?;  # Data items specific to nucleic 
                                             # acids 
     fhir:polymer @<Reference> AND {fhir:link 
-    			@<SubstancePolymer> ? }?;  # Data items specific to polymers
+    			@<SubstancePolymer> ?}?;  # Data items specific to polymers
     fhir:protein @<Reference> AND {fhir:link 
-    			@<SubstanceProtein> ? }?;  # Data items specific to proteins
+    			@<SubstanceProtein> ?}?;  # Data items specific to proteins
     fhir:sourceMaterial @<SubstanceDefinition.sourceMaterial>?;  # Material or taxonomic/anatomical 
                                             # source 
+}  
+
+# Codes associated with the substance
+<SubstanceDefinition.code> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>?;          # The specific code
+    fhir:status @<CodeableConcept>?;        # Status of the code assignment, for 
+                                            # example 'provisional', 'approved' 
+    fhir:statusDate @<dateTime>?;           # The date at which the code status 
+                                            # was changed 
+    fhir:note @<OneOrMore_Annotation>?;     # Any comment can be provided in 
+                                            # this field 
+    fhir:source @<OneOrMore_Reference_DocumentReference>?;  # Supporting literature
+}  
+
+# The average mass of a molecule of a compound
+<SubstanceDefinition.molecularWeight> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:method @<CodeableConcept>?;        # The method by which the weight was 
+                                            # determined 
+    fhir:type @<CodeableConcept>?;          # Type of molecular weight e.g. 
+                                            # exact, average, weight average 
+    fhir:amount @<Quantity>;                # Used to capture quantitative 
+                                            # values for a variety of elements 
 }  
 
 # Names applicable to this substance
@@ -160,27 +182,6 @@ start=@<SubstanceDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:source @<OneOrMore_Reference_DocumentReference>?;  # Supporting literature
 }  
 
-# Moiety, for structural modifications
-<SubstanceDefinition.moiety> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:role @<CodeableConcept>?;          # Role that the moiety is playing
-    fhir:identifier @<Identifier>?;         # Identifier by which this moiety 
-                                            # substance is known 
-    fhir:name @<string>?;                   # Textual name for this moiety 
-                                            # substance 
-    fhir:stereochemistry @<CodeableConcept>?;  # Stereochemistry type
-    fhir:opticalActivity @<CodeableConcept>?;  # Optical activity type
-    fhir:molecularFormula @<string>?;       # Molecular formula for this moiety 
-                                            # (e.g. with the Hill system) 
-    fhir:amount @<Quantity>  OR 
-    			@<string>  ?;  # Quantitative value for this moiety
-    fhir:measurementType @<CodeableConcept>?;  # The measurement type of the 
-                                            # quantitative value 
-}  
-
-# A synonym of this particular name, by which the substance is also known
-<SubstanceDefinition.name.synonymnull> CLOSED {   
-}  
-
 # Material or taxonomic/anatomical source
 <SubstanceDefinition.sourceMaterial> EXTENDS @<BackboneElement> CLOSED {   
     fhir:type @<CodeableConcept>?;          # Classification of the origin of 
@@ -198,9 +199,58 @@ start=@<SubstanceDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # material is harvested 
 }  
 
+# Moiety, for structural modifications
+<SubstanceDefinition.moiety> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:role @<CodeableConcept>?;          # Role that the moiety is playing
+    fhir:identifier @<Identifier>?;         # Identifier by which this moiety 
+                                            # substance is known 
+    fhir:name @<string>?;                   # Textual name for this moiety 
+                                            # substance 
+    fhir:stereochemistry @<CodeableConcept>?;  # Stereochemistry type
+    fhir:opticalActivity @<CodeableConcept>?;  # Optical activity type
+    fhir:molecularFormula @<string>?;       # Molecular formula for this moiety 
+                                            # (e.g. with the Hill system) 
+    fhir:amount @<Quantity>  OR 
+    			@<string>  ?;  # Quantitative value for this moiety
+    fhir:measurementType @<CodeableConcept>?;  # The measurement type of the 
+                                            # quantitative value 
+}  
+
+# A translation for this name into another human language
+<SubstanceDefinition.name.translationnull> CLOSED {   
+}  
+
+# General specifications for this substance
+<SubstanceDefinition.characterization> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:technique @<CodeableConcept>?;     # The method used to find the 
+                                            # characterization e.g. HPLC 
+    fhir:form @<CodeableConcept>?;          # Describes the nature of the 
+                                            # chemical entity and explains, for 
+                                            # instance, whether this is a base 
+                                            # or a salt form 
+    fhir:description @<markdown>?;          # The description or justification 
+                                            # in support of the interpretation 
+                                            # of the data file 
+    fhir:file @<OneOrMore_Attachment>?;     # The data produced by the 
+                                            # analytical instrument or a 
+                                            # pictorial representation of that 
+                                            # data. Examples: a JCAMP, JDX, or 
+                                            # ADX file, or a chromatogram or 
+                                            # spectrum analysis 
+}  
+
+# Details of the official nature of this name
+<SubstanceDefinition.name.official> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:authority @<CodeableConcept>?;     # Which authority uses this official 
+                                            # name 
+    fhir:status @<CodeableConcept>?;        # The status of the official name, 
+                                            # for example 'draft', 'active' 
+    fhir:date @<dateTime>?;                 # Date of official name change
+}  
+
 # A link between this substance and another
 <SubstanceDefinition.relationship> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:substanceDefinition (@<Reference>  AND {fhir:link @<SubstanceDefinition> })  OR 
+    fhir:substanceDefinition (@<Reference>  AND {fhir:link @<SubstanceDefinition> ?})  OR 
     			@<CodeableConcept>  ?;  # A pointer to another substance, as 
                                             # a resource or a representational 
                                             # code 
@@ -226,56 +276,6 @@ start=@<SubstanceDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:source @<OneOrMore_Reference_DocumentReference>?;  # Supporting literature
 }  
 
-# Codes associated with the substance
-<SubstanceDefinition.code> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:code @<CodeableConcept>?;          # The specific code
-    fhir:status @<CodeableConcept>?;        # Status of the code assignment, for 
-                                            # example 'provisional', 'approved' 
-    fhir:statusDate @<dateTime>?;           # The date at which the code status 
-                                            # was changed 
-    fhir:note @<OneOrMore_Annotation>?;     # Any comment can be provided in 
-                                            # this field 
-    fhir:source @<OneOrMore_Reference_DocumentReference>?;  # Supporting literature
-}  
-
-# A translation for this name into another human language
-<SubstanceDefinition.name.translationnull> CLOSED {   
-}  
-
-# General specifications for this substance
-<SubstanceDefinition.property> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:type @<CodeableConcept>;           # A code expressing the type of 
-                                            # property 
-    fhir:value @<CodeableConcept>  OR 
-    			@<Quantity>  OR 
-    			@<date>  OR 
-    			@<boolean>  OR 
-    			@<Attachment>  ?;  # A value for the property
-}  
-
-# General specifications for this substance
-<SubstanceDefinition.characterization> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:technique @<CodeableConcept>?;     # The method used to find the 
-                                            # characterization e.g. HPLC 
-    fhir:form @<CodeableConcept>?;          # The specific chemical entity of 
-                                            # the substance being characterized, 
-                                            # to distinguish for example salt or 
-                                            # base 
-    fhir:description @<markdown>?;          # Narrative text, data, tables about 
-                                            # the characterization 
-    fhir:file @<OneOrMore_Attachment>?;     # An image or data file that 
-                                            # characterizes this substance 
-}  
-
-# Details of the official nature of this name
-<SubstanceDefinition.name.official> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:authority @<CodeableConcept>?;     # Which authority uses this official 
-                                            # name 
-    fhir:status @<CodeableConcept>?;        # The status of the official name, 
-                                            # for example 'draft', 'active' 
-    fhir:date @<dateTime>?;                 # Date of official name change
-}  
-
 # A depiction of the structure of the substance
 <SubstanceDefinition.structure.representation> EXTENDS @<BackboneElement> CLOSED {   
     fhir:type @<CodeableConcept>?;          # The kind of structural 
@@ -287,19 +287,9 @@ start=@<SubstanceDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # e.g. InChI, SMILES, MOLFILE (note: 
                                             # not the physical file format) 
     fhir:document @<Reference> AND {fhir:link 
-    			@<DocumentReference> ? }?;  # An attachment with the structural 
+    			@<DocumentReference> ?}?;  # An attachment with the structural 
                                             # representation e.g. a structure 
                                             # graphic or AnIML file 
-}  
-
-# The average mass of a molecule of a compound
-<SubstanceDefinition.molecularWeight> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:method @<CodeableConcept>?;        # The method by which the weight was 
-                                            # determined 
-    fhir:type @<CodeableConcept>?;          # Type of molecular weight e.g. 
-                                            # exact, average, weight average 
-    fhir:amount @<Quantity>;                # Used to capture quantitative 
-                                            # values for a variety of elements 
 }  
 
 # Structural information
@@ -319,6 +309,21 @@ start=@<SubstanceDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # structure 
     fhir:representation @<OneOrMore_SubstanceDefinition.structure.representation>?;  # A depiction of the structure of 
                                             # the substance 
+}  
+
+# A synonym of this particular name, by which the substance is also known
+<SubstanceDefinition.name.synonymnull> CLOSED {   
+}  
+
+# General specifications for this substance
+<SubstanceDefinition.property> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # A code expressing the type of 
+                                            # property 
+    fhir:value @<CodeableConcept>  OR 
+    			@<Quantity>  OR 
+    			@<date>  OR 
+    			@<boolean>  OR 
+    			@<Attachment>  ?;  # A value for the property
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------
@@ -374,14 +379,14 @@ start=@<SubstanceDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:rest [rdf:nil] OR @<OneOrMore_SubstanceDefinition.relationship> 
 }
 
+
+
+
+
 <OneOrMore_SubstanceDefinition.name.official> CLOSED {
     rdf:first @<SubstanceDefinition.name.official>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_SubstanceDefinition.name.official> 
 }
-
-
-
-
 
 
 

@@ -38,6 +38,9 @@ IMPORT <canonical.shex>
 IMPORT <Reference.shex>
 #imported_end
 #imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
 IMPORT <unsignedInt.shex>
 #imported_end
 #imported_begin 
@@ -70,6 +73,9 @@ start=@<CapabilityStatement> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:url @<uri>?;                       # Canonical identifier for this 
                                             # capability statement, represented 
                                             # as a URI (globally unique) 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
+                                            # CapabilityStatement (business 
+                                            # identifier) 
     fhir:version @<string>?;                # Business version of the capability 
                                             # statement 
     fhir:versionAlgorithm @<string>  OR 
@@ -111,23 +117,27 @@ start=@<CapabilityStatement> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # instance 
     fhir:fhirVersion @<code> AND
     	{fhir:v @fhirvs:FHIR-version};  # FHIR Version the system supports
-    fhir:format @<OneOrMore_code>;          # formats supported (xml | json | 
+    fhir:format @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:mimetypes};  # formats supported (xml | json | 
                                             # ttl | mime type) 
     fhir:patchFormat @<OneOrMore_code> AND
     	{fhir:v @fhirvs:mimetypes}?;  # Patch formats supported
-    fhir:acceptLanguage @<OneOrMore_code>?;  # Languages supported
+    fhir:acceptLanguage @<OneOrMore_code> AND
+    	{fhir:v @fhirvs:all-languages}?;  # Languages supported
     fhir:implementationGuide @<OneOrMore_canonical>?;  # Implementation guides supported
     fhir:rest @<OneOrMore_CapabilityStatement.rest>?;  # If the endpoint is a RESTful one
     fhir:messaging @<OneOrMore_CapabilityStatement.messaging>?;  # If messaging is supported
     fhir:document @<OneOrMore_CapabilityStatement.document>?;  # Document definition
 }  
 
-# If this describes a specific instance
-<CapabilityStatement.implementation> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:description @<string>;             # Describes this specific instance
-    fhir:url @<url>?;                       # Base URL for the installation
-    fhir:custodian @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Organization that manages the data
+# Information about security of implementation
+<CapabilityStatement.rest.security> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:cors @<boolean>?;                  # Adds CORS Headers 
+                                            # (http://enable-cors.org/) 
+    fhir:service @<OneOrMore_CodeableConcept>?;  # OAuth | SMART-on-FHIR | NTLM | 
+                                            # Basic | Kerberos | Certificates 
+    fhir:description @<markdown>?;          # General description of how 
+                                            # security works 
 }  
 
 # What operations are supported?
@@ -139,31 +149,12 @@ start=@<CapabilityStatement> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # behavior 
 }  
 
-# What operations are supported?
-<CapabilityStatement.rest.resource.interaction> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:code @<code> AND
-    	{fhir:v @fhirvs:type-restful-interaction};  # read | vread | update | patch | 
-                                            # delete | history-instance | 
-                                            # history-type | create | 
-                                            # search-type 
-    fhir:documentation @<markdown>?;        # Anything special about operation 
-                                            # behavior 
-}  
-
-# Where messages should be sent
-<CapabilityStatement.messaging.endpoint> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:protocol @<Coding>;                # http | ftp | mllp +
-    fhir:address @<url>;                    # Network address or identifier of 
-                                            # the end-point 
-}  
-
-# If messaging is supported
-<CapabilityStatement.messaging> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:endpoint @<OneOrMore_CapabilityStatement.messaging.endpoint>?;  # Where messages should be sent
-    fhir:reliableCache @<unsignedInt>?;     # Reliable Message Cache Length (min)
-    fhir:documentation @<markdown>?;        # Messaging interface behavior 
-                                            # details 
-    fhir:supportedMessage @<OneOrMore_CapabilityStatement.messaging.supportedMessage>?;  # Messages supported by this system
+# If this describes a specific instance
+<CapabilityStatement.implementation> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:description @<markdown>;           # Describes this specific instance
+    fhir:url @<url>?;                       # Base URL for the installation
+    fhir:custodian @<Reference> AND {fhir:link 
+    			@<Organization> ?}?;  # Organization that manages the data
 }  
 
 # Messages supported by this system
@@ -191,13 +182,40 @@ start=@<CapabilityStatement> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:compartment @<OneOrMore_canonical>?;  # Compartments served/used by system
 }  
 
-# Definition of a resource operation
-<CapabilityStatement.rest.resource.operation> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:name @<string>;                    # Name by which the operation/query 
-                                            # is invoked 
-    fhir:definition @<canonical>;           # The defined operation/query
-    fhir:documentation @<markdown>?;        # Specific details about operation 
-                                            # behavior 
+# Software that is covered by this capability statement
+<CapabilityStatement.software> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>;                    # A name the software is known by
+    fhir:version @<string>?;                # Version covered by this statement
+    fhir:releaseDate @<dateTime>?;          # Date this version was released
+}  
+
+# Search parameters supported by implementation
+<CapabilityStatement.rest.resource.searchParam> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>;                    # Name for parameter in search url
+    fhir:definition @<canonical>?;          # Source of definition for parameter
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:search-param-type};  # number | date | string | token | 
+                                            # reference | composite | quantity | 
+                                            # uri | special 
+    fhir:documentation @<markdown>?;        # Server-specific usage
+}  
+
+# Document definition
+<CapabilityStatement.document> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:mode @<code> AND
+    	{fhir:v @fhirvs:document-mode};  # producer | consumer
+    fhir:documentation @<markdown>?;        # Description of document support
+    fhir:profile @<canonical>;              # Constraint on the resources used 
+                                            # in the document 
+}  
+
+# If messaging is supported
+<CapabilityStatement.messaging> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:endpoint @<OneOrMore_CapabilityStatement.messaging.endpoint>?;  # Where messages should be sent
+    fhir:reliableCache @<unsignedInt>?;     # Reliable Message Cache Length (min)
+    fhir:documentation @<markdown>?;        # Messaging interface behavior 
+                                            # details 
+    fhir:supportedMessage @<OneOrMore_CapabilityStatement.messaging.supportedMessage>?;  # Messages supported by this system
 }  
 
 # Resource served on the REST interface
@@ -238,44 +256,36 @@ start=@<CapabilityStatement> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:operation @<OneOrMore_CapabilityStatement.rest.resource.operation>?;  # Definition of a resource operation
 }  
 
-# Document definition
-<CapabilityStatement.document> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:mode @<code> AND
-    	{fhir:v @fhirvs:document-mode};  # producer | consumer
-    fhir:documentation @<markdown>?;        # Description of document support
-    fhir:profile @<canonical>;              # Constraint on the resources used 
-                                            # in the document 
+# Where messages should be sent
+<CapabilityStatement.messaging.endpoint> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:protocol @<Coding>;                # http | ftp | mllp +
+    fhir:address @<url>;                    # Network address or identifier of 
+                                            # the end-point 
 }  
 
-# Information about security of implementation
-<CapabilityStatement.rest.security> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:cors @<boolean>?;                  # Adds CORS Headers 
-                                            # (http://enable-cors.org/) 
-    fhir:service @<OneOrMore_CodeableConcept>?;  # OAuth | SMART-on-FHIR | NTLM | 
-                                            # Basic | Kerberos | Certificates 
-    fhir:description @<markdown>?;          # General description of how 
-                                            # security works 
+# What operations are supported?
+<CapabilityStatement.rest.resource.interaction> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code> AND
+    	{fhir:v @fhirvs:type-restful-interaction};  # read | vread | update | patch | 
+                                            # delete | history-instance | 
+                                            # history-type | create | 
+                                            # search-type 
+    fhir:documentation @<markdown>?;        # Anything special about operation 
+                                            # behavior 
 }  
 
-# Software that is covered by this capability statement
-<CapabilityStatement.software> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:name @<string>;                    # A name the software is known by
-    fhir:version @<string>?;                # Version covered by this statement
-    fhir:releaseDate @<dateTime>?;          # Date this version was released
-}  
-
-# Search parameters supported by implementation
-<CapabilityStatement.rest.resource.searchParam> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:name @<string>;                    # Name for parameter in search url
-    fhir:definition @<canonical>?;          # Source of definition for parameter
-    fhir:type @<code> AND
-    	{fhir:v @fhirvs:search-param-type};  # number | date | string | token | 
-                                            # reference | composite | quantity | 
-                                            # uri | special 
-    fhir:documentation @<markdown>?;        # Server-specific usage
+# Definition of a resource operation
+<CapabilityStatement.rest.resource.operation> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>;                    # Name by which the operation/query 
+                                            # is invoked 
+    fhir:definition @<canonical>;           # The defined operation/query
+    fhir:documentation @<markdown>?;        # Specific details about operation 
+                                            # behavior 
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------
+
+
 
 
 
@@ -302,16 +312,6 @@ start=@<CapabilityStatement> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:rest [rdf:nil] OR @<OneOrMore_CapabilityStatement.document> 
 }
 
-<OneOrMore_CapabilityStatement.messaging.endpoint> CLOSED {
-    rdf:first @<CapabilityStatement.messaging.endpoint>  ;
-    rdf:rest [rdf:nil] OR @<OneOrMore_CapabilityStatement.messaging.endpoint> 
-}
-
-<OneOrMore_CapabilityStatement.messaging.supportedMessage> CLOSED {
-    rdf:first @<CapabilityStatement.messaging.supportedMessage>  ;
-    rdf:rest [rdf:nil] OR @<OneOrMore_CapabilityStatement.messaging.supportedMessage> 
-}
-
 <OneOrMore_CapabilityStatement.rest.resource> CLOSED {
     rdf:first @<CapabilityStatement.rest.resource>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_CapabilityStatement.rest.resource> 
@@ -332,6 +332,16 @@ start=@<CapabilityStatement> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:rest [rdf:nil] OR @<OneOrMore_CapabilityStatement.rest.resource.operation> 
 }
 
+<OneOrMore_CapabilityStatement.messaging.endpoint> CLOSED {
+    rdf:first @<CapabilityStatement.messaging.endpoint>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CapabilityStatement.messaging.endpoint> 
+}
+
+<OneOrMore_CapabilityStatement.messaging.supportedMessage> CLOSED {
+    rdf:first @<CapabilityStatement.messaging.supportedMessage>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_CapabilityStatement.messaging.supportedMessage> 
+}
+
 <OneOrMore_CapabilityStatement.rest.resource.interaction> CLOSED {
     rdf:first @<CapabilityStatement.rest.resource.interaction>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_CapabilityStatement.rest.resource.interaction> 
@@ -340,6 +350,7 @@ start=@<CapabilityStatement> AND {fhir:nodeRole [fhir:treeRoot]}
 
 
 #---------------------- Value Sets ------------------------
+
 
 
 

@@ -26,6 +26,9 @@ IMPORT <Device.shex>
 IMPORT <Period.shex>
 #imported_end
 #imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
 IMPORT <Patient.shex>
 #imported_end
 #imported_begin 
@@ -117,61 +120,37 @@ start=@<MeasureReport> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # What individual(s) the report is 
+    			@<RelatedPerson> ?}?;  # What individual(s) the report is 
                                             # for 
-    fhir:date @<dateTime>?;                 # When the report was generated
+    fhir:date @<dateTime>?;                 # When the measure was calculated
     fhir:reporter @<Reference> AND {fhir:link 
     			@<Group> OR 
     			@<Organization> OR 
     			@<Practitioner> OR 
-    			@<PractitionerRole> ? }?;  # Who is reporting the data
+    			@<PractitionerRole> ?}?;  # Who is reporting the data
     fhir:reportingVendor @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # What vendor prepared the data
+    			@<Organization> ?}?;  # What vendor prepared the data
     fhir:location @<Reference> AND {fhir:link 
-    			@<Location> ? }?;  # Where the reported data is from
+    			@<Location> ?}?;  # Where the reported data is from
     fhir:period @<Period>;                  # What period the report covers
     fhir:inputParameters @<Reference> AND {fhir:link 
-    			@<Parameters> ? }?;  # What parameters were provided to 
+    			@<Parameters> ?}?;  # What parameters were provided to 
                                             # the report 
     fhir:scoring @<CodeableConcept>?;       # What scoring method (e.g. 
                                             # proportion, ratio, 
                                             # continuous-variable) 
     fhir:improvementNotation @<CodeableConcept>?;  # increase | decrease
     fhir:group @<OneOrMore_MeasureReport.group>?;  # Measure results for each group
+    fhir:supplementalData @<OneOrMore_Reference_Resource>?;  # Additional information collected 
+                                            # for the report 
     fhir:evaluatedResource @<OneOrMore_Reference_Resource>?;  # What data was used to calculate 
                                             # the measure score 
 }  
 
-# Population results in this stratum
-<MeasureReport.group.stratifier.stratum.population> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:code @<CodeableConcept>?;          # initial-population | numerator | 
-                                            # numerator-exclusion | denominator 
-                                            # | denominator-exclusion | 
-                                            # denominator-exception | 
-                                            # measure-population | 
-                                            # measure-population-exclusion | 
-                                            # measure-observation 
-    fhir:count @<integer>?;                 # Size of the population
-    fhir:subjectResults @<Reference> AND {fhir:link 
-    			@<List> ? }?;  # For subject-list reports, the 
-                                            # subject results in this population 
-}  
-
-# Measure results for each group
-<MeasureReport.group> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:code @<CodeableConcept>?;          # Meaning of the group
-    fhir:population @<OneOrMore_MeasureReport.group.population>?;  # The populations in the group
-    fhir:measureScore @<Quantity>  OR 
-    			@<dateTime>  OR 
-    			@<CodeableConcept>  OR 
-    			@<Period>  OR 
-    			@<Range>  OR 
-    			@<Duration>  ?;  # What score this group achieved
-    fhir:stratifier @<OneOrMore_MeasureReport.group.stratifier>?;  # Stratification results
-}  
-
 # The populations in the group
 <MeasureReport.group.population> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:linkId @<string>?;                 # Pointer to specific population 
+                                            # from Measure 
     fhir:code @<CodeableConcept>?;          # initial-population | numerator | 
                                             # numerator-exclusion | denominator 
                                             # | denominator-exclusion | 
@@ -181,20 +160,13 @@ start=@<MeasureReport> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # measure-observation 
     fhir:count @<integer>?;                 # Size of the population
     fhir:subjectResults @<Reference> AND {fhir:link 
-    			@<List> ? }?;  # For subject-list reports, the 
+    			@<List> ?}?;  # For subject-list reports, the 
                                             # subject results in this population 
-}  
-
-# Stratifier component values
-<MeasureReport.group.stratifier.stratum.component> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:code @<CodeableConcept>;           # What stratifier component of the 
-                                            # group 
-    fhir:value @<CodeableConcept>  OR 
-    			@<boolean>  OR 
-    			@<Quantity>  OR 
-    			@<Range>  OR 
-    			@<Reference>  ;  # The stratum component value, e.g. 
-                                            # male 
+    fhir:subjectReport @<OneOrMore_Reference_MeasureReport>?;  # For subject-list reports, a 
+                                            # subject result in this population 
+    fhir:subjects @<Reference> AND {fhir:link 
+    			@<Group> ?}?;  # What individual(s) in the 
+                                            # population 
 }  
 
 # Stratum results, one for each unique value, or set of values, in the stratifier, or stratifier components
@@ -214,13 +186,78 @@ start=@<MeasureReport> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Duration>  ?;  # What score this stratum achieved
 }  
 
+# Measure results for each group
+<MeasureReport.group> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:linkId @<string>?;                 # Pointer to specific group from 
+                                            # Measure 
+    fhir:code @<CodeableConcept>?;          # Meaning of the group
+    fhir:subject @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<HealthcareService> OR 
+    			@<Location> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ?}?;  # What individual(s) the report is 
+                                            # for 
+    fhir:population @<OneOrMore_MeasureReport.group.population>?;  # The populations in the group
+    fhir:measureScore @<Quantity>  OR 
+    			@<dateTime>  OR 
+    			@<CodeableConcept>  OR 
+    			@<Period>  OR 
+    			@<Range>  OR 
+    			@<Duration>  ?;  # What score this group achieved
+    fhir:stratifier @<OneOrMore_MeasureReport.group.stratifier>?;  # Stratification results
+}  
+
 # Stratification results
 <MeasureReport.group.stratifier> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:linkId @<string>?;                 # Pointer to specific stratifier 
+                                            # from Measure 
     fhir:code @<CodeableConcept>?;          # What stratifier of the group
     fhir:stratum @<OneOrMore_MeasureReport.group.stratifier.stratum>?;  # Stratum results, one for each 
                                             # unique value, or set of values, in 
                                             # the stratifier, or stratifier 
                                             # components 
+}  
+
+# Stratifier component values
+<MeasureReport.group.stratifier.stratum.component> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:linkId @<string>?;                 # Pointer to specific stratifier 
+                                            # component from Measure 
+    fhir:code @<CodeableConcept>;           # What stratifier component of the 
+                                            # group 
+    fhir:value @<CodeableConcept>  OR 
+    			@<boolean>  OR 
+    			@<Quantity>  OR 
+    			@<Range>  OR 
+    			@<Reference>  ;  # The stratum component value, e.g. 
+                                            # male 
+}  
+
+# Population results in this stratum
+<MeasureReport.group.stratifier.stratum.population> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:linkId @<string>?;                 # Pointer to specific population 
+                                            # from Measure 
+    fhir:code @<CodeableConcept>?;          # initial-population | numerator | 
+                                            # numerator-exclusion | denominator 
+                                            # | denominator-exclusion | 
+                                            # denominator-exception | 
+                                            # measure-population | 
+                                            # measure-population-exclusion | 
+                                            # measure-observation 
+    fhir:count @<integer>?;                 # Size of the population
+    fhir:subjectResults @<Reference> AND {fhir:link 
+    			@<List> ?}?;  # For subject-list reports, the 
+                                            # subject results in this population 
+    fhir:subjectReport @<OneOrMore_Reference_MeasureReport>?;  # For subject-list reports, a 
+                                            # subject result in this population 
+    fhir:subjects @<Reference> AND {fhir:link 
+    			@<Group> ?}?;  # What individual(s) in the 
+                                            # population 
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------
@@ -238,15 +275,9 @@ start=@<MeasureReport> AND {fhir:nodeRole [fhir:treeRoot]}
 
 
 
-<OneOrMore_MeasureReport.group.population> CLOSED {
-    rdf:first @<MeasureReport.group.population>  ;
-    rdf:rest [rdf:nil] OR @<OneOrMore_MeasureReport.group.population> 
-}
 
-<OneOrMore_MeasureReport.group.stratifier> CLOSED {
-    rdf:first @<MeasureReport.group.stratifier>  ;
-    rdf:rest [rdf:nil] OR @<OneOrMore_MeasureReport.group.stratifier> 
-}
+
+
 
 <OneOrMore_MeasureReport.group.stratifier.stratum.component> CLOSED {
     rdf:first @<MeasureReport.group.stratifier.stratum.component>  ;
@@ -256,6 +287,16 @@ start=@<MeasureReport> AND {fhir:nodeRole [fhir:treeRoot]}
 <OneOrMore_MeasureReport.group.stratifier.stratum.population> CLOSED {
     rdf:first @<MeasureReport.group.stratifier.stratum.population>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_MeasureReport.group.stratifier.stratum.population> 
+}
+
+<OneOrMore_MeasureReport.group.population> CLOSED {
+    rdf:first @<MeasureReport.group.population>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_MeasureReport.group.population> 
+}
+
+<OneOrMore_MeasureReport.group.stratifier> CLOSED {
+    rdf:first @<MeasureReport.group.stratifier>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_MeasureReport.group.stratifier> 
 }
 
 <OneOrMore_MeasureReport.group.stratifier.stratum> CLOSED {

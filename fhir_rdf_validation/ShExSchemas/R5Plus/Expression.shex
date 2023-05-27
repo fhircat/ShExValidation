@@ -5,9 +5,6 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 
 #imported_begin 
-IMPORT <id.shex>
-#imported_end
-#imported_begin 
 IMPORT <uri.shex>
 #imported_end
 #imported_begin 
@@ -26,7 +23,7 @@ IMPORT <DataType.shex>
 
     fhir:description @<string>?;            # Natural language description of 
                                             # the condition 
-    fhir:name @<id>?;                       # Short name assigned to expression 
+    fhir:name @<code>?;                     # Short name assigned to expression 
                                             # for reuse 
     fhir:language @<code>?;                 # text/cql | text/fhirpath | 
                                             # application/x-fhir-query | etc. 

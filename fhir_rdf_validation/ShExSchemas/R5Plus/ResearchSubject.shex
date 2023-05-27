@@ -5,6 +5,9 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 
 #imported_begin 
+IMPORT <id.shex>
+#imported_end
+#imported_begin 
 IMPORT <aux.shex>
 #imported_end
 #imported_begin 
@@ -18,9 +21,6 @@ IMPORT <Period.shex>
 #imported_end
 #imported_begin 
 IMPORT <Device.shex>
-#imported_end
-#imported_begin 
-IMPORT <string.shex>
 #imported_end
 #imported_begin 
 IMPORT <Patient.shex>
@@ -64,7 +64,7 @@ IMPORT <BiologicallyDerivedProduct.shex>
 
 start=@<ResearchSubject> AND {fhir:nodeRole [fhir:treeRoot]}
 
-# Physical entity which is the primary unit of interest in the study
+# Participant or object which is the recipient of investigative activities in a study
 <ResearchSubject> EXTENDS @<DomainResource> CLOSED {   
 
     a [fhir:ResearchSubject]?;
@@ -77,7 +77,7 @@ start=@<ResearchSubject> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:progress @<OneOrMore_ResearchSubject.progress>?;  # Subject status
     fhir:period @<Period>?;                 # Start and end of participation
     fhir:study @<Reference> AND {fhir:link 
-    			@<ResearchStudy> ? };  # Study subject is part of
+    			@<ResearchStudy> ?};  # Study subject is part of
     fhir:subject @<Reference> AND {fhir:link 
     			@<BiologicallyDerivedProduct> OR 
     			@<Device> OR 
@@ -85,11 +85,10 @@ start=@<ResearchSubject> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Medication> OR 
     			@<Patient> OR 
     			@<Specimen> OR 
-    			@<Substance> ? };  # Who or what is part of study
-    fhir:assignedArm @<string>?;            # What path should be followed
-    fhir:actualArm @<string>?;              # What path was followed
-    fhir:consent @<Reference> AND {fhir:link 
-    			@<Consent> ? }?;  # Agreement to participate in study
+    			@<Substance> ?};  # Who or what is part of study
+    fhir:assignedComparisonGroup @<id>?;    # What path should be followed
+    fhir:actualComparisonGroup @<id>?;      # What path was followed
+    fhir:consent @<OneOrMore_Reference_Consent>?;  # Agreement to participate in study
 }  
 
 # Subject status
@@ -117,6 +116,12 @@ start=@<ResearchSubject> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:first @<ResearchSubject.progress>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_ResearchSubject.progress> 
 }
+
+
+
+
+
+
 
 #---------------------- Value Sets ------------------------
 

@@ -17,6 +17,9 @@ IMPORT <code.shex>
 IMPORT <Claim.shex>
 #imported_end
 #imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
 IMPORT <Period.shex>
 #imported_end
 #imported_begin 
@@ -80,10 +83,10 @@ IMPORT <RelatedPerson.shex>
 IMPORT <DeviceRequest.shex>
 #imported_end
 #imported_begin 
-IMPORT <EpisodeOfCare.shex>
+IMPORT <SupplyRequest.shex>
 #imported_end
 #imported_begin 
-IMPORT <SupplyRequest.shex>
+IMPORT <EpisodeOfCare.shex>
 #imported_end
 #imported_begin 
 IMPORT <DomainResource.shex>
@@ -141,7 +144,10 @@ start=@<DocumentReference> AND {fhir:nodeRole [fhir:treeRoot]}
 
     fhir:identifier @<OneOrMore_Identifier>?;  # Business identifiers for the 
                                             # document 
-    fhir:basedOn @<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_Claim_OR_CommunicationRequest_OR_Contract_OR_CoverageEligibilityRequest_OR_DeviceRequest_OR_EnrollmentRequest_OR_EpisodeOfCare_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_RequestOrchestration_OR_ServiceRequest_OR_SupplyRequest_OR_VisionPrescription>?;  # Procedure that caused this media 
+    fhir:version @<string>?;                # An explicitly assigned identifer 
+                                            # of a variation of the content in 
+                                            # the DocumentReference 
+    fhir:basedOn @<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_Claim_OR_CommunicationRequest_OR_Contract_OR_CoverageEligibilityRequest_OR_DeviceRequest_OR_EnrollmentRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_RequestOrchestration_OR_ServiceRequest_OR_SupplyRequest_OR_VisionPrescription>?;  # Procedure that caused this media 
                                             # to be created 
     fhir:status @<code> AND
     	{fhir:v @fhirvs:document-reference-status};  # current | superseded | 
@@ -152,14 +158,16 @@ start=@<DocumentReference> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # appended | cancelled | 
                                             # entered-in-error | deprecated | 
                                             # unknown 
+    fhir:modality @<OneOrMore_CodeableConcept>?;  # Imaging modality used
     fhir:type @<CodeableConcept>?;          # Kind of document (LOINC if 
                                             # possible) 
     fhir:category @<OneOrMore_CodeableConcept>?;  # Categorization of document
     fhir:subject @<Reference> AND {fhir:link 
-    			@<Resource> ? }?;  # Who/what is the subject of the 
+    			@<Resource> ?}?;  # Who/what is the subject of the 
                                             # document 
     fhir:context @<OneOrMore_Reference_Appointment_OR_Encounter_OR_EpisodeOfCare>?;  # Context of the document content
     fhir:event @<OneOrMore_CodeableReference>?;  # Main clinical acts documented
+    fhir:bodySite @<OneOrMore_CodeableReference>?;  # Body part included
     fhir:facilityType @<CodeableConcept>?;  # Kind of facility where patient was 
                                             # seen 
     fhir:practiceSetting @<CodeableConcept>?;  # Additional details about where the 
@@ -173,12 +181,26 @@ start=@<DocumentReference> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # document 
     fhir:attester @<OneOrMore_DocumentReference.attester>?;  # Attests to accuracy of the document
     fhir:custodian @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Organization which maintains the 
+    			@<Organization> ?}?;  # Organization which maintains the 
                                             # document 
     fhir:relatesTo @<OneOrMore_DocumentReference.relatesTo>?;  # Relationships to other documents
     fhir:description @<markdown>?;          # Human-readable description
     fhir:securityLabel @<OneOrMore_CodeableConcept>?;  # Document security-tags
     fhir:content @<OneOrMore_DocumentReference.content>;  # Document referenced
+}  
+
+# Content profile rules for the document
+<DocumentReference.content.profile> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:value @<Coding>  OR 
+    			@<uri>  OR 
+    			@<canonical>  ;  # Code|uri|canonical
+}  
+
+# Document referenced
+<DocumentReference.content> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:attachment @<Attachment>;          # Where to access the document
+    fhir:profile @<OneOrMore_DocumentReference.content.profile>?;  # Content profile rules for the 
+                                            # document 
 }  
 
 # Attests to accuracy of the document
@@ -191,14 +213,7 @@ start=@<DocumentReference> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Who attested the document
-}  
-
-# Content profile rules for the document
-<DocumentReference.content.profile> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:value @<Coding>  OR 
-    			@<uri>  OR 
-    			@<canonical>  ;  # Code|uri|canonical
+    			@<RelatedPerson> ?}?;  # Who attested the document
 }  
 
 # Relationships to other documents
@@ -206,14 +221,7 @@ start=@<DocumentReference> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:code @<CodeableConcept>;           # The relationship type with another 
                                             # document 
     fhir:target @<Reference> AND {fhir:link 
-    			@<DocumentReference> ? };  # Target of the relationship
-}  
-
-# Document referenced
-<DocumentReference.content> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:attachment @<Attachment>;          # Where to access the document
-    fhir:profile @<OneOrMore_DocumentReference.content.profile>?;  # Content profile rules for the 
-                                            # document 
+    			@<DocumentReference> ?};  # Target of the relationship
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

@@ -29,10 +29,10 @@ IMPORT <Ratio.shex>
 IMPORT <Period.shex>
 #imported_end
 #imported_begin 
-IMPORT <Device.shex>
+IMPORT <Coding.shex>
 #imported_end
 #imported_begin 
-IMPORT <Coding.shex>
+IMPORT <Device.shex>
 #imported_end
 #imported_begin 
 IMPORT <string.shex>
@@ -53,19 +53,19 @@ IMPORT <integer.shex>
 IMPORT <dateTime.shex>
 #imported_end
 #imported_begin 
-IMPORT <Location.shex>
-#imported_end
-#imported_begin 
 IMPORT <CareTeam.shex>
 #imported_end
 #imported_begin 
-IMPORT <Resource.shex>
+IMPORT <Location.shex>
+#imported_end
+#imported_begin 
+IMPORT <Endpoint.shex>
 #imported_end
 #imported_begin 
 IMPORT <Quantity.shex>
 #imported_end
 #imported_begin 
-IMPORT <Endpoint.shex>
+IMPORT <Resource.shex>
 #imported_end
 #imported_begin 
 IMPORT <CarePlan.shex>
@@ -142,34 +142,16 @@ start=@<AuditEvent> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:basedOn @<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest_OR_Task>?;  # Workflow authorization within 
                                             # which this event occurred 
     fhir:patient @<Reference> AND {fhir:link 
-    			@<Patient> ? }?;  # The patient is the subject of the 
+    			@<Patient> ?}?;  # The patient is the subject of the 
                                             # data used/created/updated/deleted 
                                             # during the activity 
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # Encounter within which this event 
+    			@<Encounter> ?}?;  # Encounter within which this event 
                                             # occurred or which the event is 
                                             # tightly associated 
     fhir:agent @<OneOrMore_AuditEvent.agent>;  # Actor involved in the event
     fhir:source @<AuditEvent.source>;       # Audit Event Reporter
     fhir:entity @<OneOrMore_AuditEvent.entity>?;  # Data or objects used
-}  
-
-# Audit Event Reporter
-<AuditEvent.source> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:site @<Reference> AND {fhir:link 
-    			@<Location> ? }?;  # Logical source location within the 
-                                            # enterprise 
-    fhir:observer @<Reference> AND {fhir:link 
-    			@<CareTeam> OR 
-    			@<Device> OR 
-    			@<Organization> OR 
-    			@<Patient> OR 
-    			@<Practitioner> OR 
-    			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? };  # The identity of source detecting 
-                                            # the event 
-    fhir:type @<OneOrMore_CodeableConcept>?;  # The type of source where event 
-                                            # originated 
 }  
 
 # Whether the event succeeded or failed
@@ -179,16 +161,30 @@ start=@<AuditEvent> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:detail @<OneOrMore_CodeableConcept>?;  # Additional outcome detail
 }  
 
-# Data or objects used
-<AuditEvent.entity> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:what @<Reference> AND {fhir:link 
-    			@<Resource> ? }?;  # Specific instance of resource
-    fhir:role @<CodeableConcept>?;          # What role the entity played
-    fhir:securityLabel @<OneOrMore_CodeableConcept>?;  # Security labels on the entity
-    fhir:query @<base64Binary>?;            # Query parameters
-    fhir:detail @<OneOrMore_AuditEvent.entity.detail>?;  # Additional Information about the 
-                                            # entity 
-    fhir:agent @<OneOrMore_AuditEvent.agent>?;  # Entity is attributed to this agent
+# Actor involved in the event
+<AuditEvent.agent> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>?;          # How agent participated
+    fhir:role @<OneOrMore_CodeableConcept>?;  # Agent role in the event
+    fhir:who @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ?};  # Identifier of who
+    fhir:requestor @<boolean>?;             # Whether user is initiator
+    fhir:location @<Reference> AND {fhir:link 
+    			@<Location> ?}?;  # The agent location when the event 
+                                            # occurred 
+    fhir:policy @<OneOrMore_uri>?;          # Policy that authorized the agent 
+                                            # participation in the event 
+    fhir:network (@<Reference>  AND {fhir:link @<Endpoint> ?})  OR 
+    			@<uri>  OR 
+    			@<string>  ?;  # This agent network location for 
+                                            # the activity 
+    fhir:authorization @<OneOrMore_CodeableConcept>?;  # Allowable authorization for this 
+                                            # agent 
 }  
 
 # Additional Information about the entity
@@ -207,30 +203,34 @@ start=@<AuditEvent> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<base64Binary>  ;  # Property value
 }  
 
-# Actor involved in the event
-<AuditEvent.agent> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:type @<CodeableConcept>?;          # How agent participated
-    fhir:role @<OneOrMore_CodeableConcept>?;  # Agent role in the event
-    fhir:who @<Reference> AND {fhir:link 
+# Data or objects used
+<AuditEvent.entity> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:what @<Reference> AND {fhir:link 
+    			@<Resource> ?}?;  # Specific instance of resource
+    fhir:role @<CodeableConcept>?;          # What role the entity played
+    fhir:securityLabel @<OneOrMore_CodeableConcept>?;  # Security labels on the entity
+    fhir:query @<base64Binary>?;            # Query parameters
+    fhir:detail @<OneOrMore_AuditEvent.entity.detail>?;  # Additional Information about the 
+                                            # entity 
+    fhir:agent @<OneOrMore_AuditEvent.agent>?;  # Entity is attributed to this agent
+}  
+
+# Audit Event Reporter
+<AuditEvent.source> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:site @<Reference> AND {fhir:link 
+    			@<Location> ?}?;  # Logical source location within the 
+                                            # enterprise 
+    fhir:observer @<Reference> AND {fhir:link 
     			@<CareTeam> OR 
     			@<Device> OR 
     			@<Organization> OR 
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? };  # Identifier of who
-    fhir:requestor @<boolean>?;             # Whether user is initiator
-    fhir:location @<Reference> AND {fhir:link 
-    			@<Location> ? }?;  # The agent location when the event 
-                                            # occurred 
-    fhir:policy @<OneOrMore_uri>?;          # Policy that authorized the agent 
-                                            # participation in the event 
-    fhir:network (@<Reference>  AND {fhir:link @<Endpoint> })  OR 
-    			@<uri>  OR 
-    			@<string>  ?;  # This agent network location for 
-                                            # the activity 
-    fhir:authorization @<OneOrMore_CodeableConcept>?;  # Allowable authorization for this 
-                                            # agent 
+    			@<RelatedPerson> ?};  # The identity of source detecting 
+                                            # the event 
+    fhir:type @<OneOrMore_CodeableConcept>?;  # The type of source where event 
+                                            # originated 
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------
@@ -265,12 +265,12 @@ start=@<AuditEvent> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:rest [rdf:nil] OR @<OneOrMore_AuditEvent.entity> 
 }
 
+
+
 <OneOrMore_AuditEvent.entity.detail> CLOSED {
     rdf:first @<AuditEvent.entity.detail>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_AuditEvent.entity.detail> 
 }
-
-
 
 #---------------------- Value Sets ------------------------
 

@@ -96,13 +96,17 @@ start=@<ExampleScenario> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:process @<OneOrMore_ExampleScenario.process>?;  # Major process within scenario
 } AND (
 
-# Constraint UniqueKey:cnl-1
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:cnl-1
 # Human readable:URL should not contain | or # - these characters make processing canonical references problematic
-
-# Constraint: url.matches('([^|#])*')
+#
+# Constraint: exists() implies matches('^[^|# ]+$')
 # ShEx:
-
-{fhir:url { fhir:v /'([^|#])*'/ } }
+#
+# .  Implies   { fhir:v /'^[^|# ]+$'/ } 
+{}
 
 ) AND (
 
@@ -140,10 +144,10 @@ start=@<ExampleScenario> AND {fhir:nodeRole [fhir:treeRoot]}
 # # Constraint UniqueKey:cnl-0
 # Human readable:Name should be usable as an identifier for the module by machine processing applications such as code generation
 #
-# Constraint: name.exists() implies name.matches('[A-Z]([A-Za-z0-9_]){1,254}')
+# Constraint: name.exists() implies name.matches('^[A-Z]([A-Za-z0-9_]){1,254}$')
 # ShEx:
 #
-#{fhir:name .  Implies  {fhir:name { fhir:v /'[A-Z]([A-Za-z0-9_]){1,254}'/ } }}
+#{fhir:name .  Implies  {fhir:name { fhir:v /'^[A-Z]([A-Za-z0-9_]){1,254}$'/ } }}
 {}
 
 ) AND (
@@ -265,10 +269,10 @@ start=@<ExampleScenario> AND {fhir:nodeRole [fhir:treeRoot]}
 # # Constraint UniqueKey:exs-2
 # Human readable:instance.content is only allowed if there are no instance.versions
 #
-# Constraint: instance.content.exists() implies instance.version.empty()
+# Constraint: content.exists() implies version.empty()
 # ShEx:
 #
-#{fhir:instance.content .  Implies   NOT { fhir:instance.version {fhir:v .} } }
+#{fhir:content .  Implies   NOT { fhir:version {fhir:v .} } }
 {}
 
 ) AND (
@@ -453,415 +457,10 @@ start=@<ExampleScenario> AND {fhir:nodeRole [fhir:treeRoot]}
 # # Constraint UniqueKey:exs-17
 # Human readable:If specified, initiator must be a key of an actor within the ExampleScenario
 #
-# Constraint: initiator.exists() implies initator = 'OTHER' or %resource.actor.where(key=%context.initiator).exists()
+# Constraint: initiator.exists() implies initiator = 'OTHER' or %resource.actor.where(key=%context.initiator).exists()
 # ShEx:
 #
-#{fhir:initiator .  Implies  (({ fhir:initator { fhir:v ['OTHER'] }  }) OR 'false'.actor.  where  (key { fhir:v ['%context'.initiator] } ) .)}
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: Implies
-# Unmapped construct found: where
-# # Constraint UniqueKey:exs-18
-# Human readable:If specified, receiver must be a key of an actor within the ExampleScenario
-#
-# Constraint: receiver.exists() implies receiver = 'OTHER' or %resource.actor.where(key=%context.receiver).exists()
-# ShEx:
-#
-#{fhir:receiver .  Implies  (({ fhir:receiver { fhir:v ['OTHER'] }  }) OR 'false'.actor.  where  (key { fhir:v ['%context'.receiver] } ) .)}
-{}
-
-)
- 
-
-# Alternate non-typical step action
-<ExampleScenario.process.step.alternative> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:title @<string>;                   # Label for alternative
-    fhir:description @<markdown>?;          # Human-readable description of 
-                                            # option 
-    fhir:step @<OneOrMore_ExampleScenario.process.step>?;  # Alternative action(s)
-}  
-
-# Resources contained in the instance
-<ExampleScenario.instance.containedInstance> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:instanceReference @<string>;       # Key of contained instance
-    fhir:versionReference @<string>?;       # Key of contained instance version
-}  
-
-# Major process within scenario
-<ExampleScenario.process> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:title @<string>;                   # Label for procss
-    fhir:description @<markdown>?;          # Human-friendly description of the 
-                                            # process 
-    fhir:preConditions @<markdown>?;        # Status before process starts
-    fhir:postConditions @<markdown>?;       # Status after successful completion
-    fhir:step @<OneOrMore_ExampleScenario.process.step>?;  # Event within of the process
-} AND (
-
-# Constraint UniqueKey:cnl-1
-# Human readable:URL should not contain | or # - these characters make processing canonical references problematic
-
-# Constraint: url.matches('([^|#])*')
-# ShEx:
-
-{fhir:url { fhir:v /'([^|#])*'/ } }
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: Implies
-# # Constraint UniqueKey:exs-4
-# Human readable:Must have processes if status is active or required
-#
-# Constraint: status='active' or status='retired' implies process.exists()
-# ShEx:
-#
-#(({ fhir:status { fhir:v ['active'] }  }) OR ({ fhir:status { fhir:v ['retired'] }  }))  Implies  {fhir:process .}
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: Implies
-# # Constraint UniqueKey:exs-3
-# Human readable:Must have actors if status is active or required
-#
-# Constraint: status='active' or status='retired' implies actor.exists()
-# ShEx:
-#
-#(({ fhir:status { fhir:v ['active'] }  }) OR ({ fhir:status { fhir:v ['retired'] }  }))  Implies  {fhir:actor .}
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: Implies
-# # Constraint UniqueKey:cnl-0
-# Human readable:Name should be usable as an identifier for the module by machine processing applications such as code generation
-#
-# Constraint: name.exists() implies name.matches('[A-Z]([A-Za-z0-9_]){1,254}')
-# ShEx:
-#
-#{fhir:name .  Implies  {fhir:name { fhir:v /'[A-Z]([A-Za-z0-9_]){1,254}'/ } }}
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: count
-# Unmapped construct found: Equals
-# Unmapped construct found: count
-# Unmapped construct found: distinct
-# # Constraint UniqueKey:exs-12
-# Human readable:Process titles must be unique
-#
-# Constraint: process.title.count() = process.title.distinct().count()
-# ShEx:
-#
-#   count  ( fhir:process.title )  Equals     count  ( fhir:process.title. distinct  (  ) )
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: count
-# Unmapped construct found: Equals
-# Unmapped construct found: count
-# Unmapped construct found: distinct
-# # Constraint UniqueKey:exs-9
-# Human readable:Instance titles must be unique
-#
-# Constraint: instance.title.count() = instance.title.distinct().count()
-# ShEx:
-#
-#   count  ( fhir:instance.title )  Equals     count  ( fhir:instance.title. distinct  (  ) )
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: count
-# Unmapped construct found: Equals
-# Unmapped construct found: count
-# Unmapped construct found: distinct
-# # Constraint UniqueKey:exs-8
-# Human readable:Instance keys must be unique
-#
-# Constraint: instance.key.count() = instance.key.distinct().count()
-# ShEx:
-#
-#   count  ( fhir:instance.key )  Equals     count  ( fhir:instance.key. distinct  (  ) )
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: count
-# Unmapped construct found: Equals
-# Unmapped construct found: count
-# Unmapped construct found: distinct
-# # Constraint UniqueKey:exs-7
-# Human readable:Actor titles must be unique
-#
-# Constraint: actor.title.count() = actor.title.distinct().count()
-# ShEx:
-#
-#   count  ( fhir:actor.title )  Equals     count  ( fhir:actor.title. distinct  (  ) )
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: count
-# Unmapped construct found: Equals
-# Unmapped construct found: count
-# Unmapped construct found: distinct
-# # Constraint UniqueKey:exs-6
-# Human readable:Actor keys must be unique
-#
-# Constraint: actor.key.count() = actor.key.distinct().count()
-# ShEx:
-#
-#   count  ( fhir:actor.key )  Equals     count  ( fhir:actor.key. distinct  (  ) )
-{}
-
-) AND (
-
-# Constraint UniqueKey:exs-23
-# Human readable:actor.key canot be 'OTHER'
-
-# Constraint: key != 'OTHER'
-# ShEx:
-
-{ fhir:key {fhir:v  [. -'OTHER']}  }
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: descendants
-# Unmapped construct found: select
-# Unmapped construct found: where
-# # Constraint UniqueKey:exs-19
-# Human readable:Actor should be referenced in at least one operation
-#
-# Constraint: %resource.process.descendants().select(operation).where(initiator=%context.key or receiver=%context.key).exists()
-# ShEx:
-#
-#   descendants  ( 'false'.process ).  select  (operation).  where  (initiator { fhir:v ['%context'.key] }  OR receiver { fhir:v ['%context'.key] } ) .
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: Implies
-# # Constraint UniqueKey:exs-2
-# Human readable:instance.content is only allowed if there are no instance.versions
-#
-# Constraint: instance.content.exists() implies instance.version.empty()
-# ShEx:
-#
-#{fhir:instance.content .  Implies   NOT { fhir:instance.version {fhir:v .} } }
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: descendants
-# Unmapped construct found: select
-# Unmapped construct found: where
-# # Constraint UniqueKey:exs-20
-# Human readable:Instance should be referenced in at least one location
-#
-# Constraint: %resource.process.descendants().select(instanceReference).where($this=%context.key).exists()
-# ShEx:
-#
-#   descendants  ( 'false'.process ).  select  (instanceReference).  where  ($this { fhir:v ['%context'.key] } ) .
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: memberOf
-# Unmapped construct found: Implies
-# # Constraint UniqueKey:exs-1
-# Human readable:StructureVersion is required if structureType is not FHIR (but may still be present even if FHIR)
-#
-# Constraint: structureType.exists() and structureType.memberOf('http://hl7.org/fhir/ValueSet/resource-types').not() implies structureVersion.exists()
-# ShEx:
-#
-#({fhir:structureType . AND  NOT { fhir:structureType. memberOf  ('http://hl7.org/fhir/ValueSet/resource-types') }})  Implies  {fhir:structureVersion .}
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: count
-# Unmapped construct found: Equals
-# Unmapped construct found: count
-# Unmapped construct found: distinct
-# # Constraint UniqueKey:exs-11
-# Human readable:Version titles must be unique within an instance
-#
-# Constraint: version.title.count() = version.title.distinct().count()
-# ShEx:
-#
-#   count  ( fhir:version.title )  Equals     count  ( fhir:version.title. distinct  (  ) )
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: count
-# Unmapped construct found: Equals
-# Unmapped construct found: count
-# Unmapped construct found: distinct
-# # Constraint UniqueKey:exs-10
-# Human readable:Version keys must be unique within an instance
-#
-# Constraint: version.key.count() = version.key.distinct().count()
-# ShEx:
-#
-#   count  ( fhir:version.key )  Equals     count  ( fhir:version.key. distinct  (  ) )
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: Implies
-# Unmapped construct found: intersect
-# Unmapped construct found: descendants
-# Unmapped construct found: where
-# # Constraint UniqueKey:exs-21
-# Human readable:Instance version should be referenced in at least one operation
-#
-# Constraint: version.exists() implies version.key.intersect(%resource.process.descendants().where(instanceReference = %context.key).versionReference).exists()
-# ShEx:
-#
-#{fhir:version .  Implies    intersect  (   descendants  ( fhir:version.key.'%resource'.process ).  where  (instanceReference { fhir:v ['%context'.key] } ).versionReference) .}
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: Implies
-# Unmapped construct found: where
-# # Constraint UniqueKey:exs-15
-# Human readable:versionReference must be specified if the referenced instance defines versions
-#
-# Constraint: versionReference.empty() implies %resource.instance.where(key=%context.instanceReference).version.empty()
-# ShEx:
-#
-# NOT { fhir:versionReference {fhir:v .} }   Implies   NOT { 'true'.instance. where  (key { fhir:v ['%context'.instanceReference] } ).version {fhir:v .} } 
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: where
-# # Constraint UniqueKey:exs-14
-# Human readable:InstanceReference must be a key of an instance defined in the ExampleScenario
-#
-# Constraint: %resource.instance.where(key=%context.instanceReference).exists()
-# ShEx:
-#
-#'false'.instance.  where  (key { fhir:v ['%context'.instanceReference] } ) .
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: Implies
-# Unmapped construct found: where
-# Unmapped construct found: where
-# # Constraint UniqueKey:exs-16
-# Human readable:versionReference must be a key of a version within the instance pointed to by instanceReference
-#
-# Constraint: versionReference.exists() implies %resource.instance.where(key=%context.instanceReference).version.where(key=%context.versionReference).exists()
-# ShEx:
-#
-#{fhir:versionReference .  Implies  'false'.instance.  where  (key { fhir:v ['%context'.instanceReference] } ).version.  where  (key { fhir:v ['%context'.versionReference] } ) .}
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: Implies
-# # Constraint UniqueKey:exs-5
-# Human readable:Processes must have steps if ExampleScenario status is active or required
-#
-# Constraint: %resource.status='active' or %resource.status='retired' implies step.exists()
-# ShEx:
-#
-#'false'.status { fhir:v ['active'] }  OR 'false'.status { fhir:v ['retired'] }   Implies  {fhir:step .}
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: Implies
-# Unmapped construct found: Implies
-# # Constraint UniqueKey:exs-22
-# Human readable:Can have a process, a workflow, one or more operations or none of these, but cannot have a combination
-#
-# Constraint: (process.exists() implies workflow.empty() and operation.empty()) and (workflow.exists() implies operation.empty())
-# ShEx:
-#
-#({fhir:process .  Implies  ( NOT { fhir:workflow {fhir:v .} }  AND  NOT { fhir:operation {fhir:v .} } )}) AND ({fhir:workflow .  Implies   NOT { fhir:operation {fhir:v .} } })
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: count
-# Unmapped construct found: Equals
-# Unmapped construct found: count
-# Unmapped construct found: distinct
-# # Constraint UniqueKey:exs-13
-# Human readable:Alternative titles must be unique within a step
-#
-# Constraint: alternative.title.count() = alternative.title.distinct().count()
-# ShEx:
-#
-#   count  ( fhir:alternative.title )  Equals     count  ( fhir:alternative.title. distinct  (  ) )
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: Implies
-# Unmapped construct found: where
-# # Constraint UniqueKey:exs-17
-# Human readable:If specified, initiator must be a key of an actor within the ExampleScenario
-#
-# Constraint: initiator.exists() implies initator = 'OTHER' or %resource.actor.where(key=%context.initiator).exists()
-# ShEx:
-#
-#{fhir:initiator .  Implies  (({ fhir:initator { fhir:v ['OTHER'] }  }) OR 'false'.actor.  where  (key { fhir:v ['%context'.initiator] } ) .)}
+#{fhir:initiator .  Implies  (({ fhir:initiator { fhir:v ['OTHER'] }  }) OR 'false'.actor.  where  (key { fhir:v ['%context'.initiator] } ) .)}
 {}
 
 ) AND (
@@ -891,13 +490,17 @@ start=@<ExampleScenario> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:description @<markdown>?;          # Details about actor
 } AND (
 
-# Constraint UniqueKey:cnl-1
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:cnl-1
 # Human readable:URL should not contain | or # - these characters make processing canonical references problematic
-
-# Constraint: url.matches('([^|#])*')
+#
+# Constraint: exists() implies matches('^[^|# ]+$')
 # ShEx:
-
-{fhir:url { fhir:v /'([^|#])*'/ } }
+#
+# .  Implies   { fhir:v /'^[^|# ]+$'/ } 
+{}
 
 ) AND (
 
@@ -935,10 +538,10 @@ start=@<ExampleScenario> AND {fhir:nodeRole [fhir:treeRoot]}
 # # Constraint UniqueKey:cnl-0
 # Human readable:Name should be usable as an identifier for the module by machine processing applications such as code generation
 #
-# Constraint: name.exists() implies name.matches('[A-Z]([A-Za-z0-9_]){1,254}')
+# Constraint: name.exists() implies name.matches('^[A-Z]([A-Za-z0-9_]){1,254}$')
 # ShEx:
 #
-#{fhir:name .  Implies  {fhir:name { fhir:v /'[A-Z]([A-Za-z0-9_]){1,254}'/ } }}
+#{fhir:name .  Implies  {fhir:name { fhir:v /'^[A-Z]([A-Za-z0-9_]){1,254}$'/ } }}
 {}
 
 ) AND (
@@ -1060,10 +663,10 @@ start=@<ExampleScenario> AND {fhir:nodeRole [fhir:treeRoot]}
 # # Constraint UniqueKey:exs-2
 # Human readable:instance.content is only allowed if there are no instance.versions
 #
-# Constraint: instance.content.exists() implies instance.version.empty()
+# Constraint: content.exists() implies version.empty()
 # ShEx:
 #
-#{fhir:instance.content .  Implies   NOT { fhir:instance.version {fhir:v .} } }
+#{fhir:content .  Implies   NOT { fhir:version {fhir:v .} } }
 {}
 
 ) AND (
@@ -1248,10 +851,10 @@ start=@<ExampleScenario> AND {fhir:nodeRole [fhir:treeRoot]}
 # # Constraint UniqueKey:exs-17
 # Human readable:If specified, initiator must be a key of an actor within the ExampleScenario
 #
-# Constraint: initiator.exists() implies initator = 'OTHER' or %resource.actor.where(key=%context.initiator).exists()
+# Constraint: initiator.exists() implies initiator = 'OTHER' or %resource.actor.where(key=%context.initiator).exists()
 # ShEx:
 #
-#{fhir:initiator .  Implies  (({ fhir:initator { fhir:v ['OTHER'] }  }) OR 'false'.actor.  where  (key { fhir:v ['%context'.initiator] } ) .)}
+#{fhir:initiator .  Implies  (({ fhir:initiator { fhir:v ['OTHER'] }  }) OR 'false'.actor.  where  (key { fhir:v ['%context'.initiator] } ) .)}
 {}
 
 ) AND (
@@ -1272,28 +875,37 @@ start=@<ExampleScenario> AND {fhir:nodeRole [fhir:treeRoot]}
 )
  
 
-# Data used in the scenario
-<ExampleScenario.instance> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:key @<string>;                     # ID or acronym of the instance
-    fhir:structureType @<Coding>;           # Data structure for example
-    fhir:structureVersion @<string>?;       # E.g. 4.0.1
-    fhir:structureProfile @<canonical>  OR 
-    			@<uri>  ?;  # Rules instance adheres to
-    fhir:title @<string>;                   # Label for instance
+# Event within of the process
+<ExampleScenario.process.step> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:number @<string>?;                 # Sequential number of the step
+    fhir:process @<ExampleScenario.process>?;  # Step is nested process
+    fhir:workflow @<canonical>?;            # Step is nested workflow
+    fhir:operation @<ExampleScenario.process.step.operation>?;  # Step is simple action
+    fhir:alternative @<OneOrMore_ExampleScenario.process.step.alternative>?;  # Alternate non-typical step action
+    fhir:pause @<boolean>?;                 # Pause in the flow?
+}  
+
+# Major process within scenario
+<ExampleScenario.process> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:title @<string>;                   # Label for procss
     fhir:description @<markdown>?;          # Human-friendly description of the 
-                                            # instance 
-    fhir:content @<Reference>?;             # Example instance data
-    fhir:version @<OneOrMore_ExampleScenario.instance.version>?;  # Snapshot of instance that changes
-    fhir:containedInstance @<OneOrMore_ExampleScenario.instance.containedInstance>?;  # Resources contained in the instance
+                                            # process 
+    fhir:preConditions @<markdown>?;        # Status before process starts
+    fhir:postConditions @<markdown>?;       # Status after successful completion
+    fhir:step @<OneOrMore_ExampleScenario.process.step>?;  # Event within of the process
 } AND (
 
-# Constraint UniqueKey:cnl-1
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:cnl-1
 # Human readable:URL should not contain | or # - these characters make processing canonical references problematic
-
-# Constraint: url.matches('([^|#])*')
+#
+# Constraint: exists() implies matches('^[^|# ]+$')
 # ShEx:
-
-{fhir:url { fhir:v /'([^|#])*'/ } }
+#
+# .  Implies   { fhir:v /'^[^|# ]+$'/ } 
+{}
 
 ) AND (
 
@@ -1331,10 +943,10 @@ start=@<ExampleScenario> AND {fhir:nodeRole [fhir:treeRoot]}
 # # Constraint UniqueKey:cnl-0
 # Human readable:Name should be usable as an identifier for the module by machine processing applications such as code generation
 #
-# Constraint: name.exists() implies name.matches('[A-Z]([A-Za-z0-9_]){1,254}')
+# Constraint: name.exists() implies name.matches('^[A-Z]([A-Za-z0-9_]){1,254}$')
 # ShEx:
 #
-#{fhir:name .  Implies  {fhir:name { fhir:v /'[A-Z]([A-Za-z0-9_]){1,254}'/ } }}
+#{fhir:name .  Implies  {fhir:name { fhir:v /'^[A-Z]([A-Za-z0-9_]){1,254}$'/ } }}
 {}
 
 ) AND (
@@ -1456,10 +1068,10 @@ start=@<ExampleScenario> AND {fhir:nodeRole [fhir:treeRoot]}
 # # Constraint UniqueKey:exs-2
 # Human readable:instance.content is only allowed if there are no instance.versions
 #
-# Constraint: instance.content.exists() implies instance.version.empty()
+# Constraint: content.exists() implies version.empty()
 # ShEx:
 #
-#{fhir:instance.content .  Implies   NOT { fhir:instance.version {fhir:v .} } }
+#{fhir:content .  Implies   NOT { fhir:version {fhir:v .} } }
 {}
 
 ) AND (
@@ -1644,10 +1256,416 @@ start=@<ExampleScenario> AND {fhir:nodeRole [fhir:treeRoot]}
 # # Constraint UniqueKey:exs-17
 # Human readable:If specified, initiator must be a key of an actor within the ExampleScenario
 #
-# Constraint: initiator.exists() implies initator = 'OTHER' or %resource.actor.where(key=%context.initiator).exists()
+# Constraint: initiator.exists() implies initiator = 'OTHER' or %resource.actor.where(key=%context.initiator).exists()
 # ShEx:
 #
-#{fhir:initiator .  Implies  (({ fhir:initator { fhir:v ['OTHER'] }  }) OR 'false'.actor.  where  (key { fhir:v ['%context'.initiator] } ) .)}
+#{fhir:initiator .  Implies  (({ fhir:initiator { fhir:v ['OTHER'] }  }) OR 'false'.actor.  where  (key { fhir:v ['%context'.initiator] } ) .)}
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# Unmapped construct found: where
+# # Constraint UniqueKey:exs-18
+# Human readable:If specified, receiver must be a key of an actor within the ExampleScenario
+#
+# Constraint: receiver.exists() implies receiver = 'OTHER' or %resource.actor.where(key=%context.receiver).exists()
+# ShEx:
+#
+#{fhir:receiver .  Implies  (({ fhir:receiver { fhir:v ['OTHER'] }  }) OR 'false'.actor.  where  (key { fhir:v ['%context'.receiver] } ) .)}
+{}
+
+)
+ 
+
+# Resources contained in the instance
+<ExampleScenario.instance.containedInstance> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:instanceReference @<string>;       # Key of contained instance
+    fhir:versionReference @<string>?;       # Key of contained instance version
+}  
+
+# Data used in the scenario
+<ExampleScenario.instance> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:key @<string>;                     # ID or acronym of the instance
+    fhir:structureType @<Coding>;           # Data structure for example
+    fhir:structureVersion @<string>?;       # E.g. 4.0.1
+    fhir:structureProfile @<canonical>  OR 
+    			@<uri>  ?;  # Rules instance adheres to
+    fhir:title @<string>;                   # Label for instance
+    fhir:description @<markdown>?;          # Human-friendly description of the 
+                                            # instance 
+    fhir:content @<Reference>?;             # Example instance data
+    fhir:version @<OneOrMore_ExampleScenario.instance.version>?;  # Snapshot of instance that changes
+    fhir:containedInstance @<OneOrMore_ExampleScenario.instance.containedInstance>?;  # Resources contained in the instance
+} AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:cnl-1
+# Human readable:URL should not contain | or # - these characters make processing canonical references problematic
+#
+# Constraint: exists() implies matches('^[^|# ]+$')
+# ShEx:
+#
+# .  Implies   { fhir:v /'^[^|# ]+$'/ } 
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:exs-4
+# Human readable:Must have processes if status is active or required
+#
+# Constraint: status='active' or status='retired' implies process.exists()
+# ShEx:
+#
+#(({ fhir:status { fhir:v ['active'] }  }) OR ({ fhir:status { fhir:v ['retired'] }  }))  Implies  {fhir:process .}
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:exs-3
+# Human readable:Must have actors if status is active or required
+#
+# Constraint: status='active' or status='retired' implies actor.exists()
+# ShEx:
+#
+#(({ fhir:status { fhir:v ['active'] }  }) OR ({ fhir:status { fhir:v ['retired'] }  }))  Implies  {fhir:actor .}
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:cnl-0
+# Human readable:Name should be usable as an identifier for the module by machine processing applications such as code generation
+#
+# Constraint: name.exists() implies name.matches('^[A-Z]([A-Za-z0-9_]){1,254}$')
+# ShEx:
+#
+#{fhir:name .  Implies  {fhir:name { fhir:v /'^[A-Z]([A-Za-z0-9_]){1,254}$'/ } }}
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: count
+# Unmapped construct found: Equals
+# Unmapped construct found: count
+# Unmapped construct found: distinct
+# # Constraint UniqueKey:exs-12
+# Human readable:Process titles must be unique
+#
+# Constraint: process.title.count() = process.title.distinct().count()
+# ShEx:
+#
+#   count  ( fhir:process.title )  Equals     count  ( fhir:process.title. distinct  (  ) )
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: count
+# Unmapped construct found: Equals
+# Unmapped construct found: count
+# Unmapped construct found: distinct
+# # Constraint UniqueKey:exs-9
+# Human readable:Instance titles must be unique
+#
+# Constraint: instance.title.count() = instance.title.distinct().count()
+# ShEx:
+#
+#   count  ( fhir:instance.title )  Equals     count  ( fhir:instance.title. distinct  (  ) )
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: count
+# Unmapped construct found: Equals
+# Unmapped construct found: count
+# Unmapped construct found: distinct
+# # Constraint UniqueKey:exs-8
+# Human readable:Instance keys must be unique
+#
+# Constraint: instance.key.count() = instance.key.distinct().count()
+# ShEx:
+#
+#   count  ( fhir:instance.key )  Equals     count  ( fhir:instance.key. distinct  (  ) )
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: count
+# Unmapped construct found: Equals
+# Unmapped construct found: count
+# Unmapped construct found: distinct
+# # Constraint UniqueKey:exs-7
+# Human readable:Actor titles must be unique
+#
+# Constraint: actor.title.count() = actor.title.distinct().count()
+# ShEx:
+#
+#   count  ( fhir:actor.title )  Equals     count  ( fhir:actor.title. distinct  (  ) )
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: count
+# Unmapped construct found: Equals
+# Unmapped construct found: count
+# Unmapped construct found: distinct
+# # Constraint UniqueKey:exs-6
+# Human readable:Actor keys must be unique
+#
+# Constraint: actor.key.count() = actor.key.distinct().count()
+# ShEx:
+#
+#   count  ( fhir:actor.key )  Equals     count  ( fhir:actor.key. distinct  (  ) )
+{}
+
+) AND (
+
+# Constraint UniqueKey:exs-23
+# Human readable:actor.key canot be 'OTHER'
+
+# Constraint: key != 'OTHER'
+# ShEx:
+
+{ fhir:key {fhir:v  [. -'OTHER']}  }
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: descendants
+# Unmapped construct found: select
+# Unmapped construct found: where
+# # Constraint UniqueKey:exs-19
+# Human readable:Actor should be referenced in at least one operation
+#
+# Constraint: %resource.process.descendants().select(operation).where(initiator=%context.key or receiver=%context.key).exists()
+# ShEx:
+#
+#   descendants  ( 'false'.process ).  select  (operation).  where  (initiator { fhir:v ['%context'.key] }  OR receiver { fhir:v ['%context'.key] } ) .
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:exs-2
+# Human readable:instance.content is only allowed if there are no instance.versions
+#
+# Constraint: content.exists() implies version.empty()
+# ShEx:
+#
+#{fhir:content .  Implies   NOT { fhir:version {fhir:v .} } }
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: descendants
+# Unmapped construct found: select
+# Unmapped construct found: where
+# # Constraint UniqueKey:exs-20
+# Human readable:Instance should be referenced in at least one location
+#
+# Constraint: %resource.process.descendants().select(instanceReference).where($this=%context.key).exists()
+# ShEx:
+#
+#   descendants  ( 'false'.process ).  select  (instanceReference).  where  ($this { fhir:v ['%context'.key] } ) .
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: memberOf
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:exs-1
+# Human readable:StructureVersion is required if structureType is not FHIR (but may still be present even if FHIR)
+#
+# Constraint: structureType.exists() and structureType.memberOf('http://hl7.org/fhir/ValueSet/resource-types').not() implies structureVersion.exists()
+# ShEx:
+#
+#({fhir:structureType . AND  NOT { fhir:structureType. memberOf  ('http://hl7.org/fhir/ValueSet/resource-types') }})  Implies  {fhir:structureVersion .}
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: count
+# Unmapped construct found: Equals
+# Unmapped construct found: count
+# Unmapped construct found: distinct
+# # Constraint UniqueKey:exs-11
+# Human readable:Version titles must be unique within an instance
+#
+# Constraint: version.title.count() = version.title.distinct().count()
+# ShEx:
+#
+#   count  ( fhir:version.title )  Equals     count  ( fhir:version.title. distinct  (  ) )
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: count
+# Unmapped construct found: Equals
+# Unmapped construct found: count
+# Unmapped construct found: distinct
+# # Constraint UniqueKey:exs-10
+# Human readable:Version keys must be unique within an instance
+#
+# Constraint: version.key.count() = version.key.distinct().count()
+# ShEx:
+#
+#   count  ( fhir:version.key )  Equals     count  ( fhir:version.key. distinct  (  ) )
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# Unmapped construct found: intersect
+# Unmapped construct found: descendants
+# Unmapped construct found: where
+# # Constraint UniqueKey:exs-21
+# Human readable:Instance version should be referenced in at least one operation
+#
+# Constraint: version.exists() implies version.key.intersect(%resource.process.descendants().where(instanceReference = %context.key).versionReference).exists()
+# ShEx:
+#
+#{fhir:version .  Implies    intersect  (   descendants  ( fhir:version.key.'%resource'.process ).  where  (instanceReference { fhir:v ['%context'.key] } ).versionReference) .}
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# Unmapped construct found: where
+# # Constraint UniqueKey:exs-15
+# Human readable:versionReference must be specified if the referenced instance defines versions
+#
+# Constraint: versionReference.empty() implies %resource.instance.where(key=%context.instanceReference).version.empty()
+# ShEx:
+#
+# NOT { fhir:versionReference {fhir:v .} }   Implies   NOT { 'true'.instance. where  (key { fhir:v ['%context'.instanceReference] } ).version {fhir:v .} } 
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: where
+# # Constraint UniqueKey:exs-14
+# Human readable:InstanceReference must be a key of an instance defined in the ExampleScenario
+#
+# Constraint: %resource.instance.where(key=%context.instanceReference).exists()
+# ShEx:
+#
+#'false'.instance.  where  (key { fhir:v ['%context'.instanceReference] } ) .
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# Unmapped construct found: where
+# Unmapped construct found: where
+# # Constraint UniqueKey:exs-16
+# Human readable:versionReference must be a key of a version within the instance pointed to by instanceReference
+#
+# Constraint: versionReference.exists() implies %resource.instance.where(key=%context.instanceReference).version.where(key=%context.versionReference).exists()
+# ShEx:
+#
+#{fhir:versionReference .  Implies  'false'.instance.  where  (key { fhir:v ['%context'.instanceReference] } ).version.  where  (key { fhir:v ['%context'.versionReference] } ) .}
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:exs-5
+# Human readable:Processes must have steps if ExampleScenario status is active or required
+#
+# Constraint: %resource.status='active' or %resource.status='retired' implies step.exists()
+# ShEx:
+#
+#'false'.status { fhir:v ['active'] }  OR 'false'.status { fhir:v ['retired'] }   Implies  {fhir:step .}
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:exs-22
+# Human readable:Can have a process, a workflow, one or more operations or none of these, but cannot have a combination
+#
+# Constraint: (process.exists() implies workflow.empty() and operation.empty()) and (workflow.exists() implies operation.empty())
+# ShEx:
+#
+#({fhir:process .  Implies  ( NOT { fhir:workflow {fhir:v .} }  AND  NOT { fhir:operation {fhir:v .} } )}) AND ({fhir:workflow .  Implies   NOT { fhir:operation {fhir:v .} } })
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: count
+# Unmapped construct found: Equals
+# Unmapped construct found: count
+# Unmapped construct found: distinct
+# # Constraint UniqueKey:exs-13
+# Human readable:Alternative titles must be unique within a step
+#
+# Constraint: alternative.title.count() = alternative.title.distinct().count()
+# ShEx:
+#
+#   count  ( fhir:alternative.title )  Equals     count  ( fhir:alternative.title. distinct  (  ) )
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# Unmapped construct found: where
+# # Constraint UniqueKey:exs-17
+# Human readable:If specified, initiator must be a key of an actor within the ExampleScenario
+#
+# Constraint: initiator.exists() implies initiator = 'OTHER' or %resource.actor.where(key=%context.initiator).exists()
+# ShEx:
+#
+#{fhir:initiator .  Implies  (({ fhir:initiator { fhir:v ['OTHER'] }  }) OR 'false'.actor.  where  (key { fhir:v ['%context'.initiator] } ) .)}
 {}
 
 ) AND (
@@ -1683,14 +1701,12 @@ start=@<ExampleScenario> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # response 
 }  
 
-# Event within of the process
-<ExampleScenario.process.step> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:number @<string>?;                 # Sequential number of the step
-    fhir:process @<ExampleScenario.process>?;  # Step is nested process
-    fhir:workflow @<canonical>?;            # Step is nested workflow
-    fhir:operation @<ExampleScenario.process.step.operation>?;  # Step is simple action
-    fhir:alternative @<OneOrMore_ExampleScenario.process.step.alternative>?;  # Alternate non-typical step action
-    fhir:pause @<boolean>?;                 # Pause in the flow?
+# Alternate non-typical step action
+<ExampleScenario.process.step.alternative> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:title @<string>;                   # Label for alternative
+    fhir:description @<markdown>?;          # Human-readable description of 
+                                            # option 
+    fhir:step @<OneOrMore_ExampleScenario.process.step>?;  # Alternative action(s)
 }  
 
 # Snapshot of instance that changes
@@ -1726,6 +1742,11 @@ start=@<ExampleScenario> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:rest [rdf:nil] OR @<OneOrMore_ExampleScenario.process> 
 }
 
+<OneOrMore_ExampleScenario.process.step.alternative> CLOSED {
+    rdf:first @<ExampleScenario.process.step.alternative>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ExampleScenario.process.step.alternative> 
+}
+
 <OneOrMore_ExampleScenario.process.step> CLOSED {
     rdf:first @<ExampleScenario.process.step>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_ExampleScenario.process.step> 
@@ -1739,11 +1760,6 @@ start=@<ExampleScenario> AND {fhir:nodeRole [fhir:treeRoot]}
 <OneOrMore_ExampleScenario.instance.containedInstance> CLOSED {
     rdf:first @<ExampleScenario.instance.containedInstance>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_ExampleScenario.instance.containedInstance> 
-}
-
-<OneOrMore_ExampleScenario.process.step.alternative> CLOSED {
-    rdf:first @<ExampleScenario.process.step.alternative>  ;
-    rdf:rest [rdf:nil] OR @<OneOrMore_ExampleScenario.process.step.alternative> 
 }
 
 #---------------------- Value Sets ------------------------

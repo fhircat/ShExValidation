@@ -23,6 +23,9 @@ IMPORT <Group.shex>
 IMPORT <string.shex>
 #imported_end
 #imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
 IMPORT <Period.shex>
 #imported_end
 #imported_begin 
@@ -79,6 +82,8 @@ start=@<Measure> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
                                             # measure 
     fhir:version @<string>?;                # Business version of the measure
+    fhir:versionAlgorithm @<string>  OR 
+    			@<Coding>  ?;  # How to compare versions
     fhir:name @<string>?;                   # Name for this measure (computer 
                                             # friendly) 
     fhir:title @<string>?;                  # Name for this measure (human 
@@ -89,7 +94,7 @@ start=@<Measure> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:experimental @<boolean>?;          # For testing purposes, not real 
                                             # usage 
     fhir:subject @<CodeableConcept>  OR 
-    			(@<Reference>  AND {fhir:link @<Group> })  ?;  # E.g. Patient, Practitioner, 
+    			(@<Reference>  AND {fhir:link @<Group> ?})  ?;  # E.g. Patient, Practitioner, 
                                             # RelatedPerson, Organization, 
                                             # Location, Device 
     fhir:basis @<code> AND
@@ -105,23 +110,25 @@ start=@<Measure> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for measure 
                                             # (if applicable) 
     fhir:purpose @<markdown>?;              # Why this measure is defined
-    fhir:usage @<string>?;                  # Describes the clinical usage of 
+    fhir:usage @<markdown>?;                # Describes the clinical usage of 
                                             # the measure 
     fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:copyrightLabel @<string>?;         # Copyright holder and year(s)
     fhir:approvalDate @<date>?;             # When the measure was approved by 
                                             # publisher 
-    fhir:lastReviewDate @<date>?;           # When the measure was last reviewed
+    fhir:lastReviewDate @<date>?;           # When the measure was last reviewed 
+                                            # by the publisher 
     fhir:effectivePeriod @<Period>?;        # When the measure is expected to be 
                                             # used 
     fhir:topic @<OneOrMore_CodeableConcept>?;  # The category of the measure, such 
                                             # as Education, Treatment, 
-                                            # Assessment, etc. 
+                                            # Assessment, etc 
     fhir:author @<OneOrMore_ContactDetail>?;  # Who authored the content
     fhir:editor @<OneOrMore_ContactDetail>?;  # Who edited the content
     fhir:reviewer @<OneOrMore_ContactDetail>?;  # Who reviewed the content
     fhir:endorser @<OneOrMore_ContactDetail>?;  # Who endorsed the content
     fhir:relatedArtifact @<OneOrMore_RelatedArtifact>?;  # Additional documentation, 
-                                            # citations, etc. 
+                                            # citations, etc 
     fhir:library @<OneOrMore_canonical>?;   # Logic used by the measure
     fhir:disclaimer @<markdown>?;           # Disclaimer for use of the measure 
                                             # or its referenced content 
@@ -133,9 +140,9 @@ start=@<Measure> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:type @<OneOrMore_CodeableConcept>?;  # process | outcome | structure | 
                                             # patient-reported-outcome | 
                                             # composite 
-    fhir:riskAdjustment @<string>?;         # How risk adjustment is applied for 
+    fhir:riskAdjustment @<markdown>?;       # How risk adjustment is applied for 
                                             # this measure 
-    fhir:rateAggregation @<string>?;        # How is rate aggregation performed 
+    fhir:rateAggregation @<markdown>?;      # How is rate aggregation performed 
                                             # for this measure 
     fhir:rationale @<markdown>?;            # Detailed description of why the 
                                             # measure exists 
@@ -144,27 +151,24 @@ start=@<Measure> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:term @<OneOrMore_Measure.term>?;   # Defined terms used in the measure 
                                             # documentation 
     fhir:guidance @<markdown>?;             # Additional guidance for 
-                                            # implementers 
+                                            # implementers (deprecated) 
     fhir:group @<OneOrMore_Measure.group>?;  # Population criteria group
     fhir:supplementalData @<OneOrMore_Measure.supplementalData>?;  # What other data should be reported 
                                             # with the measure 
 }  
 
-# Population criteria group
-<Measure.group> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:code @<CodeableConcept>?;          # Meaning of the group
-    fhir:description @<string>?;            # Summary description
-    fhir:type @<OneOrMore_CodeableConcept>?;  # process | outcome | structure | 
-                                            # patient-reported-outcome | 
-                                            # composite 
-    fhir:basis @<code> AND
-    	{fhir:v @fhirvs:fhir-types}?;  # Population basis
-    fhir:scoring @<CodeableConcept>?;       # proportion | ratio | 
-                                            # continuous-variable | cohort 
-    fhir:scoringUnit @<CodeableConcept>?;   # What units?
-    fhir:improvementNotation @<CodeableConcept>?;  # increase | decrease
-    fhir:population @<OneOrMore_Measure.group.population>?;  # Population criteria
-    fhir:stratifier @<OneOrMore_Measure.group.stratifier>?;  # Stratifier criteria for the measure
+# Stratifier criteria component for the measure
+<Measure.group.stratifier.component> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:linkId @<string>?;                 # Unique id for stratifier component 
+                                            # in measure 
+    fhir:code @<CodeableConcept>?;          # Meaning of the stratifier component
+    fhir:description @<markdown>?;          # The human readable description of 
+                                            # this stratifier component 
+    fhir:criteria @<Expression>?;           # Component of how the measure 
+                                            # should be stratified 
+    fhir:groupDefinition @<Reference> AND {fhir:link 
+    			@<Group> ?}?;  # A group resource that defines this 
+                                            # population 
 }  
 
 # Defined terms used in the measure documentation
@@ -173,28 +177,62 @@ start=@<Measure> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:definition @<markdown>?;           # Meaning of the term
 }  
 
+# Stratifier criteria for the measure
+<Measure.group.stratifier> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:linkId @<string>?;                 # Unique id for stratifier in measure
+    fhir:code @<CodeableConcept>?;          # Meaning of the stratifier
+    fhir:description @<markdown>?;          # The human readable description of 
+                                            # this stratifier 
+    fhir:criteria @<Expression>?;           # How the measure should be 
+                                            # stratified 
+    fhir:groupDefinition @<Reference> AND {fhir:link 
+    			@<Group> ?}?;  # A group resource that defines this 
+                                            # population 
+    fhir:component @<OneOrMore_Measure.group.stratifier.component>?;  # Stratifier criteria component for 
+                                            # the measure 
+}  
+
+# Population criteria group
+<Measure.group> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:linkId @<string>?;                 # Unique id for group in measure
+    fhir:code @<CodeableConcept>?;          # Meaning of the group
+    fhir:description @<markdown>?;          # Summary description
+    fhir:type @<OneOrMore_CodeableConcept>?;  # process | outcome | structure | 
+                                            # patient-reported-outcome | 
+                                            # composite 
+    fhir:subject @<CodeableConcept>  OR 
+    			(@<Reference>  AND {fhir:link @<Group> ?})  ?;  # E.g. Patient, Practitioner, 
+                                            # RelatedPerson, Organization, 
+                                            # Location, Device 
+    fhir:basis @<code> AND
+    	{fhir:v @fhirvs:fhir-types}?;  # Population basis
+    fhir:scoring @<CodeableConcept>?;       # proportion | ratio | 
+                                            # continuous-variable | cohort 
+    fhir:scoringUnit @<CodeableConcept>?;   # What units?
+    fhir:rateAggregation @<markdown>?;      # How is rate aggregation performed 
+                                            # for this measure 
+    fhir:improvementNotation @<CodeableConcept>?;  # increase | decrease
+    fhir:library @<OneOrMore_canonical>?;   # Logic used by the measure group
+    fhir:population @<OneOrMore_Measure.group.population>?;  # Population criteria
+    fhir:stratifier @<OneOrMore_Measure.group.stratifier>?;  # Stratifier criteria for the measure
+}  
+
 # What other data should be reported with the measure
 <Measure.supplementalData> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:linkId @<string>?;                 # Unique id for supplementalData in 
+                                            # measure 
     fhir:code @<CodeableConcept>?;          # Meaning of the supplemental data
     fhir:usage @<OneOrMore_CodeableConcept>?;  # supplemental-data | 
                                             # risk-adjustment-factor 
-    fhir:description @<string>?;            # The human readable description of 
+    fhir:description @<markdown>?;          # The human readable description of 
                                             # this supplemental data 
     fhir:criteria @<Expression>;            # Expression describing additional 
                                             # data to be reported 
 }  
 
-# Stratifier criteria component for the measure
-<Measure.group.stratifier.component> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:code @<CodeableConcept>?;          # Meaning of the stratifier component
-    fhir:description @<string>?;            # The human readable description of 
-                                            # this stratifier component 
-    fhir:criteria @<Expression>;            # Component of how the measure 
-                                            # should be stratified 
-}  
-
 # Population criteria
 <Measure.group.population> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:linkId @<string>?;                 # Unique id for population in measure
     fhir:code @<CodeableConcept>?;          # initial-population | numerator | 
                                             # numerator-exclusion | denominator 
                                             # | denominator-exclusion | 
@@ -202,25 +240,17 @@ start=@<Measure> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # measure-population | 
                                             # measure-population-exclusion | 
                                             # measure-observation 
-    fhir:description @<string>?;            # The human readable description of 
+    fhir:description @<markdown>?;          # The human readable description of 
                                             # this population criteria 
-    fhir:criteria @<Expression>;            # The criteria that defines this 
+    fhir:criteria @<Expression>?;           # The criteria that defines this 
+                                            # population 
+    fhir:groupDefinition @<Reference> AND {fhir:link 
+    			@<Group> ?}?;  # A group resource that defines this 
                                             # population 
     fhir:inputPopulationId @<string>?;      # Which population
     fhir:aggregateMethod @<CodeableConcept>?;  # Aggregation method for a measure 
                                             # score (e.g. sum, average, median, 
                                             # minimum, maximum, count) 
-}  
-
-# Stratifier criteria for the measure
-<Measure.group.stratifier> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:code @<CodeableConcept>?;          # Meaning of the stratifier
-    fhir:description @<string>?;            # The human readable description of 
-                                            # this stratifier 
-    fhir:criteria @<Expression>?;           # How the measure should be 
-                                            # stratified 
-    fhir:component @<OneOrMore_Measure.group.stratifier.component>?;  # Stratifier criteria component for 
-                                            # the measure 
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------
@@ -252,6 +282,11 @@ start=@<Measure> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:rest [rdf:nil] OR @<OneOrMore_Measure.supplementalData> 
 }
 
+<OneOrMore_Measure.group.stratifier.component> CLOSED {
+    rdf:first @<Measure.group.stratifier.component>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Measure.group.stratifier.component> 
+}
+
 <OneOrMore_Measure.group.population> CLOSED {
     rdf:first @<Measure.group.population>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_Measure.group.population> 
@@ -260,11 +295,6 @@ start=@<Measure> AND {fhir:nodeRole [fhir:treeRoot]}
 <OneOrMore_Measure.group.stratifier> CLOSED {
     rdf:first @<Measure.group.stratifier>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_Measure.group.stratifier> 
-}
-
-<OneOrMore_Measure.group.stratifier.component> CLOSED {
-    rdf:first @<Measure.group.stratifier.component>  ;
-    rdf:rest [rdf:nil] OR @<OneOrMore_Measure.group.stratifier.component> 
 }
 
 #---------------------- Value Sets ------------------------

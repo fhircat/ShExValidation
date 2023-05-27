@@ -58,7 +58,7 @@ start=@<Basic> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:identifier @<OneOrMore_Identifier>?;  # Business identifier
     fhir:code @<CodeableConcept>;           # Kind of Resource
     fhir:subject @<Reference> AND {fhir:link 
-    			@<Resource> ? }?;  # Identifies the focus of this 
+    			@<Resource> ?}?;  # Identifies the focus of this 
                                             # resource 
     fhir:created @<dateTime>?;              # When created
     fhir:author @<Reference> AND {fhir:link 
@@ -68,7 +68,7 @@ start=@<Basic> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Who created
+    			@<RelatedPerson> ?}?;  # Who created
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

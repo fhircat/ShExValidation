@@ -32,6 +32,9 @@ IMPORT <markdown.shex>
 IMPORT <canonical.shex>
 #imported_end
 #imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
 IMPORT <UsageContext.shex>
 #imported_end
 #imported_begin 
@@ -58,6 +61,9 @@ start=@<SearchParameter> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:url @<uri>;                        # Canonical identifier for this 
                                             # search parameter, represented as a 
                                             # URI (globally unique) 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
+                                            # search parameter (business 
+                                            # identifier) 
     fhir:version @<string>?;                # Business version of the search 
                                             # parameter 
     fhir:versionAlgorithm @<string>  OR 
@@ -84,10 +90,12 @@ start=@<SearchParameter> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # parameter (if applicable) 
     fhir:purpose @<markdown>?;              # Why this search parameter is 
                                             # defined 
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:copyrightLabel @<string>?;         # Copyright holder and year(s)
     fhir:code @<code>;                      # Recommended name for parameter in 
                                             # search url 
     fhir:base @<OneOrMore_code> AND
-    	{fhir:v @fhirvs:all-resource-types};  # The resource type(s) this search 
+    	{fhir:v @fhirvs:version-independent-all-resource-types};  # The resource type(s) this search 
                                             # parameter applies to 
     fhir:type @<code> AND
     	{fhir:v @fhirvs:search-param-type};  # number | date | string | token | 
@@ -101,7 +109,7 @@ start=@<SearchParameter> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # constraints the usage of this 
                                             # SearchParamete 
     fhir:target @<OneOrMore_code> AND
-    	{fhir:v @fhirvs:resource-types}?;  # Types of resource (if a resource 
+    	{fhir:v @fhirvs:version-independent-all-resource-types}?;  # Types of resource (if a resource 
                                             # reference) 
     fhir:multipleOr @<boolean>?;            # Allow multiple values per 
                                             # parameter (or) 
@@ -139,13 +147,14 @@ start=@<SearchParameter> AND {fhir:nodeRole [fhir:treeRoot]}
 
 
 
+
+
 <OneOrMore_SearchParameter.component> CLOSED {
     rdf:first @<SearchParameter.component>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_SearchParameter.component> 
 }
 
 #---------------------- Value Sets ------------------------
-
 
 
 

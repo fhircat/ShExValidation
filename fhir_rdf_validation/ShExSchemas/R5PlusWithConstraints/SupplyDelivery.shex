@@ -53,6 +53,9 @@ IMPORT <Organization.shex>
 IMPORT <Practitioner.shex>
 #imported_end
 #imported_begin 
+IMPORT <InventoryItem.shex>
+#imported_end
+#imported_begin 
 IMPORT <SupplyRequest.shex>
 #imported_end
 #imported_begin 
@@ -66,6 +69,9 @@ IMPORT <BackboneElement.shex>
 #imported_end
 #imported_begin 
 IMPORT <PractitionerRole.shex>
+#imported_end
+#imported_begin 
+IMPORT <NutritionProduct.shex>
 #imported_end
 #imported_begin 
 IMPORT <BiologicallyDerivedProduct.shex>
@@ -86,7 +92,7 @@ start=@<SupplyDelivery> AND {fhir:nodeRole [fhir:treeRoot]}
     	{fhir:v @fhirvs:supplydelivery-status}?;  # in-progress | completed | 
                                             # abandoned | entered-in-error 
     fhir:patient @<Reference> AND {fhir:link 
-    			@<Patient> ? }?;  # Patient for whom the item is 
+    			@<Patient> ?}?;  # Patient for whom the item is 
                                             # supplied 
     fhir:type @<CodeableConcept>?;          # Category of supply event
     fhir:suppliedItem @<OneOrMore_SupplyDelivery.suppliedItem>?;  # The item that is delivered or 
@@ -97,9 +103,9 @@ start=@<SupplyDelivery> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:supplier @<Reference> AND {fhir:link 
     			@<Organization> OR 
     			@<Practitioner> OR 
-    			@<PractitionerRole> ? }?;  # The item supplier
+    			@<PractitionerRole> ?}?;  # The item supplier
     fhir:destination @<Reference> AND {fhir:link 
-    			@<Location> ? }?;  # Where the delivery was sent
+    			@<Location> ?}?;  # Where the delivery was sent
     fhir:receiver @<OneOrMore_Reference_Organization_OR_Practitioner_OR_PractitionerRole>?;  # Who received the delivery
 }  
 
@@ -110,7 +116,9 @@ start=@<SupplyDelivery> AND {fhir:nodeRole [fhir:treeRoot]}
     			(@<Reference>  AND {fhir:link @<Medication> OR 
     			 @<Substance> OR 
     			 @<Device> OR 
-    			 @<BiologicallyDerivedProduct> })  ?;  # Medication, Substance, Device or 
+    			 @<BiologicallyDerivedProduct> OR 
+    			 @<NutritionProduct> OR 
+    			 @<InventoryItem> ?})  ?;  # Medication, Substance, Device or 
                                             # Biologically Derived Product 
                                             # supplied 
 }  

@@ -13,9 +13,6 @@ IMPORT <Extension.shex>
 #imported_begin 
 IMPORT <Reference.shex>
 #imported_end
-#imported_begin 
-IMPORT <ResearchStudy.shex>
-#imported_end
 # Associated research study
 <workflow-researchStudy> EXTENDS @<Extension> CLOSED {   
 
@@ -24,7 +21,7 @@ IMPORT <ResearchStudy.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/workflow-researchStudy"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<ResearchStudy> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<ResearchStudy> ?})  ; 
     ^fhir:extension { a [fhir:Composition]} OR 
           {a [fhir:Consent]} OR 
           {a [fhir:DeviceUsage]} OR 
@@ -35,11 +32,12 @@ IMPORT <ResearchStudy.shex>
           {a [fhir:DocumentReference]} OR 
           {a [fhir:MedicationAdministration]} OR 
           {a [fhir:MedicationDispense]} OR 
-          {a [fhir:MedicationUsage]} OR 
+          {a [fhir:MedicationStatement]} OR 
           {a [fhir:Observation]} OR 
           {a [fhir:Procedure]} OR 
           {a [fhir:QuestionnaireResponse]} OR 
           {a [fhir:RiskAssessment]} OR 
+          {a [fhir:ServiceRequest]} OR 
           {a [fhir:SupplyDelivery]} OR 
           {a [fhir:Task]}
 

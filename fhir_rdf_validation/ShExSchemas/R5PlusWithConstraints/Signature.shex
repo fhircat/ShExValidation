@@ -57,14 +57,14 @@ IMPORT <PractitionerRole.shex>
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Who signed
+    			@<RelatedPerson> ?}?;  # Who signed
     fhir:onBehalfOf @<Reference> AND {fhir:link 
     			@<Device> OR 
     			@<Organization> OR 
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # The party represented
+    			@<RelatedPerson> ?}?;  # The party represented
     fhir:targetFormat @<code> AND
     	{fhir:v @fhirvs:mimetypes}?;  # The technical format of the signed 
                                             # resources 

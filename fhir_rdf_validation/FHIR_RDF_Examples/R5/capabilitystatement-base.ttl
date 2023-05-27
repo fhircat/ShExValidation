@@ -9,11 +9,11 @@
      fhir:status [ fhir:v "extensions" ]
   ] ;
   fhir:url [ fhir:v "http://hl7.org/fhir/CapabilityStatement/base"], [ fhir:v "http://hl7.org/fhir/CapabilityStatement/base"] ;
-  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:version [ fhir:v "6.0.0-cibuild"], [ fhir:v "6.0.0-cibuild"] ;
   fhir:name [ fhir:v "Base FHIR Capability Statement (Full)"], [ fhir:v "Base FHIR Capability Statement (Full)"] ;
   fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
   fhir:experimental [ fhir:v "true"], [ fhir:v "true"] ;
-  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:date [ fhir:v "2023-05-26T00:17:51+00:00"], [ fhir:v "2023-05-26T00:17:51+00:00"] ;
   fhir:publisher [ fhir:v "FHIR Project Team"], [ fhir:v "FHIR Project Team"] ;
   fhir:contact ( [
      fhir:telecom ( [
@@ -31,7 +31,7 @@
   fhir:software [
      fhir:name [ fhir:v "Insert your software name here..." ]
   ] ;
-  fhir:fhirVersion [ fhir:v "5.0.0"] ;
+  fhir:fhirVersion [ fhir:v "6.0.0-cibuild"] ;
   fhir:format ( [ fhir:v "xml"] [ fhir:v "json"] ) ;
   fhir:rest ( [
      fhir:mode [ fhir:v "server" ] ;
@@ -5111,6 +5111,11 @@
          fhir:type [ fhir:v "date" ] ;
          fhir:documentation [ fhir:v "The actual start date of the Encounter" ]
        ] [
+         fhir:name [ fhir:v "location-value-period" ] ;
+         fhir:definition [ fhir:v "http://hl7.org/fhir/SearchParameter/Encounter-location-value-period" ] ;
+         fhir:type [ fhir:v "composite" ] ;
+         fhir:documentation [ fhir:v "Time period during which the patient was present at the location" ]
+       ] [
          fhir:name [ fhir:v "patient" ] ;
          fhir:definition [ fhir:v "http://hl7.org/fhir/SearchParameter/clinical-patient" ] ;
          fhir:type [ fhir:v "reference" ] ;
@@ -5118,8 +5123,8 @@
        ] [
          fhir:name [ fhir:v "location-period" ] ;
          fhir:definition [ fhir:v "http://hl7.org/fhir/SearchParameter/Encounter-location-period" ] ;
-         fhir:type [ fhir:v "composite" ] ;
-         fhir:documentation [ fhir:v "Time period during which the patient was present at the location" ]
+         fhir:type [ fhir:v "date" ] ;
+         fhir:documentation [ fhir:v "Time period during which the patient was present at a location (generally used via composite location-period)" ]
        ] [
          fhir:name [ fhir:v "special-arrangement" ] ;
          fhir:definition [ fhir:v "http://hl7.org/fhir/SearchParameter/Encounter-special-arrangement" ] ;
@@ -7337,7 +7342,7 @@
        fhir:conditionalDelete [ fhir:v "multiple" ] ;
        fhir:referencePolicy ( [ fhir:v "literal" ] [ fhir:v "logical" ] ) ;
        fhir:searchInclude ( [ fhir:v "ImmunizationRecommendation.patient" ] [ fhir:v "ImmunizationRecommendation.information" ] [ fhir:v "ImmunizationRecommendation.support" ] ) ;
-       fhir:searchRevInclude ( [ fhir:v "AuditEvent.based-on" ] [ fhir:v "CarePlan.activity-reference" ] [ fhir:v "DiagnosticReport.based-on" ] [ fhir:v "DocumentReference.based-on" ] [ fhir:v "Observation.based-on" ] [ fhir:v "Provenance.based-on" ] ) ;
+       fhir:searchRevInclude ( [ fhir:v "Appointment.based-on" ] [ fhir:v "AuditEvent.based-on" ] [ fhir:v "CarePlan.activity-reference" ] [ fhir:v "DiagnosticReport.based-on" ] [ fhir:v "DocumentReference.based-on" ] [ fhir:v "Encounter.based-on" ] [ fhir:v "Observation.based-on" ] [ fhir:v "Provenance.based-on" ] ) ;
        fhir:searchParam ( [
          fhir:name [ fhir:v "date" ] ;
          fhir:definition [ fhir:v "http://hl7.org/fhir/SearchParameter/clinical-date" ] ;
@@ -8291,12 +8296,17 @@
          fhir:name [ fhir:v "characteristic" ] ;
          fhir:definition [ fhir:v "http://hl7.org/fhir/SearchParameter/Location-characteristic" ] ;
          fhir:type [ fhir:v "token" ] ;
-         fhir:documentation [ fhir:v "One of the Location's characteristics" ]
+         fhir:documentation [ fhir:v "Physical form of the location (e.g. bed/ward/site/virtual)" ]
        ] [
          fhir:name [ fhir:v "address-country" ] ;
          fhir:definition [ fhir:v "http://hl7.org/fhir/SearchParameter/Location-address-country" ] ;
          fhir:type [ fhir:v "string" ] ;
          fhir:documentation [ fhir:v "A country specified in an address" ]
+       ] [
+         fhir:name [ fhir:v "mode" ] ;
+         fhir:definition [ fhir:v "http://hl7.org/fhir/SearchParameter/Location-mode" ] ;
+         fhir:type [ fhir:v "token" ] ;
+         fhir:documentation [ fhir:v "The mode of the location (instance | kind)" ]
        ] [
          fhir:name [ fhir:v "endpoint" ] ;
          fhir:definition [ fhir:v "http://hl7.org/fhir/SearchParameter/Location-endpoint" ] ;
@@ -9915,7 +9925,7 @@
        fhir:conditionalDelete [ fhir:v "multiple" ] ;
        fhir:referencePolicy ( [ fhir:v "literal" ] [ fhir:v "logical" ] ) ;
        fhir:searchInclude ( [ fhir:v "NutritionOrder.provider" ] [ fhir:v "NutritionOrder.subject" ] [ fhir:v "NutritionOrder.patient" ] [ fhir:v "NutritionOrder.encounter" ] ) ;
-       fhir:searchRevInclude ( [ fhir:v "AuditEvent.based-on" ] [ fhir:v "CarePlan.activity-reference" ] [ fhir:v "CarePlan.based-on" ] [ fhir:v "DiagnosticReport.based-on" ] [ fhir:v "DocumentReference.based-on" ] [ fhir:v "Goal.addresses" ] [ fhir:v "Observation.based-on" ] [ fhir:v "Provenance.based-on" ] ) ;
+       fhir:searchRevInclude ( [ fhir:v "Appointment.based-on" ] [ fhir:v "AuditEvent.based-on" ] [ fhir:v "CarePlan.activity-reference" ] [ fhir:v "CarePlan.based-on" ] [ fhir:v "DiagnosticReport.based-on" ] [ fhir:v "DocumentReference.based-on" ] [ fhir:v "Encounter.based-on" ] [ fhir:v "Goal.addresses" ] [ fhir:v "Observation.based-on" ] [ fhir:v "Provenance.based-on" ] ) ;
        fhir:searchParam ( [
          fhir:name [ fhir:v "identifier" ] ;
          fhir:definition [ fhir:v "http://hl7.org/fhir/SearchParameter/clinical-identifier" ] ;
@@ -12406,7 +12416,7 @@
        fhir:conditionalDelete [ fhir:v "multiple" ] ;
        fhir:referencePolicy ( [ fhir:v "literal" ] [ fhir:v "logical" ] ) ;
        fhir:searchInclude ( [ fhir:v "RequestOrchestration.author" ] [ fhir:v "RequestOrchestration.subject" ] [ fhir:v "RequestOrchestration.instantiates-canonical" ] [ fhir:v "RequestOrchestration.encounter" ] [ fhir:v "RequestOrchestration.participant" ] [ fhir:v "RequestOrchestration.based-on" ] [ fhir:v "RequestOrchestration.patient" ] ) ;
-       fhir:searchRevInclude ( [ fhir:v "CarePlan.activity-reference" ] [ fhir:v "CarePlan.based-on" ] [ fhir:v "DocumentReference.based-on" ] ) ;
+       fhir:searchRevInclude ( [ fhir:v "Appointment.based-on" ] [ fhir:v "CarePlan.activity-reference" ] [ fhir:v "CarePlan.based-on" ] [ fhir:v "DocumentReference.based-on" ] [ fhir:v "Encounter.based-on" ] ) ;
        fhir:searchParam ( [
          fhir:name [ fhir:v "authored" ] ;
          fhir:definition [ fhir:v "http://hl7.org/fhir/SearchParameter/RequestOrchestration-authored" ] ;
@@ -15268,7 +15278,7 @@
        fhir:conditionalDelete [ fhir:v "multiple" ] ;
        fhir:referencePolicy ( [ fhir:v "literal" ] [ fhir:v "logical" ] ) ;
        fhir:searchInclude ( [ fhir:v "VisionPrescription.prescriber" ] [ fhir:v "VisionPrescription.patient" ] [ fhir:v "VisionPrescription.encounter" ] ) ;
-       fhir:searchRevInclude ( [ fhir:v "CarePlan.activity-reference" ] [ fhir:v "DocumentReference.based-on" ] ) ;
+       fhir:searchRevInclude ( [ fhir:v "Appointment.based-on" ] [ fhir:v "CarePlan.activity-reference" ] [ fhir:v "DocumentReference.based-on" ] [ fhir:v "Encounter.based-on" ] ) ;
        fhir:searchParam ( [
          fhir:name [ fhir:v "prescriber" ] ;
          fhir:definition [ fhir:v "http://hl7.org/fhir/SearchParameter/VisionPrescription-prescriber" ] ;

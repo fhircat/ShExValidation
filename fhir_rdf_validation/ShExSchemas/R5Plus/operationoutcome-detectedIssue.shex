@@ -24,7 +24,7 @@ IMPORT <DetectedIssue.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/operationoutcome-detectedIssue"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<DetectedIssue> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<DetectedIssue> ?})  ; 
     ^fhir:extension { ^fhir:issue {a [fhir:OperationOutcome]}}
 
 }  

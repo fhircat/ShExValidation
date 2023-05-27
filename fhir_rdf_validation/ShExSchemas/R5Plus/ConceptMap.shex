@@ -5,9 +5,6 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 
 #imported_begin 
-IMPORT <id.shex>
-#imported_end
-#imported_begin 
 IMPORT <uri.shex>
 #imported_end
 #imported_begin 
@@ -23,10 +20,10 @@ IMPORT <date.shex>
 IMPORT <string.shex>
 #imported_end
 #imported_begin 
-IMPORT <Period.shex>
+IMPORT <Coding.shex>
 #imported_end
 #imported_begin 
-IMPORT <Coding.shex>
+IMPORT <Period.shex>
 #imported_end
 #imported_begin 
 IMPORT <boolean.shex>
@@ -45,6 +42,9 @@ IMPORT <markdown.shex>
 #imported_end
 #imported_begin 
 IMPORT <ValueSet.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
 #imported_end
 #imported_begin 
 IMPORT <canonical.shex>
@@ -85,6 +85,8 @@ start=@<ConceptMap> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
                                             # concept map 
     fhir:version @<string>?;                # Business version of the concept map
+    fhir:versionAlgorithm @<string>  OR 
+    			@<Coding>  ?;  # How to compare versions
     fhir:name @<string>?;                   # Name for this concept map 
                                             # (computer friendly) 
     fhir:title @<string>?;                  # Name for this concept map (human 
@@ -105,25 +107,31 @@ start=@<ConceptMap> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # map (if applicable) 
     fhir:purpose @<markdown>?;              # Why this concept map is defined
     fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:copyrightLabel @<string>?;         # Copyright holder and year(s)
     fhir:approvalDate @<date>?;             # When the ConceptMap was approved 
                                             # by publisher 
     fhir:lastReviewDate @<date>?;           # When the ConceptMap was last 
-                                            # reviewed 
+                                            # reviewed by the publisher 
     fhir:effectivePeriod @<Period>?;        # When the ConceptMap is expected to 
                                             # be used 
     fhir:topic @<OneOrMore_CodeableConcept>?;  # E.g. Education, Treatment, 
-                                            # Assessment, etc. 
+                                            # Assessment, etc 
     fhir:author @<OneOrMore_ContactDetail>?;  # Who authored the ConceptMap
     fhir:editor @<OneOrMore_ContactDetail>?;  # Who edited the ConceptMap
     fhir:reviewer @<OneOrMore_ContactDetail>?;  # Who reviewed the ConceptMap
     fhir:endorser @<OneOrMore_ContactDetail>?;  # Who endorsed the ConceptMap
     fhir:relatedArtifact @<OneOrMore_RelatedArtifact>?;  # Additional documentation, 
-                                            # citations, etc. 
+                                            # citations, etc 
+    fhir:property @<OneOrMore_ConceptMap.property>?;  # Additional properties of the 
+                                            # mapping 
+    fhir:additionalAttribute @<OneOrMore_ConceptMap.additionalAttribute>?;  # Definition of an additional 
+                                            # attribute to act as a data source 
+                                            # or target 
     fhir:sourceScope @<uri>  OR 
-    			(@<canonical>  AND {fhir:link @<ValueSet> })  ?;  # The source value set that contains 
+    			(@<canonical>  AND {fhir:link @<ValueSet> ?})  ?;  # The source value set that contains 
                                             # the concepts that are being mapped 
     fhir:targetScope @<uri>  OR 
-    			(@<canonical>  AND {fhir:link @<ValueSet> })  ?;  # The target value set which 
+    			(@<canonical>  AND {fhir:link @<ValueSet> ?})  ?;  # The target value set which 
                                             # provides context for the mappings 
     fhir:group @<OneOrMore_ConceptMap.group>?;  # Same source and target systems
 }  
@@ -132,7 +140,8 @@ start=@<ConceptMap> AND {fhir:nodeRole [fhir:treeRoot]}
 <ConceptMap.group.element> EXTENDS @<BackboneElement> CLOSED {   
     fhir:code @<code>?;                     # Identifies element being mapped
     fhir:display @<string>?;                # Display for the code
-    fhir:valueSet @<canonical>?;            # Identifies elements being mapped
+    fhir:valueSet @<canonical>?;            # Identifies the set of concepts 
+                                            # being mapped 
     fhir:noMap @<boolean>?;                 # No mapping to a target concept for 
                                             # this source concept 
     fhir:target @<OneOrMore_ConceptMap.group.element.target>?;  # Concept in target system for 
@@ -141,19 +150,49 @@ start=@<ConceptMap> AND {fhir:nodeRole [fhir:treeRoot]}
 
 # Other properties required for this mapping
 <ConceptMap.group.element.target.dependsOn> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:property @<uri>;                   # A reference to a property that may 
-                                            # be required to refine the mapping 
+    fhir:attribute @<code>;                 # A reference to a mapping attribute 
+                                            # defined in 
+                                            # ConceptMap.additionalAttribute 
     fhir:value @<code>  OR 
     			@<Coding>  OR 
     			@<string>  OR 
-    			@<integer>  OR 
     			@<boolean>  OR 
-    			@<dateTime>  OR 
-    			@<decimal>  OR 
-    			@<uri>  OR 
-    			@<id>  ?;  # Value of the referenced property
-    fhir:valueSet @<canonical>?;            # The mapping depends on a property 
-                                            # with a value from this value set 
+    			@<Quantity>  ?;  # Value of the referenced data 
+                                            # element 
+    fhir:valueSet @<canonical>?;            # The mapping depends on a data 
+                                            # element with a value from this 
+                                            # value set 
+}  
+
+# Additional properties of the mapping
+<ConceptMap.property> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code>;                      # Identifies the property on the 
+                                            # mappings, and when referred to in 
+                                            # the $translate operation 
+    fhir:uri @<uri>?;                       # Formal identifier for the property
+    fhir:description @<string>?;            # Why the property is defined, 
+                                            # and/or what it conveys 
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:conceptmap-property-type};  # Coding | string | integer | 
+                                            # boolean | dateTime | decimal | 
+                                            # code 
+    fhir:system @<canonical>?;              # The CodeSystem from which code 
+                                            # values come 
+}  
+
+# Definition of an additional attribute to act as a data source or target
+<ConceptMap.additionalAttribute> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code>;                      # Identifies this additional 
+                                            # attribute through this resource 
+    fhir:uri @<uri>?;                       # Formal identifier for the data 
+                                            # element referred to in this 
+                                            # attribte 
+    fhir:description @<string>?;            # Why the additional attribute is 
+                                            # defined, and/or what the data 
+                                            # element it refers to is 
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:conceptmap-attribute-type};  # code | Coding | string | boolean | 
+                                            # Quantity 
 }  
 
 # Same source and target systems
@@ -166,10 +205,48 @@ start=@<ConceptMap> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # source set 
     fhir:unmapped @<ConceptMap.group.unmapped>?;  # What to do when there is no 
                                             # mapping target for the source 
+                                            # concept and 
+                                            # ConceptMap.group.element.noMap is 
+                                            # not true 
+}  
+
+# Concept in target system for element
+<ConceptMap.group.element.target> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code>?;                     # Code that identifies the target 
+                                            # element 
+    fhir:display @<string>?;                # Display for the code
+    fhir:valueSet @<canonical>?;            # Identifies the set of target 
+                                            # concepts 
+    fhir:relationship @<code> AND
+    	{fhir:v @fhirvs:concept-map-relationship};  # related-to | equivalent | 
+                                            # source-is-narrower-than-target | 
+                                            # source-is-broader-than-target | 
+                                            # not-related-to 
+    fhir:comment @<string>?;                # Description of status/issues in 
+                                            # mapping 
+    fhir:property @<OneOrMore_ConceptMap.group.element.target.property>?;  # Property value for the source -> 
+                                            # target mapping 
+    fhir:dependsOn @<OneOrMore_ConceptMap.group.element.target.dependsOn>?;  # Other properties required for this 
+                                            # mapping 
+    fhir:product @<OneOrMore_ConceptMap.group.element.target.dependsOn>?;  # Other data elements that this 
+                                            # mapping also produces 
+}  
+
+# Property value for the source -> target mapping
+<ConceptMap.group.element.target.property> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code>;                      # Reference to 
+                                            # ConceptMap.property.code 
+    fhir:value @<Coding>  OR 
+    			@<string>  OR 
+    			@<integer>  OR 
+    			@<boolean>  OR 
+    			@<dateTime>  OR 
+    			@<decimal>  OR 
+    			@<code>  ;  # Value of the property for this 
                                             # concept 
 }  
 
-# What to do when there is no mapping target for the source concept
+# What to do when there is no mapping target for the source concept and ConceptMap.group.element.noMap is not true
 <ConceptMap.group.unmapped> EXTENDS @<BackboneElement> CLOSED {   
     fhir:mode @<code> AND
     	{fhir:v @fhirvs:conceptmap-unmapped-mode};  # use-source-code | fixed | other-map
@@ -187,26 +264,6 @@ start=@<ConceptMap> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # unmapped 
 }  
 
-# Concept in target system for element
-<ConceptMap.group.element.target> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:code @<code>?;                     # Code that identifies the target 
-                                            # element 
-    fhir:display @<string>?;                # Display for the code
-    fhir:valueSet @<canonical>?;            # Identifies the set of target 
-                                            # elements 
-    fhir:relationship @<code> AND
-    	{fhir:v @fhirvs:concept-map-relationship};  # related-to | equivalent | 
-                                            # source-is-narrower-than-target | 
-                                            # source-is-broader-than-target | 
-                                            # not-related-to 
-    fhir:comment @<string>?;                # Description of status/issues in 
-                                            # mapping 
-    fhir:dependsOn @<OneOrMore_ConceptMap.group.element.target.dependsOn>?;  # Other properties required for this 
-                                            # mapping 
-    fhir:product @<OneOrMore_ConceptMap.group.element.target.dependsOn>?;  # Other properties that this mapping 
-                                            # also produces 
-}  
-
 #---------------------- Cardinality Types (OneOrMore) -------------------
 
 
@@ -218,6 +275,16 @@ start=@<ConceptMap> AND {fhir:nodeRole [fhir:treeRoot]}
 
 
 
+
+<OneOrMore_ConceptMap.property> CLOSED {
+    rdf:first @<ConceptMap.property>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ConceptMap.property> 
+}
+
+<OneOrMore_ConceptMap.additionalAttribute> CLOSED {
+    rdf:first @<ConceptMap.additionalAttribute>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ConceptMap.additionalAttribute> 
+}
 
 <OneOrMore_ConceptMap.group> CLOSED {
     rdf:first @<ConceptMap.group>  ;
@@ -234,12 +301,19 @@ start=@<ConceptMap> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:rest [rdf:nil] OR @<OneOrMore_ConceptMap.group.element> 
 }
 
+<OneOrMore_ConceptMap.group.element.target.property> CLOSED {
+    rdf:first @<ConceptMap.group.element.target.property>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ConceptMap.group.element.target.property> 
+}
+
 <OneOrMore_ConceptMap.group.element.target.dependsOn> CLOSED {
     rdf:first @<ConceptMap.group.element.target.dependsOn>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_ConceptMap.group.element.target.dependsOn> 
 }
 
 #---------------------- Value Sets ------------------------
+
+
 
 
 

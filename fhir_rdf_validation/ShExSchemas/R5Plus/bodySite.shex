@@ -24,7 +24,7 @@ IMPORT <BodyStructure.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/bodySite"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<BodyStructure> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<BodyStructure> ?})  ; 
     ^fhir:extension { a [fhir:Element]}
 
 }  

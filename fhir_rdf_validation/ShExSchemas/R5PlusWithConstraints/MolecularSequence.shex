@@ -29,16 +29,13 @@ IMPORT <Patient.shex>
 IMPORT <integer.shex>
 #imported_end
 #imported_begin 
-IMPORT <Location.shex>
-#imported_end
-#imported_begin 
 IMPORT <Specimen.shex>
 #imported_end
 #imported_begin 
-IMPORT <Reference.shex>
+IMPORT <Resource.shex>
 #imported_end
 #imported_begin 
-IMPORT <Procedure.shex>
+IMPORT <Reference.shex>
 #imported_end
 #imported_begin 
 IMPORT <Substance.shex>
@@ -47,16 +44,10 @@ IMPORT <Substance.shex>
 IMPORT <Identifier.shex>
 #imported_end
 #imported_begin 
-IMPORT <Medication.shex>
-#imported_end
-#imported_begin 
 IMPORT <Attachment.shex>
 #imported_end
 #imported_begin 
 IMPORT <Organization.shex>
-#imported_end
-#imported_begin 
-IMPORT <Practitioner.shex>
 #imported_end
 #imported_begin 
 IMPORT <DomainResource.shex>
@@ -88,23 +79,20 @@ start=@<MolecularSequence> AND {fhir:nodeRole [fhir:treeRoot]}
     	{fhir:v @fhirvs:sequence-type}?;  # aa | dna | rna
     fhir:subject @<Reference> AND {fhir:link 
     			@<BiologicallyDerivedProduct> OR 
-    			@<Device> OR 
     			@<Group> OR 
-    			@<Location> OR 
-    			@<Medication> OR 
     			@<NutritionProduct> OR 
-    			@<Organization> OR 
     			@<Patient> OR 
-    			@<Practitioner> OR 
-    			@<Procedure> OR 
-    			@<Substance> ? }?;  # Subject this sequence is 
+    			@<Substance> ?}?;  # Subject this sequence is 
                                             # associated too 
+    fhir:focus @<OneOrMore_Reference_Resource>?;  # What the molecular sequence is 
+                                            # about, when it is not about the 
+                                            # subject of record 
     fhir:specimen @<Reference> AND {fhir:link 
-    			@<Specimen> ? }?;  # Specimen used for sequencing
+    			@<Specimen> ?}?;  # Specimen used for sequencing
     fhir:device @<Reference> AND {fhir:link 
-    			@<Device> ? }?;  # The method for sequencing
+    			@<Device> ?}?;  # The method for sequencing
     fhir:performer @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Who should be responsible for test 
+    			@<Organization> ?}?;  # Who should be responsible for test 
                                             # result 
     fhir:literal @<string>?;                # Sequence that was observed
     fhir:formatted @<OneOrMore_Attachment>?;  # Embedded file or a link (URL) 
@@ -116,53 +104,32 @@ start=@<MolecularSequence> AND {fhir:nodeRole [fhir:treeRoot]}
 
 
 # This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: count
-# Unmapped construct found: Plus
-# Unmapped construct found: count
-# Unmapped construct found: Plus
-# Unmapped construct found: count
-# Unmapped construct found: Plus
-# Unmapped construct found: count
+# Unmapped construct found: Xor
 # # Constraint UniqueKey:msq-6
 # Human readable:Have and only have one of the following elements in startingSequence: 1. genomeAssembly; 2 sequence
 #
-# Constraint: (genomeAssembly.count()+sequenceCodeableConcept.count()+ sequenceReference.count()+ sequenceString.count()) = 1
+# Constraint: genomeAssembly.exists() xor sequence.exists()
 # ShEx:
 #
-#(   count  ( fhir:genomeAssembly )  Plus     count  ( fhir:sequenceCodeableConcept )  Plus     count  ( fhir:sequenceReference )  Plus     count  ( fhir:sequenceString )) { fhir:v [1] } 
+#{fhir:genomeAssembly .  Xor  {fhir:sequence .}}
 {}
 
 ) AND (
 
-# Constraint UniqueKey:msq-5
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Equals
+# # Constraint UniqueKey:msq-5
 # Human readable:Both genomeAssembly and chromosome must be both contained if either one of them is contained
-
-# Constraint: (chromosome.empty() and genomeAssembly.empty()) or (chromosome.exists() and genomeAssembly.exists())
+#
+# Constraint: chromosome.exists() = genomeAssembly.exists()
 # ShEx:
-
-( NOT { fhir:chromosome {fhir:v .} }  AND  NOT { fhir:genomeAssembly {fhir:v .} } ) OR ({fhir:chromosome . AND {fhir:genomeAssembly .}})
+#
+#{fhir:chromosome .  Equals  {fhir:genomeAssembly .}}
+{}
 
 )
  
-
-# A sequence used as starting sequence
-<MolecularSequence.relative.startingSequence> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:genomeAssembly @<CodeableConcept>?;  # The genome assembly used for 
-                                            # starting sequence, e.g. GRCh38 
-    fhir:chromosome @<CodeableConcept>?;    # Chromosome Identifier
-    fhir:sequence @<CodeableConcept>  OR 
-    			@<string>  OR 
-    			(@<Reference>  AND {fhir:link @<MolecularSequence> })  ?;  # The reference sequence that 
-                                            # represents the starting sequence 
-    fhir:windowStart @<integer>?;           # Start position of the window on 
-                                            # the starting sequence 
-    fhir:windowEnd @<integer>?;             # End position of the window on the 
-                                            # starting sequence 
-    fhir:orientation @<code> AND
-    	{fhir:v @fhirvs:orientation-type}?;  # sense | antisense
-    fhir:strand @<code> AND
-    	{fhir:v @fhirvs:strand-type}?;  # watson | crick
-}  
 
 # A sequence defined relative to another sequence
 <MolecularSequence.relative> EXTENDS @<BackboneElement> CLOSED {   
@@ -192,7 +159,32 @@ start=@<MolecularSequence> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:replacedSequence @<string>?;       # Allele in the starting sequence
 }  
 
+# A sequence used as starting sequence
+<MolecularSequence.relative.startingSequence> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:genomeAssembly @<CodeableConcept>?;  # The genome assembly used for 
+                                            # starting sequence, e.g. GRCh38 
+    fhir:chromosome @<CodeableConcept>?;    # Chromosome Identifier
+    fhir:sequence @<CodeableConcept>  OR 
+    			@<string>  OR 
+    			(@<Reference>  AND {fhir:link @<MolecularSequence> ?})  ?;  # The reference sequence that 
+                                            # represents the starting sequence 
+    fhir:windowStart @<integer>?;           # Start position of the window on 
+                                            # the starting sequence 
+    fhir:windowEnd @<integer>?;             # End position of the window on the 
+                                            # starting sequence 
+    fhir:orientation @<code> AND
+    	{fhir:v @fhirvs:orientation-type}?;  # sense | antisense
+    fhir:strand @<code> AND
+    	{fhir:v @fhirvs:strand-type}?;  # watson | crick
+}  
+
 #---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
 
 
 

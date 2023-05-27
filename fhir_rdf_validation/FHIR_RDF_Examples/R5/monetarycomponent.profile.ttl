@@ -22,11 +22,11 @@
      fhir:value [ fhir:v "has-units" ]
   ] ) ;
   fhir:url [ fhir:v "http://hl7.org/fhir/StructureDefinition/MonetaryComponent"], [ fhir:v "http://hl7.org/fhir/StructureDefinition/MonetaryComponent"] ;
-  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:version [ fhir:v "6.0.0-cibuild"], [ fhir:v "6.0.0-cibuild"] ;
   fhir:name [ fhir:v "MonetaryComponent"], [ fhir:v "MonetaryComponent"] ;
   fhir:status [ fhir:v "draft"], [ fhir:v "draft"] ;
   fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
-  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:date [ fhir:v "2023-05-26T00:17:51+00:00"], [ fhir:v "2023-05-26T00:17:51+00:00"] ;
   fhir:publisher [ fhir:v "HL7 FHIR Standard"], [ fhir:v "HL7 FHIR Standard"] ;
   fhir:contact ( [
      fhir:telecom ( [
@@ -39,7 +39,7 @@
        fhir:value [ fhir:v "http://hl7.org/fhir" ]
      ] )
   ] ) ;
-  fhir:description [ fhir:v "MonetaryComponent Type: Availability data for an {item}."], [ fhir:v "MonetaryComponent Type: Availability data for an {item}."] ;
+  fhir:description [ fhir:v "MonetaryComponent Type: Financial line items use this datatype to commonly categorize the value, and other factors that may effect how the value should be interpreted."], [ fhir:v "MonetaryComponent Type: Financial line items use this datatype to commonly categorize the value, and other factors that may effect how the value should be interpreted."] ;
   fhir:jurisdiction ( [
      fhir:coding ( [
        fhir:system [ fhir:v "http://unstats.un.org/unsd/methods/m49/m49.htm" ] ;
@@ -53,7 +53,7 @@
        fhir:display [ fhir:v "World" ]
      ] )
   ] ) ;
-  fhir:fhirVersion [ fhir:v "5.0.0"] ;
+  fhir:fhirVersion [ fhir:v "6.0.0-cibuild"] ;
   fhir:mapping ( [
      fhir:identity [ fhir:v "rim" ] ;
      fhir:uri [ fhir:v "http://hl7.org/v3" ] ;
@@ -72,8 +72,8 @@
          fhir:value [ fhir:v "trial-use" ]
        ] ) ;
        fhir:path [ fhir:v "MonetaryComponent" ] ;
-       fhir:short [ fhir:v "Availability data for an {item}" ] ;
-       fhir:definition [ fhir:v "Availability data for an {item}." ] ;
+       fhir:short [ fhir:v "Types and value of financial information that apply to line item(s)" ] ;
+       fhir:definition [ fhir:v "Financial line items use this datatype to commonly categorize the value, and other factors that may effect how the value should be interpreted." ] ;
        fhir:min [ fhir:v "0" ] ;
        fhir:max [ fhir:v "*" ] ;
        fhir:base [
@@ -168,7 +168,7 @@
        fhir:id [ fhir:v "MonetaryComponent.type" ] ;
        fhir:path [ fhir:v "MonetaryComponent.type" ] ;
        fhir:short [ fhir:v "base | surcharge | deduction | discount | tax | informational" ] ;
-       fhir:definition [ fhir:v "base | surcharge | deduction | discount | tax | informational." ] ;
+       fhir:definition [ fhir:v "The type of monetary component, what the value is to be used for and how that should be applied in its context. e.g. A surchange would increase the cost, a deduction would reduce the cost." ] ;
        fhir:min [ fhir:v "1" ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:base [
@@ -198,13 +198,14 @@
          ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:description [ fhir:v "The purpose for which an extended contact detail should be used." ] ;
-         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/price-component-type|5.0.0" ]
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/price-component-type|6.0.0-cibuild" ]
        ]
      ] [
        fhir:id [ fhir:v "MonetaryComponent.code" ] ;
        fhir:path [ fhir:v "MonetaryComponent.code" ] ;
        fhir:short [ fhir:v "Codes may be used to differentiate between kinds of taxes, surcharges, discounts etc." ] ;
-       fhir:definition [ fhir:v "Codes may be used to differentiate between kinds of taxes, surcharges, discounts etc." ] ;
+       fhir:definition [ fhir:v "A codable breakdown of the type of monetary component. e.g. State Tax, Federal Tax, VIP-Discount." ] ;
+       fhir:requirements [ fhir:v "Some monetary component types can be further classified and need to be differentiated." ] ;
        fhir:min [ fhir:v "0" ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:base [
@@ -239,7 +240,7 @@
        fhir:id [ fhir:v "MonetaryComponent.factor" ] ;
        fhir:path [ fhir:v "MonetaryComponent.factor" ] ;
        fhir:short [ fhir:v "Factor used for calculating this component" ] ;
-       fhir:definition [ fhir:v "Factor used for calculating this component." ] ;
+       fhir:definition [ fhir:v "The factor that has been applied to the base price (in another monetary component value) when performing calculations." ] ;
        fhir:min [ fhir:v "0" ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:base [
@@ -263,7 +264,7 @@
        fhir:id [ fhir:v "MonetaryComponent.amount" ] ;
        fhir:path [ fhir:v "MonetaryComponent.amount" ] ;
        fhir:short [ fhir:v "Explicit value amount to be used" ] ;
-       fhir:definition [ fhir:v "Explicit value amount to be used." ] ;
+       fhir:definition [ fhir:v "The explicit value amount of the component (based on type/code)." ] ;
        fhir:min [ fhir:v "0" ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:base [
@@ -293,15 +294,15 @@
          fhir:value [ fhir:v "trial-use" ]
        ] ) ;
        fhir:path [ fhir:v "MonetaryComponent" ] ;
-       fhir:short [ fhir:v "Availability data for an {item}" ] ;
-       fhir:definition [ fhir:v "Availability data for an {item}." ] ;
+       fhir:short [ fhir:v "Types and value of financial information that apply to line item(s)" ] ;
+       fhir:definition [ fhir:v "Financial line items use this datatype to commonly categorize the value, and other factors that may effect how the value should be interpreted." ] ;
        fhir:min [ fhir:v "0" ] ;
        fhir:max [ fhir:v "*" ]
      ] [
        fhir:id [ fhir:v "MonetaryComponent.type" ] ;
        fhir:path [ fhir:v "MonetaryComponent.type" ] ;
        fhir:short [ fhir:v "base | surcharge | deduction | discount | tax | informational" ] ;
-       fhir:definition [ fhir:v "base | surcharge | deduction | discount | tax | informational." ] ;
+       fhir:definition [ fhir:v "The type of monetary component, what the value is to be used for and how that should be applied in its context. e.g. A surchange would increase the cost, a deduction would reduce the cost." ] ;
        fhir:min [ fhir:v "1" ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:type ( [
@@ -318,13 +319,14 @@
          ] ) ;
          fhir:strength [ fhir:v "required" ] ;
          fhir:description [ fhir:v "The purpose for which an extended contact detail should be used." ] ;
-         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/price-component-type|5.0.0" ]
+         fhir:valueSet [ fhir:v "http://hl7.org/fhir/ValueSet/price-component-type|6.0.0-cibuild" ]
        ]
      ] [
        fhir:id [ fhir:v "MonetaryComponent.code" ] ;
        fhir:path [ fhir:v "MonetaryComponent.code" ] ;
        fhir:short [ fhir:v "Codes may be used to differentiate between kinds of taxes, surcharges, discounts etc." ] ;
-       fhir:definition [ fhir:v "Codes may be used to differentiate between kinds of taxes, surcharges, discounts etc." ] ;
+       fhir:definition [ fhir:v "A codable breakdown of the type of monetary component. e.g. State Tax, Federal Tax, VIP-Discount." ] ;
+       fhir:requirements [ fhir:v "Some monetary component types can be further classified and need to be differentiated." ] ;
        fhir:min [ fhir:v "0" ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:type ( [
@@ -346,7 +348,7 @@
        fhir:id [ fhir:v "MonetaryComponent.factor" ] ;
        fhir:path [ fhir:v "MonetaryComponent.factor" ] ;
        fhir:short [ fhir:v "Factor used for calculating this component" ] ;
-       fhir:definition [ fhir:v "Factor used for calculating this component." ] ;
+       fhir:definition [ fhir:v "The factor that has been applied to the base price (in another monetary component value) when performing calculations." ] ;
        fhir:min [ fhir:v "0" ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:type ( [
@@ -357,7 +359,7 @@
        fhir:id [ fhir:v "MonetaryComponent.amount" ] ;
        fhir:path [ fhir:v "MonetaryComponent.amount" ] ;
        fhir:short [ fhir:v "Explicit value amount to be used" ] ;
-       fhir:definition [ fhir:v "Explicit value amount to be used." ] ;
+       fhir:definition [ fhir:v "The explicit value amount of the component (based on type/code)." ] ;
        fhir:min [ fhir:v "0" ] ;
        fhir:max [ fhir:v "1" ] ;
        fhir:type ( [

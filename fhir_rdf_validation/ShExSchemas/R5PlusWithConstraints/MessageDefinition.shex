@@ -61,12 +61,14 @@ start=@<MessageDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     a [fhir:MessageDefinition]?;
     fhir:nodeRole [fhir:treeRoot]?;
 
-    fhir:url @<uri>?;                       # Business Identifier for a given 
+    fhir:url @<uri>?;                       # The cannonical URL for a given 
                                             # MessageDefinition 
-    fhir:identifier @<OneOrMore_Identifier>?;  # Primary key for the message 
-                                            # definition on a given server 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business Identifier for a given 
+                                            # MessageDefinition 
     fhir:version @<string>?;                # Business version of the message 
                                             # definition 
+    fhir:versionAlgorithm @<string>  OR 
+    			@<Coding>  ?;  # How to compare versions
     fhir:name @<string>?;                   # Name for this message definition 
                                             # (computer friendly) 
     fhir:title @<string>?;                  # Name for this message definition 
@@ -89,6 +91,7 @@ start=@<MessageDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:purpose @<markdown>?;              # Why this message definition is 
                                             # defined 
     fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:copyrightLabel @<string>?;         # Copyright holder and year(s)
     fhir:base @<canonical>?;                # Definition this one is based on
     fhir:parent @<OneOrMore_canonical>?;    # Protocol/workflow this is part of
     fhir:event @<Coding>  OR 
@@ -107,13 +110,6 @@ start=@<MessageDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # GraphDefinition 
 }  
 
-# Responses to this message
-<MessageDefinition.allowedResponse> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:message @<canonical>;              # Reference to allowed message 
-                                            # definition response 
-    fhir:situation @<markdown>?;            # When should this response be used
-}  
-
 # Resource(s) that are the subject of the event
 <MessageDefinition.focus> EXTENDS @<BackboneElement> CLOSED {   
     fhir:code @<code> AND
@@ -124,6 +120,13 @@ start=@<MessageDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # type 
     fhir:max @<string>?;                    # Maximum number of focuses of this 
                                             # type 
+}  
+
+# Responses to this message
+<MessageDefinition.allowedResponse> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:message @<canonical>;              # Reference to allowed message 
+                                            # definition response 
+    fhir:situation @<markdown>?;            # When should this response be used
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

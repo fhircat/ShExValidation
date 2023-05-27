@@ -24,7 +24,7 @@ IMPORT <ConceptMap.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap"]}; 
-    fhir:value (@<canonical>  AND {fhir:link @<ConceptMap> })  ; 
+    fhir:value (@<canonical>  AND {fhir:link @<ConceptMap> ?})  ; 
     ^fhir:extension { ^fhir:valueSet {^fhir:binding {^fhir:element {^fhir:snapshot {a [fhir:StructureDefinition]}}}}} OR 
           {^fhir:valueSet {^fhir:binding {^fhir:element {^fhir:differential {a [fhir:StructureDefinition]}}}}} OR 
           {^fhir:answerValueSet {^fhir:item {a [fhir:Questionnaire]}}}

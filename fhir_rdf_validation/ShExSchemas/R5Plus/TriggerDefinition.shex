@@ -58,7 +58,7 @@ IMPORT <DataRequirement.shex>
     fhir:code @<CodeableConcept>?;          # Coded definition of the event
     fhir:subscriptionTopic @<canonical>?;   # What event
     fhir:timing @<Timing>  OR 
-    			(@<Reference>  AND {fhir:link @<Schedule> })  OR 
+    			(@<Reference>  AND {fhir:link @<Schedule> ?})  OR 
     			@<date>  OR 
     			@<dateTime>  ?;  # Timing of the event
     fhir:data @<OneOrMore_DataRequirement>?;  # Triggering data of the event 

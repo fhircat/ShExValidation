@@ -24,7 +24,7 @@ IMPORT <Reference.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/event-basedOn"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<Resource> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<Resource> ?})  ; 
     ^fhir:extension { a [fhir:Condition]} OR 
           {a [fhir:ChargeItem]} OR 
           {a [fhir:ClinicalImpression]} OR 
@@ -32,13 +32,12 @@ IMPORT <Reference.shex>
           {a [fhir:Consent]} OR 
           {a [fhir:Coverage]} OR 
           {a [fhir:DetectedIssue]} OR 
-          {a [fhir:DocumentManifest]} OR 
           {a [fhir:EpisodeOfCare]} OR 
           {a [fhir:ExplanationOfBenefit]} OR 
           {a [fhir:FamilyMemberHistory]} OR 
           {a [fhir:ImmunizationEvaluation]} OR 
           {a [fhir:InventoryReport]} OR 
-          {a [fhir:MedicationUsage]} OR 
+          {a [fhir:MedicationStatement]} OR 
           {a [fhir:PaymentNotice]} OR 
           {a [fhir:PaymentReconciliation]}
 

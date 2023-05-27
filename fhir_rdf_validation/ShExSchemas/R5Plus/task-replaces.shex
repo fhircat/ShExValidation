@@ -24,7 +24,7 @@ IMPORT <Reference.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/task-replaces"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<Task> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<Task> ?})  ; 
     ^fhir:extension { a [fhir:Task]}
 
 }  

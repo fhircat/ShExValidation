@@ -85,7 +85,7 @@ start=@<Group> AND {fhir:nodeRole [fhir:treeRoot]}
     a [fhir:Group]?;
     fhir:nodeRole [fhir:treeRoot]?;
 
-    fhir:identifier @<OneOrMore_Identifier>?;  # Unique id
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business Identifier for this Group
     fhir:active @<boolean>?;                # Whether this group's record is in 
                                             # active use 
     fhir:type @<code> AND
@@ -105,7 +105,7 @@ start=@<Group> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Organization> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Entity that is the custodian of 
+    			@<RelatedPerson> ?}?;  # Entity that is the custodian of 
                                             # the Group's definition 
     fhir:characteristic @<OneOrMore_Group.characteristic>?;  # Include / Exclude group members by 
                                             # Trait 
@@ -138,7 +138,7 @@ start=@<Group> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
     			@<RelatedPerson> OR 
-    			@<Specimen> ? };  # Reference to the group member
+    			@<Specimen> ?};  # Reference to the group member
     fhir:period @<Period>?;                 # Period member belonged to the group
     fhir:inactive @<boolean>?;              # If member is no longer in group
 }  

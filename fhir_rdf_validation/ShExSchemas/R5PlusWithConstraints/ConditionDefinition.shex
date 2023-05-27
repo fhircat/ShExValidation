@@ -17,6 +17,9 @@ IMPORT <code.shex>
 IMPORT <string.shex>
 #imported_end
 #imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
 IMPORT <boolean.shex>
 #imported_end
 #imported_begin 
@@ -74,6 +77,8 @@ start=@<ConditionDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # condition definition 
     fhir:version @<string>?;                # Business version of the condition 
                                             # definition 
+    fhir:versionAlgorithm @<string>  OR 
+    			@<Coding>  ?;  # How to compare versions
     fhir:name @<string>?;                   # Name for this condition definition 
                                             # (computer friendly) 
     fhir:title @<string>?;                  # Name for this condition definition 
@@ -116,13 +121,17 @@ start=@<ConditionDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:plan @<OneOrMore_ConditionDefinition.plan>?;  # Plan that is appropriate
 } AND (
 
-# Constraint UniqueKey:cnl-1
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:cnl-1
 # Human readable:URL should not contain | or # - these characters make processing canonical references problematic
-
-# Constraint: url.matches('([^|#])*')
+#
+# Constraint: exists() implies matches('^[^|# ]+$')
 # ShEx:
-
-{fhir:url { fhir:v /'([^|#])*'/ } }
+#
+# .  Implies   { fhir:v /'^[^|# ]+$'/ } 
+{}
 
 ) AND (
 
@@ -132,37 +141,14 @@ start=@<ConditionDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
 # # Constraint UniqueKey:cnl-0
 # Human readable:Name should be usable as an identifier for the module by machine processing applications such as code generation
 #
-# Constraint: name.exists() implies name.matches('[A-Z]([A-Za-z0-9_]){1,254}')
+# Constraint: name.exists() implies name.matches('^[A-Z]([A-Za-z0-9_]){1,254}$')
 # ShEx:
 #
-#{fhir:name .  Implies  {fhir:name { fhir:v /'[A-Z]([A-Za-z0-9_]){1,254}'/ } }}
+#{fhir:name .  Implies  {fhir:name { fhir:v /'^[A-Z]([A-Za-z0-9_]){1,254}$'/ } }}
 {}
 
 )
  
-
-# Observation that suggets this condition
-<ConditionDefinition.precondition> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:type @<code> AND
-    	{fhir:v @fhirvs:condition-precondition-type};  # sensitive | specific
-    fhir:code @<CodeableConcept>;           # Code for relevant Observation
-    fhir:value @<CodeableConcept>  OR 
-    			@<Quantity>  ?;  # Value of Observation
-}  
-
-# Questionnaire for this condition
-<ConditionDefinition.questionnaire> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:purpose @<code> AND
-    	{fhir:v @fhirvs:condition-questionnaire-purpose};  # preadmit | diff-diagnosis | outcome
-    fhir:reference @<Reference> AND {fhir:link 
-    			@<Questionnaire> ? };  # Specific Questionnaire
-}  
-
-# Medications particularly relevant for this condition
-<ConditionDefinition.medication> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:category @<CodeableConcept>?;      # Category that is relevant
-    fhir:code @<CodeableConcept>?;          # Code for relevant Medication
-}  
 
 # Observations particularly relevant to this condition
 <ConditionDefinition.observation> EXTENDS @<BackboneElement> CLOSED {   
@@ -174,7 +160,30 @@ start=@<ConditionDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
 <ConditionDefinition.plan> EXTENDS @<BackboneElement> CLOSED {   
     fhir:role @<CodeableConcept>?;          # Use for the plan
     fhir:reference @<Reference> AND {fhir:link 
-    			@<PlanDefinition> ? };  # The actual plan
+    			@<PlanDefinition> ?};  # The actual plan
+}  
+
+# Medications particularly relevant for this condition
+<ConditionDefinition.medication> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:category @<CodeableConcept>?;      # Category that is relevant
+    fhir:code @<CodeableConcept>?;          # Code for relevant Medication
+}  
+
+# Questionnaire for this condition
+<ConditionDefinition.questionnaire> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:purpose @<code> AND
+    	{fhir:v @fhirvs:condition-questionnaire-purpose};  # preadmit | diff-diagnosis | outcome
+    fhir:reference @<Reference> AND {fhir:link 
+    			@<Questionnaire> ?};  # Specific Questionnaire
+}  
+
+# Observation that suggets this condition
+<ConditionDefinition.precondition> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:condition-precondition-type};  # sensitive | specific
+    fhir:code @<CodeableConcept>;           # Code for relevant Observation
+    fhir:value @<CodeableConcept>  OR 
+    			@<Quantity>  ?;  # Value of Observation
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

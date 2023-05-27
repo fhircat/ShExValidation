@@ -17,9 +17,6 @@ IMPORT <Group.shex>
 IMPORT <Device.shex>
 #imported_end
 #imported_begin 
-IMPORT <string.shex>
-#imported_end
-#imported_begin 
 IMPORT <Period.shex>
 #imported_end
 #imported_begin 
@@ -35,10 +32,13 @@ IMPORT <Patient.shex>
 IMPORT <dateTime.shex>
 #imported_end
 #imported_begin 
-IMPORT <Quantity.shex>
+IMPORT <markdown.shex>
 #imported_end
 #imported_begin 
 IMPORT <Duration.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
 #imported_end
 #imported_begin 
 IMPORT <CarePlan.shex>
@@ -119,10 +119,13 @@ start=@<MedicationRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:nodeRole [fhir:treeRoot]?;
 
     fhir:identifier @<OneOrMore_Identifier>?;  # External ids for this request
-    fhir:basedOn @<OneOrMore_Reference_CarePlan_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_ServiceRequest>?;  # What request fulfills
+    fhir:basedOn @<OneOrMore_Reference_CarePlan_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_ServiceRequest>?;  # A plan or request that is 
+                                            # fulfilled in whole or in part by 
+                                            # this medication request 
     fhir:priorPrescription @<Reference> AND {fhir:link 
-    			@<MedicationRequest> ? }?;  # An order/prescription that is 
-                                            # being replaced 
+    			@<MedicationRequest> ?}?;  # Reference to an order/prescription 
+                                            # that is being replaced by this 
+                                            # MedicationRequest 
     fhir:groupIdentifier @<Identifier>?;    # Composite request this is part of
     fhir:status @<code> AND
     	{fhir:v @fhirvs:medicationrequest-status};  # active | on-hold | ended | stopped 
@@ -145,14 +148,14 @@ start=@<MedicationRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:medication @<CodeableReference>;   # Medication to be taken
     fhir:subject @<Reference> AND {fhir:link 
     			@<Group> OR 
-    			@<Patient> ? };  # Who or group medication request is 
-                                            # for 
+    			@<Patient> ?};  # Individual or group for whom the 
+                                            # medication has been requested 
     fhir:informationSource @<OneOrMore_Reference_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # The person or organization who 
                                             # provided the information about 
                                             # this request, if the source is 
                                             # someone other than the requestor 
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # Encounter created as part of 
+    			@<Encounter> ?}?;  # Encounter created as part of 
                                             # encounter/admission/stay 
     fhir:supportingInformation @<OneOrMore_Reference_Resource>?;  # Information to support fulfilling 
                                             # of the medication 
@@ -163,54 +166,34 @@ start=@<MedicationRequest> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Who/What requested the Request
+    			@<RelatedPerson> ?}?;  # Who/What requested the Request
     fhir:reported @<boolean>?;              # Reported rather than primary record
     fhir:performerType @<CodeableConcept>?;  # Desired kind of performer of the 
                                             # medication administration 
     fhir:performer @<OneOrMore_Reference_CareTeam_OR_DeviceDefinition_OR_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Intended performer of 
                                             # administration 
-    fhir:device @<CodeableReference>?;      # Intended type of device for the 
+    fhir:device @<OneOrMore_CodeableReference>?;  # Intended type of device for the 
                                             # administration 
     fhir:recorder @<Reference> AND {fhir:link 
     			@<Practitioner> OR 
-    			@<PractitionerRole> ? }?;  # Person who entered the request
+    			@<PractitionerRole> ?}?;  # Person who entered the request
     fhir:reason @<OneOrMore_CodeableReference>?;  # Reason or indication for ordering 
                                             # or not ordering the medication 
     fhir:courseOfTherapyType @<CodeableConcept>?;  # Overall pattern of medication 
                                             # administration 
     fhir:insurance @<OneOrMore_Reference_ClaimResponse_OR_Coverage>?;  # Associated insurance coverage
     fhir:note @<OneOrMore_Annotation>?;     # Information about the prescription
-    fhir:dose @<MedicationRequest.dose>?;   # How the medication should be taken
-    fhir:dispenseRequest @<MedicationRequest.dispenseRequest>?;  # Medication supply authorization
-    fhir:substitution @<MedicationRequest.substitution>?;  # Any restrictions on medication 
-                                            # substitution 
-    fhir:eventHistory @<OneOrMore_Reference_Provenance>?;  # A list of events of interest in 
-                                            # the lifecycle 
-}  
-
-# Any restrictions on medication substitution
-<MedicationRequest.substitution> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:allowed @<boolean>  OR 
-    			@<CodeableConcept>  ;  # Whether substitution is allowed or 
-                                            # not 
-    fhir:reason @<CodeableConcept>?;        # Why should (not) substitution be 
-                                            # made 
-}  
-
-# How the medication should be taken
-<MedicationRequest.dose> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:renderedDosageInstruction @<string>?;  # Full representation of the dosage 
+    fhir:renderedDosageInstruction @<markdown>?;  # Full representation of the dosage 
                                             # instructions 
     fhir:effectiveDosePeriod @<Period>?;    # Period over which the medication 
                                             # is to be taken 
     fhir:dosageInstruction @<OneOrMore_Dosage>?;  # Specific instructions for how the 
                                             # medication should be taken 
-}  
-
-# First fill details
-<MedicationRequest.dispenseRequest.initialFill> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:quantity @<Quantity>?;             # First fill quantity
-    fhir:duration @<Duration>?;             # First fill duration
+    fhir:dispenseRequest @<MedicationRequest.dispenseRequest>?;  # Medication supply authorization
+    fhir:substitution @<MedicationRequest.substitution>?;  # Any restrictions on medication 
+                                            # substitution 
+    fhir:eventHistory @<OneOrMore_Reference_Provenance>?;  # A list of events of interest in 
+                                            # the lifecycle 
 }  
 
 # Medication supply authorization
@@ -225,11 +208,26 @@ start=@<MedicationRequest> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # dispense 
     fhir:expectedSupplyDuration @<Duration>?;  # Number of days supply per dispense
     fhir:dispenser @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Intended performer of dispense
+    			@<Organization> ?}?;  # Intended performer of dispense
     fhir:dispenserInstruction @<OneOrMore_Annotation>?;  # Additional information for the 
                                             # dispenser 
     fhir:doseAdministrationAid @<CodeableConcept>?;  # Type of adherence packaging to use 
                                             # for the dispense 
+}  
+
+# First fill details
+<MedicationRequest.dispenseRequest.initialFill> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:quantity @<Quantity>?;             # First fill quantity
+    fhir:duration @<Duration>?;             # First fill duration
+}  
+
+# Any restrictions on medication substitution
+<MedicationRequest.substitution> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:allowed @<boolean>  OR 
+    			@<CodeableConcept>  ;  # Whether substitution is allowed or 
+                                            # not 
+    fhir:reason @<CodeableConcept>?;        # Why should (not) substitution be 
+                                            # made 
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

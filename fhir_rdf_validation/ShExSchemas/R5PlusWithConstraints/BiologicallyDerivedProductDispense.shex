@@ -1,0 +1,128 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Patient.shex>
+#imported_end
+#imported_begin 
+IMPORT <Location.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <Annotation.shex>
+#imported_end
+#imported_begin 
+IMPORT <Practitioner.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <ServiceRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <BiologicallyDerivedProduct.shex>
+#imported_end
+
+start=@<BiologicallyDerivedProductDispense> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# A record of dispensation of a biologically derived product
+<BiologicallyDerivedProductDispense> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:BiologicallyDerivedProductDispense]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business identifier for this 
+                                            # dispense 
+    fhir:basedOn @<OneOrMore_Reference_ServiceRequest>?;  # The order or request that this 
+                                            # dispense is fulfilling 
+    fhir:partOf @<OneOrMore_Reference_BiologicallyDerivedProductDispense>?;  # Short description
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:biologicallyderivedproductdispense-status};  # preparation | in-progress | 
+                                            # allocated | issued | unfulfilled | 
+                                            # returned | entered-in-error | 
+                                            # unknown 
+    fhir:originRelationshipType @<CodeableConcept>?;  # Relationship between the donor and 
+                                            # intended recipient 
+    fhir:product @<Reference> AND {fhir:link 
+    			@<BiologicallyDerivedProduct> ?};  # The BiologicallyDerivedProduct 
+                                            # that is dispensed 
+    fhir:patient @<Reference> AND {fhir:link 
+    			@<Patient> ?};  # The intended recipient of the 
+                                            # dispensed product 
+    fhir:matchStatus @<CodeableConcept>?;   # Indicates the type of matching 
+                                            # associated with the dispense 
+    fhir:performer @<OneOrMore_BiologicallyDerivedProductDispense.performer>?;  # Indicates who or what performed an 
+                                            # action 
+    fhir:location @<Reference> AND {fhir:link 
+    			@<Location> ?}?;  # Where the dispense occurred
+    fhir:quantity @<Quantity>?;             # Amount dispensed
+    fhir:preparedDate @<dateTime>?;         # When product was selected/matched
+    fhir:whenHandedOver @<dateTime>?;       # When the product was dispatched
+    fhir:destination @<Reference> AND {fhir:link 
+    			@<Location> ?}?;  # Where the product was dispatched to
+    fhir:note @<OneOrMore_Annotation>?;     # Additional notes
+    fhir:usageInstruction @<string>?;       # Specific instructions for use
+}  
+
+# Indicates who or what performed an action
+<BiologicallyDerivedProductDispense.performer> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:function @<CodeableConcept>?;      # Identifies the function of the 
+                                            # performer during the dispense 
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<Practitioner> ?};  # Who performed the action
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_BiologicallyDerivedProductDispense.performer> CLOSED {
+    rdf:first @<BiologicallyDerivedProductDispense.performer>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_BiologicallyDerivedProductDispense.performer> 
+}
+
+
+
+#---------------------- Value Sets ------------------------
+
+

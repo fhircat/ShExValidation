@@ -26,10 +26,10 @@ IMPORT <string.shex>
 IMPORT <Period.shex>
 #imported_end
 #imported_begin 
-IMPORT <Coding.shex>
+IMPORT <Device.shex>
 #imported_end
 #imported_begin 
-IMPORT <Device.shex>
+IMPORT <Coding.shex>
 #imported_end
 #imported_begin 
 IMPORT <instant.shex>
@@ -151,15 +151,18 @@ start=@<Appointment> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:supportingInformation @<OneOrMore_Reference_Resource>?;  # Additional information to support 
                                             # the appointment 
     fhir:previousAppointment @<Reference> AND {fhir:link 
-    			@<Appointment> ? }?;  # The previous appointment in a 
+    			@<Appointment> ?}?;  # The previous appointment in a 
                                             # series 
     fhir:originatingAppointment @<Reference> AND {fhir:link 
-    			@<Appointment> ? }?;  # The originating appointment in a 
+    			@<Appointment> ?}?;  # The originating appointment in a 
                                             # recurring set of appointments 
     fhir:start @<instant>?;                 # When appointment is to take place
     fhir:end @<instant>?;                   # When appointment is to conclude
     fhir:minutesDuration @<positiveInt>?;   # Can be less than start/end (e.g. 
                                             # estimate) 
+    fhir:requestedPeriod @<OneOrMore_Period>?;  # Potential date/time interval(s) 
+                                            # requested to allocate the 
+                                            # appointment within 
     fhir:slot @<OneOrMore_Reference_Slot>?;  # The slots that this appointment is 
                                             # filling 
     fhir:account @<OneOrMore_Reference_Account>?;  # The set of accounts that may be 
@@ -167,6 +170,7 @@ start=@<Appointment> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # Appointment 
     fhir:created @<dateTime>?;              # The date that this appointment was 
                                             # initially created 
+    fhir:cancellationDate @<dateTime>?;     # When the appointment was cancelled
     fhir:note @<OneOrMore_Annotation>?;     # Additional comments
     fhir:patientInstruction @<OneOrMore_CodeableReference>?;  # Detailed information and 
                                             # instructions for the patient 
@@ -174,13 +178,10 @@ start=@<Appointment> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # allocated to assess 
     fhir:subject @<Reference> AND {fhir:link 
     			@<Group> OR 
-    			@<Patient> ? }?;  # The patient or group associated 
+    			@<Patient> ?}?;  # The patient or group associated 
                                             # with the appointment 
     fhir:participant @<OneOrMore_Appointment.participant>;  # Participants involved in 
                                             # appointment 
-    fhir:requestedPeriod @<OneOrMore_Period>?;  # Potential date/time interval(s) 
-                                            # requested to allocate the 
-                                            # appointment within 
     fhir:recurrenceId @<positiveInt>?;      # The sequence number in the 
                                             # recurrence 
     fhir:occurrenceChanged @<boolean>?;     # Indicates that this appointment 
@@ -190,13 +191,156 @@ start=@<Appointment> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # occurrences 
 } AND (
 
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:app-7
+# Human readable:Cancellation date is only used for appointments that have been cancelled, or noshow
+#
+# Constraint: cancellationDate.exists() implies (status='noshow' or status='cancelled')
+# ShEx:
+#
+#{fhir:cancellationDate .  Implies  (({ fhir:status { fhir:v ['noshow'] }  }) OR ({ fhir:status { fhir:v ['cancelled'] }  }))}
+{}
+
+) AND (
+
 # Constraint UniqueKey:app-6
 # Human readable:An appointment may have an originatingAppointment or recurrenceTemplate, but not both
 
 # Constraint: originatingAppointment.exists().not() or recurrenceTemplate.exists().not()
 # ShEx:
 
- NOT { fhir:originatingAppointment. } OR  NOT { fhir:recurrenceTemplate. }
+ NOT { fhir:originatingAppointment . } OR  NOT { fhir:recurrenceTemplate . }
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# Unmapped construct found: LessOrEqual
+# # Constraint UniqueKey:app-5
+# Human readable:The start must be less than or equal to the end
+#
+# Constraint: start.exists() implies start <= end
+# ShEx:
+#
+#{fhir:start .  Implies  ({ fhir:start  LessOrEqual  { fhir:end } })}
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:app-4
+# Human readable:Cancellation reason is only used for appointments that have been cancelled, or noshow
+#
+# Constraint: cancellationReason.exists() implies (status='noshow' or status='cancelled')
+# ShEx:
+#
+#{fhir:cancellationReason .  Implies  (({ fhir:status { fhir:v ['noshow'] }  }) OR ({ fhir:status { fhir:v ['cancelled'] }  }))}
+{}
+
+) AND (
+
+# Constraint UniqueKey:app-3
+# Human readable:Only proposed or cancelled appointments can be missing start/end dates
+
+# Constraint: (start.exists() and end.exists()) or (status in ('proposed' | 'cancelled' | 'waitlist'))
+# ShEx:
+
+({fhir:start . AND {fhir:end .}}) OR ({ fhir:status { fhir:v ['proposed' 'cancelled' 'waitlist'] }  })
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Equals
+# # Constraint UniqueKey:app-2
+# Human readable:Either start and end are specified, or neither
+#
+# Constraint: start.exists() = end.exists()
+# ShEx:
+#
+#{fhir:start .  Equals  {fhir:end .}}
+{}
+
+) AND (
+
+# Constraint UniqueKey:app-1
+# Human readable:Either the type or actor on the participant SHALL be specified
+
+# Constraint: type.exists() or actor.exists()
+# ShEx:
+
+{fhir:type . OR {fhir:actor .}}
+
+)
+ 
+
+# Information about yearly recurring appointments
+<Appointment.recurrenceTemplate.yearlyTemplate> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:yearInterval @<positiveInt>;       # Recurs every nth year
+}  
+
+# Information about weekly recurring appointments
+<Appointment.recurrenceTemplate.weeklyTemplate> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:monday @<boolean>?;                # Recurs on Mondays
+    fhir:tuesday @<boolean>?;               # Recurs on Tuesday
+    fhir:wednesday @<boolean>?;             # Recurs on Wednesday
+    fhir:thursday @<boolean>?;              # Recurs on Thursday
+    fhir:friday @<boolean>?;                # Recurs on Friday
+    fhir:saturday @<boolean>?;              # Recurs on Saturday
+    fhir:sunday @<boolean>?;                # Recurs on Sunday
+    fhir:weekInterval @<positiveInt>?;      # Recurs every nth week
+}  
+
+# Participants involved in appointment
+<Appointment.participant> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<OneOrMore_CodeableConcept>?;  # Role of participant in the 
+                                            # appointment 
+    fhir:period @<Period>?;                 # Participation period of the actor
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Group> OR 
+    			@<HealthcareService> OR 
+    			@<Location> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ?}?;  # The individual, device, location, 
+                                            # or service participating in the 
+                                            # appointment 
+    fhir:required @<boolean>?;              # The participant is required to 
+                                            # attend (optional when false) 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:participationstatus};  # accepted | declined | tentative | 
+                                            # needs-action 
+} AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:app-7
+# Human readable:Cancellation date is only used for appointments that have been cancelled, or noshow
+#
+# Constraint: cancellationDate.exists() implies (status='noshow' or status='cancelled')
+# ShEx:
+#
+#{fhir:cancellationDate .  Implies  (({ fhir:status { fhir:v ['noshow'] }  }) OR ({ fhir:status { fhir:v ['cancelled'] }  }))}
+{}
+
+) AND (
+
+# Constraint UniqueKey:app-6
+# Human readable:An appointment may have an originatingAppointment or recurrenceTemplate, but not both
+
+# Constraint: originatingAppointment.exists().not() or recurrenceTemplate.exists().not()
+# ShEx:
+
+ NOT { fhir:originatingAppointment . } OR  NOT { fhir:recurrenceTemplate . }
 
 ) AND (
 
@@ -275,121 +419,6 @@ start=@<Appointment> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:monthInterval @<positiveInt>;      # Recurs every nth month
 }  
 
-# Information about yearly recurring appointments
-<Appointment.recurrenceTemplate.yearlyTemplate> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:yearInterval @<positiveInt>;       # Recurs every nth year
-}  
-
-# Participants involved in appointment
-<Appointment.participant> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:type @<OneOrMore_CodeableConcept>?;  # Role of participant in the 
-                                            # appointment 
-    fhir:period @<Period>?;                 # Participation period of the actor
-    fhir:actor @<Reference> AND {fhir:link 
-    			@<CareTeam> OR 
-    			@<Device> OR 
-    			@<Group> OR 
-    			@<HealthcareService> OR 
-    			@<Location> OR 
-    			@<Patient> OR 
-    			@<Practitioner> OR 
-    			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # The individual, device, location, 
-                                            # or service participating in the 
-                                            # appointment 
-    fhir:required @<boolean>?;              # The participant is required to 
-                                            # attend (optional when false) 
-    fhir:status @<code> AND
-    	{fhir:v @fhirvs:participationstatus};  # accepted | declined | tentative | 
-                                            # needs-action 
-} AND (
-
-# Constraint UniqueKey:app-6
-# Human readable:An appointment may have an originatingAppointment or recurrenceTemplate, but not both
-
-# Constraint: originatingAppointment.exists().not() or recurrenceTemplate.exists().not()
-# ShEx:
-
- NOT { fhir:originatingAppointment. } OR  NOT { fhir:recurrenceTemplate. }
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: Implies
-# Unmapped construct found: LessOrEqual
-# # Constraint UniqueKey:app-5
-# Human readable:The start must be less than or equal to the end
-#
-# Constraint: start.exists() implies start <= end
-# ShEx:
-#
-#{fhir:start .  Implies  ({ fhir:start  LessOrEqual  { fhir:end } })}
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: Implies
-# # Constraint UniqueKey:app-4
-# Human readable:Cancellation reason is only used for appointments that have been cancelled, or noshow
-#
-# Constraint: cancellationReason.exists() implies (status='noshow' or status='cancelled')
-# ShEx:
-#
-#{fhir:cancellationReason .  Implies  (({ fhir:status { fhir:v ['noshow'] }  }) OR ({ fhir:status { fhir:v ['cancelled'] }  }))}
-{}
-
-) AND (
-
-# Constraint UniqueKey:app-3
-# Human readable:Only proposed or cancelled appointments can be missing start/end dates
-
-# Constraint: (start.exists() and end.exists()) or (status in ('proposed' | 'cancelled' | 'waitlist'))
-# ShEx:
-
-({fhir:start . AND {fhir:end .}}) OR ({ fhir:status { fhir:v ['proposed' 'cancelled' 'waitlist'] }  })
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: Equals
-# # Constraint UniqueKey:app-2
-# Human readable:Either start and end are specified, or neither
-#
-# Constraint: start.exists() = end.exists()
-# ShEx:
-#
-#{fhir:start .  Equals  {fhir:end .}}
-{}
-
-) AND (
-
-# Constraint UniqueKey:app-1
-# Human readable:Either the type or actor on the participant SHALL be specified
-
-# Constraint: type.exists() or actor.exists()
-# ShEx:
-
-{fhir:type . OR {fhir:actor .}}
-
-)
- 
-
-# Information about weekly recurring appointments
-<Appointment.recurrenceTemplate.weeklyTemplate> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:monday @<boolean>?;                # Recurs on Mondays
-    fhir:tuesday @<boolean>?;               # Recurs on Tuesday
-    fhir:wednesday @<boolean>?;             # Recurs on Wednesday
-    fhir:thursday @<boolean>?;              # Recurs on Thursday
-    fhir:friday @<boolean>?;                # Recurs on Friday
-    fhir:saturday @<boolean>?;              # Recurs on Saturday
-    fhir:sunday @<boolean>?;                # Recurs on Sunday
-    fhir:weekInterval @<positiveInt>?;      # Recurs every nth week
-}  
-
 # Details of the recurrence pattern/template used to generate occurrences
 <Appointment.recurrenceTemplate> EXTENDS @<BackboneElement> CLOSED {   
     fhir:timezone @<CodeableConcept>?;      # The timezone of the occurrences
@@ -451,12 +480,12 @@ start=@<Appointment> AND {fhir:nodeRole [fhir:treeRoot]}
 
 
 
+
+
 <OneOrMore_Appointment.participant> CLOSED {
     rdf:first @<Appointment.participant>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_Appointment.participant> 
 }
-
-
 
 <OneOrMore_Appointment.recurrenceTemplate> CLOSED {
     rdf:first @<Appointment.recurrenceTemplate>  ;

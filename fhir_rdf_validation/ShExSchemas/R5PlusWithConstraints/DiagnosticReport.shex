@@ -35,6 +35,9 @@ IMPORT <Location.shex>
 IMPORT <dateTime.shex>
 #imported_end
 #imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
 IMPORT <Citation.shex>
 #imported_end
 #imported_begin 
@@ -50,13 +53,13 @@ IMPORT <Specimen.shex>
 IMPORT <Reference.shex>
 #imported_end
 #imported_begin 
-IMPORT <Procedure.shex>
-#imported_end
-#imported_begin 
 IMPORT <Substance.shex>
 #imported_end
 #imported_begin 
 IMPORT <Encounter.shex>
+#imported_end
+#imported_begin 
+IMPORT <Procedure.shex>
 #imported_end
 #imported_begin 
 IMPORT <Identifier.shex>
@@ -131,7 +134,9 @@ start=@<DiagnosticReport> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:basedOn @<OneOrMore_Reference_CarePlan_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest>?;  # What was requested
     fhir:status @<code> AND
     	{fhir:v @fhirvs:diagnostic-report-status};  # registered | partial | preliminary 
-                                            # | final + 
+                                            # | modified | final | amended | 
+                                            # corrected | appended | cancelled | 
+                                            # entered-in-error | unknown 
     fhir:category @<OneOrMore_CodeableConcept>?;  # Service category
     fhir:code @<CodeableConcept>;           # Name/Code for this diagnostic 
                                             # report 
@@ -144,12 +149,11 @@ start=@<DiagnosticReport> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Organization> OR 
     			@<Patient> OR 
     			@<Practitioner> OR 
-    			@<Procedure> OR 
-    			@<Substance> ? }?;  # The subject of the report - 
+    			@<Substance> ?}?;  # The subject of the report - 
                                             # usually, but not always, the 
                                             # patient 
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # Health care event when test ordered
+    			@<Encounter> ?}?;  # Health care event when test ordered
     fhir:effective @<dateTime>  OR 
     			@<Period>  ?;  # Clinically relevant 
                                             # time/time-period for report 
@@ -168,10 +172,10 @@ start=@<DiagnosticReport> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:media @<OneOrMore_DiagnosticReport.media>?;  # Key images or data associated with 
                                             # this report 
     fhir:composition @<Reference> AND {fhir:link 
-    			@<Composition> ? }?;  # Reference to a Composition 
+    			@<Composition> ?}?;  # Reference to a Composition 
                                             # resource for the DiagnosticReport 
                                             # structure 
-    fhir:conclusion @<string>?;             # Clinical conclusion 
+    fhir:conclusion @<markdown>?;           # Clinical conclusion 
                                             # (interpretation) of test results 
     fhir:conclusionCode @<OneOrMore_CodeableConcept>?;  # Codes for the clinical conclusion 
                                             # of test results 
@@ -181,33 +185,21 @@ start=@<DiagnosticReport> AND {fhir:nodeRole [fhir:treeRoot]}
 
 # This constraint does not have mapping to a ShEx construct yet.
 # Unmapped construct found: Implies
-# Unmapped construct found: resolve
-# Unmapped construct found: resolve
-# Unmapped construct found: descendants
 # Unmapped construct found: where
-# Unmapped construct found: In
-# Unmapped construct found: descendants
+# Unmapped construct found: resolve
+# Unmapped construct found: resolve
 # Unmapped construct found: resolve
 # # Constraint UniqueKey:dgr-1
-# Human readable:A resource referenced in a Composition entry must also be included in the DiagnosticReport result (Observation resources or nested resources via Observation.hasMember)
+# Human readable:When a Composition is referenced in `Diagnostic.composition`, all Observation resources referenced in `Composition.entry` must also be referenced in `Diagnostic.entry` or in the references Observations in `Observation.hasMember`
 #
-# Constraint: composition.exists() implies composition.resolve().section.entry.resolve().descendants().where((id in result.resolve().descendants().id).not()).empty()
+# Constraint: composition.exists() implies (composition.resolve().section.entry.reference.where(resolve() is Observation) in (result.reference|result.reference.resolve().hasMember.reference))
 # ShEx:
 #
-#{fhir:composition .  Implies   NOT { fhir:composition. resolve  (  ).section.entry. resolve  (  ). descendants  (  ). where  ( NOT { .id  In     descendants  ( .result. resolve  (  ) ).id }) {fhir:v .} } }
+#{fhir:composition .  Implies  (  where  (   resolve  ( fhir:composition. resolve  (  ).section.entry.reference ) a Observation) { fhir:v [({fhir:result.reference    resolve  ( fhir:result.reference ).hasMember.reference})] } )}
 {}
 
 )
  
-
-# Key images or data associated with this report
-<DiagnosticReport.media> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:comment @<string>?;                # Comment about the image or data 
-                                            # (e.g. explanation) 
-    fhir:link @<Reference> AND {fhir:link 
-    			@<DocumentReference> ? };  # Reference to the image or data 
-                                            # source 
-}  
 
 # Additional information supporting the diagnostic report
 <DiagnosticReport.supportingInfo> EXTENDS @<BackboneElement> CLOSED {   
@@ -216,7 +208,16 @@ start=@<DiagnosticReport> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Citation> OR 
     			@<DiagnosticReport> OR 
     			@<Observation> OR 
-    			@<Procedure> ? };  # Supporting information reference
+    			@<Procedure> ?};  # Supporting information reference
+}  
+
+# Key images or data associated with this report
+<DiagnosticReport.media> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:comment @<string>?;                # Comment about the image or data 
+                                            # (e.g. explanation) 
+    fhir:link @<Reference> AND {fhir:link 
+    			@<DocumentReference> ?};  # Reference to the image or data 
+                                            # source 
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

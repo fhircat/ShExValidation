@@ -24,7 +24,7 @@ IMPORT <CodeableReference.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/immunization-procedure"]}; 
-    fhir:value (@<CodeableReference>  AND {fhir:link @<Procedure> })  ; 
+    fhir:value (@<CodeableReference>  AND {fhir:link @<Procedure> ?})  ; 
     ^fhir:extension { a [fhir:Immunization]}
 
 }  

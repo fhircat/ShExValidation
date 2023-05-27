@@ -111,9 +111,9 @@ start=@<ChargeItem> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # like a billing code 
     fhir:subject @<Reference> AND {fhir:link 
     			@<Group> OR 
-    			@<Patient> ? };  # Individual service was done for/to
+    			@<Patient> ?};  # Individual service was done for/to
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # Encounter associated with this 
+    			@<Encounter> ?}?;  # Encounter associated with this 
                                             # ChargeItem 
     fhir:occurrence @<dateTime>  OR 
     			@<Period>  OR 
@@ -121,13 +121,13 @@ start=@<ChargeItem> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # applied 
     fhir:performer @<OneOrMore_ChargeItem.performer>?;  # Who performed charged service
     fhir:performingOrganization @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Organization providing the charged 
+    			@<Organization> ?}?;  # Organization providing the charged 
                                             # service 
     fhir:requestingOrganization @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Organization requesting the 
+    			@<Organization> ?}?;  # Organization requesting the 
                                             # charged service 
     fhir:costCenter @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Organization that has ownership of 
+    			@<Organization> ?}?;  # Organization that has ownership of 
                                             # the (potential, future) revenue 
     fhir:quantity @<Quantity>?;             # Quantity of which the charge item 
                                             # has been serviced 
@@ -144,7 +144,7 @@ start=@<ChargeItem> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Individual who was entering
+    			@<RelatedPerson> ?}?;  # Individual who was entering
     fhir:enteredDate @<dateTime>?;          # Date the charge item was entered
     fhir:reason @<OneOrMore_CodeableConcept>?;  # Why was the charged  service 
                                             # rendered? 
@@ -168,7 +168,7 @@ start=@<ChargeItem> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? };  # Individual who was performing
+    			@<RelatedPerson> ?};  # Individual who was performing
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

@@ -84,22 +84,10 @@ start=@<Person> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # communicate with the person about 
                                             # his or her health 
     fhir:managingOrganization @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # The organization that is the 
+    			@<Organization> ?}?;  # The organization that is the 
                                             # custodian of the person record 
     fhir:link @<OneOrMore_Person.link>?;    # Link to a resource that concerns 
                                             # the same actual person 
-}  
-
-# Link to a resource that concerns the same actual person
-<Person.link> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:target @<Reference> AND {fhir:link 
-    			@<Patient> OR 
-    			@<Person> OR 
-    			@<Practitioner> OR 
-    			@<RelatedPerson> ? };  # The resource to which this actual 
-                                            # person is associated 
-    fhir:assurance @<code> AND
-    	{fhir:v @fhirvs:identity-assuranceLevel}?;  # level1 | level2 | level3 | level4
 }  
 
 # A language which may be used to communicate with the person about his or her health
@@ -108,6 +96,18 @@ start=@<Person> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # communicate with the person about 
                                             # his or her health 
     fhir:preferred @<boolean>?;             # Language preference indicator
+}  
+
+# Link to a resource that concerns the same actual person
+<Person.link> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:target @<Reference> AND {fhir:link 
+    			@<Patient> OR 
+    			@<Person> OR 
+    			@<Practitioner> OR 
+    			@<RelatedPerson> ?};  # The resource to which this actual 
+                                            # person is associated 
+    fhir:assurance @<code> AND
+    	{fhir:v @fhirvs:identity-assuranceLevel}?;  # level1 | level2 | level3 | level4
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

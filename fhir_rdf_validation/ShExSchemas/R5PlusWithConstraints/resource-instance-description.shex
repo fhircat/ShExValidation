@@ -32,7 +32,10 @@ IMPORT <Extension.shex>
 # Constraint: %resource.description.exists().not() or ((%resource.description is string).not() and (%resource.description is markdown).not())
 # ShEx:
 
- NOT { 'false'.description. } OR ( NOT { 'true'.description a { fhir:string } } AND  NOT { 'true'.description a { fhir:markdown } })
+# UPDATED_TO_FIX
+# NOT { 'false'.description . } OR ( NOT { 'true'.description a { fhir:string } } AND  NOT { 'true'.description a { fhir:markdown } })
+
+{}
 
 )
  

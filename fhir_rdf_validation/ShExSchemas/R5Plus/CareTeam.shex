@@ -79,7 +79,7 @@ start=@<CareTeam> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # assessment team 
     fhir:subject @<Reference> AND {fhir:link 
     			@<Group> OR 
-    			@<Patient> ? }?;  # Who care team is for
+    			@<Patient> ?}?;  # Who care team is for
     fhir:period @<Period>?;                 # Time period team covers
     fhir:participant @<OneOrMore_CareTeam.participant>?;  # Members of the team
     fhir:reason @<OneOrMore_CodeableReference>?;  # Why the care team exists
@@ -99,9 +99,9 @@ start=@<CareTeam> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Who is involved
+    			@<RelatedPerson> ?}?;  # Who is involved
     fhir:onBehalfOf @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Organization of the practitioner
+    			@<Organization> ?}?;  # Organization of the practitioner
     fhir:coverage @<Period>  OR 
     			@<Timing>  ?;  # When the member is generally 
                                             # available within this care team 

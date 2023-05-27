@@ -35,6 +35,9 @@ IMPORT <markdown.shex>
 IMPORT <canonical.shex>
 #imported_end
 #imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
 IMPORT <UsageContext.shex>
 #imported_end
 #imported_begin 
@@ -60,7 +63,11 @@ start=@<OperationDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
 
     fhir:url @<uri>?;                       # Canonical identifier for this 
                                             # operation definition, represented 
-                                            # as a URI (globally unique) 
+                                            # as an absolute URI (globally 
+                                            # unique) 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
+                                            # implementation guide (business 
+                                            # identifier) 
     fhir:version @<string>?;                # Business version of the operation 
                                             # definition 
     fhir:versionAlgorithm @<string>  OR 
@@ -97,7 +104,7 @@ start=@<OperationDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:comment @<markdown>?;              # Additional information about use
     fhir:base @<canonical>?;                # Marks this as a profile of the base
     fhir:resource @<OneOrMore_code> AND
-    	{fhir:v @fhirvs:resource-types}?;  # Types this operation applies to
+    	{fhir:v @fhirvs:version-independent-all-resource-types}?;  # Types this operation applies to
     fhir:system @<boolean>;                 # Invoke at the system level?
     fhir:type @<boolean>;                   # Invoke at the type level?
     fhir:instance @<boolean>;               # Invoke on an instance?
@@ -108,21 +115,6 @@ start=@<OperationDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:parameter @<OneOrMore_OperationDefinition.parameter>?;  # Parameters for the operation/query
     fhir:overload @<OneOrMore_OperationDefinition.overload>?;  # Define overloaded variants for 
                                             # when  generating code 
-}  
-
-# Define overloaded variants for when  generating code
-<OperationDefinition.overload> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:parameterName @<OneOrMore_string>?;  # Name of parameter to include in 
-                                            # overload 
-    fhir:comment @<string>?;                # Comments to go on overload
-}  
-
-# ValueSet details if this is coded
-<OperationDefinition.parameter.binding> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:strength @<code> AND
-    	{fhir:v @fhirvs:binding-strength};  # required | extensible | preferred 
-                                            # | example 
-    fhir:valueSet @<canonical>;             # Source of value set
 }  
 
 # Parameters for the operation/query
@@ -154,17 +146,34 @@ start=@<OperationDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:part @<OneOrMore_OperationDefinition.parameter>?;  # Parts of a nested Parameter
 }  
 
-# References to this parameter
-<OperationDefinition.parameter.referencedFrom> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:source @<string>;                  # Referencing parameter
-    fhir:sourceId @<string>?;               # Element id of reference
+# ValueSet details if this is coded
+<OperationDefinition.parameter.binding> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:strength @<code> AND
+    	{fhir:v @fhirvs:binding-strength};  # required | extensible | preferred 
+                                            # | example 
+    fhir:valueSet @<canonical>;             # Source of value set
 }  
 
 # Parts of a nested Parameter
 <OperationDefinition.parameter.partnull> CLOSED {   
 }  
 
+# Define overloaded variants for when  generating code
+<OperationDefinition.overload> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:parameterName @<OneOrMore_string>?;  # Name of parameter to include in 
+                                            # overload 
+    fhir:comment @<string>?;                # Comments to go on overload
+}  
+
+# References to this parameter
+<OperationDefinition.parameter.referencedFrom> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:source @<string>;                  # Referencing parameter
+    fhir:sourceId @<string>?;               # Element id of reference
+}  
+
 #---------------------- Cardinality Types (OneOrMore) -------------------
+
+
 
 
 
@@ -186,12 +195,12 @@ start=@<OperationDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
 
 
 
-
-
 <OneOrMore_OperationDefinition.parameter.referencedFrom> CLOSED {
     rdf:first @<OperationDefinition.parameter.referencedFrom>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_OperationDefinition.parameter.referencedFrom> 
 }
+
+
 
 #---------------------- Value Sets ------------------------
 

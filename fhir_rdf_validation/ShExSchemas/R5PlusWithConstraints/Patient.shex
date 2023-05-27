@@ -99,7 +99,7 @@ start=@<Patient> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:generalPractitioner @<OneOrMore_Reference_Organization_OR_Practitioner_OR_PractitionerRole>?;  # Patient's nominated primary care 
                                             # provider 
     fhir:managingOrganization @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Organization that is the custodian 
+    			@<Organization> ?}?;  # Organization that is the custodian 
                                             # of the patient record 
     fhir:link @<OneOrMore_Patient.link>?;   # Link to a Patient or RelatedPerson 
                                             # resource that concerns the same 
@@ -117,6 +117,18 @@ start=@<Patient> AND {fhir:nodeRole [fhir:treeRoot]}
 )
  
 
+# Link to a Patient or RelatedPerson resource that concerns the same actual individual
+<Patient.link> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:other @<Reference> AND {fhir:link 
+    			@<Patient> OR 
+    			@<RelatedPerson> ?};  # The other patient or related 
+                                            # person resource that the link 
+                                            # refers to 
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:link-type};  # replaced-by | replaces | refer | 
+                                            # seealso 
+}  
+
 # A contact party (e.g. guardian, partner, friend) for the patient
 <Patient.contact> EXTENDS @<BackboneElement> CLOSED {   
     fhir:relationship @<OneOrMore_CodeableConcept>?;  # The kind of relationship
@@ -127,7 +139,7 @@ start=@<Patient> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:gender @<code> AND
     	{fhir:v @fhirvs:administrative-gender}?;  # male | female | other | unknown
     fhir:organization @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Organization that is associated 
+    			@<Organization> ?}?;  # Organization that is associated 
                                             # with the contact 
     fhir:period @<Period>?;                 # The period during which this 
                                             # contact person or organization is 
@@ -145,18 +157,6 @@ start=@<Patient> AND {fhir:nodeRole [fhir:treeRoot]}
 
 )
  
-
-# Link to a Patient or RelatedPerson resource that concerns the same actual individual
-<Patient.link> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:other @<Reference> AND {fhir:link 
-    			@<Patient> OR 
-    			@<RelatedPerson> ? };  # The other patient or related 
-                                            # person resource that the link 
-                                            # refers to 
-    fhir:type @<code> AND
-    	{fhir:v @fhirvs:link-type};  # replaced-by | replaces | refer | 
-                                            # seealso 
-}  
 
 # A language which may be used to communicate with the patient about his or her health
 <Patient.communication> EXTENDS @<BackboneElement> CLOSED {   

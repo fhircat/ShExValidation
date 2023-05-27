@@ -47,10 +47,10 @@ IMPORT <Organization.shex>
 IMPORT <DomainResource.shex>
 #imported_end
 #imported_begin 
-IMPORT <CodeableConcept.shex>
+IMPORT <BackboneElement.shex>
 #imported_end
 #imported_begin 
-IMPORT <BackboneElement.shex>
+IMPORT <CodeableConcept.shex>
 #imported_end
 
 start=@<Practitioner> AND {fhir:nodeRole [fhir:treeRoot]}
@@ -83,13 +83,20 @@ start=@<Practitioner> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:photo @<OneOrMore_Attachment>?;    # Image of the person
     fhir:qualification @<OneOrMore_Practitioner.qualification>?;  # Qualifications, certifications, 
                                             # accreditations, licenses, 
-                                            # training, etc pertaining to the 
+                                            # training, etc. pertaining to the 
                                             # provision of care 
-    fhir:communication @<OneOrMore_CodeableConcept>?;  # A language the practitioner can 
-                                            # use in patient communication 
+    fhir:communication @<OneOrMore_Practitioner.communication>?;  # A language which may be used to 
+                                            # communicate with the practitioner 
 }  
 
-# Qualifications, certifications, accreditations, licenses, training, etc pertaining to the provision of care
+# A language which may be used to communicate with the practitioner
+<Practitioner.communication> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:language @<CodeableConcept>;       # The language code used to 
+                                            # communicate with the practitioner 
+    fhir:preferred @<boolean>?;             # Language preference indicator
+}  
+
+# Qualifications, certifications, accreditations, licenses, training, etc. pertaining to the provision of care
 <Practitioner.qualification> EXTENDS @<BackboneElement> CLOSED {   
     fhir:identifier @<OneOrMore_Identifier>?;  # An identifier for this 
                                             # qualification for the practitioner 
@@ -98,7 +105,7 @@ start=@<Practitioner> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:period @<Period>?;                 # Period during which the 
                                             # qualification is valid 
     fhir:issuer @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Organization that regulates and 
+    			@<Organization> ?}?;  # Organization that regulates and 
                                             # issues the qualification 
 }  
 
@@ -119,7 +126,10 @@ start=@<Practitioner> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:rest [rdf:nil] OR @<OneOrMore_Practitioner.qualification> 
 }
 
-
+<OneOrMore_Practitioner.communication> CLOSED {
+    rdf:first @<Practitioner.communication>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Practitioner.communication> 
+}
 
 #---------------------- Value Sets ------------------------
 

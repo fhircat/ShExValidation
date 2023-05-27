@@ -10,9 +10,6 @@ IMPORT <uri.shex>
 #imported_begin 
 IMPORT <Extension.shex>
 #imported_end
-#imported_begin 
-IMPORT <RelatedArtifact.shex>
-#imported_end
 # Documentation relevant to the 'parent' resource
 <workflow-relatedArtifact> EXTENDS @<Extension> CLOSED {   
 
@@ -24,7 +21,8 @@ IMPORT <RelatedArtifact.shex>
     fhir:value @<RelatedArtifact>  ; 
     ^fhir:extension { a [fhir:ConceptMap]} OR 
           {a [fhir:DiagnosticReport]} OR 
-          {a [fhir:Observation]}
+          {a [fhir:Observation]} OR 
+          {^fhir:component {a [fhir:Observation]}}
 
 }  
 

@@ -55,7 +55,7 @@ IMPORT <CodeableConcept.shex>
     	{fhir:v @fhirvs:fhir-types};  # The type of the required data
     fhir:profile @<OneOrMore_canonical>?;   # The profile of the required data
     fhir:subject @<CodeableConcept>  OR 
-    			(@<Reference>  AND {fhir:link @<Group> })  ?;  # E.g. Patient, Practitioner, 
+    			(@<Reference>  AND {fhir:link @<Group> ?})  ?;  # E.g. Patient, Practitioner, 
                                             # RelatedPerson, Organization, 
                                             # Location, Device 
     fhir:mustSupport @<OneOrMore_string>?;  # Indicates specific structure 
@@ -81,16 +81,6 @@ IMPORT <CodeableConcept.shex>
                                             # value 
 }  
 
-# What codes are expected
-<DataRequirement.codeFilter> EXTENDS @<Element> CLOSED {   
-    fhir:path @<string>?;                   # A code-valued attribute to filter 
-                                            # on 
-    fhir:searchParam @<string>?;            # A coded (token) parameter to 
-                                            # search on 
-    fhir:valueSet @<canonical>?;            # Valueset for the filter
-    fhir:code @<OneOrMore_Coding>?;         # What code is expected
-}  
-
 # What dates/date ranges are expected
 <DataRequirement.dateFilter> EXTENDS @<Element> CLOSED {   
     fhir:path @<string>?;                   # A date-valued attribute to filter 
@@ -110,6 +100,16 @@ IMPORT <CodeableConcept.shex>
                                             # perform the sort 
     fhir:direction @<code> AND
     	{fhir:v @fhirvs:sort-direction};  # ascending | descending
+}  
+
+# What codes are expected
+<DataRequirement.codeFilter> EXTENDS @<Element> CLOSED {   
+    fhir:path @<string>?;                   # A code-valued attribute to filter 
+                                            # on 
+    fhir:searchParam @<string>?;            # A coded (token) parameter to 
+                                            # search on 
+    fhir:valueSet @<canonical>?;            # ValueSet for the filter
+    fhir:code @<OneOrMore_Coding>?;         # What code is expected
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

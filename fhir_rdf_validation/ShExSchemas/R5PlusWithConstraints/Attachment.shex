@@ -39,7 +39,8 @@ IMPORT <base64Binary.shex>
     fhir:contentType @<code> AND
     	{fhir:v @fhirvs:mimetypes}?;  # Mime type of the content, with 
                                             # charset etc. 
-    fhir:language @<code>?;                 # Human language of the content 
+    fhir:language @<code> AND
+    	{fhir:v @fhirvs:all-languages}?;  # Human language of the content 
                                             # (BCP-47) 
     fhir:data @<base64Binary>?;             # Data inline, base64ed
     fhir:url @<url>?;                       # Uri where the data can be found
@@ -70,5 +71,6 @@ IMPORT <base64Binary.shex>
  
 
 #---------------------- Value Sets ------------------------
+
 
 

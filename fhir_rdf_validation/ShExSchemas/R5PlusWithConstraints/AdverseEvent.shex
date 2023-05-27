@@ -44,13 +44,13 @@ IMPORT <Reference.shex>
 IMPORT <Encounter.shex>
 #imported_end
 #imported_begin 
-IMPORT <Condition.shex>
-#imported_end
-#imported_begin 
 IMPORT <Procedure.shex>
 #imported_end
 #imported_begin 
 IMPORT <Substance.shex>
+#imported_end
+#imported_begin 
+IMPORT <Condition.shex>
 #imported_end
 #imported_begin 
 IMPORT <Identifier.shex>
@@ -65,13 +65,16 @@ IMPORT <Medication.shex>
 IMPORT <Observation.shex>
 #imported_end
 #imported_begin 
+IMPORT <DeviceUsage.shex>
+#imported_end
+#imported_begin 
 IMPORT <Practitioner.shex>
 #imported_end
 #imported_begin 
-IMPORT <Organization.shex>
+IMPORT <Immunization.shex>
 #imported_end
 #imported_begin 
-IMPORT <Immunization.shex>
+IMPORT <Organization.shex>
 #imported_end
 #imported_begin 
 IMPORT <RelatedPerson.shex>
@@ -92,9 +95,6 @@ IMPORT <ResearchSubject.shex>
 IMPORT <BackboneElement.shex>
 #imported_end
 #imported_begin 
-IMPORT <MedicationUsage.shex>
-#imported_end
-#imported_begin 
 IMPORT <PractitionerRole.shex>
 #imported_end
 #imported_begin 
@@ -107,7 +107,13 @@ IMPORT <MedicationRequest.shex>
 IMPORT <AllergyIntolerance.shex>
 #imported_end
 #imported_begin 
+IMPORT <MedicationStatement.shex>
+#imported_end
+#imported_begin 
 IMPORT <FamilyMemberHistory.shex>
+#imported_end
+#imported_begin 
+IMPORT <QuestionnaireResponse.shex>
 #imported_end
 #imported_begin 
 IMPORT <MedicationAdministration.shex>
@@ -118,7 +124,7 @@ IMPORT <BiologicallyDerivedProduct.shex>
 
 start=@<AdverseEvent> AND {fhir:nodeRole [fhir:treeRoot]}
 
-# An event that may be related to unintended effects on a patient or research subject
+# An event that may be related to unintended effects on a patient or research participant
 <AdverseEvent> EXTENDS @<DomainResource> CLOSED {   
 
     a [fhir:AdverseEvent]?;
@@ -142,9 +148,9 @@ start=@<AdverseEvent> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<RelatedPerson> OR 
-    			@<ResearchSubject> ? };  # Subject impacted by event
+    			@<ResearchSubject> ?};  # Subject impacted by event
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # The Encounter associated with the 
+    			@<Encounter> ?}?;  # The Encounter associated with the 
                                             # start of the AdverseEvent 
     fhir:occurrence @<dateTime>  OR 
     			@<Period>  OR 
@@ -154,7 +160,7 @@ start=@<AdverseEvent> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:resultingEffect @<OneOrMore_Reference_Condition_OR_Observation>?;  # Effect on the subject due to this 
                                             # event 
     fhir:location @<Reference> AND {fhir:link 
-    			@<Location> ? }?;  # Location where adverse event 
+    			@<Location> ?}?;  # Location where adverse event 
                                             # occurred 
     fhir:seriousness @<CodeableConcept>?;   # Seriousness or gravity of the event
     fhir:outcome @<OneOrMore_CodeableConcept>?;  # Type of outcome from the adverse 
@@ -164,7 +170,7 @@ start=@<AdverseEvent> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
     			@<RelatedPerson> OR 
-    			@<ResearchSubject> ? }?;  # Who recorded the adverse event
+    			@<ResearchSubject> ?}?;  # Who recorded the adverse event
     fhir:participant @<OneOrMore_AdverseEvent.participant>?;  # Who was involved in the adverse 
                                             # event or the potential adverse 
                                             # event and what they did 
@@ -188,50 +194,6 @@ start=@<AdverseEvent> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:note @<OneOrMore_Annotation>?;     # Comment on adverse event
 }  
 
-# Who was involved in the adverse event or the potential adverse event and what they did
-<AdverseEvent.participant> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:function @<CodeableConcept>?;      # Type of involvement
-    fhir:actor @<Reference> AND {fhir:link 
-    			@<CareTeam> OR 
-    			@<Device> OR 
-    			@<Organization> OR 
-    			@<Patient> OR 
-    			@<Practitioner> OR 
-    			@<PractitionerRole> OR 
-    			@<RelatedPerson> OR 
-    			@<ResearchSubject> ? };  # Who was involved in the adverse 
-                                            # event or the potential adverse 
-                                            # event 
-}  
-
-# Contributing factors suspected to have increased the probability or severity of the adverse event
-<AdverseEvent.contributingFactor> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:item (@<Reference>  AND {fhir:link @<Condition> OR 
-    			 @<Observation> OR 
-    			 @<AllergyIntolerance> OR 
-    			 @<FamilyMemberHistory> OR 
-    			 @<Immunization> OR 
-    			 @<Procedure> OR 
-    			 @<Device> OR 
-    			 @<DocumentReference> OR 
-    			 @<MedicationAdministration> OR 
-    			 @<MedicationUsage> })  OR 
-    			@<CodeableConcept>  ;  # Item suspected to have increased 
-                                            # the probability or severity of the 
-                                            # adverse event 
-}  
-
-# Preventive actions that contributed to avoiding the adverse event
-<AdverseEvent.preventiveAction> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:item (@<Reference>  AND {fhir:link @<Immunization> OR 
-    			 @<Procedure> OR 
-    			 @<DocumentReference> OR 
-    			 @<MedicationAdministration> OR 
-    			 @<MedicationRequest> })  OR 
-    			@<CodeableConcept>  ;  # Action that contributed to 
-                                            # avoiding the adverse event 
-}  
-
 # The suspected agent causing the adverse event
 <AdverseEvent.suspectEntity> EXTENDS @<BackboneElement> CLOSED {   
     fhir:instance @<CodeableConcept>  OR 
@@ -240,10 +202,10 @@ start=@<AdverseEvent> AND {fhir:nodeRole [fhir:treeRoot]}
     			 @<Substance> OR 
     			 @<Medication> OR 
     			 @<MedicationAdministration> OR 
-    			 @<MedicationUsage> OR 
+    			 @<MedicationStatement> OR 
     			 @<Device> OR 
     			 @<BiologicallyDerivedProduct> OR 
-    			 @<ResearchStudy> })  ;  # Refers to the specific entity that 
+    			 @<ResearchStudy> ?})  ;  # Refers to the specific entity that 
                                             # caused the adverse event 
     fhir:causality @<AdverseEvent.suspectEntity.causality>?;  # Information on the possible cause 
                                             # of the event 
@@ -262,8 +224,53 @@ start=@<AdverseEvent> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
     			@<RelatedPerson> OR 
-    			@<ResearchSubject> ? }?;  # Author of the information on the 
+    			@<ResearchSubject> ?}?;  # Author of the information on the 
                                             # possible cause of the event 
+}  
+
+# Who was involved in the adverse event or the potential adverse event and what they did
+<AdverseEvent.participant> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:function @<CodeableConcept>?;      # Type of involvement
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> OR 
+    			@<ResearchSubject> ?};  # Who was involved in the adverse 
+                                            # event or the potential adverse 
+                                            # event 
+}  
+
+# Preventive actions that contributed to avoiding the adverse event
+<AdverseEvent.preventiveAction> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:item (@<Reference>  AND {fhir:link @<Immunization> OR 
+    			 @<Procedure> OR 
+    			 @<DocumentReference> OR 
+    			 @<MedicationAdministration> OR 
+    			 @<MedicationRequest> ?})  OR 
+    			@<CodeableConcept>  ;  # Action that contributed to 
+                                            # avoiding the adverse event 
+}  
+
+# Contributing factors suspected to have increased the probability or severity of the adverse event
+<AdverseEvent.contributingFactor> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:item (@<Reference>  AND {fhir:link @<Condition> OR 
+    			 @<Observation> OR 
+    			 @<AllergyIntolerance> OR 
+    			 @<FamilyMemberHistory> OR 
+    			 @<Immunization> OR 
+    			 @<Procedure> OR 
+    			 @<Device> OR 
+    			 @<DeviceUsage> OR 
+    			 @<DocumentReference> OR 
+    			 @<MedicationAdministration> OR 
+    			 @<MedicationStatement> ?})  OR 
+    			@<CodeableConcept>  ;  # Item suspected to have increased 
+                                            # the probability or severity of the 
+                                            # adverse event 
 }  
 
 # Ameliorating actions taken after the adverse event occured in order to reduce the extent of harm
@@ -271,7 +278,7 @@ start=@<AdverseEvent> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:item (@<Reference>  AND {fhir:link @<Procedure> OR 
     			 @<DocumentReference> OR 
     			 @<MedicationAdministration> OR 
-    			 @<MedicationRequest> })  OR 
+    			 @<MedicationRequest> ?})  OR 
     			@<CodeableConcept>  ;  # Ameliorating action taken after 
                                             # the adverse event occured in order 
                                             # to reduce the extent of harm 
@@ -287,7 +294,8 @@ start=@<AdverseEvent> AND {fhir:nodeRole [fhir:treeRoot]}
     			 @<Procedure> OR 
     			 @<DocumentReference> OR 
     			 @<MedicationAdministration> OR 
-    			 @<MedicationUsage> })  OR 
+    			 @<MedicationStatement> OR 
+    			 @<QuestionnaireResponse> ?})  OR 
     			@<CodeableConcept>  ;  # Subject medical history or 
                                             # document relevant to this adverse 
                                             # event 

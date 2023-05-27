@@ -28,7 +28,7 @@ IMPORT <ClaimResponse.shex>
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/request-insurance"]}; 
     fhir:value (@<Reference>  AND {fhir:link @<Coverage> OR 
-    			 @<ClaimResponse> })  ; 
+    			 @<ClaimResponse> ?})  ; 
     ^fhir:extension { a [fhir:NutritionOrder]}
 
 }  

@@ -26,9 +26,6 @@ IMPORT <ImagingStudy.shex>
 IMPORT <Immunization.shex>
 #imported_end
 #imported_begin 
-IMPORT <MedicationUsage.shex>
-#imported_end
-#imported_begin 
 IMPORT <DiagnosticReport.shex>
 #imported_end
 #imported_begin 
@@ -39,6 +36,9 @@ IMPORT <AllergyIntolerance.shex>
 #imported_end
 #imported_begin 
 IMPORT <FamilyMemberHistory.shex>
+#imported_end
+#imported_begin 
+IMPORT <MedicationStatement.shex>
 #imported_end
 #imported_begin 
 IMPORT <MedicationAdministration.shex>
@@ -62,9 +62,9 @@ IMPORT <ImmunizationRecommendation.shex>
     			 @<ImmunizationRecommendation> OR 
     			 @<MedicationAdministration> OR 
     			 @<MedicationRequest> OR 
-    			 @<MedicationUsage> OR 
+    			 @<MedicationStatement> OR 
     			 @<Observation> OR 
-    			 @<Procedure> })  ; 
+    			 @<Procedure> ?})  ; 
     ^fhir:extension { a [fhir:Procedure]}
 
 }  

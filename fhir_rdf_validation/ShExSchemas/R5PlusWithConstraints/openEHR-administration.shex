@@ -24,7 +24,7 @@ IMPORT <MedicationAdministration.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/openEHR-administration"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<MedicationAdministration> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<MedicationAdministration> ?})  ; 
     ^fhir:extension { ^fhir:reaction {a [fhir:AllergyIntolerance]}}
 
 }  

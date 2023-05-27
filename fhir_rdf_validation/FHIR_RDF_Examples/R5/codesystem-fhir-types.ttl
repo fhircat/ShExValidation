@@ -6,7 +6,7 @@
 [] a fhir:CodeSystem ;
   fhir:id [ fhir:v "fhir-types"] ;
   fhir:meta [
-     fhir:lastUpdated [ fhir:v "2023-03-26T15:21:02.749+11:00" ] ;
+     fhir:lastUpdated [ fhir:v "2023-05-26T00:17:51.868+00:00" ] ;
      fhir:profile ( [ fhir:v "http://hl7.org/fhir/StructureDefinition/shareablecodesystem" ] )
   ] ;
   fhir:text [
@@ -36,7 +36,7 @@
      fhir:system [ fhir:v "urn:ietf:rfc:3986" ] ;
      fhir:value [ fhir:v "urn:oid:2.16.840.1.113883.4.642.4.1802" ]
   ] ) ;
-  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:version [ fhir:v "6.0.0-cibuild"], [ fhir:v "6.0.0-cibuild"] ;
   fhir:name [ fhir:v "FHIRTypes"], [ fhir:v "FHIRTypes"] ;
   fhir:title [ fhir:v "All FHIR Types"], [ fhir:v "All FHIR Types"] ;
   fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
@@ -158,7 +158,7 @@
          ] [
            fhir:code [ fhir:v "Availability" ] ;
            fhir:display [ fhir:v "Availability" ] ;
-           fhir:definition [ fhir:v "Availability Type: Availability data for an {item}." ] ;
+           fhir:definition [ fhir:v "Availability Type: Availability data for an {item}, declaring what days/times are available, and any exceptions. The exceptions could be textual only, e.g. Public holidays, or could be time period specific and indicate a specific years dates." ] ;
            fhir:property ( [
              fhir:code [ fhir:v "kind" ] ;
              fhir:value [ fhir:v "datatype" ]
@@ -322,7 +322,7 @@
          ] [
            fhir:code [ fhir:v "MonetaryComponent" ] ;
            fhir:display [ fhir:v "MonetaryComponent" ] ;
-           fhir:definition [ fhir:v "MonetaryComponent Type: Availability data for an {item}." ] ;
+           fhir:definition [ fhir:v "MonetaryComponent Type: Financial line items use this datatype to commonly categorize the value, and other factors that may effect how the value should be interpreted." ] ;
            fhir:property ( [
              fhir:code [ fhir:v "kind" ] ;
              fhir:value [ fhir:v "datatype" ]
@@ -650,7 +650,7 @@
          ] [
            fhir:code [ fhir:v "VirtualServiceDetail" ] ;
            fhir:display [ fhir:v "VirtualServiceDetail" ] ;
-           fhir:definition [ fhir:v "VirtualServiceDetail Type: Virtual Service Contact Details." ] ;
+           fhir:definition [ fhir:v "VirtualServiceDetail Type: The set of values required to describe a virtual service's connection details, including some limitations of the service." ] ;
            fhir:property ( [
              fhir:code [ fhir:v "kind" ] ;
              fhir:value [ fhir:v "datatype" ]
@@ -1566,7 +1566,7 @@
          ] [
            fhir:code [ fhir:v "Organization" ] ;
            fhir:display [ fhir:v "Organization" ] ;
-           fhir:definition [ fhir:v "A formally or informally recognized grouping of people or organizations formed for the purpose of achieving some form of collective action.  Includes companies, institutions, corporations, departments, community groups, healthcare practice groups, payer/insurer, etc." ] ;
+           fhir:definition [ fhir:v "A formally or informally recognized grouping of people or organizations formed for the purpose of achieving some form of collective action." ] ;
            fhir:property ( [
              fhir:code [ fhir:v "kind" ] ;
              fhir:value [ fhir:v "resource" ]

@@ -23,6 +23,9 @@ IMPORT <Group.shex>
 IMPORT <string.shex>
 #imported_end
 #imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
 IMPORT <Period.shex>
 #imported_end
 #imported_begin 
@@ -74,6 +77,8 @@ start=@<EventDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # event definition 
     fhir:version @<string>?;                # Business version of the event 
                                             # definition 
+    fhir:versionAlgorithm @<string>  OR 
+    			@<Coding>  ?;  # How to compare versions
     fhir:name @<string>?;                   # Name for this event definition 
                                             # (computer friendly) 
     fhir:title @<string>?;                  # Name for this event definition 
@@ -85,7 +90,7 @@ start=@<EventDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:experimental @<boolean>?;          # For testing purposes, not real 
                                             # usage 
     fhir:subject @<CodeableConcept>  OR 
-    			(@<Reference>  AND {fhir:link @<Group> })  ?;  # Type of individual the event 
+    			(@<Reference>  AND {fhir:link @<Group> ?})  ?;  # Type of individual the event 
                                             # definition is focused on 
     fhir:date @<dateTime>?;                 # Date last changed
     fhir:publisher @<string>?;              # Name of the publisher/steward 
@@ -99,23 +104,24 @@ start=@<EventDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # definition (if applicable) 
     fhir:purpose @<markdown>?;              # Why this event definition is 
                                             # defined 
-    fhir:usage @<string>?;                  # Describes the clinical usage of 
+    fhir:usage @<markdown>?;                # Describes the clinical usage of 
                                             # the event definition 
     fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:copyrightLabel @<string>?;         # Copyright holder and year(s)
     fhir:approvalDate @<date>?;             # When the event definition was 
                                             # approved by publisher 
     fhir:lastReviewDate @<date>?;           # When the event definition was last 
-                                            # reviewed 
+                                            # reviewed by the publisher 
     fhir:effectivePeriod @<Period>?;        # When the event definition is 
                                             # expected to be used 
     fhir:topic @<OneOrMore_CodeableConcept>?;  # E.g. Education, Treatment, 
-                                            # Assessment, etc. 
+                                            # Assessment, etc 
     fhir:author @<OneOrMore_ContactDetail>?;  # Who authored the content
     fhir:editor @<OneOrMore_ContactDetail>?;  # Who edited the content
     fhir:reviewer @<OneOrMore_ContactDetail>?;  # Who reviewed the content
     fhir:endorser @<OneOrMore_ContactDetail>?;  # Who endorsed the content
     fhir:relatedArtifact @<OneOrMore_RelatedArtifact>?;  # Additional documentation, 
-                                            # citations, etc. 
+                                            # citations, etc 
     fhir:trigger @<OneOrMore_TriggerDefinition>;  # "when" the event occurs (multiple 
                                             # = 'or') 
 }  

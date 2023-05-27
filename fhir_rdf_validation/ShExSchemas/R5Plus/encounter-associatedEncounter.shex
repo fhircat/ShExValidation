@@ -24,7 +24,7 @@ IMPORT <Encounter.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/encounter-associatedEncounter"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<Encounter> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<Encounter> ?})  ; 
     ^fhir:extension { a [fhir:Encounter]}
 
 }  

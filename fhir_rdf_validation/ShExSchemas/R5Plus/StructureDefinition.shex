@@ -128,6 +128,17 @@ start=@<StructureDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # StructureDefinition) 
 }  
 
+# External specification that the content is mapped to
+<StructureDefinition.mapping> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:identity @<id>;                    # Internal id when this mapping is 
+                                            # used 
+    fhir:uri @<uri>?;                       # Identifies what this mapping 
+                                            # refers to 
+    fhir:name @<string>?;                   # Names what this mapping refers to
+    fhir:comment @<string>?;                # Versions, Issues, Scope 
+                                            # limitations etc 
+}  
+
 # Differential view of the structure
 <StructureDefinition.differential> EXTENDS @<BackboneElement> CLOSED {   
     fhir:element @<OneOrMore_ElementDefinition>;  # Definition of elements in the 
@@ -141,17 +152,6 @@ start=@<StructureDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     	{fhir:v @fhirvs:extension-context-type};  # fhirpath | element | extension
     fhir:expression @<string>;              # Where the extension can be used in 
                                             # instances 
-}  
-
-# External specification that the content is mapped to
-<StructureDefinition.mapping> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:identity @<id>;                    # Internal id when this mapping is 
-                                            # used 
-    fhir:uri @<uri>?;                       # Identifies what this mapping 
-                                            # refers to 
-    fhir:name @<string>?;                   # Names what this mapping refers to
-    fhir:comment @<string>?;                # Versions, Issues, Scope 
-                                            # limitations etc. 
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

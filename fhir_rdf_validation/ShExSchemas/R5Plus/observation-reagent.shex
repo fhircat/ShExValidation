@@ -24,7 +24,7 @@ IMPORT <Substance.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/observation-reagent"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<Substance> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<Substance> ?})  ; 
     ^fhir:extension { a [fhir:Observation]}
 
 }  

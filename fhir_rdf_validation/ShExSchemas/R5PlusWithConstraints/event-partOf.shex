@@ -24,7 +24,7 @@ IMPORT <Reference.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/event-partOf"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<Resource> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<Resource> ?})  ; 
     ^fhir:extension { a [fhir:DiagnosticReport]} OR 
           {a [fhir:Condition]}
 

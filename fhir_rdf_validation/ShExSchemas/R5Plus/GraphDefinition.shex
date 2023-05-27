@@ -38,6 +38,9 @@ IMPORT <markdown.shex>
 IMPORT <canonical.shex>
 #imported_end
 #imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
 IMPORT <UsageContext.shex>
 #imported_end
 #imported_begin 
@@ -64,6 +67,9 @@ start=@<GraphDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:url @<uri>?;                       # Canonical identifier for this 
                                             # graph definition, represented as a 
                                             # URI (globally unique) 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
+                                            # GraphDefinition (business 
+                                            # identifier) 
     fhir:version @<string>?;                # Business version of the graph 
                                             # definition 
     fhir:versionAlgorithm @<string>  OR 
@@ -88,9 +94,39 @@ start=@<GraphDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # definition (if applicable) 
     fhir:purpose @<markdown>?;              # Why this graph definition is 
                                             # defined 
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:copyrightLabel @<string>?;         # Copyright holder and year(s)
     fhir:start @<id>?;                      # Starting Node
     fhir:node @<OneOrMore_GraphDefinition.node>?;  # Potential target for the link
     fhir:link @<OneOrMore_GraphDefinition.link>?;  # Links this graph makes rules about
+}  
+
+# Compartment Consistency Rules
+<GraphDefinition.link.compartment> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:use @<code> AND
+    	{fhir:v @fhirvs:graph-compartment-use};  # where | requires
+    fhir:rule @<code> AND
+    	{fhir:v @fhirvs:graph-compartment-rule};  # identical | matching | different | 
+                                            # custom 
+    fhir:code @<code> AND
+    	{fhir:v @fhirvs:compartment-type};  # Patient | Encounter | 
+                                            # RelatedPerson | Practitioner | 
+                                            # Device | EpisodeOfCare 
+    fhir:expression @<string>?;             # Custom rule, as a FHIRPath 
+                                            # expression 
+    fhir:description @<string>?;            # Documentation for FHIRPath 
+                                            # expression 
+}  
+
+# Potential target for the link
+<GraphDefinition.node> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:nodeId @<id>;                      # Internal ID - target for link 
+                                            # references 
+    fhir:description @<string>?;            # Why this node is specified
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:version-independent-all-resource-types};  # Type of resource this link refers 
+                                            # to 
+    fhir:profile @<canonical>?;             # Profile for the target resource
 }  
 
 # Links this graph makes rules about
@@ -107,35 +143,9 @@ start=@<GraphDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:compartment @<OneOrMore_GraphDefinition.link.compartment>?;  # Compartment Consistency Rules
 }  
 
-# Potential target for the link
-<GraphDefinition.node> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:nodeId @<id>;                      # Internal ID - target for link 
-                                            # references 
-    fhir:description @<string>?;            # Why this node is specified
-    fhir:type @<code> AND
-    	{fhir:v @fhirvs:all-resource-types};  # Type of resource this link refers 
-                                            # to 
-    fhir:profile @<canonical>?;             # Profile for the target resource
-}  
-
-# Compartment Consistency Rules
-<GraphDefinition.link.compartment> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:use @<code> AND
-    	{fhir:v @fhirvs:graph-compartment-use};  # where | requires
-    fhir:rule @<code> AND
-    	{fhir:v @fhirvs:graph-compartment-rule};  # identical | matching | different | 
-                                            # custom 
-    fhir:code @<code> AND
-    	{fhir:v @fhirvs:compartment-type};  # Patient | Encounter | 
-                                            # RelatedPerson | Practitioner | 
-                                            # Device 
-    fhir:expression @<string>?;             # Custom rule, as a FHIRPath 
-                                            # expression 
-    fhir:description @<string>?;            # Documentation for FHIRPath 
-                                            # expression 
-}  
-
 #---------------------- Cardinality Types (OneOrMore) -------------------
+
+
 
 
 

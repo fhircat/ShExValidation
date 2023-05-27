@@ -24,7 +24,7 @@ IMPORT <ImagingStudy.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/auditevent-SOPClass"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<ImagingStudy> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<ImagingStudy> ?})  ; 
     ^fhir:extension { ^fhir:entity {a [fhir:AuditEvent]}}
 
 }  

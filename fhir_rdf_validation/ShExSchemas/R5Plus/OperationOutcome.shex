@@ -39,7 +39,7 @@ start=@<OperationOutcome> AND {fhir:nodeRole [fhir:treeRoot]}
 <OperationOutcome.issue> EXTENDS @<BackboneElement> CLOSED {   
     fhir:severity @<code> AND
     	{fhir:v @fhirvs:issue-severity};  # fatal | error | warning | 
-                                            # information 
+                                            # information | success 
     fhir:code @<code> AND
     	{fhir:v @fhirvs:issue-type};  # Error or warning code
     fhir:details @<CodeableConcept>?;       # Additional details about the error

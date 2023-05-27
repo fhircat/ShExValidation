@@ -70,13 +70,14 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
 # Unmapped construct found: where
 # Unmapped construct found: select
 # Unmapped construct found: Concatenate
+# Unmapped construct found: iif
 # # Constraint UniqueKey:bdl-7
 # Human readable:FullUrl must be unique in a bundle, or else entries with the same fullUrl must have different meta.versionId (except in history bundles)
 #
-# Constraint: (type = 'history') or entry.where(fullUrl.exists()).select(fullUrl&resource.meta.versionId).isDistinct()
+# Constraint: (type = 'history') or entry.where(fullUrl.exists()).select(fullUrl&iif(resource.meta.versionId.exists(), resource.meta.versionId, '')).isDistinct()
 # ShEx:
 #
-#({ fhir:type { fhir:v ['history'] }  }) OR    isDistinct  ( fhir:entry. where  (fullUrl .). select  (fullUrl  Concatenate  resource.meta.versionId) )
+#({ fhir:type { fhir:v ['history'] }  }) OR    isDistinct  ( fhir:entry. where  (fullUrl .). select  (fullUrl  Concatenate    iif  (resource.meta.versionId ., resource.meta.versionId, '')) )
 {}
 
 ) AND (
@@ -97,20 +98,6 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
 
 
 # This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: all
-# # Constraint UniqueKey:bdl-3
-# Human readable:entry.request mandatory for batch/transaction/history, allowed for subscription-notification, otherwise prohibited
-#
-# Constraint: entry.all(request.exists() = (%resource.type = 'batch' or %resource.type = 'transaction' or %resource.type = 'history')) or (type='subscription-notification')
-# ShEx:
-#
-#{fhir:entry.  all  (request . { fhir:v ['false'.type { fhir:v ['batch'] }  OR 'false'.type { fhir:v ['transaction'] }  OR 'false'.type { fhir:v ['history'] } ] } ) OR ({ fhir:type { fhir:v ['subscription-notification'] }  })}
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
 # Unmapped construct found: Implies
 # # Constraint UniqueKey:bdl-17
 # Human readable:Use and meaning of issues for documents has not been validated because the content will not be rendered in the document.
@@ -125,14 +112,14 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
 
 
 # This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: all
-# # Constraint UniqueKey:bdl-4
-# Human readable:entry.response mandatory for batch-response/transaction-response/history, allowed for subscription-notification, otherwise prohibited
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:bdl-16
+# Human readable:Issue.severity for all issues within the OperationOutcome must be either 'information' or 'warning'.
 #
-# Constraint: entry.all(response.exists() = (%resource.type = 'batch-response' or %resource.type = 'transaction-response' or %resource.type = 'history')) or (type='subscription-notification')
+# Constraint: issues.exists() implies (issues.issue.severity = 'information' or issues.issue.severity = 'warning')
 # ShEx:
 #
-#{fhir:entry.  all  (response . { fhir:v ['false'.type { fhir:v ['batch-response'] }  OR 'false'.type { fhir:v ['transaction-response'] }  OR 'false'.type { fhir:v ['history'] } ] } ) OR ({ fhir:type { fhir:v ['subscription-notification'] }  })}
+#{fhir:issues .  Implies  (({fhir:issues.issue.severity { fhir:v ['information'] } }) OR ({fhir:issues.issue.severity { fhir:v ['warning'] } }))}
 {}
 
 ) AND (
@@ -140,13 +127,14 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
 
 # This constraint does not have mapping to a ShEx construct yet.
 # Unmapped construct found: Implies
-# # Constraint UniqueKey:bdl-16
-# Human readable:Issue.severity for all issues within the OperationOutcome must be either 'information' or 'warning'.
+# Unmapped construct found: where
+# # Constraint UniqueKey:bdl-18
+# Human readable:Self link is required for searchsets.
 #
-# Constraint: issues.exists() implies (issues.OperationOutcome.issue.severity = 'information' or issues.OperationOutcome.issue.severity = 'warning')
+# Constraint: type = 'searchset' implies link.where(relation = 'self' and url.exists()).exists()
 # ShEx:
 #
-#{fhir:issues .  Implies  (({fhir:issues.OperationOutcome.issue.severity { fhir:v ['information'] } }) OR ({fhir:issues.OperationOutcome.issue.severity { fhir:v ['warning'] } }))}
+#({ fhir:type { fhir:v ['searchset'] }  })  Implies  {fhir:link.  where  (relation { fhir:v ['self'] }  AND url .) .}
 {}
 
 ) AND (
@@ -238,6 +226,21 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
 
 ) AND (
 
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# Unmapped construct found: all
+# # Constraint UniqueKey:bdl-3d
+# Human readable:For collections of type transaction-response or batch-response, all entries must contain response elements
+#
+# Constraint: type in ('transaction-response' | 'batch-response') implies entry.all(response.exists())
+# ShEx:
+#
+#{ fhir:type { fhir:v ['transaction-response' 'batch-response'  Implies  {fhir:entry.  all  (response .)}] }  }
+{}
+
+) AND (
+
 # Constraint UniqueKey:bdl-1
 # Human readable:total only when a search or history
 
@@ -251,10 +254,57 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
 # Constraint UniqueKey:bdl-2
 # Human readable:entry.search only when a search
 
-# Constraint: entry.search.empty() or (type = 'searchset')
+# Constraint: (type = 'searchset') or entry.search.empty()
 # ShEx:
 
- NOT { fhir:entry.search {fhir:v .} }  OR ({ fhir:type { fhir:v ['searchset'] }  })
+({ fhir:type { fhir:v ['searchset'] }  }) OR  NOT { fhir:entry.search {fhir:v .} } 
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# Unmapped construct found: all
+# # Constraint UniqueKey:bdl-3a
+# Human readable:For collections of type document, message, searchset or collection, all entries must contain resources, and not have request or response elements
+#
+# Constraint: type in ('document' | 'message' | 'searchset' | 'collection') implies entry.all(resource.exists() and request.empty() and response.empty())
+# ShEx:
+#
+#{ fhir:type { fhir:v ['document' 'message' 'searchset' 'collection'  Implies    all  (resource . AND  NOT { fhir:entry.request {fhir:v .} }  AND  NOT { .response {fhir:v .} } )] }  }
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# Unmapped construct found: all
+# Unmapped construct found: Equals
+# # Constraint UniqueKey:bdl-3c
+# Human readable:For collections of type transaction or batch, all entries must contain request elements, and resources if the method is POST, PUT or PATCH
+#
+# Constraint: type in ('transaction' | 'batch') implies entry.all(request.method.exists() and ((request.method in ('POST' | 'PATCH' | 'PUT')) = resource.exists()))
+# ShEx:
+#
+#{ fhir:type { fhir:v ['transaction' 'batch'  Implies  {fhir:entry.  all  (request.method . AND request.method { fhir:v ['POST' 'PATCH' 'PUT'] }   Equals  resource .)}] }  }
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# Unmapped construct found: all
+# Unmapped construct found: Equals
+# # Constraint UniqueKey:bdl-3b
+# Human readable:For collections of type history, all entries must contain request or response elements, and resources if the method is POST, PUT or PATCH
+#
+# Constraint: type = 'history' implies entry.all(request.exists() and response.exists() and ((request.method in ('POST' | 'PATCH' | 'PUT')) = resource.exists()))
+# ShEx:
+#
+#({ fhir:type { fhir:v ['history'] }  })  Implies  {fhir:entry.  all  (request . AND response . AND request.method { fhir:v ['POST' 'PATCH' 'PUT'] }   Equals  resource .)}
+{}
 
 ) AND (
 
@@ -282,6 +332,50 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
 
 )
  
+
+# Search related information
+<Bundle.entry.search> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:mode @<code> AND
+    	{fhir:v @fhirvs:search-entry-mode}?;  # match | include - why this is in 
+                                            # the result set 
+    fhir:score @<decimal>?;                 # Search ranking (between 0 and 1)
+}  
+
+# Results of execution (transaction/batch/history)
+<Bundle.entry.response> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:status @<string>;                  # Status response code (text 
+                                            # optional) 
+    fhir:location @<uri>?;                  # The location (if the operation 
+                                            # returns a location) 
+    fhir:etag @<string>?;                   # The Etag for the resource (if 
+                                            # relevant) 
+    fhir:lastModified @<instant>?;          # Server's date time modified
+    fhir:outcome @<Resource>?;              # OperationOutcome with hints and 
+                                            # warnings (for batch/transaction) 
+}  
+
+# Additional execution information (transaction/batch/history)
+<Bundle.entry.request> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:method @<code> AND
+    	{fhir:v @fhirvs:http-verb};  # GET | HEAD | POST | PUT | DELETE | 
+                                            # PATCH 
+    fhir:url @<uri>;                        # URL for HTTP equivalent of this 
+                                            # entry 
+    fhir:ifNoneMatch @<string>?;            # For managing cache validation
+    fhir:ifModifiedSince @<instant>?;       # For managing cache currency
+    fhir:ifMatch @<string>?;                # For managing update contention
+    fhir:ifNoneExist @<string>?;            # For conditional creates
+}  
+
+# Links related to this Bundle
+<Bundle.link> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:relation @<code> AND
+    	{fhir:v @fhirvs:iana-link-relations};  # See 
+                                            # http://www.iana.org/assignments/-
+                                            # link-relations/link-relations.xh-
+                                            # tml#link-relations-1 
+    fhir:url @<uri>;                        # Reference details for the link
+}  
 
 # Entry in the bundle - will have a resource or information
 <Bundle.entry> EXTENDS @<BackboneElement> CLOSED {   
@@ -303,13 +397,14 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
 # Unmapped construct found: where
 # Unmapped construct found: select
 # Unmapped construct found: Concatenate
+# Unmapped construct found: iif
 # # Constraint UniqueKey:bdl-7
 # Human readable:FullUrl must be unique in a bundle, or else entries with the same fullUrl must have different meta.versionId (except in history bundles)
 #
-# Constraint: (type = 'history') or entry.where(fullUrl.exists()).select(fullUrl&resource.meta.versionId).isDistinct()
+# Constraint: (type = 'history') or entry.where(fullUrl.exists()).select(fullUrl&iif(resource.meta.versionId.exists(), resource.meta.versionId, '')).isDistinct()
 # ShEx:
 #
-#({ fhir:type { fhir:v ['history'] }  }) OR    isDistinct  ( fhir:entry. where  (fullUrl .). select  (fullUrl  Concatenate  resource.meta.versionId) )
+#({ fhir:type { fhir:v ['history'] }  }) OR    isDistinct  ( fhir:entry. where  (fullUrl .). select  (fullUrl  Concatenate    iif  (resource.meta.versionId ., resource.meta.versionId, '')) )
 {}
 
 ) AND (
@@ -330,20 +425,6 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
 
 
 # This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: all
-# # Constraint UniqueKey:bdl-3
-# Human readable:entry.request mandatory for batch/transaction/history, allowed for subscription-notification, otherwise prohibited
-#
-# Constraint: entry.all(request.exists() = (%resource.type = 'batch' or %resource.type = 'transaction' or %resource.type = 'history')) or (type='subscription-notification')
-# ShEx:
-#
-#{fhir:entry.  all  (request . { fhir:v ['false'.type { fhir:v ['batch'] }  OR 'false'.type { fhir:v ['transaction'] }  OR 'false'.type { fhir:v ['history'] } ] } ) OR ({ fhir:type { fhir:v ['subscription-notification'] }  })}
-{}
-
-) AND (
-
-
-# This constraint does not have mapping to a ShEx construct yet.
 # Unmapped construct found: Implies
 # # Constraint UniqueKey:bdl-17
 # Human readable:Use and meaning of issues for documents has not been validated because the content will not be rendered in the document.
@@ -358,14 +439,14 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
 
 
 # This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: all
-# # Constraint UniqueKey:bdl-4
-# Human readable:entry.response mandatory for batch-response/transaction-response/history, allowed for subscription-notification, otherwise prohibited
+# Unmapped construct found: Implies
+# # Constraint UniqueKey:bdl-16
+# Human readable:Issue.severity for all issues within the OperationOutcome must be either 'information' or 'warning'.
 #
-# Constraint: entry.all(response.exists() = (%resource.type = 'batch-response' or %resource.type = 'transaction-response' or %resource.type = 'history')) or (type='subscription-notification')
+# Constraint: issues.exists() implies (issues.issue.severity = 'information' or issues.issue.severity = 'warning')
 # ShEx:
 #
-#{fhir:entry.  all  (response . { fhir:v ['false'.type { fhir:v ['batch-response'] }  OR 'false'.type { fhir:v ['transaction-response'] }  OR 'false'.type { fhir:v ['history'] } ] } ) OR ({ fhir:type { fhir:v ['subscription-notification'] }  })}
+#{fhir:issues .  Implies  (({fhir:issues.issue.severity { fhir:v ['information'] } }) OR ({fhir:issues.issue.severity { fhir:v ['warning'] } }))}
 {}
 
 ) AND (
@@ -373,13 +454,14 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
 
 # This constraint does not have mapping to a ShEx construct yet.
 # Unmapped construct found: Implies
-# # Constraint UniqueKey:bdl-16
-# Human readable:Issue.severity for all issues within the OperationOutcome must be either 'information' or 'warning'.
+# Unmapped construct found: where
+# # Constraint UniqueKey:bdl-18
+# Human readable:Self link is required for searchsets.
 #
-# Constraint: issues.exists() implies (issues.OperationOutcome.issue.severity = 'information' or issues.OperationOutcome.issue.severity = 'warning')
+# Constraint: type = 'searchset' implies link.where(relation = 'self' and url.exists()).exists()
 # ShEx:
 #
-#{fhir:issues .  Implies  (({fhir:issues.OperationOutcome.issue.severity { fhir:v ['information'] } }) OR ({fhir:issues.OperationOutcome.issue.severity { fhir:v ['warning'] } }))}
+#({ fhir:type { fhir:v ['searchset'] }  })  Implies  {fhir:link.  where  (relation { fhir:v ['self'] }  AND url .) .}
 {}
 
 ) AND (
@@ -471,6 +553,21 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
 
 ) AND (
 
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# Unmapped construct found: all
+# # Constraint UniqueKey:bdl-3d
+# Human readable:For collections of type transaction-response or batch-response, all entries must contain response elements
+#
+# Constraint: type in ('transaction-response' | 'batch-response') implies entry.all(response.exists())
+# ShEx:
+#
+#{ fhir:type { fhir:v ['transaction-response' 'batch-response'  Implies  {fhir:entry.  all  (response .)}] }  }
+{}
+
+) AND (
+
 # Constraint UniqueKey:bdl-1
 # Human readable:total only when a search or history
 
@@ -484,10 +581,57 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
 # Constraint UniqueKey:bdl-2
 # Human readable:entry.search only when a search
 
-# Constraint: entry.search.empty() or (type = 'searchset')
+# Constraint: (type = 'searchset') or entry.search.empty()
 # ShEx:
 
- NOT { fhir:entry.search {fhir:v .} }  OR ({ fhir:type { fhir:v ['searchset'] }  })
+({ fhir:type { fhir:v ['searchset'] }  }) OR  NOT { fhir:entry.search {fhir:v .} } 
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# Unmapped construct found: all
+# # Constraint UniqueKey:bdl-3a
+# Human readable:For collections of type document, message, searchset or collection, all entries must contain resources, and not have request or response elements
+#
+# Constraint: type in ('document' | 'message' | 'searchset' | 'collection') implies entry.all(resource.exists() and request.empty() and response.empty())
+# ShEx:
+#
+#{ fhir:type { fhir:v ['document' 'message' 'searchset' 'collection'  Implies    all  (resource . AND  NOT { fhir:entry.request {fhir:v .} }  AND  NOT { .response {fhir:v .} } )] }  }
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# Unmapped construct found: all
+# Unmapped construct found: Equals
+# # Constraint UniqueKey:bdl-3c
+# Human readable:For collections of type transaction or batch, all entries must contain request elements, and resources if the method is POST, PUT or PATCH
+#
+# Constraint: type in ('transaction' | 'batch') implies entry.all(request.method.exists() and ((request.method in ('POST' | 'PATCH' | 'PUT')) = resource.exists()))
+# ShEx:
+#
+#{ fhir:type { fhir:v ['transaction' 'batch'  Implies  {fhir:entry.  all  (request.method . AND request.method { fhir:v ['POST' 'PATCH' 'PUT'] }   Equals  resource .)}] }  }
+{}
+
+) AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Implies
+# Unmapped construct found: all
+# Unmapped construct found: Equals
+# # Constraint UniqueKey:bdl-3b
+# Human readable:For collections of type history, all entries must contain request or response elements, and resources if the method is POST, PUT or PATCH
+#
+# Constraint: type = 'history' implies entry.all(request.exists() and response.exists() and ((request.method in ('POST' | 'PATCH' | 'PUT')) = resource.exists()))
+# ShEx:
+#
+#({ fhir:type { fhir:v ['history'] }  })  Implies  {fhir:entry.  all  (request . AND response . AND request.method { fhir:v ['POST' 'PATCH' 'PUT'] }   Equals  resource .)}
+{}
 
 ) AND (
 
@@ -515,50 +659,6 @@ start=@<Bundle> AND {fhir:nodeRole [fhir:treeRoot]}
 
 )
  
-
-# Results of execution (transaction/batch/history)
-<Bundle.entry.response> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:status @<string>;                  # Status response code (text 
-                                            # optional) 
-    fhir:location @<uri>?;                  # The location (if the operation 
-                                            # returns a location) 
-    fhir:etag @<string>?;                   # The Etag for the resource (if 
-                                            # relevant) 
-    fhir:lastModified @<instant>?;          # Server's date time modified
-    fhir:outcome @<Resource>?;              # OperationOutcome with hints and 
-                                            # warnings (for batch/transaction) 
-}  
-
-# Search related information
-<Bundle.entry.search> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:mode @<code> AND
-    	{fhir:v @fhirvs:search-entry-mode}?;  # match | include - why this is in 
-                                            # the result set 
-    fhir:score @<decimal>?;                 # Search ranking (between 0 and 1)
-}  
-
-# Links related to this Bundle
-<Bundle.link> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:relation @<code> AND
-    	{fhir:v @fhirvs:iana-link-relations};  # See 
-                                            # http://www.iana.org/assignments/-
-                                            # link-relations/link-relations.xh-
-                                            # tml#link-relations-1 
-    fhir:url @<uri>;                        # Reference details for the link
-}  
-
-# Additional execution information (transaction/batch/history)
-<Bundle.entry.request> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:method @<code> AND
-    	{fhir:v @fhirvs:http-verb};  # GET | HEAD | POST | PUT | DELETE | 
-                                            # PATCH 
-    fhir:url @<uri>;                        # URL for HTTP equivalent of this 
-                                            # entry 
-    fhir:ifNoneMatch @<string>?;            # For managing cache validation
-    fhir:ifModifiedSince @<instant>?;       # For managing cache currency
-    fhir:ifMatch @<string>?;                # For managing update contention
-    fhir:ifNoneExist @<string>?;            # For conditional creates
-}  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------
 

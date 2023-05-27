@@ -23,13 +23,13 @@ IMPORT <Patient.shex>
 IMPORT <boolean.shex>
 #imported_end
 #imported_begin 
-IMPORT <Resource.shex>
-#imported_end
-#imported_begin 
 IMPORT <dateTime.shex>
 #imported_end
 #imported_begin 
 IMPORT <CareTeam.shex>
+#imported_end
+#imported_begin 
+IMPORT <Resource.shex>
 #imported_end
 #imported_begin 
 IMPORT <Reference.shex>
@@ -81,11 +81,10 @@ start=@<List> AND {fhir:nodeRole [fhir:treeRoot]}
     	{fhir:v @fhirvs:list-mode};  # working | snapshot | changes
     fhir:title @<string>?;                  # Descriptive name for the list
     fhir:code @<CodeableConcept>?;          # What the purpose of this list is
-    fhir:subject @<Reference> AND {fhir:link 
-    			@<Resource> ? }?;  # If all resources have the same 
-                                            # subject 
+    fhir:subject @<OneOrMore_Reference_Resource>?;  # If all resources have the same 
+                                            # subject(s) 
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # Context in which list created
+    			@<Encounter> ?}?;  # Context in which list created
     fhir:date @<dateTime>?;                 # When the list was prepared
     fhir:source @<Reference> AND {fhir:link 
     			@<CareTeam> OR 
@@ -94,7 +93,7 @@ start=@<List> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Who and/or what defined the list 
+    			@<RelatedPerson> ?}?;  # Who and/or what defined the list 
                                             # contents (aka Author) 
     fhir:orderedBy @<CodeableConcept>?;     # What order the list has
     fhir:note @<OneOrMore_Annotation>?;     # Comments about the list
@@ -121,10 +120,16 @@ start=@<List> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # deleted 
     fhir:date @<dateTime>?;                 # When item added to list
     fhir:item @<Reference> AND {fhir:link 
-    			@<Resource> ? };  # Actual entry
+    			@<Resource> ?};  # Actual entry
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
 
 
 

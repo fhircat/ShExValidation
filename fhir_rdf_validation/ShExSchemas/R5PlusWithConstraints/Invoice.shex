@@ -97,11 +97,11 @@ start=@<Invoice> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:type @<CodeableConcept>?;          # Type of Invoice
     fhir:subject @<Reference> AND {fhir:link 
     			@<Group> OR 
-    			@<Patient> ? }?;  # Recipient(s) of goods and services
+    			@<Patient> ?}?;  # Recipient(s) of goods and services
     fhir:recipient @<Reference> AND {fhir:link 
     			@<Organization> OR 
     			@<Patient> OR 
-    			@<RelatedPerson> ? }?;  # Recipient of this invoice
+    			@<RelatedPerson> ?}?;  # Recipient of this invoice
     fhir:date @<dateTime>?;                 # DEPRICATED
     fhir:creation @<dateTime>?;             # When posted
     fhir:period @<date>  OR 
@@ -109,15 +109,27 @@ start=@<Invoice> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:participant @<OneOrMore_Invoice.participant>?;  # Participant in creation of this 
                                             # Invoice 
     fhir:issuer @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Issuing Organization of Invoice
+    			@<Organization> ?}?;  # Issuing Organization of Invoice
     fhir:account @<Reference> AND {fhir:link 
-    			@<Account> ? }?;  # Account that is being balanced
+    			@<Account> ?}?;  # Account that is being balanced
     fhir:lineItem @<OneOrMore_Invoice.lineItem>?;  # Line items of this Invoice
     fhir:totalPriceComponent @<OneOrMore_MonetaryComponent>?;  # Components of Invoice total
     fhir:totalNet @<Money>?;                # Net total of this Invoice
     fhir:totalGross @<Money>?;              # Gross total of this Invoice
     fhir:paymentTerms @<markdown>?;         # Payment details
     fhir:note @<OneOrMore_Annotation>?;     # Comments made about the invoice
+}  
+
+# Line items of this Invoice
+<Invoice.lineItem> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:sequence @<positiveInt>?;          # Sequence number of line item
+    fhir:serviced @<date>  OR 
+    			@<Period>  ?;  # Service data or period
+    fhir:chargeItem (@<Reference>  AND {fhir:link @<ChargeItem> ?})  OR 
+    			@<CodeableConcept>  ;  # Reference to ChargeItem containing 
+                                            # details of this line item or an 
+                                            # inline billing code 
+    fhir:priceComponent @<OneOrMore_MonetaryComponent>?;  # Components of total line item price
 }  
 
 # Participant in creation of this Invoice
@@ -130,19 +142,7 @@ start=@<Invoice> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? };  # Individual who was involved
-}  
-
-# Line items of this Invoice
-<Invoice.lineItem> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:sequence @<positiveInt>?;          # Sequence number of line item
-    fhir:serviced @<date>  OR 
-    			@<Period>  ?;  # Service data or period
-    fhir:chargeItem (@<Reference>  AND {fhir:link @<ChargeItem> })  OR 
-    			@<CodeableConcept>  ;  # Reference to ChargeItem containing 
-                                            # details of this line item or an 
-                                            # inline billing code 
-    fhir:priceComponent @<OneOrMore_MonetaryComponent>?;  # Components of total line item price
+    			@<RelatedPerson> ?};  # Individual who was involved
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

@@ -3,5 +3,26 @@ PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
 
-<xhtml> CLOSED {
-}
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Extension.shex>
+#imported_end
+# String equivalent with html markup
+<rendering-xhtml> EXTENDS @<Extension> CLOSED {   
+
+    a [fhir:rendering-xhtml]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri> AND
+    	{fhir:value ["http://hl7.org/fhir/StructureDefinition/rendering-xhtml"]}; 
+    fhir:value @<string>  ; 
+    ^fhir:extension { a [fhir:string]}
+
+}  
+

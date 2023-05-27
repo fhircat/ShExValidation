@@ -16,7 +16,7 @@ IMPORT <canonical.shex>
 #imported_begin 
 IMPORT <StructureDefinition.shex>
 #imported_end
-# Declares the profile(s) a coding is added to for conformance purposes
+# A profile that required the specific coding to be included in a list of Codings
 <coding-conformance> EXTENDS @<Extension> CLOSED {   
 
     a [fhir:coding-conformance]?;
@@ -24,7 +24,7 @@ IMPORT <StructureDefinition.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/coding-conformance"]}; 
-    fhir:value (@<canonical>  AND {fhir:link @<StructureDefinition> })  ; 
+    fhir:value (@<canonical>  AND {fhir:link @<StructureDefinition> ?})  ; 
     ^fhir:extension { a [fhir:Coding]}
 
 }  

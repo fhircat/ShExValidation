@@ -20,6 +20,9 @@ IMPORT <code.shex>
 IMPORT <string.shex>
 #imported_end
 #imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
 IMPORT <boolean.shex>
 #imported_end
 #imported_begin 
@@ -66,6 +69,8 @@ start=@<TerminologyCapabilities> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # terminology capabilities 
     fhir:version @<string>?;                # Business version of the 
                                             # terminology capabilities 
+    fhir:versionAlgorithm @<string>  OR 
+    			@<Coding>  ?;  # How to compare versions
     fhir:name @<string>?;                   # Name for this terminology 
                                             # capabilities (computer friendly) 
     fhir:title @<string>?;                  # Name for this terminology 
@@ -88,6 +93,7 @@ start=@<TerminologyCapabilities> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:purpose @<markdown>?;              # Why this terminology capabilities 
                                             # is defined 
     fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:copyrightLabel @<string>?;         # Copyright holder and year(s)
     fhir:kind @<code> AND
     	{fhir:v @fhirvs:capability-statement-kind};  # instance | capability | 
                                             # requirements 
@@ -117,6 +123,19 @@ start=@<TerminologyCapabilities> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # -operation-closure.html) operation 
 }  
 
+# Filter Properties supported
+<TerminologyCapabilities.codeSystem.version.filter> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code>;                      # Code of the property supported
+    fhir:op @<OneOrMore_code>;              # Operations supported for the 
+                                            # property 
+}  
+
+# Software that is covered by this terminology capability statement
+<TerminologyCapabilities.software> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>;                    # A name the software is known by
+    fhir:version @<string>?;                # Version covered by this statement
+}  
+
 # Information about the [ConceptMap/$translate](conceptmap-operation-translate.html) operation
 <TerminologyCapabilities.translation> EXTENDS @<BackboneElement> CLOSED {   
     fhir:needsMap @<boolean>;               # Whether the client must identify 
@@ -136,31 +155,17 @@ start=@<TerminologyCapabilities> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # works 
 }  
 
+# Information about the [ValueSet/$validate-code](valueset-operation-validate-code.html) operation
+<TerminologyCapabilities.validateCode> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:translations @<boolean>;           # Whether translations are validated
+}  
+
 # Supported expansion parameter
 <TerminologyCapabilities.expansion.parameter> EXTENDS @<BackboneElement> CLOSED {   
     fhir:name @<code>;                      # Name of the supported expansion 
                                             # parameter 
     fhir:documentation @<string>?;          # Description of support for 
                                             # parameter 
-}  
-
-# Filter Properties supported
-<TerminologyCapabilities.codeSystem.version.filter> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:code @<code>;                      # Code of the property supported
-    fhir:op @<OneOrMore_code>;              # Operations supported for the 
-                                            # property 
-}  
-
-# Information about the [ConceptMap/$closure](conceptmap-operation-closure.html) operation
-<TerminologyCapabilities.closure> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:translation @<boolean>?;           # If cross-system closure is 
-                                            # supported 
-}  
-
-# If this describes a specific instance
-<TerminologyCapabilities.implementation> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:description @<string>;             # Describes this specific instance
-    fhir:url @<url>?;                       # Base URL for the implementation
 }  
 
 # A code system supported by the server
@@ -174,6 +179,18 @@ start=@<TerminologyCapabilities> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:subsumption @<boolean>?;           # Whether subsumption is supported
 }  
 
+# If this describes a specific instance
+<TerminologyCapabilities.implementation> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:description @<string>;             # Describes this specific instance
+    fhir:url @<url>?;                       # Base URL for the implementation
+}  
+
+# Information about the [ConceptMap/$closure](conceptmap-operation-closure.html) operation
+<TerminologyCapabilities.closure> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:translation @<boolean>?;           # If cross-system closure is 
+                                            # supported 
+}  
+
 # Version of Code System supported
 <TerminologyCapabilities.codeSystem.version> EXTENDS @<BackboneElement> CLOSED {   
     fhir:code @<string>?;                   # Version identifier for this version
@@ -185,17 +202,6 @@ start=@<TerminologyCapabilities> AND {fhir:nodeRole [fhir:treeRoot]}
     	{fhir:v @fhirvs:languages}?;  # Language Displays supported
     fhir:filter @<OneOrMore_TerminologyCapabilities.codeSystem.version.filter>?;  # Filter Properties supported
     fhir:property @<OneOrMore_code>?;       # Properties supported for $lookup
-}  
-
-# Software that is covered by this terminology capability statement
-<TerminologyCapabilities.software> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:name @<string>;                    # A name the software is known by
-    fhir:version @<string>?;                # Version covered by this statement
-}  
-
-# Information about the [ValueSet/$validate-code](valueset-operation-validate-code.html) operation
-<TerminologyCapabilities.validateCode> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:translations @<boolean>;           # Whether translations are validated
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------
@@ -213,12 +219,12 @@ start=@<TerminologyCapabilities> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:rest [rdf:nil] OR @<OneOrMore_TerminologyCapabilities.codeSystem> 
 }
 
+
+
 <OneOrMore_TerminologyCapabilities.expansion.parameter> CLOSED {
     rdf:first @<TerminologyCapabilities.expansion.parameter>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_TerminologyCapabilities.expansion.parameter> 
 }
-
-
 
 <OneOrMore_TerminologyCapabilities.codeSystem.version> CLOSED {
     rdf:first @<TerminologyCapabilities.codeSystem.version>  ;

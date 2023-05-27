@@ -20,9 +20,6 @@ IMPORT <Group.shex>
 IMPORT <Device.shex>
 #imported_end
 #imported_begin 
-IMPORT <string.shex>
-#imported_end
-#imported_begin 
 IMPORT <boolean.shex>
 #imported_end
 #imported_begin 
@@ -33,6 +30,9 @@ IMPORT <Patient.shex>
 #imported_end
 #imported_begin 
 IMPORT <Location.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
 #imported_end
 #imported_begin 
 IMPORT <Reference.shex>
@@ -75,7 +75,7 @@ start=@<AppointmentResponse> AND {fhir:nodeRole [fhir:treeRoot]}
 
     fhir:identifier @<OneOrMore_Identifier>?;  # External Ids for this item
     fhir:appointment @<Reference> AND {fhir:link 
-    			@<Appointment> ? };  # Appointment this response relates 
+    			@<Appointment> ?};  # Appointment this response relates 
                                             # to 
     fhir:proposedNewTime @<boolean>?;       # Indicator for a counter proposal
     fhir:start @<instant>?;                 # Time from appointment, or 
@@ -92,12 +92,12 @@ start=@<AppointmentResponse> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Person(s), Location, 
+    			@<RelatedPerson> ?}?;  # Person(s), Location, 
                                             # HealthcareService, or Device 
     fhir:participantStatus @<code> AND
-    	{fhir:v @fhirvs:participationstatus};  # accepted | declined | tentative | 
-                                            # needs-action 
-    fhir:comment @<string>?;                # Additional comments
+    	{fhir:v @fhirvs:appointmentresponse-status};  # accepted | declined | tentative | 
+                                            # needs-action | entered-in-error 
+    fhir:comment @<markdown>?;              # Additional comments
     fhir:recurring @<boolean>?;             # This response is for all 
                                             # occurrences in a recurring request 
     fhir:occurrenceDate @<date>?;           # Original date within a recurring 

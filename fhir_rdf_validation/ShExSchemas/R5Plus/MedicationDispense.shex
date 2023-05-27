@@ -14,9 +14,6 @@ IMPORT <code.shex>
 IMPORT <Group.shex>
 #imported_end
 #imported_begin 
-IMPORT <string.shex>
-#imported_end
-#imported_begin 
 IMPORT <Dosage.shex>
 #imported_end
 #imported_begin 
@@ -36,6 +33,9 @@ IMPORT <Location.shex>
 #imported_end
 #imported_begin 
 IMPORT <Quantity.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
 #imported_end
 #imported_begin 
 IMPORT <CareTeam.shex>
@@ -118,18 +118,18 @@ start=@<MedicationDispense> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:medication @<CodeableReference>;   # What medication was supplied
     fhir:subject @<Reference> AND {fhir:link 
     			@<Group> OR 
-    			@<Patient> ? };  # Who the dispense is for
+    			@<Patient> ?};  # Who the dispense is for
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # Encounter associated with event
+    			@<Encounter> ?}?;  # Encounter associated with event
     fhir:supportingInformation @<OneOrMore_Reference_Resource>?;  # Information that supports the 
                                             # dispensing of the medication 
     fhir:performer @<OneOrMore_MedicationDispense.performer>?;  # Who performed event
     fhir:location @<Reference> AND {fhir:link 
-    			@<Location> ? }?;  # Where the dispense occurred
+    			@<Location> ?}?;  # Where the dispense occurred
     fhir:authorizingPrescription @<OneOrMore_Reference_MedicationRequest>?;  # Medication order that authorizes 
                                             # the dispense 
     fhir:type @<CodeableConcept>?;          # Trial fill, partial fill, 
-                                            # emergency fill, etc. 
+                                            # emergency fill, etc 
     fhir:quantity @<Quantity>?;             # Amount dispensed
     fhir:daysSupply @<Quantity>?;           # Amount of medication expressed as 
                                             # a timing amount 
@@ -139,11 +139,12 @@ start=@<MedicationDispense> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # reviewed 
     fhir:whenHandedOver @<dateTime>?;       # When product was given out
     fhir:destination @<Reference> AND {fhir:link 
-    			@<Location> ? }?;  # Where the medication was sent
+    			@<Location> ?}?;  # Where the medication was/will be 
+                                            # sent 
     fhir:receiver @<OneOrMore_Reference_Location_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Who collected the medication or 
                                             # where the medication was delivered 
     fhir:note @<OneOrMore_Annotation>?;     # Information about the dispense
-    fhir:renderedDosageInstruction @<string>?;  # Full representation of the dosage 
+    fhir:renderedDosageInstruction @<markdown>?;  # Full representation of the dosage 
                                             # instructions 
     fhir:dosageInstruction @<OneOrMore_Dosage>?;  # How the medication is to be used 
                                             # by the patient or administered by 
@@ -151,20 +152,6 @@ start=@<MedicationDispense> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:substitution @<MedicationDispense.substitution>?;  # Whether a substitution was 
                                             # performed on the dispense 
     fhir:eventHistory @<OneOrMore_Reference_Provenance>?;  # A list of relevant lifecycle events
-}  
-
-# Who performed event
-<MedicationDispense.performer> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:function @<CodeableConcept>?;      # Who performed the dispense and 
-                                            # what they did 
-    fhir:actor @<Reference> AND {fhir:link 
-    			@<CareTeam> OR 
-    			@<Device> OR 
-    			@<Organization> OR 
-    			@<Patient> OR 
-    			@<Practitioner> OR 
-    			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? };  # Individual who was performing
 }  
 
 # Whether a substitution was performed on the dispense
@@ -178,8 +165,22 @@ start=@<MedicationDispense> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:responsibleParty @<Reference> AND {fhir:link 
     			@<Organization> OR 
     			@<Practitioner> OR 
-    			@<PractitionerRole> ? }?;  # Who is responsible for the 
+    			@<PractitionerRole> ?}?;  # Who is responsible for the 
                                             # substitution 
+}  
+
+# Who performed event
+<MedicationDispense.performer> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:function @<CodeableConcept>?;      # Who performed the dispense and 
+                                            # what they did 
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ?};  # Individual who was performing
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

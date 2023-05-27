@@ -111,18 +111,20 @@ start=@<BiologicallyDerivedProduct> AND {fhir:nodeRole [fhir:treeRoot]}
 <BiologicallyDerivedProduct.collection> EXTENDS @<BackboneElement> CLOSED {   
     fhir:collector @<Reference> AND {fhir:link 
     			@<Practitioner> OR 
-    			@<PractitionerRole> ? }?;  # Individual performing collection
+    			@<PractitionerRole> ?}?;  # Individual performing collection
     fhir:source @<Reference> AND {fhir:link 
     			@<Organization> OR 
-    			@<Patient> ? }?;  # The patient or entity providing 
-                                            # the product 
+    			@<Patient> ?}?;  # The patient who underwent the 
+                                            # medical procedure to collect the 
+                                            # product or the organization that 
+                                            # facilitated the collection 
     fhir:collected @<dateTime>  OR 
     			@<Period>  ?;  # Time of product collection
 }  
 
 # A property that is specific to this BiologicallyDerviedProduct instance
 <BiologicallyDerivedProduct.property> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:type @<Coding>;                    # Code that specifies the property
+    fhir:type @<CodeableConcept>;           # Code that specifies the property
     fhir:value @<boolean>  OR 
     			@<integer>  OR 
     			@<CodeableConcept>  OR 

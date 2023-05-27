@@ -50,6 +50,9 @@ IMPORT <Reference.shex>
 IMPORT <Condition.shex>
 #imported_end
 #imported_begin 
+IMPORT <Procedure.shex>
+#imported_end
+#imported_begin 
 IMPORT <Identifier.shex>
 #imported_end
 #imported_begin 
@@ -86,9 +89,6 @@ IMPORT <CodeableConcept.shex>
 IMPORT <BackboneElement.shex>
 #imported_end
 #imported_begin 
-IMPORT <MedicationUsage.shex>
-#imported_end
-#imported_begin 
 IMPORT <PractitionerRole.shex>
 #imported_end
 #imported_begin 
@@ -96,6 +96,9 @@ IMPORT <CodeableReference.shex>
 #imported_end
 #imported_begin 
 IMPORT <MedicationRequest.shex>
+#imported_end
+#imported_begin 
+IMPORT <MedicationStatement.shex>
 #imported_end
 
 start=@<Goal> AND {fhir:nodeRole [fhir:treeRoot]}
@@ -117,7 +120,7 @@ start=@<Goal> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # sustaining | not-achieved | 
                                             # no-progress | not-attainable 
     fhir:category @<OneOrMore_CodeableConcept>?;  # E.g. Treatment, dietary, 
-                                            # behavioral, etc. 
+                                            # behavioral, etc 
     fhir:continuous @<boolean>?;            # After meeting the goal, ongoing 
                                             # activity is needed to sustain the 
                                             # goal objective 
@@ -127,7 +130,7 @@ start=@<Goal> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:subject @<Reference> AND {fhir:link 
     			@<Group> OR 
     			@<Organization> OR 
-    			@<Patient> ? };  # Who this goal is intended for
+    			@<Patient> ?};  # Who this goal is intended for
     fhir:start @<date>  OR 
     			@<CodeableConcept>  ?;  # When goal pursuit begins
     fhir:target @<OneOrMore_Goal.target>?;  # Target outcome for the goal
@@ -138,9 +141,9 @@ start=@<Goal> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Who's responsible for creating 
+    			@<RelatedPerson> ?}?;  # Who's responsible for creating 
                                             # Goal? 
-    fhir:addresses @<OneOrMore_Reference_Condition_OR_MedicationRequest_OR_MedicationUsage_OR_NutritionOrder_OR_Observation_OR_RiskAssessment_OR_ServiceRequest>?;  # Issues addressed by this goal
+    fhir:addresses @<OneOrMore_Reference_Condition_OR_MedicationRequest_OR_MedicationStatement_OR_NutritionOrder_OR_Observation_OR_Procedure_OR_RiskAssessment_OR_ServiceRequest>?;  # Issues addressed by this goal
     fhir:note @<OneOrMore_Annotation>?;     # Comments about the goal
     fhir:outcome @<OneOrMore_CodeableReference>?;  # What result was achieved regarding 
                                             # the goal? 
@@ -171,6 +174,8 @@ start=@<Goal> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:first @<Goal.target>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_Goal.target> 
 }
+
+
 
 
 

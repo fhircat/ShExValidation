@@ -24,7 +24,7 @@ IMPORT <canonical.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/questionnaire-unitValueSet"]}; 
-    fhir:value (@<canonical>  AND {fhir:link @<ValueSet> })  ; 
+    fhir:value (@<canonical>  AND {fhir:link @<ValueSet> ?})  ; 
     ^fhir:extension { ^fhir:item {a [fhir:Questionnaire]}} OR 
           {a [fhir:ElementDefinition]}
 

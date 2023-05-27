@@ -85,10 +85,10 @@ start=@<RiskAssessment> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:identifier @<OneOrMore_Identifier>?;  # Unique identifier for the 
                                             # assessment 
     fhir:basedOn @<Reference> AND {fhir:link 
-    			@<Resource> ? }?;  # Request fulfilled by this 
+    			@<Resource> ?}?;  # Request fulfilled by this 
                                             # assessment 
     fhir:parent @<Reference> AND {fhir:link 
-    			@<Resource> ? }?;  # Part of this occurrence
+    			@<Resource> ?}?;  # Part of this occurrence
     fhir:status @<code> AND
     	{fhir:v @fhirvs:observation-status};  # registered | preliminary | final | 
                                             # amended + 
@@ -96,19 +96,19 @@ start=@<RiskAssessment> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:code @<CodeableConcept>?;          # Type of assessment
     fhir:subject @<Reference> AND {fhir:link 
     			@<Group> OR 
-    			@<Patient> ? };  # Who/what does assessment apply to?
+    			@<Patient> ?};  # Who/what does assessment apply to?
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # Where was assessment performed?
+    			@<Encounter> ?}?;  # Where was assessment performed?
     fhir:occurrence @<dateTime>  OR 
     			@<Period>  ?;  # When was assessment made?
     fhir:condition @<Reference> AND {fhir:link 
-    			@<Condition> ? }?;  # Condition assessed
+    			@<Condition> ?}?;  # Condition assessed
     fhir:performer @<Reference> AND {fhir:link 
     			@<Device> OR 
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Who did assessment?
+    			@<RelatedPerson> ?}?;  # Who did assessment?
     fhir:reason @<OneOrMore_CodeableReference>?;  # Why the assessment was necessary?
     fhir:basis @<OneOrMore_Reference_Resource>?;  # Information used in assessment
     fhir:prediction @<OneOrMore_RiskAssessment.prediction>?;  # Outcome predicted
@@ -120,12 +120,12 @@ start=@<RiskAssessment> AND {fhir:nodeRole [fhir:treeRoot]}
 # This constraint does not have mapping to a ShEx construct yet.
 # Unmapped construct found: Implies
 # # Constraint UniqueKey:ras-2
-# Human readable:Must be <= 100
+# Human readable:Probability as a deciml must be <= 100
 #
-# Constraint: probability is decimal implies (probability as decimal) <= 100
+# Constraint: probability.empty() or ((probability is decimal) implies ((probability as decimal) <= 100))
 # ShEx:
 #
-#({ fhir:probability a { fhir:decimal } })  Implies  (({ fhir:probability a { fhir:decimal } }) { fhir:v MaxInclusive 100 } )
+# NOT { fhir:probability {fhir:v .} }  OR (({ fhir:probability a { fhir:decimal } })  Implies  (({ fhir:probability a { fhir:decimal } }) { fhir:v MaxInclusive 100 } ))
 {}
 
 ) AND (
@@ -158,12 +158,12 @@ start=@<RiskAssessment> AND {fhir:nodeRole [fhir:treeRoot]}
 # This constraint does not have mapping to a ShEx construct yet.
 # Unmapped construct found: Implies
 # # Constraint UniqueKey:ras-2
-# Human readable:Must be <= 100
+# Human readable:Probability as a deciml must be <= 100
 #
-# Constraint: probability is decimal implies (probability as decimal) <= 100
+# Constraint: probability.empty() or ((probability is decimal) implies ((probability as decimal) <= 100))
 # ShEx:
 #
-#({ fhir:probability a { fhir:decimal } })  Implies  (({ fhir:probability a { fhir:decimal } }) { fhir:v MaxInclusive 100 } )
+# NOT { fhir:probability {fhir:v .} }  OR (({ fhir:probability a { fhir:decimal } })  Implies  (({ fhir:probability a { fhir:decimal } }) { fhir:v MaxInclusive 100 } ))
 {}
 
 ) AND (

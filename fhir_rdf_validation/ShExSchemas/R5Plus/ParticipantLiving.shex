@@ -28,13 +28,11 @@ IMPORT <CodeableConcept.shex>
     a [fhir:ParticipantLiving]?;
     fhir:nodeRole [fhir:treeRoot]?;
 
-    fhir:birthDate @<date>?;                # The date of birth for the 
-                                            # individual 
+    fhir:birthDate @<date>?;                # The date of birth for the {{title}}
     fhir:gender @<code> AND
     	{fhir:v @fhirvs:administrative-gender}?;  # male | female | other | unknown
-    fhir:photo @<OneOrMore_Attachment>?;    # Image of the participant
-    fhir:communication @<OneOrMore_CodeableConcept>?;  # The language which can be used to 
-                                            # communicate with the participant 
+    fhir:photo @<OneOrMore_Attachment>?;    # Image of the {{title}
+    fhir:communication @<OneOrMore_CodeableConcept>?;  # Language used by {{title}}
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

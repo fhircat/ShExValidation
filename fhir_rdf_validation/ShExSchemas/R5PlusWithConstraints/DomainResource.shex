@@ -68,18 +68,18 @@ start=@<DomainResource> AND {fhir:nodeRole [fhir:treeRoot]}
 # Unmapped construct found: where
 # Unmapped construct found: descendants
 # Unmapped construct found: where
-# Unmapped construct found: as
+# Unmapped construct found: ofType
 # Unmapped construct found: descendants
 # Unmapped construct found: where
-# Unmapped construct found: as
+# Unmapped construct found: ofType
 # Unmapped construct found: trace
 # # Constraint UniqueKey:dom-3
 # Human readable:If the resource is contained in another resource, it SHALL be referred to from elsewhere in the resource or SHALL refer to the containing resource
 #
-# Constraint: contained.where((('#'+id in (%resource.descendants().reference | %resource.descendants().ofType(canonical) | %resource.descendants().ofType(uri) | %resource.descendants().ofType(url))) or descendants().where(reference = '#').exists() or descendants().where(as(canonical) = '#').exists() or descendants().where(as(canonical) = '#').exists()).not()).trace('unmatched', id).empty()
+# Constraint: contained.where((('#'+id in (%resource.descendants().reference | %resource.descendants().ofType(canonical) | %resource.descendants().ofType(uri) | %resource.descendants().ofType(url))) or descendants().where(reference = '#').exists() or descendants().where(ofType(canonical) = '#').exists() or descendants().where(ofType(canonical) = '#').exists()).not()).trace('unmatched', id).empty()
 # ShEx:
 #
-# NOT { fhir:contained. where  ( NOT { .'#'  Plus  id { fhir:v [   descendants  ( .'http://hl7.org/fhir/StructureDefinition/Resource' ).reference    descendants  ( .'http://hl7.org/fhir/StructureDefinition/Resource' ).  ofType  (canonical)    descendants  ( .'http://hl7.org/fhir/StructureDefinition/DomainResource' ).  ofType  (uri)    descendants  ( .'id' ).  ofType  (url)] }  OR    descendants  (  ).  where  (reference { fhir:v ['#'] } ) . OR    descendants  (  ).  where  (  as  (canonical) { fhir:v ['#'] } ) . OR    descendants  (  ).  where  (  as  (canonical) { fhir:v ['#'] } ) . }). trace  ('unmatched', id) {fhir:v .} } 
+# NOT { fhir:contained. where  ( NOT { .'#'  Plus  id { fhir:v [   descendants  ( .'http://hl7.org/fhir/StructureDefinition/Resource' ).reference    descendants  ( .'http://hl7.org/fhir/StructureDefinition/Resource' ).  ofType  (canonical)    descendants  ( .'http://hl7.org/fhir/StructureDefinition/DomainResource' ).  ofType  (uri)    descendants  ( .'id' ).  ofType  (url)] }  OR    descendants  (  ).  where  (reference { fhir:v ['#'] } ) . OR    descendants  (  ).  where  (  ofType  (canonical) { fhir:v ['#'] } ) . OR    descendants  (  ).  where  (  ofType  (canonical) { fhir:v ['#'] } ) . }). trace  ('unmatched', id) {fhir:v .} } 
 {}
 
 ) AND (

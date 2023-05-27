@@ -22,7 +22,8 @@ IMPORT <Extension.shex>
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm"]}; 
     fhir:value @<integer>  ; 
-    ^fhir:extension { a [fhir:Element]}
+    ^fhir:extension { a [fhir:Element]} OR 
+          {a [fhir:Resource]}
 
 }  
 

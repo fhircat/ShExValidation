@@ -20,6 +20,9 @@ IMPORT <date.shex>
 IMPORT <string.shex>
 #imported_end
 #imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
 IMPORT <Period.shex>
 #imported_end
 #imported_begin 
@@ -91,7 +94,7 @@ start=@<ChargeItemDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     a [fhir:ChargeItemDefinition]?;
     fhir:nodeRole [fhir:treeRoot]?;
 
-    fhir:url @<uri>;                        # Canonical identifier for this 
+    fhir:url @<uri>?;                       # Canonical identifier for this 
                                             # charge item definition, 
                                             # represented as a URI (globally 
                                             # unique) 
@@ -99,6 +102,8 @@ start=@<ChargeItemDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # charge item definition 
     fhir:version @<string>?;                # Business version of the charge 
                                             # item definition 
+    fhir:versionAlgorithm @<string>  OR 
+    			@<Coding>  ?;  # How to compare versions
     fhir:name @<string>?;                   # Name for this charge item 
                                             # definition (computer friendly) 
     fhir:title @<string>?;                  # Name for this charge item 
@@ -128,10 +133,11 @@ start=@<ChargeItemDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:purpose @<markdown>?;              # Why this charge item definition is 
                                             # defined 
     fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:copyrightLabel @<string>?;         # Copyright holder and year(s)
     fhir:approvalDate @<date>?;             # When the charge item definition 
                                             # was approved by publisher 
     fhir:lastReviewDate @<date>?;           # When the charge item definition 
-                                            # was last reviewed 
+                                            # was last reviewed by the publisher 
     fhir:code @<CodeableConcept>?;          # Billing code or product type this 
                                             # definition applies to 
     fhir:instance @<OneOrMore_Reference_ActivityDefinition_OR_Device_OR_DeviceDefinition_OR_HealthcareService_OR_Medication_OR_PlanDefinition_OR_Substance>?;  # Instances this definition applies 
@@ -143,13 +149,6 @@ start=@<ChargeItemDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # conditions 
 }  
 
-# Group of properties which are applicable under the same conditions
-<ChargeItemDefinition.propertyGroup> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:applicability @<OneOrMore_ChargeItemDefinition.applicability>?;  # Conditions under which the 
-                                            # priceComponent is applicable 
-    fhir:priceComponent @<OneOrMore_MonetaryComponent>?;  # Components of total line item price
-}  
-
 # Whether or not the billing code is applicable
 <ChargeItemDefinition.applicability> EXTENDS @<BackboneElement> CLOSED {   
     fhir:condition @<Expression>?;          # Boolean-valued expression
@@ -158,6 +157,13 @@ start=@<ChargeItemDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:relatedArtifact @<RelatedArtifact>?;  # Reference to / quotation of the 
                                             # external source of the group of 
                                             # properties 
+}  
+
+# Group of properties which are applicable under the same conditions
+<ChargeItemDefinition.propertyGroup> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:applicability @<OneOrMore_ChargeItemDefinition.applicability>?;  # Conditions under which the 
+                                            # priceComponent is applicable 
+    fhir:priceComponent @<OneOrMore_MonetaryComponent>?;  # Components of total line item price
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

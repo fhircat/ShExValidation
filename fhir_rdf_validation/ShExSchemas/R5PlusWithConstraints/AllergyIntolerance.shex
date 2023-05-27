@@ -93,10 +93,10 @@ start=@<AllergyIntolerance> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:code @<CodeableConcept>?;          # Code that identifies the allergy 
                                             # or intolerance 
     fhir:patient @<Reference> AND {fhir:link 
-    			@<Patient> ? };  # Who the allergy or intolerance is 
+    			@<Patient> ?};  # Who the allergy or intolerance is 
                                             # for 
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # Encounter when the allergy or 
+    			@<Encounter> ?}?;  # Encounter when the allergy or 
                                             # intolerance was asserted 
     fhir:onset @<dateTime>  OR 
     			@<Age>  OR 
@@ -118,21 +118,6 @@ start=@<AllergyIntolerance> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # exposure to substance 
 }  
 
-# Who or what participated in the activities related to the allergy or intolerance and how they were involved
-<AllergyIntolerance.participant> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:function @<CodeableConcept>?;      # Type of involvement
-    fhir:actor @<Reference> AND {fhir:link 
-    			@<CareTeam> OR 
-    			@<Device> OR 
-    			@<Organization> OR 
-    			@<Patient> OR 
-    			@<Practitioner> OR 
-    			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? };  # Who or what participated in the 
-                                            # activities related to the allergy 
-                                            # or intolerance 
-}  
-
 # Adverse Reaction Events linked to exposure to substance
 <AllergyIntolerance.reaction> EXTENDS @<BackboneElement> CLOSED {   
     fhir:substance @<CodeableConcept>?;     # Specific substance or 
@@ -150,6 +135,21 @@ start=@<AllergyIntolerance> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # substance 
     fhir:note @<OneOrMore_Annotation>?;     # Text about event not captured in 
                                             # other fields 
+}  
+
+# Who or what participated in the activities related to the allergy or intolerance and how they were involved
+<AllergyIntolerance.participant> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:function @<CodeableConcept>?;      # Type of involvement
+    fhir:actor @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ?};  # Who or what participated in the 
+                                            # activities related to the allergy 
+                                            # or intolerance 
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

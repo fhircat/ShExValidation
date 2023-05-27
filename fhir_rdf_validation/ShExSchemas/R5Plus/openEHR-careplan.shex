@@ -24,7 +24,7 @@ IMPORT <Reference.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/openEHR-careplan"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<CarePlan> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<CarePlan> ?})  ; 
     ^fhir:extension { ^fhir:reaction {a [fhir:AllergyIntolerance]}}
 
 }  

@@ -125,11 +125,11 @@ start=@<RegulatedAuthorization> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # reasons under which this 
                                             # authorization is granted 
     fhir:holder @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # The organization that has been 
+    			@<Organization> ?}?;  # The organization that has been 
                                             # granted this authorization, by the 
                                             # regulator 
     fhir:regulator @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # The regulatory authority or 
+    			@<Organization> ?}?;  # The regulatory authority or 
                                             # authorizing body granting the 
                                             # authorization 
     fhir:attachedDocument @<OneOrMore_Reference_DocumentReference>?;  # Additional information or 

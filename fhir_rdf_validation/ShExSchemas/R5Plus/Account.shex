@@ -32,6 +32,12 @@ IMPORT <boolean.shex>
 IMPORT <Patient.shex>
 #imported_end
 #imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
 IMPORT <Coverage.shex>
 #imported_end
 #imported_begin 
@@ -68,6 +74,9 @@ IMPORT <BackboneElement.shex>
 IMPORT <PractitionerRole.shex>
 #imported_end
 #imported_begin 
+IMPORT <CodeableReference.shex>
+#imported_end
+#imported_begin 
 IMPORT <HealthcareService.shex>
 #imported_end
 
@@ -96,10 +105,14 @@ start=@<Account> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # account, and what order should 
                                             # they be applied to the account 
     fhir:owner @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Entity managing the Account
-    fhir:description @<string>?;            # Explanation of purpose/use
+    			@<Organization> ?}?;  # Entity managing the Account
+    fhir:description @<markdown>?;          # Explanation of purpose/use
     fhir:guarantor @<OneOrMore_Account.guarantor>?;  # The parties ultimately responsible 
                                             # for balancing the Account 
+    fhir:diagnosis @<OneOrMore_Account.diagnosis>?;  # The list of diagnoses relevant to 
+                                            # this account 
+    fhir:procedure @<OneOrMore_Account.procedure>?;  # The list of procedures relevant to 
+                                            # this account 
     fhir:relatedAccount @<OneOrMore_Account.relatedAccount>?;  # Other associated accounts related 
                                             # to this account 
     fhir:currency @<CodeableConcept>?;      # The base or default currency
@@ -108,22 +121,42 @@ start=@<Account> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # calculated 
 }  
 
-# The party(s) that are responsible for covering the payment of this account, and what order should they be applied to the account
-<Account.coverage> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:coverage @<Reference> AND {fhir:link 
-    			@<Coverage> ? };  # The party(s), such as insurances, 
-                                            # that may contribute to the payment 
-                                            # of this account 
-    fhir:priority @<positiveInt>?;          # The priority of the coverage in 
-                                            # the context of this account 
-}  
-
 # Other associated accounts related to this account
 <Account.relatedAccount> EXTENDS @<BackboneElement> CLOSED {   
     fhir:relationship @<CodeableConcept>?;  # Relationship of the associated 
                                             # Account 
     fhir:account @<Reference> AND {fhir:link 
-    			@<Account> ? };  # Reference to an associated Account
+    			@<Account> ?};  # Reference to an associated Account
+}  
+
+# The list of diagnoses relevant to this account
+<Account.diagnosis> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:sequence @<positiveInt>?;          # Ranking of the diagnosis (for each 
+                                            # type) 
+    fhir:condition @<CodeableReference>;    # The diagnosis relevant to the 
+                                            # account 
+    fhir:dateOfDiagnosis @<dateTime>?;      # Date of the diagnosis (when coded 
+                                            # diagnosis) 
+    fhir:type @<OneOrMore_CodeableConcept>?;  # Type that this diagnosis has 
+                                            # relevant to the account (e.g. 
+                                            # admission, billing, discharge …) 
+    fhir:onAdmission @<boolean>?;           # Diagnosis present on Admission
+    fhir:packageCode @<OneOrMore_CodeableConcept>?;  # Package Code specific for billing
+}  
+
+# The list of procedures relevant to this account
+<Account.procedure> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:sequence @<positiveInt>?;          # Ranking of the procedure (for each 
+                                            # type) 
+    fhir:code @<CodeableReference>;         # The procedure relevant to the 
+                                            # account 
+    fhir:dateOfService @<dateTime>?;        # Date of the procedure (when coded 
+                                            # procedure) 
+    fhir:type @<OneOrMore_CodeableConcept>?;  # How this procedure value should be 
+                                            # used in charging the account 
+    fhir:packageCode @<OneOrMore_CodeableConcept>?;  # Package Code specific for billing
+    fhir:device @<OneOrMore_Reference_Device>?;  # Any devices that were associated 
+                                            # with the procedure 
 }  
 
 # Calculated account balance(s)
@@ -135,12 +168,22 @@ start=@<Account> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:amount @<Money>;                   # Calculated amount
 }  
 
+# The party(s) that are responsible for covering the payment of this account, and what order should they be applied to the account
+<Account.coverage> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:coverage @<Reference> AND {fhir:link 
+    			@<Coverage> ?};  # The party(s), such as insurances, 
+                                            # that may contribute to the payment 
+                                            # of this account 
+    fhir:priority @<positiveInt>?;          # The priority of the coverage in 
+                                            # the context of this account 
+}  
+
 # The parties ultimately responsible for balancing the Account
 <Account.guarantor> EXTENDS @<BackboneElement> CLOSED {   
     fhir:party @<Reference> AND {fhir:link 
     			@<Organization> OR 
     			@<Patient> OR 
-    			@<RelatedPerson> ? };  # Responsible entity
+    			@<RelatedPerson> ?};  # Responsible entity
     fhir:onHold @<boolean>?;                # Credit or other hold applied
     fhir:period @<Period>?;                 # Guarantee account during
 }  
@@ -177,6 +220,16 @@ start=@<Account> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:rest [rdf:nil] OR @<OneOrMore_Account.guarantor> 
 }
 
+<OneOrMore_Account.diagnosis> CLOSED {
+    rdf:first @<Account.diagnosis>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Account.diagnosis> 
+}
+
+<OneOrMore_Account.procedure> CLOSED {
+    rdf:first @<Account.procedure>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Account.procedure> 
+}
+
 <OneOrMore_Account.relatedAccount> CLOSED {
     rdf:first @<Account.relatedAccount>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_Account.relatedAccount> 
@@ -186,6 +239,10 @@ start=@<Account> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:first @<Account.balance>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_Account.balance> 
 }
+
+
+
+
 
 #---------------------- Value Sets ------------------------
 

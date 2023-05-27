@@ -105,6 +105,60 @@ start=@<SubstanceSourceMaterial> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:partDescription @<OneOrMore_SubstanceSourceMaterial.partDescription>?;  # To do
 }  
 
+# 4.9.13.8.1 Hybrid species maternal organism ID (Optional)
+<SubstanceSourceMaterial.organism.hybrid> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:maternalOrganismId @<string>?;     # The identifier of the maternal 
+                                            # species constituting the hybrid 
+                                            # organism shall be specified based 
+                                            # on a controlled vocabulary. For 
+                                            # plants, the parents aren’t always 
+                                            # known, and it is unlikely that it 
+                                            # will be known which is maternal 
+                                            # and which is paternal 
+    fhir:maternalOrganismName @<string>?;   # The name of the maternal species 
+                                            # constituting the hybrid organism 
+                                            # shall be specified. For plants, 
+                                            # the parents aren’t always known, 
+                                            # and it is unlikely that it will be 
+                                            # known which is maternal and which 
+                                            # is paternal 
+    fhir:paternalOrganismId @<string>?;     # The identifier of the paternal 
+                                            # species constituting the hybrid 
+                                            # organism shall be specified based 
+                                            # on a controlled vocabulary 
+    fhir:paternalOrganismName @<string>?;   # The name of the paternal species 
+                                            # constituting the hybrid organism 
+                                            # shall be specified 
+    fhir:hybridType @<CodeableConcept>?;    # The hybrid type of an organism 
+                                            # shall be specified 
+}  
+
+# To do
+<SubstanceSourceMaterial.partDescription> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:part @<CodeableConcept>?;          # Entity of anatomical origin of 
+                                            # source material within an organism 
+    fhir:partLocation @<CodeableConcept>?;  # The detailed anatomic location 
+                                            # when the part can be extracted 
+                                            # from different anatomical 
+                                            # locations of the organism. 
+                                            # Multiple alternative locations may 
+                                            # apply 
+}  
+
+# Many complex materials are fractions of parts of plants, animals, or minerals. Fraction elements are often necessary to define both Substances and Specified Group 1 Substances. For substances derived from Plants, fraction information will be captured at the Substance information level ( . Oils, Juices and Exudates). Additional information for Extracts, such as extraction solvent composition, will be captured at the Specified Substance Group 1 information level. For plasma-derived products fraction information will be captured at the Substance and the Specified Substance Group 1 levels
+<SubstanceSourceMaterial.fractionDescription> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:fraction @<string>?;               # This element is capturing 
+                                            # information about the fraction of 
+                                            # a plant part, or human plasma for 
+                                            # fractionation 
+    fhir:materialType @<CodeableConcept>?;  # The specific type of the material 
+                                            # constituting the component. For 
+                                            # Herbal preparations the 
+                                            # particulars of the extracts 
+                                            # (liquid/dry) is described in 
+                                            # Specified Substance Group 1 
+}  
+
 # 4.9.13.7.1 Kingdom (Conditional)
 <SubstanceSourceMaterial.organism.organismGeneral> EXTENDS @<BackboneElement> CLOSED {   
     fhir:kingdom @<CodeableConcept>?;       # The kingdom of an organism shall 
@@ -168,60 +222,6 @@ start=@<SubstanceSourceMaterial> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:hybrid @<SubstanceSourceMaterial.organism.hybrid>?;  # 4.9.13.8.1 Hybrid species maternal 
                                             # organism ID (Optional) 
     fhir:organismGeneral @<SubstanceSourceMaterial.organism.organismGeneral>?;  # 4.9.13.7.1 Kingdom (Conditional)
-}  
-
-# To do
-<SubstanceSourceMaterial.partDescription> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:part @<CodeableConcept>?;          # Entity of anatomical origin of 
-                                            # source material within an organism 
-    fhir:partLocation @<CodeableConcept>?;  # The detailed anatomic location 
-                                            # when the part can be extracted 
-                                            # from different anatomical 
-                                            # locations of the organism. 
-                                            # Multiple alternative locations may 
-                                            # apply 
-}  
-
-# Many complex materials are fractions of parts of plants, animals, or minerals. Fraction elements are often necessary to define both Substances and Specified Group 1 Substances. For substances derived from Plants, fraction information will be captured at the Substance information level ( . Oils, Juices and Exudates). Additional information for Extracts, such as extraction solvent composition, will be captured at the Specified Substance Group 1 information level. For plasma-derived products fraction information will be captured at the Substance and the Specified Substance Group 1 levels
-<SubstanceSourceMaterial.fractionDescription> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:fraction @<string>?;               # This element is capturing 
-                                            # information about the fraction of 
-                                            # a plant part, or human plasma for 
-                                            # fractionation 
-    fhir:materialType @<CodeableConcept>?;  # The specific type of the material 
-                                            # constituting the component. For 
-                                            # Herbal preparations the 
-                                            # particulars of the extracts 
-                                            # (liquid/dry) is described in 
-                                            # Specified Substance Group 1 
-}  
-
-# 4.9.13.8.1 Hybrid species maternal organism ID (Optional)
-<SubstanceSourceMaterial.organism.hybrid> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:maternalOrganismId @<string>?;     # The identifier of the maternal 
-                                            # species constituting the hybrid 
-                                            # organism shall be specified based 
-                                            # on a controlled vocabulary. For 
-                                            # plants, the parents aren’t always 
-                                            # known, and it is unlikely that it 
-                                            # will be known which is maternal 
-                                            # and which is paternal 
-    fhir:maternalOrganismName @<string>?;   # The name of the maternal species 
-                                            # constituting the hybrid organism 
-                                            # shall be specified. For plants, 
-                                            # the parents aren’t always known, 
-                                            # and it is unlikely that it will be 
-                                            # known which is maternal and which 
-                                            # is paternal 
-    fhir:paternalOrganismId @<string>?;     # The identifier of the paternal 
-                                            # species constituting the hybrid 
-                                            # organism shall be specified based 
-                                            # on a controlled vocabulary 
-    fhir:paternalOrganismName @<string>?;   # The name of the paternal species 
-                                            # constituting the hybrid organism 
-                                            # shall be specified 
-    fhir:hybridType @<CodeableConcept>?;    # The hybrid type of an organism 
-                                            # shall be specified 
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

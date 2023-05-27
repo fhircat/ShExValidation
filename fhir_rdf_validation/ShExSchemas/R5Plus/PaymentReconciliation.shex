@@ -26,9 +26,6 @@ IMPORT <Claim.shex>
 IMPORT <Period.shex>
 #imported_end
 #imported_begin 
-IMPORT <Person.shex>
-#imported_end
-#imported_begin 
 IMPORT <string.shex>
 #imported_end
 #imported_begin 
@@ -109,25 +106,24 @@ start=@<PaymentReconciliation> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:enterer @<Reference> AND {fhir:link 
     			@<Organization> OR 
     			@<Practitioner> OR 
-    			@<PractitionerRole> ? }?;  # Who entered the payment
+    			@<PractitionerRole> ?}?;  # Who entered the payment
     fhir:issuerType @<CodeableConcept>?;    # Nature of the source
     fhir:paymentIssuer @<Reference> AND {fhir:link 
     			@<Organization> OR 
     			@<Patient> OR 
-    			@<Person> OR 
-    			@<RelatedPerson> ? }?;  # Party generating payment
+    			@<RelatedPerson> ?}?;  # Party generating payment
     fhir:request @<Reference> AND {fhir:link 
-    			@<Task> ? }?;  # Reference to requesting resource
+    			@<Task> ?}?;  # Reference to requesting resource
     fhir:requestor @<Reference> AND {fhir:link 
     			@<Organization> OR 
     			@<Practitioner> OR 
-    			@<PractitionerRole> ? }?;  # Responsible practitioner
+    			@<PractitionerRole> ?}?;  # Responsible practitioner
     fhir:outcome @<code> AND
     	{fhir:v @fhirvs:payment-outcome}?;  # queued | complete | error | partial
     fhir:disposition @<string>?;            # Disposition message
     fhir:date @<date>;                      # When payment issued
     fhir:location @<Reference> AND {fhir:link 
-    			@<Location> ? }?;  # Where payment collected
+    			@<Location> ?}?;  # Where payment collected
     fhir:method @<CodeableConcept>?;        # Payment instrument
     fhir:cardBrand @<string>?;              # Type of card
     fhir:accountNumber @<string>?;          # Digits for verification
@@ -156,28 +152,28 @@ start=@<PaymentReconciliation> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Claim> OR 
     			@<Contract> OR 
     			@<Encounter> OR 
-    			@<Invoice> ? }?;  # Subject of the payment
+    			@<Invoice> ?}?;  # Subject of the payment
     fhir:targetItem @<string>  OR 
     			@<Identifier>  OR 
     			@<positiveInt>  ?;  # Sub-element of the subject
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # Applied-to encounter
+    			@<Encounter> ?}?;  # Applied-to encounter
     fhir:account @<Reference> AND {fhir:link 
-    			@<Account> ? }?;  # Applied-to account
+    			@<Account> ?}?;  # Applied-to account
     fhir:type @<CodeableConcept>?;          # Category of payment
     fhir:submitter @<Reference> AND {fhir:link 
     			@<Organization> OR 
     			@<Practitioner> OR 
-    			@<PractitionerRole> ? }?;  # Submitter of the request
+    			@<PractitionerRole> ?}?;  # Submitter of the request
     fhir:response @<Reference> AND {fhir:link 
-    			@<ClaimResponse> ? }?;  # Response committing to a payment
+    			@<ClaimResponse> ?}?;  # Response committing to a payment
     fhir:date @<date>?;                     # Date of commitment to pay
     fhir:responsible @<Reference> AND {fhir:link 
-    			@<PractitionerRole> ? }?;  # Contact for the response
+    			@<PractitionerRole> ?}?;  # Contact for the response
     fhir:payee @<Reference> AND {fhir:link 
     			@<Organization> OR 
     			@<Practitioner> OR 
-    			@<PractitionerRole> ? }?;  # Recipient of the payment
+    			@<PractitionerRole> ?}?;  # Recipient of the payment
     fhir:amount @<Money>?;                  # Amount allocated to this payable
 }  
 

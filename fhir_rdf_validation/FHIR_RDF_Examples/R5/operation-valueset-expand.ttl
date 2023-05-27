@@ -16,12 +16,12 @@
      fhir:value [ fhir:v "normative" ]
   ] ) ;
   fhir:url [ fhir:v "http://hl7.org/fhir/OperationDefinition/ValueSet-expand"], [ fhir:v "http://hl7.org/fhir/OperationDefinition/ValueSet-expand"] ;
-  fhir:version [ fhir:v "5.0.0"], [ fhir:v "5.0.0"] ;
+  fhir:version [ fhir:v "6.0.0-cibuild"], [ fhir:v "6.0.0-cibuild"] ;
   fhir:name [ fhir:v "Expand"], [ fhir:v "Expand"] ;
   fhir:title [ fhir:v "Value Set Expansion"], [ fhir:v "Value Set Expansion"] ;
   fhir:status [ fhir:v "active"], [ fhir:v "active"] ;
   fhir:experimental [ fhir:v "false"], [ fhir:v "false"] ;
-  fhir:date [ fhir:v "2023-03-26T15:21:02+11:00"], [ fhir:v "2023-03-26T15:21:02+11:00"] ;
+  fhir:date [ fhir:v "2023-05-26T00:17:51+00:00"], [ fhir:v "2023-05-26T00:17:51+00:00"] ;
   fhir:publisher [ fhir:v "HL7 (FHIR Project)"], [ fhir:v "HL7 (FHIR Project)"] ;
   fhir:contact ( [
      fhir:telecom ( [
@@ -57,7 +57,7 @@
   fhir:kind [ fhir:v "operation"] ;
   fhir:affectsState [ fhir:v "false"] ;
   fhir:code [ fhir:v "expand"] ;
-  fhir:comment [ fhir:v "The value set expansion returned by this query should be treated as a transient result that will change over time (whether it does or not depends on how the value set is specified), so applications should repeat the operation each time the value set is used.  \n\nWhen available, ValueSet.status and ValueSet.version from the ValueSet resource instance which contains the definition SHALL be persisted to the ValueSet resource instance which contains the expansion.   \n\nIf the expansion is too large (at the discretion of the server), the server MAY return an error (OperationOutcome with code too-costly). Clients can work through large flat expansions in a set of pages (partial views of the full expansion) instead of just getting the full expansion in a single exchange by using offset and count parameters, or use the count parameter to request a subset of the expansion for limited purposes. Servers are not obliged to support paging, but if they do, SHALL support both the offset and count parameters. Hierarchical expansions are not subject to paging and servers simply return the entire expansion.  \n\nDifferent servers may return different results from expanding a value set for the following reasons:  \n\n* The underlying code systems are different (e.g. different versions, possibly with different defined behavior) \n* The server optimizes filter includes differently, such as sorting by code frequency \n* Servers introduce arbitrary groups to assist a user to navigate the lists based either on extensions in the definition, or additional knowledge available to the server\n\nWhen a server cannot correctly expand a value set because it does not fully understand the code systems (e.g. it has the wrong version, or incomplete definitions) then it SHALL return an error. If the value set itself is unbounded due to the inclusion of post-coordinated value sets (e.g. SNOMED CT, UCUM), then the extension [http://hl7.org/fhir/StructureDefinition/valueset-unclosed](http://hl7.org/fhir/extensions/StructureDefinition-valueset-unclosed.html) can be used to indicate that the expansion is incomplete"] ;
+  fhir:comment [ fhir:v "The value set expansion returned by this query should be treated as a transient result that will change over time (whether it does or not depends on how the value set is specified), so applications should repeat the operation each time the value set is used.  \n\nWhen available, ValueSet.status and ValueSet.version from the ValueSet resource instance which contains the definition SHALL be persisted to the ValueSet resource instance which contains the expansion.   \n\nIf the expansion is too large (at the discretion of the server), the server MAY return an error (OperationOutcome with code too-costly). Clients can work through large flat expansions in a set of pages (partial views of the full expansion) instead of just getting the full expansion in a single exchange by using offset and count parameters, or use the count parameter to request a subset of the expansion for limited purposes. Servers are not obliged to support paging, but if they do, SHALL support both the offset and count parameters. Hierarchical expansions are not subject to paging and servers simply return the entire expansion.  \n\nDifferent servers may return different results from expanding a value set for the following reasons:  \n\n* The underlying code systems are different (e.g. different versions, possibly with different defined behavior) \n* The server optimizes filter includes differently, such as sorting by code frequency \n* Servers introduce arbitrary groups to assist a user to navigate the lists based either on extensions in the definition, or additional knowledge available to the server\n\nWhen a server cannot correctly expand a value set because it does not fully understand the code systems (e.g. it has the wrong version, or incomplete definitions) then it SHALL return an error. If the value set itself is unbounded due to the inclusion of post-coordinated value sets (e.g. SNOMED CT, UCUM), then the extension [http://hl7.org/fhir/StructureDefinition/valueset-unclosed](https://build.fhir.org/ig/HL7/fhir-extensions/StructureDefinition-valueset-unclosed.html) can be used to indicate that the expansion is incomplete"] ;
   fhir:resource ( [ fhir:v "ValueSet"] ) ;
   fhir:system [ fhir:v "false"] ;
   fhir:type [ fhir:v "true"] ;
@@ -161,7 +161,7 @@
      fhir:use [ fhir:v "in" ] ;
      fhir:min [ fhir:v "0" ] ;
      fhir:max [ fhir:v "*" ] ;
-     fhir:documentation [ fhir:v "The supplement must be used when performing an expansion. Use of this parameter should result in $expand behaving the same way as if the supplements were included in the value set definition using the [http://hl7.org/fhir/StructureDefinition/valueset-supplement](http://hl7.org/fhir/extensions/StructureDefinition-valueset-supplement.html)" ] ;
+     fhir:documentation [ fhir:v "The supplement must be used when performing an expansion. Use of this parameter should result in $expand behaving the same way as if the supplements were included in the value set definition using the [http://hl7.org/fhir/StructureDefinition/valueset-supplement](https://build.fhir.org/ig/HL7/fhir-extensions/StructureDefinition-valueset-supplement.html)" ] ;
      fhir:type [ fhir:v "canonical" ]
   ] [
      fhir:name [ fhir:v "excludeNested" ] ;

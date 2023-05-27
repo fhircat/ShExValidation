@@ -1,0 +1,229 @@
+﻿PREFIX fhir: <http://hl7.org/fhir/> 
+PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+#imported_begin 
+IMPORT <uri.shex>
+#imported_end
+#imported_begin 
+IMPORT <aux.shex>
+#imported_end
+#imported_begin 
+IMPORT <code.shex>
+#imported_end
+#imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
+IMPORT <boolean.shex>
+#imported_end
+#imported_begin 
+IMPORT <integer.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
+IMPORT <Reference.shex>
+#imported_end
+#imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
+IMPORT <UsageContext.shex>
+#imported_end
+#imported_begin 
+IMPORT <ContactDetail.shex>
+#imported_end
+#imported_begin 
+IMPORT <DomainResource.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableConcept.shex>
+#imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
+#imported_begin 
+IMPORT <CodeableReference.shex>
+#imported_end
+
+start=@<TestPlan> AND {fhir:nodeRole [fhir:treeRoot]}
+
+# Description of intented testing
+<TestPlan> EXTENDS @<DomainResource> CLOSED {   
+
+    a [fhir:TestPlan]?;
+    fhir:nodeRole [fhir:treeRoot]?;
+
+    fhir:url @<uri>?;                       # Canonical identifier for this test 
+                                            # plan, represented as a URI 
+                                            # (globally unique) 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Business identifier identifier for 
+                                            # the test plan 
+    fhir:version @<string>?;                # Business version of the test plan
+    fhir:versionAlgorithm @<string>  OR 
+    			@<Coding>  ?;  # How to compare versions
+    fhir:name @<string>?;                   # Name for this test plan (computer 
+                                            # friendly) 
+    fhir:title @<string>?;                  # Name for this test plan (human 
+                                            # friendly) 
+    fhir:status @<code> AND
+    	{fhir:v @fhirvs:publication-status};  # draft | active | retired | unknown
+    fhir:experimental @<boolean>?;          # For testing purposes, not real 
+                                            # usage 
+    fhir:date @<dateTime>?;                 # Date last changed
+    fhir:publisher @<string>?;              # Name of the publisher/steward 
+                                            # (organization or individual) 
+    fhir:contact @<OneOrMore_ContactDetail>?;  # Contact details for the publisher
+    fhir:description @<markdown>?;          # Natural language description of 
+                                            # the test plan 
+    fhir:useContext @<OneOrMore_UsageContext>?;  # The context that the content is 
+                                            # intended to support 
+    fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction where the 
+                                            # test plan applies (if applicable) 
+    fhir:purpose @<markdown>?;              # Why this test plan is defined
+    fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:copyrightLabel @<string>?;         # Copyright holder and year(s)
+    fhir:category @<OneOrMore_CodeableConcept>?;  # The category of the Test Plan - 
+                                            # can be acceptance, unit, 
+                                            # performance 
+    fhir:scope @<OneOrMore_Reference>?;     # What is being tested with this 
+                                            # Test Plan - a conformance 
+                                            # resource, or narrative criteria, 
+                                            # or an external reference 
+    fhir:testTools @<markdown>?;            # A description of test tools to be 
+                                            # used in the test plan - narrative 
+                                            # for now 
+    fhir:dependency @<OneOrMore_TestPlan.dependency>?;  # The required criteria to execute 
+                                            # the test plan - e.g. 
+                                            # preconditions, previous tests 
+    fhir:exitCriteria @<markdown>?;         # The threshold or criteria for the 
+                                            # test plan to be considered 
+                                            # successfully executed - narrative 
+    fhir:testCase @<OneOrMore_TestPlan.testCase>?;  # The test cases that constitute 
+                                            # this plan 
+}  
+
+# The test cases in a structured language e.g. gherkin, Postman, or FHIR TestScript
+<TestPlan.testCase.testRun.script> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:language @<CodeableConcept>?;      # The language for the test cases 
+                                            # e.g. 'gherkin', 'testscript' 
+    fhir:source @<string>  OR 
+    			@<Reference>  ?;  # The actual content of the cases - 
+                                            # references to TestScripts or 
+                                            # externally defined content 
+}  
+
+# The test cases that constitute this plan
+<TestPlan.testCase> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:sequence @<integer>?;              # Sequence of test case in the test 
+                                            # plan 
+    fhir:scope @<OneOrMore_Reference>?;     # The scope or artifact covered by 
+                                            # the case 
+    fhir:dependency @<OneOrMore_TestPlan.testCase.dependency>?;  # Required criteria to execute the 
+                                            # test case 
+    fhir:testRun @<OneOrMore_TestPlan.testCase.testRun>?;  # The actual test to be executed
+    fhir:testData @<OneOrMore_TestPlan.testCase.testData>?;  # The test data used in the test case
+    fhir:assertion @<OneOrMore_TestPlan.testCase.assertion>?;  # Test assertions or expectations
+}  
+
+# The actual test to be executed
+<TestPlan.testCase.testRun> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:narrative @<markdown>?;            # The narrative description of the 
+                                            # tests 
+    fhir:script @<TestPlan.testCase.testRun.script>?;  # The test cases in a structured 
+                                            # language e.g. gherkin, Postman, or 
+                                            # FHIR TestScript 
+}  
+
+# Test assertions or expectations
+<TestPlan.testCase.assertion> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<OneOrMore_CodeableConcept>?;  # Assertion type - for example 
+                                            # 'informative' or 'required' 
+    fhir:object @<OneOrMore_CodeableReference>?;  # The focus or object of the 
+                                            # assertion 
+    fhir:result @<OneOrMore_CodeableReference>?;  # The actual result assertion
+}  
+
+# The test data used in the test case
+<TestPlan.testCase.testData> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<Coding>;                    # The type of test data description, 
+                                            # e.g. 'synthea' 
+    fhir:content @<Reference>?;             # The actual test resources when 
+                                            # they exist 
+    fhir:source @<string>  OR 
+    			@<Reference>  ?;  # Pointer to a definition of test 
+                                            # resources - narrative or 
+                                            # structured e.g. synthetic data 
+                                            # generation, etc 
+}  
+
+# The required criteria to execute the test plan - e.g. preconditions, previous tests
+<TestPlan.dependency> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:description @<markdown>?;          # Description of the dependency 
+                                            # criterium 
+    fhir:predecessor @<Reference>?;         # Link to predecessor test plans
+}  
+
+# Required criteria to execute the test case
+<TestPlan.testCase.dependency> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:description @<markdown>?;          # Description of the criteria
+    fhir:predecessor @<Reference>?;         # Link to predecessor test plans
+}  
+
+#---------------------- Cardinality Types (OneOrMore) -------------------
+
+
+
+
+
+
+
+
+
+
+
+<OneOrMore_TestPlan.dependency> CLOSED {
+    rdf:first @<TestPlan.dependency>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_TestPlan.dependency> 
+}
+
+<OneOrMore_TestPlan.testCase> CLOSED {
+    rdf:first @<TestPlan.testCase>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_TestPlan.testCase> 
+}
+
+<OneOrMore_TestPlan.testCase.dependency> CLOSED {
+    rdf:first @<TestPlan.testCase.dependency>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_TestPlan.testCase.dependency> 
+}
+
+<OneOrMore_TestPlan.testCase.testRun> CLOSED {
+    rdf:first @<TestPlan.testCase.testRun>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_TestPlan.testCase.testRun> 
+}
+
+<OneOrMore_TestPlan.testCase.testData> CLOSED {
+    rdf:first @<TestPlan.testCase.testData>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_TestPlan.testCase.testData> 
+}
+
+<OneOrMore_TestPlan.testCase.assertion> CLOSED {
+    rdf:first @<TestPlan.testCase.assertion>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_TestPlan.testCase.assertion> 
+}
+
+
+
+#---------------------- Value Sets ------------------------
+
+

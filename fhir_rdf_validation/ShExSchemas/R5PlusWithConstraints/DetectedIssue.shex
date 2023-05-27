@@ -23,9 +23,6 @@ IMPORT <Device.shex>
 IMPORT <Period.shex>
 #imported_end
 #imported_begin 
-IMPORT <string.shex>
-#imported_end
-#imported_begin 
 IMPORT <Patient.shex>
 #imported_end
 #imported_begin 
@@ -33,6 +30,9 @@ IMPORT <Location.shex>
 #imported_end
 #imported_begin 
 IMPORT <dateTime.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
 #imported_end
 #imported_begin 
 IMPORT <Resource.shex>
@@ -47,10 +47,16 @@ IMPORT <Procedure.shex>
 IMPORT <Substance.shex>
 #imported_end
 #imported_begin 
+IMPORT <Encounter.shex>
+#imported_end
+#imported_begin 
 IMPORT <Identifier.shex>
 #imported_end
 #imported_begin 
 IMPORT <Medication.shex>
+#imported_end
+#imported_begin 
+IMPORT <Annotation.shex>
 #imported_end
 #imported_begin 
 IMPORT <Organization.shex>
@@ -93,10 +99,10 @@ start=@<DetectedIssue> AND {fhir:nodeRole [fhir:treeRoot]}
     	{fhir:v @fhirvs:detectedissue-status};  # preliminary | final | 
                                             # entered-in-error | mitigated 
     fhir:category @<OneOrMore_CodeableConcept>?;  # Type of detected issue, e.g. 
-                                            # drug-drug, duplicate therapy, etc. 
+                                            # drug-drug, duplicate therapy, etc 
     fhir:code @<CodeableConcept>?;          # Specific type of detected issue, 
                                             # e.g. drug-drug, duplicate therapy, 
-                                            # etc. 
+                                            # etc 
     fhir:severity @<code> AND
     	{fhir:v @fhirvs:detectedissue-severity}?;  # high | moderate | low
     fhir:subject @<Reference> AND {fhir:link 
@@ -110,7 +116,9 @@ start=@<DetectedIssue> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<Procedure> OR 
-    			@<Substance> ? }?;  # Associated subject
+    			@<Substance> ?}?;  # Associated subject
+    fhir:encounter @<Reference> AND {fhir:link 
+    			@<Encounter> ?}?;  # Encounter detected issue is part of
     fhir:identified @<dateTime>  OR 
     			@<Period>  ?;  # When identified
     fhir:author @<Reference> AND {fhir:link 
@@ -118,11 +126,11 @@ start=@<DetectedIssue> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # The provider or device that 
+    			@<RelatedPerson> ?}?;  # The provider or device that 
                                             # identified the issue 
     fhir:implicated @<OneOrMore_Reference_Resource>?;  # Problem resource
     fhir:evidence @<OneOrMore_DetectedIssue.evidence>?;  # Supporting evidence
-    fhir:detail @<string>?;                 # Description and context
+    fhir:detail @<markdown>?;               # Description and context
     fhir:reference @<uri>?;                 # Authority for issue
     fhir:mitigation @<OneOrMore_DetectedIssue.mitigation>?;  # Step taken to address
 }  
@@ -133,7 +141,9 @@ start=@<DetectedIssue> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:date @<dateTime>?;                 # Date committed
     fhir:author @<Reference> AND {fhir:link 
     			@<Practitioner> OR 
-    			@<PractitionerRole> ? }?;  # Who is committing?
+    			@<PractitionerRole> ?}?;  # Who is committing?
+    fhir:note @<OneOrMore_Annotation>?;     # Additional notes about the 
+                                            # mitigation 
 }  
 
 # Supporting evidence
@@ -163,6 +173,8 @@ start=@<DetectedIssue> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:first @<DetectedIssue.mitigation>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_DetectedIssue.mitigation> 
 }
+
+
 
 #---------------------- Value Sets ------------------------
 

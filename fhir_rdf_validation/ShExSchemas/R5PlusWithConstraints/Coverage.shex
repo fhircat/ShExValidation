@@ -80,19 +80,19 @@ start=@<Coverage> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:policyHolder @<Reference> AND {fhir:link 
     			@<Organization> OR 
     			@<Patient> OR 
-    			@<RelatedPerson> ? }?;  # Owner of the policy
+    			@<RelatedPerson> ?}?;  # Owner of the policy
     fhir:subscriber @<Reference> AND {fhir:link 
     			@<Patient> OR 
-    			@<RelatedPerson> ? }?;  # Subscriber to the policy
+    			@<RelatedPerson> ?}?;  # Subscriber to the policy
     fhir:subscriberId @<OneOrMore_Identifier>?;  # ID assigned to the subscriber
     fhir:beneficiary @<Reference> AND {fhir:link 
-    			@<Patient> ? };  # Plan beneficiary
+    			@<Patient> ?};  # Plan beneficiary
     fhir:dependent @<string>?;              # Dependent number
     fhir:relationship @<CodeableConcept>?;  # Beneficiary relationship to the 
                                             # subscriber 
     fhir:period @<Period>?;                 # Coverage start and end dates
     fhir:insurer @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Issuer of the policy
+    			@<Organization> ?}?;  # Issuer of the policy
     fhir:class @<OneOrMore_Coverage.class>?;  # Additional coverage classifications
     fhir:order @<positiveInt>?;             # Relative order of the coverage
     fhir:network @<string>?;                # Insurer network
@@ -101,7 +101,7 @@ start=@<Coverage> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:subrogation @<boolean>?;           # Reimbursement to insurer
     fhir:contract @<OneOrMore_Reference_Contract>?;  # Contract details
     fhir:insurancePlan @<Reference> AND {fhir:link 
-    			@<InsurancePlan> ? }?;  # Insurance plan details
+    			@<InsurancePlan> ?}?;  # Insurance plan details
 }  
 
 # Exceptions for patient payments
@@ -109,15 +109,6 @@ start=@<Coverage> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:type @<CodeableConcept>;           # Exception category
     fhir:period @<Period>?;                 # The effective period of the 
                                             # exception 
-}  
-
-# Additional coverage classifications
-<Coverage.class> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:type @<CodeableConcept>;           # Type of class such as 'group' or 
-                                            # 'plan' 
-    fhir:value @<Identifier>;               # Value associated with the type
-    fhir:name @<string>?;                   # Human readable description of the 
-                                            # type and value 
 }  
 
 # Patient payments for services/products
@@ -138,8 +129,17 @@ start=@<Coverage> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:party @<Reference> AND {fhir:link 
     			@<Organization> OR 
     			@<Patient> OR 
-    			@<RelatedPerson> ? };  # Parties performing self-payment
+    			@<RelatedPerson> ?};  # Parties performing self-payment
     fhir:responsibility @<string>?;         # Party's responsibility
+}  
+
+# Additional coverage classifications
+<Coverage.class> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # Type of class such as 'group' or 
+                                            # 'plan' 
+    fhir:value @<Identifier>;               # Value associated with the type
+    fhir:name @<string>?;                   # Human readable description of the 
+                                            # type and value 
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

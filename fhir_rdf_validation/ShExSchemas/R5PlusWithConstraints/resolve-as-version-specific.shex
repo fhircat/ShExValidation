@@ -22,7 +22,9 @@ IMPORT <Extension.shex>
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/resolve-as-version-specific"]}; 
     fhir:value @<boolean>  ; 
-    ^fhir:extension { a [fhir:Reference]}
+    ^fhir:extension { a [fhir:Reference]} OR 
+          {a [fhir:uri]} OR 
+          {a [fhir:url]}
 
 }  
 

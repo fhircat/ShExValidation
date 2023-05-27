@@ -75,13 +75,13 @@ IMPORT <CodeableConcept.shex>
                                             # lifetime of the patient 
 } AND (
 
-# Constraint UniqueKey:dosage-1
+# Constraint UniqueKey:dos-1
 # Human readable:AsNeededFor can only be set if AsNeeded is empty or true
 
 # Constraint: asNeededFor.empty() or asNeeded.empty() or asNeeded
 # ShEx:
 
- NOT { fhir:asNeededFor {fhir:v .} }  OR  NOT { fhir:asNeeded {fhir:v .} }  OR { fhir:asNeeded }
+ NOT { fhir:asNeededFor {fhir:v .} }  OR  NOT { fhir:asNeeded {fhir:v .} }  OR { fhir:asNeeded . }
 
 )
  

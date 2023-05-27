@@ -18,18 +18,20 @@ YAML=../fhir_rdf_validation/Account.yaml
 
 # Another way of invoking validate with SHEX and TTL
 SHEX=../fhir_rdf_validation/ShExSchemas/R5Plus/Account.shex
+#SHEX=../fhir_rdf_validation/ShExSchemas/R5PlusWithConstraints/Account.shex
 TTL=../fhir_rdf_validation/FHIR_RDF_Examples/R5/account-example.ttl
 
 # validate shex with a ttl
-validate --human -x $SHEX -d $TTL -m '{FOCUS a fhir:Account}@<Account>'
+# validate --human -x $SHEX -d $TTL -m '{FOCUS a fhir:Account}@<Account>'
 TTL=../fhir_rdf_validation/FHIR_RDF_Examples/R5/account-example-with-guarantor.ttl
-validate --human -x $SHEX -d $TTL -m '{FOCUS a fhir:Account}@<Account>'
+# validate --human -x $SHEX -d $TTL -m '{FOCUS a fhir:Account}@<Account>'
 
 # validate for a select query map
 # validate -x $SHEX -d $TTL -m '<inst_exists>@<FunctionPatternsShape>,<inst_noExists>@!<FunctionPatternsShape>'
 
 # run it as a server
 # validate -x ../fhir_rdf_validation/ShExSchemas/R5Plus/Account.shex --diagnose  --serve http://localhost/validate || echo fail
+validate --human -x $SHEX --diagnose --serve http://localhost:8086/validate --skipCycleCheck
 
 # example to check if ShEx schema has any error
 # for example if they have duplicate shapes

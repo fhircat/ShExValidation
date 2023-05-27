@@ -37,6 +37,9 @@ IMPORT <DomainResource.shex>
 #imported_begin 
 IMPORT <CodeableConcept.shex>
 #imported_end
+#imported_begin 
+IMPORT <BackboneElement.shex>
+#imported_end
 
 start=@<Endpoint> AND {fhir:nodeRole [fhir:treeRoot]}
 
@@ -62,7 +65,7 @@ start=@<Endpoint> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:environmentType @<OneOrMore_CodeableConcept>?;  # The type of environment(s) exposed 
                                             # at this endpoint 
     fhir:managingOrganization @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Organization that manages this 
+    			@<Organization> ?}?;  # Organization that manages this 
                                             # endpoint (might not be the 
                                             # organization that exposes the 
                                             # endpoint) 
@@ -70,17 +73,23 @@ start=@<Endpoint> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # troubleshooting) 
     fhir:period @<Period>?;                 # Interval the endpoint is expected 
                                             # to be operational 
-    fhir:payloadType @<OneOrMore_CodeableConcept>?;  # The type of content that may be 
+    fhir:payload @<OneOrMore_Endpoint.payload>?;  # Set of payloads that are provided 
+                                            # by this endpoint 
+    fhir:address @<url>;                    # The technical base address for 
+                                            # connecting to this endpoint 
+    fhir:header @<OneOrMore_string>?;       # Usage depends on the channel type
+}  
+
+# Set of payloads that are provided by this endpoint
+<Endpoint.payload> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<OneOrMore_CodeableConcept>?;  # The type of content that may be 
                                             # used at this endpoint (e.g. XDS 
                                             # Discharge summaries) 
-    fhir:payloadMimeType @<OneOrMore_code> AND
+    fhir:mimeType @<OneOrMore_code> AND
     	{fhir:v @fhirvs:mimetypes}?;  # Mimetype to send. If not 
                                             # specified, the content could be 
                                             # anything (including no payload, if 
                                             # the connectionType defined this) 
-    fhir:address @<url>;                    # The technical base address for 
-                                            # connecting to this endpoint 
-    fhir:header @<OneOrMore_string>?;       # Usage depends on the channel type
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------
@@ -90,6 +99,11 @@ start=@<Endpoint> AND {fhir:nodeRole [fhir:treeRoot]}
 
 
 
+
+<OneOrMore_Endpoint.payload> CLOSED {
+    rdf:first @<Endpoint.payload>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Endpoint.payload> 
+}
 
 
 

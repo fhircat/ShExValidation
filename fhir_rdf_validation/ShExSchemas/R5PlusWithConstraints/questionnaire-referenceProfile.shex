@@ -24,7 +24,7 @@ IMPORT <StructureDefinition.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/questionnaire-referenceProfile"]}; 
-    fhir:value (@<canonical>  AND {fhir:link @<StructureDefinition> })  ; 
+    fhir:value (@<canonical>  AND {fhir:link @<StructureDefinition> ?})  ; 
     ^fhir:extension { ^fhir:item {a [fhir:Questionnaire]}} OR 
           {a [fhir:ElementDefinition]}
 

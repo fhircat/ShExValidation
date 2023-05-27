@@ -24,7 +24,7 @@ IMPORT <Condition.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/condition-related"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<Condition> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<Condition> ?})  ; 
     ^fhir:extension { a [fhir:Condition]}
 
 }  

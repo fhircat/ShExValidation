@@ -47,11 +47,19 @@ IMPORT <DataType.shex>
 # Constraint: allDay.exists().not() or (allDay implies availableStartTime.exists().not() and availableEndTime.exists().not())
 # ShEx:
 #
-# NOT { fhir:allDay. } OR ({ fhir:allDay  Implies  ( NOT { fhir:availableStartTime. } AND  NOT { fhir:availableEndTime. }) })
+# NOT { fhir:allDay . } OR ({ fhir:allDay  Implies  ( NOT { fhir:availableStartTime . } AND  NOT { fhir:availableEndTime . }) })
 {}
 
 )
  
+
+# Not available during this time due to provided reason
+<Availability.notAvailableTime> EXTENDS @<Element> CLOSED {   
+    fhir:description @<string>?;            # Reason presented to the user 
+                                            # explaining why time not available 
+    fhir:during @<Period>?;                 # Service not available during this 
+                                            # period 
+}  
 
 # Times the {item} is available
 <Availability.availableTime> EXTENDS @<Element> CLOSED {   
@@ -75,19 +83,11 @@ IMPORT <DataType.shex>
 # Constraint: allDay.exists().not() or (allDay implies availableStartTime.exists().not() and availableEndTime.exists().not())
 # ShEx:
 #
-# NOT { fhir:allDay. } OR ({ fhir:allDay  Implies  ( NOT { fhir:availableStartTime. } AND  NOT { fhir:availableEndTime. }) })
+# NOT { fhir:allDay . } OR ({ fhir:allDay  Implies  ( NOT { fhir:availableStartTime . } AND  NOT { fhir:availableEndTime . }) })
 {}
 
 )
  
-
-# Not available during this time due to provided reason
-<Availability.notAvailableTime> EXTENDS @<Element> CLOSED {   
-    fhir:description @<string>?;            # Reason presented to the user 
-                                            # explaining why time not available 
-    fhir:during @<Period>?;                 # Service not available during this 
-                                            # period 
-}  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------
 

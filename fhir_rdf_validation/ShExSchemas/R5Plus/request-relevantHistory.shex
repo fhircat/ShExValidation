@@ -24,7 +24,7 @@ IMPORT <Provenance.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/request-relevantHistory"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<Provenance> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<Provenance> ?})  ; 
     ^fhir:extension { a [fhir:NutritionOrder]} OR 
           {a [fhir:CommunicationRequest]} OR 
           {a [fhir:CarePlan]}

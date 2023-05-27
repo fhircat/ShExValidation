@@ -44,6 +44,9 @@ IMPORT <Reference.shex>
 IMPORT <canonical.shex>
 #imported_end
 #imported_begin 
+IMPORT <Identifier.shex>
+#imported_end
+#imported_begin 
 IMPORT <UsageContext.shex>
 #imported_end
 #imported_begin 
@@ -70,6 +73,9 @@ start=@<ImplementationGuide> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:url @<uri>;                        # Canonical identifier for this 
                                             # implementation guide, represented 
                                             # as a URI (globally unique) 
+    fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
+                                            # implementation guide (business 
+                                            # identifier) 
     fhir:version @<string>?;                # Business version of the 
                                             # implementation guide 
     fhir:versionAlgorithm @<string>  OR 
@@ -93,6 +99,8 @@ start=@<ImplementationGuide> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for 
                                             # implementation guide (if 
                                             # applicable) 
+    fhir:purpose @<markdown>?;              # Why this implementation guide is 
+                                            # defined 
     fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
     fhir:copyrightLabel @<string>?;         # Copyright holder and year(s)
     fhir:packageId @<id>;                   # NPM Package name for IG
@@ -109,19 +117,26 @@ start=@<ImplementationGuide> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:manifest @<ImplementationGuide.manifest>?;  # Information about an assembled IG
 }  
 
-# Resource in the implementation guide
-<ImplementationGuide.manifest.resource> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:reference @<Reference> AND {fhir:link 
-    			@<Resource> ? };  # Location of the resource
-    fhir:isExample @<boolean>?;             # Is this an example
-    fhir:profile @<OneOrMore_canonical>?;   # Profile(s) this is an example of
-    fhir:relativePath @<url>?;              # Relative path for page in IG
+# HTML page within the parent IG
+<ImplementationGuide.manifest.page> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>;                    # HTML page name
+    fhir:title @<string>?;                  # Title of the page, for references
+    fhir:anchor @<OneOrMore_string>?;       # Anchor available on the page
+}  
+
+# A template for building resources
+<ImplementationGuide.definition.template> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<code>;                      # Type of template specified
+    fhir:source @<string>;                  # The source location for the 
+                                            # template 
+    fhir:scope @<string>?;                  # The scope in which the template 
+                                            # applies 
 }  
 
 # Resource in the implementation guide
 <ImplementationGuide.definition.resource> EXTENDS @<BackboneElement> CLOSED {   
     fhir:reference @<Reference> AND {fhir:link 
-    			@<Resource> ? };  # Location of the resource
+    			@<Resource> ?};  # Location of the resource
     fhir:fhirVersion @<OneOrMore_code> AND
     	{fhir:v @fhirvs:FHIR-version}?;  # Versions this applies to (if 
                                             # different to IG) 
@@ -144,47 +159,6 @@ start=@<ImplementationGuide> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:template @<OneOrMore_ImplementationGuide.definition.template>?;  # A template for building resources
 }  
 
-# Profiles that apply globally
-<ImplementationGuide.global> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:type @<code> AND
-    	{fhir:v @fhirvs:resource-types};  # Type this profile applies to
-    fhir:profile @<canonical>;              # Profile that all resources must 
-                                            # conform to 
-}  
-
-# Defines how IG is built by tools
-<ImplementationGuide.definition.parameter> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:code @<Coding>;                    # Code that identifies parameter
-    fhir:value @<string>;                   # Value for named type
-}  
-
-# A template for building resources
-<ImplementationGuide.definition.template> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:code @<code>;                      # Type of template specified
-    fhir:source @<string>;                  # The source location for the 
-                                            # template 
-    fhir:scope @<string>?;                  # The scope in which the template 
-                                            # applies 
-}  
-
-# Nested Pages / Sections
-<ImplementationGuide.definition.page.pagenull> CLOSED {   
-}  
-
-# HTML page within the parent IG
-<ImplementationGuide.manifest.page> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:name @<string>;                    # HTML page name
-    fhir:title @<string>?;                  # Title of the page, for references
-    fhir:anchor @<OneOrMore_string>?;       # Anchor available on the page
-}  
-
-# Grouping used to present related resources in the IG
-<ImplementationGuide.definition.grouping> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:name @<string>;                    # Descriptive name for the package
-    fhir:description @<markdown>?;          # Human readable text describing the 
-                                            # package 
-}  
-
 # Information about an assembled IG
 <ImplementationGuide.manifest> EXTENDS @<BackboneElement> CLOSED {   
     fhir:rendering @<url>?;                 # Location of rendered 
@@ -196,14 +170,8 @@ start=@<ImplementationGuide> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:other @<OneOrMore_string>?;        # Additional linkable file in IG
 }  
 
-# Another Implementation guide this depends on
-<ImplementationGuide.dependsOn> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:uri @<canonical>;                  # Identity of the IG that this 
-                                            # depends on 
-    fhir:packageId @<id>?;                  # NPM Package name for IG this 
-                                            # depends on 
-    fhir:version @<string>?;                # Version of the IG
-    fhir:reason @<markdown>?;               # Why dependency exists
+# Nested Pages / Sections
+<ImplementationGuide.definition.page.pagenull> CLOSED {   
 }  
 
 # Page/Section in the Guide
@@ -219,7 +187,49 @@ start=@<ImplementationGuide> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:page @<OneOrMore_ImplementationGuide.definition.page>?;  # Nested Pages / Sections
 }  
 
+# Resource in the implementation guide
+<ImplementationGuide.manifest.resource> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:reference @<Reference> AND {fhir:link 
+    			@<Resource> ?};  # Location of the resource
+    fhir:isExample @<boolean>?;             # Is this an example
+    fhir:profile @<OneOrMore_canonical>?;   # Profile(s) this is an example of
+    fhir:relativePath @<url>?;              # Relative path for page in IG
+}  
+
+# Grouping used to present related resources in the IG
+<ImplementationGuide.definition.grouping> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>;                    # Descriptive name for the package
+    fhir:description @<markdown>?;          # Human readable text describing the 
+                                            # package 
+}  
+
+# Profiles that apply globally
+<ImplementationGuide.global> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:resource-types};  # Type this profile applies to
+    fhir:profile @<canonical>;              # Profile that all resources must 
+                                            # conform to 
+}  
+
+# Another Implementation guide this depends on
+<ImplementationGuide.dependsOn> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:uri @<canonical>;                  # Identity of the IG that this 
+                                            # depends on 
+    fhir:packageId @<id>?;                  # NPM Package name for IG this 
+                                            # depends on 
+    fhir:version @<string>?;                # Version of the IG
+    fhir:reason @<markdown>?;               # Why dependency exists
+}  
+
+# Defines how IG is built by tools
+<ImplementationGuide.definition.parameter> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<Coding>;                    # Code that identifies parameter
+    fhir:value @<string>;                   # Value for named type
+}  
+
 #---------------------- Cardinality Types (OneOrMore) -------------------
+
+
 
 
 
@@ -238,6 +248,8 @@ start=@<ImplementationGuide> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:first @<ImplementationGuide.global>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_ImplementationGuide.global> 
 }
+
+
 
 
 
@@ -260,8 +272,6 @@ start=@<ImplementationGuide> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:first @<ImplementationGuide.definition.template>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_ImplementationGuide.definition.template> 
 }
-
-
 
 <OneOrMore_ImplementationGuide.manifest.resource> CLOSED {
     rdf:first @<ImplementationGuide.manifest.resource>  ;

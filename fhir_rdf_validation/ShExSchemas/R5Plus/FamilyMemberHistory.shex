@@ -99,7 +99,7 @@ start=@<FamilyMemberHistory> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:dataAbsentReason @<CodeableConcept>?;  # subject-unknown | withheld | 
                                             # unable-to-obtain | deferred 
     fhir:patient @<Reference> AND {fhir:link 
-    			@<Patient> ? };  # Patient history is about
+    			@<Patient> ?};  # Patient history is about
     fhir:date @<dateTime>?;                 # When history was recorded or last 
                                             # updated 
     fhir:participant @<OneOrMore_FamilyMemberHistory.participant>?;  # Who or what participated in the 
@@ -130,20 +130,6 @@ start=@<FamilyMemberHistory> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # had 
 }  
 
-# Condition that the related person had
-<FamilyMemberHistory.condition> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:code @<CodeableConcept>;           # Condition suffered by relation
-    fhir:outcome @<CodeableConcept>?;       # deceased | permanent disability | 
-                                            # etc. 
-    fhir:contributedToDeath @<boolean>?;    # Whether the condition contributed 
-                                            # to the cause of death 
-    fhir:onset @<Age>  OR 
-    			@<Range>  OR 
-    			@<Period>  OR 
-    			@<string>  ?;  # When condition first manifested
-    fhir:note @<OneOrMore_Annotation>?;     # Extra information about condition
-}  
-
 # Who or what participated in the activities related to the family member history and how they were involved
 <FamilyMemberHistory.participant> EXTENDS @<BackboneElement> CLOSED {   
     fhir:function @<CodeableConcept>?;      # Type of involvement
@@ -154,9 +140,23 @@ start=@<FamilyMemberHistory> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? };  # Who or what participated in the 
+    			@<RelatedPerson> ?};  # Who or what participated in the 
                                             # activities related to the family 
                                             # member history 
+}  
+
+# Condition that the related person had
+<FamilyMemberHistory.condition> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:code @<CodeableConcept>;           # Condition suffered by relation
+    fhir:outcome @<CodeableConcept>?;       # deceased | permanent disability | 
+                                            # etc 
+    fhir:contributedToDeath @<boolean>?;    # Whether the condition contributed 
+                                            # to the cause of death 
+    fhir:onset @<Age>  OR 
+    			@<Range>  OR 
+    			@<Period>  OR 
+    			@<string>  ?;  # When condition first manifested
+    fhir:note @<OneOrMore_Annotation>?;     # Extra information about condition
 }  
 
 # Procedures that the related person had

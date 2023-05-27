@@ -23,6 +23,9 @@ IMPORT <Address.shex>
 IMPORT <decimal.shex>
 #imported_end
 #imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
 IMPORT <Endpoint.shex>
 #imported_end
 #imported_begin 
@@ -55,7 +58,7 @@ IMPORT <ExtendedContactDetail.shex>
 
 start=@<Location> AND {fhir:nodeRole [fhir:treeRoot]}
 
-# Details and position information for a physical place
+# Details and position information for a place
 <Location> EXTENDS @<DomainResource> CLOSED {   
 
     a [fhir:Location]?;
@@ -73,7 +76,7 @@ start=@<Location> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:alias @<OneOrMore_string>?;        # A list of alternate names that the 
                                             # location is known as, or was known 
                                             # as, in the past 
-    fhir:description @<string>?;            # Additional details about the 
+    fhir:description @<markdown>?;          # Additional details about the 
                                             # location that could be displayed 
                                             # as further information to identify 
                                             # the location beyond its name 
@@ -86,10 +89,10 @@ start=@<Location> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:form @<CodeableConcept>?;          # Physical form of the location
     fhir:position @<Location.position>?;    # The absolute geographic location
     fhir:managingOrganization @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Organization responsible for 
+    			@<Organization> ?}?;  # Organization responsible for 
                                             # provisioning and upkeep 
     fhir:partOf @<Reference> AND {fhir:link 
-    			@<Location> ? }?;  # Another Location this one is 
+    			@<Location> ?}?;  # Another Location this one is 
                                             # physically a part of 
     fhir:characteristic @<OneOrMore_CodeableConcept>?;  # Collection of characteristics 
                                             # (attributes) 

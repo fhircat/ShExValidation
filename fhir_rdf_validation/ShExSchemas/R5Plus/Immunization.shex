@@ -101,9 +101,9 @@ start=@<Immunization> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:lotNumber @<string>?;              # Vaccine lot number
     fhir:expirationDate @<date>?;           # Vaccine expiration date
     fhir:patient @<Reference> AND {fhir:link 
-    			@<Patient> ? };  # Who was immunized
+    			@<Patient> ?};  # Who was immunized
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # Encounter immunization was part of
+    			@<Encounter> ?}?;  # Encounter immunization was part of
     fhir:supportingInformation @<OneOrMore_Reference_Resource>?;  # Additional information in support 
                                             # of the immunization 
     fhir:occurrence @<dateTime>  OR 
@@ -113,7 +113,7 @@ start=@<Immunization> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:informationSource @<CodeableReference>?;  # Indicates the source of a  
                                             # reported record 
     fhir:location @<Reference> AND {fhir:link 
-    			@<Location> ? }?;  # Where immunization occurred
+    			@<Location> ?}?;  # Where immunization occurred
     fhir:site @<CodeableConcept>?;          # Body site vaccine  was administered
     fhir:route @<CodeableConcept>?;         # How vaccine entered body
     fhir:doseQuantity @<Quantity>?;         # Amount of vaccine administered
@@ -145,8 +145,21 @@ start=@<Immunization> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? };  # Individual or organization who was 
+    			@<RelatedPerson> ?};  # Individual or organization who was 
                                             # performing 
+}  
+
+# Protocol followed by the provider
+<Immunization.protocolApplied> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:series @<string>?;                 # Name of vaccine series
+    fhir:authority @<Reference> AND {fhir:link 
+    			@<Organization> ?}?;  # Who is responsible for publishing 
+                                            # the recommendations 
+    fhir:targetDisease @<OneOrMore_CodeableConcept>?;  # Vaccine preventatable disease 
+                                            # being targeted 
+    fhir:doseNumber @<string>;              # Dose number within series
+    fhir:seriesDoses @<string>?;            # Recommended number of doses for 
+                                            # immunity 
 }  
 
 # Patient eligibility for a specific vaccination program
@@ -155,19 +168,6 @@ start=@<Immunization> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # declared for 
     fhir:programStatus @<CodeableConcept>;  # The patient's eligibility status 
                                             # for the program 
-}  
-
-# Protocol followed by the provider
-<Immunization.protocolApplied> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:series @<string>?;                 # Name of vaccine series
-    fhir:authority @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Who is responsible for publishing 
-                                            # the recommendations 
-    fhir:targetDisease @<OneOrMore_CodeableConcept>?;  # Vaccine preventatable disease 
-                                            # being targeted 
-    fhir:doseNumber @<string>;              # Dose number within series
-    fhir:seriesDoses @<string>?;            # Recommended number of doses for 
-                                            # immunity 
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

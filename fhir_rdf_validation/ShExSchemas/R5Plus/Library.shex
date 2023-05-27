@@ -23,6 +23,9 @@ IMPORT <Group.shex>
 IMPORT <string.shex>
 #imported_end
 #imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
 IMPORT <Period.shex>
 #imported_end
 #imported_begin 
@@ -79,6 +82,8 @@ start=@<Library> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
                                             # library 
     fhir:version @<string>?;                # Business version of the library
+    fhir:versionAlgorithm @<string>  OR 
+    			@<Coding>  ?;  # How to compare versions
     fhir:name @<string>?;                   # Name for this library (computer 
                                             # friendly) 
     fhir:title @<string>?;                  # Name for this library (human 
@@ -92,7 +97,7 @@ start=@<Library> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # asset-collection | 
                                             # module-definition 
     fhir:subject @<CodeableConcept>  OR 
-    			(@<Reference>  AND {fhir:link @<Group> })  ?;  # Type of individual the library 
+    			(@<Reference>  AND {fhir:link @<Group> ?})  ?;  # Type of individual the library 
                                             # content is focused on 
     fhir:date @<dateTime>?;                 # Date last changed
     fhir:publisher @<string>?;              # Name of the publisher/steward 
@@ -105,22 +110,24 @@ start=@<Library> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:jurisdiction @<OneOrMore_CodeableConcept>?;  # Intended jurisdiction for library 
                                             # (if applicable) 
     fhir:purpose @<markdown>?;              # Why this library is defined
-    fhir:usage @<string>?;                  # Describes the clinical usage of 
+    fhir:usage @<markdown>?;                # Describes the clinical usage of 
                                             # the library 
     fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:copyrightLabel @<string>?;         # Copyright holder and year(s)
     fhir:approvalDate @<date>?;             # When the library was approved by 
                                             # publisher 
-    fhir:lastReviewDate @<date>?;           # When the library was last reviewed
+    fhir:lastReviewDate @<date>?;           # When the library was last reviewed 
+                                            # by the publisher 
     fhir:effectivePeriod @<Period>?;        # When the library is expected to be 
                                             # used 
     fhir:topic @<OneOrMore_CodeableConcept>?;  # E.g. Education, Treatment, 
-                                            # Assessment, etc. 
+                                            # Assessment, etc 
     fhir:author @<OneOrMore_ContactDetail>?;  # Who authored the content
     fhir:editor @<OneOrMore_ContactDetail>?;  # Who edited the content
     fhir:reviewer @<OneOrMore_ContactDetail>?;  # Who reviewed the content
     fhir:endorser @<OneOrMore_ContactDetail>?;  # Who endorsed the content
     fhir:relatedArtifact @<OneOrMore_RelatedArtifact>?;  # Additional documentation, 
-                                            # citations, etc. 
+                                            # citations, etc 
     fhir:parameter @<OneOrMore_ParameterDefinition>?;  # Parameters defined by the library
     fhir:dataRequirement @<OneOrMore_DataRequirement>?;  # What data is referenced by this 
                                             # library 

@@ -24,7 +24,7 @@ IMPORT <Questionnaire.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/servicerequest-questionnaireRequest"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<Questionnaire> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<Questionnaire> ?})  ; 
     ^fhir:extension { a [fhir:ServiceRequest]}
 
 }  

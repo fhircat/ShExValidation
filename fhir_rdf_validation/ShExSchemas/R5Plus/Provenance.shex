@@ -35,10 +35,10 @@ IMPORT <dateTime.shex>
 IMPORT <Location.shex>
 #imported_end
 #imported_begin 
-IMPORT <Resource.shex>
+IMPORT <CareTeam.shex>
 #imported_end
 #imported_begin 
-IMPORT <CareTeam.shex>
+IMPORT <Resource.shex>
 #imported_end
 #imported_begin 
 IMPORT <CarePlan.shex>
@@ -109,7 +109,7 @@ start=@<Provenance> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:policy @<OneOrMore_uri>?;          # Policy or plan the activity was 
                                             # defined by 
     fhir:location @<Reference> AND {fhir:link 
-    			@<Location> ? }?;  # Where the activity occurred, if 
+    			@<Location> ?}?;  # Where the activity occurred, if 
                                             # relevant 
     fhir:authorization @<OneOrMore_CodeableReference>?;  # Authorization (purposeOfUse) 
                                             # related to the event 
@@ -117,26 +117,16 @@ start=@<Provenance> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:basedOn @<OneOrMore_Reference_CarePlan_OR_DeviceRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_ServiceRequest_OR_Task>?;  # Workflow authorization within 
                                             # which this event occurred 
     fhir:patient @<Reference> AND {fhir:link 
-    			@<Patient> ? }?;  # The patient is the subject of the 
+    			@<Patient> ?}?;  # The patient is the subject of the 
                                             # data created/updated (.target) by 
                                             # the activity 
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # Encounter within which this event 
+    			@<Encounter> ?}?;  # Encounter within which this event 
                                             # occurred or which the event is 
                                             # tightly associated 
     fhir:agent @<OneOrMore_Provenance.agent>;  # Actor involved
     fhir:entity @<OneOrMore_Provenance.entity>?;  # An entity used in this activity
     fhir:signature @<OneOrMore_Signature>?;  # Signature on target
-}  
-
-# An entity used in this activity
-<Provenance.entity> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:role @<code> AND
-    	{fhir:v @fhirvs:provenance-entity-role};  # revision | quotation | source | 
-                                            # instantiates | removal 
-    fhir:what @<Reference> AND {fhir:link 
-    			@<Resource> ? };  # Identity of entity
-    fhir:agent @<OneOrMore_Provenance.agent>?;  # Entity is attributed to this agent
 }  
 
 # Actor involved
@@ -150,14 +140,24 @@ start=@<Provenance> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? };  # The agent that participated in the 
+    			@<RelatedPerson> ?};  # The agent that participated in the 
                                             # event 
     fhir:onBehalfOf @<Reference> AND {fhir:link 
     			@<CareTeam> OR 
     			@<Organization> OR 
     			@<Patient> OR 
     			@<Practitioner> OR 
-    			@<PractitionerRole> ? }?;  # The agent that delegated
+    			@<PractitionerRole> ?}?;  # The agent that delegated
+}  
+
+# An entity used in this activity
+<Provenance.entity> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:role @<code> AND
+    	{fhir:v @fhirvs:provenance-entity-role};  # revision | quotation | source | 
+                                            # instantiates | removal 
+    fhir:what @<Reference> AND {fhir:link 
+    			@<Resource> ?};  # Identity of entity
+    fhir:agent @<OneOrMore_Provenance.agent>?;  # Entity is attributed to this agent
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

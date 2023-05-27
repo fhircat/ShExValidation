@@ -44,22 +44,25 @@ IMPORT <Timing.shex>
 IMPORT <Patient.shex>
 #imported_end
 #imported_begin 
-IMPORT <dateTime.shex>
-#imported_end
-#imported_begin 
-IMPORT <Duration.shex>
-#imported_end
-#imported_begin 
-IMPORT <Resource.shex>
-#imported_end
-#imported_begin 
 IMPORT <CareTeam.shex>
+#imported_end
+#imported_begin 
+IMPORT <Location.shex>
+#imported_end
+#imported_begin 
+IMPORT <dateTime.shex>
 #imported_end
 #imported_begin 
 IMPORT <Endpoint.shex>
 #imported_end
 #imported_begin 
-IMPORT <Location.shex>
+IMPORT <Duration.shex>
+#imported_end
+#imported_begin 
+IMPORT <markdown.shex>
+#imported_end
+#imported_begin 
+IMPORT <Resource.shex>
 #imported_end
 #imported_begin 
 IMPORT <canonical.shex>
@@ -80,16 +83,16 @@ IMPORT <Annotation.shex>
 IMPORT <Expression.shex>
 #imported_end
 #imported_begin 
-IMPORT <Practitioner.shex>
-#imported_end
-#imported_begin 
 IMPORT <Organization.shex>
 #imported_end
 #imported_begin 
-IMPORT <Questionnaire.shex>
+IMPORT <Practitioner.shex>
 #imported_end
 #imported_begin 
 IMPORT <RelatedPerson.shex>
+#imported_end
+#imported_begin 
+IMPORT <Questionnaire.shex>
 #imported_end
 #imported_begin 
 IMPORT <DomainResource.shex>
@@ -116,10 +119,10 @@ IMPORT <PractitionerRole.shex>
 IMPORT <DeviceDefinition.shex>
 #imported_end
 #imported_begin 
-IMPORT <CodeableReference.shex>
+IMPORT <HealthcareService.shex>
 #imported_end
 #imported_begin 
-IMPORT <HealthcareService.shex>
+IMPORT <CodeableReference.shex>
 #imported_end
 #imported_begin 
 IMPORT <ActivityDefinition.shex>
@@ -163,17 +166,25 @@ start=@<RequestOrchestration> AND {fhir:nodeRole [fhir:treeRoot]}
     	{fhir:v @fhirvs:request-priority}?;  # routine | urgent | asap | stat
     fhir:code @<CodeableConcept>?;          # What's being requested/ordered
     fhir:subject @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
     			@<Group> OR 
-    			@<Patient> ? }?;  # Who the request orchestration is 
+    			@<HealthcareService> OR 
+    			@<Location> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ?}?;  # Who the request orchestration is 
                                             # about 
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # Created as part of
+    			@<Encounter> ?}?;  # Created as part of
     fhir:authoredOn @<dateTime>?;           # When the request orchestration was 
                                             # authored 
     fhir:author @<Reference> AND {fhir:link 
     			@<Device> OR 
     			@<Practitioner> OR 
-    			@<PractitionerRole> ? }?;  # Device or practitioner that 
+    			@<PractitionerRole> ?}?;  # Device or practitioner that 
                                             # authored the request orchestration 
     fhir:reason @<OneOrMore_CodeableReference>?;  # Why the request orchestration is 
                                             # needed 
@@ -225,18 +236,6 @@ start=@<RequestOrchestration> AND {fhir:nodeRole [fhir:treeRoot]}
 )
  
 
-# Relationship to another action
-<RequestOrchestration.action.relatedAction> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:targetId @<id>;                    # What action this is related to
-    fhir:relationship @<code> AND
-    	{fhir:v @fhirvs:action-relationship-type};  # before-start | before | before-end 
-                                            # | concurrent-with-start | 
-                                            # concurrent | concurrent-with-end | 
-                                            # after-start | after | after-end 
-    fhir:offset @<Duration>  OR 
-    			@<Range>  ?;  # Time offset for the relationship
-}  
-
 # Whether or not the action is applicable
 <RequestOrchestration.action.condition> EXTENDS @<BackboneElement> CLOSED {   
     fhir:kind @<code> AND
@@ -244,15 +243,47 @@ start=@<RequestOrchestration> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:expression @<Expression>?;         # Boolean-valued expression
 }  
 
-# Sub action
-<RequestOrchestration.action.actionnull> CLOSED {   
+# Who should perform the action
+<RequestOrchestration.action.participant> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<code> AND
+    	{fhir:v @fhirvs:action-participant-type}?;  # careteam | device | group | 
+                                            # healthcareservice | location | 
+                                            # organization | patient | 
+                                            # practitioner | practitionerrole | 
+                                            # relatedperson 
+    fhir:typeCanonical @<canonical>?;       # Who or what can participate
+    fhir:typeReference @<Reference> AND {fhir:link 
+    			@<CareTeam> OR 
+    			@<Device> OR 
+    			@<DeviceDefinition> OR 
+    			@<Endpoint> OR 
+    			@<Group> OR 
+    			@<HealthcareService> OR 
+    			@<Location> OR 
+    			@<Organization> OR 
+    			@<Patient> OR 
+    			@<Practitioner> OR 
+    			@<PractitionerRole> OR 
+    			@<RelatedPerson> ?}?;  # Who or what can participate
+    fhir:role @<CodeableConcept>?;          # E.g. Nurse, Surgeon, Parent, etc
+    fhir:function @<CodeableConcept>?;      # E.g. Author, Reviewer, Witness, etc
+    fhir:actor (@<canonical>  AND {fhir:link @<CapabilityStatement> ?})  OR 
+    			(@<Reference>  AND {fhir:link @<CareTeam> OR 
+    			 @<Device> OR 
+    			 @<DeviceDefinition> OR 
+    			 @<Endpoint> OR 
+    			 @<Group> OR 
+    			 @<HealthcareService> OR 
+    			 @<Location> OR 
+    			 @<Organization> OR 
+    			 @<Patient> OR 
+    			 @<Practitioner> OR 
+    			 @<PractitionerRole> OR 
+    			 @<RelatedPerson> ?})  ?;  # Who/what is participating?
 }  
 
-# Input data requirements
-<RequestOrchestration.action.input> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:title @<string>?;                  # User-visible title
-    fhir:requirement @<DataRequirement>?;   # What data is provided
-    fhir:relatedData @<id>?;                # What data is provided
+# Sub action
+<RequestOrchestration.action.actionnull> CLOSED {   
 }  
 
 # Output data definition
@@ -262,6 +293,34 @@ start=@<RequestOrchestration> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:relatedData @<string>?;            # What data is provided
 }  
 
+# Relationship to another action
+<RequestOrchestration.action.relatedAction> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:targetId @<id>;                    # What action this is related to
+    fhir:relationship @<code> AND
+    	{fhir:v @fhirvs:action-relationship-type};  # before | before-start | before-end 
+                                            # | concurrent | 
+                                            # concurrent-with-start | 
+                                            # concurrent-with-end | after | 
+                                            # after-start | after-end 
+    fhir:endRelationship @<code> AND
+    	{fhir:v @fhirvs:action-relationship-type}?;  # before | before-start | before-end 
+                                            # | concurrent | 
+                                            # concurrent-with-start | 
+                                            # concurrent-with-end | after | 
+                                            # after-start | after-end 
+    fhir:offset @<Duration>  OR 
+    			@<Range>  ?;  # Time offset for the relationship
+}  
+
+# Dynamic aspects of the definition
+<RequestOrchestration.action.dynamicValue> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:path @<string>?;                   # The path to the element to be set 
+                                            # dynamically 
+    fhir:expression @<Expression>?;         # An expression that provides the 
+                                            # dynamic value for the 
+                                            # customization 
+}  
+
 # Proposed actions, if any
 <RequestOrchestration.action> EXTENDS @<BackboneElement> CLOSED {   
     fhir:linkId @<string>?;                 # Pointer to specific item from the 
@@ -269,8 +328,8 @@ start=@<RequestOrchestration> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:prefix @<string>?;                 # User-visible prefix for the action 
                                             # (e.g. 1. or A.) 
     fhir:title @<string>?;                  # User-visible title
-    fhir:description @<string>?;            # Short description of the action
-    fhir:textEquivalent @<string>?;         # Static text equivalent of the 
+    fhir:description @<markdown>?;          # Short description of the action
+    fhir:textEquivalent @<markdown>?;       # Static text equivalent of the 
                                             # action, used if the dynamic 
                                             # aspects cannot be interpreted by 
                                             # the receiving system 
@@ -311,12 +370,12 @@ start=@<RequestOrchestration> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:cardinalityBehavior @<code> AND
     	{fhir:v @fhirvs:action-cardinality-behavior}?;  # single | multiple
     fhir:resource @<Reference> AND {fhir:link 
-    			@<Resource> ? }?;  # The target of the action
+    			@<Resource> ?}?;  # The target of the action
     fhir:definition (@<canonical>  AND {fhir:link @<ActivityDefinition> OR 
     			 @<ObservationDefinition> OR 
     			 @<PlanDefinition> OR 
     			 @<Questionnaire> OR 
-    			 @<SpecimenDefinition> })  OR 
+    			 @<SpecimenDefinition> ?})  OR 
     			@<uri>  ?;  # Description of the activity to be 
                                             # performed 
     fhir:transform @<canonical>?;           # Transform to apply the template
@@ -367,53 +426,11 @@ start=@<RequestOrchestration> AND {fhir:nodeRole [fhir:treeRoot]}
 )
  
 
-# Who should perform the action
-<RequestOrchestration.action.participant> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:type @<code> AND
-    	{fhir:v @fhirvs:action-participant-type}?;  # careteam | device | group | 
-                                            # healthcareservice | location | 
-                                            # organization | patient | 
-                                            # practitioner | practitionerrole | 
-                                            # relatedperson 
-    fhir:typeCanonical @<canonical>?;       # Who or what can participate
-    fhir:typeReference @<Reference> AND {fhir:link 
-    			@<CareTeam> OR 
-    			@<Device> OR 
-    			@<DeviceDefinition> OR 
-    			@<Endpoint> OR 
-    			@<Group> OR 
-    			@<HealthcareService> OR 
-    			@<Location> OR 
-    			@<Organization> OR 
-    			@<Patient> OR 
-    			@<Practitioner> OR 
-    			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Who or what can participate
-    fhir:role @<CodeableConcept>?;          # E.g. Nurse, Surgeon, Parent, etc.
-    fhir:function @<CodeableConcept>?;      # E.g. Author, Reviewer, Witness, 
-                                            # etc. 
-    fhir:actor (@<canonical>  AND {fhir:link @<CapabilityStatement> })  OR 
-    			(@<Reference>  AND {fhir:link @<CareTeam> OR 
-    			 @<Device> OR 
-    			 @<DeviceDefinition> OR 
-    			 @<Endpoint> OR 
-    			 @<Group> OR 
-    			 @<HealthcareService> OR 
-    			 @<Location> OR 
-    			 @<Organization> OR 
-    			 @<Patient> OR 
-    			 @<Practitioner> OR 
-    			 @<PractitionerRole> OR 
-    			 @<RelatedPerson> })  ?;  # Who/what is participating?
-}  
-
-# Dynamic aspects of the definition
-<RequestOrchestration.action.dynamicValue> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:path @<string>?;                   # The path to the element to be set 
-                                            # dynamically 
-    fhir:expression @<Expression>?;         # An expression that provides the 
-                                            # dynamic value for the 
-                                            # customization 
+# Input data requirements
+<RequestOrchestration.action.input> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:title @<string>?;                  # User-visible title
+    fhir:requirement @<DataRequirement>?;   # What data is provided
+    fhir:relatedData @<id>?;                # What data is provided
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

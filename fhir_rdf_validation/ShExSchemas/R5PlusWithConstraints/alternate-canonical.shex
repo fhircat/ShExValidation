@@ -24,7 +24,7 @@ IMPORT <CanonicalResource.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/alternate-canonical"]}; 
-    fhir:value (@<canonical>  AND {fhir:link @<CanonicalResource> })  ; 
+    fhir:value (@<canonical>  AND {fhir:link @<CanonicalResource> ?})  ; 
     ^fhir:extension { a [fhir:canonical]}
 
 }  

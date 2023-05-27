@@ -29,6 +29,9 @@ IMPORT <Range.shex>
 IMPORT <string.shex>
 #imported_end
 #imported_begin 
+IMPORT <Coding.shex>
+#imported_end
+#imported_begin 
 IMPORT <Period.shex>
 #imported_end
 #imported_begin 
@@ -161,6 +164,8 @@ start=@<ActivityDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # activity definition 
     fhir:version @<string>?;                # Business version of the activity 
                                             # definition 
+    fhir:versionAlgorithm @<string>  OR 
+    			@<Coding>  ?;  # How to compare versions
     fhir:name @<string>?;                   # Name for this activity definition 
                                             # (computer friendly) 
     fhir:title @<string>?;                  # Name for this activity definition 
@@ -177,8 +182,8 @@ start=@<ActivityDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     			 @<SubstanceDefinition> OR 
     			 @<AdministrableProductDefinition> OR 
     			 @<ManufacturedItemDefinition> OR 
-    			 @<PackagedProductDefinition> })  OR 
-    			(@<canonical>  AND {fhir:link @<EvidenceVariable> })  ?;  # Type of individual the activity 
+    			 @<PackagedProductDefinition> ?})  OR 
+    			(@<canonical>  AND {fhir:link @<EvidenceVariable> ?})  ?;  # Type of individual the activity 
                                             # definition is intended for 
     fhir:date @<dateTime>?;                 # Date last changed
     fhir:publisher @<string>?;              # Name of the publisher/steward 
@@ -192,23 +197,24 @@ start=@<ActivityDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # definition (if applicable) 
     fhir:purpose @<markdown>?;              # Why this activity definition is 
                                             # defined 
-    fhir:usage @<string>?;                  # Describes the clinical usage of 
+    fhir:usage @<markdown>?;                # Describes the clinical usage of 
                                             # the activity definition 
     fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
+    fhir:copyrightLabel @<string>?;         # Copyright holder and year(s)
     fhir:approvalDate @<date>?;             # When the activity definition was 
                                             # approved by publisher 
     fhir:lastReviewDate @<date>?;           # When the activity definition was 
-                                            # last reviewed 
+                                            # last reviewed by the publisher 
     fhir:effectivePeriod @<Period>?;        # When the activity definition is 
                                             # expected to be used 
     fhir:topic @<OneOrMore_CodeableConcept>?;  # E.g. Education, Treatment, 
-                                            # Assessment, etc. 
+                                            # Assessment, etc 
     fhir:author @<OneOrMore_ContactDetail>?;  # Who authored the content
     fhir:editor @<OneOrMore_ContactDetail>?;  # Who edited the content
     fhir:reviewer @<OneOrMore_ContactDetail>?;  # Who reviewed the content
     fhir:endorser @<OneOrMore_ContactDetail>?;  # Who endorsed the content
     fhir:relatedArtifact @<OneOrMore_RelatedArtifact>?;  # Additional documentation, 
-                                            # citations, etc. 
+                                            # citations, etc 
     fhir:library @<OneOrMore_canonical>?;   # Logic used by the activity 
                                             # definition 
     fhir:kind @<code> AND
@@ -235,8 +241,9 @@ start=@<ActivityDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:participant @<OneOrMore_ActivityDefinition.participant>?;  # Who should participate in the 
                                             # action 
     fhir:product (@<Reference>  AND {fhir:link @<Medication> OR 
+    			 @<Ingredient> OR 
     			 @<Substance> OR 
-    			 @<Ingredient> })  OR 
+    			 @<SubstanceDefinition> ?})  OR 
     			@<CodeableConcept>  ?;  # What's administered/supplied
     fhir:quantity @<Quantity>?;             # How much is 
                                             # administered/consumed/supplied 
@@ -273,10 +280,9 @@ start=@<ActivityDefinition> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Who or what can participate
-    fhir:role @<CodeableConcept>?;          # E.g. Nurse, Surgeon, Parent, etc.
-    fhir:function @<CodeableConcept>?;      # E.g. Author, Reviewer, Witness, 
-                                            # etc. 
+    			@<RelatedPerson> ?}?;  # Who or what can participate
+    fhir:role @<CodeableConcept>?;          # E.g. Nurse, Surgeon, Parent, etc
+    fhir:function @<CodeableConcept>?;      # E.g. Author, Reviewer, Witness, etc
 }  
 
 # Dynamic aspects of the definition

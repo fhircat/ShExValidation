@@ -24,7 +24,7 @@ IMPORT <CodeableReference.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/workflow-barrier"]}; 
-    fhir:value (@<CodeableReference>  AND {fhir:link @<Resource> })  ; 
+    fhir:value (@<CodeableReference>  AND {fhir:link @<Resource> ?})  ; 
     ^fhir:extension { a [fhir:Goal]} OR 
           {a [fhir:CommunicationRequest]} OR 
           {^fhir:activity {a [fhir:CarePlan]}}

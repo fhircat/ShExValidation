@@ -105,14 +105,6 @@ start=@<ExampleScenario> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:description @<markdown>?;          # Details about actor
 }  
 
-# Alternate non-typical step action
-<ExampleScenario.process.step.alternative> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:title @<string>;                   # Label for alternative
-    fhir:description @<markdown>?;          # Human-readable description of 
-                                            # option 
-    fhir:step @<OneOrMore_ExampleScenario.process.step>?;  # Alternative action(s)
-}  
-
 # Data used in the scenario
 <ExampleScenario.instance> EXTENDS @<BackboneElement> CLOSED {   
     fhir:key @<string>;                     # ID or acronym of the instance
@@ -128,12 +120,36 @@ start=@<ExampleScenario> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:containedInstance @<OneOrMore_ExampleScenario.instance.containedInstance>?;  # Resources contained in the instance
 }  
 
+# Major process within scenario
+<ExampleScenario.process> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:title @<string>;                   # Label for procss
+    fhir:description @<markdown>?;          # Human-friendly description of the 
+                                            # process 
+    fhir:preConditions @<markdown>?;        # Status before process starts
+    fhir:postConditions @<markdown>?;       # Status after successful completion
+    fhir:step @<OneOrMore_ExampleScenario.process.step>?;  # Event within of the process
+}  
+
 # Snapshot of instance that changes
 <ExampleScenario.instance.version> EXTENDS @<BackboneElement> CLOSED {   
     fhir:key @<string>;                     # ID or acronym of the version
     fhir:title @<string>;                   # Label for instance version
     fhir:description @<markdown>?;          # Details about version
     fhir:content @<Reference>?;             # Example instance version data
+}  
+
+# Resources contained in the instance
+<ExampleScenario.instance.containedInstance> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:instanceReference @<string>;       # Key of contained instance
+    fhir:versionReference @<string>?;       # Key of contained instance version
+}  
+
+# Alternate non-typical step action
+<ExampleScenario.process.step.alternative> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:title @<string>;                   # Label for alternative
+    fhir:description @<markdown>?;          # Human-readable description of 
+                                            # option 
+    fhir:step @<OneOrMore_ExampleScenario.process.step>?;  # Alternative action(s)
 }  
 
 # Step is simple action
@@ -161,22 +177,6 @@ start=@<ExampleScenario> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:pause @<boolean>?;                 # Pause in the flow?
 }  
 
-# Major process within scenario
-<ExampleScenario.process> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:title @<string>;                   # Label for procss
-    fhir:description @<markdown>?;          # Human-friendly description of the 
-                                            # process 
-    fhir:preConditions @<markdown>?;        # Status before process starts
-    fhir:postConditions @<markdown>?;       # Status after successful completion
-    fhir:step @<OneOrMore_ExampleScenario.process.step>?;  # Event within of the process
-}  
-
-# Resources contained in the instance
-<ExampleScenario.instance.containedInstance> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:instanceReference @<string>;       # Key of contained instance
-    fhir:versionReference @<string>?;       # Key of contained instance version
-}  
-
 #---------------------- Cardinality Types (OneOrMore) -------------------
 
 
@@ -202,11 +202,6 @@ start=@<ExampleScenario> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:rest [rdf:nil] OR @<OneOrMore_ExampleScenario.process> 
 }
 
-<OneOrMore_ExampleScenario.process.step> CLOSED {
-    rdf:first @<ExampleScenario.process.step>  ;
-    rdf:rest [rdf:nil] OR @<OneOrMore_ExampleScenario.process.step> 
-}
-
 <OneOrMore_ExampleScenario.instance.version> CLOSED {
     rdf:first @<ExampleScenario.instance.version>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_ExampleScenario.instance.version> 
@@ -215,6 +210,11 @@ start=@<ExampleScenario> AND {fhir:nodeRole [fhir:treeRoot]}
 <OneOrMore_ExampleScenario.instance.containedInstance> CLOSED {
     rdf:first @<ExampleScenario.instance.containedInstance>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_ExampleScenario.instance.containedInstance> 
+}
+
+<OneOrMore_ExampleScenario.process.step> CLOSED {
+    rdf:first @<ExampleScenario.process.step>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_ExampleScenario.process.step> 
 }
 
 <OneOrMore_ExampleScenario.process.step.alternative> CLOSED {

@@ -24,7 +24,7 @@ IMPORT <DiagnosticReport.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/diagnosticReport-summaryOf"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<DiagnosticReport> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<DiagnosticReport> ?})  ; 
     ^fhir:extension { a [fhir:DiagnosticReport]}
 
 }  

@@ -62,15 +62,17 @@ start=@<Medication> AND {fhir:nodeRole [fhir:treeRoot]}
     	{fhir:v @fhirvs:medication-status}?;  # active | inactive | 
                                             # entered-in-error 
     fhir:marketingAuthorizationHolder @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Organization that has 
+    			@<Organization> ?}?;  # Organization that has 
                                             # authorization to market medication 
     fhir:doseForm @<CodeableConcept>?;      # powder | tablets | capsule +
-    fhir:totalVolume @<Ratio>?;             # When the specified product code 
+    fhir:totalVolume @<Quantity>?;          # When the specified product code 
                                             # does not infer a package size, 
                                             # this is the specific amount of 
                                             # drug in the product 
     fhir:ingredient @<OneOrMore_Medication.ingredient>?;  # Active or inactive ingredient
     fhir:batch @<Medication.batch>?;        # Details about packaged medications
+    fhir:definition @<Reference> AND {fhir:link 
+    			@<MedicationKnowledge> ?}?;  # Knowledge about this medication
 }  
 
 # Active or inactive ingredient

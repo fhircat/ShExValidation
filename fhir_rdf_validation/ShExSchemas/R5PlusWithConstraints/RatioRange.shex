@@ -20,30 +20,28 @@ IMPORT <Quantity.shex>
     fhir:denominator @<Quantity>?;          # Denominator value
 } AND (
 
+# Constraint UniqueKey:ratrng-1
+# Human readable:One of lowNumerator or highNumerator and denominator SHALL be present, or all are absent. If all are absent, there SHALL be some extension present
 
-# This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: LessOrEqual
-# # Constraint UniqueKey:inv-2
-# Human readable:If present, lowNumerator SHALL have a lower value than highNumerator
-#
-# Constraint: lowNumerator.empty() or highNumerator.empty() or (lowNumerator <= highNumerator)
+# Constraint: ((lowNumerator.exists() or highNumerator.exists()) and denominator.exists()) or (lowNumerator.empty() and highNumerator.empty() and denominator.empty() and extension.exists())
 # ShEx:
-#
-# NOT { fhir:lowNumerator {fhir:v .} }  OR  NOT { fhir:highNumerator {fhir:v .} }  OR ({ fhir:lowNumerator  LessOrEqual  { fhir:highNumerator } })
-{}
+
+(({fhir:lowNumerator . OR {fhir:highNumerator .}}) AND {fhir:denominator .}) OR ( NOT { fhir:lowNumerator {fhir:v .} }  AND  NOT { fhir:highNumerator {fhir:v .} }  AND  NOT { fhir:denominator {fhir:v .} }  AND {fhir:extension .})
 
 ) AND (
 
 
 # This constraint does not have mapping to a ShEx construct yet.
-# Unmapped construct found: Xor
-# # Constraint UniqueKey:inv-1
-# Human readable:One of lowNumerator or highNumerator and denominator SHALL be present, or all are absent. If all are absent, there SHALL be some extension present
+# Unmapped construct found: lowBoundary
+# Unmapped construct found: LessOrEqual
+# Unmapped construct found: highBoundary
+# # Constraint UniqueKey:ratrng-2
+# Human readable:If present, lowNumerator SHALL have a lower value than highNumerator
 #
-# Constraint: ((lowNumerator.empty() and highNumerator.empty()) xor denominator.exists()) and (lowNumerator.exists() or extension.exists())
+# Constraint: lowNumerator.hasValue().not() or highNumerator.hasValue().not()  or (lowNumerator.lowBoundary() <= highNumerator.highBoundary())
 # ShEx:
 #
-#(( NOT { fhir:lowNumerator {fhir:v .} }  AND  NOT { fhir:highNumerator {fhir:v .} } )  Xor  {fhir:denominator .}) AND ({fhir:lowNumerator . OR {fhir:extension .}})
+# NOT { fhir:lowNumerator . } OR  NOT { fhir:highNumerator . } OR (   lowBoundary  ( fhir:lowNumerator )  LessOrEqual     highBoundary  ( fhir:highNumerator ))
 {}
 
 )

@@ -24,7 +24,7 @@ IMPORT <Quantity.shex>
 # Constraint: (code.exists() or value.empty()) and (system.empty() or system = %ucum) and (code.empty() or code = '1') and (value.empty() or value.hasValue().not() or value.toString().contains('.').not())
 # ShEx:
 #
-#({fhir:code . OR  NOT { fhir:value {fhir:v .} } }) AND ( NOT { fhir:system {fhir:v .} }  OR ({ fhir:system { fhir:v ['http://unitsofmeasure.org'] }  })) AND ( NOT { fhir:code {fhir:v .} }  OR ({ fhir:code { fhir:v ['1'] }  })) AND ( NOT { fhir:value {fhir:v .} }  OR  NOT { fhir:value. } OR  NOT { fhir:value. toString  (  ){ fhir:v ['.'] } })
+#({fhir:code . OR  NOT { fhir:value {fhir:v .} } }) AND ( NOT { fhir:system {fhir:v .} }  OR ({ fhir:system { fhir:v ['http://unitsofmeasure.org'] }  })) AND ( NOT { fhir:code {fhir:v .} }  OR ({ fhir:code { fhir:v ['1'] }  })) AND ( NOT { fhir:value {fhir:v .} }  OR  NOT { fhir:value . } OR  NOT { fhir:value. toString  (  ){ fhir:v ['.'] } })
 {}
 
 )

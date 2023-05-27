@@ -21,14 +21,19 @@ IMPORT <Quantity.shex>
 
 
 # This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: lowBoundary
+# Unmapped construct found: comparable
+# Unmapped construct found: highBoundary
+# Unmapped construct found: lowBoundary
 # Unmapped construct found: LessOrEqual
+# Unmapped construct found: highBoundary
 # # Constraint UniqueKey:rng-2
 # Human readable:If present, low SHALL have a lower value than high
 #
-# Constraint: low.value.empty() or high.value.empty() or (low <= high)
+# Constraint: low.value.empty() or high.value.empty() or low.lowBoundary().comparable(high.highBoundary()).not() or (low.lowBoundary() <= high.highBoundary())
 # ShEx:
 #
-# NOT { fhir:low.value {fhir:v .} }  OR  NOT { fhir:high.value {fhir:v .} }  OR ({ fhir:low  LessOrEqual  { fhir:high } })
+# NOT { fhir:low.value {fhir:v .} }  OR  NOT { fhir:high.value {fhir:v .} }  OR  NOT { fhir:low. lowBoundary  (  ). comparable  (   highBoundary  ( .high )) } OR (   lowBoundary  ( fhir:low )  LessOrEqual     highBoundary  ( fhir:high ))
 {}
 
 )

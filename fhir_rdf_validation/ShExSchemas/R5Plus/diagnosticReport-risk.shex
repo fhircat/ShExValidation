@@ -24,7 +24,7 @@ IMPORT <RiskAssessment.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/diagnosticReport-risk"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<RiskAssessment> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<RiskAssessment> ?})  ; 
     ^fhir:extension { a [fhir:DiagnosticReport]} OR 
           {a [fhir:Observation]}
 

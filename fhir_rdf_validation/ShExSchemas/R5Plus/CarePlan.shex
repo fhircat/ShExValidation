@@ -32,22 +32,13 @@ IMPORT <Period.shex>
 IMPORT <Device.shex>
 #imported_end
 #imported_begin 
-IMPORT <Timing.shex>
-#imported_end
-#imported_begin 
 IMPORT <Patient.shex>
-#imported_end
-#imported_begin 
-IMPORT <boolean.shex>
 #imported_end
 #imported_begin 
 IMPORT <dateTime.shex>
 #imported_end
 #imported_begin 
 IMPORT <CareTeam.shex>
-#imported_end
-#imported_begin 
-IMPORT <Quantity.shex>
 #imported_end
 #imported_begin 
 IMPORT <Resource.shex>
@@ -62,16 +53,10 @@ IMPORT <Reference.shex>
 IMPORT <Encounter.shex>
 #imported_end
 #imported_begin 
-IMPORT <Substance.shex>
-#imported_end
-#imported_begin 
 IMPORT <Identifier.shex>
 #imported_end
 #imported_begin 
 IMPORT <Annotation.shex>
-#imported_end
-#imported_begin 
-IMPORT <Medication.shex>
 #imported_end
 #imported_begin 
 IMPORT <Appointment.shex>
@@ -116,9 +101,6 @@ IMPORT <CodeableReference.shex>
 IMPORT <MedicationRequest.shex>
 #imported_end
 #imported_begin 
-IMPORT <HealthcareService.shex>
-#imported_end
-#imported_begin 
 IMPORT <VisionPrescription.shex>
 #imported_end
 #imported_begin 
@@ -160,9 +142,9 @@ start=@<CarePlan> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:description @<string>?;            # Summary of nature of plan
     fhir:subject @<Reference> AND {fhir:link 
     			@<Group> OR 
-    			@<Patient> ? };  # Who the care plan is for
+    			@<Patient> ?};  # Who the care plan is for
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # The Encounter during which this 
+    			@<Encounter> ?}?;  # The Encounter during which this 
                                             # CarePlan was created 
     fhir:period @<Period>?;                 # Time period plan covers
     fhir:created @<dateTime>?;              # Date record was first recorded
@@ -173,7 +155,7 @@ start=@<CarePlan> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Who is the designated responsible 
+    			@<RelatedPerson> ?}?;  # Who is the designated responsible 
                                             # party 
     fhir:contributor @<OneOrMore_Reference_CareTeam_OR_Device_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Who provided the content of the 
                                             # care plan 
@@ -191,7 +173,7 @@ start=@<CarePlan> AND {fhir:nodeRole [fhir:treeRoot]}
 <CarePlan.activity> EXTENDS @<BackboneElement> CLOSED {   
     fhir:performedActivity @<OneOrMore_CodeableReference>?;  # Results of the activity (concept, 
                                             # or Appointment, Encounter, 
-                                            # Procedure, etc) 
+                                            # Procedure, etc.) 
     fhir:progress @<OneOrMore_Annotation>?;  # Comments about the activity 
                                             # status/progress 
     fhir:plannedActivityReference @<Reference> AND {fhir:link 
@@ -205,54 +187,8 @@ start=@<CarePlan> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<ServiceRequest> OR 
     			@<SupplyRequest> OR 
     			@<Task> OR 
-    			@<VisionPrescription> ? }?;  # Activity that is intended to be 
+    			@<VisionPrescription> ?}?;  # Activity that is intended to be 
                                             # part of the care plan 
-    fhir:plannedActivityDetail @<CarePlan.activity.plannedActivityDetail>?;  # In-line definition of activity
-}  
-
-# In-line definition of activity
-<CarePlan.activity.plannedActivityDetail> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:kind @<code> AND
-    	{fhir:v @fhirvs:care-plan-activity-kind}?;  # Appointment | CommunicationRequest 
-                                            # | DeviceRequest | 
-                                            # MedicationRequest | NutritionOrder 
-                                            # | Task | ServiceRequest | 
-                                            # VisionPrescription 
-    fhir:instantiatesCanonical @<OneOrMore_canonical>?;  # Instantiates FHIR protocol or 
-                                            # definition 
-    fhir:instantiatesUri @<OneOrMore_uri>?;  # Instantiates external protocol or 
-                                            # definition 
-    fhir:code @<CodeableConcept>?;          # Detail type of activity
-    fhir:reason @<OneOrMore_CodeableReference>?;  # Why activity should be done or why 
-                                            # activity was prohibited 
-    fhir:goal @<OneOrMore_Reference_Goal>?;  # Goals this activity relates to
-    fhir:status @<code> AND
-    	{fhir:v @fhirvs:care-plan-activity-status};  # not-started | scheduled | 
-                                            # in-progress | on-hold | completed 
-                                            # | cancelled | stopped | unknown | 
-                                            # entered-in-error 
-    fhir:statusReason @<CodeableConcept>?;  # Reason for current status
-    fhir:doNotPerform @<boolean>?;          # If true, activity is prohibiting 
-                                            # action 
-    fhir:scheduled @<Timing>  OR 
-    			@<Period>  OR 
-    			@<string>  ?;  # When activity is to occur
-    fhir:location @<CodeableReference>?;    # Where it should happen
-    fhir:reported @<boolean>  OR 
-    			(@<Reference>  AND {fhir:link @<Patient> OR 
-    			 @<RelatedPerson> OR 
-    			 @<Practitioner> OR 
-    			 @<PractitionerRole> OR 
-    			 @<Organization> })  ?;  # Reported rather than primary record
-    fhir:performer @<OneOrMore_Reference_CareTeam_OR_Device_OR_HealthcareService_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Who will be responsible?
-    fhir:product @<CodeableConcept>  OR 
-    			(@<Reference>  AND {fhir:link @<Medication> OR 
-    			 @<Substance> })  ?;  # What is to be administered/supplied
-    fhir:dailyAmount @<Quantity>?;          # How to consume/day?
-    fhir:quantity @<Quantity>?;             # How much to 
-                                            # administer/supply/consume 
-    fhir:description @<string>?;            # Extra info describing activity to 
-                                            # perform 
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------
@@ -314,13 +250,7 @@ start=@<CarePlan> AND {fhir:nodeRole [fhir:treeRoot]}
 
 
 
-
-
-
-
 #---------------------- Value Sets ------------------------
-
-
 
 
 

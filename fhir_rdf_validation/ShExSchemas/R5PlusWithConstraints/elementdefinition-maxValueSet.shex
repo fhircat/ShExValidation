@@ -25,7 +25,7 @@ IMPORT <canonical.shex>
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet"]}; 
     fhir:value @<uri>  OR 
-    			(@<canonical>  AND {fhir:link @<ValueSet> })  ; 
+    			(@<canonical>  AND {fhir:link @<ValueSet> ?})  ; 
     ^fhir:extension { ^fhir:binding {a [fhir:ElementDefinition]}}
 
 }  

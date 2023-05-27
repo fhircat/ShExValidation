@@ -95,6 +95,17 @@ start=@<SubstancePolymer> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:structuralRepresentation @<OneOrMore_SubstancePolymer.repeat.repeatUnit.structuralRepresentation>?;  # A graphical structure for this SRU
 }  
 
+# Specifies and quantifies the repeated units and their configuration
+<SubstancePolymer.repeat> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:averageMolecularFormula @<string>?;  # A representation of an (average) 
+                                            # molecular formula from a polymer 
+    fhir:repeatUnitAmountType @<CodeableConcept>?;  # How the quantitative amount of 
+                                            # Structural Repeat Units is 
+                                            # captured (e.g. Exact, Numeric, 
+                                            # Average) 
+    fhir:repeatUnit @<OneOrMore_SubstancePolymer.repeat.repeatUnit>?;  # An SRU - Structural Repeat Unit
+}  
+
 # Applies to homopolymer and block co-polymers where the degree of polymerisation within a block can be described
 <SubstancePolymer.repeat.repeatUnit.degreeOfPolymerisation> EXTENDS @<BackboneElement> CLOSED {   
     fhir:type @<CodeableConcept>?;          # The type of the degree of 
@@ -114,17 +125,6 @@ start=@<SubstancePolymer> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:startingMaterial @<OneOrMore_SubstancePolymer.monomerSet.startingMaterial>?;  # The starting materials - 
                                             # monomer(s) used in the synthesis 
                                             # of the polymer 
-}  
-
-# Specifies and quantifies the repeated units and their configuration
-<SubstancePolymer.repeat> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:averageMolecularFormula @<string>?;  # A representation of an (average) 
-                                            # molecular formula from a polymer 
-    fhir:repeatUnitAmountType @<CodeableConcept>?;  # How the quantitative amount of 
-                                            # Structural Repeat Units is 
-                                            # captured (e.g. Exact, Numeric, 
-                                            # Average) 
-    fhir:repeatUnit @<OneOrMore_SubstancePolymer.repeat.repeatUnit>?;  # An SRU - Structural Repeat Unit
 }  
 
 # The starting materials - monomer(s) used in the synthesis of the polymer
@@ -164,13 +164,13 @@ start=@<SubstancePolymer> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:rest [rdf:nil] OR @<OneOrMore_SubstancePolymer.repeat.repeatUnit.structuralRepresentation> 
 }
 
-<OneOrMore_SubstancePolymer.monomerSet.startingMaterial> CLOSED {
-    rdf:first @<SubstancePolymer.monomerSet.startingMaterial>  ;
-    rdf:rest [rdf:nil] OR @<OneOrMore_SubstancePolymer.monomerSet.startingMaterial> 
-}
-
 <OneOrMore_SubstancePolymer.repeat.repeatUnit> CLOSED {
     rdf:first @<SubstancePolymer.repeat.repeatUnit>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_SubstancePolymer.repeat.repeatUnit> 
+}
+
+<OneOrMore_SubstancePolymer.monomerSet.startingMaterial> CLOSED {
+    rdf:first @<SubstancePolymer.monomerSet.startingMaterial>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_SubstancePolymer.monomerSet.startingMaterial> 
 }
 

@@ -22,7 +22,8 @@ IMPORT <Extension.shex>
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"]}; 
     fhir:value @<string>  ; 
-    ^fhir:extension { ^fhir:binding {a [fhir:ElementDefinition]}}
+    ^fhir:extension { ^fhir:binding {a [fhir:ElementDefinition]}} OR 
+          {^fhir:binding {^fhir:parameter {a [fhir:OperationDefinition]}}}
 
 }  
 

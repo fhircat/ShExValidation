@@ -20,6 +20,9 @@ IMPORT <DataType.shex>
 IMPORT <Quantity.shex>
 #imported_end
 #imported_begin 
+IMPORT <canonical.shex>
+#imported_end
+#imported_begin 
 IMPORT <positiveInt.shex>
 #imported_end
 # A series of measurements taken by a device
@@ -28,7 +31,7 @@ IMPORT <positiveInt.shex>
     a [fhir:SampledData]?;
 
     fhir:origin @<Quantity>;                # Zero value and units
-    fhir:interval @<decimal>;               # Number of intervalUnits between 
+    fhir:interval @<decimal>?;              # Number of intervalUnits between 
                                             # samples 
     fhir:intervalUnit @<code> AND
     	{fhir:v @fhirvs:ucum-units};  # The measurement unit of the 
@@ -39,9 +42,27 @@ IMPORT <positiveInt.shex>
     fhir:upperLimit @<decimal>?;            # Upper limit of detection
     fhir:dimensions @<positiveInt>;         # Number of sample points at each 
                                             # time point 
+    fhir:codeMap @<canonical>?;             # Defines the codes used in the data
+    fhir:offsets @<string>?;                # Offsets, typically in time, at 
+                                            # which data values were taken 
     fhir:data @<string>?;                   # Decimal values with spaces, or "E" 
-                                            # | "U" | "L" 
-}  
+                                            # | "U" | "L", or another code 
+} AND (
+
+
+# This constraint does not have mapping to a ShEx construct yet.
+# Unmapped construct found: Xor
+# # Constraint UniqueKey:sdd-1
+# Human readable:A SampledData SAHLL have either an interval and offsets but not both
+#
+# Constraint: interval.exists().not() xor offsets.exists().not()
+# ShEx:
+#
+# NOT { fhir:interval . }  Xor   NOT { fhir:offsets . }
+{}
+
+)
+ 
 
 #---------------------- Value Sets ------------------------
 

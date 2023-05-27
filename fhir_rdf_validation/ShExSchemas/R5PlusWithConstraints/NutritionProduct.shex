@@ -29,10 +29,10 @@ IMPORT <dateTime.shex>
 IMPORT <Annotation.shex>
 #imported_end
 #imported_begin 
-IMPORT <Attachment.shex>
+IMPORT <Identifier.shex>
 #imported_end
 #imported_begin 
-IMPORT <Identifier.shex>
+IMPORT <Attachment.shex>
 #imported_end
 #imported_begin 
 IMPORT <base64Binary.shex>
@@ -92,25 +92,12 @@ start=@<NutritionProduct> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:note @<OneOrMore_Annotation>?;     # Comments made about the product
 }  
 
-# Specifies descriptive properties of the nutrition product
-<NutritionProduct.characteristic> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:type @<CodeableConcept>;           # Code specifying the type of 
-                                            # characteristic 
-    fhir:value @<CodeableConcept>  OR 
-    			@<string>  OR 
-    			@<SimpleQuantity>  OR 
-    			@<base64Binary>  OR 
-    			@<Attachment>  OR 
-    			@<boolean>  ;  # The value of the characteristic
-}  
-
-# The product's nutritional information expressed by the nutrients
-<NutritionProduct.nutrient> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:item @<CodeableReference>?;        # The (relevant) nutrients in the 
+# Ingredients contained in this product
+<NutritionProduct.ingredient> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:item @<CodeableReference>;         # The ingredient contained in the 
                                             # product 
-    fhir:amount @<OneOrMore_Ratio>?;        # The amount of nutrient expressed 
-                                            # in one or more units: X per pack / 
-                                            # per serving / per dose 
+    fhir:amount @<OneOrMore_Ratio>?;        # The amount of ingredient that is 
+                                            # in the product 
 }  
 
 # One or several physical instances or occurrences of the nutrition product
@@ -134,12 +121,25 @@ start=@<NutritionProduct> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # entities was obtained or pooled 
 }  
 
-# Ingredients contained in this product
-<NutritionProduct.ingredient> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:item @<CodeableReference>;         # The ingredient contained in the 
+# Specifies descriptive properties of the nutrition product
+<NutritionProduct.characteristic> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:type @<CodeableConcept>;           # Code specifying the type of 
+                                            # characteristic 
+    fhir:value @<CodeableConcept>  OR 
+    			@<string>  OR 
+    			@<SimpleQuantity>  OR 
+    			@<base64Binary>  OR 
+    			@<Attachment>  OR 
+    			@<boolean>  ;  # The value of the characteristic
+}  
+
+# The product's nutritional information expressed by the nutrients
+<NutritionProduct.nutrient> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:item @<CodeableReference>?;        # The (relevant) nutrients in the 
                                             # product 
-    fhir:amount @<OneOrMore_Ratio>?;        # The amount of ingredient that is 
-                                            # in the product 
+    fhir:amount @<OneOrMore_Ratio>?;        # The amount of nutrient expressed 
+                                            # in one or more units: X per pack / 
+                                            # per serving / per dose 
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

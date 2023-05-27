@@ -97,11 +97,11 @@ start=@<DeviceUsage> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # classifying how the statement is 
                                             # made 
     fhir:patient @<Reference> AND {fhir:link 
-    			@<Patient> ? };  # Patient using device
+    			@<Patient> ?};  # Patient using device
     fhir:derivedFrom @<OneOrMore_Reference_Claim_OR_DocumentReference_OR_Observation_OR_Procedure_OR_QuestionnaireResponse_OR_ServiceRequest>?;  # Supporting information
     fhir:context @<Reference> AND {fhir:link 
     			@<Encounter> OR 
-    			@<EpisodeOfCare> ? }?;  # The encounter or episode of care 
+    			@<EpisodeOfCare> ?}?;  # The encounter or episode of care 
                                             # that establishes the context for 
                                             # this device use statement 
     fhir:timing @<Timing>  OR 
@@ -122,7 +122,7 @@ start=@<DeviceUsage> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Who made the statement
+    			@<RelatedPerson> ?}?;  # Who made the statement
     fhir:device @<CodeableReference>;       # Code or Reference to device used
     fhir:reason @<OneOrMore_CodeableReference>?;  # Why device was used
     fhir:bodySite @<CodeableReference>?;    # Target body site

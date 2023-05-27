@@ -99,7 +99,7 @@ start=@<Subscription> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Entity responsible for 
+    			@<RelatedPerson> ?}?;  # Entity responsible for 
                                             # Subscription changes 
     fhir:reason @<string>?;                 # Description of why this 
                                             # subscription was created 
@@ -107,7 +107,7 @@ start=@<Subscription> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # subscription topic stream 
     fhir:channelType @<Coding>;             # Channel type for notifications
     fhir:endpoint @<url>?;                  # Where the channel points to
-    fhir:header @<OneOrMore_string>?;       # Usage depends on the channel type
+    fhir:parameter @<OneOrMore_Subscription.parameter>?;  # Channel type
     fhir:heartbeatPeriod @<unsignedInt>?;   # Interval in seconds to send 
                                             # 'heartbeat' notification 
     fhir:timeout @<unsignedInt>?;           # Timeout in seconds to attempt 
@@ -117,24 +117,62 @@ start=@<Subscription> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # payload 
     fhir:content @<code> AND
     	{fhir:v @fhirvs:subscription-payload-content}?;  # empty | id-only | full-resource
-    fhir:maxCount @<positiveInt>?;          # Maximum number of triggering 
-                                            # resources included in notification 
-                                            # bundles 
+    fhir:maxCount @<positiveInt>?;          # Maximum number of events that can 
+                                            # be combined in a single 
+                                            # notification 
+} AND (
+
+# Constraint UniqueKey:scr-1
+# Human readable:Subscription filters may only contain a modifier or a comparator
+
+# Constraint: (comparator.exists() and modifier.exists()).not()
+# ShEx:
+
+# UPDATED_TO_FIX
+
+ NOT ( {fhir:comparator . } AND {fhir:modifier .} )
+
+)
+ 
+
+# Channel type
+<Subscription.parameter> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:name @<string>;                    # Name (key) of the parameter
+    fhir:value @<string>;                   # Value of the parameter to use or 
+                                            # pass through 
 }  
 
 # Criteria for narrowing the subscription topic stream
 <Subscription.filterBy> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:resourceType @<uri>?;              # Allowed Data type or Resource 
-                                            # (reference to definition) for this 
-                                            # Subscription 
+    fhir:resourceType @<uri>?;              # Allowed Resource (reference to 
+                                            # definition) for this Subscription 
+                                            # filter 
     fhir:filterParameter @<string>;         # Filter label defined in 
                                             # SubscriptionTopic 
+    fhir:comparator @<code> AND
+    	{fhir:v @fhirvs:search-comparator}?;  # eq | ne | gt | lt | ge | le | sa | 
+                                            # eb | ap 
     fhir:modifier @<code> AND
-    	{fhir:v @fhirvs:subscription-search-modifier}?;  # = | eq | ne | gt | lt | ge | le | 
-                                            # sa | eb | ap | above | below | in 
-                                            # | not-in | of-type 
+    	{fhir:v @fhirvs:search-modifier-code}?;  # missing | exact | contains | not | 
+                                            # text | in | not-in | below | above 
+                                            # | type | identifier | of-type | 
+                                            # code-text | text-advanced | 
+                                            # iterate 
     fhir:value @<string>;                   # Literal value or resource path
-}  
+} AND (
+
+# Constraint UniqueKey:scr-1
+# Human readable:Subscription filters may only contain a modifier or a comparator
+
+# Constraint: (comparator.exists() and modifier.exists()).not()
+# ShEx:
+
+# UPDATED_TO_FIX
+
+ NOT ( {fhir:comparator .} AND {fhir:modifier .})
+
+)
+ 
 
 #---------------------- Cardinality Types (OneOrMore) -------------------
 
@@ -147,9 +185,13 @@ start=@<Subscription> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:rest [rdf:nil] OR @<OneOrMore_Subscription.filterBy> 
 }
 
-
+<OneOrMore_Subscription.parameter> CLOSED {
+    rdf:first @<Subscription.parameter>  ;
+    rdf:rest [rdf:nil] OR @<OneOrMore_Subscription.parameter> 
+}
 
 #---------------------- Value Sets ------------------------
+
 
 
 

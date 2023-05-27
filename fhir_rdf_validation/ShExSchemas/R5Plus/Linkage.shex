@@ -48,7 +48,7 @@ start=@<Linkage> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:author @<Reference> AND {fhir:link 
     			@<Organization> OR 
     			@<Practitioner> OR 
-    			@<PractitionerRole> ? }?;  # Who is responsible for linkages
+    			@<PractitionerRole> ?}?;  # Who is responsible for linkages
     fhir:item @<OneOrMore_Linkage.item>;    # Item to be linked
 }  
 
@@ -57,7 +57,7 @@ start=@<Linkage> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:type @<code> AND
     	{fhir:v @fhirvs:linkage-type};  # source | alternate | historical
     fhir:resource @<Reference> AND {fhir:link 
-    			@<Resource> ? };  # Resource being linked
+    			@<Resource> ?};  # Resource being linked
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

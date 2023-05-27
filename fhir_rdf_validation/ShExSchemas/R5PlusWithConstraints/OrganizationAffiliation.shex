@@ -43,7 +43,7 @@ IMPORT <ExtendedContactDetail.shex>
 
 start=@<OrganizationAffiliation> AND {fhir:nodeRole [fhir:treeRoot]}
 
-# Defines an affiliation/assotiation/relationship between 2 distinct organizations, that is not a part-of relationship/sub-division relationship
+# Defines an affiliation/association/relationship between 2 distinct organizations, that is not a part-of relationship/sub-division relationship
 <OrganizationAffiliation> EXTENDS @<DomainResource> CLOSED {   
 
     a [fhir:OrganizationAffiliation]?;
@@ -59,10 +59,10 @@ start=@<OrganizationAffiliation> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # affiliated with the primary 
                                             # organization 
     fhir:organization @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Organization where the role is 
+    			@<Organization> ?}?;  # Organization where the role is 
                                             # available 
     fhir:participatingOrganization @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Organization that 
+    			@<Organization> ?}?;  # Organization that 
                                             # provides/performs the role (e.g. 
                                             # providing services or is a member 
                                             # of) 

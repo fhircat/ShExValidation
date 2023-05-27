@@ -51,17 +51,17 @@ start=@<EnrollmentResponse> AND {fhir:nodeRole [fhir:treeRoot]}
     	{fhir:v @fhirvs:fm-status}?;  # active | cancelled | draft | 
                                             # entered-in-error 
     fhir:request @<Reference> AND {fhir:link 
-    			@<EnrollmentRequest> ? }?;  # Claim reference
+    			@<EnrollmentRequest> ?}?;  # Claim reference
     fhir:outcome @<code> AND
     	{fhir:v @fhirvs:enrollment-outcome}?;  # queued | complete | error | partial
     fhir:disposition @<string>?;            # Disposition Message
     fhir:created @<dateTime>?;              # Creation date
     fhir:organization @<Reference> AND {fhir:link 
-    			@<Organization> ? }?;  # Insurer
+    			@<Organization> ?}?;  # Insurer
     fhir:requestProvider @<Reference> AND {fhir:link 
     			@<Organization> OR 
     			@<Practitioner> OR 
-    			@<PractitionerRole> ? }?;  # Responsible practitioner
+    			@<PractitionerRole> ?}?;  # Responsible practitioner
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

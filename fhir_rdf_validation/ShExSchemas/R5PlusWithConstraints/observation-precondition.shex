@@ -16,7 +16,7 @@ IMPORT <Reference.shex>
 #imported_begin 
 IMPORT <Observation.shex>
 #imported_end
-# Other Observations needed to aid in  the interpretation of the source observation.
+# Other Observations needed to understand the context and significance of the source observation.
 <observation-precondition> EXTENDS @<Extension> CLOSED {   
 
     a [fhir:observation-precondition]?;
@@ -24,7 +24,7 @@ IMPORT <Observation.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/observation-precondition"]}; 
-    fhir:value (@<Reference>  AND {fhir:link @<Observation> })  ; 
+    fhir:value (@<Reference>  AND {fhir:link @<Observation> ?})  ; 
     ^fhir:extension { a [fhir:Observation]}
 
 }  

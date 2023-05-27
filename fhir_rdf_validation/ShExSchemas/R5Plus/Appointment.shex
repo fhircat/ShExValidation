@@ -151,15 +151,18 @@ start=@<Appointment> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:supportingInformation @<OneOrMore_Reference_Resource>?;  # Additional information to support 
                                             # the appointment 
     fhir:previousAppointment @<Reference> AND {fhir:link 
-    			@<Appointment> ? }?;  # The previous appointment in a 
+    			@<Appointment> ?}?;  # The previous appointment in a 
                                             # series 
     fhir:originatingAppointment @<Reference> AND {fhir:link 
-    			@<Appointment> ? }?;  # The originating appointment in a 
+    			@<Appointment> ?}?;  # The originating appointment in a 
                                             # recurring set of appointments 
     fhir:start @<instant>?;                 # When appointment is to take place
     fhir:end @<instant>?;                   # When appointment is to conclude
     fhir:minutesDuration @<positiveInt>?;   # Can be less than start/end (e.g. 
                                             # estimate) 
+    fhir:requestedPeriod @<OneOrMore_Period>?;  # Potential date/time interval(s) 
+                                            # requested to allocate the 
+                                            # appointment within 
     fhir:slot @<OneOrMore_Reference_Slot>?;  # The slots that this appointment is 
                                             # filling 
     fhir:account @<OneOrMore_Reference_Account>?;  # The set of accounts that may be 
@@ -167,6 +170,7 @@ start=@<Appointment> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # Appointment 
     fhir:created @<dateTime>?;              # The date that this appointment was 
                                             # initially created 
+    fhir:cancellationDate @<dateTime>?;     # When the appointment was cancelled
     fhir:note @<OneOrMore_Annotation>?;     # Additional comments
     fhir:patientInstruction @<OneOrMore_CodeableReference>?;  # Detailed information and 
                                             # instructions for the patient 
@@ -174,13 +178,10 @@ start=@<Appointment> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # allocated to assess 
     fhir:subject @<Reference> AND {fhir:link 
     			@<Group> OR 
-    			@<Patient> ? }?;  # The patient or group associated 
+    			@<Patient> ?}?;  # The patient or group associated 
                                             # with the appointment 
     fhir:participant @<OneOrMore_Appointment.participant>;  # Participants involved in 
                                             # appointment 
-    fhir:requestedPeriod @<OneOrMore_Period>?;  # Potential date/time interval(s) 
-                                            # requested to allocate the 
-                                            # appointment within 
     fhir:recurrenceId @<positiveInt>?;      # The sequence number in the 
                                             # recurrence 
     fhir:occurrenceChanged @<boolean>?;     # Indicates that this appointment 
@@ -234,6 +235,11 @@ start=@<Appointment> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:monthInterval @<positiveInt>;      # Recurs every nth month
 }  
 
+# Information about yearly recurring appointments
+<Appointment.recurrenceTemplate.yearlyTemplate> EXTENDS @<BackboneElement> CLOSED {   
+    fhir:yearInterval @<positiveInt>;       # Recurs every nth year
+}  
+
 # Participants involved in appointment
 <Appointment.participant> EXTENDS @<BackboneElement> CLOSED {   
     fhir:type @<OneOrMore_CodeableConcept>?;  # Role of participant in the 
@@ -248,7 +254,7 @@ start=@<Appointment> AND {fhir:nodeRole [fhir:treeRoot]}
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # The individual, device, location, 
+    			@<RelatedPerson> ?}?;  # The individual, device, location, 
                                             # or service participating in the 
                                             # appointment 
     fhir:required @<boolean>?;              # The participant is required to 
@@ -258,12 +264,9 @@ start=@<Appointment> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # needs-action 
 }  
 
-# Information about yearly recurring appointments
-<Appointment.recurrenceTemplate.yearlyTemplate> EXTENDS @<BackboneElement> CLOSED {   
-    fhir:yearInterval @<positiveInt>;       # Recurs every nth year
-}  
-
 #---------------------- Cardinality Types (OneOrMore) -------------------
+
+
 
 
 
@@ -307,8 +310,6 @@ start=@<Appointment> AND {fhir:nodeRole [fhir:treeRoot]}
     rdf:first @<Appointment.participant>  ;
     rdf:rest [rdf:nil] OR @<OneOrMore_Appointment.participant> 
 }
-
-
 
 <OneOrMore_Appointment.recurrenceTemplate> CLOSED {
     rdf:first @<Appointment.recurrenceTemplate>  ;

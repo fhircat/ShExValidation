@@ -17,6 +17,9 @@ IMPORT <date.shex>
 IMPORT <code.shex>
 #imported_end
 #imported_begin 
+IMPORT <string.shex>
+#imported_end
+#imported_begin 
 IMPORT <Device.shex>
 #imported_end
 #imported_begin 
@@ -36,6 +39,9 @@ IMPORT <dateTime.shex>
 #imported_end
 #imported_begin 
 IMPORT <Resource.shex>
+#imported_end
+#imported_begin 
+IMPORT <Quantity.shex>
 #imported_end
 #imported_begin 
 IMPORT <Reference.shex>
@@ -78,15 +84,18 @@ start=@<ArtifactAssessment> AND {fhir:nodeRole [fhir:treeRoot]}
 
     fhir:identifier @<OneOrMore_Identifier>?;  # Additional identifier for the 
                                             # artifact assessment 
-    fhir:citeAs (@<Reference>  AND {fhir:link @<Citation> })  OR 
+    fhir:title @<string>?;                  # A short title for the assessment 
+                                            # for use in displaying and 
+                                            # selecting 
+    fhir:citeAs (@<Reference>  AND {fhir:link @<Citation> ?})  OR 
     			@<markdown>  ?;  # How to cite the comment or rating
     fhir:date @<dateTime>?;                 # Date last changed
     fhir:copyright @<markdown>?;            # Use and/or publishing restrictions
     fhir:approvalDate @<date>?;             # When the artifact assessment was 
                                             # approved by publisher 
     fhir:lastReviewDate @<date>?;           # When the artifact assessment was 
-                                            # last reviewed 
-    fhir:artifact (@<Reference>  AND {fhir:link @<Resource> })  OR 
+                                            # last reviewed by the publisher 
+    fhir:artifact (@<Reference>  AND {fhir:link @<Resource> ?})  OR 
     			@<canonical>  OR 
     			@<uri>  ;  # The artifact assessed, commented 
                                             # upon or rated 
@@ -98,12 +107,16 @@ start=@<ArtifactAssessment> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # resolved-no-change | 
                                             # resolved-change-required | 
                                             # deferred | duplicate | applied | 
-                                            # published 
+                                            # published | entered-in-error 
     fhir:disposition @<code> AND
     	{fhir:v @fhirvs:artifactassessment-disposition}?;  # unresolved | not-persuasive | 
                                             # persuasive | 
                                             # persuasive-with-modification | 
                                             # not-persuasive-with-modification 
+}  
+
+# Contained content
+<ArtifactAssessment.content.componentnull> CLOSED {   
 }  
 
 # Comment, classifier, or rating content
@@ -115,21 +128,18 @@ start=@<ArtifactAssessment> AND {fhir:nodeRole [fhir:treeRoot]}
     fhir:summary @<markdown>?;              # Brief summary of the content
     fhir:type @<CodeableConcept>?;          # What type of content
     fhir:classifier @<OneOrMore_CodeableConcept>?;  # Rating, classifier, or assessment
+    fhir:quantity @<Quantity>?;             # Quantitative rating
     fhir:author @<Reference> AND {fhir:link 
     			@<Device> OR 
     			@<Organization> OR 
     			@<Patient> OR 
     			@<Practitioner> OR 
-    			@<PractitionerRole> ? }?;  # Who authored the content
+    			@<PractitionerRole> ?}?;  # Who authored the content
     fhir:path @<OneOrMore_uri>?;            # What the comment is directed to
     fhir:relatedArtifact @<OneOrMore_RelatedArtifact>?;  # Additional information
     fhir:freeToShare @<boolean>?;           # Acceptable to publicly share the 
                                             # resource content 
     fhir:component @<OneOrMore_ArtifactAssessment.content>?;  # Contained content
-}  
-
-# Contained content
-<ArtifactAssessment.content.componentnull> CLOSED {   
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

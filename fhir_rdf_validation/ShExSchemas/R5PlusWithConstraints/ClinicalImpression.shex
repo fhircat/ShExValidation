@@ -90,19 +90,19 @@ start=@<ClinicalImpression> AND {fhir:nodeRole [fhir:treeRoot]}
                                             # performed 
     fhir:subject @<Reference> AND {fhir:link 
     			@<Group> OR 
-    			@<Patient> ? };  # Patient or group assessed
+    			@<Patient> ?};  # Patient or group assessed
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # The Encounter during which this 
+    			@<Encounter> ?}?;  # The Encounter during which this 
                                             # ClinicalImpression was created 
     fhir:effective @<dateTime>  OR 
     			@<Period>  ?;  # Time of assessment
     fhir:date @<dateTime>?;                 # When the assessment was documented
     fhir:performer @<Reference> AND {fhir:link 
     			@<Practitioner> OR 
-    			@<PractitionerRole> ? }?;  # The clinician performing the 
+    			@<PractitionerRole> ?}?;  # The clinician performing the 
                                             # assessment 
     fhir:previous @<Reference> AND {fhir:link 
-    			@<ClinicalImpression> ? }?;  # Reference to last assessment
+    			@<ClinicalImpression> ?}?;  # Reference to last assessment
     fhir:problem @<OneOrMore_Reference_AllergyIntolerance_OR_Condition>?;  # Relevant impressions of patient 
                                             # state 
     fhir:changePattern @<CodeableConcept>?;  # Change in the status/pattern of a 

@@ -24,7 +24,7 @@ IMPORT <GraphDefinition.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/elementdefinition-graphConstraint"]}; 
-    fhir:value (@<canonical>  AND {fhir:link @<GraphDefinition> })  ; 
+    fhir:value (@<canonical>  AND {fhir:link @<GraphDefinition> ?})  ; 
     ^fhir:extension { ^fhir:targetProfile {^fhir:type {a [fhir:ElementDefinition]}}}
 
 }  

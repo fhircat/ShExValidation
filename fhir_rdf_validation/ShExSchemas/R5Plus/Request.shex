@@ -14,6 +14,9 @@ IMPORT <Base.shex>
 IMPORT <code.shex>
 #imported_end
 #imported_begin 
+IMPORT <Task.shex>
+#imported_end
+#imported_begin 
 IMPORT <Group.shex>
 #imported_end
 #imported_begin 
@@ -44,9 +47,6 @@ IMPORT <CareTeam.shex>
 IMPORT <CarePlan.shex>
 #imported_end
 #imported_begin 
-IMPORT <Contract.shex>
-#imported_end
-#imported_begin 
 IMPORT <Endpoint.shex>
 #imported_end
 #imported_begin 
@@ -63,6 +63,9 @@ IMPORT <Reference.shex>
 #imported_end
 #imported_begin 
 IMPORT <Encounter.shex>
+#imported_end
+#imported_begin 
+IMPORT <Transport.shex>
 #imported_end
 #imported_begin 
 IMPORT <Identifier.shex>
@@ -119,8 +122,8 @@ IMPORT <ImmunizationRecommendation.shex>
     fhir:nodeRole [fhir:treeRoot]?;
 
     fhir:identifier @<OneOrMore_Identifier>?;  # Business Identifier for {{title}}
-    fhir:basedOn @<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_Claim_OR_CommunicationRequest_OR_Contract_OR_CoverageEligibilityRequest_OR_DeviceRequest_OR_EnrollmentRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_RequestOrchestration_OR_ServiceRequest_OR_SupplyRequest_OR_VisionPrescription>?;  # Fulfills plan, proposal or order
-    fhir:replaces @<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_Claim_OR_CommunicationRequest_OR_Contract_OR_CoverageEligibilityRequest_OR_DeviceRequest_OR_EnrollmentRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_RequestOrchestration_OR_ServiceRequest_OR_SupplyRequest_OR_VisionPrescription>?;  # Request(s) replaced by this 
+    fhir:basedOn @<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_Claim_OR_CommunicationRequest_OR_CoverageEligibilityRequest_OR_DeviceRequest_OR_EnrollmentRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_RequestOrchestration_OR_ServiceRequest_OR_SupplyRequest_OR_Task_OR_Transport_OR_VisionPrescription>?;  # Fulfills plan, proposal or order
+    fhir:replaces @<OneOrMore_Reference_Appointment_OR_AppointmentResponse_OR_CarePlan_OR_Claim_OR_CommunicationRequest_OR_CoverageEligibilityRequest_OR_DeviceRequest_OR_EnrollmentRequest_OR_ImmunizationRecommendation_OR_MedicationRequest_OR_NutritionOrder_OR_RequestOrchestration_OR_ServiceRequest_OR_SupplyRequest_OR_Task_OR_Transport_OR_VisionPrescription>?;  # Request(s) replaced by this 
                                             # {{title}} 
     fhir:groupIdentifier @<Identifier>?;    # Composite request this is part of
     fhir:status @<code> AND
@@ -143,10 +146,10 @@ IMPORT <ImmunizationRecommendation.shex>
     fhir:product @<CodeableReference>?;     # Product requested/ordered
     fhir:subject @<Reference> AND {fhir:link 
     			@<Group> OR 
-    			@<Patient> ? };  # Individual the service is 
+    			@<Patient> ?};  # Individual the service is 
                                             # ordered/prohibited for 
     fhir:encounter @<Reference> AND {fhir:link 
-    			@<Encounter> ? }?;  # Encounter the {{title}} is tied to
+    			@<Encounter> ?}?;  # Encounter the {{title}} is tied to
     fhir:occurrence @<dateTime>  OR 
     			@<Period>  OR 
     			@<Timing>  ?;  # When service should (not) occur
@@ -158,13 +161,13 @@ IMPORT <ImmunizationRecommendation.shex>
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Who/what is requesting service
+    			@<RelatedPerson> ?}?;  # Who/what is requesting service
     fhir:reported @<boolean>  OR 
     			(@<Reference>  AND {fhir:link @<Patient> OR 
     			 @<RelatedPerson> OR 
     			 @<Practitioner> OR 
     			 @<PractitionerRole> OR 
-    			 @<Organization> })  ?;  # Reported rather than primary record
+    			 @<Organization> ?})  ?;  # Reported rather than primary record
     fhir:performerType @<CodeableConcept>?;  # Desired kind of service performer
     fhir:performer @<Reference> AND {fhir:link 
     			@<CareTeam> OR 
@@ -174,7 +177,7 @@ IMPORT <ImmunizationRecommendation.shex>
     			@<Patient> OR 
     			@<Practitioner> OR 
     			@<PractitionerRole> OR 
-    			@<RelatedPerson> ? }?;  # Specific desired (non)performer
+    			@<RelatedPerson> ?}?;  # Specific desired (non)performer
     fhir:deliverTo @<OneOrMore_Reference_CareTeam_OR_Device_OR_Endpoint_OR_HealthcareService_OR_Location_OR_Organization_OR_Patient_OR_Practitioner_OR_PractitionerRole_OR_RelatedPerson>?;  # Who should receive result of 
                                             # {{title}} 
     fhir:reason @<OneOrMore_CodeableReference>?;  # Why is service (not) needed?
@@ -186,6 +189,8 @@ IMPORT <ImmunizationRecommendation.shex>
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------
+
+
 
 
 

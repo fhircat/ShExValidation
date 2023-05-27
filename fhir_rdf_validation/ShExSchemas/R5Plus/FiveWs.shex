@@ -76,11 +76,11 @@ IMPORT <CodeableConcept.shex>
                                             # potential impact of the content of 
                                             # the resource 
     fhir:what @<CodeableConcept>  OR 
-    			(@<Reference>  AND {fhir:link @<Resource> })  ?;  # What this resource is about
+    			(@<Reference>  AND {fhir:link @<Resource> ?})  ?;  # What this resource is about
     fhir:subject @<OneOrMore_Reference_Organization_OR_Patient_OR_Practitioner_OR_RelatedPerson>?;  # Who this resource is about
     fhir:context @<Reference> AND {fhir:link 
     			@<Encounter> OR 
-    			@<EpisodeOfCare> ? }?;  # Context for the work described in 
+    			@<EpisodeOfCare> ?}?;  # Context for the work described in 
                                             # this resource 
     fhir:init @<dateTime>?;                 # When the work described in this 
                                             # resource was started (or will be) 
@@ -105,9 +105,9 @@ IMPORT <CodeableConcept.shex>
     fhir:who @<OneOrMore_Reference_Organization_OR_Patient_OR_Practitioner_OR_RelatedPerson>?;  # An actor involved in the work 
                                             # described by this resource 
     fhir:where @<OneOrMore_CodeableConcept>  OR 
-    			(@<OneOrMore_Reference>  AND {fhir:link @<OneOrMore_Location> })  ?;  # The location of the work described
+    			(@<OneOrMore_Reference>  AND {fhir:link @<OneOrMore_Location> ?})  ?;  # The location of the work described
     fhir:why @<OneOrMore_CodeableConcept>  OR 
-    			(@<OneOrMore_Reference>  AND {fhir:link @<OneOrMore_Resource> })  ?;  # Why this work was done
+    			(@<OneOrMore_Reference>  AND {fhir:link @<OneOrMore_Resource> ?})  ?;  # Why this work was done
 }  
 
 #---------------------- Cardinality Types (OneOrMore) -------------------

@@ -8,9 +8,6 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 IMPORT <uri.shex>
 #imported_end
 #imported_begin 
-IMPORT <List.shex>
-#imported_end
-#imported_begin 
 IMPORT <Extension.shex>
 #imported_end
 #imported_begin 
@@ -24,7 +21,7 @@ IMPORT <CodeableConcept.shex>
 
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/list-category"]}; 
-    fhir:value (@<CodeableConcept>  AND {fhir:link @<List> })  ; 
+    fhir:value @<CodeableConcept>  ; 
     ^fhir:extension { a [fhir:List]}
 
 }  

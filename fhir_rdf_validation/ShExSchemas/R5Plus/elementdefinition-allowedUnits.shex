@@ -28,7 +28,7 @@ IMPORT <CodeableConcept.shex>
     fhir:url @<uri> AND
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/elementdefinition-allowedUnits"]}; 
     fhir:value @<CodeableConcept>  OR 
-    			(@<canonical>  AND {fhir:link @<ValueSet> })  ; 
+    			(@<canonical>  AND {fhir:link @<ValueSet> ?})  ; 
     ^fhir:extension { a [fhir:ElementDefinition]}
 
 }  

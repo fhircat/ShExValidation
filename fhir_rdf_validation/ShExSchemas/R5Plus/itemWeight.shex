@@ -23,10 +23,7 @@ IMPORT <Extension.shex>
     	{fhir:value ["http://hl7.org/fhir/StructureDefinition/itemWeight"]}; 
     fhir:value @<decimal>  ; 
     ^fhir:extension { a [fhir:Coding]} OR 
-          {^fhir:answerOption {^fhir:item {a [fhir:Questionnaire]}}} OR 
-          {^fhir:concept {a [fhir:CodeSystem]}} OR 
-          {^fhir:concept {^fhir:include {^fhir:compose {a [fhir:ValueSet]}}}} OR 
-          {^fhir:contains {^fhir:expansion {a [fhir:ValueSet]}}}
+          {^fhir:answerOption {^fhir:item {a [fhir:Questionnaire]}}}
 
 }  
 
