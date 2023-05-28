@@ -5,12 +5,13 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 
 #imported_begin 
-IMPORT <string.shex>
+IMPORT <PrimitiveType.shex>
 #imported_end
 # Primitive Type code
-<code> EXTENDS @<string> CLOSED {   
+<code> EXTENDS @<PrimitiveType> CLOSED {   
 
     a [fhir:code]?;
 
+    fhir:v xsd:token ?;
 }  
 

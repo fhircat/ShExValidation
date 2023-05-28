@@ -5,12 +5,14 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 
 #imported_begin 
-IMPORT <uri.shex>
+IMPORT <PrimitiveType.shex>
 #imported_end
 # Primitive Type canonical
-<canonical> EXTENDS @<uri> CLOSED {   
+<canonical> EXTENDS @<PrimitiveType> CLOSED {   
 
     a [fhir:canonical]?;
+
+    fhir:v xsd:anyURI ?;
 
 }  
 

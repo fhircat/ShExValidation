@@ -101,7 +101,10 @@ def process_examples():
 
                     # if len(processed) < 3:
                     log_file = f"{shex_name}-{rdf_file}.log"
-                    append_script(f"\nset -x; validate --human -x ${{SCHEMAS}}{schema_url} -d ${{EXAMPLES}}{data_url} -m \"{{FOCUS a fhir:{shex_name}}}@<{shex_name}>\" > ${{LOGS}}{log_file} ; set +x; ")
+                    # append_script(f"\nset -x; validate --skipCycleCheck --human -x ${{SCHEMAS}}{schema_url} -d ${{EXAMPLES}}{data_url} -m \"{{FOCUS a fhir:{shex_name}}}@<{shex_name}>\" > ${{LOGS}}{log_file} ; set +x; ")
+
+                    append_script(f"\ncurl -i  http://localhost/validate -F \"data=@./fhir_rdf_validation/{data_url}\" -F \"node=.\" -F \"shape={shex_name}\" > ${{LOGS}}{log_file}")
+
                 else:
                     print(f'---------- ERROR! Could not map for File: {rdf_file} ------------')
                     errors.append(rdf_file)
