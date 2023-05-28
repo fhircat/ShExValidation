@@ -5,13 +5,22 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 
 #imported_begin 
-IMPORT <PrimitiveType.shex>
+IMPORT <string.shex>
 #imported_end
 # Primitive Type id
-<id> EXTENDS @<PrimitiveType> CLOSED {   
+<id> EXTENDS @<string> CLOSED {   
 
     a [fhir:id]?;
 
-    fhir:v xsd:string ?;
-}  
+} 
+
+# Tried the following - did not work
+# IMPORT <PrimitiveType.shex>
+
+# <id> EXTENDS @<PrimitiveType> CLOSED {   
+
+#    a [fhir:id]?;
+
+#    fhir:v xsd:string ?;
+# }  
 

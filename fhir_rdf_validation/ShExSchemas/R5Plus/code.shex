@@ -3,15 +3,21 @@ PREFIX fhirvs: <http://hl7.org/fhir/ValueSet/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
 
-
 #imported_begin 
-IMPORT <PrimitiveType.shex>
+IMPORT <string.shex>
 #imported_end
 # Primitive Type code
-<code> EXTENDS @<PrimitiveType> CLOSED {   
+<code> EXTENDS @<string> CLOSED {   
 
     a [fhir:code]?;
 
-    fhir:v xsd:token ?;
-}  
+}
 
+# tried the following - did not work
+#IMPORT <PrimitiveType.shex>
+#<code> EXTENDS @<PrimitiveType> CLOSED {   
+
+#    a [fhir:code]?;
+
+#    fhir:v xsd:token ?;
+#}  
