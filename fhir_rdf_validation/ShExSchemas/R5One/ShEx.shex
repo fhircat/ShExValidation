@@ -9998,12 +9998,13 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
 }  
 # Primitive Type code
-<code> EXTENDS @<PrimitiveType> CLOSED {   
+<code> EXTENDS @<PrimitiveType> CLOSED {
 
     a [fhir:code]?;
 
-    fhir:v xsd:token ?;
-}  
+    fhir:v xsd:token OR xsd:string ?;
+
+}
 
 # Additional code for the concept
 <codesystem-alternate> EXTENDS @<Extension> CLOSED {   

@@ -21,6 +21,8 @@ def append_script(text):
 
 
 def create_script():
+    append_script('#!/bin/bash\n')
+    append_script('\nsource ./utils/check_server.sh')
     append_script('\nSHEXJS=~/A123/git/research/FHIRCat/shex.js')
     append_script('\nVALIDATE=$SHEXJS/packages/shex-cli/bin')
     append_script('\nexport PATH=$VALIDATE:$PATH')
@@ -103,7 +105,8 @@ def process_examples():
                     log_file = f"{shex_name}-{rdf_file}.log"
                     # append_script(f"\nset -x; validate --skipCycleCheck --human -x ${{SCHEMAS}}{schema_url} -d ${{EXAMPLES}}{data_url} -m \"{{FOCUS a fhir:{shex_name}}}@<{shex_name}>\" > ${{LOGS}}{log_file} ; set +x; ")
 
-                    append_script(f"\ncurl -i  http://localhost/validate -F \"data=@./fhir_rdf_validation/{data_url}\" -F \"node=.\" -F \"shape={shex_name}\" > ${{LOGS}}{log_file}")
+                    append_script(f"\ncheck_validation_server; set -x; curl -i  http://localhost/validate -F \"data=@./fhir_rdf_validation/{data_url}\" -F \"queryMap={{FOCUS a fhir:{shex_name} }}@<{shex_name}>\" > ${{LOGS}}{log_file} ; set +x ;")
+
 
                 else:
                     print(f'---------- ERROR! Could not map for File: {rdf_file} ------------')
