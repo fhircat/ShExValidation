@@ -5657,7 +5657,7 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     fhir:status @<code> AND
     	{fhir:v @fhirvs:narrative-status};  # generated | extensions | 
                                             # additional | empty 
-    fhir:div @<xhtml>;                      # Limited xhtml content
+    fhir:div @<xhtml>?; # !!! missing                      # Limited xhtml content
 }  
 # Record of food or fluid being taken by a patient
 <NutritionIntake> EXTENDS @<DomainResource> CLOSED {   
@@ -9729,7 +9729,7 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
     a [fhir:boolean]?;
 
-    fhir:v xsd:boolean?;                    # Primitive value for boolean
+    fhir:v xsd:boolean OR ["true" "false"]?; # !!!                    # Primitive value for boolean
 }  
 # FHIR Blood Pressure Profile
 <bp> EXTENDS @<vitalsigns> CLOSED {   
@@ -10002,7 +10002,7 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
     a [fhir:code]?;
 
-    fhir:v xsd:token ?;
+    fhir:v xsd:token OR xsd:string ?; # !!!
 }  
 
 # Additional code for the concept
@@ -11103,7 +11103,7 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
     a [fhir:date]?;
 
-    fhir:v xsd:gYear OR xsd:gYearMonth OR xsd:date?;  # Primitive value for date
+    fhir:v xsd:gYear OR xsd:gYearMonth OR xsd:date OR xsd:string?; # !!!  # Primitive value for date
 }  
 # Primitive Type dateTime
 <dateTime> EXTENDS @<PrimitiveType> CLOSED {   
@@ -12377,7 +12377,7 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
     a [fhir:instant]?;
 
-    fhir:v xsd:dateTime?;                   # Primitive value for instant
+    fhir:v xsd:dateTime OR xsd:string?; # !!!                  # Primitive value for instant
 }  
 # Primitive Type integer
 <integer> EXTENDS @<PrimitiveType> CLOSED {   
@@ -15730,7 +15730,7 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
     a [fhir:uri]?;
 
-    fhir:v xsd:anyURI?;                     # Primitive value for uri
+    fhir:v xsd:anyURI OR xsd:string?; # !!!                    # Primitive value for uri
 }  
 # Primitive Type url
 <url> EXTENDS @<PrimitiveType> CLOSED {   
